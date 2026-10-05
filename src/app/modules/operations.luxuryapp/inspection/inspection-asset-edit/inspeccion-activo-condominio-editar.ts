@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -36,7 +36,7 @@ interface IReviewForm {
     InputAutocomplete,
     CustomInputTextSignal,
     WebButtonLabelConfirm,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class InspeccionActivoCondominioEditar implements OnInit {

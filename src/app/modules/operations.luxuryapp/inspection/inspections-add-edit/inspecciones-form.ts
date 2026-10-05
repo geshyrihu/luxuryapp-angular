@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -51,7 +51,7 @@ interface IInspeccionsForm {
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -277,4 +277,3 @@ export class InspeccionesForm implements OnInit {
     return this.daysForm.get(key) as FormControl;
   }
 }
-

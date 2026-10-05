@@ -50,8 +50,14 @@
         </div>
       </div>
 
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
         [disabled]="form.invalid || reviewsControl.length === 0"
-        [submitting]="submitting()"
+        [loading]="submitting()"
       />
   </form>
