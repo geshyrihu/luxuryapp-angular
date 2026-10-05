@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { RecruitmentSourceCatalogListDesktop } from "./desktop/recruitment-source-catalog-list-desktop";
 import { RecruitmentSourceCatalogDTO } from "./interfaces/recruitment-source-catalog.dto";
 import { RecruitmentSourceCatalogListMobile } from "./mobile/recruitment-source-catalog-list-mobile";
@@ -26,6 +27,7 @@ export class RecruitmentSourceCatalogList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<RecruitmentSourceCatalogDTO[]>([]);
   readonly globalFilterFields = computed(() =>
@@ -46,7 +48,11 @@ export class RecruitmentSourceCatalogList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Catalogs.RecruitmentSources.delete(id))
       .then((result) => {

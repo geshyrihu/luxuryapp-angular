@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { of } from "rxjs";
 import { ModalController, Platform } from "@ionic/angular";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { BankList } from "./bank-list";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 
@@ -39,7 +40,8 @@ describe("BankList", () => {
           useValue: (globalThis as any).__mockHttpClient,
         },
         { provide: Platform, useValue: { is: vi.fn().mockReturnValue(false) } },
-{ provide: ModalController, useValue: { create: vi.fn(), dismiss: vi.fn() } },
+        { provide: ModalController, useValue: { create: vi.fn(), dismiss: vi.fn() } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         TableScrollHeightService,
       ],
     }).compileComponents();

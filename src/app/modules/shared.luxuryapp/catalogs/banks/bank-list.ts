@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { addIcons } from "ionicons";
 import { businessOutline } from "ionicons/icons";
 import { BankForm } from "./bank-form";
@@ -28,6 +29,7 @@ export class BankList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<BankDto[]>([]);
 
@@ -53,7 +55,11 @@ export class BankList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Catalogs.Banks.delete(id))
       .then((response: boolean) => {

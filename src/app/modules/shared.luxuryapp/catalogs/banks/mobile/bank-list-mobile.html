@@ -22,10 +22,11 @@
             label="Editar"
             [attr.aria-label]="'Editar banco ' + item.shortName"
           />
-          <ili-button-delete
-            (confirmed)="delete.emit(item.id)"
-            label="Eliminar"
-            [attr.aria-label]="'Eliminar banco ' + item.shortName"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            [ariaLabel]="'Eliminar banco ' + item.shortName"
+            (clicked)="delete.emit(item.id)"
           />
         </ng-container>
       </ili-action-menu>

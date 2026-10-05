@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CfdiUseForm } from "./cfdi-use-form";
 import { CfdiUseListDesktop } from "./desktop/cfdi-use-list-desktop";
 import { CfdiUseDto } from "./interfaces/cfdi-use.dto";
@@ -26,6 +27,7 @@ export class CfdiUseList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<CfdiUseDto[]>([]);
   readonly globalFilterFields = computed(() =>
@@ -44,7 +46,11 @@ export class CfdiUseList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Catalogs.CfdiUses.delete(id))
       .then((result: boolean) => {

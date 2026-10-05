@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PaymentMethodListDesktop } from "./desktop/payment-method-list-desktop";
 import { PaymentMethodDto } from "./interfaces/payment-method.dto";
 import { PaymentMethodListMobile } from "./mobile/payment-method-list-mobile";
@@ -26,6 +27,7 @@ export class PaymentMethodList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   data = signal<PaymentMethodDto[]>([]);
   readonly globalFilterFields = computed(() => {
@@ -46,7 +48,11 @@ export class PaymentMethodList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Catalogs.PaymentMethods.delete(id))
       .then((result: boolean) => {

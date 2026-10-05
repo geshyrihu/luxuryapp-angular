@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { DocumentCatalogListDesktop } from "./desktop/document-catalog-list-desktop";
 import { DocumentCatalogForm } from "./document-catalog-form";
 import { DocumentCatalogDto } from "./interfaces/document-catalog.dto";
@@ -26,6 +27,7 @@ export class DocumentCatalogList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<DocumentCatalogDto[]>([]);
   readonly globalFilterFields = computed(() =>
@@ -46,7 +48,11 @@ export class DocumentCatalogList implements OnInit {
       .finally(() => this.loading.set(false));
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Catalogs.DocumentCatalog.delete(id))
       .then((result) => {

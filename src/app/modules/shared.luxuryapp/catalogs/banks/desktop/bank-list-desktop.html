@@ -47,9 +47,15 @@
             [attr.aria-label]="'Editar banco ' + item.shortName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-delete
-            [attr.aria-label]="'Eliminar banco ' + item.shortName"
-            (confirmed)="delete.emit(item.id)"
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            [ariaLabel]="'Eliminar banco ' + item.shortName"
+            (clicked)="delete.emit(item.id)"
           />
         </div>
       </td>
