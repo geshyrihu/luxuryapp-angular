@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -29,7 +29,7 @@ interface IPeriodoCedulaForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class PeriodoCedulaForm implements OnInit {
