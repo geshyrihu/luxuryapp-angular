@@ -10,47 +10,17 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { addIcons } from "ionicons";
-import { calculatorOutline } from "ionicons/icons";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { FundingAccountingListDesktop } from "./desktop/funding-accounting-list-desktop";
+import { FundingAccountingListMobile } from "./mobile/funding-accounting-list-mobile";
 
 @Component({
   selector: "app-funding-accounting-list",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [FundingAccountingListDesktop, FundingAccountingListMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-list.html",
 })
@@ -59,21 +29,18 @@ export class FundingAccountingList {
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   router = inject(Router);
+  platformS = inject(PlatformService);
+
   fechaInicio: Date | string | null = null;
   fechaFin: Date | string | null = null;
 
-  loading = signal(true);
   dataSignal = signal<any[]>([]);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const current = this.dataSignal();
     return current.length > 0 ? globalFilterFields(current) : [];
   });
 
   constructor() {
-    addIcons({ calculatorOutline });
     effect(() => {
       const customerId: string = this.customerIdS.customerId();
       if (customerId) {

@@ -1,4 +1,3 @@
-import { CommonModule, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,67 +9,32 @@ import {
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ProjectedExpensesListDesktop } from "./desktop/projected-expenses-list-desktop";
+import { ProjectedExpensesListMobile } from "./mobile/projected-expenses-list-mobile";
 import { ProjectedExpensesForm } from "./projected-expenses-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 
 @Component({
   selector: "app-projected-expenses-list",
   templateUrl: "./projected-expenses-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    DecimalPipe,
-    LuxTableCaption,
-    DataViewMobile,
-  ],
+  imports: [ProjectedExpensesListDesktop, ProjectedExpensesListMobile],
 })
 export default class ProjectedExpensesList {
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
   ref: DynamicDialogRef;
   loading = signal(true);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     effect(() => {
@@ -81,8 +45,6 @@ export default class ProjectedExpensesList {
   /*
   /PRIME NG TABLE OPTIONS
   */
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   // óEsta es la magia!
   // Se recalcularó automóticamente SOLO si dataSignal cambia.
   globalFilterFields = computed(() => {
