@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -41,7 +41,7 @@ interface IProviderSupportForm {
     AppIcon,
     ReactiveFormsModule,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class ProviderSupportForm implements OnInit {
@@ -204,4 +204,3 @@ export class ProviderSupportForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-
