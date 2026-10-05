@@ -98,7 +98,11 @@
               tooltipPosition="top"
               (click)="resolve.emit(item)"
             />
-            <iw-button-edit (click)="edit.emit(item)" />
+            <lux-button-web
+              kind="edit"
+              displayMode="icon"
+              (clicked)="edit.emit(item)"
+            />
             <iw-button-item
               iconClass="material-symbols-light:cancel"
               lxTooltip="Cancelar"
