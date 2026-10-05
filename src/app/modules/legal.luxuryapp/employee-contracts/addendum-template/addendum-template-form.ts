@@ -10,7 +10,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -44,7 +44,7 @@ interface IAddendumTemplateForm {
     CustomInputSelectSignal,
     CustomInputSwitch,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
   ],
 })

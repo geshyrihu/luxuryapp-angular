@@ -37,12 +37,15 @@
         (clicked)="onCancel()"
         customClass="outline"
       />
-      <il-button-save
-        [propertyId]="item()?.id"
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-        label="Guardar Machote"
+      <lux-button-web
+        kind="save"
         type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar Machote"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
       />
     </div>
   </form>

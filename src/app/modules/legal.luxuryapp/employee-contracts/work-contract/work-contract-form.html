@@ -50,12 +50,15 @@
       }
     </div>
     <div class="d-flex justify-content-end mt-2">
-      <il-button-save
-        [propertyId]="item()?.id"
-        [disabled]="form.invalid || (!isEdit() && !activePosition())"
-        [submitting]="submitting()"
-        label="Guardar"
+      <lux-button-web
+        kind="save"
         type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
+        [disabled]="form.invalid || (!isEdit() && !activePosition())"
+        [loading]="submitting()"
       />
     </div>
   </form>

@@ -14,7 +14,7 @@ import {
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -34,7 +34,7 @@ import { AiService } from "@core/services/ai.service";
     CustomInputTextAreaSignal,
     CustomInputSwitch,
     WebButtonLabel,
-    WebButtonLabelSave,
+    ButtonWeb,
     LxModal,
   ],
 })
