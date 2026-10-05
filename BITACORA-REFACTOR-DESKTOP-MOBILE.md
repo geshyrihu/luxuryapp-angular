@@ -19,18 +19,18 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **155** |
-| ⏳ Pendiente | **4** |
-| ⛔ Omitido / no candidato | **51** |
+| ✅ Refactorizado | **158** |
+| ⏳ Pendiente | **0** |
+| ⛔ Omitido / no candidato | **52** |
 | **Total** | **210** |
 
 ---
 
 | # | Módulo | Dominio | ✅ Refactorizado | ⏳ Pendiente | ⛔ Omitido | Nota |
 |:---:|---|:---:|:---:|:---:|:---:|---|
-| 1 | `accounting-catalogs/aspel-customer-company/aspel-customer-empresa-list.html` | accounting | · | ✅ | · |  |
-| 2 | `accounting-catalogs/aspel-mirror/projected-expenses-list.html` | accounting | · | ✅ | · |  |
-| 3 | `accounting-catalogs/fixed-expense-catalogs/catalogo-gastos-fijos-list.html` | accounting | · | ✅ | · |  |
+| 1 | `accounting-catalogs/aspel-customer-company` | accounting | ✅ | · | · |  |
+| 2 | `accounting-catalogs/aspel-mirror` | accounting | ✅ | · | · |  |
+| 3 | `accounting-catalogs/fixed-expense-catalogs` | accounting | ✅ | · | · |  |
 | 4 | `cfdi-download/cfdi-list` | accounting | ✅ | · | · |  |
 | 5 | `fundings/funding` | accounting | ✅ | · | · |  |
 | 6 | `fundings/funding-accounting` | accounting | ✅ | · | · |  |
@@ -196,7 +196,7 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 166 | `supervision/supervision/general-result-area-evaluation/resultado-general-evaluacion-areas-detalle.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
 | 167 | `supervision/supervision/supervision-agenda/agenda-supervision.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
 | 168 | `task/recurring-tasks/catalog/recurring-task-catalog-list` | operations | ✅ | · | · |  |
-| 169 | `task/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard.html` | operations | · | ✅ | · |  |
+| 169 | `task/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard.html` | operations | · | · | ✅ | No candidato (dashboard) |
 | 170 | `task/recurring-tasks/instances/task-instance-list` | operations | ✅ | · | · |  |
 | 171 | `task/recurring-tasks/templates/task-template-items` | operations | ✅ | · | · |  |
 | 172 | `task/recurring-tasks/templates/task-template-list` | operations | ✅ | · | · |  |
