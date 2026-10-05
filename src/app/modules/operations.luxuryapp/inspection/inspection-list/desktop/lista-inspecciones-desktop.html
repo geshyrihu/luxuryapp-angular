@@ -1,28 +1,24 @@
 <div class="d-flex flex-column gap-3 fadein">
-  <div class="card p-3 d-flex flex-row justify-content-between align-items-center">
-    <h2 class="m-0 text-xl font-bold">Listado de Recorridos</h2>
-    <div class="d-flex gap-2">
-      <il-button
-        iconClass="material-symbols-light:add-circle"
-        label="Nuevo Recorrido"
-        size="sm"
-        lxTooltip="Nuevo Recorrido"
-        (clicked)="add.emit()"
-      />
-      <il-button
-        iconClass="material-symbols-light:menu-book-outline"
-        label="Reportes"
-        size="sm"
-        severity="secondary"
-        tooltip="Ver reportes de inspección"
-        (clicked)="reportes.emit()"
-      />
-    </div>
-  </div>
-
   <div class="card p-3">
-    <div class="row g-3 align-items-end">
-      <div class="col-12 col-xl-4">
+    <div class="inspection-filters">
+      <div class="inspection-filters__group">
+        <il-button
+          iconClass="material-symbols-light:add-circle"
+          label="Nuevo Recorrido"
+          size="sm"
+          lxTooltip="Nuevo Recorrido"
+          (clicked)="add.emit()"
+        />
+        <il-button
+          iconClass="material-symbols-light:menu-book-outline"
+          label="Reportes"
+          size="sm"
+          severity="secondary"
+          tooltip="Ver reportes de inspección"
+          (clicked)="reportes.emit()"
+        />
+      </div>
+      <div class="inspection-filters__field">
         <custom-input-select-signal
           [ngModel]="selectedArea()"
           (ngModelChange)="filterAreaChange.emit($event)"
@@ -31,9 +27,10 @@
           placeholder="Todas las áreas"
           [horizontal]="false"
           [filter]="true"
+          [noMargin]="true"
         />
       </div>
-      <div class="col-12 col-xl-4">
+      <div class="inspection-filters__field">
         <custom-input-select-signal
           [ngModel]="selectedRecurrence()"
           (ngModelChange)="filterRecurrenceChange.emit($event)"
@@ -46,9 +43,10 @@
           placeholder="Todas las Recurrencias"
           [horizontal]="false"
           [filter]="true"
+          [noMargin]="true"
         />
       </div>
-      <div class="col-12 col-xl-4 d-flex justify-content-end gap-2">
+      <div class="inspection-filters__actions">
         <il-button
           label="Limpiar filtros"
           severity="secondary"
@@ -97,7 +95,9 @@
       <ng-template #groupheader let-item>
         <tr>
           <td colspan="3" class="bg-body-tertiary p-2">
-            <span class="fw-bold ms-2 text-primary">{{ item.departament }}</span>
+            <span class="fw-bold ms-2 text-primary"
+              >{{ item.departament }}</span
+            >
           </td>
         </tr>
       </ng-template>
@@ -116,9 +116,9 @@
                 size="sm"
                 class="btn--circle"
                 icon="search"
-                 [attr.aria-label]="'Ver detalles de ' + item.name"
-                 (clicked)="detalles.emit(item.id)"
-               />
+                [attr.aria-label]="'Ver detalles de ' + item.name"
+                (clicked)="detalles.emit(item.id)"
+              />
               <iw-button-delete
                 [attr.aria-label]="'Eliminar ' + item.name"
                 (clicked)="delete.emit(item.id)"

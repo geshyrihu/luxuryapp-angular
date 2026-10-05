@@ -1,0 +1,36 @@
+.inspection-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.inspection-filters__group {
+  display: flex;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.inspection-filters__field {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.inspection-filters__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-inline-start: auto;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .inspection-filters__actions,
+  .inspection-filters__group {
+    width: 100%;
+  }
+
+  .inspection-filters__actions il-button,
+  .inspection-filters__group il-button {
+    flex: 1 1 0;
+  }
+}

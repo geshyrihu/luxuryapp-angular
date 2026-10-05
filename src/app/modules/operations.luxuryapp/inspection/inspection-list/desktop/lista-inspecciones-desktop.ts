@@ -35,6 +35,7 @@ type InspectionTableRow = InspectionSummary & {
 @Component({
   selector: "app-lista-inspecciones-desktop",
   templateUrl: "./lista-inspecciones-desktop.html",
+  styleUrl: "./lista-inspecciones-desktop.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
