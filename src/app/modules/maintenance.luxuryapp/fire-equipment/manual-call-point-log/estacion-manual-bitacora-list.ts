@@ -8,67 +8,27 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { BitacoraFiltroFechaForm } from "@ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { EstacionManualChecklist } from "../manual-call-point-checklist/estacion-manual-checklist";
+import { EstacionManualBitacoraListDesktop } from "./desktop/estacion-manual-bitacora-list-desktop";
 import { EstacionManualBitacoraPdfService } from "./estacion-manual-bitacora-pdf.service";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
+import { EstacionManualBitacoraListMobile } from "./mobile/estacion-manual-bitacora-list-mobile";
 
 @Component({
   selector: "app-estacion-manual-bitacora-list",
   templateUrl: "./estacion-manual-bitacora-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    DataViewMobile,
-    LuxTableCaption,
-    TableFooter,
-
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [EstacionManualBitacoraListDesktop, EstacionManualBitacoraListMobile],
 })
 export class EstacionManualBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   pdfS = inject(EstacionManualBitacoraPdfService);
+  platformS = inject(PlatformService);
   rutaActiva = inject(ActivatedRoute);
 
   dataSignal = signal<any[]>([]);
@@ -78,8 +38,6 @@ export class EstacionManualBitacoraList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
   stationId = "";
 
   ngOnInit(): void {

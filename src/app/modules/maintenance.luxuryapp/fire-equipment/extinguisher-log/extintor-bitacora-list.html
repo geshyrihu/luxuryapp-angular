@@ -1,141 +1,19 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div class="d-flex justify-content-between align-items-center w-full">
-      <div class="d-flex align-items-center gap-2">
-        <iw-button-download
-          (clicked)="onPdfReport()"
-          lxTooltip="PDF"
-          tooltipPosition="top"
-          tooltip="Reporte PDF por rango de fecha"
-        />
-      </div>
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
-        [dt]="dt"
-      />
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
-      <th class="table-col-10">Hora</th>
-      <th class="table-col-10">Presión</th>
-      <th class="table-col-10">Seguro</th>
-      <th class="table-col-10">Etiquetas</th>
-      <th class="table-col-10">Sin Daños</th>
-      <th>Observaciones</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
-      <td class="text-center">{{ item.hour }}</td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.adequatePressure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.adequatePressure"
-          [class.text-red-600]="!item.adequatePressure"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.safetyPinOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.safetyPinOk"
-          [class.text-red-600]="!item.safetyPinOk"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.labelsOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.labelsOk"
-          [class.text-red-600]="!item.labelsOk"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.noPhysicalDamage"
-          [class.text-red-600]="!item.noPhysicalDamage"
-        />
-      </td>
-      <td><span>{{ item.observations }}</span></td>
-      <td class="no-print">
-        <div class="d-flex justify-content-center">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:fire-extinguisher" />
-      </div>
-
-      <h3>{{ item.date | apiDate:'dd-MMM-yy' }} {{ item.hour }}</h3>
-      @if (item.observations) {
-      <p>{{ item.observations }}</p>
-      }
-      <div class="d-flex gap-2 mt-1">
-        <small
-          [class]="item.adequatePressure ? 'text-green-600' : 'text-red-600'"
-          >Presion</small
-        >
-        <small [class]="item.safetyPinOk ? 'text-green-600' : 'text-red-600'"
-          >Seguro</small
-        >
-        <small [class]="item.labelsOk ? 'text-green-600' : 'text-red-600'"
-          >Etiquetas</small
-        >
-        <small
-          [class]="item.noPhysicalDamage ? 'text-green-600' : 'text-red-600'"
-          >Sin Daños</small
-        >
-      </div>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-extintor-bitacora-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (pdfReport)="onPdfReport()"
+  />
+} @else {
+  <app-extintor-bitacora-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (pdfReport)="onPdfReport()"
+  />
+}

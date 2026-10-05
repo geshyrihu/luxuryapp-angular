@@ -1,168 +1,19 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <div class="d-flex justify-content-between align-items-center w-full">
-      <div class="d-flex align-items-center gap-2">
-        <iw-button-download
-          (clicked)="onPdfReport()"
-          lxTooltip="PDF"
-          tooltipPosition="top"
-          tooltip="Reporte PDF por rango de fecha"
-        />
-      </div>
-      <lux-table-caption
-        (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
-        [dt]="dt"
-      />
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
-      <th class="table-col-10">Hora</th>
-      <th class="table-col-10">Etiqueta</th>
-      <th class="table-col-10">Cristal</th>
-      <th class="table-col-10">Llave</th>
-      <th class="table-col-10">Manguera</th>
-      <th class="table-col-10">Chiflón</th>
-      <th class="table-col-10">Vólvula</th>
-      <th class="table-col-10">Cerradura</th>
-      <th>Estado Gabinete</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
-      <td class="text-center">{{ item.hour }}</td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.labelPresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.labelPresent"
-          [class.text-red-600]="!item.labelPresent"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.glassIntact ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.glassIntact"
-          [class.text-red-600]="!item.glassIntact"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.wrenchPresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.wrenchPresent"
-          [class.text-red-600]="!item.wrenchPresent"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.hoseOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.hoseOk"
-          [class.text-red-600]="!item.hoseOk"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.nozzlePresent ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.nozzlePresent"
-          [class.text-red-600]="!item.nozzlePresent"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.valveOperational ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.valveOperational"
-          [class.text-red-600]="!item.valveOperational"
-        />
-      </td>
-      <td class="text-center">
-        <app-icon
-          [icon]="item.lockOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
-          class="font-size-18"
-          [class.text-green-600]="item.lockOk"
-          [class.text-red-600]="!item.lockOk"
-        />
-      </td>
-      <td><span>{{ item.cabinetState }}</span></td>
-      <td class="no-print">
-        <div class="d-flex justify-content-center">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="11" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [globalFilterFields]="globalFilterFields()"
-  (add)="onModalForm({ id: '', title: 'Nueva Inspección' })"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:precision-manufacturing" />
-      </div>
-
-      <h3>{{ item.date | apiDate:'dd-MMM-yy' }} {{ item.hour }}</h3>
-      <p>{{ item.cabinetState }}</p>
-      <div class="d-flex gap-2 mt-1">
-        <small [class]="item.labelPresent ? 'text-green-600' : 'text-red-600'"
-          >Etiqueta</small
-        >
-        <small [class]="item.glassIntact ? 'text-green-600' : 'text-red-600'"
-          >Cristal</small
-        >
-        <small [class]="item.wrenchPresent ? 'text-green-600' : 'text-red-600'"
-          >Llave</small
-        >
-        <small [class]="item.hoseOk ? 'text-green-600' : 'text-red-600'"
-          >Manguera</small
-        >
-        <small
-          [class]="item.valveOperational ? 'text-green-600' : 'text-red-600'"
-          >Vólvula</small
-        >
-      </div>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Inspección' })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-hidrante-bitacora-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (pdfReport)="onPdfReport()"
+  />
+} @else {
+  <app-hidrante-bitacora-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (pdfReport)="onPdfReport()"
+  />
+}
