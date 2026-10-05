@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -46,7 +46,7 @@ interface LeaveRequestEditDTO {
     CustomInputTime,
     CustomInputTextAreaSignal,
     CustomInputFile,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class PermisoForm implements OnInit {

@@ -17,7 +17,7 @@ import {
 } from "@angular/forms";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanel } from "@ui/adaptive/panel/panel";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -52,7 +52,7 @@ interface VacationRequestEditDTO {
     LxMessage,
     CustomInputDateSignal,
     // CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class VacacionesForm implements OnInit {

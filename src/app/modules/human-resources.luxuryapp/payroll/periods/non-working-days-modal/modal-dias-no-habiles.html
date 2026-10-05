@@ -22,10 +22,15 @@
         />
       </div>
       <div class="col-12 col-md-2 d-flex align-items-end">
-        <il-button-save
-          (clicked)="onSubmit()"
-          [submitting]="submitting()"
+        <lux-button-web
+          kind="save"
+          type="button"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           label="Agregar"
+          (clicked)="onSubmit()"
+          [loading]="submitting()"
         />
       </div>
     </div>

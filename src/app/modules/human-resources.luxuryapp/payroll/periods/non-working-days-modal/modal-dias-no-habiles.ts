@@ -11,7 +11,7 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -32,7 +32,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     ReactiveFormsModule,
     AppTable,
     LxTag,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputDateSignal,
     CustomInputTextSignal,
     CustomInputSwitch,
