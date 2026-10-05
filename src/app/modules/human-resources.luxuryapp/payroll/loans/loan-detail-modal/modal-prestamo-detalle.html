@@ -91,10 +91,15 @@
         [disabled]="procesando()"
         (clicked)="cancelar()"
       />
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="button"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         label="Autorizar"
         (clicked)="autorizar()"
-        [submitting]="procesando()"
+        [loading]="procesando()"
       />
     </div>
   </form>

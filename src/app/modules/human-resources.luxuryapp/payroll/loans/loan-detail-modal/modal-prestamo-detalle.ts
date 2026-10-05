@@ -17,7 +17,7 @@ import {
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -35,7 +35,7 @@ import {
     AppTable,
     LxTag,
     WebButtonLabel,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextAreaSignal,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -30,7 +30,7 @@ import {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputDecimal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./configuracion-nomina.html",
@@ -114,4 +114,3 @@ export default class ConfiguracionNomina implements OnInit {
     this.submitting.set(false);
   }
 }
-
