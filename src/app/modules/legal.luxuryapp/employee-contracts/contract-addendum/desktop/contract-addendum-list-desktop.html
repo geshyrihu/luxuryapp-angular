@@ -1,0 +1,76 @@
+<lux-table
+  [value]="data()"
+  class="custom-table card"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [globalFilterFields]="globalFilterFields()"
+  #dt
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [showAdd]="showAdd()"
+      (add)="add.emit({ id: '', title: 'Nueva Adenda' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-md">Número</th>
+      <th class="table-col-lg">Título</th>
+      <th class="table-col-md">Tipo</th>
+      <th class="table-col-sm text-center">Estatus</th>
+      <th class="table-col-sm">Fecha Efectiva</th>
+      <th class="table-col-sm">Fecha Firma</th>
+      <th class="table-col-actions">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.addendumNumber }}</td>
+      <td>{{ item.title }}</td>
+      <td>
+        <span [class]="'badge ' + getAddendumTypeBadge(item.addendumType)"
+          >{{ item.addendumType }}</span
+        >
+      </td>
+      <td class="text-center">
+        <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
+          >{{ item.addendumStatus }}</span
+        >
+      </td>
+      <td>{{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}</td>
+      <td>
+        {{ item.signedDate ? (item.signedDate | apiDate:'dd/MM/yyyy') : 'é' }}
+      </td>
+      <td class="text-center">
+        @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
+        'Pendiente') {
+        <iw-button-item
+          icon="material-symbols-light:login"
+          title="Firmar"
+          (clicked)="sign.emit(item)"
+        />
+        <iw-button-edit (clicked)="edit.emit(item)" />
+        } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
+        'Pendiente') {
+        <iw-button-item
+          icon="material-symbols-light:cancel"
+          title="Cancelar"
+          severity="danger"
+          (clicked)="cancel.emit(item)"
+        />
+        }
+        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="7" />
+  </ng-template>
+</lux-table>

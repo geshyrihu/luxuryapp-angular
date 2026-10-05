@@ -1,0 +1,57 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="card custom-table"
+  size="small"
+  [scrollable]="true"
+  scrollHeight="750px"
+>
+  <ng-template #caption>
+    <lux-table-caption [dt]="dt" [showAdd]="false" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="customerName">
+        Condominio
+        <app-sorticon field="customerName" />
+      </th>
+      <th appSortableColumn="posicionComite">
+        Cargo
+        <app-sorticon field="posicionComite" />
+      </th>
+      <th appSortableColumn="fullName">
+        Nombre
+        <app-sorticon field="fullName" />
+      </th>
+      <th appSortableColumn="email">
+        Email
+        <app-sorticon field="email" />
+      </th>
+      <th appSortableColumn="phoneNumber">
+        Telefono
+        <app-sorticon field="phoneNumber" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.customerName }}</td>
+      <td>{{ item.posicionComite }}</td>
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.phoneNumber }}</td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="5" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

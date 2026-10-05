@@ -1,0 +1,35 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ContractTemplateListDTO } from "../interfaces/contract-template.dto";
+
+@Component({
+  selector: "app-contract-template-list-mobile",
+  templateUrl: "./contract-template-list-mobile.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AppIcon,
+    MobileListItem,
+    MobileActionMenu,
+    MobileButtonLabelItem,
+    DataViewMobile,
+    ApiDatePipe,
+  ],
+})
+export class ContractTemplateListMobile {
+  data = input.required<ContractTemplateListDTO[]>();
+  globalFilterFields = input<string[]>([]);
+
+  add = output<{ id: string; title: string }>();
+  edit = output<ContractTemplateListDTO>();
+  toggleActive = output<ContractTemplateListDTO>();
+}

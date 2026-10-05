@@ -1,0 +1,41 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="showAdd()"
+  (add)="add.emit({ id: '', title: 'Nueva Adenda' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-yellow-100"
+      >
+        <app-icon
+          icon="material-symbols-light:edit-note"
+          class="text-xl text-yellow-500"
+        />
+      </div>
+
+      <h2 class="fw-bold">{{ item.addendumNumber }} é {{ item.title }}</h2>
+      <p class="text-sm text-body-secondary">{{ item.addendumType }}</p>
+      <p class="text-sm text-body-secondary">
+        Efectiva: {{ item.effectiveDate | apiDate:'dd/MM/yyyy' }}
+      </p>
+      <p class="text-sm">
+        <span [class]="'badge ' + getStatusBadge(item.addendumStatus)"
+          >{{ item.addendumStatus }}</span
+        >
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            label="Editar"
+            iconName="create-outline"
+            (clicked)="edit.emit(item)"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

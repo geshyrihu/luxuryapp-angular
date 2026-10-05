@@ -1,0 +1,83 @@
+<lux-table
+  #dt
+  [value]="data()"
+  class="custom-table card"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      [showAdd]="showAdd()"
+      title="Contratos Laborales"
+      (add)="add.emit({ id: '', title: 'Nuevo Contrato Laboral' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th class="table-col-md">Número</th>
+      <th class="table-col-md">Empleado</th>
+      <th class="table-col-md">Tipo</th>
+      <th class="table-col-sm">Inicio</th>
+      <th class="table-col-sm">Fin</th>
+      <th class="table-col-md text-end">Salario</th>
+      <th class="table-col-md text-center">Estatus</th>
+      <th class="table-col-actions">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.contractNumber }}</td>
+      <td>
+        <div class="d-flex flex-column">
+          <span class="fw-semibold">{{ item.employeeName }}</span>
+          <span class="text-body-secondary">{{ item.workPositionName }}</span>
+        </div>
+      </td>
+      <td>{{ item.contractType }}</td>
+      <td>{{ item.startDate | apiDate:'dd/MM/yyyy' }}</td>
+      <td>
+        {{ item.endDate ? (item.endDate | apiDate:'dd/MM/yyyy') : 'Indefinido'
+        }}
+      </td>
+      <td class="text-end">
+        {{ item.salaryAtContract | currency:'MXN':'symbol':'1.2-2' }}
+      </td>
+      <td class="text-center">
+        <span [class]="'badge ' + getStatusBadge(item.status)"
+          >{{ item.status }}</span
+        >
+      </td>
+      <td class="text-center">
+        <iw-button-item
+          icon="material-symbols-light:visibility-outline"
+          (clicked)="viewDetail.emit(item)"
+        />
+        @if (item.status === 'Borrador' || item.status === 'Activo' ||
+        item.status === 'PendienteFirma') {
+        <iw-button-edit (clicked)="edit.emit(item)" />
+        } @if (item.pdfUrl) {
+        <iw-button-view-pdf [url]="item.pdfUrl" fileName="Contrato" />
+        } @if (item.status === 'Borrador' || item.status === 'Activo' ||
+        item.status === 'PendienteFirma') {
+        <iw-button-item
+          icon="material-symbols-light:cancel"
+          lxTooltip="Terminar"
+          (clicked)="terminate.emit(item)"
+        />
+        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <lux-table-footer [totalRecords]="data().length" />
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+</lux-table>

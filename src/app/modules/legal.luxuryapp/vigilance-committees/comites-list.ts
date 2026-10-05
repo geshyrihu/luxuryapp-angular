@@ -7,27 +7,15 @@ import {
   signal,
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   CommitteeDirectoryGroup,
   CommitteeDirectoryMember,
 } from "@core/interfaces/comite-vigilancia.interface";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ComitesListDesktop } from "./desktop/comites-list-desktop";
+import { ComitesListMobile } from "./mobile/comites-list-mobile";
 
 type CommitteeDirectoryFlatItem = CommitteeDirectoryMember & {
   customerName: string;
@@ -37,24 +25,14 @@ type CommitteeDirectoryFlatItem = CommitteeDirectoryMember & {
   selector: "app-comites-list",
   templateUrl: "./comites-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    DataViewMobile,
-    TableFooter,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [ComitesListDesktop, ComitesListMobile],
 })
 export class ComitesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  platformS = inject(PlatformService);
+
   dataSignal = signal<CommitteeDirectoryGroup[]>([]);
   loading = signal(true);
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
 
   flatData = computed<CommitteeDirectoryFlatItem[]>(() => {
     return this.dataSignal().flatMap((customerGroup) =>

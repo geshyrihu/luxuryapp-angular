@@ -1,134 +1,20 @@
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [loading]="loading()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [value]="dataSignal()"
-  dataKey="id"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
-  [scrollable]="true"
-  scrollHeight="750px"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="posicionComite">
-        Posición
-        <app-sorticon field="posicionComite" />
-      </th>
-      <th appSortableColumn="nameProperty">
-        Nombre
-        <app-sorticon field="nameProperty" />
-      </th>
-      <th appSortableColumn="departamento">
-        Departamento
-        <app-sorticon field="departamento" />
-      </th>
-      <th appSortableColumn="email">
-        Correo
-        <app-sorticon field="email" />
-      </th>
-      <th appSortableColumn="userName">
-        Usuario
-        <app-sorticon field="userName" />
-      </th>
-      <th>Celular</th>
-      <th class="no-print">Opciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.posicionComite }}</td>
-      <td>{{ item.nameProperty }}</td>
-      <td>{{ item.departamento }}</td>
-      <td>{{ item.email }}</td>
-      <td>{{ item.userName || 'Sin usuario' }}</td>
-      <td>{{ item.celular }}</td>
-
-      <td class="no-print">
-        <div class="d-flex gap-1">
-          <iw-button-edit
-            [attr.aria-label]="'Editar comité ' + item.nameProperty"
-            (clicked)="onModalForm({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
-          />
-          <iw-button-delete
-            [attr.aria-label]="'Eliminar comité ' + item.nameProperty"
-            (confirmed)="onDelete(item.id)"
-          />
-
-          <iw-button-send-email
-            size="sm"
-            class="btn--circle"
-            [attr.aria-label]="'Enviar credenciales a ' + item.nameProperty"
-            confirmMessage="Enviar usuario y contrasena de acceso."
-            (confirmed)="onSendCredential(item.id)"
-          />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="7" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
-  trackByProperty="id"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:group-outline"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.nameProperty }}</h2>
-      <p class="text-medium text-body-secondary m-0">
-        {{ item.posicionComite }} | {{ item.departamento }}
-      </p>
-      <p class="text-medium text-body-secondary m-0">{{ item.email }}</p>
-      <p class="text-medium text-body-secondary m-0">
-        Usuario: {{ item.userName || 'Sin usuario' }}
-      </p>
-      <p class="text-medium text-body-secondary m-0">{{ item.celular }}</p>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
-            label="Editar"
-          />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-          <ili-button-send-email
-            confirmMessage="Enviar usuario y contrasena de acceso."
-            (confirmed)="onSendCredential(item.id)"
-            label="Enviar"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-comite-vigilancia-list-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (sendCredential)="onSendCredential($event)"
+  />
+} @else {
+  <app-comite-vigilancia-list-desktop
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    [loading]="loading()"
+    (add)="onModalForm($event)"
+    (edit)="onModalForm($event)"
+    (delete)="onDelete($event)"
+    (sendCredential)="onSendCredential($event)"
+  />
+}

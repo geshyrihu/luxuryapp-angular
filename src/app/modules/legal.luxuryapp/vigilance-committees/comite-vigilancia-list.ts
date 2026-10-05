@@ -9,65 +9,28 @@ import {
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ComiteVigilancia } from "@core/interfaces/comite-vigilancia.interface";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelSendEmail } from "@ui/buttons/mobile-label/button-send-email";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
+import { ComiteVigilanciaListDesktop } from "./desktop/comite-vigilancia-list-desktop";
+import { ComiteVigilanciaListMobile } from "./mobile/comite-vigilancia-list-mobile";
 
 @Component({
   selector: "app-comite-vigilancia-list",
   templateUrl: "./comite-vigilancia-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    WebButtonIconSendEmail,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelSendEmail,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    NgbTooltipModule,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [ComiteVigilanciaListDesktop, ComiteVigilanciaListMobile],
 })
 export class ComiteVigilanciaList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
+  platformS = inject(PlatformService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dataSignal = signal<ComiteVigilancia[]>([]);
@@ -77,8 +40,6 @@ export class ComiteVigilanciaList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
   ref!: DynamicDialogRef;
 
   constructor() {

@@ -8,58 +8,25 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { WorkContractListDesktop } from "./desktop/work-contract-list-desktop";
 import {
   EmployeeWorkContractListDTO,
   EmployeeWorkContractTerminateDTO,
 } from "./interfaces/work-contract.dto";
+import { WorkContractListMobile } from "./mobile/work-contract-list-mobile";
 import { WorkContractDetailComponent } from "./work-contract-detail";
 import { WorkContractFormComponent } from "./work-contract-form";
-
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-work-contract-list",
   templateUrl: "./work-contract-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    WebButtonIconViewPdf,
-  ],
+  imports: [WorkContractListDesktop, WorkContractListMobile],
 })
 export class WorkContractList implements OnInit {
   employeeId = signal<string | null>(null);
@@ -67,14 +34,12 @@ export class WorkContractList implements OnInit {
 
   apiS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollH = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   customerIdS = inject(CustomerIdService);
   confirmS = inject(ConfirmService);
 
   items = signal<EmployeeWorkContractListDTO[]>([]);
   globalFilter = signal<string>("");
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = globalFilterFields([
     "contractNumber",
     "employeeName",
@@ -174,19 +139,5 @@ export class WorkContractList implements OnInit {
     this.apiS
       .onPost(Endpoints.HR.EmployeeWorkContract.terminate(item.id), dto)
       .then(() => this.onLoadData());
-  }
-
-  getStatusBadge(status: string): string {
-    const map: Record<string, string> = {
-      Activo: "badge-success",
-      Borrador: "badge-neutral",
-      Expirado: "badge-warning",
-      Terminado: "badge-danger",
-      Cancelado: "badge-danger",
-      Suspendido: "badge-warning",
-      PendienteFirma: "badge-info",
-      Firmado: "badge-success",
-    };
-    return map[status] ?? "badge-neutral";
   }
 }

@@ -1,0 +1,27 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+  trackByProperty="id"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:group-outline"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+      <p class="text-medium text-body-secondary m-0">
+        {{ item.posicionComite }} | {{ item.customerName }}
+      </p>
+      <p class="text-medium text-body-secondary m-0">{{ item.email }}</p>
+      <p class="text-medium text-body-secondary m-0">{{ item.phoneNumber }}</p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

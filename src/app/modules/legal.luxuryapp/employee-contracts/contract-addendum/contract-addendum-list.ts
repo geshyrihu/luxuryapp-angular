@@ -7,63 +7,30 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
+import { ContractAddendumListDesktop } from "./desktop/contract-addendum-list-desktop";
 import { ContractAddendumListDTO } from "./interfaces/contract-addendum.dto";
-
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ContractAddendumListMobile } from "./mobile/contract-addendum-list-mobile";
 
 @Component({
   selector: "app-contract-addendum-list",
   templateUrl: "./contract-addendum-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [ContractAddendumListDesktop, ContractAddendumListMobile],
 })
 export class ContractAddendumList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  tableScrollH = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   private route = inject(ActivatedRoute);
   employeeId = signal<string | null>(null);
 
   items = signal<ContractAddendumListDTO[]>([]);
   globalFilter = signal<string>("");
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = globalFilterFields([
     "addendumNumber",
     "title",
@@ -123,29 +90,5 @@ export class ContractAddendumList implements OnInit {
     this.apiS
       .onDelete(Endpoints.HR.ContractAddendum.delete(id))
       .then(() => this.onLoadData());
-  }
-
-  getAddendumTypeBadge(type: string): string {
-    const map: Record<string, string> = {
-      ModificacionSalario: "badge-warning",
-      CambioPuesto: "badge-info",
-      CambioDepartamento: "badge-info",
-      CambioUbicacion: "badge-info",
-      ExtensionContrato: "badge-primary",
-      ModificacionJornada: "badge-info",
-      ClausulaAdicional: "badge-neutral",
-      OtrasCondiciones: "badge-neutral",
-    };
-    return map[type] ?? "badge-neutral";
-  }
-
-  getStatusBadge(status: string): string {
-    const map: Record<string, string> = {
-      Borrador: "badge-neutral",
-      Pendiente: "badge-warning",
-      Firmado: "badge-success",
-      Cancelado: "badge-danger",
-    };
-    return map[status] ?? "badge-neutral";
   }
 }

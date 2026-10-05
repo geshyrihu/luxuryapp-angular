@@ -1,0 +1,49 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nuevo Machote de Contrato' })"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:description"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="fw-bold">{{ item.name }}</h2>
+      <p class="text-sm text-body-secondary">
+        {{ item.contractType }} é v{{ item.version }}
+      </p>
+      <p class="text-sm text-body-secondary">
+        {{ item.createdAt | apiDate:'dd/MM/yyyy' }}
+      </p>
+      <p class="text-sm">
+        @if (item.isActive) {
+        <span class="badge badge-success">Activo</span>
+        } @else {
+        <span class="badge badge-danger">Inactivo</span>
+        }
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            label="Editar"
+            iconName="create-outline"
+            (clicked)="edit.emit(item)"
+          />
+          <ili-button-item
+            [label]="item.isActive ? 'Desactivar' : 'Activar'"
+            iconName="toggle-outline"
+            (clicked)="toggleActive.emit(item)"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>
