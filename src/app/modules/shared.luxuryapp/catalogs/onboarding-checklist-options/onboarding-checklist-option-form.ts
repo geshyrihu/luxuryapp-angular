@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -42,7 +42,7 @@ import {
     CustomInputTextAreaSignal,
     CustomInputNumberSignal,
     CustomInputMultiselectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class OnboardingChecklistOptionForm implements OnInit {
