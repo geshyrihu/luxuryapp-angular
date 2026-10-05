@@ -184,7 +184,11 @@
       [showAdd]="false"
     >
       <ng-template #extraButtons>
-        <iw-button-download (clicked)="exportExcel()" />
+         <lux-button-web
+           kind="download"
+           displayMode="icon"
+           (clicked)="exportExcel()"
+         />
       </ng-template>
     </lux-table-caption>
   </ng-template>

@@ -1,7 +1,8 @@
 <div class="container">
   <app-report-header></app-report-header>
   <div class="d-flex justify-content-end my-3">
-    <il-button-download
+    <lux-button-web
+      kind="download"
       label="Exportar a Excel"
       severity="success"
       (clicked)="exportToExcel()"

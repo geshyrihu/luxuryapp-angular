@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -31,7 +31,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     CommonModule,
     ReportHeader,
     SanitizeHtmlPipe,
-    WebButtonLabelDownload,
+    ButtonWeb,
   ],
 })
 export class MinutaPendientes {

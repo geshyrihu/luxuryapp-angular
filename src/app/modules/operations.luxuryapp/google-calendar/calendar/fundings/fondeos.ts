@@ -1,10 +1,10 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-fondeos",
   templateUrl: "./fondeos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabelDownload],
+  imports: [ButtonWeb],
 })
 export class Fondeos {
   descargarPDF() {

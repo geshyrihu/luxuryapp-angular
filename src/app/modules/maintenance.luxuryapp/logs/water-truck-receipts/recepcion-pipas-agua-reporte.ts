@@ -18,6 +18,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { Workbook } from "exceljs";
@@ -31,7 +32,6 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
@@ -42,7 +42,7 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
   providers: [ApiDatePipe, DatePipe],
   imports: [
     AppIcon,
-    WebButtonIconDownload,
+    ButtonWeb,
     TableEmptyMessage,
     CommonModule,
     ApiDatePipe,
