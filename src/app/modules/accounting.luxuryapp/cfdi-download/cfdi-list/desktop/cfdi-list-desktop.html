@@ -1,0 +1,106 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} CFDI"
+  class="custom-table custom-table-fixed card"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-between gap-2 p-2 bg-body-tertiary rounded"
+    >
+      <div class="flex-grow-1">
+        <lux-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" [noPadding]="true" />
+      </div>
+      <div class="flex-shrink-0">
+        <il-button
+          (clicked)="exportarExcel.emit()"
+          label="Exportar a Excel"
+          iconClass="material-symbols-light:download"
+          variant="outline"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #colgroup>
+    <colgroup>
+      <col class="table-col-20" />
+      <col class="table-col-10" />
+      <col class="table-col-10" />
+      <col class="table-col-10" />
+      <col class="table-col-10" />
+      <col class="table-col-15" />
+      <col class="table-col-15" />
+      <col class="table-col-10" />
+    </colgroup>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="nombreEmisor">
+        Proveedor
+        <app-sorticon field="nombreEmisor" />
+      </th>
+      <th appSortableColumn="fechaEmision">
+        Fecha
+        <app-sorticon field="fechaEmision" />
+      </th>
+      <th>Folio</th>
+      <th appSortableColumn="total">
+        Total
+        <app-sorticon field="total" />
+      </th>
+      <th>Forma/Método pago</th>
+      <th>Estado SAT</th>
+      <th>EFOS</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <span class="fw-semibold text-body">{{ item.nombreEmisor || item.rfcEmisor }}</span>
+        <div class="text-body-secondary small">{{ item.rfcEmisor }}</div>
+      </td>
+      <td>{{ item.fechaEmision | date: "dd/MM/yyyy" }}</td>
+      <td>{{ item.serie }}{{ item.folio }}</td>
+      <td class="text-end">{{ item.total | currency: item.moneda || "MXN" }}</td>
+      <td>{{ item.formaPago || "—" }} / {{ item.metodoPago || "—" }}</td>
+      <td>
+        <lux-tag
+          [value]="item.estadoSat"
+          [severity]="item.estadoSat === 'Vigente' ? 'success' : 'danger'"
+          [rounded]="true"
+        />
+      </td>
+      <td>
+        @if (item.efosEstado) {
+          <lux-tag [value]="item.efosEstado" [severity]="efosSeverity(item.efosEstado)" [rounded]="true" />
+        } @else {
+          <span class="text-body-secondary small">Sin coincidencia</span>
+        }
+      </td>
+      <td class="no-print text-center">
+        <app-icon
+          [icon]="'material-symbols-light:picture-as-pdf'"
+          class="text-body-secondary"
+          style="cursor: pointer"
+          (click)="verPdf.emit(item.id)"
+        />
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

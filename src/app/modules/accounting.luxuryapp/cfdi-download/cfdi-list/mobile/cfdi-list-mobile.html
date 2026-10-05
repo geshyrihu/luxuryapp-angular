@@ -1,0 +1,35 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item class="ion-no-padding" (click)="verPdf.emit(item.id)">
+      <div
+        start
+        class="w-2rem h-2rem rounded bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:receipt-long'"
+          class="text-blue-600 text-xl"
+        />
+      </div>
+      <div class="flex-fill min-w-0 ms-2">
+        <h3 class="fw-bold text-body mb-1">{{ item.nombreEmisor || item.rfcEmisor }}</h3>
+        <div class="text-body-secondary small mb-1">
+          {{ item.fechaEmision | date: "dd/MM/yyyy" }} · {{ item.total | currency: item.moneda || "MXN" }}
+        </div>
+        <div class="d-flex flex-wrap gap-1">
+          <lux-tag
+            [value]="item.estadoSat"
+            [severity]="item.estadoSat === 'Vigente' ? 'success' : 'danger'"
+            [rounded]="true"
+          />
+          @if (item.efosEstado) {
+            <lux-tag [value]="item.efosEstado" [severity]="efosSeverity(item.efosEstado)" [rounded]="true" />
+          }
+        </div>
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

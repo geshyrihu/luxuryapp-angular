@@ -1,0 +1,14 @@
+@if (platformS.isMobile()) {
+  <app-cfdi-list-mobile
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields()"
+    (verPdf)="verPdf.emit($event)"
+  />
+} @else {
+  <app-cfdi-list-desktop
+    [data]="data()"
+    [globalFilterFields]="globalFilterFields()"
+    (verPdf)="verPdf.emit($event)"
+    (exportarExcel)="exportarExcel.emit()"
+  />
+}
