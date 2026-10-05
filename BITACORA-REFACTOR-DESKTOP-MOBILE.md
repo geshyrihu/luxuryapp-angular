@@ -19,8 +19,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **87** |
-| ⏳ Pendiente | **75** |
+| ✅ Refactorizado | **93** |
+| ⏳ Pendiente | **69** |
 | ⛔ Omitido / no candidato | **50** |
 | **Total** | **212** |
 
@@ -58,8 +58,8 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 28 | `general-ledger/fixed-expense-catalogs/catalogo-gastos-fijos-list.html` | accounting | · | ✅ | · |  |
 | 29 | `general-ledger/funding-accounting/funding-accounting-list.html` | accounting | · | ✅ | · |  |
 | 30 | `general-ledger/pending-minutes` | accounting | ✅ | · | · |  |
-| 31 | `email-configuration/customer-data-companies/customer-data-company-list.html` | admin | · | ✅ | · |  |
-| 32 | `email-configuration/email-data/email-data-list.html` | admin | · | ✅ | · |  |
+| 31 | `email-configuration/customer-data-companies` | admin | ✅ | · | · |  |
+| 32 | `email-configuration/email-data` | admin | ✅ | · | · |  |
 | 33 | `reports/customer-provider/mis-proveedores-list.html` | admin | · | ✅ | · |  |
 | 34 | `security-permissions/application-roles` | admin | ✅ | · | · |  |
 | 35 | `security-permissions/customer` | admin | ✅ | · | · |  |
@@ -70,10 +70,10 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 40 | `system-audit-logs/audit-entries/audit-entries.html` | admin | · | ✅ | · |  |
 | 41 | `system-audit-logs/log-api-report/log-api-report.html` | admin | · | ✅ | · |  |
 | 42 | `system-audit-logs/user-activity-history/user-activity-history.html` | admin | · | ✅ | · |  |
-| 43 | `system-configuration/assembly-checklist-templates/asamblea-checklist-template-list.html` | admin | · | ✅ | · |  |
-| 44 | `system-configuration/database-backup/database-backup-list.html` | admin | · | ✅ | · |  |
-| 45 | `system-configuration/knowledge-base/ai-knowledge-base-list.html` | admin | · | ✅ | · |  |
-| 46 | `system-configuration/vault-secrets/vault-secrets-list.html` | admin | · | ✅ | · |  |
+| 43 | `system-configuration/assembly-checklist-templates` | admin | ✅ | · | · |  |
+| 44 | `system-configuration/database-backup` | admin | ✅ | · | · |  |
+| 45 | `system-configuration/knowledge-base` | admin | ✅ | · | · |  |
+| 46 | `system-configuration/vault-secrets` | admin | ✅ | · | · |  |
 | 47 | `password-manager/password-list.html` | auth | · | ✅ | · |  |
 | 48 | `native-collections/core/approvals/approval-inbox.html` | collections | · | · | ✅ | Omitido por decisión |
 | 49 | `native-collections/core/audit/financial-audit-log.html` | collections | · | · | ✅ | Omitido por decisión |
