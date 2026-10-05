@@ -19,10 +19,10 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **43** |
-| ⏳ Pendiente | **139** |
+| ✅ Refactorizado | **51** |
+| ⏳ Pendiente | **130** |
 | ⛔ Omitido / no candidato | **28** |
-| **Total** | **210** |
+| **Total** | **209** |
 
 ---
 
@@ -189,52 +189,51 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 159 | `properties` | operations | ✅ | · | · |  |
 | 160 | `providers` | operations | ✅ | · | · |  |
 | 161 | `reports/contracts-policies/contracts-policies.html` | operations | · | ✅ | · |  |
-| 162 | `service-orders/service-order/ordenes-servicio-list.html` | operations | · | ✅ | · |  |
+| 162 | `service-orders/service-order` | operations | ✅ | · | · |  |
 | 163 | `supervision/supervision/area-minutes-filter/filtro-minutas-area.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
 | 164 | `supervision/supervision/committee-meeting-presentations/presentaciones-juntas-comite.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
 | 165 | `supervision/supervision/general-result-area-evaluation/resultado-general-evaluacion-areas-detalle.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
 | 166 | `supervision/supervision/supervision-agenda/agenda-supervision.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
-| 167 | `task/recurring-tasks/catalog/recurring-task-catalog-list/recurring-task-catalog-list.html` | operations | · | ✅ | · |  |
+| 167 | `task/recurring-tasks/catalog/recurring-task-catalog-list` | operations | ✅ | · | · |  |
 | 168 | `task/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard.html` | operations | · | ✅ | · |  |
-| 169 | `task/recurring-tasks/instances/task-instance-list/task-instance-list.html` | operations | · | ✅ | · |  |
-| 170 | `task/recurring-tasks/templates/task-template-items/task-template-items.html` | operations | · | ✅ | · |  |
-| 171 | `task/recurring-tasks/templates/task-template-list/task-template-list.html` | operations | · | ✅ | · |  |
-| 172 | `task/tasks/my-tasks/my-assigned-tasks-list.html` | operations | · | ✅ | · |  |
-| 173 | `task/tasks/my-tasks/my-requests-task.html` | operations | · | ✅ | · |  |
-| 174 | `task/tasks/reports/task-operation-report.html` | operations | · | · | ✅ | No candidato (reporte) |
-| 175 | `task/tasks/reports/task-report-work-plan.html` | operations | · | · | ✅ | No candidato (reporte) |
-| 176 | `task/tasks/task-message/task-list.html` | operations | · | ✅ | · |  |
-| 177 | `task/tasks/work-group/task-group-list.html` | operations | · | ✅ | · |  |
-| 178 | `templates` | operations | ✅ | · | · |  |
-| 179 | `work-positions` | operations | ✅ | · | · |  |
-| 180 | `products/productos-list.html` | purchases | · | ✅ | · |  |
-| 181 | `purchase-history/historial-compras-list.html` | purchases | · | ✅ | · |  |
-| 182 | `purchase-orders/purchase-order/orden-compra-list.html` | purchases | · | ✅ | · |  |
-| 183 | `purchase-requests/budget-statement/ordenes-compra-cedula-list.html` | purchases | · | ✅ | · |  |
-| 184 | `purchase-requests/requests/solicitud-compra-list.html` | purchases | · | ✅ | · |  |
-| 185 | `candidates/candidate-applications` | recruitment | ✅ | · | · |  |
-| 186 | `candidates/candidate-core` | recruitment | ✅ | · | · |  |
-| 187 | `candidates/candidate-interview` | recruitment | ✅ | · | · |  |
-| 188 | `employee-bank-data-records/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 189 | `employee-beneficiaries/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 190 | `employee-clinical-data-records/employee-clinical-data-list.html` | recruitment | · | ✅ | · |  |
-| 191 | `employee-dismissal-requests/solicitud-baja-list.html` | recruitment | · | ✅ | · |  |
-| 192 | `employee-emergency-contacts/employee-emergency-contact-list.html` | recruitment | · | ✅ | · |  |
-| 193 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
-| 194 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 195 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 196 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
-| 197 | `employee-registration-requests/solicitud-alta-list.html` | recruitment | · | ✅ | · |  |
-| 198 | `external-staffs/employee-external-list.html` | recruitment | · | ✅ | · |  |
-| 199 | `provider-supports/provider-support.html` | recruitment | · | ✅ | · |  |
-| 200 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
-| 201 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
-| 202 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
-| 203 | `catalogs/banks` | shared | ✅ | · | · |  |
-| 204 | `catalogs/cfdi-usage` | shared | ✅ | · | · |  |
-| 205 | `catalogs/document-catalog` | shared | ✅ | · | · |  |
-| 206 | `catalogs/onboarding-checklist-options` | shared | ✅ | · | · |  |
-| 207 | `catalogs/payment-method` | shared | ✅ | · | · |  |
-| 208 | `catalogs/payment-type` | shared | ✅ | · | · |  |
-| 209 | `catalogs/recruitment-sources` | shared | ✅ | · | · |  |
-| 210 | `catalogs/units-of-measurement` | shared | ✅ | · | · |  |
+| 169 | `task/recurring-tasks/instances/task-instance-list` | operations | ✅ | · | · |  |
+| 170 | `task/recurring-tasks/templates/task-template-items` | operations | ✅ | · | · |  |
+| 171 | `task/recurring-tasks/templates/task-template-list` | operations | ✅ | · | · |  |
+| 172 | `task/tasks/my-tasks` | operations | ✅ | · | · |  |
+| 173 | `task/tasks/reports/task-operation-report.html` | operations | · | · | ✅ | No candidato (reporte) |
+| 174 | `task/tasks/reports/task-report-work-plan.html` | operations | · | · | ✅ | No candidato (reporte) |
+| 175 | `task/tasks/task-message` | operations | ✅ | · | · |  |
+| 176 | `task/tasks/work-group` | operations | ✅ | · | · |  |
+| 177 | `templates` | operations | ✅ | · | · |  |
+| 178 | `work-positions` | operations | ✅ | · | · |  |
+| 179 | `products/productos-list.html` | purchases | · | ✅ | · |  |
+| 180 | `purchase-history/historial-compras-list.html` | purchases | · | ✅ | · |  |
+| 181 | `purchase-orders/purchase-order/orden-compra-list.html` | purchases | · | ✅ | · |  |
+| 182 | `purchase-requests/budget-statement/ordenes-compra-cedula-list.html` | purchases | · | ✅ | · |  |
+| 183 | `purchase-requests/requests/solicitud-compra-list.html` | purchases | · | ✅ | · |  |
+| 184 | `candidates/candidate-applications` | recruitment | ✅ | · | · |  |
+| 185 | `candidates/candidate-core` | recruitment | ✅ | · | · |  |
+| 186 | `candidates/candidate-interview` | recruitment | ✅ | · | · |  |
+| 187 | `employee-bank-data-records/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
+| 188 | `employee-beneficiaries/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
+| 189 | `employee-clinical-data-records/employee-clinical-data-list.html` | recruitment | · | ✅ | · |  |
+| 190 | `employee-dismissal-requests/solicitud-baja-list.html` | recruitment | · | ✅ | · |  |
+| 191 | `employee-emergency-contacts/employee-emergency-contact-list.html` | recruitment | · | ✅ | · |  |
+| 192 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
+| 193 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
+| 194 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
+| 195 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
+| 196 | `employee-registration-requests/solicitud-alta-list.html` | recruitment | · | ✅ | · |  |
+| 197 | `external-staffs/employee-external-list.html` | recruitment | · | ✅ | · |  |
+| 198 | `provider-supports/provider-support.html` | recruitment | · | ✅ | · |  |
+| 199 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
+| 200 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
+| 201 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
+| 202 | `catalogs/banks` | shared | ✅ | · | · |  |
+| 203 | `catalogs/cfdi-usage` | shared | ✅ | · | · |  |
+| 204 | `catalogs/document-catalog` | shared | ✅ | · | · |  |
+| 205 | `catalogs/onboarding-checklist-options` | shared | ✅ | · | · |  |
+| 206 | `catalogs/payment-method` | shared | ✅ | · | · |  |
+| 207 | `catalogs/payment-type` | shared | ✅ | · | · |  |
+| 208 | `catalogs/recruitment-sources` | shared | ✅ | · | · |  |
+| 209 | `catalogs/units-of-measurement` | shared | ✅ | · | · |  |
