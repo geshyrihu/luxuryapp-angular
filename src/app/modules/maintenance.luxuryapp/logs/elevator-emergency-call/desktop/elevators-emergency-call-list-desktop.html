@@ -13,11 +13,12 @@
     <!-- class="p-datatable-sm" -->
     <ng-template #caption>
       <div class="d-flex justify-content-between align-items-center w-full">
-        <iw-button-download
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
           (clicked)="downloadPdf.emit()"
-          lxTooltip="Descargar PDF"
-          tooltipPosition="top"
           tooltip="Descargar listado de llamadas de emergencia"
+          tooltipPosition="top"
         />
         <lux-table-caption
           (add)="add.emit({ id: '', title: 'Nuevo Registro' })"

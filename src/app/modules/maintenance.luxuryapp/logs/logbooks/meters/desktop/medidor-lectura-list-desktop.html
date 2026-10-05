@@ -15,8 +15,10 @@
       [dt]="dt"
     />
     <div class="mt-1">
-      <iw-button-download
-        ngbTooltip="Exportar a Excel"
+      <lux-button-web
+        kind="download"
+        displayMode="icon"
+        tooltip="Exportar a Excel"
         iconClass="material-symbols-light:table-view"
         severity="success"
         (clicked)="exportExcel.emit()"

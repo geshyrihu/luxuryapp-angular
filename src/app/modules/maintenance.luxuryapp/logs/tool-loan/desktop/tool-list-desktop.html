@@ -14,8 +14,10 @@
       (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
       [dt]="dt"
     />
-    <iw-button-download
-      lxTooltip="Descargar PDF"
+    <lux-button-web
+      kind="download"
+      displayMode="icon"
+      tooltip="Descargar PDF"
       tooltipPosition="top"
       iconClass="material-symbols-light:picture-as-pdf"
       variant="outline"

@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
@@ -25,7 +24,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ActionMenu,
-    WebButtonIconDownload,
     WebButtonLabelDelete,
     ButtonWeb,
     ApiDatePipe,

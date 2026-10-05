@@ -12,11 +12,12 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center w-full">
       <div class="d-flex align-items-center gap-2">
-        <iw-button-download
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
           (clicked)="pdfReport.emit()"
-          lxTooltip="PDF"
-          tooltipPosition="top"
           tooltip="Reporte PDF por rango de fecha"
+          tooltipPosition="top"
         />
       </div>
       <lux-table-caption
