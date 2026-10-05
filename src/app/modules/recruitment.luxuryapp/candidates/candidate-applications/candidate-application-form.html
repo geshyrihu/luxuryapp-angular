@@ -343,10 +343,15 @@
     </div>
     }
 
-    <il-button-save
-      [propertyId]="id"
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
       [disabled]="isSubmitDisabled()"
-      [submitting]="submitting()"
+      [loading]="submitting()"
       class="pb-2"
     />
   </form>

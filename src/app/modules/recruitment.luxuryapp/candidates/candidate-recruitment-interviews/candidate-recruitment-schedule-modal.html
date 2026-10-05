@@ -72,10 +72,15 @@
         />
         }
       </div>
-      <il-button-save
-        [submitting]="submitting()"
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         [label]="submitLabel()"
         [disabled]="isInterviewerSelectionBlocked()"
+        [loading]="submitting()"
       />
     </div>
   </form>

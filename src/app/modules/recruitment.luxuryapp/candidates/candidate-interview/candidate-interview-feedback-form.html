@@ -54,10 +54,15 @@
       [rows]="3"
     />
 
-    <il-button-save
-      [propertyId]="targetLabel()"
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="targetLabel()"
       [disabled]="form.invalid || resolvingProcess()"
-      [submitting]="submitting() || resolvingProcess()"
+      [loading]="submitting() || resolvingProcess()"
       class="pb-2"
     />
   </form>

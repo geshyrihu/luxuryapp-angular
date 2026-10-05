@@ -24,7 +24,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -57,7 +57,7 @@ import { CandidateApplicationDetail } from "./interfaces/candidate-application";
     InputMask,
     InputEmail,
     CandidateCvUpload,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
     LxTag,
   ],
