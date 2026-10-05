@@ -55,9 +55,14 @@
     accept="application/pdf"
   ></custom-input-file-signal>
 
-  <il-button-save
-    [propertyId]="id()"
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id() ? 'Actualizar' : 'Guardar'"
     [disabled]="form.invalid"
-    [submitting]="submitting()"
+    [loading]="submitting()"
   />
 </form>

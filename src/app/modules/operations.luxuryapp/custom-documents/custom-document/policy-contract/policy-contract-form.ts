@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { FileUploadModule } from "@iplab/ngx-file-upload";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -48,7 +48,7 @@ interface IPolicyContractForm {
   templateUrl: "./policy-contract-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonLabelSave,
+    ButtonWeb,
     InputAutocomplete,
     CustomInputCheckSignal,
     CustomInputDateSignal,

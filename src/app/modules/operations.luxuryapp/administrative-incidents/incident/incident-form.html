@@ -89,15 +89,26 @@
     <!-- Acciones -->
     <div class="d-flex">
       @if (activeTab() === 'datos') {
-      <il-button-save
-        [propertyId]="id"
-        [disabled]="form.invalid"
-        [submitting]="submitting()"
-        [label]="id() ? 'Guardar cambios' : 'Guardar y continuar →'"
+      <lux-button-web
+        kind="save"
         type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+        [label]="id() ? 'Guardar cambios' : 'Guardar y continuar →'"
       />
       } @if (id()) {
-      <il-button-save label="Finalizar" type="button" (clicked)="onFinish()" />
+      <lux-button-web
+        kind="save"
+        type="button"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Finalizar"
+        (clicked)="onFinish()"
+      />
       }
     </div>
   </div>

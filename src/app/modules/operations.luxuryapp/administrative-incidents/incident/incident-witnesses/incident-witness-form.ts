@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -36,7 +36,7 @@ interface IWitnessForm {
   imports: [
     ReactiveFormsModule,
     InputMask,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
   ],

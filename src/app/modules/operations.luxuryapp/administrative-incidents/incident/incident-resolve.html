@@ -22,12 +22,15 @@
     placeholder="Obligatorio si no se aplica sancion"
   />
   <div class="d-flex justify-content-end mt-2">
-    <il-button-save
-      [propertyId]="incidentId()"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
-      label="Resolver"
+    <lux-button-web
+      kind="save"
       type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+      label="Resolver"
     />
   </div>
 </form>

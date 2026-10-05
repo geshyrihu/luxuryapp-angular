@@ -9,7 +9,7 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -38,7 +38,7 @@ interface IIncidentResolveForm {
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class IncidentResolveComponent {
