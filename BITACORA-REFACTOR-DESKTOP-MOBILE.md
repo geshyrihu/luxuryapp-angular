@@ -19,10 +19,10 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 
 | Estado | Total |
 |---|:---:|
-| ✅ Refactorizado | **67** |
-| ⏳ Pendiente | **119** |
+| ✅ Refactorizado | **76** |
+| ⏳ Pendiente | **108** |
 | ⛔ Omitido / no candidato | **28** |
-| **Total** | **214** |
+| **Total** | **212** |
 
 ---
 
@@ -134,111 +134,109 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 104 | `fire-equipment/manual-call-point-log/estacion-manual-bitacora-list` | maintenance | ✅ | · | · |  |
 | 105 | `fire-equipment/smoke-detector-log` | maintenance | ✅ | · | · |  |
 | 106 | `fire-equipment/smoke-detector-log/detector-humo-bitacora-list` | maintenance | ✅ | · | · |  |
-| 107 | `logs/elevator-emergency-call/elevators-emergency-call-list.html` | maintenance | · | ✅ | · |  |
-| 108 | `logs/elevator-spare-parts/elevator-spare-parts-change-list.html` | maintenance | · | ✅ | · |  |
-| 109 | `logs/logbooks/meters/medidor-lectura-list.html` | maintenance | · | ✅ | · |  |
-| 110 | `logs/logbooks/meters/medidores-list.html` | maintenance | · | ✅ | · |  |
-| 111 | `logs/logbooks/tool-loan/prestamo-herramientas-control.html` | maintenance | · | ✅ | · |  |
-| 112 | `logs/maintenance-log/bitacora-individual.html` | maintenance | · | ✅ | · |  |
-| 113 | `logs/maintenance-log/bitacora-mantenimiento.html` | maintenance | · | ✅ | · |  |
-| 114 | `logs/pool-logbook/piscina-bitacora-list.html` | maintenance | · | ✅ | · |  |
-| 115 | `logs/pool/piscina-list.html` | maintenance | · | ✅ | · |  |
-| 116 | `logs/tool-loan/tool-list.html` | maintenance | · | ✅ | · |  |
-| 117 | `logs/water-truck-receipts/recepcion-pipas-agua-list.html` | maintenance | · | ✅ | · |  |
-| 118 | `machinery/equipment-content/equipment-content-list.html` | maintenance | · | ✅ | · |  |
-| 119 | `machinery/machinery/equipos-list.html` | maintenance | · | ✅ | · |  |
-| 120 | `maintenance-planning/maintenance-calendar-master/calendario-maestro-lista.html` | maintenance | · | ✅ | · |  |
-| 121 | `maintenance-planning/master-equipment-calendar/calendario-maestro-equipo.html` | maintenance | · | ✅ | · |  |
-| 122 | `maintenance-reports/maintenance-reports-list.html` | maintenance | · | ✅ | · |  |
-| 123 | `maintenance-ticket-catalogs/asset-catalog-list` | maintenance | ✅ | · | · |  |
-| 124 | `maintenance-ticket-catalogs/delivery-reception-catalog` | maintenance | ✅ | · | · |  |
-| 125 | `maintenance-ticket-catalogs/inspection-revision-catalog` | maintenance | ✅ | · | · |  |
-| 126 | `maintenance-ticket-catalogs/machinery-classification` | maintenance | ✅ | · | · |  |
-| 127 | `maintenance-ticket-catalogs/meter-category` | maintenance | ✅ | · | · |  |
-| 128 | `maintenance-ticket-catalogs/product-category` | maintenance | ✅ | · | · |  |
-| 129 | `maintenance-ticket-catalogs/task-group-category-list` | maintenance | ✅ | · | · |  |
-| 130 | `monthly-meetings/meeting-minutes/resumen-minuta.html` | management | · | ✅ | · |  |
-| 131 | `monthly-meetings/meeting-minutes/seguimiento-minutas.html` | management | · | ✅ | · |  |
-| 132 | `monthly-meetings/presentation/presentacion-junta-comite-contador.html` | management | · | ✅ | · |  |
-| 133 | `monthly-meetings/presentation/presentacion-junta-comite.html` | management | · | ✅ | · |  |
-| 134 | `administrative-incidents/incident` | operations | ✅ | · | · |  |
-| 135 | `administrative-incidents/sanction` | operations | ✅ | · | · |  |
-| 136 | `announcements/announcement` | operations | ✅ | · | · |  |
-| 137 | `custom-documents/custom-document` | operations | ✅ | · | · |  |
-| 138 | `custom-documents/custom-document/policy-contract` | operations | ✅ | · | · |  |
-| 139 | `customer-providers` | operations | ✅ | · | · |  |
-| 140 | `dashboard/unified-pending-dashboard-mobile.html` | operations | · | · | ✅ | No candidato (dashboard) |
-| 141 | `dashboard/unified-pending-dashboard.html` | operations | · | · | ✅ | No candidato (dashboard) |
-| 142 | `delivery-receptions/client-delivery-reception/entrega-recepcion-cliente.html` | operations | · | ✅ | · |  |
-| 143 | `diagram/diagram/diagram-list/diagram-list.html` | operations | · | · | ✅ | No candidato (omitido) |
-| 144 | `google-calendar/calendar/annual-maintenance-list/listado-anual-mantenimiento.html` | operations | · | · | ✅ | No candidato (calendario) |
-| 145 | `google-calendar/google-calendar/google-calendar.html` | operations | · | · | ✅ | No candidato (calendario) |
-| 146 | `inspection/inspection-list` | operations | ✅ | · | · |  |
-| 147 | `inspection/logbook/mis-inspecciones-ejecutar.html` | operations | · | · | ✅ | No candidato (detalle) |
-| 148 | `inspection/logbook/mis-inspecciones-lista.html` | operations | · | ✅ | · |  |
-| 149 | `inventory/fire-extinguisher-inventory` | operations | ✅ | · | · |  |
-| 150 | `inventory/hydrant-inventory` | operations | ✅ | · | · |  |
-| 151 | `inventory/key-inventory` | operations | ✅ | · | · |  |
-| 152 | `inventory/lighting-inventory` | operations | ✅ | · | · |  |
-| 153 | `inventory/manual-call-point-inventory` | operations | ✅ | · | · |  |
-| 154 | `inventory/paint-inventory` | operations | ✅ | · | · |  |
-| 155 | `inventory/product-entry` | operations | ✅ | · | · |  |
-| 156 | `inventory/product-exit` | operations | ✅ | · | · |  |
-| 157 | `inventory/radio-communication-inventory` | operations | ✅ | · | · |  |
-| 158 | `inventory/smoke-detector-inventory` | operations | ✅ | · | · |  |
-| 159 | `inventory/stock-by-warehouse` | operations | ✅ | · | · |  |
-| 160 | `inventory/warehouse` | operations | ✅ | · | · |  |
-| 161 | `manuals/library/financial-report/informe-financiero-list.html` | operations | · | · | ✅ | No candidato (omitido) |
-| 162 | `manuals/library/manuals-and-processes/manuals-and-processes-list.html` | operations | · | · | ✅ | No candidato (omitido) |
-| 163 | `owner` | operations | ✅ | · | · |  |
-| 164 | `properties` | operations | ✅ | · | · |  |
-| 165 | `providers` | operations | ✅ | · | · |  |
-| 166 | `reports/contracts-policies/contracts-policies.html` | operations | · | ✅ | · |  |
-| 167 | `service-orders/service-order` | operations | ✅ | · | · |  |
-| 168 | `supervision/supervision/area-minutes-filter/filtro-minutas-area.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
-| 169 | `supervision/supervision/committee-meeting-presentations/presentaciones-juntas-comite.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
-| 170 | `supervision/supervision/general-result-area-evaluation/resultado-general-evaluacion-areas-detalle.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
-| 171 | `supervision/supervision/supervision-agenda/agenda-supervision.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
-| 172 | `task/recurring-tasks/catalog/recurring-task-catalog-list` | operations | ✅ | · | · |  |
-| 173 | `task/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard.html` | operations | · | ✅ | · |  |
-| 174 | `task/recurring-tasks/instances/task-instance-list` | operations | ✅ | · | · |  |
-| 175 | `task/recurring-tasks/templates/task-template-items` | operations | ✅ | · | · |  |
-| 176 | `task/recurring-tasks/templates/task-template-list` | operations | ✅ | · | · |  |
-| 177 | `task/tasks/my-tasks` | operations | ✅ | · | · |  |
-| 178 | `task/tasks/reports/task-operation-report.html` | operations | · | · | ✅ | No candidato (reporte) |
-| 179 | `task/tasks/reports/task-report-work-plan.html` | operations | · | · | ✅ | No candidato (reporte) |
-| 180 | `task/tasks/task-message` | operations | ✅ | · | · |  |
-| 181 | `task/tasks/work-group` | operations | ✅ | · | · |  |
-| 182 | `templates` | operations | ✅ | · | · |  |
-| 183 | `work-positions` | operations | ✅ | · | · |  |
-| 184 | `products/productos-list.html` | purchases | · | ✅ | · |  |
-| 185 | `purchase-history/historial-compras-list.html` | purchases | · | ✅ | · |  |
-| 186 | `purchase-orders/purchase-order/orden-compra-list.html` | purchases | · | ✅ | · |  |
-| 187 | `purchase-requests/budget-statement/ordenes-compra-cedula-list.html` | purchases | · | ✅ | · |  |
-| 188 | `purchase-requests/requests/solicitud-compra-list.html` | purchases | · | ✅ | · |  |
-| 189 | `candidates/candidate-applications` | recruitment | ✅ | · | · |  |
-| 190 | `candidates/candidate-core` | recruitment | ✅ | · | · |  |
-| 191 | `candidates/candidate-interview` | recruitment | ✅ | · | · |  |
-| 192 | `employee-bank-data-records/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 193 | `employee-beneficiaries/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 194 | `employee-clinical-data-records/employee-clinical-data-list.html` | recruitment | · | ✅ | · |  |
-| 195 | `employee-dismissal-requests/solicitud-baja-list.html` | recruitment | · | ✅ | · |  |
-| 196 | `employee-emergency-contacts/employee-emergency-contact-list.html` | recruitment | · | ✅ | · |  |
-| 197 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
-| 198 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
-| 199 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
-| 200 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
-| 201 | `employee-registration-requests/solicitud-alta-list.html` | recruitment | · | ✅ | · |  |
-| 202 | `external-staffs/employee-external-list.html` | recruitment | · | ✅ | · |  |
-| 203 | `provider-supports/provider-support.html` | recruitment | · | ✅ | · |  |
-| 204 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
-| 205 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
-| 206 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
-| 207 | `catalogs/banks` | shared | ✅ | · | · |  |
-| 208 | `catalogs/cfdi-usage` | shared | ✅ | · | · |  |
-| 209 | `catalogs/document-catalog` | shared | ✅ | · | · |  |
-| 210 | `catalogs/onboarding-checklist-options` | shared | ✅ | · | · |  |
-| 211 | `catalogs/payment-method` | shared | ✅ | · | · |  |
-| 212 | `catalogs/payment-type` | shared | ✅ | · | · |  |
-| 213 | `catalogs/recruitment-sources` | shared | ✅ | · | · |  |
-| 214 | `catalogs/units-of-measurement` | shared | ✅ | · | · |  |
+| 107 | `logs/elevator-emergency-call` | maintenance | ✅ | · | · |  |
+| 108 | `logs/elevator-spare-parts` | maintenance | ✅ | · | · |  |
+| 109 | `logs/logbooks/meters` | maintenance | ✅ | · | · |  |
+| 110 | `logs/logbooks/tool-loan` | maintenance | ✅ | · | · |  |
+| 111 | `logs/maintenance-log` | maintenance | ✅ | · | · |  |
+| 112 | `logs/pool` | maintenance | ✅ | · | · |  |
+| 113 | `logs/pool-logbook` | maintenance | ✅ | · | · |  |
+| 114 | `logs/tool-loan` | maintenance | ✅ | · | · |  |
+| 115 | `logs/water-truck-receipts` | maintenance | ✅ | · | · |  |
+| 116 | `machinery/equipment-content/equipment-content-list.html` | maintenance | · | ✅ | · |  |
+| 117 | `machinery/machinery/equipos-list.html` | maintenance | · | ✅ | · |  |
+| 118 | `maintenance-planning/maintenance-calendar-master/calendario-maestro-lista.html` | maintenance | · | ✅ | · |  |
+| 119 | `maintenance-planning/master-equipment-calendar/calendario-maestro-equipo.html` | maintenance | · | ✅ | · |  |
+| 120 | `maintenance-reports/maintenance-reports-list.html` | maintenance | · | ✅ | · |  |
+| 121 | `maintenance-ticket-catalogs/asset-catalog-list` | maintenance | ✅ | · | · |  |
+| 122 | `maintenance-ticket-catalogs/delivery-reception-catalog` | maintenance | ✅ | · | · |  |
+| 123 | `maintenance-ticket-catalogs/inspection-revision-catalog` | maintenance | ✅ | · | · |  |
+| 124 | `maintenance-ticket-catalogs/machinery-classification` | maintenance | ✅ | · | · |  |
+| 125 | `maintenance-ticket-catalogs/meter-category` | maintenance | ✅ | · | · |  |
+| 126 | `maintenance-ticket-catalogs/product-category` | maintenance | ✅ | · | · |  |
+| 127 | `maintenance-ticket-catalogs/task-group-category-list` | maintenance | ✅ | · | · |  |
+| 128 | `monthly-meetings/meeting-minutes/resumen-minuta.html` | management | · | ✅ | · |  |
+| 129 | `monthly-meetings/meeting-minutes/seguimiento-minutas.html` | management | · | ✅ | · |  |
+| 130 | `monthly-meetings/presentation/presentacion-junta-comite-contador.html` | management | · | ✅ | · |  |
+| 131 | `monthly-meetings/presentation/presentacion-junta-comite.html` | management | · | ✅ | · |  |
+| 132 | `administrative-incidents/incident` | operations | ✅ | · | · |  |
+| 133 | `administrative-incidents/sanction` | operations | ✅ | · | · |  |
+| 134 | `announcements/announcement` | operations | ✅ | · | · |  |
+| 135 | `custom-documents/custom-document` | operations | ✅ | · | · |  |
+| 136 | `custom-documents/custom-document/policy-contract` | operations | ✅ | · | · |  |
+| 137 | `customer-providers` | operations | ✅ | · | · |  |
+| 138 | `dashboard/unified-pending-dashboard-mobile.html` | operations | · | · | ✅ | No candidato (dashboard) |
+| 139 | `dashboard/unified-pending-dashboard.html` | operations | · | · | ✅ | No candidato (dashboard) |
+| 140 | `delivery-receptions/client-delivery-reception/entrega-recepcion-cliente.html` | operations | · | ✅ | · |  |
+| 141 | `diagram/diagram/diagram-list/diagram-list.html` | operations | · | · | ✅ | No candidato (omitido) |
+| 142 | `google-calendar/calendar/annual-maintenance-list/listado-anual-mantenimiento.html` | operations | · | · | ✅ | No candidato (calendario) |
+| 143 | `google-calendar/google-calendar/google-calendar.html` | operations | · | · | ✅ | No candidato (calendario) |
+| 144 | `inspection/inspection-list` | operations | ✅ | · | · |  |
+| 145 | `inspection/logbook/mis-inspecciones-ejecutar.html` | operations | · | · | ✅ | No candidato (detalle) |
+| 146 | `inspection/logbook/mis-inspecciones-lista.html` | operations | · | ✅ | · |  |
+| 147 | `inventory/fire-extinguisher-inventory` | operations | ✅ | · | · |  |
+| 148 | `inventory/hydrant-inventory` | operations | ✅ | · | · |  |
+| 149 | `inventory/key-inventory` | operations | ✅ | · | · |  |
+| 150 | `inventory/lighting-inventory` | operations | ✅ | · | · |  |
+| 151 | `inventory/manual-call-point-inventory` | operations | ✅ | · | · |  |
+| 152 | `inventory/paint-inventory` | operations | ✅ | · | · |  |
+| 153 | `inventory/product-entry` | operations | ✅ | · | · |  |
+| 154 | `inventory/product-exit` | operations | ✅ | · | · |  |
+| 155 | `inventory/radio-communication-inventory` | operations | ✅ | · | · |  |
+| 156 | `inventory/smoke-detector-inventory` | operations | ✅ | · | · |  |
+| 157 | `inventory/stock-by-warehouse` | operations | ✅ | · | · |  |
+| 158 | `inventory/warehouse` | operations | ✅ | · | · |  |
+| 159 | `manuals/library/financial-report/informe-financiero-list.html` | operations | · | · | ✅ | No candidato (omitido) |
+| 160 | `manuals/library/manuals-and-processes/manuals-and-processes-list.html` | operations | · | · | ✅ | No candidato (omitido) |
+| 161 | `owner` | operations | ✅ | · | · |  |
+| 162 | `properties` | operations | ✅ | · | · |  |
+| 163 | `providers` | operations | ✅ | · | · |  |
+| 164 | `reports/contracts-policies/contracts-policies.html` | operations | · | ✅ | · |  |
+| 165 | `service-orders/service-order` | operations | ✅ | · | · |  |
+| 166 | `supervision/supervision/area-minutes-filter/filtro-minutas-area.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
+| 167 | `supervision/supervision/committee-meeting-presentations/presentaciones-juntas-comite.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
+| 168 | `supervision/supervision/general-result-area-evaluation/resultado-general-evaluacion-areas-detalle.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
+| 169 | `supervision/supervision/supervision-agenda/agenda-supervision.html` | operations | · | · | ✅ | No candidato (reportes/agendas) |
+| 170 | `task/recurring-tasks/catalog/recurring-task-catalog-list` | operations | ✅ | · | · |  |
+| 171 | `task/recurring-tasks/compliance/recurring-task-compliance-dashboard/recurring-task-compliance-dashboard.html` | operations | · | ✅ | · |  |
+| 172 | `task/recurring-tasks/instances/task-instance-list` | operations | ✅ | · | · |  |
+| 173 | `task/recurring-tasks/templates/task-template-items` | operations | ✅ | · | · |  |
+| 174 | `task/recurring-tasks/templates/task-template-list` | operations | ✅ | · | · |  |
+| 175 | `task/tasks/my-tasks` | operations | ✅ | · | · |  |
+| 176 | `task/tasks/reports/task-operation-report.html` | operations | · | · | ✅ | No candidato (reporte) |
+| 177 | `task/tasks/reports/task-report-work-plan.html` | operations | · | · | ✅ | No candidato (reporte) |
+| 178 | `task/tasks/task-message` | operations | ✅ | · | · |  |
+| 179 | `task/tasks/work-group` | operations | ✅ | · | · |  |
+| 180 | `templates` | operations | ✅ | · | · |  |
+| 181 | `work-positions` | operations | ✅ | · | · |  |
+| 182 | `products/productos-list.html` | purchases | · | ✅ | · |  |
+| 183 | `purchase-history/historial-compras-list.html` | purchases | · | ✅ | · |  |
+| 184 | `purchase-orders/purchase-order/orden-compra-list.html` | purchases | · | ✅ | · |  |
+| 185 | `purchase-requests/budget-statement/ordenes-compra-cedula-list.html` | purchases | · | ✅ | · |  |
+| 186 | `purchase-requests/requests/solicitud-compra-list.html` | purchases | · | ✅ | · |  |
+| 187 | `candidates/candidate-applications` | recruitment | ✅ | · | · |  |
+| 188 | `candidates/candidate-core` | recruitment | ✅ | · | · |  |
+| 189 | `candidates/candidate-interview` | recruitment | ✅ | · | · |  |
+| 190 | `employee-bank-data-records/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
+| 191 | `employee-beneficiaries/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
+| 192 | `employee-clinical-data-records/employee-clinical-data-list.html` | recruitment | · | ✅ | · |  |
+| 193 | `employee-dismissal-requests/solicitud-baja-list.html` | recruitment | · | ✅ | · |  |
+| 194 | `employee-emergency-contacts/employee-emergency-contact-list.html` | recruitment | · | ✅ | · |  |
+| 195 | `employee-file/employees/employee-registry/employee-list.html` | recruitment | · | ✅ | · |  |
+| 196 | `employee-file/human-resources/employee-bank-data/employee-bank-data-list.html` | recruitment | · | ✅ | · |  |
+| 197 | `employee-file/human-resources/employee-beneficiary/employee-beneficiary-list.html` | recruitment | · | ✅ | · |  |
+| 198 | `employee-file/human-resources/employee-registry/employee-file-list.html` | recruitment | · | ✅ | · |  |
+| 199 | `employee-registration-requests/solicitud-alta-list.html` | recruitment | · | ✅ | · |  |
+| 200 | `external-staffs/employee-external-list.html` | recruitment | · | ✅ | · |  |
+| 201 | `provider-supports/provider-support.html` | recruitment | · | ✅ | · |  |
+| 202 | `recruitment-requests/recruitment-client-requests/solicitudes-cliente-list.html` | recruitment | · | ✅ | · |  |
+| 203 | `salary-modification-requests/solicitud-modificacion-list.html` | recruitment | · | ✅ | · |  |
+| 204 | `vacancy-requests/vacantes-list.html` | recruitment | · | ✅ | · |  |
+| 205 | `catalogs/banks` | shared | ✅ | · | · |  |
+| 206 | `catalogs/cfdi-usage` | shared | ✅ | · | · |  |
+| 207 | `catalogs/document-catalog` | shared | ✅ | · | · |  |
+| 208 | `catalogs/onboarding-checklist-options` | shared | ✅ | · | · |  |
+| 209 | `catalogs/payment-method` | shared | ✅ | · | · |  |
+| 210 | `catalogs/payment-type` | shared | ✅ | · | · |  |
+| 211 | `catalogs/recruitment-sources` | shared | ✅ | · | · |  |
+| 212 | `catalogs/units-of-measurement` | shared | ✅ | · | · |  |
