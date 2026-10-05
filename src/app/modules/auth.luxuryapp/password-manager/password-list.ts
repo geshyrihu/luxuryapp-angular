@@ -10,6 +10,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { PasswordForm } from "./password-form";
 import { PasswordListDesktop } from "./desktop/password-list-desktop";
@@ -31,6 +32,7 @@ export class PasswordList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   data = signal<CredentialDetailDto[]>([]);
   totalRecords = signal(0);
@@ -63,6 +65,10 @@ export class PasswordList implements OnInit {
   }
 
   async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta credencial?",
+    );
+    if (!confirmed) return;
     const success = await this.apiS.onDelete(
       Endpoints.PasswordManager.Credentials.delete(id),
     );

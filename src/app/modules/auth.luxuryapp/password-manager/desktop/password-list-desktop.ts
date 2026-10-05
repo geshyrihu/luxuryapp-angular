@@ -10,7 +10,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -39,7 +38,6 @@ interface PasswordTablePageEvent {
     AppSorticon,
     LuxTableCaption,
     TableFooter,
-    WebButtonIconDelete,
     ApiDatePipe,
     AppIcon,
     ButtonWeb,
