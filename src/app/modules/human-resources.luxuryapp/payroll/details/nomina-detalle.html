@@ -43,117 +43,20 @@
 </div>
 }
 
-<!-- Tabla de empleados -->
-<lux-table
-  #dt
-  [value]="data()"
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  class="card d-none d-md-block custom-table"
->
-  <ng-template #caption>
-    <div class="d-flex justify-content-between">
-      <lux-table-caption [dt]="dt" [showAdd]="false" />
-      <il-button
-        label="Exportar Excel"
-        iconClass="material-symbols-light:table-view"
-        severity="success"
-        variant="text"
-        (clicked)="descargarExcel()"
-      />
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>#</th>
-      <th appSortableColumn="nombreCompleto">
-        Empleado <app-sorticon field="nombreCompleto" />
-      </th>
-      <th>Puesto</th>
-      <th class="text-end">DIAS TRAB.</th>
-      <th class="text-end">Percepciones</th>
-      <th class="text-end">Deducciones</th>
-      <th class="text-end">Neto</th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.numeroEmpleado }}</td>
-      <td>{{ item.nombreCompleto }}</td>
-      <td>{{ item.puesto }}</td>
-      <td class="text-end">{{ item.diasTrabajados }}</td>
-      <td class="text-end">
-        {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
-      </td>
-      <td class="text-end">
-        {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
-      </td>
-      <td class="text-end fw-bold">
-        {{ item.netoApagar | currency: "MXN" : "symbol" : "1.2-2" }}
-      </td>
-      <td>
-        <div class="d-flex gap-1">
-          <iw-button-edit (clicked)="openEditar(item)" />
-          <iw-button
-            iconClass="material-symbols-light:picture-as-pdf"
-            severity="danger"
-            variant="text"
-            lxTooltip="Descargar recibo"
-            (clicked)="descargarRecibo(item)"
-          />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-</lux-table>
-
-<!-- Vista movil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-nomina-detalle-mobile
   [data]="data()"
-  [dt]="dt"
   [globalFilterFields]="globalFilterFields()"
-  [showAdd]="false"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:attach-money" />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
-      <p class="text-xs m-0">{{ item.puesto }}</p>
-      <div class="d-flex gap-3 mt-1">
-        <span class="text-green-600 text-sm"
-          >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
-          }}</span
-        >
-        <span class="text-red-500 text-sm"
-          >- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0"
-          }}</span
-        >
-        <span class="fw-bold text-primary text-sm"
-          >= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0" }}</span
-        >
-      </div>
-
-      <div end class="d-flex gap-1">
-        <il-button-edit (clicked)="openEditar(item)" />
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="openEditar($event)"
+/>
+} @else {
+<app-nomina-detalle-desktop
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (edit)="openEditar($event)"
+  (downloadReceipt)="descargarRecibo($event)"
+  (exportExcel)="descargarExcel()"
+/>
+}
 
 }

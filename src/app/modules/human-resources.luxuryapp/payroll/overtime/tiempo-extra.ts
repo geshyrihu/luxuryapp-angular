@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,58 +8,20 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
 import ModalTiempoExtraAdd from "./add-overtime-modal/modal-tiempo-extra-add";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { TiempoExtraDesktop } from "./desktop/tiempo-extra-desktop";
+import { TiempoExtraMobile } from "./mobile/tiempo-extra-mobile";
 
 @Component({
   selector: "app-tiempo-extra",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    DataViewMobile,
-    LuxTableCaption,
-  ],
+  imports: [WebButtonLabel, TiempoExtraDesktop, TiempoExtraMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./tiempo-extra.html",
 })
@@ -68,16 +29,13 @@ export default class TiempoExtra {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+
+  platformS = inject(PlatformService);
 
   loading = signal(true);
   data = signal<TiempoExtraDTO[]>([]);
   periodos = signal<SelectItemDto[]>([]);
   periodoSeleccionado = signal<string>("");
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];

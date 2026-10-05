@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,51 +8,26 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IncidenciaNominaDTO,
   SincronizarIncidenciasDTO,
 } from "../interfaces/incidencia-nomina.interface";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import ModalIncidenciaAdd from "./add-incident-modal/modal-incidencia-add";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { IncidenciasNominaDesktop } from "./desktop/incidencias-nomina-desktop";
+import { IncidenciasNominaMobile } from "./mobile/incidencias-nomina-mobile";
 
 @Component({
   selector: "app-incidencias-nomina",
   imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconDelete,
-    TableEmptyMessage,
-    CommonModule,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
     WebButtonLabel,
-    WebButtonLabelDelete,
-    DataViewMobile,
-    LuxTableCaption,
+    IncidenciasNominaDesktop,
+    IncidenciasNominaMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incidencias-nomina.html",
@@ -62,17 +36,14 @@ export default class IncidenciasNomina {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+
+  platformS = inject(PlatformService);
 
   loading = signal(true);
   sincronizando = signal(false);
   data = signal<IncidenciaNominaDTO[]>([]);
   periodos = signal<SelectItemDto[]>([]);
   periodoSeleccionado = signal<string>("");
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];
@@ -178,20 +149,5 @@ export default class IncidenciasNomina {
     );
     this.sincronizando.set(false);
     this.onLoadData(periodoId);
-  }
-
-  getTipoSeverity(tipo: number): string {
-    const map: Record<number, string> = {
-      0: "danger", // Falta
-      1: "warn", // Retardo Menor
-      2: "warn", // Retardo Mayor
-      3: "info", // Incapacidad
-      4: "success", // Vacacion
-      5: "secondary", // Permiso c/Goce
-      6: "contrast", // Permiso s/Goce
-      7: "secondary", // Dia Economico
-      8: "danger", // Otro Descuento
-    };
-    return map[tipo] ?? "secondary";
   }
 }

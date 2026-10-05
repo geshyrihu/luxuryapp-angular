@@ -8,56 +8,19 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import ModalPeriodoAdd from "./add-period-modal/modal-periodo-add";
+import { PeriodosNominaDesktop } from "./desktop/periodos-nomina-desktop";
+import { PeriodosNominaMobile } from "./mobile/periodos-nomina-mobile";
 import ModalDiasNoHabiles from "./non-working-days-modal/modal-dias-no-habiles";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-periodos-nomina",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    DataViewMobile,
-    LuxTableCaption,
-  ],
+  imports: [WebButtonLabel, PeriodosNominaDesktop, PeriodosNominaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./periodos-nomina.html",
 })
@@ -65,15 +28,12 @@ export default class PeriodosNomina {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+
+  platformS = inject(PlatformService);
 
   loading = signal(true);
   data = signal<PeriodoNominaDTO[]>([]);
   anioFiltro = signal<number>(new Date().getFullYear());
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];
@@ -156,14 +116,5 @@ export default class PeriodosNomina {
         if (result)
           this.onLoadData(this.customerIdS.customerId(), this.anioFiltro());
       });
-  }
-
-  getEstadoSeverity(estado: string): string {
-    const map: Record<string, string> = {
-      Abierto: "success",
-      EnProceso: "info",
-      Cerrado: "secondary",
-    };
-    return map[estado] ?? "secondary";
   }
 }

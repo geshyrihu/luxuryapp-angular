@@ -1,0 +1,85 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  class="card custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption [dt]="dt" (add)="add.emit()" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="nombreEmpleado">
+        Empleado <app-sorticon field="nombreEmpleado" />
+      </th>
+      <th class="text-end">Monto Total</th>
+      <th class="text-end">Amortizacion</th>
+      <th class="text-end">Saldo Pendiente</th>
+      <th>Progreso</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <a class="cursor-pointer text-primary" (click)="view.emit(item)">
+          {{ item.nombreEmpleado }}
+        </a>
+      </td>
+      <td class="text-end">
+        {{ item.montoTotal | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-end">
+        {{ item.montoAmortizacion | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-end fw-bold">
+        {{ item.saldoPendiente | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td>
+        <div class="d-flex align-items-center gap-2">
+          <div class="rounded overflow-hidden flex-fill">
+            <div
+              class="rounded bg-primary"
+              [style.width.%]="getProgreso(item)"
+            ></div>
+          </div>
+          <span class="text-xs"
+            >{{ item.pagosRealizados }}/{{ item.numeroPagos }}</span
+          >
+        </div>
+      </td>
+      <td>
+        <lux-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
+      </td>
+      <td>
+        <div class="d-flex gap-1">
+          <iw-button
+            iconClass="material-symbols-light:visibility-outline"
+            severity="info"
+            variant="text"
+            lxTooltip="Ver detalle"
+            (clicked)="view.emit(item)"
+          />
+          @if (item.estadoValue === 0) {
+          <iw-button-delete (confirmed)="delete.emit(item)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="7" />
+  </ng-template>
+</lux-table>

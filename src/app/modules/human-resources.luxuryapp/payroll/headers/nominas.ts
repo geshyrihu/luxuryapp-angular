@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,44 +9,18 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PlatformService } from "@core/services/platform.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
+import { NominasDesktop } from "./desktop/nominas-desktop";
 import ModalGenerarNomina from "./generate-payroll-modal/modal-generar-nomina";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
+import { NominasMobile } from "./mobile/nominas-mobile";
 
 @Component({
   selector: "app-nominas",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    DataViewMobile,
-    LuxTableCaption,
-  ],
+  imports: [NominasDesktop, NominasMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nominas.html",
 })
@@ -55,15 +28,12 @@ export default class Nominas {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
   private router = inject(Router);
+
+  platformS = inject(PlatformService);
 
   loading = signal(true);
   data = signal<NominaEncabezadoDTO[]>([]);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];
@@ -117,29 +87,5 @@ export default class Nominas {
       {},
     );
     if (result) this.onLoadData(this.customerIdS.customerId());
-  }
-
-  getEstadoSeverity(estadoValue: number): string {
-    const map: Record<number, string> = {
-      0: "secondary", // Borrador
-      1: "info", // EnRevision
-      2: "success", // Aprobada
-      3: "contrast", // Pagada
-      4: "secondary", // Cerrada
-    };
-    return map[estadoValue] ?? "secondary";
-  }
-
-  puedeEnviar(estadoValue: number): boolean {
-    return estadoValue === 0;
-  }
-  puedeAprobar(estadoValue: number): boolean {
-    return estadoValue === 1;
-  }
-  puedePagar(estadoValue: number): boolean {
-    return estadoValue === 2;
-  }
-  puedeCerrar(estadoValue: number): boolean {
-    return estadoValue === 3;
   }
 }

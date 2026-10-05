@@ -10,123 +10,22 @@
   }
 </div>
 
-<!-- Tabla escritorio -->
-<lux-table
-  #dt
-  [value]="data()"
-  [loading]="loading()"
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  class="card d-none d-md-block custom-table"
->
-  <ng-template #caption>
-    <div class="d-flex justify-content-between flex-wrap gap-2">
-      <lux-table-caption [dt]="dt" (add)="openAdd()" />
-      <div class="d-flex gap-2">
-        <il-button
-          label="Sync Vacaciones"
-          iconClass="material-symbols-light:sync"
-          severity="secondary"
-          variant="text"
-          [disabled]="sincronizando()"
-          (clicked)="sincronizarVacaciones()"
-        />
-        <il-button
-          label="Sync Permisos"
-          iconClass="material-symbols-light:sync"
-          severity="secondary"
-          variant="text"
-          [disabled]="sincronizando()"
-          (clicked)="sincronizarPermisos()"
-        />
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="nombreEmpleado">
-        Empleado <app-sorticon field="nombreEmpleado" />
-      </th>
-      <th appSortableColumn="tipoIncidenciaDisplay">
-        Tipo <app-sorticon field="tipoIncidenciaDisplay" />
-      </th>
-      <th appSortableColumn="fecha">Fecha <app-sorticon field="fecha" /></th>
-      <th class="text-end">DIAS</th>
-      <th class="text-end">Minutos</th>
-      <th class="text-end">Descuento ($)</th>
-      <th>Sync</th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.nombreEmpleado }}</td>
-      <td>
-        <lux-tag
-          [severity]="getTipoSeverity(item.tipoIncidencia)"
-          [value]="item.tipoIncidenciaDisplay"
-        />
-      </td>
-      <td>{{ item.fecha | apiDate: "dd/MM/yyyy" }}</td>
-      <td class="text-end">{{ item.diasAfectados }}</td>
-      <td class="text-end">{{ item.minutosRetardo }}</td>
-      <td class="text-end">
-        {{ item.montoDescuento | currency: "MXN" : "symbol" : "1.2-2" }}
-      </td>
-      <td>
-        <lux-tag
-          [severity]="item.esSincronizada ? 'success' : 'secondary'"
-          [value]="item.esSincronizada ? 'Auto' : 'Manual'"
-        />
-      </td>
-      <td>
-        <iw-button-delete (confirmed)="onDelete(item)" />
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-</lux-table>
-
-<!-- Vista movil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-incidencias-nomina-mobile
   [data]="data()"
-  [dt]="dt"
   [globalFilterFields]="globalFilterFields()"
   (add)="openAdd()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:attach-money" />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
-      <p class="text-xs m-0">{{ item.fecha | apiDate: "dd/MM/yyyy" }}</p>
-      <div class="d-flex gap-2 mt-1">
-        <lux-tag
-          [severity]="getTipoSeverity(item.tipoIncidencia)"
-          [value]="item.tipoIncidenciaDisplay"
-        />
-        <span class="text-sm"
-          >{{ item.montoDescuento | currency: "MXN" : "symbol" : "1.2-2"
-          }}</span
-        >
-      </div>
-
-      <div end>
-        <il-button-delete (confirmed)="onDelete(item)" />
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-incidencias-nomina-desktop
+  [data]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [sincronizando]="sincronizando()"
+  (add)="openAdd()"
+  (delete)="onDelete($event)"
+  (syncVacations)="sincronizarVacaciones()"
+  (syncPermissions)="sincronizarPermisos()"
+/>
+}

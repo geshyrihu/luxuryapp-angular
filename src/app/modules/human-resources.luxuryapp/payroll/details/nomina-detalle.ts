@@ -8,69 +8,37 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { NominaDetalleDTO } from "../interfaces/nomina-detalle.interface";
 import {
   NominaEncabezadoDTO,
   NominaResumenDTO,
 } from "../interfaces/nomina-encabezado.interface";
+import { NominaDetalleDesktop } from "./desktop/nomina-detalle-desktop";
 import ModalEditarEmpleadoNomina from "./edit-payroll-employee-modal/modal-editar-empleado-nomina";
+import { NominaDetalleMobile } from "./mobile/nomina-detalle-mobile";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-nomina-detalle",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconEdit,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonLabel,
-    WebButtonLabelEdit,
-    DataViewMobile,
-    LuxTableCaption,
-  ],
+  imports: [CommonModule, AppIcon, NominaDetalleDesktop, NominaDetalleMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",
 })
 export default class NominaDetalle {
   private apiResponseS = inject(ApiResponseService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
   private route = inject(ActivatedRoute);
+
+  platformS = inject(PlatformService);
 
   nominaId = signal<string>("");
   encabezado = signal<NominaEncabezadoDTO | null>(null);
   resumen = signal<NominaResumenDTO | null>(null);
   loading = signal(true);
   data = signal<NominaDetalleDTO[]>([]);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];

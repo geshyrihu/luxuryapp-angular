@@ -1,0 +1,36 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:attach-money" />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
+      <p class="text-xs m-0">
+        {{ item.fecha | apiDate: "dd/MM/yyyy" }} | {{ item.horasSimples +
+        item.horasDobles }}h total
+      </p>
+      <div class="d-flex align-items-center gap-2 mt-1">
+        <span class="fw-bold"
+          >{{ item.totalImporte | currency: "MXN" : "symbol" : "1.2-2" }}</span
+        >
+        <lux-tag
+          [severity]="item.aprobado ? 'success' : 'warn'"
+          [value]="item.aprobado ? 'Aprobado' : 'Pendiente'"
+        />
+      </div>
+
+      <div end class="d-flex gap-1">
+        <il-button-edit (clicked)="edit.emit(item)" />
+        <il-button-delete (confirmed)="delete.emit(item)" />
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

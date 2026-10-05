@@ -1,0 +1,36 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:attach-money" />
+      </div>
+
+      <h2 class="font-normal m-0">
+        {{ item.quincenaDisplay }} {{ item.anio }}
+      </h2>
+      <p class="text-xs m-0">
+        {{ item.fechaInicio | apiDate: "dd/MM/yyyy" }} - {{ item.fechaFin |
+        apiDate: "dd/MM/yyyy" }}
+      </p>
+      <div class="d-flex align-items-center gap-2 mt-1">
+        <lux-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
+        <span class="text-xs">{{ item.diasHabiles }} días habiles</span>
+      </div>
+
+      <div end class="d-flex align-items-center gap-1">
+        <il-button-edit (clicked)="edit.emit(item)" />
+        <il-button-delete (clicked)="delete.emit(item)" />
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

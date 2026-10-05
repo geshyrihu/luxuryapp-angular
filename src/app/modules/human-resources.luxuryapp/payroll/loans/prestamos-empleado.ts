@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,48 +8,18 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { PrestamoEmpleadoDTO } from "../interfaces/prestamo-empleado.interface";
 import ModalPrestamoAdd from "./add-loan-modal/modal-prestamo-add";
+import { PrestamosEmpleadoDesktop } from "./desktop/prestamos-empleado-desktop";
 import ModalPrestamoDetalle from "./loan-detail-modal/modal-prestamo-detalle";
-
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PrestamosEmpleadoMobile } from "./mobile/prestamos-empleado-mobile";
 
 @Component({
   selector: "app-prestamos-empleado",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-
-    DataViewMobile,
-    LuxTableCaption,
-  ],
+  imports: [PrestamosEmpleadoDesktop, PrestamosEmpleadoMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./prestamos-empleado.html",
 })
@@ -58,14 +27,11 @@ export default class PrestamosEmpleado {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+
+  platformS = inject(PlatformService);
 
   loading = signal(true);
   data = signal<PrestamoEmpleadoDTO[]>([]);
-
-  tableRows = tableRows();
-  rowsPerPageOptions = rowsPerPageOptions();
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   globalFilterFields = computed(() => {
     if (!this.data().length) return [];
@@ -123,20 +89,5 @@ export default class PrestamosEmpleado {
       .then((result) => {
         if (result) this.onLoadData(this.customerIdS.customerId());
       });
-  }
-
-  getEstadoSeverity(estado: string): string {
-    const map: Record<string, string> = {
-      Pendiente: "warn",
-      Autorizado: "success",
-      Cancelado: "danger",
-      Liquidado: "secondary",
-    };
-    return map[estado] ?? "secondary";
-  }
-
-  getProgreso(item: PrestamoEmpleadoDTO): number {
-    if (item.numeroPagos === 0) return 0;
-    return Math.round((item.pagosRealizados / item.numeroPagos) * 100);
   }
 }

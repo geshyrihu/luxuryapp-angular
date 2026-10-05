@@ -1,0 +1,70 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  class="card custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption [dt]="dt" (add)="add.emit()" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="quincenaDisplay">
+        Quincena <app-sorticon field="quincenaDisplay" />
+      </th>
+      <th appSortableColumn="anio">Año <app-sorticon field="anio" /></th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Pago</th>
+      <th appSortableColumn="diasHabiles">
+        DÍAS HÁBILES <app-sorticon field="diasHabiles" />
+      </th>
+      <th>Estado</th>
+      <th>Nominas</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.quincenaDisplay }}</td>
+      <td>{{ item.anio }}</td>
+      <td>{{ item.fechaInicio | apiDate: "dd/MM/yyyy" }}</td>
+      <td>{{ item.fechaFin | apiDate: "dd/MM/yyyy" }}</td>
+      <td>
+        {{ item.fechaPago ? (item.fechaPago | apiDate: "dd/MM/yyyy") : "-" }}
+      </td>
+      <td>{{ item.diasHabiles }}</td>
+      <td>
+        <lux-tag
+          [severity]="getEstadoSeverity(item.estado)"
+          [value]="item.estado"
+        />
+      </td>
+      <td>{{ item.totalNominas }}</td>
+      <td>
+        <div class="d-flex gap-1">
+          <iw-button-edit (clicked)="edit.emit(item)" />
+          <iw-button
+            iconClass="material-symbols-light:event-busy"
+            severity="secondary"
+            variant="text"
+            lxTooltip="Días no habiles"
+            (clicked)="nonWorkingDays.emit(item)"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item)" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="9" />
+  </ng-template>
+</lux-table>

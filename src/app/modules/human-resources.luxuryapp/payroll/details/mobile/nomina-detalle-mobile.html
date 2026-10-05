@@ -1,0 +1,36 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:attach-money" />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.nombreCompleto }}</h2>
+      <p class="text-xs m-0">{{ item.puesto }}</p>
+      <div class="d-flex gap-3 mt-1">
+        <span class="text-green-600 text-sm"
+          >+ {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.0-0"
+          }}</span
+        >
+        <span class="text-red-500 text-sm"
+          >- {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.0-0"
+          }}</span
+        >
+        <span class="fw-bold text-primary text-sm"
+          >= {{ item.netoApagar | currency: "MXN" : "symbol" : "1.0-0" }}</span
+        >
+      </div>
+
+      <div end class="d-flex gap-1">
+        <il-button-edit (clicked)="edit.emit(item)" />
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

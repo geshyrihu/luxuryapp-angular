@@ -1,0 +1,33 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:attach-money" />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.nombreEmpleado }}</h2>
+      <p class="text-xs m-0">{{ item.fecha | apiDate: "dd/MM/yyyy" }}</p>
+      <div class="d-flex gap-2 mt-1">
+        <lux-tag
+          [severity]="getTipoSeverity(item.tipoIncidencia)"
+          [value]="item.tipoIncidenciaDisplay"
+        />
+        <span class="text-sm"
+          >{{ item.montoDescuento | currency: "MXN" : "symbol" : "1.2-2"
+          }}</span
+        >
+      </div>
+
+      <div end>
+        <il-button-delete (confirmed)="delete.emit(item)" />
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

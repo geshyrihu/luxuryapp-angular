@@ -10,113 +10,22 @@
   }
 </div>
 
-<!-- Tabla escritorio -->
-<lux-table
-  #dt
-  [value]="data()"
-  [loading]="loading()"
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  class="card d-none d-md-block custom-table"
->
-  <ng-template #caption>
-    <lux-table-caption [dt]="dt" (add)="openAdd()" />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="quincenaDisplay">
-        Quincena <app-sorticon field="quincenaDisplay" />
-      </th>
-      <th appSortableColumn="anio">Año <app-sorticon field="anio" /></th>
-      <th>Inicio</th>
-      <th>Fin</th>
-      <th>Pago</th>
-      <th appSortableColumn="diasHabiles">
-        DÍAS HÁBILES <app-sorticon field="diasHabiles" />
-      </th>
-      <th>Estado</th>
-      <th>Nominas</th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.quincenaDisplay }}</td>
-      <td>{{ item.anio }}</td>
-      <td>{{ item.fechaInicio | apiDate: "dd/MM/yyyy" }}</td>
-      <td>{{ item.fechaFin | apiDate: "dd/MM/yyyy" }}</td>
-      <td>
-        {{ item.fechaPago ? (item.fechaPago | apiDate: "dd/MM/yyyy") : "-" }}
-      </td>
-      <td>{{ item.diasHabiles }}</td>
-      <td>
-        <lux-tag
-          [severity]="getEstadoSeverity(item.estado)"
-          [value]="item.estado"
-        />
-      </td>
-      <td>{{ item.totalNominas }}</td>
-      <td>
-        <div class="d-flex gap-1">
-          <iw-button-edit (clicked)="openEdit(item)" />
-          <iw-button
-            iconClass="material-symbols-light:event-busy"
-            severity="secondary"
-            variant="text"
-            lxTooltip="Días no habiles"
-            (clicked)="openDiasNoHabiles(item)"
-          />
-          <iw-button-delete (confirmed)="onDelete(item)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="9" />
-  </ng-template>
-</lux-table>
-
-<!-- Vista movil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-periodos-nomina-mobile
   [data]="data()"
-  [dt]="dt"
   [globalFilterFields]="globalFilterFields()"
   (add)="openAdd()"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-      >
-        <app-icon icon="material-symbols-light:attach-money" />
-      </div>
-
-      <h2 class="font-normal m-0">
-        {{ item.quincenaDisplay }} {{ item.anio }}
-      </h2>
-      <p class="text-xs m-0">
-        {{ item.fechaInicio | apiDate: "dd/MM/yyyy" }} - {{ item.fechaFin |
-        apiDate: "dd/MM/yyyy" }}
-      </p>
-      <div class="d-flex align-items-center gap-2 mt-1">
-        <lux-tag
-          [severity]="getEstadoSeverity(item.estado)"
-          [value]="item.estado"
-        />
-        <span class="text-xs">{{ item.diasHabiles }} días habiles</span>
-      </div>
-
-      <div end class="d-flex align-items-center gap-1">
-        <il-button-edit (clicked)="openEdit(item)" />
-        <il-button-delete (clicked)="onDelete(item)" />
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="openEdit($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-periodos-nomina-desktop
+  [data]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="openAdd()"
+  (edit)="openEdit($event)"
+  (nonWorkingDays)="openDiasNoHabiles($event)"
+  (delete)="onDelete($event)"
+/>
+}

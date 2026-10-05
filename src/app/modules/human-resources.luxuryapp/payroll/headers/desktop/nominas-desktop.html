@@ -1,0 +1,105 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  class="card custom-table"
+>
+  <ng-template #caption>
+    <lux-table-caption [dt]="dt" (add)="add.emit()" />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="periodoDescripcion">
+        Periodo <app-sorticon field="periodoDescripcion" />
+      </th>
+      <th>Estado</th>
+      <th class="text-end">Empleados</th>
+      <th class="text-end">Percepciones</th>
+      <th class="text-end">Deducciones</th>
+      <th class="text-end">Neto</th>
+      <th>Aprobada Por</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <a class="cursor-pointer text-primary" (click)="view.emit(item)">
+          {{ item.periodoDescripcion }}
+        </a>
+      </td>
+      <td>
+        <lux-tag
+          [severity]="getEstadoSeverity(item.estadoValue)"
+          [value]="item.estado"
+        />
+      </td>
+      <td class="text-end">{{ item.totalEmpleados }}</td>
+      <td class="text-end">
+        {{ item.totalPercepciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-end">
+        {{ item.totalDeducciones | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td class="text-end fw-bold">
+        {{ item.totalNeto | currency: "MXN" : "symbol" : "1.2-2" }}
+      </td>
+      <td>{{ item.aprobadoPor ?? "-" }}</td>
+      <td>
+        <div class="d-flex gap-1">
+          <iw-button
+            iconClass="material-symbols-light:visibility-outline"
+            severity="info"
+            variant="text"
+            lxTooltip="Ver detalle"
+            (clicked)="view.emit(item)"
+          />
+          @if (puedeEnviar(item.estadoValue)) {
+          <iw-button
+            iconClass="material-symbols-light:send"
+            severity="secondary"
+            variant="text"
+            lxTooltip="Enviar a revision"
+            (clicked)="changeState.emit({ item, action: 'enviar-revision' })"
+          />
+          } @if (puedeAprobar(item.estadoValue)) {
+          <iw-button
+            iconClass="material-symbols-light:check"
+            severity="success"
+            variant="text"
+            lxTooltip="Aprobar nomina"
+            (clicked)="changeState.emit({ item, action: 'aprobar' })"
+          />
+          } @if (puedePagar(item.estadoValue)) {
+          <iw-button
+            iconClass="material-symbols-light:attach-money"
+            severity="contrast"
+            variant="text"
+            lxTooltip="Marcar como pagada"
+            (clicked)="changeState.emit({ item, action: 'marcar-pagada' })"
+          />
+          } @if (puedeCerrar(item.estadoValue)) {
+          <iw-button
+            iconClass="material-symbols-light:lock"
+            severity="secondary"
+            variant="text"
+            lxTooltip="Cerrar nomina"
+            (clicked)="changeState.emit({ item, action: 'cerrar' })"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="8" />
+  </ng-template>
+</lux-table>
