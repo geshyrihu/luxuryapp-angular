@@ -135,9 +135,15 @@
             </div>
             }
             <div class="pt-4 d-flex flex-column">
-              <il-button-save
+              <lux-button-web
+                kind="save"
+                type="submit"
+                severity="info"
+                variant="soft"
+                displayMode="both"
                 [disabled]="form.invalid || submitting() || (totalSelectedToApply() > form.controls.amount.value)"
                 label="Generar Recibo y Asignar"
+                [loading]="submitting()"
                 class="w-full"
               />
             </div>

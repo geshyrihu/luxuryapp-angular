@@ -34,10 +34,15 @@
       </p>
 
       <div class="d-flex justify-content-end mt-2">
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           label="Generar Cargo"
           [disabled]="form.invalid || submitting()"
-          [submitting]="submitting()"
+          [loading]="submitting()"
         />
       </div>
     </form>

@@ -13,7 +13,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -67,7 +67,7 @@ interface IMemberForm {
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputDateSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./member-form.html",
@@ -203,4 +203,3 @@ export default class MemberForm implements OnInit {
     });
   }
 }
-

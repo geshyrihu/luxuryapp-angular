@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -45,7 +45,7 @@ interface IPropertyFineForm {
     CustomInputDecimal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-form.html",
