@@ -16,7 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -61,7 +61,7 @@ interface IServiceOrderForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
     InputAutocomplete,
     CustomInputCurrencySignal,
@@ -350,4 +350,3 @@ export class ServiceOrderForm implements OnInit {
     });
   }
 }
-

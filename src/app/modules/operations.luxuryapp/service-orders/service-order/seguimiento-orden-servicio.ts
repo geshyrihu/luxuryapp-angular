@@ -15,7 +15,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -51,7 +51,7 @@ interface ServiceOrderFollowUpItem {
   imports: [
     AppIcon,
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabelDelete,
     AppSpinner,
     CustomInputTextAreaSignal,
