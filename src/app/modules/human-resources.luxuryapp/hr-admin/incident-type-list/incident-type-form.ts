@@ -10,7 +10,7 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -35,7 +35,7 @@ import { IncidentTypeFormGroup } from "./interfaces/incident-type-form.interface
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class IncidentTypeForm implements OnInit {

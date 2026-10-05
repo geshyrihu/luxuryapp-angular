@@ -28,12 +28,15 @@
     [control]="form.controls.isActive"
   />
   <div class="d-flex justify-content-end mt-2">
-    <il-button-save
-      [propertyId]="id"
-      [disabled]="form.invalid"
-      [submitting]="submitting()"
+    <lux-button-web
+      kind="save"
+      severity="info"
+      variant="soft"
+      displayMode="both"
       label="Guardar"
+      [disabled]="form.invalid"
       type="submit"
+      [loading]="submitting()"
     />
   </div>
 </form>

@@ -77,7 +77,15 @@
     </div>
 
     <div class="col-12 d-flex justify-content-end">
-      <il-button-save (clicked)="onSubmit()" [submitting]="submitting()" />
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
+        [loading]="submitting()"
+      />
     </div>
   </div>
 </form>
