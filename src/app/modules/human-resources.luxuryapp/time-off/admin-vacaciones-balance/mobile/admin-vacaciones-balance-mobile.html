@@ -1,0 +1,53 @@
+<lux-confirm-dialog />
+
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [showAdd]="false"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:format-list-bulleted"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
+      <p class="text-xs m-0">
+        Contratado: {{ item.hireDate | apiDate: "dd/MM/yyyy" }}
+      </p>
+      @if (item.isEligibleForAdvance) {
+      <div class="mt-1">
+        <p class="text-xs text-blue-600 m-0">
+          Adelanto Disponible: {{ item.availableAdvanceDays }} de {{
+          item.allowedAdvanceDays }}
+        </p>
+      </div>
+      }
+
+      <div class="d-flex flex-column mt-2">
+        <p class="text-xs m-0">Balance Sistema</p>
+        <p class="text-lg fw-bold m-0">{{ item.currentSystemBalance }}</p>
+      </div>
+
+      @if (item.isDiscrepant) {
+      <div class="mt-1">
+        <lux-tag
+          severity="danger"
+          value="DISCREPANCIA (BALANCE NEGATIVO)"
+        ></lux-tag>
+      </div>
+      }
+
+      <div end class="d-flex align-items-center">
+        <il-button-edit (clicked)="edit.emit(item)" />
+      </div>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <app-data-view-mobile
+      [data]="data()"
+      [globalFilterFields]="['employeeFullName', 'solicitud', 'status']"
+    >
+      <ng-template #listItemTemplate let-item>
+        <ili-list-item>
+          <div
+            start
+            class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+            class="w-3rem h-3rem bg-primary-50"
+          >
+            <app-icon
+              icon="material-symbols-light:format-list-bulleted"
+              class="text-xl text-primary"
+            />
+          </div>
+
+          <h2 class="font-normal m-0">{{ item.employeeFullName }}</h2>
+          <p class="text-body-secondary text-sm m-0">
+            {{ item.solicitud }} | {{ item.startDate | apiDate: "dd/MM/yy" }}
+            - {{ item.endDate | apiDate: "dd/MM/yy" }}
+          </p>
+          <p class="text-body-secondary text-sm m-0">
+            {{ item.daysRequested }}
+          </p>
+
+          <div end class="d-flex align-items-center">
+            <lux-tag
+              [value]="item.status"
+              [severity]="item.status === 'Aprobada' ? 'success' : item.status === 'Rechazada' ? 'danger' : 'warn'"
+              class="ms-2"
+            />
+          </div>
+        </ili-list-item>
+      </ng-template>
+    </app-data-view-mobile>
+  </div>
+</div>

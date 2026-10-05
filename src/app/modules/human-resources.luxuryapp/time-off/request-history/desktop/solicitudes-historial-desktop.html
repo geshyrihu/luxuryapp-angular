@@ -1,0 +1,194 @@
+<div class="card">
+  <div class="card-body">
+    <lux-table
+      #dt
+      [value]="data()"
+      [loading]="loading()"
+      [rows]="tableRows"
+      [paginator]="true"
+      [globalFilterFields]="globalFilterFields()"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      class="custom-table"
+      [scrollable]="true"
+      [scrollHeight]="scrollHeight()"
+    >
+      <ng-template #caption>
+        <lux-table-caption
+          [dt]="dt"
+          [showAdd]="false"
+          [showSearch]="false"
+          [noMargin]="true"
+        />
+        <form [formGroup]="form()" (ngSubmit)="search.emit()">
+          <div class="row align-items-end g-4">
+            <div class="col-12 col-sm-3 p-1">
+              <custom-input-select-signal
+                label="Empleado"
+                [data]="employees()"
+                [control]="form().controls.employeeId"
+                placeholder="Seleccione un empleado"
+                [horizontal]="false"
+                [filter]="true"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="col-12 col-sm-2 p-1">
+              <custom-input-select-signal
+                label="Tipo de Solicitud"
+                [data]="requestTypes()"
+                [control]="form().controls.requestType"
+                placeholder="Todos"
+                [horizontal]="false"
+                [noMargin]="true"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 col-sm-2 p-1">
+              <custom-input-select-signal
+                label="Estatus"
+                [data]="statuses()"
+                [control]="form().controls.status"
+                placeholder="Todos"
+                [horizontal]="false"
+                [noMargin]="true"
+                [filter]="true"
+              />
+            </div>
+            <div class="col-12 col-sm-2 p-1">
+              <custom-input-date-signal
+                label="Desde"
+                [control]="form().controls.startDate"
+                [horizontal]="false"
+                placeholder="Fecha inicial"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="col-12 col-sm-2 p-1">
+              <custom-input-date-signal
+                label="Hasta"
+                [control]="form().controls.endDate"
+                [horizontal]="false"
+                placeholder="Fecha final"
+                [noMargin]="true"
+              />
+            </div>
+            <div class="col-12 col-sm-1 p-1">
+              <div class="d-flex gap-1">
+                <iw-button
+                  iconClass="material-symbols-light:search"
+                  type="submit"
+                  variant="outline"
+                />
+                <iw-button
+                  iconClass="material-symbols-light:filter-alt-off"
+                  variant="outline"
+                  (clicked)="reset.emit()"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th appSortableColumn="customerName">
+            Cliente
+            <app-sorticon field="customerName" />
+          </th>
+          <th appSortableColumn="solicitud">
+            Solicitud
+            <app-sorticon field="solicitud" />
+          </th>
+          <th appSortableColumn="employeeFullName">
+            Empleado
+            <app-sorticon field="employeeFullName" />
+          </th>
+          <th appSortableColumn="roleName">
+            Puesto
+            <app-sorticon field="roleName" />
+          </th>
+          <th appSortableColumn="daysRequested">
+            Días
+            <app-sorticon field="daysRequested" />
+          </th>
+          <th appSortableColumn="startDate">
+            Inicio
+            <app-sorticon field="startDate" />
+          </th>
+          <th appSortableColumn="endDate">
+            Fin
+            <app-sorticon field="endDate" />
+          </th>
+          <th appSortableColumn="status">
+            Estatus
+            <app-sorticon field="status" />
+          </th>
+          <th appSortableColumn="requestDate">
+            Fecha Sol.
+            <app-sorticon field="requestDate" />
+          </th>
+          <th appSortableColumn="approverName">
+            Aprobado por
+            <app-sorticon field="approverName" />
+          </th>
+          <th appSortableColumn="approvalDate">
+            Fecha Aprobación
+            <app-sorticon field="approvalDate" />
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-item>
+        <tr>
+          <td>{{ item.customerName }}</td>
+          <td>{{ item.solicitud }}</td>
+          <td>{{ item.employeeFullName }}</td>
+          <td>{{ item.roleName }}</td>
+          <td>{{ item.daysRequested }}</td>
+          <td>{{ item.startDate | apiDate: "dd/MM/yyyy" }}</td>
+          <td>{{ item.endDate | apiDate: "dd/MM/yyyy" }}</td>
+          <td>
+            <lux-tag
+              [value]="item.status"
+              [severity]="
+                item.status === 'Aprobada'
+                  ? 'success'
+                  : item.status === 'Rechazada'
+                    ? 'danger'
+                    : item.status === 'Cancelada'
+                      ? 'info'
+                      : 'warn' // default: Pendiente
+              "
+            ></lux-tag>
+          </td>
+          <td>{{ item.requestDate | apiDate: "dd/MM/yyyy HH:mm" }}</td>
+          <td>{{ item.approverName || '—' }}</td>
+          <td>
+            {{ item.approvalDate ? (item.approvalDate | apiDate: "dd/MM/yyyy
+            HH:mm") : '—' }}
+          </td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center">
+              <!-- Added  for spacing -->
+              <iw-button-item
+                (clicked)="showDetail.emit(item)"
+                iconClass="material-symbols-light:info"
+                lxTooltip="Ver Detalle"
+              />
+              @if(item.status === 'Aprobada' && canCancel()){
+              <iw-button-item
+                (clicked)="cancel.emit(item)"
+                iconClass="material-symbols-light:block"
+                lxTooltip="Cancelar"
+              />
+              }
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <lux-table-empty-message [colspan]="8" />
+      </ng-template>
+    </lux-table>
+  </div>
+</div>

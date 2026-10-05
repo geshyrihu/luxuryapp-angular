@@ -1,135 +1,15 @@
-<lux-confirm-dialog />
-
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<lux-table
-  #dt
-  [value]="dataSignal()"
-  [loading]="loading()"
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight"
-  class="card d-none d-md-block custom-table"
->
-  <ng-template #caption>
-    <div class="d-flex justify-content-between">
-      <lux-table-caption [dt]="dt" [showAddButton]="false" />
-      <il-button
-        label="Recalcular Balances"
-        iconClass="material-symbols-light:sync"
-        severity="secondary"
-        (clicked)="onRecalculateAll()"
-      />
-    </div>
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="fullName">
-        Empleado <app-sorticon field="fullName" />
-      </th>
-      <th appSortableColumn="hireDate">
-        Contratación <app-sorticon field="hireDate" />
-      </th>
-      <th appSortableColumn="seniorityYears">
-        Antigóedad <app-sorticon field="seniorityYears" />
-      </th>
-      <th>Días por Antigóedad</th>
-      <th>Días Tomados</th>
-      <th>Días Pendientes</th>
-      <th>Adelanto Permitido</th>
-      <th>Adelanto Disponible</th>
-      <th appSortableColumn="currentSystemBalance">
-        Balance Sistema <app-sorticon field="currentSystemBalance" />
-      </th>
-      <th>Discrepancia</th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr [class.p-datatable-discrepant]="item.isDiscrepant">
-      <td>{{ item.fullName }}</td>
-      <td>{{ item.hireDate | apiDate: "dd/MM/yyyy" }}</td>
-      <td>{{ item.seniorityYears }} años</td>
-      <td>{{ item.entitledDaysByLaw }}</td>
-      <td>{{ item.takenDays }}</td>
-      <td>{{ item.pendingDays }}</td>
-      <td>{{ item.isEligibleForAdvance ? item.allowedAdvanceDays : "N/A" }}</td>
-      <td>
-        {{ item.isEligibleForAdvance ? item.availableAdvanceDays : "N/A" }}
-      </td>
-      <td>
-        <strong>{{ item.currentSystemBalance }}</strong>
-      </td>
-      <td>
-        <lux-tag
-          [severity]="getSeverity(item.isDiscrepant)"
-          [value]="item.isDiscrepant ? 'Sí' : 'No'"
-        ></lux-tag>
-      </td>
-      <td>
-        <iw-button-edit (clicked)="openEditModal(item)" />
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="11" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
-  [data]="dataSignal()"
-  [dt]="dt"
-  [globalFilterFields]="globalFilterFields()"
-  [showAdd]="false"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:format-list-bulleted"
-          class="text-xl text-primary"
-        />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.fullName }}</h2>
-      <p class="text-xs m-0">
-        Contratado: {{ item.hireDate | apiDate: "dd/MM/yyyy" }}
-      </p>
-      @if (item.isEligibleForAdvance) {
-      <div class="mt-1">
-        <p class="text-xs text-blue-600 m-0">
-          Adelanto Disponible: {{ item.availableAdvanceDays }} de {{
-          item.allowedAdvanceDays }}
-        </p>
-      </div>
-      }
-
-      <div class="d-flex flex-column mt-2">
-        <p class="text-xs m-0">Balance Sistema</p>
-        <p class="text-lg fw-bold m-0">{{ item.currentSystemBalance }}</p>
-      </div>
-
-      @if (item.isDiscrepant) {
-      <div class="mt-1">
-        <lux-tag
-          severity="danger"
-          value="DISCREPANCIA (BALANCE NEGATIVO)"
-        ></lux-tag>
-      </div>
-      }
-
-      <div end class="d-flex align-items-center">
-        <il-button-edit (clicked)="openEditModal(item)" />
-      </div>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+@if (platformS.isMobile()) {
+  <app-admin-vacaciones-balance-mobile
+    [data]="dataSignal()"
+    [globalFilterFields]="globalFilterFields()"
+    (edit)="openEditModal($event)"
+  />
+} @else {
+  <app-admin-vacaciones-balance-desktop
+    [data]="dataSignal()"
+    [loading]="loading()"
+    [globalFilterFields]="globalFilterFields()"
+    (recalculate)="onRecalculateAll()"
+    (edit)="openEditModal($event)"
+  />
+}

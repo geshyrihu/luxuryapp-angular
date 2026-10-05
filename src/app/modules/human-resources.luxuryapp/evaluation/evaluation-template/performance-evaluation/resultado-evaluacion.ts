@@ -1,5 +1,4 @@
 import { CommonModule } from "@angular/common";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,12 +9,6 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from "@angular/router";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxDivider } from "@ui/adaptive/divider/divider";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { RadarChart } from "@ui/web/charts/radar-chart";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   ChartGeneratorService,
@@ -24,7 +17,14 @@ import {
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { RadarChart } from "@ui/web/charts/radar-chart";
+import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-resultado-evaluacion",

@@ -8,83 +8,36 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { VacationRequestMyDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
-import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { MisVacacionesListadoDesktop } from "./desktop/mis-vacaciones-listado-desktop";
+import { MisVacacionesListadoMobile } from "./mobile/mis-vacaciones-listado-mobile";
 import { VacacionesForm } from "./vacaciones-form";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-mis-vacaciones-listado",
   templateUrl: "./mis-vacaciones-listado.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonLabel,
-    AppIcon,
-    MobileListItem,
-    WebButtonIconItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelItem,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LxTag,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MisVacacionesListadoDesktop, MisVacacionesListadoMobile],
 })
 export class MisVacacionesListado implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   router = inject(Router);
-  getStatusSeverity = getStatusSeverity;
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<VacationRequestMyDTO[]>([]);
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     return Array.isArray(data) && data.length > 0
       ? globalFilterFields(data)
       : [];
   });
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   ngOnInit(): void {
     this.onLoadData();

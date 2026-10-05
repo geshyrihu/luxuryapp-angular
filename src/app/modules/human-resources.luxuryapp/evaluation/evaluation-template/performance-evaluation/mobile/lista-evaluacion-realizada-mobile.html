@@ -1,0 +1,37 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit()"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+        class="w-3rem h-3rem bg-primary-50"
+      >
+        <app-icon
+          icon="material-symbols-light:task-alt"
+          class="text-xl text-primary"
+        />
+      </div>
+
+      <h2 class="font-normal m-0">{{ item.employeeName }}</h2>
+      <p class="text-medium text-body-secondary m-0">
+        {{ item.evaluationTemplate }}
+      </p>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-item
+            (clicked)="edit.emit(item.id)"
+            label="Editar"
+            iconName="create-outline"
+          />
+
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

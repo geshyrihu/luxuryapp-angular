@@ -8,67 +8,27 @@ import {
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DialogSize } from "@core/enums/dialog-size.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { SanctionTypeListDesktop } from "./desktop/sanction-type-list-desktop";
+import { SanctionTypeListMobile } from "./mobile/sanction-type-list-mobile";
 import { SanctionTypeForm } from "./sanction-type-form";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-sanction-type-list",
   templateUrl: "./sanction-type-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  imports: [SanctionTypeListDesktop, SanctionTypeListMobile],
 })
 export class SanctionTypeList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
-  tableScrollH = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   items = signal<SanctionTypeListDTO[]>([]);
-  globalFilter = signal<string>("");
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
   readonly globalFilterFields = globalFilterFields(["name", "severityLevel"]);
 
   ngOnInit(): void {

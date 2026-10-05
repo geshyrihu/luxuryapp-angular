@@ -6,57 +6,26 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { LxImage } from "@ui/adaptive/image/image";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ChekadorListDesktop } from "./desktop/chekador-list-desktop";
+import { ChekadorListMobile } from "./mobile/chekador-list-mobile";
 import { IRegistroChecador } from "./interfaces/chekador-empleados.models";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { ChekadorEmpleadosService } from "./chekador-empleados.service";
+
 @Component({
   selector: "app-chekador-list",
   templateUrl: "./chekador-list.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-    WebButtonLabel,
-    WebButtonIcon,
-    LxImage,
-    CustomInputCheckSignal,
-    IonInputCheckbox,
-    FormsModule,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ChekadorListDesktop, ChekadorListMobile],
 })
 export class ChekadorList {
   private readonly chekadorS = inject(ChekadorEmpleadosService);
   private readonly customerIdS = inject(CustomerIdService);
   readonly dialogS = inject(DialogHandlerService);
+  readonly platformS = inject(PlatformService);
 
   dataSignal = signal<IRegistroChecador[]>([]);
   loading = signal(true);
@@ -71,9 +40,6 @@ export class ChekadorList {
     if (!data || data.length === 0) return [];
     return globalFilterFields(data);
   });
-
-  readonly rows = tableRows();
-  readonly rowsPerPage = rowsPerPageOptions();
 
   constructor() {
     effect(() => {
@@ -121,14 +87,5 @@ export class ChekadorList {
       .then((result) => {
         if (result) this.onLoadData();
       });
-  }
-
-  getBadgeSeverity(
-    estadoAnomalia: string | null,
-  ): "success" | "danger" | "warn" | "secondary" {
-    if (!estadoAnomalia) return "secondary";
-    if (estadoAnomalia === "Aprobada") return "success";
-    if (estadoAnomalia === "Rechazada") return "danger";
-    return "warn";
   }
 }

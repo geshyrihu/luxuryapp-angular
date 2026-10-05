@@ -8,51 +8,21 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { MessageService } from "@core/services/message.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
+import { PlatformService } from "@core/services/platform.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
+import { AdminVacacionesBalanceDesktop } from "./desktop/admin-vacaciones-balance-desktop";
+import { AdminVacacionesBalanceMobile } from "./mobile/admin-vacaciones-balance-mobile";
 import { AdminVacacionesEditModalComponent } from "./modal-admin-vacaciones-edit";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { VacationBalanceAdminViewDto } from "../../interfaces/vacation-balance-admin-view.interface";
+
 @Component({
   selector: "app-admin-vacaciones-balance",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconEdit,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonLabel,
-    LxTag,
-    LuxTableCaption,
-    WebButtonLabelEdit,
-    DataViewMobile,
-    LxConfirmDialog,
-  ],
+  imports: [AdminVacacionesBalanceDesktop, AdminVacacionesBalanceMobile],
   templateUrl: "./admin-vacaciones-balance.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminVacacionesBalance {
   apiResponseS = inject(ApiResponseService);
@@ -60,18 +30,15 @@ export class AdminVacacionesBalance {
   dialogHandlerS = inject(DialogHandlerService);
   confirmS = inject(ConfirmService);
   messageService = inject(MessageService);
-  tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
   loading = signal(true);
   dataSignal = signal<VacationBalanceAdminViewDto[]>([]);
 
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   globalFilterFields = computed(() => {
     const data = this.dataSignal();
     if (!data || data.length === 0) return [];
     return ["fullName", "hireDate", "seniorityYears"];
   });
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   constructor() {
     effect(() => {
@@ -119,10 +86,6 @@ export class AdminVacacionesBalance {
         this.onLoadData(customerId);
       })
       .catch(() => this.loading.set(false));
-  }
-
-  getSeverity(isDiscrepant: boolean): string {
-    return isDiscrepant ? "danger" : "success";
   }
 
   openEditModal(employeeData: VacationBalanceAdminViewDto): void {

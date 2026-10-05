@@ -1,0 +1,108 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="requestDate">
+        Fecha Solicitud
+        <app-sorticon field="requestDate" />
+      </th>
+      <th appSortableColumn="requestTypeName">
+        Solicitud
+        <app-sorticon field="requestTypeName" />
+      </th>
+
+      <th appSortableColumn="startDate">
+        Fechas y Horas
+        <app-sorticon field="startDate" />
+      </th>
+      <th appSortableColumn="status">
+        Estado
+        <app-sorticon field="status" />
+      </th>
+
+      <th>Aprobación</th>
+      <th>Adjunto</th>
+      <th class="no-print"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.requestDate }}</td>
+      <td>{{ item.requestTypeName }}</td>
+      <td>
+        <div>
+          <span>
+            <strong>Inicio:</strong>
+            {{ item.startDate }} {{ item.startTime || "-" }}
+          </span>
+          <br />
+          <span>
+            <strong>Fin:</strong>
+            {{ item.endDate }} {{ item.endTime || "-" }}
+          </span>
+        </div>
+      </td>
+      <td>
+        <lux-tag
+          [value]="item.status"
+          [severity]="getStatusSeverity(item.status)"
+        ></lux-tag>
+      </td>
+      <td>
+        {{ item.approverName ? item.approverName : "-" }}
+        <br />
+        <span> {{ item.approvalDate ? item.approvalDate : "-" }} </span>
+      </td>
+      <td class="text-center">
+        @if (item.attachmentPath) {
+        <a [href]="item.attachmentPath" target="_blank" class="pointer">
+          <app-icon
+            [icon]="'material-symbols-light:download'"
+            class="icon icon- icon-xl"
+          />
+        </a>
+        }
+      </td>
+
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-item
+            (clicked)="
+              detail.emit({ id: item.id, title: 'Detalle de la Solicitud' })
+            "
+            lxTooltip="??"
+          />
+          @if (item.status != "Aprobada") {
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="7" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

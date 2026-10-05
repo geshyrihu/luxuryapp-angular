@@ -1,0 +1,207 @@
+<lux-table
+  #dt
+  [value]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  class="custom-table card"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="{first} - {last} de {totalRecords}"
+>
+  <!-- ── Caption con filtros alineados (Patrón Compacto Flex) ─────────── -->
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
+    >
+      <!-- Izquierda: buscador global -->
+      <div class="flex-grow-1">
+        <lux-table-caption
+          [dt]="dt"
+          [rolAuth]="false"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+
+      <!-- Derecha: filtros de fecha, anomalía y acciones -->
+      <div
+        class="d-flex flex-column flex-sm-row align-items-center gap-2 flex-wrap g-4"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <label class="text-xs fw-semibold text-body-secondary text-nowrap"
+            >DESDE</label
+          >
+          <input
+            type="date"
+            [ngModel]="desde()"
+            (ngModelChange)="desdeChange.emit($event)"
+            class="form-control-sm"
+          />
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <label class="text-xs fw-semibold text-body-secondary text-nowrap"
+            >HASTA</label
+          >
+          <input
+            type="date"
+            [ngModel]="hasta()"
+            (ngModelChange)="hastaChange.emit($event)"
+            class="form-control-sm"
+          />
+        </div>
+
+        <custom-input-check-signal
+          [ngModel]="soloAnomalias()"
+          (ngModelChange)="soloAnomaliasChange.emit($event)"
+          placeholder="Solo anomalías"
+          [horizontal]="false"
+          noMargin
+        />
+
+        <div class="d-flex gap-2 flex-shrink-0">
+          <il-button
+            label="Filtrar"
+            iconClass="material-symbols-light:filter"
+            severity="primary"
+            size="small"
+            (clicked)="applyFilters.emit()"
+          />
+          <il-button
+            label="Limpiar"
+            iconClass="material-symbols-light:close"
+            severity="secondary"
+            variant="outline"
+            size="small"
+            (clicked)="clearFilters.emit()"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th class="table-col-5">Nº</th>
+      <th class="table-col-20" appSortableColumn="nombreEmpleado">
+        EMPLEADO <app-sorticon field="nombreEmpleado" />
+      </th>
+      <th class="table-col-10" appSortableColumn="tipo">
+        TIPO <app-sorticon field="tipo" />
+      </th>
+      <th class="table-col-15" appSortableColumn="fechaHora">
+        FECHA / HORA <app-sorticon field="fechaHora" />
+      </th>
+      <th class="table-col-10">FOTO</th>
+      <th class="table-col-10" appSortableColumn="distanciaMetros">
+        DISTANCIA (m) <app-sorticon field="distanciaMetros" />
+      </th>
+      <th class="table-col-15" appSortableColumn="ipAddress">
+        IP <app-sorticon field="ipAddress" />
+      </th>
+      <th class="table-col-10">ANOMALÍA</th>
+      <th class="table-col-10">ESTADO</th>
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item let-rowIndex="rowIndex">
+    <tr [class.bg-red-50]="item.esAnomalia">
+      <td>{{ rowIndex + 1 }}</td>
+      <td class="fw-semibold">{{ item.nombreEmpleado }}</td>
+      <td>{{ item.tipo }}</td>
+      <td>{{ item.fechaHora }}</td>
+
+      <!-- Foto / Selfie -->
+      <td class="text-center">
+        @if (item.fotoUrl) {
+        <lux-image
+          [src]="item.fotoUrl"
+          alt="Selfie"
+          width="48"
+          [preview]="true"
+          imageClass="rounded"
+        />
+        } @else {
+        <span class="text-body-secondary text-xs">Sin foto</span>
+        }
+      </td>
+
+      <!-- Distancia geofence -->
+      <td class="text-center">
+        @if (item.distanciaMetros !== null) {
+        <span
+          [class.text-red-500]="item.tipoAnomalia === 'GPS fuera de rango'"
+          [class.font-bold]="item.tipoAnomalia === 'GPS fuera de rango'"
+        >
+          {{ item.distanciaMetros | number: "1.0-0" }} m
+        </span>
+        } @else {
+        <span class="text-body-secondary text-xs">—</span>
+        }
+      </td>
+
+      <!-- IP de red -->
+      <td class="text-xs text-body-secondary font-mono">
+        {{ item.ipAddress ?? "—" }}
+      </td>
+
+      <!-- Badge anomalía -->
+      <td class="text-center">
+        @if (item.esAnomalia) {
+        <lux-tag
+          [value]="item.tipoAnomalia ?? 'Anomalía'"
+          severity="danger"
+          [tooltip]="item.notaAnomalia ?? ''"
+        />
+        } @else {
+        <lux-tag value="OK" severity="success" />
+        }
+      </td>
+
+      <!-- Estado revisión -->
+      <td class="text-center">
+        @if (item.estadoAnomalia) {
+        <lux-tag
+          [value]="item.estadoAnomalia"
+          [severity]="getBadgeSeverity(item.estadoAnomalia)"
+        />
+        } @else {
+        <span class="text-body-secondary text-xs">—</span>
+        }
+      </td>
+
+      <!-- Acciones RRHH -->
+      <td class="text-center">
+        @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión')
+        {
+        <div class="d-flex gap-1 justify-content-center">
+          <iw-button
+            iconClass="material-symbols-light:check"
+            severity="success"
+            size="small"
+            variant="text"
+            (clicked)="approve.emit(item)"
+          />
+          <iw-button
+            iconClass="material-symbols-light:close"
+            severity="danger"
+            size="small"
+            variant="text"
+            (clicked)="reject.emit(item)"
+          />
+        </div>
+        }
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="10" />
+  </ng-template>
+  <ng-template #footer>
+    <lux-table-footer [dt]="dt" />
+  </ng-template>
+</lux-table>

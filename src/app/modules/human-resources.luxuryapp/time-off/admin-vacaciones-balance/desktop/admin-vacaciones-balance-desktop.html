@@ -1,0 +1,80 @@
+<lux-confirm-dialog />
+
+<lux-table
+  #dt
+  [value]="data()"
+  [loading]="loading()"
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  class="card custom-table"
+>
+  <ng-template #caption>
+    <div class="d-flex justify-content-between">
+      <lux-table-caption [dt]="dt" [showAddButton]="false" />
+      <il-button
+        label="Recalcular Balances"
+        iconClass="material-symbols-light:sync"
+        severity="secondary"
+        (clicked)="recalculate.emit()"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="fullName">
+        Empleado <app-sorticon field="fullName" />
+      </th>
+      <th appSortableColumn="hireDate">
+        Contratación <app-sorticon field="hireDate" />
+      </th>
+      <th appSortableColumn="seniorityYears">
+        Antigóedad <app-sorticon field="seniorityYears" />
+      </th>
+      <th>Días por Antigóedad</th>
+      <th>Días Tomados</th>
+      <th>Días Pendientes</th>
+      <th>Adelanto Permitido</th>
+      <th>Adelanto Disponible</th>
+      <th appSortableColumn="currentSystemBalance">
+        Balance Sistema <app-sorticon field="currentSystemBalance" />
+      </th>
+      <th>Discrepancia</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr [class.p-datatable-discrepant]="item.isDiscrepant">
+      <td>{{ item.fullName }}</td>
+      <td>{{ item.hireDate | apiDate: "dd/MM/yyyy" }}</td>
+      <td>{{ item.seniorityYears }} años</td>
+      <td>{{ item.entitledDaysByLaw }}</td>
+      <td>{{ item.takenDays }}</td>
+      <td>{{ item.pendingDays }}</td>
+      <td>{{ item.isEligibleForAdvance ? item.allowedAdvanceDays : "N/A" }}</td>
+      <td>
+        {{ item.isEligibleForAdvance ? item.availableAdvanceDays : "N/A" }}
+      </td>
+      <td>
+        <strong>{{ item.currentSystemBalance }}</strong>
+      </td>
+      <td>
+        <lux-tag
+          [severity]="getSeverity(item.isDiscrepant)"
+          [value]="item.isDiscrepant ? 'Sí' : 'No'"
+        ></lux-tag>
+      </td>
+      <td>
+        <iw-button-edit (clicked)="edit.emit(item)" />
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="11" />
+  </ng-template>
+</lux-table>

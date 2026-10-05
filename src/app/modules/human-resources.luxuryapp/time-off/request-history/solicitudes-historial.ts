@@ -8,38 +8,25 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { firstValueFrom } from "rxjs";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { PermisoDetalleModal } from "../leave-calendar/modal-permiso-detalle";
 import { VacacionDetalleModal } from "../leave-calendar/modal-vacacion-detalle";
+import { SolicitudesHistorialDesktop } from "./desktop/solicitudes-historial-desktop";
+import { SolicitudesHistorialMobile } from "./mobile/solicitudes-historial-mobile";
 
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 interface LeaveHistoryItemDTO {
   id: string;
   customerName?: string;
@@ -85,36 +72,11 @@ interface IHistorialSolicitud {
   approvalDate?: string | null;
 }
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 @Component({
   selector: "app-solicitudes-historial",
   templateUrl: "./solicitudes-historial.html",
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIcon,
-    WebButtonIconItem,
-    LxTooltipDirective,
-    TableEmptyMessage,
-    ApiDatePipe,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LxTag,
-
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    DataViewMobile,
-    LuxTableCaption,
-  ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [SolicitudesHistorialDesktop, SolicitudesHistorialMobile],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DatePipe],
 })
 export class SolicitudesHistorial implements OnInit {
@@ -126,7 +88,7 @@ export class SolicitudesHistorial implements OnInit {
   private datePipe = inject(DatePipe);
   private authS = inject(AuthService);
   private aspRoleS = inject(AspRoleService);
-  private tableScrollHeightS = inject(TableScrollHeightService);
+  platformS = inject(PlatformService);
 
   allowedCancellerRoles: ApplicationRole[] = [
     ApplicationRole.SuperUsuario,
@@ -138,7 +100,6 @@ export class SolicitudesHistorial implements OnInit {
   employees = signal<SelectItemDto[]>([]);
   requestTypes = signal<SelectItemDto[]>([]);
   statuses = signal<SelectItemDto[]>([]);
-  scrollHeight = this.tableScrollHeightS.scrollHeight;
 
   filterForm = this.formBuilder.group({
     employeeId: [null as number | null],
@@ -157,9 +118,6 @@ export class SolicitudesHistorial implements OnInit {
       }
     });
   }
-
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   globalFilterFields = computed(() => {
     const data = this.data();
