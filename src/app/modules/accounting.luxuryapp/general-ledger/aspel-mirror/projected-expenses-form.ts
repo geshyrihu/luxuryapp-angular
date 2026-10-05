@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
@@ -35,7 +35,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputCurrencySignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class ProjectedExpensesForm implements OnInit {

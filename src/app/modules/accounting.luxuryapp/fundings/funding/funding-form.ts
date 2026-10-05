@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -21,7 +21,7 @@ import { SignalRService } from "@core/services/signalr.service";
   selector: "app-funding-form",
   templateUrl: "./funding-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputSelectSignal, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, ButtonWeb],
 })
 export class FundingForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
