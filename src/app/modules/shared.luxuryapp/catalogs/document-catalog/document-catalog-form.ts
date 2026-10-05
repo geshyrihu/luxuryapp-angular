@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -35,7 +35,7 @@ import { DocumentCatalogFormGroup } from "./interfaces/document-catalog-form.int
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class DocumentCatalogForm implements OnInit {
