@@ -12,7 +12,7 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import {
   DynamicDialogConfig,
@@ -28,7 +28,7 @@ import { BankAddOrEditDto } from "./interfaces/banks-add-or-edit.dto";
   selector: "app-bank-form",
   templateUrl: "./bank-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, InputText, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, InputText, ButtonWeb],
 })
 export class BankForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
