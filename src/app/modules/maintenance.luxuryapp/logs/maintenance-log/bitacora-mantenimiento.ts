@@ -1,6 +1,5 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -15,43 +14,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
+import { PlatformService } from "@core/services/platform.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
+import { BitacoraMantenimientoDesktop } from "./desktop/bitacora-mantenimiento-desktop";
+import { BitacoraMantenimientoMobile } from "./mobile/bitacora-mantenimiento-mobile";
 
 @Component({
   selector: "app-bitacora-mantenimiento",
   templateUrl: "./bitacora-mantenimiento.html",
-  imports: [
-    RangoCalendarioyyyymmdd,
-    WebButtonIconConfirm,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    LuxTableCaption,
-    DataViewMobile,
-    MobileListItem,
-    MobileActionMenu,
-    MobileButtonLabelDelete,
-  ],
+  imports: [BitacoraMantenimientoDesktop, BitacoraMantenimientoMobile],
 })
 export class BitacoraMantenimiento {
   apiResponseS = inject(ApiResponseService);
@@ -61,8 +33,13 @@ export class BitacoraMantenimiento {
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
   rangoCalendarioService = inject(FiltroCalendarService);
+  platformS = inject(PlatformService);
   customerList: any[] = [];
   public AspRole = ApplicationRole;
+
+  isJefeMantenimiento = this.aspRoleS.roleSignal(
+    ApplicationRole.JefeMantenimiento,
+  );
 
   fechaInicial: string = this.dateS.getDateFormat(
     this.rangoCalendarioService.fechaInicioDateFull,

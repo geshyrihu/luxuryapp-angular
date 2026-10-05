@@ -1,0 +1,100 @@
+<app-data-view-mobile
+  [data]="data()"
+  [globalFilterFields]="globalFilterFields()"
+  (add)="add.emit({ id: '', title: 'Nueva Recepcion' })"
+>
+  <div customFilters>
+    <div class="d-flex gap-1 mb-2 px-3 pt-2">
+      <a
+        routerLink="/logbook/water-truck-reception"
+        routerLinkActive="btn-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
+      >
+        <app-icon
+          [icon]="'material-symbols-light:format-list-bulleted'"
+          class="me-1"
+        />
+        Registros
+      </a>
+      <a
+        routerLink="/logbook/water-truck-reception/reporte"
+        routerLinkActive="btn-primary"
+        class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
+      >
+        <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
+        Reporte
+      </a>
+      <a
+        routerLink="/logbook/water-truck-reception/analisis"
+        routerLinkActive="btn-primary"
+        class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
+      >
+        <app-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
+        Analisis
+      </a>
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div start>
+        <app-icon icon="material-symbols-light:water" />
+      </div>
+
+      <h3 class="fw-bold">{{ item.placasCamion }}</h3>
+      @if (item.empresa) {
+      <p class="text-body-secondary">{{ item.empresa }}</p>
+      }
+      <p>
+        {{ item.horaLlegada | apiDate: 'dd/MM/yyyy HH:mm' }} @if
+        (item.horaTermino) {
+        <span> é {{ item.horaTermino | apiDate: 'HH:mm' }}</span>
+        } @if (!item.horaTermino) {
+        <span class="text-orange-500"> (en curso)</span>
+        }
+      </p>
+      <div class="row m-0 text-sm mt-1 g-4">
+        <div class="col-6 p-0">
+          <strong>Cap:</strong> {{ item.capacidadPipa | number: '1.0-0' }} L
+        </div>
+        <div class="col-6 p-0">
+          <strong>mí:</strong>
+          {{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
+          '1.0-0' }}
+        </div>
+        <div class="col-6 p-0">
+          <strong>Cisterna:</strong>
+          {{ item.nivelCisternaAntes | number: '1.0-0' }}% ? {{
+          item.nivelCisternaDespues | number: '1.0-0' }}%
+        </div>
+        <div class="col-6 p-0">
+          <strong>Costo mí:</strong> {{ item.costoMetroCubico | number: '1.2-2'
+          }}
+        </div>
+        @if (item.colaboradorMtto) {
+        <div class="col-12 p-0">
+          <strong>Colaborador:</strong> {{ item.colaboradorMtto }}
+        </div>
+        } @if (item.guardiaSeguridad) {
+        <div class="col-12 p-0">
+          <strong>Guardia:</strong> {{ item.guardiaSeguridad }}
+        </div>
+        }
+      </div>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-download
+            (clicked)="downloadPdf.emit(item)"
+            label="Descargar"
+          />
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Recepcion' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

@@ -1,197 +1,23 @@
-<!-- Vista de escritorio -->
-<div class="d-none d-md-block">
-  <div class="row g-4">
-    <div class="col-9"></div>
-    <div class="col-3">
-      <il-button-add
-        label="Agregar Medidor"
-        (clicked)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
-      />
-    </div>
-    <div class="col-12 text-end mb-2"></div>
-    @for (item of dataSignal(); track item) {
-    <div class="p-2 col-12 col-md-6 col-lg-4 col-xl-3">
-      <div
-        class="h-full rounded-lg border-left-3"
-        [class.border-yellow-500]="item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55'"
-        [class.border-green-500]="item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
-        [class.border-blue-500]="item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
-      >
-        <div class="card h-full bg-body-tertiary d-flex flex-column">
-          <div
-            class="text-center pointer flex-fill"
-            (click)="modalMedidorLecturaAddEdit(item)"
-          >
-            <h5 class="mb-2">
-              {{ item.medidorCategoria.nombreMedidorCategoria }}
-            </h5>
-            @if (item.medidorCategoriaId ===
-            '019c6c01-bbcf-76a2-a863-43569af55a55') {
-            <app-icon
-              [icon]="'material-symbols-light:sunny'"
-              class="text-yellow-500 text-6xl"
-            />
-            } @if (item.medidorCategoriaId ===
-            '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-            <app-icon
-              [icon]="'material-symbols-light:filter'"
-              class="text-blue-500 text-6xl"
-            />
-            } @if (item.medidorCategoriaId ===
-            '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
-            <app-icon
-              [icon]="'material-symbols-light:bolt'"
-              class="text-green-500 text-6xl"
-            />
-            }
-            <hr class="my-3" />
-            <h6 class="mb-2 text-body-secondary">{{ item.numeroMedidor }}</h6>
-            <p>{{ item.descripcion }}</p>
-            <p>Consumo Máx: {{ item.consumoDiarioMaximo }}</p>
-          </div>
-
-          <div
-            class="mt-3 pt-3 border-top-1 border d-flex justify-content-end"
-          >
-            <app-action-menu>
-              <il-button-edit
-                label="Editar"
-                (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
-              />
-              <il-button-delete
-                label="Eliminar"
-                (confirmed)="onDelete(item.id)"
-              />
-              <il-button-item
-                iconClass="material-symbols-light:save"
-                label="Lecturas"
-                (clicked)="onGoToLecturas(item.id)"
-              />
-              <il-button-item
-                iconClass="material-symbols-light:monitoring"
-                label="Gráfica"
-                (clicked)="onGoToGrafico(item.id)"
-              />
-              <il-button-download
-                label="Exportar a Excel"
-                severity="success"
-                (clicked)="exportExcel(item.id)"
-              />
-            </app-action-menu>
-          </div>
-        </div>
-      </div>
-    </div>
-    }
-  </div>
-</div>
-
-<!-- Vista móvil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-medidores-list-mobile
   [data]="dataSignal()"
   (add)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
-  [globalFilterFields]="['medidorCategoria.nombreMedidorCategoria', 'numeroMedidor', 'descripcion']"
-  [showAdd]="true"
->
-  <ng-template #listItemTemplate let-item>
-    <div
-      class="bg-body shadow-sm rounded-lg mb-3 border-left-3 overflow-hidden"
-      [class.border-yellow-500]="item.medidorCategoriaId === '019c6c01-bbcf-76a2-a863-43569af55a55'"
-      [class.border-green-500]="item.medidorCategoriaId === '019c6c01-bbdd-7698-9f76-db06f3c6ef0c'"
-      [class.border-blue-500]="item.medidorCategoriaId === '019c6c01-bbde-703d-85dd-a4e88651e0d3'"
-    >
-      <div class="p-3">
-        <!-- Header: categoría y menú de acciones -->
-        <div class="d-flex justify-content-between align-items-start mb-1">
-          <div>
-            <h2 class="fw-bold m-0 text-lg text-body">
-              {{ item.medidorCategoria.nombreMedidorCategoria }}
-            </h2>
-            <span class="text-sm fw-medium text-body-secondary"
-              >{{ item.numeroMedidor }}</span
-            >
-          </div>
-          <ili-action-menu slot="end">
-            <ng-container actions>
-              <ili-button-edit
-                (clicked)="modalAddEdit({ id: item.id, title: 'Editar' })"
-                label="Editar"
-              />
-              <ili-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
-              />
-              <ili-button-item
-                iconName="save-outline"
-                label="Lecturas"
-                (clicked)="onGoToLecturas(item.id)"
-              />
-              <ili-button-item
-                iconName="trending-up-outline"
-                label="Gráfica"
-                (clicked)="onGoToGrafico(item.id)"
-              />
-              <ili-button-item
-                iconName="bar-chart-outline"
-                label="Exportar Excel"
-                (clicked)="exportExcel(item.id)"
-              />
-            </ng-container>
-          </ili-action-menu>
-        </div>
-
-        <!-- DESCRIPCIÓN -->
-        <p class="text-sm m-0 text-body-secondary line-height-3 mb-3">
-          {{ item.descripcion }}
-        </p>
-
-        <!-- Footer: icono, consumo y botón registrar -->
-        <div
-          class="d-flex align-items-center justify-content-between pt-3 border-top-1 border"
-        >
-          <div class="d-flex align-items-center">
-            @if (item.medidorCategoriaId ===
-            '019c6c01-bbcf-76a2-a863-43569af55a55') {
-            <app-icon
-              icon="material-symbols-light:sunny"
-              color="warning"
-              class="text-2xl me-2"
-            />
-            } @if (item.medidorCategoriaId ===
-            '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-            <app-icon
-              icon="material-symbols-light:filter-alt"
-              color="primary"
-              class="text-2xl me-2"
-            />
-            } @if (item.medidorCategoriaId ===
-            '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
-            <app-icon
-              icon="material-symbols-light:flash-on"
-              color="success"
-              class="text-2xl me-2"
-            />
-            }
-            <div class="d-flex flex-column">
-              <span class="text-xs text-body-secondary text-uppercase fw-bold">Máximo</span>
-              <span class="text-sm fw-bold text-body"
-                >{{ item.consumoDiarioMaximo }}</span
-              >
-            </div>
-          </div>
-
-          <button
-            class="btn btn-rounded btn-text-primary btn-sm"
-            (click)="modalMedidorLecturaAddEdit(item)"
-          >
-            <app-icon
-              icon="material-symbols-light:add-circle-outline"
-              slot="start"
-            />
-            Registrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</app-data-view-mobile>
+  (edit)="modalAddEdit($event)"
+  (delete)="onDelete($event)"
+  (registerReading)="modalMedidorLecturaAddEdit($event)"
+  (goToLecturas)="onGoToLecturas($event)"
+  (goToGrafico)="onGoToGrafico($event)"
+  (exportExcel)="exportExcel($event)"
+/>
+} @else {
+<app-medidores-list-desktop
+  [data]="dataSignal()"
+  (add)="modalAddEdit({ id: 0, title: 'Agregar Registro' })"
+  (edit)="modalAddEdit($event)"
+  (delete)="onDelete($event)"
+  (registerReading)="modalMedidorLecturaAddEdit($event)"
+  (goToLecturas)="onGoToLecturas($event)"
+  (goToGrafico)="onGoToGrafico($event)"
+  (exportExcel)="exportExcel($event)"
+/>
+}

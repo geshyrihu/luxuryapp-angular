@@ -1,0 +1,92 @@
+<div class="card">
+  <lux-table
+    [globalFilterFields]="globalFilterFields()"
+    [paginator]="true"
+    [rows]="tableRows"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="true"
+    [value]="data()"
+    #dt
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    class="custom-table"
+  >
+    <!-- class="p-datatable-sm" -->
+    <ng-template #caption>
+      <div class="d-flex justify-content-between align-items-center w-full">
+        <iw-button-download
+          (clicked)="downloadPdf.emit()"
+          lxTooltip="Descargar PDF"
+          tooltipPosition="top"
+          tooltip="Descargar listado de llamadas de emergencia"
+        />
+        <lux-table-caption
+          (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+          [dt]="dt"
+        />
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th appSortableColumn="requestDateFilter">
+          FECHA
+          <app-sorticon field="requestDateFilter" />
+        </th>
+        <th appSortableColumn="machinery">
+          EQUIPO
+          <app-sorticon field="machinery" />
+        </th>
+        <th appSortableColumn="folio">
+          FOLIO
+          <app-sorticon field="folio" />
+        </th>
+        <th appSortableColumn="report">
+          REPORTE
+          <app-sorticon field="report" />
+        </th>
+        <th appSortableColumn="request">
+          RESPUESTA
+          <app-sorticon field="request" />
+        </th>
+        <th appSortableColumn="personWhoReports">
+          REPORTO
+          <app-sorticon field="personWhoReports" />
+        </th>
+        <th appSortableColumn="technicianWhoAttended">
+          ATENDIO
+          <app-sorticon field="technicianWhoAttended" />
+        </th>
+
+        <th class="table-col-5 no-print"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.requestDate }}</td>
+        <td>{{ item.machinery }}</td>
+        <td>{{ item.folio }}</td>
+        <td>{{ item.report }}</td>
+        <td>{{ item.request }}</td>
+        <td>{{ item.personWhoReports }}</td>
+        <td>{{ item.technicianWhoAttended }}</td>
+        <!-- Opciones -->
+
+        <td>
+          <div class="d-flex">
+            <iw-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            />
+            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          </div>
+        </td>
+        <!-- Opciones -->
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="8" />
+    </ng-template>
+    <ng-template #paginatorleft>
+      <lux-table-footer [data]="data()" />
+    </ng-template>
+  </lux-table>
+</div>

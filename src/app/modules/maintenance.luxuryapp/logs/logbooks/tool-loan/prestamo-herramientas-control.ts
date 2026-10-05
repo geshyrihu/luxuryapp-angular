@@ -11,58 +11,24 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { PlatformService } from "@core/services/platform.service";
+import { PrestamoHerramientasControlDesktop } from "./desktop/prestamo-herramientas-control-desktop";
+import { PrestamoHerramientasControlMobile } from "./mobile/prestamo-herramientas-control-mobile";
 import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-control";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-prestamo-herramientas-control",
   templateUrl: "./prestamo-herramientas-control.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-
-    LuxTableCaption,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    AppIcon,
-    MobileListItem,
+    PrestamoHerramientasControlDesktop,
+    PrestamoHerramientasControlMobile,
   ],
 })
 export class PrestamoHerramientasControl {
@@ -72,6 +38,7 @@ export class PrestamoHerramientasControl {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
 
   // Pagination Setup
   rows = 30;
@@ -80,6 +47,16 @@ export class PrestamoHerramientasControl {
   searchTerm: string = "";
   sortField: string = "";
   sortOrder: number = 1;
+
+  canManage = this.aspRoleS.anyOf([
+    ApplicationRole.SuperUsuario,
+    ApplicationRole.JefeMantenimiento,
+    ApplicationRole.Almacenista,
+  ]);
+  rolAuthMobile = this.aspRoleS.anyOf([
+    ApplicationRole.SuperUsuario,
+    ApplicationRole.JefeMantenimiento,
+  ]);
 
   dataSignal = signal<any>({
     items: [],
@@ -92,8 +69,6 @@ export class PrestamoHerramientasControl {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   constructor() {

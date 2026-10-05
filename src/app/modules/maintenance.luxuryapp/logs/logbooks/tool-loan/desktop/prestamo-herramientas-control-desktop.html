@@ -1,0 +1,87 @@
+<lux-table
+  (onLazyLoad)="lazyLoad.emit($event)"
+  [globalFilterFields]="globalFilterFields()"
+  [lazy]="true"
+  [paginator]="true"
+  [rows]="rows()"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [totalRecords]="totalRecords()"
+  [value]="data()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <lux-table-caption
+      (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+      [dt]="dt"
+      [searchTerm]="searchTerm()"
+      (searchTermChange)="filter.emit()"
+    />
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="fechaSalida">
+        Fecha de Salida
+        <app-sorticon field="fechaSalida" />
+      </th>
+      <th appSortableColumn="tool">
+        Herramienta
+        <app-sorticon field="tool" />
+      </th>
+      <th appSortableColumn="applicationUser">
+        Colaborador
+        <app-sorticon field="applicationUser" />
+      </th>
+      <th appSortableColumn="fechaRegreso">
+        Fecha de Entrega
+        <app-sorticon field="fechaRegreso" />
+      </th>
+      <th appSortableColumn="observaciones">
+        Observaciones
+        <app-sorticon field="observaciones" />
+      </th>
+      @if ( canManage() ) {
+      <th class="table-col-5"></th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <span> {{ item.fechaSalida | apiDate: "medium" }} </span>
+      </td>
+      <td>
+        <span> {{ item.tool }} </span>
+      </td>
+      <td>
+        <span> {{ item.applicationUser }} </span>
+      </td>
+      <td>
+        <span> {{ item.fechaRegreso | apiDate: "medium" }} </span>
+      </td>
+      <td>
+        <span> {{ item.observaciones }} </span>
+      </td>
+      <!-- Opciones -->
+      @if ( canManage() ) {
+      <td class="no-print">
+        <div class="d-flex">
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+      }
+      <!-- Opciones -->
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="6" />
+  </ng-template>
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

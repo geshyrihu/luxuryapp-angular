@@ -18,18 +18,7 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+import { PlatformService } from "@core/services/platform.service";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
 import { addIcons } from "ionicons";
@@ -45,29 +34,16 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import { ROUTES } from "src/app/routing/route-paths";
+import { MedidoresListDesktop } from "./desktop/medidores-list-desktop";
 import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
+import { MedidoresListMobile } from "./mobile/medidores-list-mobile";
 
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ActionMenu,
-    WebButtonLabelDelete,
-    WebButtonLabelDownload,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
-    WebButtonLabelAdd,
-    WebButtonLabelEdit,
-    DataViewMobile,
-    WebButtonLabelItem,
-    AppIcon,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
-  ],
+  imports: [MedidoresListDesktop, MedidoresListMobile],
 })
 export class MedidoresList {
   apiResponseS = inject(ApiResponseService);
@@ -76,6 +52,7 @@ export class MedidoresList {
   customerIdS = inject(CustomerIdService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
   private router = inject(Router);
   dataSignal = signal<Medidor[]>([]);
   ref: DynamicDialogRef;

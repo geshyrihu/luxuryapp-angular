@@ -1,0 +1,19 @@
+<app-data-view-mobile
+  [data]="data()"
+  [showAdd]="false"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <div customFilters>
+    <div class="px-2 pb-2">
+      <app-rango-calendario-yyyymmdd />
+    </div>
+  </div>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item (click)="cardEmployee.emit(item.applicationUserId)">
+      <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
+      <p class="text-xs m-0 text-body-secondary">
+        {{ item.fechaRegistro | apiDate:'short' }} · {{ item.userName }}
+      </p>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

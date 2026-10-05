@@ -1,0 +1,81 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <div
+        start
+        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
+      >
+        <app-icon icon="material-symbols-light:pool" />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <h2 class="fw-bold m-0 text-base">
+          <app-icon
+            [icon]="'material-symbols-light:calendar-today'"
+            class="me-1 text-primary"
+          />
+          {{ item.dateString }}
+        </h2>
+      </div>
+
+      <!-- Mediciones en Grid Compacto -->
+      <div class="row m-0 p-0 text-sm opacity-80 mt-2 mb-2 g-4">
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Cl:</strong> {{ item.cl || "0" }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Ph:</strong> {{ item.ph || "0" }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Alk:</strong> {{ item.alkalinidad || "0"
+          }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Dur:</strong> {{ item.dureza || "0" }}
+        </div>
+        <div class="col-4 p-0 pb-1">
+          <strong class="text-primary">Tem:</strong> {{ item.temperatura || "0"
+          }}
+        </div>
+      </div>
+
+      <!-- Tareas Realizadas (Iconos) -->
+      <div class="d-flex align-items-center mt-1">
+        <div
+          class="d-flex align-items-center gap-1"
+          [class.opacity-50]="!item.cepillado"
+        >
+          <app-icon
+            [icon]="item.cepillado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
+            [class]="item.cepillado ? 'text-green-600' : 'text-400'"
+          />
+          <small class="text-xs">Cepillado</small>
+        </div>
+        <div
+          class="d-flex align-items-center gap-1 ms-3"
+          [class.opacity-50]="!item.aspirado"
+        >
+          <app-icon
+            [icon]="item.aspirado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
+            [class]="item.aspirado ? 'text-green-600' : 'text-400'"
+          />
+          <small class="text-xs">Aspirado</small>
+        </div>
+      </div>
+
+      <ili-action-menu end>
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

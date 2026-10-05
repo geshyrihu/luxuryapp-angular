@@ -9,36 +9,18 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
-import { PiscinaBitacoraForm } from "./piscina-bitacora-form";
-
 import { ExcelExportService } from "@core/services/excel-export.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import * as ExcelJS from "exceljs";
+import { PiscinaBitacoraListDesktop } from "./desktop/piscina-bitacora-list-desktop";
+import { PiscinaBitacoraListMobile } from "./mobile/piscina-bitacora-list-mobile";
+import { PiscinaBitacoraForm } from "./piscina-bitacora-form";
 
 interface PiscinaBitacoraDto {
   id: string;
@@ -60,23 +42,7 @@ interface PiscinaBitacoraDto {
   selector: "app-piscina-bitacora-list",
   templateUrl: "./piscina-bitacora-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    DataViewMobile,
-    LuxTableCaption,
-    LuxTableCaption,
-    TableFooter,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [PiscinaBitacoraListDesktop, PiscinaBitacoraListMobile],
 })
 export class PiscinaBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -84,6 +50,7 @@ export class PiscinaBitacoraList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   rutaActiva = inject(ActivatedRoute);
+  platformS = inject(PlatformService);
   dataSignal = signal<PiscinaBitacoraDto[]>([]);
 
   globalFilterFields = computed(() => {
@@ -92,8 +59,6 @@ export class PiscinaBitacoraList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   piscinaId: string = "";

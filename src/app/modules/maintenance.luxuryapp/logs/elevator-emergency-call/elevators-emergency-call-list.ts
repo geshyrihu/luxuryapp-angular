@@ -8,65 +8,30 @@ import {
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { ElevatorLogsPdfService } from "../elevator-reports/elevator-logs-pdf.service";
+import { ElevatorsEmergencyCallListDesktop } from "./desktop/elevators-emergency-call-list-desktop";
 import { ElevatorsEmergencyCallForm } from "./elevators-emergency-call-form";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ElevatorsEmergencyCallListMobile } from "./mobile/elevators-emergency-call-list-mobile";
 
 @Component({
   selector: "app-elevators-emergency-call-list",
   templateUrl: "./elevators-emergency-call-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIconEdit,
-    WebButtonIconDownload,
-    WebButtonIconDelete,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    DataViewMobile,
-
-    TableFooter,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [ElevatorsEmergencyCallListDesktop, ElevatorsEmergencyCallListMobile],
 })
 export class ElevatorsEmergencyCallList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   pdfS = inject(ElevatorLogsPdfService);
+  platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => {
@@ -75,8 +40,6 @@ export class ElevatorsEmergencyCallList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
 
   constructor() {

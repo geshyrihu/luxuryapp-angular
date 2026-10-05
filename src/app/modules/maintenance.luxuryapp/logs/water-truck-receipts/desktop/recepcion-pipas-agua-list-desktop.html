@@ -1,0 +1,230 @@
+<lux-table
+  [globalFilterFields]="globalFilterFields()"
+  [paginator]="true"
+  [rows]="tableRows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [showCurrentPageReport]="true"
+  [value]="data()"
+  [scrollable]="true"
+  [scrollHeight]="scrollHeight()"
+  #dt
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+  class="custom-table card"
+>
+  <ng-template #caption>
+    <div
+      class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-3 bg-body-tertiary rounded shadow-sm g-4"
+    >
+      <!-- IZQUIERDA: Título y Navegación entre vistas -->
+      <div class="d-flex flex-column flex-sm-row align-items-center gap-3 g-4">
+        <h4 class="m-0 text-uppercase text-primary fw-bold whitespace-nowrap">
+          Recepcion de Pipas
+        </h4>
+
+        <div class="d-flex gap-1">
+          <a
+            routerLink="/logbook/water-truck-reception"
+            routerLinkActive="btn-primary"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="btn btn-outline-secondary btn-sm no-underline"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:format-list-bulleted'"
+              class="me-1"
+            />
+            Registros
+          </a>
+          <a
+            routerLink="/logbook/water-truck-reception/reporte"
+            routerLinkActive="btn-primary"
+            class="btn btn-outline-secondary btn-sm no-underline"
+          >
+            <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
+            Reporte
+          </a>
+          <a
+            routerLink="/logbook/water-truck-reception/analisis"
+            routerLinkActive="btn-primary"
+            class="btn btn-outline-secondary btn-sm no-underline"
+          >
+            <app-icon
+              [icon]="'material-symbols-light:bar-chart'"
+              class="me-1"
+            />
+            Analisis
+          </a>
+        </div>
+      </div>
+
+      <!-- DERECHA: Buscador y Agregar -->
+      <div class="flex-shrink-0">
+        <lux-table-caption
+          (add)="add.emit({ id: '', title: 'Nueva Recepcion' })"
+          [dt]="dt"
+          [noPadding]="true"
+          [noMargin]="true"
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #header>
+    <tr>
+      <th appSortableColumn="horaLlegada">
+        Llegada <app-sorticon field="horaLlegada" />
+      </th>
+      <th>Termino</th>
+      <th appSortableColumn="empresa">
+        Empresa <app-sorticon field="empresa" />
+      </th>
+      <th appSortableColumn="placasCamion">
+        Placas <app-sorticon field="placasCamion" />
+      </th>
+      <th class="text-end">Cap.(L)</th>
+      <th class="text-center">Cisterna antes / despues</th>
+      <th class="text-center">Medidor inicial / final</th>
+      <th class="text-end">m³</th>
+      <th class="text-end">Costo m³</th>
+      <th>Colaborador mtto</th>
+      <th>Guardia testigo</th>
+      <!-- <th>Fotos</th> -->
+      <th class="table-col-5"></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item>
+    <tr>
+      <td>
+        <span>{{ item.horaLlegada | apiDate: 'dd/MM/yy HH:mm' }}</span>
+      </td>
+      <td>
+        @if (item.horaTermino) {
+        <span>{{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</span>
+        } @else {
+        <span class="badge badge-warning text-xs">En curso</span>
+        }
+      </td>
+      <td><span>{{ item.empresa }}</span></td>
+      <td><span class="fw-semibold">{{ item.placasCamion }}</span></td>
+      <td class="text-end">
+        <span>{{ item.capacidadPipa | number: '1.0-0' }}</span>
+      </td>
+      <td class="text-center">
+        <span class="d-flex justify-content-center align-items-center gap-1">
+          <span>{{ item.nivelCisternaAntes | number: '1.0-0' }}%</span>
+          <span class="text-body-secondary">?</span>
+          <span>{{ item.nivelCisternaDespues | number: '1.0-0' }}%</span>
+        </span>
+      </td>
+      <td class="text-center">
+        <span class="d-flex justify-content-center align-items-center gap-1">
+          <span>{{ item.lecturaMedidorInicial | number: '1.0-0' }}</span>
+          <span class="text-body-secondary">?</span>
+          <span>{{ item.lecturaMedidorFinal | number: '1.0-0' }}</span>
+        </span>
+      </td>
+      <td class="text-end">
+        <span
+          >{{ (item.lecturaMedidorFinal - item.lecturaMedidorInicial) | number:
+          '1.0-0' }}</span>
+      </td>
+      <td class="text-end">
+        <span>{{ item.costoMetroCubico | number: '1.2-2' }}</span>
+      </td>
+      <td><span>{{ item.colaboradorMtto }}</span></td>
+      <td><span>{{ item.guardiaSeguridad }}</span></td>
+
+      <td>
+        <div class="d-flex">
+          <iw-button-item
+            iconClass="material-symbols-light:picture-as-pdf"
+            tooltip="Descargar soporte PDF"
+            (clicked)="downloadPdf.emit(item)"
+          />
+          <iw-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Recepcion' })"
+          />
+          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="13" class="p-2">
+        <div class="d-flex flex-wrap gap-1">
+          @if (item.fotoPipaLlenaUrl) {
+          <app-image
+            [src]="item.fotoPipaLlenaUrl"
+            alt="Pipa llena"
+            width="40"
+            [preview]="true"
+          />
+          } @if (item.fotoPipaVaciaUrl) {
+          <app-image
+            [src]="item.fotoPipaVaciaUrl"
+            alt="Pipa vacia"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoPlacasUrl) {
+          <app-image
+            [src]="item.fotoPlacasUrl"
+            alt="Placas"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoIneChoferUrl) {
+          <app-image
+            [src]="item.fotoIneChoferUrl"
+            alt="INE chofer"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoMedidorAntesUrl) {
+          <app-image
+            [src]="item.fotoMedidorAntesUrl"
+            alt="Medidor antes"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoMedidorDespuesUrl) {
+          <app-image
+            [src]="item.fotoMedidorDespuesUrl"
+            alt="Medidor despues"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNivelAntesUrl) {
+          <app-image
+            [src]="item.fotoNivelAntesUrl"
+            alt="Nivel antes"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNivelDespuesUrl) {
+          <app-image
+            [src]="item.fotoNivelDespuesUrl"
+            alt="Nivel despues"
+            width="40"
+            [preview]="true"
+          />
+          2 } @if (item.fotoNotaUrl) {
+          <app-image
+            [src]="item.fotoNotaUrl"
+            alt="Nota"
+            width="40"
+            [preview]="true"
+          />
+          }
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <lux-table-empty-message [colspan]="13" />
+  </ng-template>
+
+  <ng-template #paginatorleft>
+    <lux-table-footer [data]="data()" />
+  </ng-template>
+</lux-table>

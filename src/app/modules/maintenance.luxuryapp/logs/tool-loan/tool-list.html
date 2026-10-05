@@ -1,124 +1,21 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-<div class="d-none d-md-block"></div>
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
-      [dt]="dt"
-    />
-    <iw-button-download
-      lxTooltip="Descargar PDF"
-      tooltipPosition="top"
-      iconClass="material-symbols-light:picture-as-pdf"
-      variant="outline"
-      severity="danger"
-      size="small"
-      customClass="mt-1"
-      (clicked)="onDownloadPdf()"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th>Img</th>
-      <th appSortableColumn="nameTool">
-        Nombre
-        <app-sorticon field="nameTool" />
-      </th>
-      <th appSortableColumn="category">
-        Categoria
-        <app-sorticon field="category" />
-      </th>
-      @if ( aspRoleS.anyOf([AspRole.JefeMantenimiento, AspRole.SuperUsuario])()
-      ) {
-      <th class="table-col-10"></th>
-      }
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>
-        <img
-          class="img-thumbnail"
-          alt="200x200"
-          width="100"
-          [src]="
-            item.photoPath ? item.photoPath : 'assets/images/default-avatar.png'
-          "
-          data-holder-rendered="true"
-        />
-      </td>
-      <td>
-        <span>{{ item.nameTool }}</span>
-      </td>
-      <td>
-        <span>{{ item.category }}</span>
-      </td>
-      <!-- Opciones -->
-
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-          />
-          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <iw-button-delete (confirmed)="onDelete(item.id)" />
-          }
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="4" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-tool-list-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <div
-        start
-        class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
-        class="w-3rem h-3rem bg-primary-50"
-      >
-        <app-icon
-          icon="material-symbols-light:construction"
-          class="text-xl text-yellow-500"
-        />
-      </div>
-
-      <h2 class="font-normal m-0">{{ item.nameTool }}</h2>
-      <p class="text-medium text-body-secondary m-0">{{ item.category }}</p>
-
-      <ili-action-menu end>
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
-          }
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [isSuperUsuario]="isSuperUsuario()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-tool-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [showActions]="showActions()"
+  [isSuperUsuario]="isSuperUsuario()"
+  (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+  (downloadPdf)="onDownloadPdf()"
+/>
+}

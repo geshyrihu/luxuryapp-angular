@@ -7,65 +7,24 @@ import {
   signal,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { AspRoleService } from "@core/auth/services/asp-role.service";
+import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
+import { ToolListDesktop } from "./desktop/tool-list-desktop";
+import { ToolListMobile } from "./mobile/tool-list-mobile";
 import { ToolForm } from "./tool-form";
-
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { AspRoleService } from "@core/auth/services/asp-role.service";
-import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-tool-list",
   templateUrl: "./tool-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    AppIcon,
-    MobileListItem,
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    LxTooltipDirective,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    AppTable,
-
-    AppSortableColumn,
-
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    RouterModule,
-    DataViewMobile,
-  ],
+  imports: [RouterModule, ToolListDesktop, ToolListMobile],
 })
 export class ToolList {
   apiResponseS = inject(ApiResponseService);
@@ -73,6 +32,7 @@ export class ToolList {
   dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
+  platformS = inject(PlatformService);
   // Enum para usar en la plantilla
   ñales;
   dataSignal = signal<any[]>([]);
@@ -83,8 +43,12 @@ export class ToolList {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
+
+  showActions = this.aspRoleS.anyOf([
+    ApplicationRole.JefeMantenimiento,
+    ApplicationRole.SuperUsuario,
+  ]);
+  isSuperUsuario = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
 
   constructor() {
     effect(() => {

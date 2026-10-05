@@ -9,40 +9,21 @@ import {
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { PlatformService } from "@core/services/platform.service";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../shared/pipes/api-date.pipe";
+import { MedidorLecturaListDesktop } from "./desktop/medidor-lectura-list-desktop";
 import { MedidorLecturaAdminForm } from "./medidor-lectura-admin-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
+import { MedidorLecturaListMobile } from "./mobile/medidor-lectura-list-mobile";
 
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AuthService } from "../../../../../core/auth/services/auth.service";
 
 @Component({
@@ -50,31 +31,14 @@ import { AuthService } from "../../../../../core/auth/services/auth.service";
   templateUrl: "./medidor-lectura-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ApiDatePipe, DatePipe],
-  imports: [
-    ActionMenu,
-    WebButtonIconDownload,
-    MobileActionMenu,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    TableEmptyMessage,
-    ApiDatePipe,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    DataViewMobile,
-    LuxTableCaption,
-    TableFooter,
-    AppIcon,
-    WebButtonLabelDelete,
-    WebButtonLabelEdit,
-    MobileListItem,
-  ],
+  imports: [MedidorLecturaListDesktop, MedidorLecturaListMobile],
 })
 export class MedidorLecturaList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   route = inject(ActivatedRoute);
+  platformS = inject(PlatformService);
   private apiDatePipe = inject(ApiDatePipe);
   dataSignal = signal<any[]>([]);
 
@@ -84,8 +48,6 @@ export class MedidorLecturaList implements OnInit {
     return globalFilterFields(data);
   });
   loading = signal(true);
-  tableRows: number = tableRows();
-  rowsPerPageOptions: number[] = rowsPerPageOptions();
   ref: DynamicDialogRef;
 
   medidorId: string = "";

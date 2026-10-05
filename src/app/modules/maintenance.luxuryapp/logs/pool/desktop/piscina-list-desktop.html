@@ -1,0 +1,76 @@
+<div class="card">
+  <lux-table
+    [globalFilterFields]="globalFilterFields()"
+    [value]="data()"
+    #dt
+    class="custom-table"
+  >
+    <ng-template #caption>
+      <lux-table-caption
+        (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+        [dt]="dt"
+      />
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Imagen</th>
+        <th appSortableColumn="name">
+          Nombre
+          <app-sorticon field="name" />
+        </th>
+        <th>Ubicación</th>
+        <th>Volumen</th>
+        <th colspan="2">Tipo</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td class="text-center">
+          <div class="d-flex">
+            <app-image
+              [src]="
+                item.pathImage
+                  ? item.pathImage
+                  : 'assets/images/default-avatar.png'
+              "
+              alt="."
+              width="50"
+              styleClass="mr-2"
+              [preview]="true"
+            ></app-image>
+            @if (!item.pathImage) {
+            <img src="assets/images/default-avatar.png" alt="" width="50" />
+            }
+          </div>
+        </td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.ubication }}</td>
+        <td>{{ item.volumen }}</td>
+        <td>
+          <!-- {{ item.typePiscina | ETypePiscina }} -->
+          {{ item.typePiscina }}
+        </td>
+        <!-- Opciones -->
+        <td class="no-print">
+          <div class="d-flex">
+            <iw-button-edit
+              (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            />
+            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <iw-button-item
+              iconClass="material-symbols-light:book"
+              lxTooltip="Bitácora"
+              tooltipPosition="top"
+              [routerLink]="['/logbook/piscina-bitacora/', item.id]"
+            />
+          </div>
+        </td>
+
+        <!-- Opciones -->
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <lux-table-empty-message [colspan]="5" />
+    </ng-template>
+  </lux-table>
+</div>
