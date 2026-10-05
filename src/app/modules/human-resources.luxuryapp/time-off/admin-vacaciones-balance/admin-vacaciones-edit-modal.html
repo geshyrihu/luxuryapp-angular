@@ -23,6 +23,15 @@
   </div>
 
   <div class="p-dialog-footer mt-4">
-    <il-button-save [disabled]="form.invalid" [submitting]="submitting" />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid"
+      [loading]="submitting"
+    />
   </div>
 </form>

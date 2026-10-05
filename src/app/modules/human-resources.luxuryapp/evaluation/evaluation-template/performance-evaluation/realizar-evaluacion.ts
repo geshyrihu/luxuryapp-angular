@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Touchspin } from "@ui/web/touchspin/touchspin";
@@ -42,7 +42,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     LxDivider,
     CustomInputTextAreaSignal,
     Touchspin,
-    WebButtonLabelSave,
+     ButtonWeb,
   ],
 })
 export class RealizarEvaluacion implements OnInit {

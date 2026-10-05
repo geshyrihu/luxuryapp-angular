@@ -28,7 +28,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -58,7 +58,7 @@ interface CategoryForm {
     LxFieldset,
     WebButtonLabel,
     WebButtonLabelDelete,
-    WebButtonLabelSave,
+     ButtonWeb,
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,

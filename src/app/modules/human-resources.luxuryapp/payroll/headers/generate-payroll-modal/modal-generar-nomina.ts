@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -24,7 +24,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+     ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-generar-nomina.html",

@@ -229,9 +229,14 @@
 
     <ng-template #footer>
       <div class="d-flex justify-content-end">
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           [disabled]="form.invalid || submitting()"
-          [submitting]="submitting()"
+          [loading]="submitting()"
           label="Registrar Vacaciones"
         />
       </div>

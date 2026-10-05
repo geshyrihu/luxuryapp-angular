@@ -5,7 +5,7 @@ import {
   OnInit,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -28,7 +28,7 @@ interface AdminVacationEditDialogData {
     ReactiveFormsModule,
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+     ButtonWeb,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./admin-vacaciones-edit-modal.html",

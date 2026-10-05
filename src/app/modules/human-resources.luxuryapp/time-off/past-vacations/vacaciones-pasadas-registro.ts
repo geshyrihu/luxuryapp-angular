@@ -34,7 +34,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -55,7 +55,7 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
     LxSkeleton,
     CustomInputTextAreaSignal,
     WebButtonLabel,
-    WebButtonLabelSave,
+     ButtonWeb,
     AppTable,
 
     LxTag,
