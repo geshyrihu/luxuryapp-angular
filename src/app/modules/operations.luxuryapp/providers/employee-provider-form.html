@@ -82,9 +82,14 @@
             [required]="true"
           />
         </div>
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="submit"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           [disabled]="form.invalid"
-          [submitting]="submitting()"
+          [loading]="submitting()"
           label="Registrar empleado"
         />
       </form>
@@ -217,9 +222,14 @@
   </div>
   }
 
-  <il-button-save
+  <lux-button-web
+    kind="save"
+    type="button"
+    severity="info"
+    variant="soft"
+    displayMode="both"
     (clicked)="onConfirmarFase2()"
-    [submitting]="submitting()"
+    [loading]="submitting()"
     label="Confirmar"
   />
 </div>

@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -47,7 +47,7 @@ type Opcion = "none" | "vacante" | "alta";
     CustomInputDateSignal,
     CustomInputSelectSignal,
     InputImg,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextAreaSignal,
   ],
 })

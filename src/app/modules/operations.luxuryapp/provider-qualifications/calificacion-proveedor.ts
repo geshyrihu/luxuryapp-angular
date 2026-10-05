@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { NgbRatingModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -21,7 +21,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-calificacion-proveedor",
   templateUrl: "./calificacion-proveedor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, NgbRatingModule, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, NgbRatingModule, ButtonWeb],
 })
 export class CalificacionProveedor implements OnInit {
   apiResponseS = inject(ApiResponseService);

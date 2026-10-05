@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -54,7 +54,7 @@ interface IOwnerForm {
     CustomInputNumberSignal,
     InputMask,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class OwnerForm implements OnInit {
