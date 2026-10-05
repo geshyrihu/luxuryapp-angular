@@ -23,9 +23,14 @@
         label="Motivo (Opcional)"
         [control]="form.controls.motivo"
       />
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         [disabled]="form.invalid"
-        [submitting]="submitting()"
+        [loading]="submitting()"
         label="Confirmar Devolución"
       />
     </form>

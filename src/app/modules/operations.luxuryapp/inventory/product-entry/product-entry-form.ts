@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -55,7 +55,7 @@ interface IProductEntryForm {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     InputAutocomplete,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class ProductEntryForm implements OnInit {

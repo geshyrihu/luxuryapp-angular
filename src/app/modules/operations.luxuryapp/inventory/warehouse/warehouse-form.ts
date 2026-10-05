@@ -35,7 +35,7 @@ export interface IWarehouseForm {
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { FormHelper } from "@core/helpers/form-helper";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -48,7 +48,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   imports: [
     WebButtonIcon,
     CustomInputTextSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
 
     DragDropModule,
     ReactiveFormsModule,
@@ -290,4 +290,3 @@ export class WarehouseForm implements OnInit {
     }
   }
 }
-

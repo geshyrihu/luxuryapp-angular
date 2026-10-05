@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -47,7 +47,7 @@ interface IInventarioHidranteForm {
     InputMask,
     CustomInputSelectSignal,
     InputImg,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
 })
 export class InventarioHidranteForm implements OnInit {
