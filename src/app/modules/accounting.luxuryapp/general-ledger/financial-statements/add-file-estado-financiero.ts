@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -16,7 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-add-file-estado-financiero",
   templateUrl: "./add-file-estado-financiero.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputFile, WebButtonLabelSave],
+  imports: [ReactiveFormsModule, CustomInputFile, ButtonWeb],
 })
 export class AddFileEstadoFinanciero implements OnInit {
   formB = inject(FormBuilder);
