@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,58 +7,23 @@ import {
   signal,
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  globalFilterFields,
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiKnowledgeBaseDto } from "@core/interfaces/ai-knowledge-base.dto";
 import {
   DialogHandlerService,
   DialogService,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
+import { PlatformService } from "@core/services/platform.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppTag } from "@ui/web/tag/tag";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
 import { AiKnowledgeBaseForm } from "./ai-knowledge-base-form";
+import { AiKnowledgeBaseListDesktop } from "./desktop/ai-knowledge-base-list-desktop";
+import { AiKnowledgeBaseListMobile } from "./mobile/ai-knowledge-base-list-mobile";
 
 @Component({
   selector: "app-ai-knowledge-base-list",
   templateUrl: "./ai-knowledge-base-list.html",
-  imports: [
-    TableEmptyMessage,
-    CommonModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileActionMenu,
-    MobileListItem,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    AppIcon,
-    AppTag,
-  ],
+  imports: [AiKnowledgeBaseListDesktop, AiKnowledgeBaseListMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DialogService],
 })
@@ -67,13 +31,10 @@ export class AiKnowledgeBaseList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   confirmS = inject(ConfirmService);
+  platformS = inject(PlatformService);
 
   dataSignal = signal<AiKnowledgeBaseDto[]>([]);
-
-  // Bootstrap Table Options
   loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
 
   readonly globalFilterFields = computed(() => {
     const data = this.dataSignal();

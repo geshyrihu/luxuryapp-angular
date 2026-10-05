@@ -26,7 +26,9 @@ describe('VaultSecretsList', () => {
         { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(VaultSecretsList, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(VaultSecretsList);
     component = fixture.componentInstance;

@@ -1,0 +1,34 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:mail-outline"
+        class="text-xl text-primary"
+      />
+      <ion-label>
+        <p class="mt-0 mb-0">{{ item.email }}</p>
+        <p class="text-body-secondary font-size-12 mt-0 mb-0">
+          {{ item.applicationUser }}
+        </p>
+      </ion-label>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-send-email
+            (confirmed)="sendTestEmail.emit(item.id)"
+            label="Enviar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

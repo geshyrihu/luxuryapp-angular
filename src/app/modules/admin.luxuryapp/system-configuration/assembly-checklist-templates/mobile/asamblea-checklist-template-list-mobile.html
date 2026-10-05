@@ -1,0 +1,44 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: '', title: 'Nuevo item de checklist' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:fact-check"
+        class="text-xl text-primary"
+      />
+
+      <ion-label>
+        <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          {{ item.code }} | {{ item.category }} | {{ item.defaultResponsibleRole
+          }}
+        </p>
+        <p class="text-xs m-0 mt-1 text-body-secondary">
+          Orden {{ item.sortOrder }} | Día {{ item.offsetDaysFromMeeting }} |
+          V{{ item.version }}
+        </p>
+        <p class="text-xs m-0 mt-1">
+          <span [class]="item.isActive ? 'text-green-600' : 'text-red-500'">
+            {{ item.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </p>
+      </ion-label>
+
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar item de checklist' })"
+            label="Editar"
+          />
+          @if (item.isActive) {
+          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          }
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

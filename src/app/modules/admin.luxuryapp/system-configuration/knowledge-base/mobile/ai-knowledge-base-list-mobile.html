@@ -1,0 +1,36 @@
+<app-data-view-mobile
+  [data]="data()"
+  (add)="add.emit({ id: 0, title: 'Nuevo Conocimiento' })"
+  [globalFilterFields]="globalFilterFields()"
+>
+  <ng-template #listItemTemplate let-item>
+    <ili-list-item>
+      <app-icon
+        slot="start"
+        icon="material-symbols-light:psychology"
+        class="text-xl text-primary"
+      />
+      <ion-label>
+        <h2 class="fw-bold">{{ item.topic }}</h2>
+        <p class="text-sm">
+          <span class="fw-bold text-primary"
+            >{{ item.moduleAppName || 'General' }}</span
+          >
+        </p>
+        <p class="text-sm text-wrap text-body-secondary">{{ item.keywords }}</p>
+      </ion-label>
+      <ili-action-menu slot="end">
+        <ng-container actions>
+          <ili-button-edit
+            (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            label="Editar"
+          />
+          <ili-button-delete
+            (confirmed)="delete.emit(item.id!)"
+            label="Eliminar"
+          />
+        </ng-container>
+      </ili-action-menu>
+    </ili-list-item>
+  </ng-template>
+</app-data-view-mobile>

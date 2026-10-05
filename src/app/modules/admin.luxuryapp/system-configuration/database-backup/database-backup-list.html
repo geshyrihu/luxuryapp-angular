@@ -1,160 +1,27 @@
 @if (isSuperUsuario()) {
-
-<lux-table
-  #dt
-  [globalFilterFields]="globalFilterFields()"
-  [loading]="loading()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [scrollable]="true"
-  [scrollHeight]="scrollHeight()"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  class="custom-table card d-none d-md-block"
->
-  <ng-template #caption>
-    <lux-table-caption
-      [showAdd]="true"
-      [dt]="dt"
-      label="Nueva configuracion"
-      (add)="onModalAddForm()"
-    />
-  </ng-template>
-
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="name">
-        Nombre
-        <app-sorticon field="name" />
-      </th>
-      <th appSortableColumn="destinationType">
-        Destino
-        <app-sorticon field="destinationType" />
-      </th>
-      <th appSortableColumn="cronExpression">
-        Programacion
-        <app-sorticon field="cronExpression" />
-      </th>
-      <th appSortableColumn="retentionDays">
-        Retencion
-        <app-sorticon field="retentionDays" />
-      </th>
-      <th appSortableColumn="lastRunAt">
-        Ultimo respaldo
-        <app-sorticon field="lastRunAt" />
-      </th>
-      <th appSortableColumn="lastRunStatus">
-        Estado
-        <app-sorticon field="lastRunStatus" />
-      </th>
-      <th appSortableColumn="isActive">
-        Activo
-        <app-sorticon field="isActive" />
-      </th>
-      <th class="table-col-5"></th>
-    </tr>
-  </ng-template>
-
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>
-        @if (item.destinationType === 'GraphApi') {
-        <span class="badge bg-info">OneDrive</span>
-        } @else {
-        <span class="badge bg-secondary">Local</span>
-        }
-      </td>
-      <td><code>{{ item.cronExpression }}</code></td>
-      <td>{{ item.retentionDays }} días</td>
-      <td>{{ item.lastRunAt | apiDate: "dd-MMM-yy HH:mm" }}</td>
-      <td>
-        @if (item.lastRunStatus) {
-        <span class="badge {{ statusBadge(item.lastRunStatus) }}"
-          >{{ item.lastRunStatus }}</span
-        >
-        } @else {
-        <span class="text-body-secondary">Nunca</span>
-        }
-      </td>
-      <td>
-        @if (item.isActive) {
-        <span class="badge bg-success">Si</span>
-        } @else {
-        <span class="badge bg-danger">No</span>
-        }
-      </td>
-      <td class="no-print">
-        <div class="d-flex gap-1">
-          <iw-button-edit (clicked)="onModalEditForm(item)" />
-          @if (item.destinationType === 'GraphApi') {
-          <lux-button-web
-            displayMode="icon"
-            iconClass="material-symbols-light:cloud-done"
-            severity="info"
-            (clicked)="onTestConnection(item.id)"
-          />
-          }
-          <lux-button-web
-            displayMode="both"
-            label="Ejecutar"
-            iconClass="material-symbols-light:play-arrow"
-            severity="success"
-            (clicked)="onExecuteBackup(item.id)"
-          />
-          <iw-button-delete (confirmed)="onDeleteConfig(item.id)" />
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="8" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<app-data-view-mobile
-  [data]="dataSignal()"
-  (add)="onModalAddForm()"
-  [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-       <app-icon slot="start" icon="material-symbols-light:database-outline" class="text-xl text-blue-500" />
-
-       <ion-label>
-         <p class="mt-0 mb-0 fw-semibold">{{ item.name }}</p>
-         <p class="text-body-secondary font-size-12 mt-0 mb-0">
-           {{ destinationLabel(item.destinationType) }} &bull; {{
-           item.cronExpression }} @if (item.lastRunStatus) {
-           &nbsp;&bull;&nbsp;<span>{{ item.lastRunStatus }}</span>
-           }
-         </p>
-       </ion-label>
-
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit (clicked)="onModalEditForm(item)" label="Editar" />
-          <il-button
-            label="Ejecutar ahora"
-            iconClass="material-symbols-light:play-arrow"
-            severity="success"
-            (clicked)="onExecuteBackup(item.id)"
-          />
-          <ili-button-delete
-            (confirmed)="onDeleteConfig(item.id)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
-
+  @if (platformS.isMobile()) {
+  <app-database-backup-list-mobile
+    [data]="dataSignal()"
+    [loading]="loading()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalAddForm()"
+    (edit)="onModalEditForm($event)"
+    (execute)="onExecuteBackup($event)"
+    (delete)="onDeleteConfig($event)"
+    (testConnection)="onTestConnection($event)"
+  />
+  } @else {
+  <app-database-backup-list-desktop
+    [data]="dataSignal()"
+    [loading]="loading()"
+    [globalFilterFields]="globalFilterFields()"
+    (add)="onModalAddForm()"
+    (edit)="onModalEditForm($event)"
+    (execute)="onExecuteBackup($event)"
+    (delete)="onDeleteConfig($event)"
+    (testConnection)="onTestConnection($event)"
+  />
+  }
 } @else {
 <div class="p-4 text-center text-body-secondary">
   No tienes permisos para acceder a esta seccion.

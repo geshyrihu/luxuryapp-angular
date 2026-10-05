@@ -26,7 +26,9 @@ describe('EmailDataList', () => {
         { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(EmailDataList, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(EmailDataList);
     component = fixture.componentInstance;

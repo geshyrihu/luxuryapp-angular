@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
+import { PlatformService } from '@core/services/platform.service';
 import { of } from 'rxjs';
 import { AsambleaChecklistTemplateList } from './asamblea-checklist-template-list';
 
@@ -20,9 +21,12 @@ describe('AsambleaChecklistTemplateList', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+        { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideComponent(AsambleaChecklistTemplateList, { set: { template: '<div></div>', imports: [] } });
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(AsambleaChecklistTemplateList);
     component = fixture.componentInstance;

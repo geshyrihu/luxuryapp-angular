@@ -1,115 +1,19 @@
-<!-- 💻 INICIO: Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
-
-<lux-table
-  [globalFilterFields]="globalFilterFields()"
-  [paginator]="true"
-  [rows]="tableRows"
-  [rowsPerPageOptions]="rowsPerPageOptions"
-  [showCurrentPageReport]="true"
-  [value]="dataSignal()"
-  #dt
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-  class="card d-none d-md-block custom-table"
-  size="small"
-  [scrollable]="true"
-  scrollHeight="750px"
-  [loading]="loading()"
->
-  <ng-template #caption>
-    <lux-table-caption
-      (add)="onModalForm({ id: 0, title: 'Nuevo Conocimiento' })"
-      [dt]="dt"
-    />
-  </ng-template>
-  <ng-template #header>
-    <tr>
-      <th appSortableColumn="topic">Tema <app-sorticon field="topic" /></th>
-      <th appSortableColumn="moduleAppName">
-        Acceso <app-sorticon field="moduleAppName" />
-      </th>
-      <th appSortableColumn="keywords">
-        Palabras Clave <app-sorticon field="keywords" />
-      </th>
-      <th appSortableColumn="route">Ruta <app-sorticon field="route" /></th>
-      <th appSortableColumn="isActive">
-        Activo <app-sorticon field="isActive" />
-      </th>
-      <th class="no-print"></th>
-    </tr>
-  </ng-template>
-  <ng-template #body let-item>
-    <tr>
-      <td>{{ item.topic }}</td>
-      <td>
-        <app-tag
-          [value]="item.moduleAppName || 'General'"
-          [severity]="item.moduleAppId ? 'warn' : 'success'"
-        />
-      </td>
-      <td><app-tag [value]="item.keywords" severity="info" /></td>
-      <td><code>{{ item.route }}</code></td>
-      <td>
-        <app-icon
-          [icon]="item.isActive ? 'material-symbols-light:cancel' : 'material-symbols-light:cancel'"
-          [class]="item.isActive ? 'text-green-500' : 'text-red-500'"
-        />
-      </td>
-
-      <!-- Opciones -->
-      <td class="no-print">
-        <div class="d-flex">
-          <iw-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar Conocimiento' })"
-          />
-          <iw-button-delete (confirmed)="onDelete(item.id!)" />
-        </div>
-      </td>
-      <!-- Opciones -->
-    </tr>
-  </ng-template>
-  <ng-template #emptymessage>
-    <lux-table-empty-message [colspan]="6" />
-  </ng-template>
-  <ng-template #paginatorleft>
-    <lux-table-footer [data]="dataSignal()" />
-  </ng-template>
-</lux-table>
-
-<!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
+@if (platformS.isMobile()) {
+<app-ai-knowledge-base-list-mobile
   [data]="dataSignal()"
-  (add)="onModalForm({ id: 0, title: 'Nuevo Conocimiento' })"
   [globalFilterFields]="globalFilterFields()"
-  [dt]="dt"
->
-  <ng-template #listItemTemplate let-item>
-    <ili-list-item>
-      <app-icon
-        slot="start"
-        icon="material-symbols-light:psychology"
-        class="text-xl text-primary"
-      />
-      <ion-label>
-        <h2 class="fw-bold">{{ item.topic }}</h2>
-        <p class="text-sm">
-          <span class="fw-bold text-primary"
-            >{{ item.moduleAppName || 'General' }}</span
-          >
-        </p>
-        <p class="text-sm text-wrap text-body-secondary">{{ item.keywords }}</p>
-      </ion-label>
-      <ili-action-menu slot="end">
-        <ng-container actions>
-          <ili-button-edit
-            (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
-            label="Editar"
-          />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id!)"
-            label="Eliminar"
-          />
-        </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
-  </ng-template>
-</app-data-view-mobile>
+  [loading]="loading()"
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+} @else {
+<app-ai-knowledge-base-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+  (add)="onModalForm($event)"
+  (edit)="onModalForm($event)"
+  (delete)="onDelete($event)"
+/>
+}

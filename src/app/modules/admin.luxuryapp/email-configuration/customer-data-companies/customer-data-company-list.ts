@@ -6,62 +6,30 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { PlatformService } from "@core/services/platform.service";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 import { CustomerDataCompanyDto } from "./customer-data-company.dto";
+import { CustomerDataCompanyListDesktop } from "./desktop/customer-data-company-list-desktop";
+import { CustomerDataCompanyListMobile } from "./mobile/customer-data-company-list-mobile";
 
 @Component({
   selector: "app-customer-data-company-list",
   templateUrl: "./customer-data-company-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    TableEmptyMessage,
-    FormsModule,
-    ReactiveFormsModule,
-    AppTable,
-    AppSortableColumn,
-    AppSorticon,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    LuxTableCaption,
-    TableFooter,
-    DataViewMobile,
-    MobileActionMenu,
-    CustomInputSelectSignal,
-    MobileListItem,
-    AppIcon,
-  ],
+  imports: [CustomerDataCompanyListDesktop, CustomerDataCompanyListMobile],
 })
 export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
-  // Declaración e inicialización de variables
+  platformS = inject(PlatformService);
+
   data = signal<CustomerDataCompanyDto[]>([]);
   readonly globalFilterFields = signal<string[]>([
     "customer",
@@ -71,9 +39,7 @@ export class CustomerDataCompanyList implements OnInit {
     "applicationRoleName",
   ]);
   loading = signal(true);
-  readonly tableRows: number = tableRows();
-  readonly rowsPerPageOptions: number[] = rowsPerPageOptions();
-  ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
+  ref: DynamicDialogRef;
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
@@ -130,7 +96,6 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // Funcion para eliminar un banco y refres
   onDelete(id: string) {
     this.apiResponseS
       .onDelete(Endpoints.CustomerDataCompany.delete(id))
@@ -142,7 +107,6 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  // Función para abrir un cuadro de diálogo modal para agregar o editar o crear
   onModalForm(data: any) {
     this.dialogHandlerS
       .openDialog(
