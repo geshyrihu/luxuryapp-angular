@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   DynamicDialogConfig,
@@ -14,7 +14,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     ReactiveFormsModule,
     WebButtonLabel,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextAreaSignal,
     AppIcon,
   ],
@@ -54,7 +54,12 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           severity="secondary"
           (clicked)="onClose()"
         />
-        <il-button-save
+        <lux-button-web
+          kind="save"
+          type="button"
+          severity="info"
+          variant="soft"
+          displayMode="both"
           label="Confirmar Cancelacion"
           iconClass="material-symbols-light:cancel"
           [disabled]="reasonCtrl.invalid"
@@ -91,4 +96,3 @@ export default class PaymentCancelModal {
     this.ref.close(this.reasonCtrl.getRawValue().trim());
   }
 }
-

@@ -12,7 +12,7 @@ import {
 } from "@core/services/dialog-handler.service";
 
 // Custom Inputs
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -42,7 +42,7 @@ import {
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   templateUrl: "./billing-config-modal.html",
 })
@@ -166,4 +166,3 @@ export default class BillingConfigModal implements OnInit {
     this.ref.close(false);
   }
 }
-

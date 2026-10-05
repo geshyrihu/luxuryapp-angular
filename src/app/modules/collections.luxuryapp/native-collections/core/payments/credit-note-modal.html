@@ -57,11 +57,16 @@
     />
 
     <div class="d-flex justify-content-end pt-2 border-top-1 border">
-      <il-button-save
+      <lux-button-web
+        kind="save"
+        type="button"
+        severity="info"
+        variant="soft"
+        displayMode="both"
         (clicked)="onSubmit()"
         label="Emitir Nota de Crédito"
         [disabled]="form.invalid || submitting()"
-        [submitting]="submitting()"
+        [loading]="submitting()"
       />
     </div>
   </form>

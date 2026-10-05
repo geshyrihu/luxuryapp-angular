@@ -18,7 +18,7 @@ import {
 } from "../../interfaces/cobranza-payment.dto";
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -41,7 +41,7 @@ interface IPaymentEditForm {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
   ],
   templateUrl: "./payment-form.html",
 })
