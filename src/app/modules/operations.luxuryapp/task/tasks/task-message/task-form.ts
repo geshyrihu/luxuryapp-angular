@@ -32,7 +32,7 @@ import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
@@ -92,7 +92,7 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
     CustomInputAutoMultiple,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelSave,
+    ButtonWeb,
     WebButtonLabel,
     CustomInputCheckSignal,
     AppIcon,
