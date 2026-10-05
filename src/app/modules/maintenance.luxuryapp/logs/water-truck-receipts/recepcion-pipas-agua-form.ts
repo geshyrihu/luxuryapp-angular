@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelSave } from "@ui/buttons/web-label/button-save";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { CustomInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
@@ -31,7 +31,7 @@ import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSave,
+    ButtonWeb,
     CustomInputTextSignal,
     CustomInputDateTimeNative,
     CustomInputDecimal,
