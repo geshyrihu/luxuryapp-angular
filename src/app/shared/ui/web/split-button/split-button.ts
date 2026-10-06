@@ -9,14 +9,14 @@ import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-split-button",
+  selector: "lux-split-button-web",
 
   imports: [NgbDropdownModule, AppIcon, NgClass],
   template: `
     <div class="btn-group" ngbDropdown [ngClass]="styleClass()">
       <button type="button" class="btn" [ngClass]="'btn-' + (severity() || 'primary')" [disabled]="disabled()" (click)="onClick.emit($event)">
         @if (icon()) {
-          <app-icon [icon]="icon()" class="me-1" />
+          <lux-icon-base [icon]="icon()" class="me-1" />
         }
         {{ label() }}
       </button>
@@ -27,7 +27,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         @for (item of model() ?? []; track $index) {
           <button ngbDropdownItem type="button" [ngClass]="item.class" [disabled]="item.disabled" (click)="item.command && item.command({ originalEvent: $event, item })">
             @if (item.icon) {
-              <app-icon [icon]="item.icon" class="me-2" />
+              <lux-icon-base [icon]="item.icon" class="me-2" />
             }
             {{ item.label }}
           </button>

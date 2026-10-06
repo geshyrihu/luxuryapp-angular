@@ -14,7 +14,7 @@ export interface AvatarItem {
 }
 
 @Component({
-  selector: "app-avatar-group",
+  selector: "lux-avatar-group",
 
   imports: [],
   template: `

@@ -19,7 +19,7 @@ import { openPdf } from "../shared/pdf";
       [class]="styleClass()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="icon-only" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="icon-only" />
     </ion-button>
   `,
 })

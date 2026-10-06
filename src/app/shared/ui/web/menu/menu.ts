@@ -26,7 +26,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * `shared/ui/mobile/action-menu-mobile.ts`).
  */
 @Component({
-  selector: "app-menu",
+  selector: "lux-menu-web",
   imports: [NgTemplateOutlet, AppIcon, NgClass],
   template: `
     <span #trigger class="app-menu-trigger" (click)="toggle()">
@@ -51,7 +51,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
                 />
               } @else {
                 @if (item.icon) {
-                  <app-icon [icon]="item.icon" class="me-2" />
+                  <lux-icon-base [icon]="item.icon" class="me-2" />
                 }
                 {{ item.label }}
               }

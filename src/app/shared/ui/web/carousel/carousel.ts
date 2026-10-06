@@ -23,7 +23,7 @@ import {
  * compatibilidad de API; el único consumidor real usa `numVisible=1`.
  */
 @Component({
-  selector: "app-carousel",
+  selector: "lux-carousel-web",
   imports: [CarouselModule, NgTemplateOutlet],
   template: `
       <owl-carousel-o [options]="owlOptions()" (changed)="onChanged($event)">

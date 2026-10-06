@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/
 import { ModalBase } from "@ui/core/modal.base";
 
 @Component({
-  selector: "app-dialog",
+  selector: "lux-dialog-web",
   template: `
     <div
       class="modal fade"

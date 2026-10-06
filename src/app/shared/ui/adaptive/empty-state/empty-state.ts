@@ -28,7 +28,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
         (action)="action.emit()"
       />
     } @else {
-      <app-empty-state
+      <lux-empty-state-web
         [icon]="icon()"
         [iconColor]="iconColor()"
         [title]="title()"

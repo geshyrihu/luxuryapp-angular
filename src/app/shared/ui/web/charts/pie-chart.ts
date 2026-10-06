@@ -13,7 +13,7 @@ import { NgxChartsDatum, ngxToPieData, ngxToPieOption, trackChartTheme } from ".
  * API sin cambios: `dataGrafico` en formato ngx-charts `[{ name, value }]`.
  */
 @Component({
-  selector: "app-pie-chart",
+  selector: "lux-pie-chart-web",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,

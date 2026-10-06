@@ -33,7 +33,7 @@ export interface DataGridColumn {
 }
 
 @Component({
-  selector: "app-data-grid",
+  selector: "lux-data-grid-web",
   imports: [
     AppTable,
     AppSorticon,
@@ -108,11 +108,11 @@ export interface DataGridColumn {
               >
                 <div class="d-flex align-items-center gap-1">
                   @if (col.icon) {
-                    <app-icon [icon]="col.icon" class="text-sm" />
+                    <lux-icon-base [icon]="col.icon" class="text-sm" />
                   }
                   {{ col.header }}
                   @if (col.sortable) {
-                    <app-sorticon [field]="col.field" />
+                    <lux-sorticon-web [field]="col.field" />
                   }
                 </div>
                 @if (col.filterable) {
@@ -167,7 +167,7 @@ export interface DataGridColumn {
                   @if (col.type === "currency") {
                     {{ formatCurrency(row[col.field]) }}
                   } @else if (col.type === "boolean") {
-                    <app-icon
+                    <lux-icon-base
                       [icon]="
                         row[col.field]
                           ? 'material-symbols-light:check-circle'
@@ -222,7 +222,7 @@ export interface DataGridColumn {
               "
             >
               <div class="p-4 text-center text-color-secondary">
-                <app-icon
+                <lux-icon-base
                   icon="material-symbols-light:table-view"
                   class="text-2xl mb-2"
                 />

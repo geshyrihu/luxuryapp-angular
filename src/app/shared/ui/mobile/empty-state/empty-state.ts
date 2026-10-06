@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       @if (tag()) {
         <span class="ili-empty-tag">{{ tag() }}</span>
       }
-      <app-icon
+      <lux-icon-base
         [icon]="icon()"
         class="ili-empty-icon"
         [style.color]="iconColor()"
@@ -30,7 +30,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           size="small"
           (click)="action.emit()"
         >
-          <app-icon [icon]="actionIcon()" class="me-2" />
+          <lux-icon-base [icon]="actionIcon()" class="me-2" />
           {{ actionLabel() }}
         </ion-button>
       }

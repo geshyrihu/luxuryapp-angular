@@ -17,12 +17,12 @@ import { AppRadioButton } from "@ui/web/radio-button/radio-button";
         [styleClass]="styleClass()"
       ></ili-radio-button>
     } @else {
-      <app-radio-button
+      <lux-radio-button-web
         [value]="value()"
         [control]="control()"
         [inputId]="inputId()"
         [styleClass]="styleClass()"
-      ></app-radio-button>
+      ></lux-radio-button-web>
     }
   `,
 })

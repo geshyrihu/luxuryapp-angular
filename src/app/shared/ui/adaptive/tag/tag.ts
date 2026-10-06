@@ -18,7 +18,7 @@ import { AppTag } from "@ui/web/tag/tag";
         [tooltip]="tooltip()"
       />
     } @else {
-      <app-tag
+      <lux-tag-web
         [value]="value()"
         [severity]="severity()"
         [rounded]="rounded()"

@@ -28,7 +28,7 @@ import { AppCard } from "@ui/web/card/card";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-card>
     } @else {
-      <app-card
+      <lux-card-web
         [header]="header()"
         [subheader]="subheader()"
         [padded]="padded()"
@@ -40,7 +40,7 @@ import { AppCard } from "@ui/web/card/card";
         [footerTemplate]="footerTpl()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-card>
+      </lux-card-web>
     }
   `,
 })

@@ -22,7 +22,7 @@ export interface Territory {
  * (No usa mapas externos; layout visual tabular para uso enterprise.)
  */
 @Component({
-  selector: "app-territory-map",
+  selector: "lux-territory-map-web",
 
   imports: [AppTag, LxTooltipDirective, AppIcon],
   template: `
@@ -32,17 +32,17 @@ export interface Territory {
         <h3 class="tm-title">{{ title() }}</h3>
         <div class="tm-summary">
           <span class="tm-stat"
-            ><app-icon
+            ><lux-icon-base
               icon="material-symbols-light:location-on"
             />{{ territories().length }} territorios</span
           >
           <span class="tm-stat"
-            ><app-icon
+            ><lux-icon-base
               icon="material-symbols-light:groups"
             />{{ totalAccounts() }} cuentas</span
           >
           <span class="tm-stat"
-            ><app-icon icon="material-symbols-light:attach-money" />{{
+            ><lux-icon-base icon="material-symbols-light:attach-money" />{{
               formatCurrency(totalRevenue())
             }}</span
           >
@@ -54,7 +54,7 @@ export interface Territory {
         <div class="tm-region">
           @if (region) {
             <h4 class="tm-region-title">
-              <app-icon icon="material-symbols-light:map" />
+              <lux-icon-base icon="material-symbols-light:map" />
               {{ region }}
             </h4>
           }
@@ -71,7 +71,7 @@ export interface Territory {
                   <div class="tm-territory-info">
                     <span class="tm-territory-name">{{ t.name }}</span>
                     @if (t.active === false) {
-                      <app-tag
+                      <lux-tag-web
                         value="Inactivo"
                         severity="secondary"
                         class="text-xs"

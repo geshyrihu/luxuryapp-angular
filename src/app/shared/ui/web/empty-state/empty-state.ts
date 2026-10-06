@@ -4,13 +4,13 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-empty-state",
+  selector: "lux-empty-state-web",
   imports: [ButtonWeb, AppIcon],
   template: `
     <div class="empty-state-root">
       <div class="empty-state-content">
         @if (tag()) { <span class="empty-state-tag">{{ tag() }}</span> }
-        <app-icon [icon]="icon()" class="empty-state-icon" [style.color]="iconColor()" />
+        <lux-icon-base [icon]="icon()" class="empty-state-icon" [style.color]="iconColor()" />
         <strong class="empty-state-title">{{ title() }}</strong>
         <p class="empty-state-message">{{ message() }}</p>
         @if (actionLabel()) {

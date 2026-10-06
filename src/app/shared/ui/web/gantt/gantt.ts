@@ -27,7 +27,7 @@ export interface GanttTask {
  * No requiere librerías externas — SVG + CSS puro.
  */
 @Component({
-  selector: "app-gantt",
+  selector: "lux-gantt-web",
 
   imports: [LxTooltipDirective, AppIcon],
   template: `
@@ -41,7 +41,7 @@ export interface GanttTask {
             (click)="shiftDays(-7)"
             title="Semana anterior"
           >
-            <app-icon icon="material-symbols-light:chevron-left" />
+            <lux-icon-base icon="material-symbols-light:chevron-left" />
           </button>
           <span class="gantt-nav-range">{{ rangeLabel() }}</span>
           <button
@@ -49,7 +49,7 @@ export interface GanttTask {
             (click)="shiftDays(7)"
             title="Semana siguiente"
           >
-            <app-icon icon="material-symbols-light:chevron-right" />
+            <lux-icon-base icon="material-symbols-light:chevron-right" />
           </button>
         </div>
       </div>

@@ -54,7 +54,7 @@ const DEFAULTS: Record<Exclude<MobileButtonKind, "custom">, { label: string; ico
         <ion-spinner name="crescent" />
       } @else {
         @if (displayMode() !== "label") {
-          <app-icon [icon]="resolvedIconClass() || resolvedKindIcon()" slot="start" />
+          <lux-icon-base [icon]="resolvedIconClass() || resolvedKindIcon()" slot="start" />
         }
         @if (displayMode() !== "icon") {
           {{ resolvedLabel() }}

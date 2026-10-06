@@ -18,7 +18,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.PlusCircle" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.PlusCircle" />
     </button>
   `,
 })

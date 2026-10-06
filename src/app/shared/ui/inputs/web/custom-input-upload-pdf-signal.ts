@@ -10,13 +10,13 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
  * Se comunica directamente con la API vía pathUrl.
  */
 @Component({
-  selector: "app-subir-pdf",
+  selector: "lux-subir-pdf",
   imports: [FileUpload, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="p-3">
       <p class="mb-3">Cargar o arrastrar PDF</p>
-      <app-file-upload
+      <lux-file-upload-web
         accept="application/pdf"
         [multiple]="true"
         [maxFileSize]="maxFileSize"

@@ -18,9 +18,9 @@ import { SwipeActions } from "@ui/web/swipe-actions/swipe-actions";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-swipe-actions>
     } @else {
-      <app-swipe-actions [actions]="actions()" [threshold]="threshold()">
+      <lux-swipe-actions-web [actions]="actions()" [threshold]="threshold()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-swipe-actions>
+      </lux-swipe-actions-web>
     }
   `,
 })

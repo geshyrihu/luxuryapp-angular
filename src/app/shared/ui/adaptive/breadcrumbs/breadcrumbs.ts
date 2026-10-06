@@ -16,7 +16,7 @@ import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
     @if (platform.isMobile()) {
       <ili-breadcrumbs [items]="items()" [home]="home()" />
     } @else {
-      <app-breadcrumbs [items]="items()" [home]="home()" />
+      <lux-breadcrumbs-web [items]="items()" [home]="home()" />
     }
   `,
 })

@@ -127,18 +127,18 @@ export class AppFrozenColumn {
 }
 
 @Component({
-  selector: "app-sorticon",
+  selector: "lux-sorticon-web",
   imports: [AppIcon],
   template: `
     <span class="lux-table-sorticon">
       @if (table.sortField() === field()) {
         @if (table.sortOrder() === 1) {
-          <app-icon icon="material-symbols-light:arrow-upward" />
+          <lux-icon-base icon="material-symbols-light:arrow-upward" />
         } @else {
-          <app-icon icon="material-symbols-light:arrow-downward" />
+          <lux-icon-base icon="material-symbols-light:arrow-downward" />
         }
       } @else {
-        <app-icon
+        <lux-icon-base
           icon="material-symbols-light:swap-vert"
           class="lux-table-sorticon-neutral"
         />

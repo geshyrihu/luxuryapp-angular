@@ -23,7 +23,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
         [styleClass]="styleClass()"
       />
     } @else {
-      <app-avatar
+      <lux-avatar-web
         [image]="image()"
         [label]="label()"
         [icon]="icon()"

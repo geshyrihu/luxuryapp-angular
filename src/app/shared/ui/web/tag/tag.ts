@@ -8,12 +8,12 @@ import { TagBase } from "@ui/core/tag.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-tag",
+  selector: "lux-tag-web",
 
   imports: [AppIcon, LxTooltipDirective],
   template: `
     <span
-      class="app-tag"
+      class="lux-tag-web"
       [class.app-tag-rounded]="rounded()"
       [style.background]="colors().bg"
       [style.color]="colors().text"
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       [lxTooltip]="tooltip()"
     >
       @if (icon()) {
-        <app-icon [icon]="icon()" class="app-tag-icon" />
+        <lux-icon-base [icon]="icon()" class="app-tag-icon" />
       }
       {{ displayValue() }}
     </span>

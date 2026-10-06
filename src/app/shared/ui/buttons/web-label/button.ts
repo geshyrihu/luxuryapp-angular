@@ -21,15 +21,15 @@ import { BaseButton } from "../base/base-button";
       (click)="emitClick($event)"
     >
       @if (loading()) {
-        <app-spinner [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
+        <lux-spinner-web [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
       } @else {
         @if (displayMode() !== "label") {
           @if (emoji()) {
             <span>{{ emoji() }}</span>
           } @else if (iconClass()) {
-            <app-icon [icon]="resolvedIconClass()" />
+            <lux-icon-base [icon]="resolvedIconClass()" />
           } @else if (icon()) {
-            <app-icon [icon]="resolvedIcon()" />
+            <lux-icon-base [icon]="resolvedIcon()" />
           }
         }
         @if (displayMode() !== "icon") {

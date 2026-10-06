@@ -15,7 +15,7 @@ import { ChartJsData, chartJsToRadarData, chartJsToRadarOption, trackChartTheme 
  * Mantiene `getBase64Image()` y `reinit()` para el flujo de impresión.
  */
 @Component({
-  selector: "app-radar-chart",
+  selector: "lux-radar-chart-web",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,

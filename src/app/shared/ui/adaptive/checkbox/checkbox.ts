@@ -16,7 +16,7 @@ import { AppCheckbox } from "@ui/web/checkbox/checkbox";
         [label]="label()"
       />
     } @else {
-      <app-checkbox
+      <lux-checkbox-web
         [(checked)]="checked"
         [binary]="binary()"
         [disabled]="disabled()"

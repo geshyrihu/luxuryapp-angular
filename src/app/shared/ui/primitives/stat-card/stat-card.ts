@@ -14,7 +14,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
  * Uso: dashboards ejecutivos, métricas de ventas, KPIs con histórico.
  */
 @Component({
-  selector: "app-stat-card",
+  selector: "lux-stat-card",
 
   imports: [AppIcon],
   template: `
@@ -24,7 +24,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     >
       @if (icon()) {
         <div class="stat-icon-wrap" [style.background]="iconBg()">
-          <app-icon
+          <lux-icon-base
             [icon]="icon()"
             [style.color]="iconColor()"
             class="stat-icon"
@@ -37,7 +37,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
           [class.stat-trend-up]="trend()! >= 0"
           [class.stat-trend-down]="trend()! < 0"
         >
-          <app-icon
+          <lux-icon-base
             [icon]="trend()! >= 0 ? 'material-symbols-light:trending-up' : 'material-symbols-light:trending-down'"
             class="text-xs"
           />

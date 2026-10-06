@@ -18,9 +18,9 @@ import { AppDivider } from "@ui/web/divider/divider";
         ><ng-container [ngTemplateOutlet]="projected"
       /></ili-divider>
     } @else {
-      <app-divider [layout]="layout()"
+      <lux-divider-web [layout]="layout()"
         ><ng-container [ngTemplateOutlet]="projected"
-      /></app-divider>
+      /></lux-divider-web>
     }
   `,
 })

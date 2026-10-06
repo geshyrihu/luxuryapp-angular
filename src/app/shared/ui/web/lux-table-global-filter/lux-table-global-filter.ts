@@ -16,7 +16,7 @@ import { AppIcon } from "../../primitives/app-icon/app-icon";
   template: `
     <div class="input-group input-group-sm">
       <span class="input-group-text">
-        <app-icon icon="material-symbols-light:search" />
+        <lux-icon-base icon="material-symbols-light:search" />
       </span>
       <input
         type="text"

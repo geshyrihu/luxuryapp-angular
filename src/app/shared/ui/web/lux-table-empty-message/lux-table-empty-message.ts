@@ -17,7 +17,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
   template: `
     <tr>
       <td [attr.colspan]="colspan()" style="text-align: center">
-        <app-empty-state
+        <lux-empty-state-web
           [icon]="icon()"
           [iconColor]="iconColor()"
           [title]="title()"

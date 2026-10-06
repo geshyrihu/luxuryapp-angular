@@ -9,7 +9,7 @@ import {
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-image-fallback",
+  selector: "lux-image-fallback-web",
   imports: [AppIcon],
   template: `
     @if (!hasError()) {
@@ -32,7 +32,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         [class]="fallbackClass()"
         [style]="fallbackStyle()"
       >
-        <app-icon
+        <lux-icon-base
           [icon]="fallbackIcon()"
           [style.font-size]="fallbackIconSize()"
           [style.color]="fallbackIconColor()"

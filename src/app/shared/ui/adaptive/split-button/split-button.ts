@@ -21,7 +21,7 @@ import { AppSplitButton } from "@ui/web/split-button/split-button";
         [styleClass]="styleClass()"
       ></ili-split-button>
     } @else {
-      <app-split-button
+      <lux-split-button-web
         [label]="label()"
         [icon]="icon()"
         [model]="model()"
@@ -30,7 +30,7 @@ import { AppSplitButton } from "@ui/web/split-button/split-button";
         [disabled]="disabled()"
         (onClick)="onClick.emit($event)"
         [styleClass]="styleClass()"
-      ></app-split-button>
+      ></lux-split-button-web>
     }
   `,
 })

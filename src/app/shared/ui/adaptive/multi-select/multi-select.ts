@@ -21,7 +21,7 @@ import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
         ><ng-content
       /></ili-multi-select>
     } @else {
-      <app-multi-select
+      <lux-multi-select-web
         [options]="options()"
         [placeholder]="placeholder()"
         [optionLabel]="optionLabel()"
@@ -30,7 +30,7 @@ import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
         (onChange)="onChange.emit($event)"
         [styleClass]="styleClass()"
         ><ng-content
-      /></app-multi-select>
+      /></lux-multi-select-web>
     }
   `,
 })

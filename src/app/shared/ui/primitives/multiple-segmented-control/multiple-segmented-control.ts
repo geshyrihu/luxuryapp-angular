@@ -21,7 +21,7 @@ export interface SegmentItem {
  *
  * Uso:
  * ```html
- * <app-multiple-segmented-control
+ * <lux-multiple-segmented-control
  *   [items]="segments"
  *   [(value)]="selectedValues"
  *   (changed)="onChange($event)"
@@ -29,7 +29,7 @@ export interface SegmentItem {
  * ```
  */
 @Component({
-  selector: "app-multiple-segmented-control",
+  selector: "lux-multiple-segmented-control",
   imports: [AppIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -44,7 +44,7 @@ export interface SegmentItem {
           (click)="toggleSelection(item.value)"
         >
           @if (item.icon) {
-            <app-icon [icon]="item.icon" class="seg__icon" />
+            <lux-icon-base [icon]="item.icon" class="seg__icon" />
           }
           <span>{{ item.label }}</span>
         </button>

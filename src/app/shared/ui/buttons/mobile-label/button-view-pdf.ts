@@ -20,7 +20,7 @@ import { openPdf } from "../shared/pdf";
       [class]="styleClass()"
       (click)="handleClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="start" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.FilePdf" slot="start" />
       {{ label() || "Ver archivo" }}
     </ion-button>
   `,

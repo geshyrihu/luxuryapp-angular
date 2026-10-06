@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
-  selector: "app-action-icons-group",
+  selector: "lux-action-icons-group",
   imports: [],
   template: `
     <div

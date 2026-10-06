@@ -26,7 +26,7 @@ import { SwalService } from "@core/services/swal.service";
       [class]="styleClass()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" slot="start" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.EmailOutline" slot="start" />
       {{ label() || "Enviar correo" }}
     </ion-button>
   `,

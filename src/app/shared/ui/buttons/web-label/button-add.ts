@@ -19,7 +19,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Add" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.Add" />
       <span>{{ label() || "Agregar" }}</span>
     </button>
   `,

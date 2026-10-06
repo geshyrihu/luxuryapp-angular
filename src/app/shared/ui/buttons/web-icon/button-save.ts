@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <app-icon
+      <lux-icon-base
         [icon]="propertyId() ? IconCatalog.Save : IconCatalog.Save"
       />
     </button>

@@ -20,7 +20,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * `lux-tabs` funciona como selector puro (el feature conmuta con `@switch`).
  */
 @Component({
-  selector: "app-tabs",
+  selector: "lux-tabs-web",
 
   imports: [NgbNavModule, AppIcon],
   template: `
@@ -35,7 +35,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         <li [ngbNavItem]="tab.id" [disabled]="tab.disabled ?? false">
           <button ngbNavLink type="button">
             @if (tab.icon) {
-              <app-icon [icon]="tab.icon" class="me-2" />
+              <lux-icon-base [icon]="tab.icon" class="me-2" />
             }
             {{ tab.label }}
           </button>

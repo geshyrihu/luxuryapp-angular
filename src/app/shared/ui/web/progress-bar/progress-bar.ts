@@ -10,7 +10,7 @@ import { ProgressBarBase } from "@ui/core/progress-bar.base";
  * AppProgressBar — `.progress`/`.progress-bar` de Bootstrap. `value` en 0..100.
  */
 @Component({
-  selector: "app-progress-bar",
+  selector: "lux-progress-bar-web",
 
   imports: [],
   template: `

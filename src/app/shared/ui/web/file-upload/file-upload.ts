@@ -30,7 +30,7 @@ export interface FileUploadEvent {
 }
 
 @Component({
-  selector: "app-file-upload",
+  selector: "lux-file-upload-web",
 
   imports: [ButtonWeb, AppIcon],
   template: `
@@ -120,7 +120,7 @@ export interface FileUploadEvent {
                   class="file-preview rounded"
                 />
               } @else {
-                <app-icon
+                <lux-icon-base
                   icon="material-symbols-light:description"
                   class="text-2xl text-color-muted"
                 />
@@ -146,13 +146,13 @@ export interface FileUploadEvent {
               </div>
 
               @if (file.status === "done") {
-                <app-icon
+                <lux-icon-base
                   icon="material-symbols-light:check-circle"
                   class="text-lg"
                   style="color: var(--ds-success)"
                 />
               } @else if (file.status === "error") {
-                <app-icon
+                <lux-icon-base
                   icon="material-symbols-light:error"
                   class="text-lg"
                   style="color: var(--ds-danger)"

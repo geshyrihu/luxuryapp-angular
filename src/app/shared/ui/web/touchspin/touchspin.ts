@@ -10,7 +10,7 @@ import { ButtonWeb } from "@ui/buttons/web";
  * Ideal para cantidades, con validación de mínimo y máximo.
  */
 @Component({
-  selector: "app-touchspin",
+  selector: "lux-touchspin-web",
   imports: [ReactiveFormsModule, LxTooltipDirective, ButtonWeb],
   template: `
     <div class="input-group" style="width: auto">

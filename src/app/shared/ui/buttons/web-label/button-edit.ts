@@ -21,7 +21,7 @@ import { BaseButton, type ButtonDisplayMode } from "../base/base-button";
       (click)="emitClick($event)"
     >
       @if (displayMode() !== "label") {
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" />
+        <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.PencilOutline" />
       }
       @if (displayMode() !== "icon") {
         <span>{{ label() || "Editar" }}</span>

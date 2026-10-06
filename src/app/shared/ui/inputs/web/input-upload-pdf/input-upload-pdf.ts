@@ -5,7 +5,7 @@ import { SubirPdf } from "../custom-input-upload-pdf-signal";
   selector: "web-input-upload-pdf",
 
   imports: [SubirPdf],
-  template: ` <app-subir-pdf /> `,
+  template: ` <lux-subir-pdf /> `,
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class WebInputUploadPdf {}

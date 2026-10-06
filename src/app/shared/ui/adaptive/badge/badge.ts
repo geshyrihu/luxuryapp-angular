@@ -16,7 +16,7 @@ import { AppBadge } from "@ui/web/badge/badge";
     @if (platform.isMobile()) {
       <ili-badge [value]="value()" [color]="color()" [size]="size()" />
     } @else {
-      <app-badge [value]="value()" [color]="color()" [size]="size()" />
+      <lux-badge-web [value]="value()" [color]="color()" [size]="size()" />
     }
   `,
 })

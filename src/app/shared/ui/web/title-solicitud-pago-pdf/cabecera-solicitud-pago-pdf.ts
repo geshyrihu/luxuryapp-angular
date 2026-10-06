@@ -16,7 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
  * Incluye folio, factura y datos del cliente.
  */
 @Component({
-  selector: "app-cabecera-solicitud-pago-pdf",
+  selector: "lux-cabecera-solicitud-pago-pdf-web",
   templateUrl: "./cabecera-solicitud-pago-pdf.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cabecera-solicitud-pago-pdf.component.scss"],

@@ -18,7 +18,7 @@ export interface HeatmapCell {
  * Uso: actividad por hora/día, distribución de ventas, densidad de eventos.
  */
 @Component({
-  selector: "app-heatmap",
+  selector: "lux-heatmap-web",
 
   imports: [],
   template: `

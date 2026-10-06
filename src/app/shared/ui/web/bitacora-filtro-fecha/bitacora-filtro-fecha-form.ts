@@ -10,7 +10,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 @Component({
-  selector: "app-bitacora-filtro-fecha-form",
+  selector: "lux-bitacora-filtro-fecha-form-web",
   templateUrl: "./bitacora-filtro-fecha-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [

@@ -67,16 +67,16 @@ const DEFAULTS: Record<
       (click)="emitClick($event)"
     >
       @if (loading()) {
-        <app-spinner [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
+        <lux-spinner-web [size]="16" [strokeWidth]="6" ariaLabel="Cargando" />
       } @else {
         @if (displayMode() !== "label") {
           @if (badgeCount()) {
             <span class="button-badge-anchor">
-              <app-icon [icon]="resolvedButtonIcon()" />
-              <app-badge [value]="badgeCount()!" color="danger" size="small" />
+              <lux-icon-base [icon]="resolvedButtonIcon()" />
+              <lux-badge-web [value]="badgeCount()!" color="danger" size="small" />
             </span>
           } @else {
-            <app-icon [icon]="resolvedButtonIcon()" />
+            <lux-icon-base [icon]="resolvedButtonIcon()" />
           }
         }
         @if (displayMode() !== "icon") {

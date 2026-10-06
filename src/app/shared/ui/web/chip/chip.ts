@@ -13,15 +13,15 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * etiqueta e imagen opcionales, con color semántico y botón de remoción.
  */
 @Component({
-  selector: "app-chip",
+  selector: "lux-chip-web",
 
   imports: [AppIcon, NgClass],
   template: `
-    <span class="app-chip" [ngClass]="chipClass()" (click)="onClick()">
+    <span class="lux-chip-web" [ngClass]="chipClass()" (click)="onClick()">
       @if (image()) {
         <img [src]="image()" class="app-chip-img" alt="" />
       } @else if (icon()) {
-        <app-icon [icon]="icon()" class="app-chip-icon" />
+        <lux-icon-base [icon]="icon()" class="app-chip-icon" />
       }
       <span class="app-chip-label">{{ label() }}</span>
       @if (removable() && !disabled()) {
@@ -31,7 +31,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           aria-label="Quitar"
           (click)="$event.stopPropagation(); onRemove()"
         >
-          <app-icon icon="material-symbols-light:close" />
+          <lux-icon-base icon="material-symbols-light:close" />
         </button>
       }
     </span>

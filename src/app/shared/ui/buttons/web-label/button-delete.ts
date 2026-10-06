@@ -28,7 +28,7 @@ import { ConfirmService } from "../shared/confirm.service";
       (click)="confirmDelete($event)"
     >
       @if (displayMode() !== "label") {
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
+        <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.DeleteOutline" />
       }
       @if (displayMode() !== "icon") {
         <span>{{ label() || "Eliminar" }}</span>

@@ -25,7 +25,7 @@ import { TrackingEvent } from "../shared/tracking";
       [tooltipDisabled]="!tooltipText()"
       (click)="onTrackingClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.BellOutline" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.BellOutline" />
       <span>{{ label() || "Seguimiento" }}</span>
       @if (badgeCount() && badgeCount()! > 0) {
         <span

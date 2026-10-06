@@ -24,7 +24,7 @@ describe("TableEmptyMessage", () => {
     expect(tr).toBeTruthy();
     const td = tr!.querySelector("td");
     expect(td).toBeTruthy();
-    const emptyState = td!.querySelector("app-empty-state");
+    const emptyState = td!.querySelector("lux-empty-state-web");
     expect(emptyState).toBeTruthy();
   });
 

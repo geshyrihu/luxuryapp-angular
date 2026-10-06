@@ -16,7 +16,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     @if (platform.isMobile()) {
       <ili-icon [icon]="icon()" [class]="styleClass()" />
     } @else {
-      <app-icon [icon]="icon()" [class]="styleClass()" />
+      <lux-icon-base [icon]="icon()" [class]="styleClass()" />
     }
   `,
 })

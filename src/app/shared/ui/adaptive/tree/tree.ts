@@ -24,7 +24,7 @@ import { Tree } from "@ui/web/tree/tree";
         <ng-container [ngTemplateOutlet]="projected" />
       </ili-tree>
     } @else {
-      <app-tree
+      <lux-tree-web
         [value]="value()"
         [(selection)]="selection"
         [selectionMode]="selectionMode()"
@@ -32,7 +32,7 @@ import { Tree } from "@ui/web/tree/tree";
         [metaKeySelection]="metaKeySelection()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </app-tree>
+      </lux-tree-web>
     }
   `,
 })

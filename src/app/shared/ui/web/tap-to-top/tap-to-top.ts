@@ -3,12 +3,12 @@ import { TapToTopBase } from "@ui/core/tap-to-top.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-scroll-top",
+  selector: "lux-scroll-top-web",
   imports: [AppIcon],
   template: `
     @if (show) {
       <button type="button" class="app-scroll-top-btn" aria-label="Volver arriba" (click)="tapToTop()">
-        <app-icon icon="material-symbols-light:arrow-upward" />
+        <lux-icon-base icon="material-symbols-light:arrow-upward" />
       </button>
     }
   `,

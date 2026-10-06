@@ -7,7 +7,7 @@ import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
  * Componente compartido (web + mobile) para mostrar errores de validación.
  */
 @Component({
-  selector: "app-validation-errors-custom-input",
+  selector: "lux-validation-errors-custom-input",
   imports: [ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

@@ -9,9 +9,9 @@ import { ActionMenu } from "./action-menu";
   standalone: true,
   imports: [ActionMenu],
   template: `
-    <app-action-menu>
+    <lux-action-menu-web>
       <button type="button" class="projected-action">Editar</button>
-    </app-action-menu>
+    </lux-action-menu-web>
   `,
 })
 class TestHost {}

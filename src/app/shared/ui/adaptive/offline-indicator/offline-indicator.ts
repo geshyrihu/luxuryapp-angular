@@ -12,7 +12,7 @@ import { OfflineIndicator } from "@ui/web/offline-indicator/offline-indicator";
     @if (platform.isMobile()) {
       <ili-offline-indicator />
     } @else {
-      <app-offline-indicator />
+      <lux-offline-indicator-web />
     }
   `,
 })

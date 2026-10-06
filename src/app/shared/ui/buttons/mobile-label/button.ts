@@ -26,7 +26,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       } @else {
         @if (displayMode() !== "label") {
           @if (iconClass()) {
-            <app-icon [icon]="resolvedIconClass()" slot="start" />
+            <lux-icon-base [icon]="resolvedIconClass()" slot="start" />
           }
         }
         @if (displayMode() !== "icon") {

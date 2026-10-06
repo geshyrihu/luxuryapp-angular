@@ -14,7 +14,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
  * Uso: dashboards con SSE/WebSocket, métricas en tiempo real.
  */
 @Component({
-  selector: "app-realtime-indicator",
+  selector: "lux-realtime-indicator",
 
   imports: [NgClass],
   template: `

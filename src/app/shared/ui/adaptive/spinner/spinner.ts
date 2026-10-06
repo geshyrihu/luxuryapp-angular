@@ -22,7 +22,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
         [ariaLabel]="ariaLabel()"
       />
     } @else {
-      <app-spinner
+      <lux-spinner-web
         [size]="size()"
         [color]="color()"
         [strokeWidth]="strokeWidth()"

@@ -12,11 +12,11 @@ import { FormsModule } from "@angular/forms";
 import { ListboxBase } from "@ui/core/listbox.base";
 
 @Component({
-  selector: "app-listbox",
+  selector: "lux-listbox-web",
 
   imports: [FormsModule, NgStyle, NgTemplateOutlet, NgClass],
   template: `
-    <div class="app-listbox" [ngClass]="styleClass()" [ngStyle]="style()">
+    <div class="lux-listbox-web" [ngClass]="styleClass()" [ngStyle]="style()">
       @if (filter()) {
         <div class="app-listbox-filter">
           <input

@@ -18,7 +18,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.PencilOutline" slot="icon-only" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.PencilOutline" slot="icon-only" />
     </ion-button>
   `,
 })

@@ -14,12 +14,12 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 /**
  * Marca el contenido de un panel del accordion. Se proyecta como
  * `<ng-template accordionPanel="<id>">...</ng-template>` dentro de
- * `<app-accordion>`, con el mismo `id` que su `AccordionItem`.
+ * `<lux-accordion-web>`, con el mismo `id` que su `AccordionItem`.
  * [Fase 3 migración Bootstrap, 2026-09-13] Reemplaza el `<ng-content
  * [select]>` dinámico de la versión anterior — ese binding no es válido
  * en Angular (`select` de `ng-content` solo admite un string estático en
  * compilación, nunca funcionó como se documentaba). Sin consumidores
- * reales que migrar (0 usos confirmados de `<app-accordion>`).
+ * reales que migrar (0 usos confirmados de `<lux-accordion-web>`).
  */
 @Directive({
   selector: "ng-template[accordionPanel]",
@@ -30,7 +30,7 @@ export class AccordionPanel {
 }
 
 @Component({
-  selector: "app-accordion",
+  selector: "lux-accordion-web",
   imports: [AppIcon, NgTemplateOutlet],
   template: `
     <div class="accordion">
@@ -45,7 +45,7 @@ export class AccordionPanel {
               (click)="toggle(item.id)"
             >
               @if (item.icon) {
-                <app-icon [icon]="item.icon" class="me-2" />
+                <lux-icon-base [icon]="item.icon" class="me-2" />
               }
               {{ item.title }}
             </button>

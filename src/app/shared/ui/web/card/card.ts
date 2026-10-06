@@ -7,11 +7,11 @@ import {
 import { CardBase } from "@ui/core/card.base";
 
 @Component({
-  selector: "app-card",
+  selector: "lux-card-web",
 
   imports: [NgTemplateOutlet],
   template: `
-    <section class="app-card" [class.app-card-elevated]="elevated()">
+    <section class="lux-card-web" [class.app-card-elevated]="elevated()">
       @if (headerTemplate()) {
         <div class="app-card-header-tpl">
           <ng-container [ngTemplateOutlet]="headerTemplate() ?? null" />

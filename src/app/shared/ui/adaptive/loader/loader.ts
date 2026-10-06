@@ -13,7 +13,7 @@ import { AppLoader } from "@ui/web/loader/loader";
     @if (platform.isMobile()) {
       <ili-loader />
     } @else {
-      <app-loader />
+      <lux-loader-web />
     }
   `,
 })

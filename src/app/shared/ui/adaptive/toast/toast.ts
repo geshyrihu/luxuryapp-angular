@@ -13,7 +13,7 @@ import { AppToast } from "@ui/web/toast/toast";
     @if (platform.isMobile()) {
       <ili-toast />
     } @else {
-      <app-toast />
+      <lux-toast-web />
     }
   `,
 })

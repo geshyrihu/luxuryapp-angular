@@ -27,7 +27,7 @@ import { AppChip } from "@ui/web/chip/chip";
         (chipClick)="chipClick.emit()"
       />
     } @else {
-      <app-chip
+      <lux-chip-web
         [label]="label()"
         [icon]="icon()"
         [image]="image()"

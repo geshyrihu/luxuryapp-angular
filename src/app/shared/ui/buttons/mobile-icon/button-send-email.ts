@@ -25,7 +25,7 @@ import { SwalService } from "@core/services/swal.service";
       [class]="styleClass()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" slot="icon-only" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.EmailOutline" slot="icon-only" />
     </ion-button>
   `,
 })

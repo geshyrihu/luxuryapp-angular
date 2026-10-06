@@ -16,7 +16,7 @@ import { AppSkeleton } from "@ui/web/skeleton/skeleton";
         [borderRadius]="borderRadius()"
       />
     } @else {
-      <app-skeleton
+      <lux-skeleton-web
         [width]="width()"
         [height]="height()"
         [borderRadius]="borderRadius()"

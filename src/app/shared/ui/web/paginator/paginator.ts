@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation, computed } from 
 import { PaginatorBase } from "@ui/core/paginator.base";
 
 @Component({
-  selector: "app-paginator",
+  selector: "lux-paginator-web",
   template: `
-    <nav class="app-paginator" aria-label="Paginación">
+    <nav class="lux-paginator-web" aria-label="Paginación">
       <ul class="pagination pagination-sm mb-0 flex-wrap align-items-center gap-2">
         @if (showFirstLast()) {
           <li class="page-item" [class.disabled]="isFirstPage()"><button type="button" class="page-link" (click)="onPageChange(0)" aria-label="Primera página">«</button></li>

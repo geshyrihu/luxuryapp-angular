@@ -48,7 +48,7 @@ export abstract class BaseButton {
     this.severity() === "warn" ? "warning" : this.severity(),
   );
   /**
-   * Icono resuelto a `AppIconName` para el binding de `<app-icon>`.
+   * Icono resuelto a `AppIconName` para el binding de `<lux-icon-base>`.
    *
    * Hasta 2026-08-11 existía además `isPrimeIcon()`, y las plantillas
    * bifurcaban: si el valor empezaba por `"pi "` se pintaba un `<i>` con esa

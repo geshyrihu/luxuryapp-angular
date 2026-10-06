@@ -23,7 +23,7 @@ import {
 } from './models/flow-analysis.model';
 
 @Component({
-  selector: 'app-module-guide',
+  selector: 'lux-module-guide-web',
   standalone: true,
   imports: [CommonModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -26,7 +26,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       [hidden]="hidden()"
       [onlyInput]="onlyInput()"
     >
-      <app-select-button
+      <lux-select-button-web
         [options]="mappedOptions()"
         [value]="(control() || internalControl).value"
         (valueChange)="onValueChange($event)"
@@ -36,7 +36,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
         
       >
         <ng-content></ng-content>
-      </app-select-button>
+      </lux-select-button-web>
     </base-input-signal>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,

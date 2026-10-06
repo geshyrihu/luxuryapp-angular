@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
 
 @Component({
-  selector: "app-ai-chat-widget",
+  selector: "lux-ai-chat-widget",
   imports: [AppIcon, AppTag, CommonModule, FormsModule, MarkdownModule],
   templateUrl: "./ai-chat-widget.html",
   changeDetection: ChangeDetectionStrategy.Eager,

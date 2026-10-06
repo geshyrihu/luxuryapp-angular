@@ -17,12 +17,12 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
         ><ng-content
       /></ili-toolbar>
     } @else {
-      <app-toolbar
+      <lux-toolbar-web
         [leftTemplate]="_leftTemplate"
         [rightTemplate]="_rightTemplate"
         [styleClass]="styleClass()"
         ><ng-content
-      /></app-toolbar>
+      /></lux-toolbar-web>
     }
   `,
 })

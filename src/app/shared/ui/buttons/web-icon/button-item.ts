@@ -24,7 +24,7 @@ import { BaseButton } from "../base/base-button";
         <span>{{ emoji() }}</span>
       }
       @if (iconName && (resolvedIcon() || resolvedIconClass())) {
-        <app-icon [icon]="resolvedIcon() || resolvedIconClass()" />
+        <lux-icon-base [icon]="resolvedIcon() || resolvedIconClass()" />
       }
       @if (label(); as labelText) {
         <span>{{ labelText }}</span>

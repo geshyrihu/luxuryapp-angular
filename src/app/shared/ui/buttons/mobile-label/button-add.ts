@@ -19,7 +19,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       [class]="styleClass()"
       (click)="onClick($event)"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Add" slot="start" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.Add" slot="start" />
       {{ label() || "Agregar" }}
     </ion-button>
   `,

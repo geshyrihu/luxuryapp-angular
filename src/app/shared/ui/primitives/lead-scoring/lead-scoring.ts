@@ -14,7 +14,7 @@ export interface LeadScoreCategory {
 }
 
 @Component({
-  selector: "app-lead-scoring",
+  selector: "lux-lead-scoring",
 
   imports: [],
   template: `

@@ -21,7 +21,7 @@ export interface PivotValue {
 }
 
 @Component({
-  selector: "app-pivot-table",
+  selector: "lux-pivot-table-web",
 
   imports: [AppIcon],
   template: `
@@ -57,7 +57,7 @@ export interface PivotValue {
                     [style.paddingLeft.px]="row.level * 20"
                   ></span>
                   @if (row.children?.length) {
-                    <app-icon
+                    <lux-icon-base
                       [icon]="
                         row.expanded ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                       "

@@ -28,7 +28,7 @@ import { BaseButton } from "../base/base-button";
       @if (emoji()) {
         <span>{{ emoji() }}</span>
       } @else {
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.CheckCircle" />
+        <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.CheckCircle" />
       }
     </button>
   `,

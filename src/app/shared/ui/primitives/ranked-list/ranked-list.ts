@@ -32,7 +32,7 @@ export interface RankedListItem {
  * para que el teclado pueda recorrerlas; si no, son `<div>` y no reciben foco.
  *
  * ```html
- * <app-ranked-list
+ * <lux-ranked-list
  *   heading="Morosos"
  *   [items]="morosos()"
  *   [total]="totalMorosos()"
@@ -42,7 +42,7 @@ export interface RankedListItem {
  * ```
  */
 @Component({
-  selector: "app-ranked-list",
+  selector: "lux-ranked-list",
   imports: [NgTemplateOutlet],
   template: `
     <div class="ranked-list">

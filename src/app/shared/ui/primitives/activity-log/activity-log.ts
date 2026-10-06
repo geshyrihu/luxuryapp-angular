@@ -39,7 +39,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
 };
 
 @Component({
-  selector: "app-activity-log",
+  selector: "lux-activity-log",
 
   imports: [AppIcon],
   template: `
@@ -61,7 +61,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
                 <div class="activity-line"></div>
                 <div class="activity-card">
                   <div class="activity-header">
-                    <app-icon
+                    <lux-icon-base
                       [icon]="getIcon(entry.type)"
                       class="activity-type-icon"
                       [style.color]="getColor(entry.type)"
@@ -94,7 +94,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
             <div class="activity-line"></div>
             <div class="activity-card">
               <div class="activity-header">
-                <app-icon
+                <lux-icon-base
                   [icon]="getIcon(entry.type)"
                   class="activity-type-icon"
                   [style.color]="getColor(entry.type)"
@@ -117,7 +117,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
 
       @if (!entries().length) {
         <div class="activity-empty p-4 text-center text-color-secondary">
-          <app-icon icon="material-symbols-light:article-outline" class="text-3xl mb-2" />
+          <lux-icon-base icon="material-symbols-light:article-outline" class="text-3xl mb-2" />
           <p class="text-sm m-0">Sin actividad reciente</p>
         </div>
       }

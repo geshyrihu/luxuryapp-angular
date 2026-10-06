@@ -11,12 +11,12 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * AppAvatar — CSS propio. Prioridad image > label > icono (`app-icon`).
  */
 @Component({
-  selector: "app-avatar",
+  selector: "lux-avatar-web",
 
   imports: [AppIcon, NgClass],
   template: `
     <div
-      class="app-avatar"
+      class="lux-avatar-web"
       [class.app-avatar-circle]="shape() === 'circle'"
       [class.app-avatar-square]="shape() === 'square'"
       [ngClass]="styleClass()"
@@ -28,7 +28,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       } @else if (label()) {
         <span class="app-avatar-label">{{ label() }}</span>
       } @else if (icon()) {
-        <app-icon [icon]="icon()" />
+        <lux-icon-base [icon]="icon()" />
       }
     </div>
   `,

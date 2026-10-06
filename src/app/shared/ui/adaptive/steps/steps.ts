@@ -18,13 +18,13 @@ import { AppSteps } from "@ui/web/steps/steps";
         [styleClass]="styleClass()"
       ></ili-steps>
     } @else {
-      <app-steps
+      <lux-steps-web
         [model]="model()"
         [readonly]="readonly()"
         [activeIndex]="activeIndex()"
         (activeIndexChange)="activeIndex.set($event)"
         [styleClass]="styleClass()"
-      ></app-steps>
+      ></lux-steps-web>
     }
   `,
 })

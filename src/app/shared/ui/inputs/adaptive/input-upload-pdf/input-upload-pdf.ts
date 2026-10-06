@@ -12,7 +12,7 @@ import { IonInputUploadPdf } from "../../mobile/ion-input-upload-pdf";
 import { WebInputUploadPdf } from "../../web/input-upload-pdf/input-upload-pdf";
 
 @Component({
-  selector: "app-custom-input-upload-pdf-signal",
+  selector: "lux-custom-input-upload-pdf-signal",
 
   imports: [WebInputUploadPdf, IonInputUploadPdf],
   providers: [

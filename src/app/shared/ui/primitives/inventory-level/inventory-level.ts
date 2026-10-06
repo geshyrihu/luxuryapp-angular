@@ -16,14 +16,14 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
  * Uso: ERP almacén, gestión de materiales, punto de reorden.
  */
 @Component({
-  selector: "app-inventory-level",
+  selector: "lux-inventory-level",
 
   imports: [AppIcon, NgClass],
   template: `
     <div class="inv-root">
       <div class="inv-header">
         @if (icon()) {
-          <app-icon [icon]="icon()" class="inv-product-icon" />
+          <lux-icon-base [icon]="icon()" class="inv-product-icon" />
         }
         <div class="inv-info">
           <span class="inv-name">{{ name() }}</span>
@@ -32,7 +32,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
           }
         </div>
         <div class="inv-badge" [ngClass]="'inv-badge-' + status()">
-          <app-icon [icon]="statusIcon()" class="text-xs" />
+          <lux-icon-base [icon]="statusIcon()" class="text-xs" />
           {{ statusLabel() }}
         </div>
       </div>

@@ -10,7 +10,7 @@ import { BadgeBase } from "@ui/core/badge.base";
  * AppBadge — `.badge` de Bootstrap con color semántico y tamaño.
  */
 @Component({
-  selector: "app-badge",
+  selector: "lux-badge-web",
 
   imports: [NgClass],
   template: `

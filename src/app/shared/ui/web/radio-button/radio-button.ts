@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RadioButtonBase } from "@ui/core/radio-button.base";
 
 @Component({
-  selector: "app-radio-button",
+  selector: "lux-radio-button-web",
 
   imports: [ReactiveFormsModule, NgClass],
   template: `<input

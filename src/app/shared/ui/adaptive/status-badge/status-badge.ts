@@ -26,7 +26,7 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
         (statusClick)="statusClick.emit($event)"
       />
     } @else {
-      <app-status-badge
+      <lux-status-badge-web
         [status]="status()"
         [itemId]="itemId()"
         [clickable]="clickable()"

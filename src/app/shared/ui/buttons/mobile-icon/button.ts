@@ -21,7 +21,7 @@ import { MobileButtonBase } from "../mobile-button-base";
       (click)="onClick($event)"
     >
       @if (displayMode() !== "label") {
-        <app-icon [icon]="resolvedIconClass() || IconCatalog.GestureTap" slot="icon-only" />
+        <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.GestureTap" slot="icon-only" />
       }
       @if (displayMode() !== "icon") {
         {{ label() }}

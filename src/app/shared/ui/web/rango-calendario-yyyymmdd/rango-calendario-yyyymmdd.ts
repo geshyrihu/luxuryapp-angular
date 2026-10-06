@@ -13,7 +13,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
  * Permite seleccionar día inicio y día fin con un UI amigable.
  */
 @Component({
-  selector: "app-rango-calendario-yyyymmdd",
+  selector: "lux-rango-calendario-yyyymmdd-web",
   templateUrl: "./rango-calendario-yyyymmdd.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, FlatpickrDirective],

@@ -25,7 +25,7 @@ import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
         [decimals]="decimals()"
       />
     } @else {
-      <app-progress-bar
+      <lux-progress-bar-web
         [value]="value()"
         [mode]="mode()"
         [showValue]="showValue()"

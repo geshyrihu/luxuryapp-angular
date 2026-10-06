@@ -20,8 +20,8 @@ import { BaseButton } from "../base/base-button";
       [tooltipDisabled]="!tooltipText()"
       (click)="emitClick($event)"
     >
-      <!-- <app-icon [icon]="resolvedIconClass() || 'material-symbols-light:edit'" /> -->
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.Edit" />
+      <!-- <lux-icon-base [icon]="resolvedIconClass() || 'material-symbols-light:edit'" /> -->
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.Edit" />
     </button>
   `,
 })

@@ -10,7 +10,7 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
  * Permite seleccionar un periodo (YYYY-MM).
  */
 @Component({
-  selector: "app-mesanio",
+  selector: "lux-mesanio-web",
   imports: [FormsModule, LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

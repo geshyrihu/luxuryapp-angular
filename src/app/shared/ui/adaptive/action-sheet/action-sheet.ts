@@ -16,9 +16,9 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
         ><ng-container [ngTemplateOutlet]="projected"
       /></ili-action-menu>
     } @else {
-      <app-action-menu
+      <lux-action-menu-web
         ><ng-container [ngTemplateOutlet]="projected"
-      /></app-action-menu>
+      /></lux-action-menu-web>
     }
   `,
 })

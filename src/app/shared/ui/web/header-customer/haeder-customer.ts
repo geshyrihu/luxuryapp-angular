@@ -19,7 +19,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
  * Se actualiza reactivamente cuando cambia el Customer ID.
  */
 @Component({
-  selector: "app-header-customer",
+  selector: "lux-header-customer-web",
   imports: [LxAvatar],
   template: `
     <div

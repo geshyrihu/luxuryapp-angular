@@ -26,7 +26,7 @@ import { SwalService } from "@core/services/swal.service";
       [tooltipDisabled]="!tooltipText()"
       (click)="confirmSend()"
     >
-      <app-icon [icon]="resolvedIconClass() || IconCatalog.EmailOutline" />
+      <lux-icon-base [icon]="resolvedIconClass() || IconCatalog.EmailOutline" />
       <span>{{ label() || "Enviar correo" }}</span>
     </button>
   `,

@@ -26,7 +26,7 @@ import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
         (cancel)="cancel.emit()"
       />
     } @else {
-      <app-confirm-dialog
+      <lux-confirm-dialog-web
         [(visible)]="visible"
         [title]="title()"
         [message]="message()"

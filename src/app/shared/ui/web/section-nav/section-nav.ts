@@ -28,7 +28,7 @@ export interface LxSectionNavItem {
           (click)="select(item)"
         >
           @if (item.icon) {
-            <app-icon class="lux-section-nav__icon" [icon]="item.icon" />
+            <lux-icon-base class="lux-section-nav__icon" [icon]="item.icon" />
           }
           <span class="lux-section-nav__label">{{ item.label }}</span>
         </button>

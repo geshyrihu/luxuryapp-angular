@@ -22,9 +22,9 @@ import { BaseButton } from "../base/base-button";
         @if (emoji()) {
           <span>{{ emoji() }}</span>
         } @else if (iconClass()) {
-          <app-icon [icon]="resolvedIconClass()" />
+          <lux-icon-base [icon]="resolvedIconClass()" />
         } @else if (icon()) {
-          <app-icon [icon]="resolvedIcon()" />
+          <lux-icon-base [icon]="resolvedIcon()" />
         }
       }
       @if (displayMode() !== "icon") {

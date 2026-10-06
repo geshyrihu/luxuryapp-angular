@@ -37,7 +37,7 @@ import { AppProcessingOverlay } from "@ui/web/processing-overlay/processing-over
         [submessage]="submessage()"
       />
     } @else {
-      <app-processing-overlay
+      <lux-processing-overlay-web
         [isProcessing]="isProcessing()"
         [progress]="progress()"
         [message]="message()"

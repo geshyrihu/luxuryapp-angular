@@ -3,13 +3,13 @@ import { OfflineIndicatorBase } from "@ui/core/offline-indicator.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-offline-indicator",
+  selector: "lux-offline-indicator-web",
 
   imports: [AppIcon],
   template: `
     @if (showBanner()) {
       <div class="offline-banner" [class.offline-banner-online]="online()">
-        <app-icon
+        <lux-icon-base
           [icon]="online() ? 'material-symbols-light:wifi' : 'material-symbols-light:wifi-off'"
           class="offline-icon"
         />

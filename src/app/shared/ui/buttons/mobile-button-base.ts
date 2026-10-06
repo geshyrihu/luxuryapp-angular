@@ -61,7 +61,7 @@ export abstract class MobileButtonBase extends BaseIonicButton {
   });
 
   /**
-   * Icono normalizado a identificador de Iconify para `<app-icon>`.
+   * Icono normalizado a identificador de Iconify para `<lux-icon-base>`.
    *
    * `iconClass`/`icon` aceptan formatos heredados (`"add"`, `"pi pi-plus"`,
    * `"material-symbols-light:add"`), así que hay que pasarlos por el resolutor.

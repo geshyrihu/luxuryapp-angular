@@ -23,7 +23,7 @@ import { environment } from "src/environments/environment";
  * Visor de PDFs en ventana modal.
  */
 @Component({
-  selector: "app-pdf-viewer-modal",
+  selector: "lux-pdf-viewer-modal-web",
   imports: [PdfViewerModule, AppSpinner, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pdf-viewer-modal.html",

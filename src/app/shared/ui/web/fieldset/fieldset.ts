@@ -3,10 +3,10 @@ import { FieldsetBase } from "@ui/core/fieldset.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "app-fieldset",
+  selector: "lux-fieldset-web",
   imports: [AppIcon],
   template: `
-    <fieldset class="app-fieldset">
+    <fieldset class="lux-fieldset-web">
       <legend
         class="app-fieldset-legend"
         [class.app-fieldset-legend-toggleable]="toggleable()"
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         (keydown.space)="$event.preventDefault(); toggle()"
       >
         @if (toggleable()) {
-          <app-icon [icon]="isCollapsed() ? 'material-symbols-light:chevron-right' : 'material-symbols-light:expand-more'" />
+          <lux-icon-base [icon]="isCollapsed() ? 'material-symbols-light:chevron-right' : 'material-symbols-light:expand-more'" />
         }
         {{ legend() }}
       </legend>
