@@ -14,9 +14,8 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -26,9 +25,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./ordenes-servicio-reporte-proveedor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
-    WebButtonIconDelete,
-    WebButtonIconItem,
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
   ],
@@ -39,6 +36,7 @@ export class OrdenesServicioReporteProveedor {
   apiResponseS = inject(ApiResponseService);
   ref = inject(DynamicDialogRef);
   dialogHandlerS = inject(DialogHandlerService);
+  confirmS = inject(ConfirmService);
   id: string = "";
   dataSignal = signal<any[]>([]);
 
@@ -74,14 +72,11 @@ export class OrdenesServicioReporteProveedor {
     );
   }
 
-  deleteDoc(id: string): void {
-    if (
-      !window.confirm(
-        "Se eliminara el documento. Esta acción no se puede deshacer. Continuar?",
-      )
-    ) {
-      return;
-    }
+  async deleteDoc(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "Se eliminara el documento. Esta acción no se puede deshacer. Continuar?",
+    );
+    if (!confirmed) return;
 
     const urlApi = Endpoints.ServiceOrders.deleteDocument(id);
 

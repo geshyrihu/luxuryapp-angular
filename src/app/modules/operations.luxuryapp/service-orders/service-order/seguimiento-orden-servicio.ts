@@ -14,8 +14,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -52,7 +52,6 @@ interface ServiceOrderFollowUpItem {
     AppIcon,
     ReactiveFormsModule,
     ButtonWeb,
-    WebButtonLabelDelete,
     AppSpinner,
     CustomInputTextAreaSignal,
   ],
@@ -63,6 +62,7 @@ export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
+  private confirmS = inject(ConfirmService);
 
   readonly isSuperUser = this.aspRoleS.roleSignal(ApplicationRole.SuperUsuario);
   followUps = signal<ServiceOrderFollowUpItem[]>([]);
@@ -125,14 +125,11 @@ export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
     }
   }
 
-  onDelete(id: string): void {
-    if (
-      !window.confirm(
-        "Se eliminara el seguimiento. Esta acción no se puede deshacer. Continuar?",
-      )
-    ) {
-      return;
-    }
+  async onDelete(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "Se eliminara el seguimiento. Esta acción no se puede deshacer. Continuar?",
+    );
+    if (!confirmed) return;
 
     this.apiResponseS
       .onDelete(Endpoints.ServiceOrderFollowUps.delete(id))

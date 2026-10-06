@@ -9,20 +9,28 @@
   <ng-template #body let-item>
     <tr>
       <td>
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           [tooltip]="'Visualizar ' + item.nameDocument"
           (clicked)="viewPdf(item.document, item.nameDocument)"
-        >
-          <app-icon
-            [icon]="'material-symbols-light:picture-as-pdf'"
-            class="icon icon- label-icon text-danger"
-          />
-        </iw-button-item>
+        />
       </td>
       <td>{{ item.nameDocument }}</td>
       <td>
         <div class="d-flex justify-content-center">
-          <iw-button-delete (confirmed)="deleteDoc(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="deleteDoc(item.id)"
+          />
         </div>
       </td>
     </tr>

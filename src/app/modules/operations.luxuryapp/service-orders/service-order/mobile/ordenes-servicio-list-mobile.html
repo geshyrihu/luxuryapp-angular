@@ -142,30 +142,35 @@
             label="Imprimir soporte"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconName="image-outline"
             label="Cargar imagen"
             (clicked)="uploadImg.emit(item.id)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            variant="outline"
             iconName="ellipsis-horizontal-outline"
             label="Cargar documentos"
             (clicked)="uploadDoc.emit(item.id)"
-            variant="outline"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconName="chatbubbles-outline"
             label="Seguimiento"
             (clicked)="followUp.emit(item.id)"
           />
           @if (item.isSuspended) {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconName="play-circle-outline"
             label="Reanudar"
             (clicked)="resume.emit(item.id)"
           />
           } @else {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconName="pause-circle-outline"
             label="Suspender"
             (clicked)="suspend.emit(item)"
@@ -175,9 +180,10 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar', machineryId: item.machineryId, providerId: item.providerId })"
           />
-          <ili-button-delete
-            (confirmed)="delete.emit(item.id)"
-            label="Eliminar"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
           />
         </ng-container>
       </ili-action-menu>

@@ -16,7 +16,6 @@ import {
   IonLabel,
 } from "@ionic/angular";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -43,7 +42,6 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     LxTag,
     MobileActionMenu,
     MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     DataViewMobile,
     AppIcon,
   ],

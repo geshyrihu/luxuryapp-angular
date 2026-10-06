@@ -20,6 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -53,6 +54,7 @@ export class OrdenesServicio {
   periodMonthService = inject(PeriodMonthService);
   pdfService = inject(OrdenesServicioListPdfService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   mm: number;
   fechaControl = new FormControl<string>("");
@@ -355,14 +357,11 @@ export class OrdenesServicio {
       });
   }
 
-  onDelete(id: string) {
-    if (
-      !window.confirm(
-        "Se eliminara la orden de servicio junto con sus imágenes y documentos. Esta acción no se puede deshacer. Continuar?",
-      )
-    ) {
-      return;
-    }
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "Se eliminara la orden de servicio junto con sus imágenes y documentos. Esta acción no se puede deshacer. Continuar?",
+    );
+    if (!confirmed) return;
 
     this.apiResponseS
       .onDelete(Endpoints.ServiceOrders.delete(id))

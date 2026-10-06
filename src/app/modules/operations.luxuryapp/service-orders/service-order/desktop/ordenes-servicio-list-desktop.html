@@ -194,45 +194,60 @@
             variant="outline"
           />
 
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
+            tooltip="Cargar imagen"
             iconClass="material-symbols-light:photo"
-            lxTooltip="Cargar imagen"
             tooltipPosition="top"
             (clicked)="uploadImg.emit(item.id)"
-            variant="outline"
           />
 
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
+            tooltip="Cargar documentos"
             iconClass="material-symbols-light:attach-file"
-            lxTooltip="Cargar documentos"
             tooltipPosition="top"
             (clicked)="uploadDoc.emit(item.id)"
-            variant="outline"
           />
 
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
+            tooltip="Seguimiento"
             iconClass="material-symbols-light:forum"
-            lxTooltip="Seguimiento"
             tooltipPosition="top"
             (clicked)="followUp.emit(item.id)"
-            variant="outline"
           />
 
           @if (item.isSuspended) {
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
+            tooltip="Reanudar"
             iconClass="material-symbols-light:play-circle"
-            lxTooltip="Reanudar"
             tooltipPosition="top"
             (clicked)="resume.emit(item.id)"
-            variant="outline"
           />
           } @else {
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
+            tooltip="Suspender"
             iconClass="material-symbols-light:pause-circle"
-            lxTooltip="Suspender"
             tooltipPosition="top"
             (clicked)="suspend.emit(item)"
-            variant="outline"
           />
           }
           <lux-button-web
@@ -250,7 +265,16 @@
                   providerId: item.providerId
                 })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

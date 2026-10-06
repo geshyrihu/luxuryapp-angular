@@ -5,25 +5,27 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { AppImage } from "@ui/web/image/image";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [AppIcon, WebButtonLabelDelete, AppImage],
+  imports: [ ButtonWeb, AppIcon, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OrdenesServicioFotos implements OnInit {
   private readonly config = inject(DynamicDialogConfig);
   private readonly customerIdS = inject(CustomerIdService);
   private readonly apiResponseS = inject(ApiResponseService);
+  private readonly confirmS = inject(ConfirmService);
 
   // Mandato GEMINI.md: Uso de Signals exclusivamente
   readonly id = signal<string>("");
@@ -52,14 +54,11 @@ export class OrdenesServicioFotos implements OnInit {
     }
   }
 
-  confirmDelete(id: string): void {
-    if (
-      !window.confirm(
-        "Se eliminara la imagen de evidencia. Esta acción no se puede deshacer. Continuar?",
-      )
-    ) {
-      return;
-    }
+  async confirmDelete(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "Se eliminara la imagen de evidencia. Esta acción no se puede deshacer. Continuar?",
+    );
+    if (!confirmed) return;
 
     this.deleteImg(id);
   }
