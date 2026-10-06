@@ -143,6 +143,5 @@ export const maintenanceReportRoutes: Routes = [
       title: "Soporte a Orden de Servicio",
       breadcrumb: "Soporte a Orden de Servicio",
     },
-  },
-];
+  }];
 

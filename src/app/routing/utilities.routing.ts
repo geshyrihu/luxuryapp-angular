@@ -12,7 +12,6 @@ export const utilitiesRoutes: Routes = [
       title: "Calcular IVA",
       breadcrumb: "Calcular IVA",
     },
-  },
-];
+  }];
 
 

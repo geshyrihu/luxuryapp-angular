@@ -23,8 +23,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     MobileActionMenu,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class HistorialComprasListMobile {
   data = input.required<any[]>();

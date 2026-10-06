@@ -31,8 +31,7 @@ import { PresentacionJuntaComiteForm } from "./presentacion-junta-comite-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     PresentacionJuntaComiteContadorDesktop,
-    PresentacionJuntaComiteContadorMobile,
-  ],
+    PresentacionJuntaComiteContadorMobile],
 })
 export class PresentacionJuntaComiteContador {
   apiResponseS = inject(ApiResponseService);

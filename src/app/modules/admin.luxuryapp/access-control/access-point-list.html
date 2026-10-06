@@ -25,7 +25,7 @@
       label="Activo"
     />
     <div class="d-flex gap-2 mt-2">
-      <il-button
+      <lux-button-web
         [label]="editingId() ? 'Guardar cambios' : 'Crear puerta'"
         iconClass="material-symbols-light:door-front"
         type="submit"
@@ -33,7 +33,7 @@
         [disabled]="form.invalid"
       />
       @if (editingId()) {
-      <il-button
+      <lux-button-web
         label="Cancelar"
         severity="secondary"
         variant="text"
@@ -66,7 +66,7 @@
       <td>{{ ap.location }}</td>
       <td>{{ ap.isActive ? "Sí" : "No" }}</td>
       <td class="text-end">
-        <il-button
+        <lux-button-web
           label="Editar"
           variant="text"
           iconClass="material-symbols-light:edit"

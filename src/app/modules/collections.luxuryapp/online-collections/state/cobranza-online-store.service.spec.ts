@@ -23,8 +23,7 @@ describe('CobranzaOnlineStoreService', () => {
       providers: [
         CobranzaOnlineStoreService,
         { provide: ApiResponseService, useValue: mockApiResponseService },
-        { provide: CustomerIdService, useValue: mockCustomerIdService },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdService }],
     });
     service = TestBed.inject(CobranzaOnlineStoreService);
   });
@@ -61,8 +60,7 @@ describe('CobranzaOnlineStoreService', () => {
             useValue: { onGetItem, onPost: vi.fn() },
           },
           { provide: CustomerIdService, useValue: mockCustomerIdService },
-          { provide: COBRANZA_ONLINE_STORE_AUTOLOAD, useValue: false },
-        ],
+          { provide: COBRANZA_ONLINE_STORE_AUTOLOAD, useValue: false }],
       });
       store = TestBed.inject(CobranzaOnlineStoreService);
     });

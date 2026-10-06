@@ -75,8 +75,7 @@ describe("MemberList", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MemberList);
@@ -101,8 +100,7 @@ describe("MemberList", () => {
         notes: null,
         accountNumber: "104-001-001-000",
         propertyName: "Torre A / 101",
-      },
-    ]);
+      }]);
 
     component.onLoadData();
     await Promise.resolve();

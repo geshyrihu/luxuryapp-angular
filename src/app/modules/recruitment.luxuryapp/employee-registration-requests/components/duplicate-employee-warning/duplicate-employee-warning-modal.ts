@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -30,7 +31,7 @@ interface DuplicateEmployeeWarningDialogData {
   selector: "app-duplicate-employee-warning-modal",
   templateUrl: "./duplicate-employee-warning-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
+  imports: [ButtonWeb, ],
   styles: [
     `
       :host {

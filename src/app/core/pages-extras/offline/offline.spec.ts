@@ -36,8 +36,7 @@ describe('Offline', () => {
       imports: [Offline],
       providers: [
         { provide: ConnectivityService, useValue: mockConnectivityService },
-        { provide: RedirectService, useValue: mockRedirectService },
-      ],
+        { provide: RedirectService, useValue: mockRedirectService }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

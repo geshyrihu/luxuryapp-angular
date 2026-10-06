@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
@@ -28,7 +29,7 @@ type TagSeverity =
 
 @Component({
   selector: "app-catalog-guia",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     FormsModule,
     InputText,

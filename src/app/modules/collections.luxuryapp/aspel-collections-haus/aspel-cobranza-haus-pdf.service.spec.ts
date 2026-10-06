@@ -19,8 +19,7 @@ describe('AspelCobranzaHausPdfService', () => {
     TestBed.configureTestingModule({
       providers: [
         AspelCobranzaHausPdfService,
-        { provide: HtmlPrintService, useValue: mockHtmlPrintService },
-      ],
+        { provide: HtmlPrintService, useValue: mockHtmlPrintService }],
     });
     service = TestBed.inject(AspelCobranzaHausPdfService);
   });

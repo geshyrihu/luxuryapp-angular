@@ -8,17 +8,13 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-product-output-list-desktop",
@@ -26,12 +22,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     TableFooter,
     CustomInputTextSignal,
     ReactiveFormsModule,

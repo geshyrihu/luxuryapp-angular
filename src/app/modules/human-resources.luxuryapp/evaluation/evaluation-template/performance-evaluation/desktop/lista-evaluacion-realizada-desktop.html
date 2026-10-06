@@ -13,7 +13,7 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between">
       <lux-table-caption (add)="add.emit()" [dt]="dt" />
-      <il-button
+      <lux-button-web
         (clicked)="downloadAll.emit()"
         label="Descargar Todas"
         icon="material-symbols-light:download"

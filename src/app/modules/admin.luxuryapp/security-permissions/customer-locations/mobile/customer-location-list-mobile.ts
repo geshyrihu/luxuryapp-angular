@@ -22,8 +22,7 @@ import { CustomerLocationDto } from "../interfaces/customer-location.dto";
     ButtonMobile,
     MobileActionMenu,
     DataViewMobile,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class CustomerLocationListMobile {
   data = input.required<CustomerLocationDto[]>();

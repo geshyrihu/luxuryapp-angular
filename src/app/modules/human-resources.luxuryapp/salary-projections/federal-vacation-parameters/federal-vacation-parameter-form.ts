@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -11,7 +12,7 @@ import { Endpoints } from '@core/constants/endpoints/endpoints';
   selector: "app-federal-vacation-parameter-form",
   templateUrl: "./federal-vacation-parameter-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, CustomInputTextSignal],
+  imports: [ButtonWeb, FormsModule, CustomInputTextSignal],
 })
 export class FederalVacationParameterForm {
   private readonly api = inject(ApiResponseService);

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { IRegistroChecador } from "../interfaces/chekador-empleados.models";
   selector: "app-chekador-list-mobile",
   templateUrl: "./chekador-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     LxTag,
     LxImage,
     IonInputCheckbox,

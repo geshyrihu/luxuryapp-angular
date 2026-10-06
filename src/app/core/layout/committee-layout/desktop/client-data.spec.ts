@@ -29,8 +29,7 @@ describe("CustomerHeaderDataCommittee", () => {
       imports: [CustomerHeaderDataCommittee],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: CustomerIdService, useValue: customerIdServiceMock },
-      ],
+        { provide: CustomerIdService, useValue: customerIdServiceMock }],
     });
 
     fixture = TestBed.createComponent(CustomerHeaderDataCommittee);

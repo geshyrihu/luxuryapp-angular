@@ -16,7 +16,7 @@
     <div class="d-flex justify-content-between flex-wrap gap-2">
       <lux-table-caption [dt]="dt" (add)="add.emit()" />
       <div class="d-flex gap-2">
-        <il-button
+        <lux-button-web
           label="Sync Vacaciones"
           iconClass="material-symbols-light:sync"
           severity="secondary"
@@ -24,7 +24,7 @@
           [disabled]="sincronizando()"
           (clicked)="syncVacations.emit()"
         />
-        <il-button
+        <lux-button-web
           label="Sync Permisos"
           iconClass="material-symbols-light:sync"
           severity="secondary"

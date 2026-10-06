@@ -207,5 +207,4 @@ export const accountingRoutes: Routes = [
       title: "Sincronización Aspel",
       breadcrumb: "Sincronización Aspel",
     },
-  },
-];
+  }];

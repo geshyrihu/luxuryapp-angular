@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +14,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-equipos-list-mobile",
   templateUrl: "./equipos-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxIcon, DataViewMobile, SanitizeHtmlPipe, CurrencyMexicoPipe],
+  imports: [ButtonWeb, LxIcon, DataViewMobile, SanitizeHtmlPipe, CurrencyMexicoPipe],
 })
 export class EquiposListMobile {
   data = input.required<any[]>();

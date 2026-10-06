@@ -9,8 +9,7 @@ describe('EnumSelectService', () => {
     TestBed.configureTestingModule({
       providers: [
         EnumSelectService,
-        { provide: ApiResponseService, useValue: {} },
-      ],
+        { provide: ApiResponseService, useValue: {} }],
     });
     service = TestBed.inject(EnumSelectService);
   });

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -29,7 +30,7 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
   selector: "app-resultado-evaluacion",
   templateUrl: "./resultado-evaluacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     CommonModule,
     ApiDatePipe,

@@ -2,28 +2,28 @@
 <app-data-view-mobile [data]="data()" [showAdd]="false">
   <div customFilters>
     <div class="d-flex flex-wrap gap-1 p-2">
-      <il-button
+      <lux-button-web
         label="Pendientes"
         [severity]="statusFiltro() == 0 ? 'primary' : 'info'"
         [variant]="statusFiltro() != 0 ? 'text' : null"
         size="sm"
         (clicked)="filtrar.emit(0)"
       />
-      <il-button
+      <lux-button-web
         label="Concluidos"
         [severity]="statusFiltro() == 1 ? 'primary' : 'info'"
         [variant]="statusFiltro() != 1 ? 'text' : null"
         size="sm"
         (clicked)="filtrar.emit(1)"
       />
-      <il-button
+      <lux-button-web
         label="No Autorizados"
         [severity]="statusFiltro() == 2 ? 'primary' : 'info'"
         [variant]="statusFiltro() != 2 ? 'text' : null"
         size="sm"
         (clicked)="filtrar.emit(2)"
       />
-      <il-button
+      <lux-button-web
         label="Todos"
         [severity]="statusFiltro() == 4 ? 'primary' : 'info'"
         [variant]="statusFiltro() != 4 ? 'text' : null"

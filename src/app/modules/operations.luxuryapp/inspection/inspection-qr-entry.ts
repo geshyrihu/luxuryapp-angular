@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -15,7 +16,7 @@ interface InspectionQrResolve {
   selector: "app-inspection-qr-entry",
   templateUrl: "./inspection-qr-entry.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
+  imports: [ButtonWeb, ],
 })
 export class InspectionQrEntry implements OnInit {
   private route = inject(ActivatedRoute);

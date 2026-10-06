@@ -18,11 +18,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { StripTagsPipe } from "@shared/pipes/StripTags.pipe";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-entrega-recepcion-instalaciones",
   templateUrl: "./entrega-recepcion-instalaciones.html",
@@ -30,7 +26,6 @@ import {
   imports: [
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     ReportHeader,
     StripTagsPipe,
     FormsModule,

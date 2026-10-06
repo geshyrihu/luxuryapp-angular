@@ -58,7 +58,7 @@
     </lux-card>
 
     <div class="d-flex justify-content-end">
-      <il-button
+      <lux-button-web
         label="Ajustes temporales"
         iconClass="material-symbols-light:tune"
         severity="secondary"
@@ -141,7 +141,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end">
-        <il-button
+        <lux-button-web
           label="Ajustes temporales"
           iconClass="material-symbols-light:tune"
           severity="secondary"
@@ -251,7 +251,7 @@
           </div>
 
           <div (click)="$event.stopPropagation()">
-            <il-button
+            <lux-button-web
               [iconClass]="isExpanded(card.title) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:info'"
               [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
               variant="link"
@@ -398,7 +398,7 @@
           </div>
 
           <div (click)="$event.stopPropagation()">
-            <il-button
+            <lux-button-web
               [iconClass]="isExpanded(card.title) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:info'"
               [label]="isExpanded(card.title) ? 'Ocultar detalle' : 'Ver detalle tecnico'"
               variant="link"

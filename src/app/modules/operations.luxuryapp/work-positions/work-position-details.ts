@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ import { IWorkPositionHours } from "./interfaces/work-position.model";
   selector: "app-work-position-details",
   templateUrl: "./work-position-details.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, LxTag],
+  imports: [ButtonWeb, LxCard, LxTag],
 })
 export class WorkPositionDetails implements OnInit {
   private config = inject(DynamicDialogConfig);

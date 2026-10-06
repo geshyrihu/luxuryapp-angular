@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, formatNumber } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -37,7 +38,7 @@ import {
 
 @Component({
   selector: "app-analisis-cobranza-cliente",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     FormsModule,
     GooglePieChart4,

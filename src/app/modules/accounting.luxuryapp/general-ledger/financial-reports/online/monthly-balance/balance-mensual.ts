@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface"
 
 @Component({
   selector: "app-balance-mensual",
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     FormsModule,
     AppTable,

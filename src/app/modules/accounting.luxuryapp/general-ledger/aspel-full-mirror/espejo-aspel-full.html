@@ -35,7 +35,7 @@
 
       <!-- Ejercicio -->
       <div class="d-flex align-items-center gap-1">
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:chevron-left"
           variant="text"
           severity="secondary"
@@ -43,7 +43,7 @@
           (clicked)="filterS.year.set(filterS.year() - 1)"
         />
         <span class="fw-bold text-body px-1"> {{ filterS.year() }} </span>
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:chevron-right"
           variant="text"
           severity="secondary"
@@ -62,7 +62,7 @@
         >Ir a:</span
       >
       @for (grupo of grupos(); track grupo.codigo) {
-      <il-button
+      <lux-button-web
         [label]="grupo.nombre"
         variant="outline"
         severity="secondary"
@@ -74,7 +74,7 @@
       <span class="border-left-1 border"></span>
 
       <!-- Filtros de filas -->
-      <il-button
+      <lux-button-web
         label="Mostrar todo"
         iconClass="material-symbols-light:visibility-outline"
         size="small"
@@ -82,7 +82,7 @@
         [variant]="!ocultarSinDatos() ? null : 'outlined'"
         (clicked)="ocultarSinDatos.set(false)"
       />
-      <il-button
+      <lux-button-web
         label="Ocultar sin datos"
         iconClass="material-symbols-light:visibility-off"
         size="small"
@@ -137,7 +137,7 @@
     <!-- Nivel visible -->
     <div class="d-flex align-items-center gap-1">
       @for (n of getNivelesDisponibles(grupo.codigo); track n) {
-      <il-button
+      <lux-button-web
         [label]="'N' + n"
         size="small"
         [severity]="getNivelVisible(grupo.codigo) === n ? 'primary' : 'secondary'"

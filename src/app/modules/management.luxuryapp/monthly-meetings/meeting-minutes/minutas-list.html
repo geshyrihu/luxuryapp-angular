@@ -2,14 +2,14 @@
   <!-- Barra de acciones, filtro por tipo y alta -->
   <div class="mm-toolbar">
     <div class="mm-toolbar__actions">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:print"
         label="PENDIENTES"
         severity="danger"
         size="sm"
         (clicked)="navigateToPendientes()"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:send"
         label="SEGUIMIENTO"
         severity="secondary"
@@ -19,21 +19,21 @@
     </div>
 
     <div class="mm-toolbar__types" role="group" aria-label="Tipo de junta">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:groups"
         label="COMITÉ"
         size="sm"
         [variant]="tipoJunta === 1 ? null : 'outlined'"
         (clicked)="onLoadData(1)"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:account-balance"
         label="ASAMBLEA"
         size="sm"
         [variant]="tipoJunta === 0 ? null : 'outlined'"
         (clicked)="onLoadData(0)"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:settings"
         label="OPERACIÓN"
         size="sm"
@@ -43,7 +43,7 @@
     </div>
 
     <div class="mm-toolbar__cta">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:add"
         label="Nueva minuta"
         size="sm"
@@ -180,7 +180,7 @@
       </div>
 
       <footer class="mm-card__foot">
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:note-alt"
           lxTooltip="Gestionar minuta"
           tooltipPosition="top"

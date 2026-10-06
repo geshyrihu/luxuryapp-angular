@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import {
   ChangeDetectionStrategy,
@@ -16,7 +17,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 @Component({
   selector: "app-confirm-presentation-modal",
 
-  imports: [
+  imports: [ButtonWeb,
     ReactiveFormsModule,
     CustomInputDateSignal,
     LxRadioButton],

@@ -26,8 +26,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ProductosListDesktop {
   data = input.required<any[]>();

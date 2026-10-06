@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { SatFundingDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding.interface";
 import { CommonModule } from "@angular/common";
 import {
@@ -21,7 +22,7 @@ import {
   selector: "app-sat-funding-list-desktop",
   templateUrl: "./sat-funding-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxTooltipDirective,
     LuxTableCaption,

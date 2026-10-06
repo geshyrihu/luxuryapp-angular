@@ -116,8 +116,7 @@ export class ExcelExportService {
       { header: "PROM GASTO", key: "promedioGasto", width: 16 },
       { header: `PSTO ${fiscalYear}`, key: "proposedAmount", width: 16 },
       { header: "DIF", key: "dif", width: 14 },
-      { header: "% CAMBIO", key: "pct", width: 12 },
-    ];
+      { header: "% CAMBIO", key: "pct", width: 12 }];
 
     // -- VISTA / AUTOFILTRO ----------------------------------------------------
     ws.views = [{ state: "frozen", xSplit: 2, ySplit: 1 }]; // congela las 2 primeras columnas
@@ -359,8 +358,7 @@ export class ExcelExportService {
         formulae: [0],
         style: { font: { color: { argb: "FF375623" }, bold: true } },
         priority: 2,
-      },
-    ];
+      }];
     ws.addConditionalFormatting({ ref: `R2:R${lastData}`, rules: cfRules });
     ws.addConditionalFormatting({ ref: `S2:S${lastData}`, rules: cfRules });
 
@@ -473,8 +471,7 @@ export class ExcelExportService {
         key: "cantidadDevuelta",
         width: 18,
         style: { font, numFmt: "#,##0.##" },
-      },
-    ];
+      }];
 
     const headerRow = ws.getRow(1);
     headerRow.height = 25;
@@ -552,8 +549,7 @@ export class ExcelExportService {
       { header: "Extensión", key: "extencion", width: 10, style: { font } },
       { header: "Telófono", key: "phoneNumber", width: 15, style: { font } },
       { header: "Email", key: "email", width: 35, style: { font } },
-      { header: "Enviar Info", key: "enviarMails", width: 12, style: { font } },
-    ];
+      { header: "Enviar Info", key: "enviarMails", width: 12, style: { font } }];
 
     const headerRow = ws.getRow(1);
     headerRow.height = 25;

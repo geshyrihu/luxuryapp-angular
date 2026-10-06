@@ -26,8 +26,7 @@ describe('ModuleAppList', () => {
         { provide: NgbModal, useValue: {} },
         { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     });
     TestBed.overrideComponent(ModuleAppList, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();

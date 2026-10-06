@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -21,7 +22,7 @@ import {
   selector: "app-funding-list-desktop",
   templateUrl: "./funding-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxTag,
     LxIcon,

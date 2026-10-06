@@ -43,8 +43,7 @@ export class HomeComite implements OnInit {
       title: "Poliza del Edificio",
       routeParam: "board-directors/building-insurance-policy",
       image: "assets/images/committee/poliza-seguro.jpg", // Imagen de fallback
-    },
-  ];
+    }];
 
   ngOnInit(): void {
     this.loadImages();

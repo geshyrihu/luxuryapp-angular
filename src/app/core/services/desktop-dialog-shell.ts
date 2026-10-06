@@ -58,8 +58,7 @@ import {
         background-color: var(--ds-bg-sunken, #f1f3f5);
         color: var(--ds-text-primary, #212529);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DesktopDialogShell {
@@ -90,8 +89,7 @@ export class DesktopDialogShell {
       parent: this.parentInjector,
       providers: [
         { provide: DynamicDialogConfig, useValue: dialogConfigStub },
-        { provide: DynamicDialogRef, useValue: dialogRefStub },
-      ],
+        { provide: DynamicDialogRef, useValue: dialogRefStub }],
     });
     queueMicrotask(() => this.onLoaded$.next());
   }

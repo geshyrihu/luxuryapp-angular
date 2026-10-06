@@ -45,8 +45,7 @@ interface IPropertyFineForm {
     CustomInputDecimal,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-form.html",
 })

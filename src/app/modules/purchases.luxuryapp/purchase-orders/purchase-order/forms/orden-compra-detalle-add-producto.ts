@@ -74,8 +74,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     CustomInputNumberSignal,
     LuxTableCaption,
     TableFooter,
-    LxMessage,
-  ],
+    LxMessage],
 })
 export class OrdenCompraDetalleAddProducto implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);

@@ -36,8 +36,7 @@ import {
     LuxTableCaption,
     TableFooter,
     ActionMenu,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class LegalPendientesMinutaDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

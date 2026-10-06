@@ -37,8 +37,7 @@ export class ContractAddendumList implements OnInit {
     "addendumNumber",
     "title",
     "addendumType",
-    "addendumStatus",
-  ]);
+    "addendumStatus"]);
 
   ngOnInit(): void {
     this.employeeId.set(this.route.snapshot.queryParamMap.get("employeeId"));

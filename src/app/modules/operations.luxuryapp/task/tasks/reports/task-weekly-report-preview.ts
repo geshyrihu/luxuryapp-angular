@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { HtmlPrintService } from "@core/services/html-print.service";
   selector: "app-task-weekly-report-preview",
   templateUrl: "./task-weekly-report-preview.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [],
+  imports: [ButtonWeb, ],
 })
 export class TaskWeeklyReportPreview implements OnInit {
   apiResponseS = inject(ApiResponseService);

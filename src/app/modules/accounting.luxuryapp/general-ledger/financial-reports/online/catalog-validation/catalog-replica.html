@@ -15,7 +15,7 @@
       />
     </div>
     <div class="mb-0">
-      <il-button
+      <lux-button-web
         label="Cargar Catálogo"
         iconClass="material-symbols-light:refresh"
         size="sm"
@@ -31,7 +31,7 @@
         catalog.periodoPresupuesto }}
       </div>
       <div class="d-flex gap-1">
-        <il-button
+        <lux-button-web
           label="Expandir Todo"
           iconClass="material-symbols-light:keyboard-double-arrow-down"
           variant="outline"
@@ -39,7 +39,7 @@
           size="sm"
           (clicked)="toggleAll(true)"
         />
-        <il-button
+        <lux-button-web
           label="Colapsar Todo"
           iconClass="material-symbols-light:keyboard-double-arrow-up"
           variant="outline"
@@ -148,7 +148,7 @@
           <div class="d-flex align-items-center">
             <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               [lxTooltip]="account.expanded ? '⬇️' : '➡️'"
               tooltipPosition="top"
               variant="text"
@@ -207,7 +207,7 @@
     >
       <div class="d-flex align-items-center gap-2 mb-1">
         @if (account.nivel === 1) {
-        <iw-button
+        <lux-button-web displayMode="icon"
           [lxTooltip]="account.expanded ? 'Contraer' : 'Expandir'"
           tooltipPosition="top"
           variant="text"

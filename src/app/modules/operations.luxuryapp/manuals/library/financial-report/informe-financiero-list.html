@@ -11,7 +11,7 @@
           <span class="text-break">{{ item.period }}</span>
         </div>
         @if (item.hasDocument) {
-        <il-button-view-pdf
+        <lux-button-web-view-pdf
           [url]="item.nameFileEstadoFinanciero"
           fileName="Informe Financiero"
         />
@@ -55,7 +55,7 @@
 
         <div end class="d-flex align-items-center">
           @if (item.hasDocument) {
-          <il-button-view-pdf
+          <lux-button-web-view-pdf
             [url]="item.nameFileEstadoFinanciero"
             pdf="informe"
           />

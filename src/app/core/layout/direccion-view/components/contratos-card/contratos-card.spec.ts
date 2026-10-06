@@ -30,8 +30,7 @@ describe("ContratosCard", () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
-        { provide: DialogHandlerService, useValue: dialogHandlerServiceMock },
-      ],
+        { provide: DialogHandlerService, useValue: dialogHandlerServiceMock }],
     });
 
     fixture = TestBed.createComponent(ContratosCard);

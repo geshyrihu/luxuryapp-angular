@@ -44,8 +44,7 @@ export class WorkContractList implements OnInit {
     "contractNumber",
     "employeeName",
     "contractType",
-    "status",
-  ]);
+    "status"]);
 
   ngOnInit(): void {
     const qp = this.route.snapshot.queryParamMap.get("employeeId");

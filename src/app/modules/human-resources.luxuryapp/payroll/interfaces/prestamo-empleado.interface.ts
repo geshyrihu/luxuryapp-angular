@@ -60,5 +60,4 @@ export const NUMERO_PAGOS_OPTIONS = [
   { label: "6 quincenas", value: 6 },
   { label: "8 quincenas", value: 8 },
   { label: "10 quincenas", value: 10 },
-  { label: "12 quincenas", value: 12 },
-];
+  { label: "12 quincenas", value: 12 }];

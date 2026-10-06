@@ -5,7 +5,7 @@
       class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3"
     >
       <div class="d-flex align-items-center gap-3">
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:arrow-back"
           severity="secondary"
           variant="text"
@@ -30,7 +30,7 @@
         @if (simulating()) {
         <span class="text-body-secondary text-sm">Calculando…</span>
         } @if (isEditable()) {
-        <il-button
+        <lux-button-web
           label="Agregar plaza nueva"
           iconClass="material-symbols-light:person-add"
           severity="secondary"
@@ -39,7 +39,7 @@
           (clicked)="addNewPositionRow()"
           [disabled]="activeScenario()?.name === 'Escenario Base'"
         />
-        <il-button
+        <lux-button-web
           label="Guardar propuesta"
           iconClass="material-symbols-light:save"
           severity="primary"
@@ -53,7 +53,7 @@
 
   <div class="d-flex flex-wrap align-items-center gap-2">
     @for (scenario of scenarios(); track scenario.id) {
-    <il-button
+    <lux-button-web
       [label]="scenario.name"
       [severity]="scenario.id === activeScenarioId() ? 'primary' : 'secondary'"
       [variant]="scenario.id === activeScenarioId() ? 'filled' : 'outline'"
@@ -211,7 +211,7 @@
             <div class="d-flex align-items-center justify-content-end gap-2">
               {{ simulationOf(item.id)?.totalEmployerCost ?? 0 | number: "1.2-2"
               }} @if (isEditable()) {
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:delete"
                 severity="danger"
                 variant="text"

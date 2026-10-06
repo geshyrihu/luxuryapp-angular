@@ -47,8 +47,7 @@ import { GastoFijoDetalleEdit } from "./gasto-fijo-detalle-edit";
     CustomInputDecimal,
     CustomInputSelectSignal,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GastoFijoServicios implements OnInit {

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-presupuesto-web-aspel-wrapper",
   templateUrl: "./wrapper.html",
-  imports: [LxTooltipDirective,
+  imports: [ButtonWeb, LxTooltipDirective,
     FormsModule,
     LxTabs,
     PresupuestoAspelEjercicioFiscal,

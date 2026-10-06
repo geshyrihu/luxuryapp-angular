@@ -52,8 +52,7 @@ interface VacationRequestEditDTO {
     LxMessage,
     CustomInputDateSignal,
     // CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class VacacionesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

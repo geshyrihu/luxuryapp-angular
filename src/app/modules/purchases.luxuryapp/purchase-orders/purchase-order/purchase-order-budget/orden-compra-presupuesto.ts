@@ -62,8 +62,7 @@ import {
     AppSpinner,
     LuxTableCaption,
     TableFooter,
-    LxTag,
-  ],
+    LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
@@ -90,8 +89,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   availableYears = [
     { label: "2024", value: 2024 },
     { label: "2025", value: 2025 },
-    { label: "2026", value: 2026 },
-  ];
+    { label: "2026", value: 2026 }];
   // Id de la orden de compra que viene desde el modal
   ordenCompraId: string = "";
 
@@ -214,8 +212,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente,
-    ]);
+      ApplicationRole.Asistente]);
     if (superUser) return false; // los superusuarios no tienen restricciones ??
 
     const accountNumber = (item.accountNumber || "")
@@ -234,8 +231,7 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente,
-    ]);
+      ApplicationRole.Asistente]);
     if (superUser) return false; // Admins y SuperUsuarios siempre pueden guardar
 
     const accountNumber = (item.accountNumber || "")

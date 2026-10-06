@@ -34,8 +34,7 @@ export class PanelAprobaciones implements OnInit {
     { field: "requestType", header: "Tipo" },
     { field: "requestTypeName", header: "Detalle" },
     { field: "startDate", header: "Inicio", isDate: true },
-    { field: "endDate", header: "Fin", isDate: true },
-  ];
+    { field: "endDate", header: "Fin", isDate: true }];
 
   ngOnInit(): void {
     this.state.loadRequests();

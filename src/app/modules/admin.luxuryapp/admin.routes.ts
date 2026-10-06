@@ -650,8 +650,7 @@ export const adminRoutes: Routes = [
           import("@admin.luxuryapp/infrastructure/catalog-component-ui/catalog-core-item/catalog-web-extras").then(
             (m) => m.CatalogWebExtras,
           ),
-      },
-    ],
+      }],
   },
   {
     path: "depuration",
@@ -784,5 +783,4 @@ export const adminRoutes: Routes = [
       title: "CONVENTIONS.md - Guía Interactiva",
       breadcrumb: "Conventions Guide",
     },
-  },
-];
+  }];

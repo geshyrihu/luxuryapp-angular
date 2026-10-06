@@ -22,8 +22,7 @@ import { AsambleaChecklistTemplateListMobile } from "./mobile/asamblea-checklist
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AsambleaChecklistTemplateListDesktop,
-    AsambleaChecklistTemplateListMobile,
-  ],
+    AsambleaChecklistTemplateListMobile],
 })
 export class AsambleaChecklistTemplateList implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -36,8 +35,7 @@ export class AsambleaChecklistTemplateList implements OnInit {
     "code",
     "title",
     "category",
-    "defaultResponsibleRole",
-  ]);
+    "defaultResponsibleRole"]);
 
   ngOnInit(): void {
     this.onLoadData();

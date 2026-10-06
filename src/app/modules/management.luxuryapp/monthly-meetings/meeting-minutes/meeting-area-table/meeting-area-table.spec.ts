@@ -23,8 +23,7 @@ describe("AreaDetailsTable", () => {
       imports: [AreaDetailsTable],
       providers: [
         { provide: ConfirmService, useValue: mockConfirmS },
-        { provide: SwalService, useValue: mockSwalS },
-      ],
+        { provide: SwalService, useValue: mockSwalS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

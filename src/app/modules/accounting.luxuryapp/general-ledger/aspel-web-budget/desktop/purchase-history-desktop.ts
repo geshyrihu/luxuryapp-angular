@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -21,7 +22,7 @@ import { PurchaseHistoryDTO } from "../presupuestos.interfaces";
   selector: "app-purchase-history-desktop",
   templateUrl: "./purchase-history-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxIcon,
     AppTable,

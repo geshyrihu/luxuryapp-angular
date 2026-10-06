@@ -53,14 +53,14 @@
         </div>
 
         <div class="col-12 text-end">
-          <il-button
+          <lux-button-web
             label="Cancelar"
             severity="secondary"
             customClass="mr-2"
             type="button"
             (clicked)="resetForm()"
           />
-          <il-button
+          <lux-button-web
             [label]="occupantForm.controls.id.value ? 'Actualizar' : 'Agregar ocupante'"
             [disabled]="loading() || occupantForm.invalid"
             type="submit"

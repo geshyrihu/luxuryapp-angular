@@ -39,7 +39,7 @@ describe('icon-mapping', () => {
     // otro prefijo no se dibuja: `<iconify-icon>` no avisa, solo deja el hueco.
     it('todos sus valores apuntan a material-symbols-light', () => {
       const ajenos = Object.entries(PRIME_TO_ICONIFY).filter(
-        ([, valor]) => !valor.startsWith('material-symbols-light:'),
+        ([ valor]) => !valor.startsWith('material-symbols-light:'),
       );
       expect(ajenos).toEqual([]);
     });

@@ -29,8 +29,7 @@ interface IPeriodoCedulaForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputDateSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class PeriodoCedulaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

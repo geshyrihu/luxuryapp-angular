@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <il-button
+        <lux-button-web
           type="submit"
           [label]="budgetProposalItem()?.id ? 'Actualizar Soporte' : 'Agregar Soporte'"
           [loading]="loading()"
@@ -90,8 +90,8 @@
         <span class="text-sm fw-medium truncate">{{ file.fileName }}</span>
       </div>
       <div class="d-flex gap-2">
-        <il-button-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
-        <il-button
+        <lux-button-web-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
+        <lux-button-web
           iconClass="material-symbols-light:delete"
           (clicked)="onDeleteFile(file.id)"
           label="Eliminar"

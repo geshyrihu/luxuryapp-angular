@@ -29,8 +29,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
     ButtonWeb,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
-  ],
+    CustomInputSelectSignal],
 })
 export class VaultSecretForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -48,8 +47,7 @@ export class VaultSecretForm implements OnInit {
     { label: "Private Key", value: "PRIVATE_KEY" },
     { label: "OAuth Secret", value: "OAUTH_SECRET" },
     { label: "OAuth Token", value: "OAUTH_TOKEN" },
-    { label: "DB Connection", value: "DB_CONNECTION" },
-  ];
+    { label: "DB Connection", value: "DB_CONNECTION" }];
 
   form = new FormGroup({
     secretName: new FormControl<string>("", {

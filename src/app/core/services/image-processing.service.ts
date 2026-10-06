@@ -50,8 +50,7 @@ const BROWSER_IMAGE_MIME_TYPES = new Set([
   "image/jpg",
   "image/pjpeg",
   "image/png",
-  "image/webp",
-]);
+  "image/webp"]);
 
 /**
  * Punto de entrada unico para preparar imagenes antes de subirlas.

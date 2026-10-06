@@ -3,8 +3,7 @@ import { ETipoGastoPipe } from './tipo-gasto.pipe';
 vi.mock('@core/helpers/enumeration', () => ({
   onGetSelectItemFromEnum: () => [
     { value: 1, label: 'Ordinario' },
-    { value: 2, label: 'Extraordinario' },
-  ],
+    { value: 2, label: 'Extraordinario' }],
 }));
 
 describe('ETipoGastoPipe', () => {

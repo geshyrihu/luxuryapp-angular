@@ -102,7 +102,6 @@ export const employeeEvaluationRoutes: Routes = [
       title: "Resultado de Evaluación",
       breadcrumb: "Resultado de Evaluación",
     },
-  },
-];
+  }];
 
 

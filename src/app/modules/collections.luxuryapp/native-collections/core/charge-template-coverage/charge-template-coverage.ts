@@ -29,8 +29,7 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
     AppTable,
     AppFrozenColumn,
     LuxTableCaption,
-    CurrencyPipe,
-  ],
+    CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-coverage.html",
 })

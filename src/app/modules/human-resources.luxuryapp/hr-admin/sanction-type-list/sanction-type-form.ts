@@ -35,8 +35,7 @@ import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class SanctionTypeForm implements OnInit {
   apiS = inject(ApiResponseService);

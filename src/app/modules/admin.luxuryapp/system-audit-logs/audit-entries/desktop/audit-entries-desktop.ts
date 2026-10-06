@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { AuditEntry } from "../interfaces/audit-entry.interface";
   selector: "app-audit-entries-desktop",
   templateUrl: "./audit-entries-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     TableEmptyMessage,
     ApiDatePipe,
     ReactiveFormsModule,

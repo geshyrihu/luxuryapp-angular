@@ -15,7 +15,8 @@
         <td>{{ item.uploadDate | apiDate: "short" }}</td>
         <td class="text-center">
           <div class="d-flex justify-content-center">
-            <iw-button
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:visibility-outline"
               [rounded]="true"
               [text]="true"
@@ -49,13 +50,13 @@
   </div>
 
   <div class="d-flex justify-content-end mt-3">
-    <il-button
+    <lux-button-web
       label="Cerrar"
       iconClass="material-symbols-light:close"
       severity="secondary"
       (clicked)="close()"
     />
-    <il-button
+    <lux-button-web
       label="Subir"
       iconClass="material-symbols-light:upload"
       severity="primary"

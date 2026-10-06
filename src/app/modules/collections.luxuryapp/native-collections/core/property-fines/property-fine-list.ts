@@ -49,8 +49,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     LuxTableCaption,
     CurrencyPipe,
     ApiDatePipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-list.html",
 })

@@ -2,13 +2,13 @@
   <div class="card p-3">
     <div class="inspection-filters">
       <div class="inspection-filters__group">
-        <il-button
+        <lux-button-web
           label="Nuevo Recorrido"
           size="sm"
           lxTooltip="Nuevo Recorrido"
           (clicked)="add.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:menu-book-outline"
           label="Reportes"
           size="sm"
@@ -47,7 +47,7 @@
         />
       </div>
       <div class="inspection-filters__actions">
-        <il-button
+        <lux-button-web
           label="Limpiar filtros"
           severity="secondary"
           variant="outline"
@@ -55,7 +55,7 @@
           iconClass="material-symbols-light:filter-alt-off"
           (clicked)="clearFilters.emit()"
         />
-        <il-button
+        <lux-button-web
           label="Aplicar filtros"
           size="sm"
           iconClass="material-symbols-light:filter-alt"

@@ -169,5 +169,4 @@ export const ticketsRoutes: Routes = [
       title: "Tickets Legales",
       breadcrumb: "Tickets Legales",
     },
-  },
-];
+  }];

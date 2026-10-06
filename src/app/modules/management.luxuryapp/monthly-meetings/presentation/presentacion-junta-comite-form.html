@@ -13,7 +13,7 @@
     <div class="mt-2 p-2 rounded bg-body-tertiary">
       <lux-icon [icon]="'material-symbols-light:picture-as-pdf'" class="me-2" />
       <span class="text-sm">{{ selectedFileName() }}</span>
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:close"
         (clicked)="clearFile()"
         severity="danger"

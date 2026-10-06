@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +23,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-catalog-replica",
-  imports: [LxTooltipDirective,
+  imports: [ButtonWeb, LxTooltipDirective,
     FormsModule,
     AppTable,
     CustomInputTextSignal,

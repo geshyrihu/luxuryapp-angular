@@ -29,8 +29,7 @@ import { ModuleAppRolDto } from "../interfaces/module-app-rol.dto";
     AppSorticon,
     LxTag,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ModuleAppRolListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

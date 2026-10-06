@@ -79,7 +79,7 @@
             (keydown.enter)="onAddChecklistItem()"
             placeholder="Nuevo item del checklist"
           />
-          <il-button
+          <lux-button-web
             label="Agregar"
             iconClass="material-symbols-light:add"
             [disabled]="!newDescription().trim() || isAddingChecklistItem()"
@@ -101,7 +101,7 @@
             accept="application/pdf,image/*"
             (change)="onFileSelected($event)"
           />
-          <il-button
+          <lux-button-web
             [label]="isUploadingAttachment() ? 'Cargando...' : 'Subir archivo'"
             iconClass="material-symbols-light:upload"
             [disabled]="isUploadingAttachment()"
@@ -120,7 +120,7 @@
           >
             <div class="d-flex align-items-center gap-3 flex-fill">
               @if (isPdf(item)) {
-              <iw-button-view-pdf
+              <lux-button-web displayMode="icon"-view-pdf
                 [url]="item.path"
                 [fileName]="item.fileName"
               />

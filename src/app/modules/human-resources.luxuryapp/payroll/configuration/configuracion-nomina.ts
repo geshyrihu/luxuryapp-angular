@@ -30,8 +30,7 @@ import {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputDecimal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./configuracion-nomina.html",
 })
@@ -48,25 +47,21 @@ export default class ConfiguracionNomina implements OnInit {
     frecuenciaPago: [0, Validators.required],
     diaPago1: [
       15,
-      [Validators.required, Validators.min(1), Validators.max(31)],
-    ],
+      [Validators.required, Validators.min(1), Validators.max(31)]],
     diaPago2: [
       30,
-      [Validators.required, Validators.min(1), Validators.max(31)],
-    ],
+      [Validators.required, Validators.min(1), Validators.max(31)]],
     diasAguinaldo: [15, [Validators.required, Validators.min(15)]],
     factorPrimaVacacional: [0.25, [Validators.required, Validators.min(0.25)]],
     minutosToleranciaRetardo: [10, [Validators.required, Validators.min(0)]],
     retardosPorFalta: [3, [Validators.required, Validators.min(1)]],
     porcentajeEnfermedadMaternidad: [
       0.00625,
-      [Validators.required, Validators.min(0)],
-    ],
+      [Validators.required, Validators.min(0)]],
     porcentajeIvcm: [0.00625, [Validators.required, Validators.min(0)]],
     porcentajeCesantiaVejez: [
       0.01125,
-      [Validators.required, Validators.min(0)],
-    ],
+      [Validators.required, Validators.min(0)]],
   });
 
   constructor() {

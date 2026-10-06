@@ -22,8 +22,7 @@ import { AddendumTemplateListDTO } from "../interfaces/addendum-template.dto";
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class AddendumTemplateListMobile {
   data = input.required<AddendumTemplateListDTO[]>();

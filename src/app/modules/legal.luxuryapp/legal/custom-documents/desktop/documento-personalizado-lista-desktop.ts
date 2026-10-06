@@ -31,8 +31,7 @@ import {
     AppSorticon,
     ReactiveFormsModule,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class DocumentoPersonalizadoListaDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

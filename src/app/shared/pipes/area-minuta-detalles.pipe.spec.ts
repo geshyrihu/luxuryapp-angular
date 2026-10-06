@@ -3,8 +3,7 @@ import { EAreaMinutasDetallesPipe } from './area-minuta-detalles.pipe';
 vi.mock('@core/helpers/enumeration', () => ({
   onGetSelectItemFromEnum: () => [
     { value: 'Administracion', label: 'Administración' },
-    { value: 'Mantenimiento', label: 'Mantenimiento' },
-  ],
+    { value: 'Mantenimiento', label: 'Mantenimiento' }],
 }));
 
 describe('EAreaMinutasDetallesPipe', () => {

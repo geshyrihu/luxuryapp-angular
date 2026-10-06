@@ -25,8 +25,7 @@ describe('CustomerModulList', () => {
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: PlatformService, useValue: { isMobile: () => false } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerModulList);

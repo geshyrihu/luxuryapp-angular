@@ -23,8 +23,7 @@ export const TIPO_EVIDENCIA_OPTIONS = [
   { label: "Tiempo Extra Firmado",  value: 1 },
   { label: "Evidencia Asistencia",  value: 2 },
   { label: "Documento Incapacidad", value: 3 },
-  { label: "Otro Documento",        value: 4 },
-];
+  { label: "Otro Documento",        value: 4 }];
 
 export const TIPO_EVIDENCIA_COLORS: Record<number, string> = {
   0: "#dcfce7",

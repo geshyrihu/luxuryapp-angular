@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -31,7 +32,7 @@ interface UnallocatedPayment {
 
 @Component({
   selector: "app-reconciliation-dashboard",
-  imports: [
+  imports: [ButtonWeb, 
     AppTable,
     LuxTableCaption,
     LxTag,

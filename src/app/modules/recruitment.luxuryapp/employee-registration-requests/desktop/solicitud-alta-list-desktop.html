@@ -85,7 +85,7 @@
       </td>
       <td class="text-center no-print">
         <div class="d-flex gap-1 justify-content-center">
-          <il-button
+          <lux-button-web
             [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
             iconClass="material-symbols-light:send"
             variant="outline"
@@ -97,13 +97,13 @@
       <td class="no-print">
         <div class="d-flex gap-1">
           @if (canCompleteAlta(item)) {
-          <il-button
+          <lux-button-web
             label="Completar Alta"
             iconClass="material-symbols-light:person-add"
             variant="solid"
             (clicked)="completeAlta.emit(item)"
           />
-          <il-button
+          <lux-button-web
             label="Cancelar"
             iconClass="material-symbols-light:cancel"
             severity="danger"
@@ -111,7 +111,7 @@
             (clicked)="abortHiring.emit(item)"
           />
           } @else if (canManageLinkedAlta(item)) {
-          <il-button
+          <lux-button-web
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
             variant="outline"
@@ -125,7 +125,7 @@
             variant="solid"
             (clicked)="concludeHiring.emit(item.id)"
           />
-          <il-button
+          <lux-button-web
             label="Abortar Alta"
             iconClass="material-symbols-light:cancel"
             severity="danger"
@@ -133,14 +133,14 @@
             (clicked)="abortHiring.emit(item)"
           />
           } @else if (canOpenCompletedFile(item)) {
-          <il-button
+          <lux-button-web
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
             variant="outline"
             (clicked)="goToEmployeeFile.emit(item)"
           />
           } @else if (isCancelled(item)) {
-          <il-button
+          <lux-button-web
             label="Ver Detalles"
             iconClass="material-symbols-light:visibility"
             variant="outline"

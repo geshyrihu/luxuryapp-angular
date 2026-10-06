@@ -31,7 +31,7 @@
           class="staff-board-actions d-flex flex-wrap gap-2 align-items-center justify-content-center justify-content-md-end"
         >
           @if (statusFilter() === 'Activo') {
-          <il-button
+          <lux-button-web
             (clicked)="statusFilterChange.emit('Inactivo')"
             label="Inactivos"
             iconClass="material-symbols-light:visibility-off"
@@ -39,7 +39,7 @@
             variant="outlined"
           />
           } @else {
-          <il-button
+          <lux-button-web
             (clicked)="statusFilterChange.emit('Activo')"
             label="Activos"
             iconClass="material-symbols-light:visibility"

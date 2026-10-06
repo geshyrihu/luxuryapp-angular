@@ -33,8 +33,7 @@ export interface ComiteVigilanciaFormData {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ComiteVigilanciaListDesktop {
   data = input.required<ComiteVigilancia[]>();

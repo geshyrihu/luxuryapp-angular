@@ -11,8 +11,7 @@ describe('SignalRService', () => {
       providers: [
         SignalRService,
         { provide: AuthService, useValue: { getToken: vi.fn() } },
-        { provide: ConsoleLoggerService, useValue: { custom: vi.fn(), error: vi.fn(), warn: vi.fn() } },
-      ],
+        { provide: ConsoleLoggerService, useValue: { custom: vi.fn(), error: vi.fn(), warn: vi.fn() } }],
     });
     service = TestBed.inject(SignalRService);
   });

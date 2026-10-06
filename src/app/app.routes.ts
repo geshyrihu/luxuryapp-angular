@@ -145,7 +145,6 @@ export const appRoutes: Routes = [
   {
     path: "**",
     redirectTo: "page404",
-  },
-];
+  }];
 
 

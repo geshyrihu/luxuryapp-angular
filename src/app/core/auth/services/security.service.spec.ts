@@ -33,8 +33,7 @@ describe('SecurityService', () => {
       providers: [
         SecurityService,
         { provide: StorageService, useValue: storageMock },
-        { provide: ConsoleLoggerService, useValue: { custom: vi.fn() } },
-      ],
+        { provide: ConsoleLoggerService, useValue: { custom: vi.fn() } }],
     });
 
     service = TestBed.inject(SecurityService);

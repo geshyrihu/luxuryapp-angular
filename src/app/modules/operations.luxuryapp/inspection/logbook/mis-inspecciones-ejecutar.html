@@ -71,7 +71,7 @@
           </div>
         </td>
         <td class="text-center">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:photo-camera"
             label="Agregar fotos"
             (clicked)="onModalAddImages(revision.id)"
@@ -136,7 +136,7 @@
             }
           </div>
           }
-          <il-button
+          <lux-button-web
             (clicked)="onModalAddImages(item.id)"
             iconClass="material-symbols-light:add-a-photo"
             label="Agregar fotos"
@@ -149,7 +149,7 @@
   </app-data-view-mobile>
 
   <div class="text-center mt-4">
-    <il-button
+    <lux-button-web
       (clicked)="onSubmit()"
       iconClass="material-symbols-light:save"
       label="Finalizar Inspección"

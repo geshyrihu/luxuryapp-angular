@@ -45,8 +45,7 @@ export class CobranzaOnlineWrapper {
         id: "context",
         title: `Cliente: ${customer} · ${period}`,
         icon: "material-symbols-light:apartment",
-      },
-    ];
+      }];
   });
 
   readonly currentYear = cobranzaOnlineFilterState.year;

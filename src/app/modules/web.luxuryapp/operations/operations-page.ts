@@ -34,8 +34,7 @@ export class OperationsPage implements AfterViewInit {
       icon: "🚪",
       title: "Control de Acceso",
       desc: "Administración de sistemas de acceso, visitas, correspondencia y seguridad perimetral.",
-    },
-  ];
+    }];
 
   process = [
     {
@@ -53,8 +52,7 @@ export class OperationsPage implements AfterViewInit {
     {
       title: "Optimización Continua",
       desc: "Ajustamos procesos basados en resultados y feedback.",
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

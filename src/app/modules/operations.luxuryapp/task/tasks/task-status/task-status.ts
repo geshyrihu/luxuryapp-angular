@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import {
   ChangeDetectionStrategy,
@@ -22,7 +23,7 @@ import { TaskGroupService } from "../task.service";
   selector: "app-task-status",
   templateUrl: "./task-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, IonSegment, IonSegmentButton, IonLabel],
+  imports: [ButtonWeb, FormsModule, IonSegment, IonSegmentButton, IonLabel],
   host: {
     class: "w-full block",
   },

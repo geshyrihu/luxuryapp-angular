@@ -27,8 +27,7 @@ import {
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class OrdenesCompraCedulaListDesktop {
   data = input.required<any[]>();

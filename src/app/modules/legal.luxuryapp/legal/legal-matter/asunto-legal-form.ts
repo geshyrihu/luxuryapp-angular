@@ -22,8 +22,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     InputAutocomplete,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./asunto-legal-form.html",
 })
@@ -46,8 +45,7 @@ export class AsuntoLegalForm implements OnInit {
     {
       value: false,
       label: "Externo",
-    },
-  ];
+    }];
 
   form = this.formB.nonNullable.group({
     id: [{ value: "", disabled: true }],

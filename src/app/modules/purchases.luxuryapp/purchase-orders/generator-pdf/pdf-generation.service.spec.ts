@@ -17,8 +17,7 @@ describe('PdfGenerationService', () => {
         { provide: HtmlPrintService, useValue: { getLogoDataUrl: vi.fn().mockResolvedValue(''), esc: vi.fn().mockReturnValue(''), getStandardCss: vi.fn().mockReturnValue(''), buildStandardHeader: vi.fn().mockReturnValue(''), buildStandardFooter: vi.fn().mockReturnValue(''), printHtml: vi.fn() } },
         { provide: CustomToastService, useValue: { showInfo: vi.fn(), showError: vi.fn() } },
         { provide: CustomerIdService, useValue: { customerId: vi.fn().mockReturnValue('1') } },
-        { provide: DatePipe, useValue: { transform: vi.fn().mockReturnValue('2024-01-01') } },
-      ],
+        { provide: DatePipe, useValue: { transform: vi.fn().mockReturnValue('2024-01-01') } }],
     });
     service = TestBed.inject(PdfGenerationService);
   });

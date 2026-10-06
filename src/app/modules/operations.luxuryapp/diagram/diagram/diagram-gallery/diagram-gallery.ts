@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,14 +19,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [ApiDatePipe, LxIcon, CustomInputTextSignal],
+  imports: [ ButtonWeb, ApiDatePipe, LxIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="d-flex align-items-center ">
           <h2 class="m-0">Galeróa de Diagramas</h2>
-          <il-button
+          <lux-button-web
             label="Gestión"
             iconClass="material-symbols-light:format-list-bulleted"
             (clicked)="onOpenList()"
@@ -65,7 +66,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
               </div>
               <div class="card-footer">
                 <div class="d-flex ">
-                  <il-button
+                  <lux-button-web
                     label="Visualizar"
                     iconClass="material-symbols-light:visibility-outline"
                     severity="success"
@@ -83,14 +84,14 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         <div
           class="d-flex justify-content-center align-items-center mt-3 gap-2"
         >
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:chevron-left"
             variant="text"
             (clicked)="currentPage.set(currentPage() - 1)"
             [disabled]="currentPage() === 1"
           />
           <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:chevron-right"
             variant="text"
             (clicked)="currentPage.set(currentPage() + 1)"

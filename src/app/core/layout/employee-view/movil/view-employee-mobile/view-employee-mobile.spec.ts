@@ -75,8 +75,7 @@ describe('ViewEmployeeMobile', () => {
         { provide: MenuService, useValue: menuServiceMock },
         { provide: HidescrollnavService, useValue: hideScroolNavServiceMock },
         { provide: LayoutService, useValue: layoutServiceMock },
-        { provide: MenuController, useValue: { close: vi.fn() } },
-      ],
+        { provide: MenuController, useValue: { close: vi.fn() } }],
     });
 
     fixture = TestBed.createComponent(ViewEmployeeMobile);

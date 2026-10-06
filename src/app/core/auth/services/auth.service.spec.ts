@@ -43,8 +43,7 @@ describe('AuthService', () => {
         {
           provide: 'HttpClientWithoutInterceptors',
           useExisting: HttpClient,
-        },
-      ],
+        }],
     });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);

@@ -56,19 +56,19 @@
               />
             </div>
             <div class="d-flex flex-shrink-0 gap-2">
-              <il-button
+              <lux-button-web
                 label="Buscar"
                 iconClass="material-symbols-light:search"
                 (clicked)="loadData.emit()"
                 [disabled]="isSearchDisabled()"
               />
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:refresh"
                 variant="outline"
                 size="small"
                 (clicked)="loadData.emit()"
               />
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:delete-outline"
                 variant="outline"
                 size="small"
@@ -100,7 +100,7 @@
         <!-- Fila 1: Datos principales -->
         <tr>
           <td>
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:chevron-right"
               variant="text"
               size="sm"

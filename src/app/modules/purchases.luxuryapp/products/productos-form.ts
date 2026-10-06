@@ -49,8 +49,7 @@ interface IProductosForm {
     InputImg,
     CustomInputSelectSignal,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProductosForm implements OnInit {
   // Servicios
@@ -90,8 +89,7 @@ export class ProductosForm implements OnInit {
       validators: [
         Validators.required,
         Validators.maxLength(45),
-        Validators.minLength(5),
-      ],
+        Validators.minLength(5)],
       nonNullable: true,
     }),
     urlImagen: new FormControl<string | File | null>(""),
@@ -106,8 +104,7 @@ export class ProductosForm implements OnInit {
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.categories,
       ),
-      firstValueFrom(this.enumSelectS.productClasificacion()),
-    ]);
+      firstValueFrom(this.enumSelectS.productClasificacion())]);
 
     // Actualización de signals (evita NG0100 al ser asíncrono tras await)
     this.cb_category.set(categories as SelectItemDto[]);

@@ -48,8 +48,7 @@ interface CreditNoteRequestDTO {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   templateUrl: "./credit-note-modal.html",
 })
 export default class CreditNoteModalComponent implements OnInit {
@@ -91,8 +90,7 @@ export default class CreditNoteModalComponent implements OnInit {
     { label: "Período de cortesía", value: "Período de cortesía" },
     { label: "Acuerdo de pago (quita)", value: "Acuerdo de pago (quita)" },
     { label: "Condonación por siniestro", value: "Condonación por siniestro" },
-    { label: "Otro motivo", value: "Otro motivo" },
-  ];
+    { label: "Otro motivo", value: "Otro motivo" }];
 
   ngOnInit() {
     this.customerId = this.config.data?.customerId;

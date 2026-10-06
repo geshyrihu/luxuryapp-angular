@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
   selector: "app-seguimiento-minutas-mobile",
   templateUrl: "./seguimiento-minutas-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     DataViewMobile,
     MobileActionMenu,
     ButtonMobile,

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
@@ -22,7 +23,7 @@ interface FrontendRoute {
 
 @Component({
   selector: "app-report-guide",
-  imports: [RouterModule, LxAccordion, LxIcon, LxTag],
+  imports: [ButtonWeb, RouterModule, LxAccordion, LxIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-guide.html",
 })

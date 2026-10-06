@@ -26,8 +26,7 @@ describe('CustomerIdService', () => {
         provideHttpClientTesting(),
         CustomerIdService,
         { provide: StorageService, useValue: storageMock },
-        { provide: ConsoleLoggerService, useValue: { custom: jasmine.createSpy('spy'), error: jasmine.createSpy('spy'), info: jasmine.createSpy('spy') } },
-      ],
+        { provide: ConsoleLoggerService, useValue: { custom: jasmine.createSpy('spy'), error: jasmine.createSpy('spy'), info: jasmine.createSpy('spy') } }],
     });
     service = TestBed.inject(CustomerIdService);
     httpMock = TestBed.inject(HttpTestingController);

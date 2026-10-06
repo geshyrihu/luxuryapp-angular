@@ -4,5 +4,4 @@ import { MockAspelPolizaFormComponent } from "./mock-aspel-poliza-form";
 
 export const MOCK_ASPEL_ROUTES: Routes = [
   { path: "", component: MockAspelDashboardComponent },
-  { path: "nueva-poliza", component: MockAspelPolizaFormComponent },
-];
+  { path: "nueva-poliza", component: MockAspelPolizaFormComponent }];

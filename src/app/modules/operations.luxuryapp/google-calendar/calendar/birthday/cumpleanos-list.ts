@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -21,7 +22,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-cumpleanos",
   templateUrl: "./cumpleanos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ AppAvatar, LxTag, LxIcon],
+  imports: [ButtonWeb, LxTag, LxIcon],
 })
 export class Cumpleanos implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -60,8 +60,7 @@ describe("ApprovalInbox", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ApprovalInbox);
@@ -86,8 +85,7 @@ describe("ApprovalInbox", () => {
         reviewNotes: null,
         isExecuted: false,
         executedAt: null,
-      },
-    ]);
+      }]);
 
     await component.onLoadData();
 
@@ -113,8 +111,7 @@ describe("ApprovalInbox", () => {
         reviewNotes: null,
         isExecuted: false,
         executedAt: null,
-      },
-    ]);
+      }]);
 
     expect(component.dataSignal()).toHaveLength(1);
     expect(component.dataSignal()[0].status).toBe(

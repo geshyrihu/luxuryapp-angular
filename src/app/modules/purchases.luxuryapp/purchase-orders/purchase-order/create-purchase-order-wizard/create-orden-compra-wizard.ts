@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -117,7 +118,7 @@ import {
 
 @Component({
   selector: "app-create-orden-compra-wizard",
-  imports: [
+  imports: [ButtonWeb, 
     AppAvatar,
     CommonModule,
     InputAutocomplete,

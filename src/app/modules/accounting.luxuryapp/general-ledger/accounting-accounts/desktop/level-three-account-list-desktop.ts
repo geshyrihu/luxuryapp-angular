@@ -26,8 +26,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class LevelThreeAccountListDesktop {
   data = input.required<any[]>();

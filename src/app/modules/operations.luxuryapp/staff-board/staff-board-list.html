@@ -155,7 +155,7 @@
         <div
           class="staff-board-actions d-flex flex-wrap gap-2 align-items-center justify-content-center justify-content-md-end"
         >
-          <il-button
+          <lux-button-web
             (clicked)="onGoToMyPendingInterviews()"
             iconClass="material-symbols-light:calendar-clock"
             [label]="interviewerPendingCount() > 0 ? 'Entrevistas (' + interviewerPendingCount() + ')' : 'Entrevistas'"
@@ -164,7 +164,7 @@
             size="sm"
           />
 
-          <il-button
+          <lux-button-web
             (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
             iconClass="material-symbols-light:work"
             label="Agregar Puesto"
@@ -172,7 +172,7 @@
             variant="outline"
             size="sm"
           />
-          <il-button
+          <lux-button-web
             (clicked)="onExportExcel()"
             iconClass="material-symbols-light:table-view"
             label="Exportar"
@@ -180,7 +180,7 @@
             variant="outline"
             size="sm"
           />
-          <il-button
+          <lux-button-web
             (clicked)="onOrgChart()"
             iconClass="material-symbols-light:account-tree"
             label="Organigrama"
@@ -189,7 +189,7 @@
             size="sm"
           />
           @if (statusFilter() === 'Activo') {
-          <il-button
+          <lux-button-web
             (clicked)="onStatusFilterChange('Inactivo')"
             label="Inactivos"
             iconClass="material-symbols-light:visibility-off"
@@ -198,7 +198,7 @@
             size="sm"
           />
           } @else {
-          <il-button
+          <lux-button-web
             (clicked)="onStatusFilterChange('Activo')"
             label="Activos"
             iconClass="material-symbols-light:visibility"

@@ -21,8 +21,7 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
     MobileListItem,
     MobileActionMenu,
     DataViewMobile,
-    StatusBadge,
-  ],
+    StatusBadge],
 })
 export class AspelCustomerEmpresaListMobile {
   data = input.required<any[]>();

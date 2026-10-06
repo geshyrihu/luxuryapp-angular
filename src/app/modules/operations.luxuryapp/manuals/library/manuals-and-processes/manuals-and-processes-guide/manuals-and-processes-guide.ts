@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -12,7 +13,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
   templateUrl: "./manuals-and-processes-guide.html",
 
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     RouterLink,
     LxPanel,
     LxTag,

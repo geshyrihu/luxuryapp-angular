@@ -9,8 +9,7 @@ describe('ExcelExportService', () => {
     TestBed.configureTestingModule({
       providers: [
         ExcelExportService,
-        { provide: ExportService, useValue: { downloadFileWithTimestamp: vi.fn() } },
-      ],
+        { provide: ExportService, useValue: { downloadFileWithTimestamp: vi.fn() } }],
     });
     service = TestBed.inject(ExcelExportService);
   });

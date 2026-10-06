@@ -33,8 +33,7 @@ import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.i
     LxIcon,
     ReactiveFormsModule,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-provider-form.html",
 })
@@ -113,8 +112,7 @@ export class CustomerProviderForm implements OnInit {
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.categories,
-      ),
-    ]);
+      )]);
 
     this.cb_providers.set(providers as SelectItemDto[]);
     this.cb_categories.set(categories as SelectItemDto[]);

@@ -65,8 +65,7 @@ export interface IOrdenCompraDatosPagoForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     ButtonWeb,
-    LxTag,
-  ],
+    LxTag],
 })
 export class OrdenCompraDatosPago implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -159,8 +158,7 @@ export class OrdenCompraDatosPago implements OnInit {
         Endpoints.SelectItems.wayToPay,
       ),
       lastValueFrom(this.enumSelectS.onLoadEnumList("tipo-gasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("funding-period", false)),
-    ];
+      lastValueFrom(this.enumSelectS.onLoadEnumList("funding-period", false))];
 
     const [
       providers,
@@ -168,8 +166,7 @@ export class OrdenCompraDatosPago implements OnInit {
       useCfdi,
       wayToPay,
       tipoGasto,
-      fundingPeriods,
-    ] = await Promise.all(promises);
+      fundingPeriods] = await Promise.all(promises);
 
     this.cb_providers.set((providers as SelectItemDto[]) || []);
     this.cb_payment_method.set((paymentMethods as SelectItemDto[]) || []);

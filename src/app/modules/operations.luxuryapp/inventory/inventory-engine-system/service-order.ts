@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -18,7 +19,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 @Component({
   selector: "app-service-order",
   templateUrl: "./service-order.html",
-  imports: [
+  imports: [ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     LxEditor,

@@ -9,8 +9,7 @@ describe('SearchService', () => {
     TestBed.configureTestingModule({
       providers: [
         SearchService,
-        { provide: MenuService, useValue: { sidebarMenuItems: vi.fn() } },
-      ],
+        { provide: MenuService, useValue: { sidebarMenuItems: vi.fn() } }],
     });
     service = TestBed.inject(SearchService);
   });

@@ -30,8 +30,7 @@ export class WorkSchedulePresentationService {
     { label: "JUE", value: 4 },
     { label: "VIE", value: 5 },
     { label: "SÁB", value: 6 },
-    { label: "DOM", value: 0 },
-  ] as const;
+    { label: "DOM", value: 0 }] as const;
 
   indicators(source: WorkScheduleSource): WorkScheduleDayIndicator[] {
     return this.days.map((day) => {

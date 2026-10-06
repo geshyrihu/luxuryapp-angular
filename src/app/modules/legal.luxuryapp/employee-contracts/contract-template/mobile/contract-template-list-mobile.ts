@@ -22,8 +22,7 @@ import { ContractTemplateListDTO } from "../interfaces/contract-template.dto";
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class ContractTemplateListMobile {
   data = input.required<ContractTemplateListDTO[]>();

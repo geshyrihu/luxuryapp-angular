@@ -20,8 +20,7 @@ import { FinancialReportFilterStore } from "../state/financial-report-filter.sto
     CobranzaOnlineAdvances,
     CobranzaOnlineAnalysis,
     AppSkeleton,
-    AppStatCard,
-  ],
+    AppStatCard],
   providers: [CobranzaOnlineStoreService],
   templateUrl: "./analisis-cobranza.html",
 })

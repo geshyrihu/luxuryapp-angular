@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import {
@@ -54,7 +55,7 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
 
 @Component({
   selector: "app-report-builder",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

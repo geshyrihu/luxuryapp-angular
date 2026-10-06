@@ -5,7 +5,7 @@
 } @else if (!detail(); as _) {
 <div class="d-flex flex-column align-items-center p-5 gap-2">
   <span class="text-body-secondary">No se pudo cargar el candidato.</span>
-  <il-button label="Cerrar" severity="secondary" (clicked)="close()" />
+  <lux-button-web label="Cerrar" severity="secondary" (clicked)="close()" />
 </div>
 } @else {
 <div class="p-1">
@@ -174,7 +174,7 @@
       Acción pendiente: {{ pendingAction }}
     </span>
     }
-    <il-button
+    <lux-button-web
       label="Responder entrevista"
       iconClass="material-symbols-light:more"
       severity="primary"

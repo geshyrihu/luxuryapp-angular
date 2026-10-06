@@ -29,8 +29,7 @@ import { EmployeeWorkContractListDTO } from "../interfaces/work-contract.dto";
     ApiDatePipe,
     AppTable,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class WorkContractListDesktop {
   private tableScrollH = inject(TableScrollHeightService);

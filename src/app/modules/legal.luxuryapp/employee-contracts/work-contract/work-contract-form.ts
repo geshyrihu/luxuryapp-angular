@@ -47,8 +47,7 @@ interface IWorkContractForm {
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class WorkContractFormComponent implements OnInit {
   apiS = inject(ApiResponseService);
@@ -85,8 +84,7 @@ export class WorkContractFormComponent implements OnInit {
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
     { value: "Practicas", label: "Prácticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
-    { value: "Honorarios", label: "Honorarios" },
-  ];
+    { value: "Honorarios", label: "Honorarios" }];
 
   form!: FormGroup<IWorkContractForm>;
 

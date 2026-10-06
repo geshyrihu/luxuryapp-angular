@@ -10,14 +10,14 @@
       </p>
     </div>
     <div class="d-flex flex-wrap gap-2">
-      <il-button
+      <lux-button-web
         label="Volver al tablero"
         iconClass="material-symbols-light:arrow-back"
         severity="secondary"
         variant="outline"
         (clicked)="goBackToBoard()"
       />
-      <il-button
+      <lux-button-web
         label="Actualizar"
         iconClass="material-symbols-light:refresh"
         severity="secondary"
@@ -113,9 +113,7 @@
   <div class="col-12 col-md-6 col-xl">
     <div class="card p-3 h-full">
       <small class="text-body-secondary d-block mb-1">Vencidas</small>
-      <div class="text-2xl fw-semibold text-red-500">
-        {{ totalOverdue() }}
-      </div>
+      <div class="text-2xl fw-semibold text-red-500">{{ totalOverdue() }}</div>
       <small class="text-body-secondary">Requieren acción</small>
     </div>
   </div>
@@ -166,7 +164,8 @@
           <span>Agendadas: {{ vacancy.scheduledCount }}</span>
           <span>Vencidas: {{ vacancy.overdueCount }}</span>
           <span
-            >Proxima cita: {{ vacancy.nextInterviewAt ? (vacancy.nextInterviewAt | apiDate: "dd/MM/yyyy HH:mm") : "Sin cita agendada" }}</span
+            >Proxima cita: {{ vacancy.nextInterviewAt ? (vacancy.nextInterviewAt
+            | apiDate: "dd/MM/yyyy HH:mm") : "Sin cita agendada" }}</span
           >
         </div>
       </div>
@@ -175,9 +174,7 @@
     <div class="mb-3">
       <div class="fw-semibold mb-2">Candidatos activos</div>
       @if (vacancy.activeCandidates.length === 0) {
-      <div
-        class="border-1 border rounded p-3 text-sm text-body-secondary"
-      >
+      <div class="border-1 border rounded p-3 text-sm text-body-secondary">
         Esta vacante no tiene candidatos activos en seguimiento.
       </div>
       } @else {
@@ -213,7 +210,8 @@
                   <small class="text-body-secondary d-block">Registro</small>
                   <div class="fw-medium">
                     @if (candidate.applicationDate) { {{
-                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
+                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else
+                    {
                     <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
@@ -224,8 +222,8 @@
                   >
                   <div class="fw-medium">
                     @if (candidate.recruitmentInterviewAt) { {{
-                    candidate.recruitmentInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
-                    }} } @else {
+                    candidate.recruitmentInterviewAt | apiDate: "dd/MM/yyyy
+                    HH:mm" }} } @else {
                     <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
@@ -236,8 +234,8 @@
                   >
                   <div class="fw-medium">
                     @if (candidate.operationsInterviewAt) { {{
-                    candidate.operationsInterviewAt | apiDate: "dd/MM/yyyy HH:mm"
-                    }} } @else {
+                    candidate.operationsInterviewAt | apiDate: "dd/MM/yyyy
+                    HH:mm" }} } @else {
                     <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
@@ -271,7 +269,7 @@
 
             <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
               @if (candidate.canSendToInterview) {
-              <il-button
+              <lux-button-web
                 label="Enviar a entrevista"
                 iconClass="material-symbols-light:send"
                 severity="primary"
@@ -279,7 +277,7 @@
                 (clicked)="onAction(vacancy, candidate, 'send')"
               />
               } @if (candidate.canSchedule) {
-              <il-button
+              <lux-button-web
                 label="Agendar cita"
                 iconClass="material-symbols-light:calendar-add-on"
                 severity="info"
@@ -287,7 +285,7 @@
                 (clicked)="onAction(vacancy, candidate, 'schedule')"
               />
               } @if (candidate.canReschedule) {
-              <il-button
+              <lux-button-web
                 label="Reagendar"
                 iconClass="material-symbols-light:event-repeat"
                 severity="info"
@@ -296,7 +294,7 @@
                 (clicked)="onAction(vacancy, candidate, 'reschedule')"
               />
               } @if (candidate.canReschedule) {
-              <il-button
+              <lux-button-web
                 label="Cambiar entrevistador"
                 iconClass="material-symbols-light:sync"
                 severity="warn"
@@ -305,7 +303,7 @@
                 (clicked)="onAction(vacancy, candidate, 'assign')"
               />
               }
-              <il-button
+              <lux-button-web
                 label="Ver historial"
                 iconClass="material-symbols-light:history"
                 severity="secondary"
@@ -345,7 +343,8 @@
                   <small class="text-body-secondary d-block">Registro</small>
                   <div class="fw-medium">
                     @if (candidate.applicationDate) { {{
-                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else {
+                    candidate.applicationDate | apiDate: "dd/MM/yyyy" }} } @else
+                    {
                     <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
@@ -358,8 +357,8 @@
                     @if (candidate.operationsInterviewAt ||
                     candidate.recruitmentInterviewAt) { {{
                     (candidate.operationsInterviewAt ||
-                    candidate.recruitmentInterviewAt) | apiDate: "dd/MM/yyyy HH:mm"
-                    }} } @else {
+                    candidate.recruitmentInterviewAt) | apiDate: "dd/MM/yyyy
+                    HH:mm" }} } @else {
                     <span class="text-body-secondary">Sin fecha</span>
                     }
                   </div>
@@ -392,7 +391,7 @@
             </div>
 
             <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-              <il-button
+              <lux-button-web
                 label="Ver historial"
                 iconClass="material-symbols-light:history"
                 severity="secondary"

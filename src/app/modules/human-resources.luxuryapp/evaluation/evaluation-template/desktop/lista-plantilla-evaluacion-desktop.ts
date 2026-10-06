@@ -31,8 +31,7 @@ import {
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class ListaPlantillaEvaluacionDesktop {
   data = input.required<any[]>();

@@ -20,7 +20,7 @@ export class DateService {
       const isoDateMatch = normalizedValue.match(/^(\d{4})-(\d{2})-(\d{2})/);
 
       if (isoDateMatch) {
-        const [, year, month, day] = isoDateMatch;
+        const [ year, month, day] = isoDateMatch;
         const parsedDate = new Date(
           Number(year),
           Number(month) - 1,
@@ -95,17 +95,11 @@ export class DateService {
     });
     const [
       { value: month },
-      ,
       { value: day },
-      ,
       { value: year },
-      ,
       { value: hour },
-      ,
       { value: minute },
-      ,
-      { value: second },
-    ] = format.formatToParts(date);
+      { value: second }] = format.formatToParts(date);
 
     return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
   }
@@ -120,7 +114,7 @@ export class DateService {
       year: "numeric",
       month: "2-digit",
     });
-    const [{ value: month }, , { value: year }] = format.formatToParts(date);
+    const [{ value: month }, { value: year }] = format.formatToParts(date);
 
     return `${month}-${year}`;
   }
@@ -150,7 +144,7 @@ export class DateService {
       month: "2-digit",
       day: "2-digit",
     });
-    const [{ value: month }, , { value: day }, , { value: year }] =
+    const [{ value: month }, { value: day }, { value: year }] =
       format.formatToParts(date);
 
     return `${day}-${month}-${year}`;
@@ -206,7 +200,7 @@ export class DateService {
       year: "numeric",
       month: "long",
     });
-    const [{ value: month }, , { value: year }] = format.formatToParts(date);
+    const [{ value: month }, { value: year }] = format.formatToParts(date);
 
     return `${month}-${year}`;
   }

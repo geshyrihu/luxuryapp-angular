@@ -36,7 +36,7 @@
                   [icon]="msg.role === 'user' ? 'material-symbols-light:forum' : 'material-symbols-light:forum'"
                 />
                 @if (msg.role === 'assistant') {
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:volume-up"
                   size="small"
                   variant="text"
@@ -92,7 +92,7 @@
           </div>
           <div class="d-flex flex-column gap-2">
             @for (q of suggestedQuestions; track q) {
-            <il-button
+            <lux-button-web
               (clicked)="setQuery(q)"
               [label]="q"
               size="small"
@@ -110,7 +110,7 @@
             Controles
           </div>
           <div class="d-flex flex-column gap-2">
-            <il-button
+            <lux-button-web
               iconClass="material-symbols-light:volume-up"
               label="Releer última respuesta"
               size="small"
@@ -119,7 +119,7 @@
               [disabled]="loading() || messages().length === 0"
               (clicked)="replayMessage(messages()[messages().length - 1])"
             />
-            <il-button
+            <lux-button-web
               iconClass="material-symbols-light:stop"
               label="Detener audio"
               size="small"
@@ -147,7 +147,7 @@
           [noMargin]="true"
           customClass="w-full rounded-left-3xl pl-4"
         />
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:send"
           (clicked)="sendQuery()"
           [disabled]="loading() || !currentQuery()"

@@ -30,8 +30,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppSorticon,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./cobranza-online-towers.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

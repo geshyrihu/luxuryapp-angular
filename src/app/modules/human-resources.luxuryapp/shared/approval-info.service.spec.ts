@@ -13,8 +13,7 @@ describe('ApprovalInfoService', () => {
     TestBed.configureTestingModule({
       providers: [
         ApprovalInfoService,
-        { provide: ApiResponseService, useValue: mockApiResponseService },
-      ],
+        { provide: ApiResponseService, useValue: mockApiResponseService }],
     });
 
     service = TestBed.inject(ApprovalInfoService);

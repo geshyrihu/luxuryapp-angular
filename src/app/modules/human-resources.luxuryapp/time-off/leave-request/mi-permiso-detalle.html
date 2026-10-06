@@ -52,7 +52,7 @@
   <div class="row mb-2 g-4">
     <div class="col-4 fw-bold">Archivo Adjunto</div>
     <div class="col-8">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:download"
         label="Descargar"
         (clicked)="onDownloadAttachment()"
@@ -90,7 +90,7 @@
 
   <div class="mt-4 d-flex gap-2">
     @if (data.canEdit) {
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:edit"
       label="Editar"
       (clicked)="onEdit()"
@@ -98,7 +98,7 @@
       severity="warning"
     />
     } @if (data.canDelete) {
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:delete"
       label="Eliminar"
       (clicked)="onDelete()"

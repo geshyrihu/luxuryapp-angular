@@ -41,8 +41,7 @@ import { UserAccountDto } from "./interfaces/user-account.dto";
     IonAccordionGroup,
     IonIcon,
     MobileActionMenu,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule],
   styles: [
     `
       .user-account-mobile-filters {
@@ -50,8 +49,7 @@ import { UserAccountDto } from "./interfaces/user-account.dto";
         gap: var(--ds-space-sm);
         margin-block: var(--ds-space-sm);
       }
-    `,
-  ],
+    `],
 })
 export class UserAccountListMobile {
   readonly data = input.required<UserAccountDto[]>();

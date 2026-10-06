@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -9,7 +10,7 @@ import { MockAspelService, MockCuentaResponse, PolizaCreateRequest } from "./ser
 
 @Component({
   selector: "app-mock-aspel-poliza-form",
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LxCard, LxIcon],
+  imports: [ButtonWeb, CommonModule, ReactiveFormsModule, RouterLink, LxCard, LxIcon],
   templateUrl: "./mock-aspel-poliza-form.html",
   styleUrl: "./mock-aspel-poliza-form.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -17,7 +17,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
 import { TaskStatus } from "../../task-status/task-status";
 import { ITaskMessageDTO } from "../interfaces/task-message.dto";
 
@@ -34,7 +34,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     MobileActionMenu,
     MobileListItem,
     TaskStatus,
-    AppAvatar,
     CustomInputToggleSwitch,
     FormsModule,
     InitialsAbbrPipe,

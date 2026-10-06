@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,13 +16,12 @@ import { VaultSecretSummary } from "../interfaces/vault-secret.model";
   selector: "app-vault-secrets-list-mobile",
   templateUrl: "./vault-secrets-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ButtonMobile,
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class VaultSecretsListMobile {
   data = input.required<VaultSecretSummary[]>();

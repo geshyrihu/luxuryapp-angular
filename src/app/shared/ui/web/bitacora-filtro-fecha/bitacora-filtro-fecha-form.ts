@@ -1,4 +1,9 @@
-import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -13,10 +18,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
   selector: "lux-bitacora-filtro-fecha-form-web",
   templateUrl: "./bitacora-filtro-fecha-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    ButtonWeb],
+  imports: [ReactiveFormsModule, CustomInputDateSignal, ButtonWeb],
 })
 export class BitacoraFiltroFechaForm {
   ref = inject(DynamicDialogRef);
@@ -40,4 +42,3 @@ export class BitacoraFiltroFechaForm {
     this.ref.close({ from: this.form.value.from!, to: this.form.value.to! });
   }
 }
-

@@ -47,11 +47,9 @@ export const TIPO_INCIDENCIA_OPTIONS = [
   { label: "Permiso Con Goce",     value: 5 },
   { label: "Permiso Sin Goce",     value: 6 },
   { label: "Dia Economico",        value: 7 },
-  { label: "Otro Descuento",       value: 8 },
-];
+  { label: "Otro Descuento",       value: 8 }];
 
 export const TIPO_INCAPACIDAD_OPTIONS = [
   { label: "Enfermedad General",  value: 0 },
   { label: "Maternidad",          value: 1 },
-  { label: "Riesgo de Trabajo",   value: 2 },
-];
+  { label: "Riesgo de Trabajo",   value: 2 }];

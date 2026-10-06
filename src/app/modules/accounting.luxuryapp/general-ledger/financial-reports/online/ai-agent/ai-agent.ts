@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -31,7 +32,7 @@ interface AiMessage {
 @Component({
   selector: "app-ai-agent-contable",
 
-  imports: [CommonModule,
+  imports: [ButtonWeb, CommonModule,
     FormsModule,
     CustomInputTextSignal,
     LxSpinner,

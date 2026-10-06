@@ -1,7 +1,7 @@
 <!-- Selector de nomina -->
 <div class="d-flex flex-wrap gap-2 mb-3">
   @for (n of nominas(); track n.value) {
-  <il-button
+  <lux-button-web
     [label]="n.label"
     size="small"
     [variant]="nominaSeleccionada() !== n.value ? 'outline' : 'solid'"
@@ -96,14 +96,14 @@
           {{ ev.createdAt | apiDate: "dd/MM/yyyy" }}
         </p>
         <div class="d-flex gap-2">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:open-in-new"
             severity="info"
             variant="text"
             lxTooltip="Abrir"
             (clicked)="abrirEvidencia(ev.filePath)"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:delete"
             severity="danger"
             variant="text"

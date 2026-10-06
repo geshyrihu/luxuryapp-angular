@@ -45,18 +45,15 @@ export class AutitoriaCuentasAspelExportService {
       { header: "No. Cuenta", key: "numCta", width: 18 },
       { header: "Naturaleza", key: "naturaleza", width: 14 },
       { header: "Descripción", key: "descripcion", width: 34 },
-      ...customerColumns,
-    ];
+      ...customerColumns];
 
     const titleRow = ws.addRow([
-      `Catalogo general comparativo Aspel - ${empresa} - ${year}`,
-    ]);
+      `Catalogo general comparativo Aspel - ${empresa} - ${year}`]);
     titleRow.font = { name: "Yu Gothic", size: 14, bold: true };
     ws.mergeCells(titleRow.number, 1, titleRow.number, ws.columns.length);
 
     const subtitleRow = ws.addRow([
-      "Exportacion de la tabla visible del catalogo general comparativo.",
-    ]);
+      "Exportacion de la tabla visible del catalogo general comparativo."]);
     subtitleRow.font = { name: "Yu Gothic", size: 10 };
     ws.mergeCells(subtitleRow.number, 1, subtitleRow.number, ws.columns.length);
     ws.addRow([]);

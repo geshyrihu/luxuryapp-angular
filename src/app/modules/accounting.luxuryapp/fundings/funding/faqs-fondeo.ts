@@ -14,8 +14,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CustomSearchInput,
     LxCard,
     LxMessage,
-    LxIcon,
-  ],
+    LxIcon],
 
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./faqs-fondeo.html",
@@ -101,7 +100,6 @@ export class FaqsFondeo {
         El sistema permite subir el <strong>archivo PDF y XML</strong> de cada factura, almacenóndolo en el servidor.<br />
         Las facturas se pueden consultar directamente desde LuxuryApp.
       `,
-    },
-  ];
+    }];
 }
 

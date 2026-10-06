@@ -83,8 +83,7 @@ describe("ChargeList", () => {
           useValue: {
             showWarn: vi.fn(),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChargeList);
@@ -103,8 +102,7 @@ describe("ChargeList", () => {
         dueDate: "2026-07-31",
         status: EChargeStatus.Pendiente,
         generatedAutomatically: false,
-      },
-    ]);
+      }]);
 
     await component.onLoadData();
 

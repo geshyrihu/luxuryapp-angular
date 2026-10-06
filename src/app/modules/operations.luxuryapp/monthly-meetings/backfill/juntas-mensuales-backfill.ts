@@ -17,7 +17,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 
 @Component({
   selector: "app-juntas-mensuales-backfill",
@@ -25,7 +25,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     ApiDatePipe,
     AppTable,
     LxTag],

@@ -29,8 +29,7 @@ const MONTH_NAMES = [
   "SEP",
   "OCT",
   "NOV",
-  "DIC",
-];
+  "DIC"];
 
 const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
@@ -44,8 +43,7 @@ const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre",
-];
+  "montoDiciembre"];
 
 const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
   "presupEnero",
@@ -59,8 +57,7 @@ const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
   "presupSeptiembre",
   "presupOctubre",
   "presupNoviembre",
-  "presupDiciembre",
-];
+  "presupDiciembre"];
 
 const GASTOS_GENERALES = [
   "600-",
@@ -70,8 +67,7 @@ const GASTOS_GENERALES = [
   "604-",
   "607-",
   "608-",
-  "609-",
-];
+  "609-"];
 const GASTOS_EXTRA = ["605-"];
 
 @Component({
@@ -98,8 +94,7 @@ export class CedulaPresupuestalClienteComponent {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)],
-    ];
+      MONTH_NAMES[wr(idx)]];
   });
 
   readonly rows = computed(() => {

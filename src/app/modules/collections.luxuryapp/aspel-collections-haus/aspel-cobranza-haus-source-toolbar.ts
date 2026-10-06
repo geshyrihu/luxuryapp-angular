@@ -42,7 +42,7 @@ import {
         <div class="col-12 col-xl-8">
           <div class="d-flex flex-column gap-2">
             <div class="d-flex flex-wrap gap-2">
-              <il-button
+              <lux-button-web
                 label="Sync cobranza"
                 iconClass="material-symbols-light:database-outline"
                 [loading]="syncing"
@@ -50,7 +50,7 @@ import {
                 customClass="btn-secondary"
                 (clicked)="syncCobranza.emit()"
               />
-              <il-button
+              <lux-button-web
                 label="Sync completa"
                 iconClass="material-symbols-light:sync"
                 [loading]="syncing"
@@ -58,7 +58,7 @@ import {
                 customClass="btn-secondary"
                 (clicked)="syncCompleta.emit()"
               />
-              <il-button
+              <lux-button-web
                 label="Status local"
                 iconClass="material-symbols-light:dns"
                 [loading]="statusLoading"

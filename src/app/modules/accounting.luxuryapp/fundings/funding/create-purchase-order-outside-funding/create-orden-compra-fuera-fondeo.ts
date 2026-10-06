@@ -45,8 +45,7 @@ const tipoGastoLabels: { [key: number]: string } = {
     InputAutocomplete,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CreateOrdenCompraFueraFondeo implements OnInit {
   private apiResponseS = inject(ApiResponseService);

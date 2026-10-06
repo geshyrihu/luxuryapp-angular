@@ -12,8 +12,7 @@ describe('NavigationService', () => {
     TestBed.configureTestingModule({
       providers: [
         NavigationService,
-        { provide: Router, useValue: { events: routerEvents.asObservable() } },
-      ],
+        { provide: Router, useValue: { events: routerEvents.asObservable() } }],
     });
     service = TestBed.inject(NavigationService);
   });

@@ -19,8 +19,7 @@ describe('ConnectivityService', () => {
             url: '/',
             navigateByUrl: jasmine.createSpy('spy'),
           },
-        },
-      ],
+        }],
     });
     service = TestBed.inject(ConnectivityService);
   });

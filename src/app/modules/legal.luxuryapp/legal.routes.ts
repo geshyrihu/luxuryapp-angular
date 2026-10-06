@@ -24,8 +24,7 @@ const documentRoutes: Routes = documentTypeRoutesConfig.map((config) => ({
 const hrOnlyGuard = () =>
   inject(AspRoleService).hasAny([
     ApplicationRole.SuperUsuario,
-    ApplicationRole.RecursosHumanos,
-  ]);
+    ApplicationRole.RecursosHumanos]);
 
 export const legalRoutes: Routes = [
   {
@@ -187,5 +186,4 @@ export const legalRoutes: Routes = [
   {
     path: "documents",
     children: documentRoutes,
-  },
-];
+  }];

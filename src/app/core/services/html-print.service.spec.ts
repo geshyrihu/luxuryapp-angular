@@ -13,8 +13,7 @@ describe('HtmlPrintService', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         HtmlPrintService,
-        { provide: CustomerIdService, useValue: { customerName: vi.fn(), nombreCorto: vi.fn(), customerPhotoPath: vi.fn() } },
-      ],
+        { provide: CustomerIdService, useValue: { customerName: vi.fn(), nombreCorto: vi.fn(), customerPhotoPath: vi.fn() } }],
     });
     service = TestBed.inject(HtmlPrintService);
   });

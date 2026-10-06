@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ import ModalDiasNoHabiles from "./non-working-days-modal/modal-dias-no-habiles";
 
 @Component({
   selector: "app-periodos-nomina",
-  imports: [PeriodosNominaDesktop, PeriodosNominaMobile],
+  imports: [ButtonWeb, PeriodosNominaDesktop, PeriodosNominaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./periodos-nomina.html",
 })

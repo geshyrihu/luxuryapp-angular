@@ -28,6 +28,5 @@ export const diagramRoutes: Routes = [
       import("@operations.luxuryapp/diagram/diagram/diagram-view/diagram-view").then(
         (m) => m.DiagramView,
       ),
-  },
-];
+  }];
 

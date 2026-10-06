@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ContMinutaSeguimientos } from "@accounting.luxuryapp/general-ledger/pending-minutes/cont-minuta-seguimientos";
 import {
   ChangeDetectionStrategy,
@@ -25,7 +26,7 @@ import { LegalPendientesMinutaMobile } from "./mobile/legal-pendientes-minuta-mo
   selector: "app-legal-pendientes-minuta",
   templateUrl: "./legal-pendientes-minuta.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     LegalPendientesMinutaDesktop,
     LegalPendientesMinutaMobile,
   ],

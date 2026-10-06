@@ -24,8 +24,7 @@ describe("TareasLegalCard", () => {
       imports: [TareasLegalCard],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: ApiResponseService, useValue: apiResponseServiceMock },
-      ],
+        { provide: ApiResponseService, useValue: apiResponseServiceMock }],
     });
 
     fixture = TestBed.createComponent(TareasLegalCard);

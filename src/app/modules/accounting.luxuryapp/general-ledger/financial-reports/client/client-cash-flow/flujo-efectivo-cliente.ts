@@ -47,8 +47,7 @@ export class FlujoEfectivoClienteComponent {
         ...f,
         montos: [
           ...f.montos.slice(0, maxIdx + 1),
-          f.montos[f.montos.length - 1],
-        ],
+          f.montos[f.montos.length - 1]],
       })),
     }));
   });

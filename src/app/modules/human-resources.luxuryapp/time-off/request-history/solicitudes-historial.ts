@@ -92,8 +92,7 @@ export class SolicitudesHistorial implements OnInit {
 
   allowedCancellerRoles: ApplicationRole[] = [
     ApplicationRole.SuperUsuario,
-    ApplicationRole.RecursosHumanos,
-  ];
+    ApplicationRole.RecursosHumanos];
   canCancel = computed(() => this.aspRoleS.hasAny(this.allowedCancellerRoles));
   data = signal<IHistorialSolicitud[]>([]);
   loading = signal(true);
@@ -181,8 +180,7 @@ export class SolicitudesHistorial implements OnInit {
     this.requestTypes.set([
       { label: "Todos", value: null },
       { label: "Permisos", value: "leave" },
-      { label: "Vacaciones", value: "vacation" },
-    ]);
+      { label: "Vacaciones", value: "vacation" }]);
 
     firstValueFrom(this.enumSelectS.requestStatus(false)).then((response) => {
       const statuses = response || [];
@@ -283,8 +281,7 @@ export class SolicitudesHistorial implements OnInit {
 
         const combinedData: IHistorialSolicitud[] = [
           ...mappedLeaves,
-          ...mappedVacations,
-        ];
+          ...mappedVacations];
         combinedData.sort(
           (a, b) =>
             new Date(b.requestDate).getTime() -

@@ -1,5 +1,5 @@
 @if (showDepartmentFilter()) { @for (item of departamentos(); track item) {
-<il-button
+<lux-button-web
   styleClass=" mb-1"
   [label]="item.value"
   [severity]="item.value == selectedDepartamento() ? 'primary' : 'info'"
@@ -75,7 +75,7 @@
       <td>
         <div class="d-flex justify-content-center">
           @if (item.archivo) {
-          <iw-button-view-pdf
+          <lux-button-web displayMode="icon"-view-pdf
             [url]="item.archivo"
             fileName="Entrega | Recepción"
           />

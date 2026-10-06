@@ -26,8 +26,7 @@ import {
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-editar-empleado-nomina.html",
 })

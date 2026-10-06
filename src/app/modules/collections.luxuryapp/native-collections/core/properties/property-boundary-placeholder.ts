@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
@@ -6,7 +7,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-property-boundary-placeholder",
-  imports: [LxCard, LxTag, LxIcon],
+  imports: [ButtonWeb, LxCard, LxTag, LxIcon],
   templateUrl: "./property-boundary-placeholder.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

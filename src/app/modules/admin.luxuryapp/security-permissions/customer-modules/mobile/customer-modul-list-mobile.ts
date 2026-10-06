@@ -19,8 +19,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     LxTag,
     ButtonWeb,
     DataViewMobile,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CustomerModulListMobile {
   data = input.required<any[]>();

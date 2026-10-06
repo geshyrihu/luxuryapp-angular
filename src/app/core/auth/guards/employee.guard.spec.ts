@@ -26,8 +26,7 @@ describe('employeeGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AuthService, useValue: authServiceMock },
-        { provide: Router, useValue: routerMock },
-      ],
+        { provide: Router, useValue: routerMock }],
     });
   });
 

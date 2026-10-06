@@ -44,8 +44,7 @@ import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.i
     CustomInputNumberSignal,
     CustomInputSwitch,
     CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
 })
 export class ElevenLabsSettingsComponent implements OnInit {
   private readonly formB = inject(FormBuilder);
@@ -74,8 +73,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
     {
       label: "Flash v2.5",
       value: "eleven_flash_v2_5",
-    },
-  ];
+    }];
 
   readonly form: FormGroup<ElevenLabsSettingsFormGroup> =
     this.formB.group<ElevenLabsSettingsFormGroup>({
@@ -267,8 +265,7 @@ export class ElevenLabsSettingsComponent implements OnInit {
         selectedVoice.description,
         selectedVoice.gender,
         selectedVoice.accent,
-        selectedVoice.age,
-      ]
+        selectedVoice.age]
         .filter(Boolean)
         .join(" | "),
     );

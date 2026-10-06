@@ -13,8 +13,7 @@ describe('DataConnectorService', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         DataConnectorService,
-        { provide: SignalRService, useValue: { connectionId: vi.fn() } },
-      ],
+        { provide: SignalRService, useValue: { connectionId: vi.fn() } }],
     });
     service = TestBed.inject(DataConnectorService);
   });

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   selector: "app-access-dashboard",
   templateUrl: "./access-dashboard.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, AppTable],
+  imports: [ButtonWeb, ApiDatePipe, AppTable],
 })
 export class AccessDashboard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

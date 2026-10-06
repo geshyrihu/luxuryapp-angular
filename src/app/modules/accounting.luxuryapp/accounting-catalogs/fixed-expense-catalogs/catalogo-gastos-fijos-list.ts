@@ -66,8 +66,7 @@ export class CatalogoGastosFijosList {
 
   /** Accordion móvil (una sola sección colapsable). */
   genAccordionItems = [
-    { id: "generation", title: "Generar órdenes de Compra" },
-  ];
+    { id: "generation", title: "Generar órdenes de Compra" }];
   genExpanded = signal<string[]>([]);
 
   /** Selector de mes como tabs (id = monthName, label = abreviatura). */
@@ -92,8 +91,7 @@ export class CatalogoGastosFijosList {
     "Septiembre",
     "Octubre",
     "Noviembre",
-    "Diciembre",
-  ];
+    "Diciembre"];
 
   selectedFundingStatus = computed(() => {
     const monthName = this.selectedMonthName();
@@ -166,8 +164,7 @@ export class CatalogoGastosFijosList {
   canManageActions = this.aspRoleS.anyOf([
     ApplicationRole.Asistente,
     ApplicationRole.Administrador,
-    ApplicationRole.SuperUsuario,
-  ]);
+    ApplicationRole.SuperUsuario]);
 
   constructor() {
     effect(() => {
@@ -184,8 +181,7 @@ export class CatalogoGastosFijosList {
     const currentYear = new Date().getFullYear();
     return [
       { label: currentYear.toString(), value: currentYear },
-      { label: (currentYear + 1).toString(), value: currentYear + 1 },
-    ];
+      { label: (currentYear + 1).toString(), value: currentYear + 1 }];
   }
 
   async loadFundingOptions() {

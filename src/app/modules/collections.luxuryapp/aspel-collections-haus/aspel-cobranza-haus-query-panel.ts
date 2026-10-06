@@ -1,3 +1,5 @@
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +19,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-query-panel",
 
-  imports: [
+  imports: [ButtonMobile, ButtonWeb, 
     FormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
@@ -106,7 +108,7 @@ import {
             >&nbsp;</label
           >
           <div class="d-flex gap-2 w-full mt-1 mt-lg-0">
-            <il-button
+            <lux-button-web
               label="Consultar"
               iconClass="material-symbols-light:search"
               [loading]="loading"
@@ -114,7 +116,7 @@ import {
               customClass="flex-1"
               (clicked)="search.emit()"
             />
-            <il-button
+            <lux-button-web
               label="Limpiar"
               iconClass="material-symbols-light:ink-eraser"
               customClass="flex-1 btn-secondary"

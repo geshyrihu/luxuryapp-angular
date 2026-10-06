@@ -91,8 +91,7 @@ export class CustomToastService {
           side: "end",
           icon: "material-symbols-light:close",
           role: "cancel",
-        },
-      ],
+        }],
       cssClass: "custom-mobile-toast",
     });
 

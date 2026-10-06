@@ -13,8 +13,7 @@ describe('JwtInterceptor', () => {
         JwtInterceptor,
         { provide: AuthService, useValue: { initialAuthCheckCompleted$: { pipe: vi.fn() }, getToken: vi.fn(), refreshToken: vi.fn() } },
         { provide: ConsoleLoggerService, useValue: { custom: vi.fn() } },
-        { provide: Router, useValue: { navigate: vi.fn() } },
-      ],
+        { provide: Router, useValue: { navigate: vi.fn() } }],
     });
     service = TestBed.inject(JwtInterceptor);
   });

@@ -360,8 +360,6 @@ export const collectionsRoutes: Routes = [
       { path: "reporte-financiero", redirectTo: "", pathMatch: "full" },
       { path: "debtors", redirectTo: "condo-owners-detail", pathMatch: "full" },
       { path: "department-charges", redirectTo: "transactions", pathMatch: "full" },
-      { path: "department-payments", redirectTo: "transactions", pathMatch: "full" },
-    ],
+      { path: "department-payments", redirectTo: "transactions", pathMatch: "full" }],
   },
-  { path: "online", redirectTo: "aspel-online" },
-];
+  { path: "online", redirectTo: "aspel-online" }];

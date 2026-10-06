@@ -28,8 +28,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class AspelCustomerEmpresaForm implements OnInit {
   formBuilder = inject(FormBuilder);
@@ -45,8 +44,7 @@ export class AspelCustomerEmpresaForm implements OnInit {
     customerId: ["", Validators.required],
     customerIdAspelId: [
       "",
-      [Validators.required, Validators.pattern("^[0-9]*$")],
-    ],
+      [Validators.required, Validators.pattern("^[0-9]*$")]],
     empresa: ["", Validators.required],
   });
 

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,7 @@ import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
   selector: "app-visitor-list",
   templateUrl: "./visitor-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     AppTable,
     CustomInputTextSignal,

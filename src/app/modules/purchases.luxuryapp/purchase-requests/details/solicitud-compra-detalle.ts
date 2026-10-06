@@ -26,8 +26,7 @@ import { ProductoEdit } from "./producto-edit";
   imports: [
     ButtonWeb,
     TableEmptyMessage,
-    AppTable,
-  ],
+    AppTable],
 })
 export class SolicitudCompraDetalle {
   apiResponseS = inject(ApiResponseService);

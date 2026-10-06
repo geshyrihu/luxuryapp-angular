@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -27,7 +28,7 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
 
 @Component({
   selector: "app-financial-audit-log",
-  imports: [
+  imports: [ButtonWeb, 
     AppTable,
     LuxTableCaption,
     LxCard,

@@ -51,8 +51,7 @@ import { UpdateService } from "@core/services/update-pwa.service";
     IonItem,
     IonLabel,
     IonSelect,
-    IonSelectOption,
-  ],
+    IonSelectOption],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-user.html",
 })

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -29,7 +30,7 @@ import {
   selector: "app-bitacora-acceso",
   templateUrl: "./bitacora-acceso-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     MobileListItem,
     CommonModule,

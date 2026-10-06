@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +13,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-datos-cotizacion",
   templateUrl: "./orden-compra-datos-cotizacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [RouterModule, LxIcon],
+  imports: [ButtonWeb, RouterModule, LxIcon],
 })
 export class OrdenCompraDatosCotizacion {
   ordenCompra = input<PurchaseOrderView>();

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +30,7 @@ interface StaffOnboardingChecklistViewModel extends EmployeeOnboardingChecklistI
   templateUrl: "./staff-onboarding-checklist-modal.html",
   styleUrl: "./staff-onboarding-checklist-modal.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     FormsModule,
     ApiDatePipe,
     LxCard,

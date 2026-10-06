@@ -53,7 +53,7 @@ interface Equipo {
             AspRole.SuperUsuario,
           ])
         ) {
-          <il-button
+          <lux-button-web
             label="Agregar"
             iconClass="material-symbols-light:add"
             (clicked)="onAddMantenimiento()"

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -31,7 +32,7 @@ type StatusSeverity =
 @Component({
   selector: "app-contract-renewal-list",
   standalone: true,
-  imports: [
+   imports: [ButtonWeb, 
     CommonModule,
     AppTable,
     AppSortableColumn,
@@ -49,7 +50,7 @@ type StatusSeverity =
           Bandeja de Renovaciones
         </h2>
         <div class="header-actions">
-          <il-button
+          <lux-button-web
             label="Actualizar"
             iconClass="material-symbols-light:refresh"
             [loading]="renewalService.isLoading()"
@@ -160,7 +161,7 @@ type StatusSeverity =
             </td>
             <td>
               <div class="actions-cell">
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:visibility"
                   [text]="true"
                   size="sm"

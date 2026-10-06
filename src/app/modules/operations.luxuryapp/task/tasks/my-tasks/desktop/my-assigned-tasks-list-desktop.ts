@@ -14,9 +14,9 @@ import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
+
+
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -31,10 +31,7 @@ import { TaskStatus } from "../../task-status/task-status";
     TableEmptyMessage,
     TaskStatus,
     AppTable,
-    ActionMenu,
     LxTooltipDirective,
-    AppImage,
-    AppAvatar,
     LuxTableCaption,
     InitialsAbbrPipe,
     LxIcon],

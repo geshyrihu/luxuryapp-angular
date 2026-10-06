@@ -19,8 +19,7 @@ describe('CommitteeCobranzaBaseService', () => {
       providers: [
         CommitteeCobranzaBaseService,
         { provide: ApiResponseService, useValue: mockApiResponseService },
-        { provide: CustomerIdService, useValue: mockCustomerIdService },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdService }],
     });
     service = TestBed.inject(CommitteeCobranzaBaseService);
   });

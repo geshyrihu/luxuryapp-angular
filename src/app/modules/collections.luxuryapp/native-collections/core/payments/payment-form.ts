@@ -41,8 +41,7 @@ interface IPaymentEditForm {
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   templateUrl: "./payment-form.html",
 })
 export class PaymentForm implements OnInit {
@@ -59,8 +58,7 @@ export class PaymentForm implements OnInit {
 
   statusOptions = signal([
     { label: "Registrado", value: EPaymentStatus.Registrado },
-    { label: "Verificado", value: EPaymentStatus.Verificado },
-  ]);
+    { label: "Verificado", value: EPaymentStatus.Verificado }]);
 
   methodOptions = [
     {
@@ -71,8 +69,7 @@ export class PaymentForm implements OnInit {
     { label: "Cheque nominativo", value: EPaymentMethod.NominativeCheck },
     { label: "Tarjeta de crédito", value: EPaymentMethod.CreditCard },
     { label: "Tarjeta de débito", value: EPaymentMethod.DebitCard },
-    { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined },
-  ];
+    { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined }];
 
   form = new FormGroup<IPaymentEditForm>({
     propertyId: new FormControl("", {
@@ -139,8 +136,7 @@ export class PaymentForm implements OnInit {
           {
             label: lockedStatuses[res.status] ?? String(res.status),
             value: res.status,
-          },
-        ]);
+          }]);
       }
     }
   }

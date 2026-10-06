@@ -8,8 +8,7 @@ import { BudgetAccountRuleDataDTO } from "./presupuestos.interfaces";
 export const ASPEL_AVAILABLE_YEARS: SelectItemDto[] = [
   { label: "2024", value: 2024 },
   { label: "2025", value: 2025 },
-  { label: "2026", value: 2026 },
-];
+  { label: "2026", value: 2026 }];
 
 export const ASPEL_MONTHS: string[] = [
   "enero",
@@ -23,8 +22,7 @@ export const ASPEL_MONTHS: string[] = [
   "septiembre",
   "octubre",
   "noviembre",
-  "diciembre",
-];
+  "diciembre"];
 
 export function isCuentaExtraordinaria(
   codigoCuenta: string,
@@ -380,8 +378,7 @@ export function getPresupuestoBaseMensual(
     "presup_Septiembre",
     "presup_Octubre",
     "presup_Noviembre",
-    "presup_Diciembre",
-  ] as const;
+    "presup_Diciembre"] as const;
 
   let vigente = 0;
 

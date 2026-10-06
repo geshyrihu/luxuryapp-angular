@@ -37,8 +37,7 @@ describe('GlobalErrorHandler', () => {
     TestBed.configureTestingModule({
       providers: [
         GlobalErrorHandler,
-        { provide: GlobalErrorService, useValue: { captureError: vi.fn(), markHandled: vi.fn(), clear: vi.fn() } },
-      ],
+        { provide: GlobalErrorService, useValue: { captureError: vi.fn(), markHandled: vi.fn(), clear: vi.fn() } }],
     });
     errorHandler = TestBed.inject(GlobalErrorHandler);
     errorService = TestBed.inject(GlobalErrorService);

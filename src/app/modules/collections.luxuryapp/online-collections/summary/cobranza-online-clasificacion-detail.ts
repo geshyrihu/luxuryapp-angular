@@ -30,8 +30,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     CommonModule,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-2">

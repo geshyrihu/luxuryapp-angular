@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +36,7 @@ export interface IOrdenCompraDetalleCompForm {
 
 @Component({
   selector: "app-orden-compra-detalle-form",
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputNumberSignal,

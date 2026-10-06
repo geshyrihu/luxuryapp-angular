@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -21,7 +22,7 @@ import { KeyValuePair } from "./interfaces/key-value-pair.interface";
   selector: "app-mini-postman",
   templateUrl: "./mini-postman.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     FormsModule,
     LxTabs,
     CustomInputSelectSignal,

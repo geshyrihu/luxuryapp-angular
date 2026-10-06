@@ -45,7 +45,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
       />
 
       <div class="d-flex justify-content-end gap-2">
-        <il-button
+        <lux-button-web
           label="Cerrar"
           iconClass="material-symbols-light:close"
           variant="text"

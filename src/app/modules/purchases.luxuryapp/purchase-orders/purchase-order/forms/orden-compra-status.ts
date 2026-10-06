@@ -43,8 +43,7 @@ export interface IOrdenCompraStatusForm {
     ReactiveFormsModule,
     CustomInputCheckSignal,
     CustomInputTextSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class OrdenCompraStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

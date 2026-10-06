@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, CurrencyPipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -14,7 +15,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-funding-purchase-detail",
-  imports: [
+  imports: [ButtonWeb, 
     LxSpinner,
     CommonModule,
     CurrencyPipe,

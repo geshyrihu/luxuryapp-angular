@@ -2,14 +2,14 @@
   <div class="card-container">
     <div class="d-flex flex-wrap justify-content-between mb-4">
       <div class="d-flex gap-2">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:save"
           label="Guardar"
           (clicked)="onSaveChanges()"
           variant="outline"
           severity="success"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:picture-as-pdf"
           label="Crear Orden"
           (clicked)="onModalCreateOrdenCompra()"
@@ -27,7 +27,7 @@
           (change)="onFileSelect($event)"
         />
 
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:upload"
           label="Adjuntar/Actualizar"
           (clicked)="fileInput.click()"
@@ -41,7 +41,7 @@
           [fileName]="'Cotizacion'"
           label="Ver PDF"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:delete"
           label="Eliminar Archivo"
           (clicked)="onRemoveFile()"
@@ -52,7 +52,7 @@
       </div>
 
       <div class="d-flex">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:delete"
           label="Eliminar Proveedor"
           (clicked)="onDeleteProvider()"

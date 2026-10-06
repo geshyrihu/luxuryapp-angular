@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +20,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
   selector: "app-solicitud-compra-list-mobile",
   templateUrl: "./solicitud-compra-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ButtonMobile,
     ApiDatePipe,
     MobileActionMenu,

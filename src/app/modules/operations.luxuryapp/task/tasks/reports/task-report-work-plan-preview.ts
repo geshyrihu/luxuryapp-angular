@@ -15,13 +15,9 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SwalService } from "@core/services/swal.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppImage } from "@ui/web/image/image";
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ButtonWeb } from "@ui/buttons/web";
 
 
@@ -32,13 +28,10 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppTable,
 
     AppSortableColumn,
-
-    AppSorticon,
     LuxTableCaption,
     ReactiveFormsModule,
 
-    CustomInputTextSignal,
-    AppImage],
+    CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./task-report-work-plan-preview.html",
 })

@@ -46,8 +46,7 @@ import type {
     TableFooter,
     DataViewMobile,
     TableEmptyMessage,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class CobranzaOnlineExclusions {
   private customerIdS = inject(CustomerIdService);
@@ -97,8 +96,7 @@ export class CobranzaOnlineExclusions {
     "reason",
     "propertyFullName",
     "propertyTower",
-    "propertyDepartment",
-  ]);
+    "propertyDepartment"]);
   readonly visibleReason = (row: CobranzaOnlineExcludedAccountRow) => {
     if (row.reason) return row.reason;
     if (!row.hasPropertyMatch) {

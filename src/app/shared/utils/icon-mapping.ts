@@ -273,8 +273,7 @@ const LEGACY_ICON_RULES: LegacyIconRule[] = [
   { tokens: ["\u{1FA9A}"], name: "hammer" },
   { tokens: ["\u{1F9FE}"], name: "receipt" },
   { tokens: ["\u{1FA9F}"], name: "window-maximize" },
-  { tokens: ["⚠", "⚠️"], name: "exclamation-triangle" },
-];
+  { tokens: ["⚠", "⚠️"], name: "exclamation-triangle" }];
 
 /**
  * Deja un valor heredado en su nombre desnudo, listo para `PRIME_TO_ICONIFY`.

@@ -26,8 +26,7 @@ import { CustomerAddressAddOrEditDto } from "./interfaces/customer-address-add-o
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CustomerAddress implements OnInit {
   ref = inject(DynamicDialogRef);

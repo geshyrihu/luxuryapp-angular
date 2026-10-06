@@ -30,17 +30,13 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AgendaSupervisionForm } from "./agenda-supervision-form";
 
 @Component({
@@ -50,13 +46,11 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
   imports: [
     ButtonWeb,
     ButtonMobile,
-    ActionMenu,
     LxTooltipDirective,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption,
     TableFooter,
     DataViewMobile,

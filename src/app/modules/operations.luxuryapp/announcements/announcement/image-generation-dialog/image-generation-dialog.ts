@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
   templateUrl: "./image-generation-dialog.html",
   styleUrls: ["./image-generation-dialog.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     ReactiveFormsModule,
     CustomInputTextAreaSignal,
     LxIcon],

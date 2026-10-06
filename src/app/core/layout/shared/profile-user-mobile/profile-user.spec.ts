@@ -112,8 +112,7 @@ describe("ProfileUserMobile", () => {
         { provide: MenuService, useValue: menuServiceMock },
         { provide: ProfielService, useValue: profielServiceMock },
         { provide: Router, useValue: routerMock },
-        { provide: ConsoleLoggerService, useValue: consoleLoggerMock },
-      ],
+        { provide: ConsoleLoggerService, useValue: consoleLoggerMock }],
     });
 
     fixture = TestBed.createComponent(ProfileUserMobile);

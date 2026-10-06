@@ -64,8 +64,7 @@ describe("HeaderDirecciondesktop", () => {
         { provide: ThemeService, useValue: themeServiceMock },
         { provide: Location, useValue: locationMock },
         { provide: Router, useValue: routerMock },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-      ],
+        { provide: ActivatedRoute, useValue: activatedRouteMock }],
     });
 
     fixture = TestBed.createComponent(HeaderDirecciondesktop);

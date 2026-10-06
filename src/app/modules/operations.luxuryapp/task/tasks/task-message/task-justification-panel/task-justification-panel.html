@@ -45,14 +45,14 @@
                   j.requestedByUserId !== authS.applicationUserId
                 ) {
                   <div class="d-flex gap-2 flex-shrink-0">
-                    <il-button
+                    <lux-button-web
                       label="Aprobar"
                       iconClass="material-symbols-light:check"
                       severity="success"
                       variant="outline"
                       (clicked)="onApprove(j.id)"
                     />
-                    <il-button
+                    <lux-button-web
                       label="Rechazar"
                       iconClass="material-symbols-light:close"
                       severity="danger"
@@ -96,7 +96,7 @@
             <small class="text-body-secondary">
               {{ newReason().trim().length }}/20 caracteres mínimos
             </small>
-            <il-button
+            <lux-button-web
               label="Solicitar justificación"
               iconClass="material-symbols-light:assignment-late"
               [disabled]="newReason().trim().length < 20 || isRequesting()"

@@ -43,8 +43,7 @@ export class ProyectosAprobadosClienteComponent {
     "Sep",
     "Oct",
     "Nov",
-    "Dic",
-  ];
+    "Dic"];
 
   constructor() {
     effect(

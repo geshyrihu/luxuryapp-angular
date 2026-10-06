@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +34,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-approval-inbox",
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     MobileListItem,
     LxTooltipDirective,

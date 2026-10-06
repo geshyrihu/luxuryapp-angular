@@ -58,8 +58,7 @@ export class FinancialSummary {
     "septiembre",
     "octubre",
     "noviembre",
-    "diciembre",
-  ];
+    "diciembre"];
   mesesVisibles: string[] = [...this.months];
   budgetData: AspelBudgetDTO | null = null;
   cuentasSignal = signal<CuentaAspelDetalladaDTO[]>([]);
@@ -213,8 +212,7 @@ export class FinancialSummary {
       "presup_Septiembre",
       "presup_Octubre",
       "presup_Noviembre",
-      "presup_Diciembre",
-    ];
+      "presup_Diciembre"];
     let vigente = 0;
     for (const mes of meses) {
       const valor = cuenta[mes];

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { IRegistroChecador } from "../interfaces/chekador-empleados.models";
   selector: "app-chekador-list-desktop",
   templateUrl: "./chekador-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,

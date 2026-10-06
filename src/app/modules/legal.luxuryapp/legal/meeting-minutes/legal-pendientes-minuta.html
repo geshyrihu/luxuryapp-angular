@@ -1,26 +1,26 @@
 <div class="d-flex justify-content-start gap-1 flex-wrap">
-  <il-button
+  <lux-button-web
     label="Pendientes"
     [severity]="statusFiltro == 0 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 0 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(0)"
   />
-  <il-button
+  <lux-button-web
     label="Concluidos"
     [severity]="statusFiltro == 1 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 1 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(1)"
   />
-  <il-button
+  <lux-button-web
     label="No Autorizados"
     [severity]="statusFiltro == 2 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 2 ? null : 'text'"
     size="sm"
     (clicked)="onFiltrarData(2)"
   />
-  <il-button
+  <lux-button-web
     label="Todos"
     [severity]="statusFiltro == 4 ? 'primary' : 'secondary'"
     [variant]="statusFiltro == 4 ? null : 'text'"

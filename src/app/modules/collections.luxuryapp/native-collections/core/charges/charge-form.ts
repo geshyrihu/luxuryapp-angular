@@ -59,8 +59,7 @@ interface IChargeForm {
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputDateSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-form.html",
 })
@@ -86,8 +85,7 @@ export class ChargeForm implements OnInit {
   statusOptions = [
     { label: "Pendiente", value: EChargeStatus.Pendiente },
     { label: "Vencido", value: EChargeStatus.Vencido },
-    { label: "Cancelado", value: EChargeStatus.Cancelado },
-  ];
+    { label: "Cancelado", value: EChargeStatus.Cancelado }];
 
   async ngOnInit() {
     this.id = this.config.data.id;
@@ -136,8 +134,7 @@ export class ChargeForm implements OnInit {
     await Promise.all([
       this.loadProperties(),
       this.loadTemplates(),
-      this.loadChargeTypes(),
-    ]);
+      this.loadChargeTypes()]);
 
     if (this.id) {
       this.loadData();
@@ -219,8 +216,7 @@ export class ChargeForm implements OnInit {
               label:
                 res.status === EChargeStatus.Pagado ? "Pagado" : "Pago Parcial",
               value: res.status,
-            },
-          ];
+            }];
         }
       }
     }

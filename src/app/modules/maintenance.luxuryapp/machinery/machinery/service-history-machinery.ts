@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ import {
   selector: "app-service-history-machinery",
   templateUrl: "./service-history-machinery.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     TableEmptyMessage,
     AppTable,
 

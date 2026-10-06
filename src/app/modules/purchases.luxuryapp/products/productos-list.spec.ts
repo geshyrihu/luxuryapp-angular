@@ -51,8 +51,7 @@ describe("ProductosList", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: PlatformService, useValue: { isMobile: signal(false) } },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

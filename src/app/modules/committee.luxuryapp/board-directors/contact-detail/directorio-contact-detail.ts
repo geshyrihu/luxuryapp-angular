@@ -1,3 +1,4 @@
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
 import { AppRealtimeIndicator } from "@ui/primitives/realtime-indicator/realtime-indicator";
@@ -8,7 +9,7 @@ import { CommitteeDirectorioDTO } from "../../interfaces/committee-directorio.dt
 
 @Component({
   selector: "app-directorio-contact-detail",
-  imports: [
+  imports: [ButtonMobile, 
     LxCard,
     AppImageFallback,
     AppIcon,

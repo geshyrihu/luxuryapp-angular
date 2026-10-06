@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ interface JobResult {
 
 @Component({
   selector: "app-automated-services",
-  imports: [
+  imports: [ButtonWeb, 
     LxTag,
     CustomInputNumberSignal,
     CustomInputSelectSignal,

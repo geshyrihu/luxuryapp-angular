@@ -43,7 +43,7 @@
       <td>{{ item.largeName }}</td>
       <td class="no-print">
         <div class="d-flex gap-1">
-          <iw-button-edit
+          <lux-button-web displayMode="icon"-edit
             [attr.aria-label]="'Editar banco ' + item.shortName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />

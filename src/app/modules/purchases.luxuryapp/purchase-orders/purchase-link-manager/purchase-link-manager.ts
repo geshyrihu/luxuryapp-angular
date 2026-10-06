@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import {
   ChangeDetectionStrategy,
@@ -23,7 +24,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-purchase-link-manager",
   templateUrl: "./purchase-link-manager.html",
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     ReactiveFormsModule,
     CustomInputTextSignal,

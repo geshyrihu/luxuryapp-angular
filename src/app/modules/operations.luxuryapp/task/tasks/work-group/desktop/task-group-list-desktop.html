@@ -137,7 +137,7 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             [iconClass]="item.active ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
             (click)="toggleStatus.emit(item.id)"
             [ngbTooltip]="item.active ? 'Bloquear' : 'Desbloquear'"

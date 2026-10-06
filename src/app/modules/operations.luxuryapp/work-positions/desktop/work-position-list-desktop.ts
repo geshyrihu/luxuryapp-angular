@@ -12,14 +12,10 @@ import {
   SegmentItem,
   SegmentedControl,
 } from "@ui/primitives/segmented-control/segmented-control";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IWorkPosition } from "../interfaces/work-position.model";
 import { ButtonWeb } from "@ui/buttons/web";
 
@@ -34,8 +30,6 @@ import { ButtonWeb } from "@ui/buttons/web";
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-    AppAvatar,
     LuxTableCaption,
     LxTag,
     LxIcon,

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -13,7 +14,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-entrega-recepcion-check",
-  imports: [
+  imports: [ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     LxAccordion,

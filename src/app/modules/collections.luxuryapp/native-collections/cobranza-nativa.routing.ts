@@ -288,6 +288,5 @@ export const COBRANZA_NATIVA_ROUTES: Routes = [
       ),
     canActivate: [authGuard],
     data: { title: "Mapa Visual del Flujo", breadcrumb: "Mapa Visual" },
-  },
-];
+  }];
 

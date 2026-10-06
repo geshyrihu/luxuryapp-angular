@@ -4,7 +4,7 @@
     class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between gap-3 mb-3 g-4"
   >
     <div class="d-flex align-items-center gap-3">
-      <il-button
+      <lux-button-web
         label="Volver a mis entrevistas"
         iconClass="material-symbols-light:arrow-back"
         severity="secondary"
@@ -98,25 +98,25 @@
   <div class="card p-3 mb-4">
     <div class="fw-semibold mb-3">Acciones de respuesta</div>
     <div class="d-flex flex-wrap gap-2">
-      <il-button
+      <lux-button-web
         label="Registrar retroalimentacion"
         iconClass="material-symbols-light:more"
         severity="info"
         (clicked)="openFeedbackModal()"
       />
-      <il-button
+      <lux-button-web
         label="Marcar no asistio"
         iconClass="material-symbols-light:person-off"
         severity="warn"
         (clicked)="onMarkNoShow()"
       />
-      <il-button
+      <lux-button-web
         label="Rechazar"
         iconClass="material-symbols-light:cancel"
         severity="danger"
         (clicked)="onReject()"
       />
-      <il-button
+      <lux-button-web
         label="Aprobar / Continuar"
         iconClass="material-symbols-light:check-circle"
         severity="success"
@@ -204,12 +204,12 @@
     }
 
     <div class="d-flex justify-content-end gap-2">
-      <il-button
+      <lux-button-web
         label="Cancelar"
         severity="secondary"
         (clicked)="closeReasonModal()"
       />
-      <il-button
+      <lux-button-web
         [label]="actionLoading() ? 'Procesando...' : 'Confirmar'"
         [severity]="pendingAction() === 'approve' ? 'success' : 'danger'"
         [loading]="actionLoading()"

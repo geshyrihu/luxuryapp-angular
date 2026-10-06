@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-ticket-legal-actualizar-estado",
   templateUrl: "./ticket-legal-actualizar-estado.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputSelectSignal],
+  imports: [ButtonWeb, ReactiveFormsModule, CustomInputSelectSignal],
 })
 export class TicketLegalActualizarEstado implements OnInit {
   apiResponseS = inject(ApiResponseService);

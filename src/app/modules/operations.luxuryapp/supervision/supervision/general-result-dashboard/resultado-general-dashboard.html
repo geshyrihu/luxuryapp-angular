@@ -27,54 +27,54 @@
       </div>
     </div>
     <div class="d-flex flex-wrap gap-2 no-print mb-3">
-      <il-button
+      <lux-button-web
         (clicked)="nivelReporte = 0"
         label="GENERAL"
         [variant]="nivelReporte == 0 ? null : 'outlined'"
       />
-      <il-button
+      <lux-button-web
         (clicked)="nivelReporte = 1"
         label="OPER1"
         [variant]="nivelReporte == 1 ? null : 'outlined'"
       />
-      <il-button
+      <lux-button-web
         (clicked)="nivelReporte = 2"
         label="OPER2"
         [variant]="nivelReporte == 2 ? null : 'outlined'"
       />
-      <il-button
+      <lux-button-web
         (clicked)="mostrar = !mostrar"
         label="MODO REPORTE"
         [variant]="mostrar ? 'outlined' : null"
       />
     </div>
     <div class="d-flex flex-wrap gap-2 no-print mb-3">
-      <il-button
+      <lux-button-web
         variant="outline"
         label="MINUTAS GENERAL"
         (clicked)="onLoadDataMinutas()"
       />
-      <il-button
+      <lux-button-web
         variant="outline"
         label="MINUTAS CONTABLE"
         (clicked)="onLoadDataMinutaFiltro(0)"
       />
-      <il-button
+      <lux-button-web
         variant="outline"
         label="MINUTAS OPERACIONES"
         (clicked)="onLoadDataMinutaFiltro(1)"
       />
-      <il-button
+      <lux-button-web
         variant="outline"
         label="MINUTAS LEGAL"
         (clicked)="onLoadDataMinutaFiltro(2)"
       />
-      <il-button
+      <lux-button-web
         variant="outline"
         label="PREVENTIVOS"
         (clicked)="onLoadDataPreventivos()"
       />
-      <il-button
+      <lux-button-web
         variant="outline"
         label="TICKETS"
         (clicked)="onLoadDataTickets()"

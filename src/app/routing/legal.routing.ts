@@ -145,9 +145,7 @@ export const legalRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Contratos Laborales",
       breadcrumb: "Contratos Laborales",
@@ -167,9 +165,7 @@ export const legalRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Machotes de Contratos",
       breadcrumb: "Machotes de Contratos",
@@ -189,9 +185,7 @@ export const legalRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Adendas a Contratos",
       breadcrumb: "Adendas",
@@ -211,9 +205,7 @@ export const legalRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Machotes de Adendas",
       breadcrumb: "Machotes de Adendas",
@@ -224,5 +216,4 @@ export const legalRoutes: Routes = [
   {
     path: "documents", // Una ruta padre para agrupar todos los documentos
     children: documentRoutes,
-  },
-];
+  }];

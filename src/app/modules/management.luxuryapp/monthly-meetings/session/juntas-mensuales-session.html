@@ -12,17 +12,17 @@
         </div>
 
         <div class="d-flex gap-2 flex-wrap">
-          <il-button
+          <lux-button-web
             icon="material-symbols-light:calendar-today"
             label="Agenda"
             (clicked)="onOpenAgenda()"
           />
-          <il-button
+          <lux-button-web
             icon="material-symbols-light:photo-library"
             label="Presentaciones"
             (clicked)="onOpenPresentations()"
           />
-          <il-button
+          <lux-button-web
             icon="material-symbols-light:note-alt"
             label="Minutas"
             (clicked)="onOpenMinutes()"
@@ -125,25 +125,25 @@
 
       <div class="d-flex gap-2 flex-wrap mt-3">
         @if (canCreateMeeting(detail)) {
-        <il-button
+        <lux-button-web
           icon="material-symbols-light:note-add"
           label="Generar minuta"
           (clicked)="onCreateMeeting()"
         />
         } @if (canReschedule(detail)) {
-        <il-button
+        <lux-button-web
           icon="material-symbols-light:calendar-add-on"
           label="Reprogramar"
           (clicked)="onOpenReschedule()"
         />
         } @if (hasAssemblyChecklist(detail)) {
-        <il-button
+        <lux-button-web
           icon="material-symbols-light:fact-check"
           label="Checklist asamblea"
           (clicked)="onOpenAssemblyChecklist()"
         />
         } @if (detail.meetingId) {
-        <il-button
+        <lux-button-web
           icon="material-symbols-light:open-in-new"
           label="Abrir minuta"
           (clicked)="onOpenMinutes()"

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, CurrencyPipe, NgClass } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -25,7 +26,7 @@ import { AspelCobranzaDetalleResponse } from "./aspel-cobranza-haus.models";
   selector: "app-aspel-cobranza-haus-debt-detail-modal",
   templateUrl: "./aspel-cobranza-haus-debt-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     AppTable,
     LuxTableCaption,

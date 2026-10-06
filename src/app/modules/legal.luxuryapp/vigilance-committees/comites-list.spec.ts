@@ -24,10 +24,8 @@ describe("ComitesList", () => {
             phoneNumber: "5555555555",
             fullName: "Juan Perez",
             posicionComite: "Presidente",
-          },
-        ],
-      },
-    ]),
+          }],
+      }]),
   };
 
   beforeEach(async () => {
@@ -39,8 +37,7 @@ describe("ComitesList", () => {
       providers: [
         { provide: ApiResponseService, useValue: apiResponseStub },
         { provide: ModalController, useValue: {} },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ComitesList);
@@ -76,10 +73,8 @@ describe("ComitesList", () => {
             phoneNumber: "5555555555",
             fullName: "Juan Perez",
             posicionComite: "Presidente",
-          },
-        ],
-      },
-    ]);
+          }],
+      }]);
 
     expect(component.flatData()).toEqual([
       {
@@ -89,8 +84,7 @@ describe("ComitesList", () => {
         fullName: "Juan Perez",
         posicionComite: "Presidente",
         customerName: "Condominio A",
-      },
-    ]);
+      }]);
   });
 });
 

@@ -33,8 +33,7 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre",
-];
+  "Diciembre"];
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
   "montoFebrero",
@@ -47,8 +46,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre",
-];
+  "montoDiciembre"];
 
 type EstadoResultadosRow =
   | { tipo: "header"; descripcion: string }
@@ -70,8 +68,7 @@ type EstadoResultadosRow =
     AppTable,
     LxSkeleton,
     DataViewMobile,
-    AccountingNumberPipe,
-  ],
+    AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./resultados-extraordinarios.html",
 })
@@ -89,8 +86,7 @@ export class ResultadosExtraordinarios {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)],
-    ];
+      MONTH_NAMES[wr(idx)]];
   });
 
   rows = computed<EstadoResultadosRow[]>(() => {
@@ -218,8 +214,7 @@ export class ResultadosExtraordinarios {
       totals[0] + row.mes1,
       totals[1] + row.mes2,
       totals[2] + row.mes3,
-      totals[3] + row.acum,
-    ];
+      totals[3] + row.acum];
   }
 
   private hasVisibleValues(row: EstadoResultadosRow): boolean {

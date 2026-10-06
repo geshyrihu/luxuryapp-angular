@@ -36,8 +36,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
     IonFooter,
     IonMenu,
     IonTitle,
-    LxLoader,
-  ],
+    LxLoader],
   templateUrl: "./view-employee-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
@@ -57,8 +56,7 @@ import { HomeMenu } from "../home-menu-mobile/home-menu-mobile";
            5rem + var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px))
          );
        }
-    `,
-  ],
+    `],
 })
 export class ViewEmployeeMobile implements OnInit {
   public navService = inject(MenuService);

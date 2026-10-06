@@ -26,8 +26,7 @@ import {
     LxTag,
     LxIcon,
     ButtonWeb,
-    TableEmptyMessage,
-  ],
+    TableEmptyMessage],
 })
 export class LegalStaffBoard {
   private legalEmployeeS = inject(LegalEmployeeService);

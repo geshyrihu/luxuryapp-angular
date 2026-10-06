@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -58,7 +59,7 @@ interface DuplicateEmployeeMatch {
   selector: "app-candidate-process-hiring-modal",
   templateUrl: "./candidate-process-hiring-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+   imports: [ButtonWeb, 
     CurrencyPipe,
     ReactiveFormsModule,
     CustomInputDateSignal,

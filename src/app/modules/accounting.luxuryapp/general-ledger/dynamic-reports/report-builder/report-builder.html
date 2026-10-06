@@ -58,21 +58,21 @@
         />
       </div>
 
-      <il-button
+      <lux-button-web
         label="Ejemplos"
         iconClass="material-symbols-light:lightbulb"
         severity="help"
         variant="text"
         (clicked)="showExamples.set(true)"
       />
-      <il-button
+      <lux-button-web
         label="Cancelar"
         iconClass="material-symbols-light:close"
         severity="secondary"
         variant="text"
         (clicked)="cancelar()"
       />
-      <il-button
+      <lux-button-web
         label="Guardar Reporte"
         iconClass="material-symbols-light:save"
         [loading]="guardando()"
@@ -126,7 +126,7 @@
         class="p-3 d-flex align-items-center justify-content-between bg-body-tertiary border-bottom-1 border-bg-body-tertiary shadow-sm"
       >
         <div class="d-flex gap-2">
-          <il-button
+          <lux-button-web
             label="Añadir Sección"
             iconClass="material-symbols-light:add-circle"
             variant="text"
@@ -162,7 +162,7 @@
               optionValue="value"
             />
           </div>
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:settings"
             variant="text"
             severity="secondary"
@@ -204,7 +204,7 @@
           />
           <h3>El canvas está vacío</h3>
           <p>Añade una sección para comenzar a diseñar tu reporte</p>
-          <il-button
+          <lux-button-web
             label="Crear primera sección"
             iconClass="material-symbols-light:add"
             (clicked)="agregarSeccion()"
@@ -238,7 +238,7 @@
                   />
                 </div>
                 <div class="d-flex gap-2">
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     iconClass="material-symbols-light:delete"
                     [text]="true"
                     severity="danger"
@@ -274,7 +274,7 @@
                 >
                   <!-- Botones Subir/Bajar -->
                   <div class="d-flex flex-column gap-0">
-                    <iw-button
+                    <lux-button-web displayMode="icon"
                       iconClass="material-symbols-light:keyboard-arrow-up"
                       [text]="true"
                       size="small"
@@ -282,7 +282,7 @@
                       [disabled]="rowIdx === 0"
                       (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)"
                     />
-                    <iw-button
+                    <lux-button-web displayMode="icon"
                       iconClass="material-symbols-light:keyboard-arrow-down"
                       [text]="true"
                       size="small"
@@ -330,7 +330,7 @@
                       <span>Suelta cuentas aquí...</span>
                     </div>
                     @if (selectedCatalogCodes().length > 0) {
-                    <il-button
+                    <lux-button-web
                       label="Añadir seleccionadas"
                       iconClass="material-symbols-light:add"
                       size="small"
@@ -358,7 +358,7 @@
                     <!-- Botón para añadir seleccionados (Fallback si el drag falla) -->
                     @if (selectedCatalogCodes().length > 0) {
                     <div class="ms-auto ps-2">
-                      <iw-button
+                      <lux-button-web displayMode="icon"
                         iconClass="material-symbols-light:add"
                         [rounded]="true"
                         [text]="true"
@@ -395,7 +395,7 @@
                   <div
                     class="d-flex align-items-center gap-2 border-left-1 border px-3"
                   >
-                    <iw-button
+                    <lux-button-web displayMode="icon"
                       [iconClass]="row.multiplier === 1 ? 'material-symbols-light:add' : 'material-symbols-light:remove'"
                       [severity]="row.multiplier === 1 ? 'success' : 'danger'"
                       [text]="true"
@@ -437,7 +437,7 @@
                     class="text-xs opacity-60 font-mono flex-shrink-0"
                   />
 
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     iconClass="material-symbols-light:delete"
                     [text]="true"
                     severity="danger"
@@ -452,14 +452,14 @@
               <div
                 class="p-2 bg-bg-body-tertiary d-flex gap-2 justify-content-center border-top-1 border-bg-body-tertiary mt-auto"
               >
-                <il-button
+                <lux-button-web
                   label="Añadir Cuenta"
                   iconClass="material-symbols-light:add"
                   [text]="true"
                   size="small"
                   (clicked)="agregarRenglon(sec.sectionId, 'account')"
                 />
-                <il-button
+                <lux-button-web
                   label="Añadir Fórmula"
                   iconClass="material-symbols-light:percent"
                   [text]="true"

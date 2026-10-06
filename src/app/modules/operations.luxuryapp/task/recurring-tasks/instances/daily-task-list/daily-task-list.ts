@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +13,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
+
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
@@ -20,12 +21,11 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
   selector: "app-daily-task-list",
   templateUrl: "./daily-task-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     ApiDatePipe,
     ReactiveFormsModule,
     CustomInputDateSignal,
-    AppTable,
-    StatusBadge],
+    AppTable],
 })
 export class DailyTaskList implements OnInit {
   private apiResponseS = inject(ApiResponseService);

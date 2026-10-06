@@ -13,14 +13,13 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PrintService } from "@core/services/print.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppImage } from "@ui/web/image/image";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { DiagramPreviewComponent } from "./diagram-preview";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
-
 
 @Component({
   selector: "app-manuals-and-processes-detail",
@@ -28,12 +27,7 @@ import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dt
   styleUrls: [],
 
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ApiDatePipe,
-    AppImage,
-    LxTag,
-    DiagramPreviewComponent,
-    LxIcon],
+  imports: [ButtonWeb, ApiDatePipe, LxTag, DiagramPreviewComponent, LxIcon],
 })
 export class ManualsAndProcessesDetail implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -52,7 +46,8 @@ export class ManualsAndProcessesDetail implements OnInit {
       ApplicationRole.SuperUsuario,
       ApplicationRole.Legal,
       ApplicationRole.RecursosHumanos,
-      ApplicationRole.Reclutamiento];
+      ApplicationRole.Reclutamiento,
+    ];
     return roles.some((role) => this.aspRoleS.roleSignal(role)());
   });
 
@@ -98,7 +93,8 @@ export class ManualsAndProcessesDetail implements OnInit {
           "Miórcoles",
           "Jueves",
           "Viernes",
-          "Sóbado"];
+          "Sóbado",
+        ];
         const wk = weeks[manual.executionWeekOfMonth - 1] || "Semana";
         const d = days[manual.executionDaysOfWeek[0]];
         return `Mensual (${wk} semana, el ${d})`;
@@ -121,7 +117,8 @@ export class ManualsAndProcessesDetail implements OnInit {
           "Sep",
           "Oct",
           "Nov",
-          "Dic"];
+          "Dic",
+        ];
         const m = months[manual.executionMonthOfYear - 1];
         if (manual.executionDayOfMonth) {
           return `Anual (Cada ${manual.executionDayOfMonth} de ${m})`;

@@ -9,8 +9,7 @@ describe('CronogramaAnualPdfStatusService', () => {
     TestBed.configureTestingModule({
       providers: [
         CronogramaAnualPdfStatusService,
-        { provide: ApiResponseService, useValue: { onGetItem: vi.fn().mockResolvedValue([]) } },
-      ],
+        { provide: ApiResponseService, useValue: { onGetItem: vi.fn().mockResolvedValue([]) } }],
     });
     service = TestBed.inject(CronogramaAnualPdfStatusService);
   });

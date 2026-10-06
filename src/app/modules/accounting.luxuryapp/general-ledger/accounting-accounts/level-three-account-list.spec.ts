@@ -28,8 +28,7 @@ describe('LevelThreeAccountList', () => {
         { provide: NgbModal, useValue: {} },
         { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: ConfirmService, useValue: mockConfirmS },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     });
     TestBed.overrideComponent(LevelThreeAccountList, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();

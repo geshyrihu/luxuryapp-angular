@@ -62,14 +62,14 @@
         />
 
         <div class="d-flex gap-2 flex-shrink-0">
-          <il-button
+          <lux-button-web
             label="Filtrar"
             iconClass="material-symbols-light:filter"
             severity="primary"
             size="small"
             (clicked)="applyFilters.emit()"
           />
-          <il-button
+          <lux-button-web
             label="Limpiar"
             iconClass="material-symbols-light:close"
             severity="secondary"
@@ -178,14 +178,14 @@
         @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión')
         {
         <div class="d-flex gap-1 justify-content-center">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:check"
             severity="success"
             size="small"
             variant="text"
             (clicked)="approve.emit(item)"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:close"
             severity="danger"
             size="small"

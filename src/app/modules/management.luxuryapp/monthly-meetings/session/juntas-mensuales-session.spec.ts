@@ -60,8 +60,7 @@ describe("JuntasMensualesSession", () => {
           provide: SignalRService,
           useValue: { googleCalendarEventUpdate$: of({ customerId: "cust-123" }) },
         },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

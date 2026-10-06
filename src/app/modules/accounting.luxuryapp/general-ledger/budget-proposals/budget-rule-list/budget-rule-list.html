@@ -65,7 +65,7 @@
             ariaLabel="Editar"
             (clicked)="onModalForm({ id: Item.id, title: 'Editar Regla' })"
           />
-          <iw-button-delete (confirmed)="onDelete(Item.id)" />
+          <lux-button-web displayMode="icon"-delete (confirmed)="onDelete(Item.id)" />
         </div>
       </td>
     </tr>
@@ -109,7 +109,7 @@
             kind="edit"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Regla' })"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <lux-button-mobile-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

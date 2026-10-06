@@ -49,8 +49,7 @@ export class PresupuestoContabilidad {
       "SEP",
       "OCT",
       "NOV",
-      "DIC",
-    ];
+      "DIC"];
     return `ACUMULADO ENE-${names[this.filterS.mesIdx()]}`;
   });
 

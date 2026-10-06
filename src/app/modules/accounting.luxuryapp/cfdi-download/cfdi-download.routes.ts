@@ -14,8 +14,7 @@ const MODULE_ROLES: ApplicationRole[] = [
   ApplicationRole.GerenteAtencion,
   ApplicationRole.Asistente,
   ApplicationRole.GerenteMantenimiento,
-  ApplicationRole.SupervisionOperativa,
-];
+  ApplicationRole.SupervisionOperativa];
 
 export const cfdiDownloadRoutes: Routes = [
   {
@@ -28,5 +27,4 @@ export const cfdiDownloadRoutes: Routes = [
       breadcrumb: "CFDI del SAT",
       allowedRoles: MODULE_ROLES,
     },
-  },
-];
+  }];

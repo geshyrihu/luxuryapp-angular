@@ -20,8 +20,7 @@ describe('EmailDataForm', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: SwalService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmailDataForm);

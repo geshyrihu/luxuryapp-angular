@@ -286,5 +286,4 @@ export const accountingRoutes: Routes = [
       title: "Simulador Aspel COI",
       breadcrumb: "Mock Aspel",
     },
-  },
-];
+  }];

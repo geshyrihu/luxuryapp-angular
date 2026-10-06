@@ -6,15 +6,11 @@ import {
 } from "@angular/core";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-owner-list-desktop",
@@ -26,10 +22,8 @@ import {
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption,
-    TableFooter,
-    ActionMenu],
+    TableFooter],
 })
 export class OwnerListDesktop {
   data = input.required<any[]>();

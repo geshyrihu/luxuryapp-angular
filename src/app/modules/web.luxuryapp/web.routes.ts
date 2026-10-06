@@ -207,8 +207,7 @@ export const webRoutes: Routes = [
           title: "Inspección de Instalaciones",
           breadcrumb: "Inspección de Instalaciones",
         },
-      },
-    ],
+      }],
   },
   {
     path: "accounting",
@@ -223,5 +222,4 @@ export const webRoutes: Routes = [
     loadComponent: () =>
       import("@web.luxuryapp/hr/hr-page").then((m) => m.HrPage),
     data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
-  },
-];
+  }];

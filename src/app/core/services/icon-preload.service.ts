@@ -8,8 +8,7 @@ export function preloadIconifyIcons(): () => Promise<void> {
     "fluent-color:lock-closed-20",
     "fluent-color:checkmark-circle-20",
     "fluent-color:add-circle-20",
-    "fluent:lock-open-20-regular",
-  ];
+    "fluent:lock-open-20-regular"];
 
   return async () => {
     // Esperar a que el web component esté definido (si aplica)
@@ -17,8 +16,7 @@ export function preloadIconifyIcons(): () => Promise<void> {
       try {
         await Promise.race([
           customElements.whenDefined("iconify-icon"),
-          new Promise((r) => setTimeout(r, 2000)),
-        ]);
+          new Promise((r) => setTimeout(r, 2000))]);
       } catch (e) {
         // ignore
       }

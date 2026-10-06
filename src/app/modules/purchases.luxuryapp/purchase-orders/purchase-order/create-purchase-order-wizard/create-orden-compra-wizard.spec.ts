@@ -21,8 +21,7 @@ describe("CreateOrdenCompraWizard", () => {
         DialogService,
         { provide: ModalController, useValue: {} },
         { provide: DynamicDialogRef, useValue: { close: () => {} } },
-        { provide: DynamicDialogConfig, useValue: { data: null } },
-      ],
+        { provide: DynamicDialogConfig, useValue: { data: null } }],
     }).compileComponents();
   });
 

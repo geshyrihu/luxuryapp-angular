@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -31,7 +32,7 @@ interface LeaveApprovalDetailDTO {
   selector: "app-leave-request-detail-for-aproved",
   templateUrl: "./permiso-detalle-aprobar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag],
+  imports: [ButtonWeb, LxTag],
 })
 export class PermisoDetalleAprobar implements OnInit {
   apiResponseS = inject(ApiResponseService);

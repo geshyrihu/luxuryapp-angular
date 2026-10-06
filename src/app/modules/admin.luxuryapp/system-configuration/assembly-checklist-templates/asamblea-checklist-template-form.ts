@@ -37,8 +37,7 @@ import { AsambleaChecklistTemplateFormGroup } from "./interfaces/asamblea-checkl
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class AsambleaChecklistTemplateForm implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

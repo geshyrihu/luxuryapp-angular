@@ -46,6 +46,5 @@ export const webRoutes: Routes = [
     loadComponent: () =>
       import("@web.luxuryapp/hr/hr-page").then((m) => m.HrPage),
     data: { title: "Recursos Humanos", breadcrumb: "Recursos Humanos" },
-  },
-];
+  }];
 

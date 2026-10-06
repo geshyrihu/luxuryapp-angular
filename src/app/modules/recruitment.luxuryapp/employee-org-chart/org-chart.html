@@ -50,27 +50,27 @@
       </div>
       } @else {
       <div class="org-chart-toolbar">
-        <il-button
+        <lux-button-web
           label="Limpiar selección"
           variant="text"
           (clicked)="clearSelection()"
         />
 
         @if (selectedOrigin()) {
-        <il-button
+        <lux-button-web
           label="Mover a raíz"
           variant="text"
           (clicked)="moveSelectedToRoot()"
         />
 
-        <il-button
+        <lux-button-web
           label="Mover izquierda"
           variant="text"
           [disabled]="!canMoveSelectedUp()"
           (clicked)="reorderSelected(-1)"
         />
 
-        <il-button
+        <lux-button-web
           label="Mover derecha"
           variant="text"
           [disabled]="!canMoveSelectedDown()"

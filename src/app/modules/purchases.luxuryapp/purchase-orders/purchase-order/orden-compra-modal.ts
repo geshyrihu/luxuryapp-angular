@@ -48,8 +48,7 @@ interface IModalOrdenCompra {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    CustomInputToggleSwitch,
-  ],
+    CustomInputToggleSwitch],
 })
 export class ModalOrdenCompra implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -24,8 +24,7 @@ import { IncidenciaNominaDTO } from "../../interfaces/incidencia-nomina.interfac
     MobileListItem,
     LxTag,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class IncidenciasNominaMobile {
   data = input.required<IncidenciaNominaDTO[]>();

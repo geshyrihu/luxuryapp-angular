@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -50,7 +51,7 @@ export interface TendenciaMensualDTO {
 
 @Component({
   selector: "app-cobranza-dashboard",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     DecimalPipe,
     LxCard,

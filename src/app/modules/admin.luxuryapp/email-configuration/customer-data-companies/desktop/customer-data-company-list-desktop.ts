@@ -34,8 +34,7 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     TableFooter,
     TableEmptyMessage,
     CustomInputSelectSignal,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CustomerDataCompanyListDesktop {
   data = input.required<CustomerDataCompanyDto[]>();

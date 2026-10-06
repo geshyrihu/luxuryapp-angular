@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +15,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [LxIcon, LxTag],
+  imports: [ButtonWeb, LxIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })

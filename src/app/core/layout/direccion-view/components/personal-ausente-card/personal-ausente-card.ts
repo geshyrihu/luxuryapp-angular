@@ -24,8 +24,7 @@ import type { PersonalAusenteResumenDto } from "./personal-ausente-card.model";
       .text-ds-info {
         color: var(--ds-info);
       }
-    `,
-  ],
+    `],
 })
 export class PersonalAusenteCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

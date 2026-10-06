@@ -38,8 +38,7 @@ export class AdministrationFormList implements OnInit {
 
   form = new FormGroup({
     administrationparticipante: new FormControl<string | null>(null, [
-      Validators.required,
-    ]),
+      Validators.required]),
   });
 
   get administrationparticipante() {

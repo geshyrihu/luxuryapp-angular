@@ -34,8 +34,7 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
     AppTable,
     LxTooltipDirective,
     CustomInputSelectSignal,
-    FormsModule,
-  ],
+    FormsModule],
 })
 export class ReporteEnvioFinancieros implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -55,8 +54,7 @@ export class ReporteEnvioFinancieros implements OnInit {
     "SEP",
     "OCT",
     "NOV",
-    "DIC",
-  ];
+    "DIC"];
 
   years: any[] = [];
   selectedYear: number = new Date().getFullYear();

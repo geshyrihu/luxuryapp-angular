@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
+
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   IncidentDashboardDTO,
@@ -18,10 +19,9 @@ import {
 } from "../interfaces/incident.interfaces";
 @Component({
   selector: "app-incident-dashboard",
-  imports: [
+  imports: [ButtonWeb,
     LxIcon,
     ReactiveFormsModule,
-    ChartWrapper,
     AppTable,
     CustomInputDateSignal],
   changeDetection: ChangeDetectionStrategy.Eager,

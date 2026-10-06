@@ -46,7 +46,7 @@
           {{ candidate.candidateName }} - puedes importar sus datos básicos.
         </p>
       </div>
-      <il-button
+      <lux-button-web
         label="Importar datos de candidato aprobado"
         iconClass="material-symbols-light:download"
         severity="info"
@@ -220,13 +220,13 @@
     }
 
     <div class="d-flex justify-content-end gap-2 mt-4">
-      <il-button
+      <lux-button-web
         label="Cancelar"
         severity="secondary"
         variant="outline"
         (clicked)="onCancel()"
       />
-      <il-button
+      <lux-button-web
         [label]="saveLabel()"
         iconClass="material-symbols-light:save-outline"
         [loading]="submitting() || searchingDuplicates()"

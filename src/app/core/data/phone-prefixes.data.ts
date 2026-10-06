@@ -31,5 +31,4 @@ export const PHONE_PREFIXES: PhonePrefix[] = [
   { flag: "🇵🇹", name: "Portugal", dialCode: "+351" },
   { flag: "🇨🇳", name: "China", dialCode: "+86" },
   { flag: "🇯🇵", name: "Japón", dialCode: "+81" },
-  { flag: "🇮🇳", name: "India", dialCode: "+91" },
-];
+  { flag: "🇮🇳", name: "India", dialCode: "+91" }];

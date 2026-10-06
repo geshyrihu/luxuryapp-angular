@@ -32,8 +32,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
     CustomInputTextSignal,
     InputMask,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class UserAccountForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

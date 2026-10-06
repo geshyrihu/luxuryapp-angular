@@ -14,7 +14,7 @@
           [value]="manualId()"
           (input)="manualId.set($any($event.target).value)"
         />
-        <il-button
+        <lux-button-web
           label="Buscar equipo"
           iconClass="material-symbols-light:search"
           (clicked)="resolveManual()"
@@ -50,13 +50,13 @@
       }
 
       @if (!scanning()) {
-        <il-button
+        <lux-button-web
           label="Iniciar escaneo"
           iconClass="material-symbols-light:photo-camera"
           (clicked)="startScan(videoEl)"
         />
       } @else {
-        <il-button
+        <lux-button-web
           label="Detener"
           iconClass="material-symbols-light:stop"
           severity="secondary"

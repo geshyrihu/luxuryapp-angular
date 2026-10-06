@@ -14,21 +14,21 @@
       </ng-template>
     </custom-input-select-button-signal>
 
-    <il-button
+    <lux-button-web
       label="Descargar ({{ selectedFiles().length }})"
       [iconClass]="'material-symbols-light:upload'"
       severity="success"
       [disabled]="selectedFiles().length === 0"
       (clicked)="downloadSelectedFiles()"
     >
-    </il-button>
-    <il-button
+    </lux-button-web>
+    <lux-button-web
       label="Descargar Todo"
       iconClass="material-symbols-light:package"
       severity="help"
       (clicked)="downloadAllFiles()"
     >
-    </il-button>
+    </lux-button-web>
   </div>
 
   <div class="flex-grow-1 overflow-auto p-1">

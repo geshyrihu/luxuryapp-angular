@@ -32,8 +32,7 @@ import {
     CustomInputDateSignal,
     CustomInputDecimal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-tiempo-extra-add.html",
 })
@@ -54,8 +53,7 @@ export default class ModalTiempoExtraAdd implements OnInit {
     fecha: ["", Validators.required],
     horasSimples: [
       0,
-      [Validators.required, Validators.min(0), Validators.max(9)],
-    ],
+      [Validators.required, Validators.min(0), Validators.max(9)]],
     horasDobles: [0, [Validators.required, Validators.min(0)]],
     observaciones: [""],
   });

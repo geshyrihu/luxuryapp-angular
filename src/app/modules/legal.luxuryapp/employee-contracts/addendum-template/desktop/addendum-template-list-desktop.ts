@@ -25,8 +25,7 @@ import { AddendumTemplateListDTO } from "../interfaces/addendum-template.dto";
     ApiDatePipe,
     AppTable,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class AddendumTemplateListDesktop {
   private tableScrollH = inject(TableScrollHeightService);

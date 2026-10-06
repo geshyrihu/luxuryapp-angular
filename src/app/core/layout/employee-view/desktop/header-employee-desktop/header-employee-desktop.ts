@@ -61,8 +61,7 @@ import { HeaderEmployeeAiModal } from "./header-employee-ai-modal";
     Profiledesktop,
     RouterModule,
     AppToolbar,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./header-employee-desktop.html",
 })
@@ -139,8 +138,7 @@ export class HeaderEmployeedesktop implements OnInit {
   );
   public colorOptions = [
     { label: "Gold", value: "--ds-luxury-gold" },
-    { label: "Neutral", value: "--ds-document-neutral" },
-  ];
+    { label: "Neutral", value: "--ds-document-neutral" }];
 
   // SIGNALS
   private routeEventSignal = toSignal(
@@ -289,8 +287,7 @@ export class HeaderEmployeedesktop implements OnInit {
         iconClass: "material-symbols-light:star",
         iconExtraClass: "text-yellow-500",
         action: () => this.onWhatsNew(),
-      },
-    ];
+      }];
   }
 
   // UI methods
@@ -313,8 +310,7 @@ export class HeaderEmployeedesktop implements OnInit {
       "material-symbols-light:info",
       "material-symbols-light:shield",
       "material-symbols-light:group",
-      "material-symbols-light:check-circle",
-    ];
+      "material-symbols-light:check-circle"];
     return icons[index % icons.length];
   }
 

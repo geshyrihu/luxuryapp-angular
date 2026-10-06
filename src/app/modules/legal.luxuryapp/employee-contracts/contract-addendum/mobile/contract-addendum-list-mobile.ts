@@ -22,8 +22,7 @@ import { ContractAddendumListDTO } from "../interfaces/contract-addendum.dto";
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class ContractAddendumListMobile {
   data = input.required<ContractAddendumListDTO[]>();

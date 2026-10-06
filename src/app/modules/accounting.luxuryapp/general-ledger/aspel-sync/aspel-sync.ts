@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -27,7 +28,7 @@ interface IAspelSyncForm {
   selector: "app-aspel-sync",
   templateUrl: "./aspel-sync.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     ReactiveFormsModule,
     LxIcon,

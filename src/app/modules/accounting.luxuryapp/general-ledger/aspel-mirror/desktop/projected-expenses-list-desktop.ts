@@ -28,8 +28,7 @@ import {
     AppSorticon,
     LuxTableCaption,
     TableEmptyMessage,
-    DecimalPipe,
-  ],
+    DecimalPipe],
 })
 export class ProjectedExpensesListDesktop {
   data = input.required<any[]>();

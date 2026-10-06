@@ -19,8 +19,7 @@ export const superUserGuard: CanActivateFn = (route, state) => {
     ApplicationRole.SuperUsuario,
     ApplicationRole.Legal,
     ApplicationRole.RecursosHumanos,
-    ApplicationRole.Reclutamiento,
-  ];
+    ApplicationRole.Reclutamiento];
 
   // Verificamos si el usuario tiene alguno de los roles autorizados
   const isAuthorized = authorizedRoles.some((role) =>

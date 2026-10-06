@@ -29,8 +29,7 @@ import { UserActivityHistoryMobile } from "./mobile/user-activity-history-mobile
     provideFlatpickrDefaults({
       dateFormat: "d/m/Y",
       locale: "es",
-    }),
-  ],
+    })],
 })
 export class UserActivityHistory implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -65,8 +64,7 @@ export class UserActivityHistory implements OnInit {
   ngOnInit(): void {
     this.isUserAdmin = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
-      ApplicationRole.Administrador,
-    ]);
+      ApplicationRole.Administrador]);
 
     this.setupFilters();
     this.onLoadData(true); // Carga inicial
@@ -84,8 +82,7 @@ export class UserActivityHistory implements OnInit {
     this.userTypeOptions = [
       { label: "Empleado", value: "Employee" },
       { label: "Proveedor", value: "Provider" },
-      { label: "Condomino", value: "Client" },
-    ];
+      { label: "Condomino", value: "Client" }];
 
     if (this.isUserAdmin) {
       this.customerOptions = this.authS.customerAccess.map((c) => ({
@@ -100,8 +97,7 @@ export class UserActivityHistory implements OnInit {
       )?.label;
       this.filterCustomerIdControl.setValue(userCustomerId);
       this.customerOptions = [
-        { label: userCustomerName, value: userCustomerId },
-      ];
+        { label: userCustomerName, value: userCustomerId }];
     }
   }
 

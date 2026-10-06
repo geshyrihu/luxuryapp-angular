@@ -18,8 +18,7 @@ describe('MinutaPdfService', () => {
     TestBed.configureTestingModule({
       providers: [
         MinutaPdfService,
-        { provide: HtmlPrintService, useValue: mockHtmlPrintService },
-      ],
+        { provide: HtmlPrintService, useValue: mockHtmlPrintService }],
     });
 
     service = TestBed.inject(MinutaPdfService);

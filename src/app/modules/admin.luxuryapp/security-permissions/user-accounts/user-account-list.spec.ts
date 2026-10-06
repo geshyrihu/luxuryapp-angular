@@ -22,8 +22,7 @@ describe('UserAccountList', () => {
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserAccountList);

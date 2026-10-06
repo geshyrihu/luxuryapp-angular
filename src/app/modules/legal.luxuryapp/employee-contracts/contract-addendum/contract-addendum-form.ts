@@ -46,8 +46,7 @@ interface IContractAddendumForm {
     CustomInputDateSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ContractAddendumFormComponent {
   apiS = inject(ApiResponseService);
@@ -71,8 +70,7 @@ export class ContractAddendumFormComponent {
     { value: "ExtensionContrato", label: "Extensión de Contrato" },
     { value: "ModificacionJornada", label: "Modificación de Jornada" },
     { value: "ClausulaAdicional", label: "Clóusula Adicional" },
-    { value: "OtrasCondiciones", label: "Otra Condición" },
-  ];
+    { value: "OtrasCondiciones", label: "Otra Condición" }];
 
   placeholderText =
     "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables dinámicas";

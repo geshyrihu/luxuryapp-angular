@@ -25,8 +25,7 @@ import { ContractTemplateListDTO } from "../interfaces/contract-template.dto";
     ApiDatePipe,
     AppTable,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ContractTemplateListDesktop {
   private tableScrollH = inject(TableScrollHeightService);

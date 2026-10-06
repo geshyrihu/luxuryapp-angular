@@ -60,7 +60,6 @@ export const recurringTasksRoutes: Routes = [
       title: "Mis Tareas Diarias",
       breadcrumb: "Mis Tareas",
     },
-  },
-];
+  }];
 
 

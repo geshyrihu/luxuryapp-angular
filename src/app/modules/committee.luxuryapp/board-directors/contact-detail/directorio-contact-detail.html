@@ -39,13 +39,13 @@
       >
       @if (!person.isLocation) {
       <div class="committee-contact-detail__actions">
-        <ili-button
+        <lux-button-mobile
           label="Llamar"
           iconClass="material-symbols-light:call"
           expand="block"
           (clicked)="call(person.phoneNumber)"
         />
-        <ili-button
+        <lux-button-mobile
           label="WhatsApp"
           iconClass="material-symbols-light:chat"
           color="success"
@@ -68,13 +68,13 @@
       <span class="committee-contact-detail__value">{{ person.phoneTwo }}</span>
       @if (!person.isLocation) {
       <div class="committee-contact-detail__actions">
-        <ili-button
+        <lux-button-mobile
           label="Llamar"
           iconClass="material-symbols-light:call"
           expand="block"
           (clicked)="call(person.phoneTwo)"
         />
-        <ili-button
+        <lux-button-mobile
           label="WhatsApp"
           iconClass="material-symbols-light:chat"
           color="success"
@@ -124,7 +124,7 @@
       </span>
       <span class="committee-contact-detail__value">{{ person.email }}</span>
       <div class="committee-contact-detail__actions">
-        <ili-button
+        <lux-button-mobile
           label="Enviar correo"
           iconClass="material-symbols-light:mail-outline"
           expand="block"

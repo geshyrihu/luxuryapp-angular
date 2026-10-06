@@ -41,8 +41,7 @@ describe("MemberForm", () => {
           useValue: {
             memberRole: () => of([{ label: "Propietario", value: EMemberRole.Owner }]),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MemberForm);

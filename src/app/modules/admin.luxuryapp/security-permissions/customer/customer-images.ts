@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +20,7 @@ import { CustomerImageDto } from "./interfaces/customer-image.dto";
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxImage, LxIcon],
+  imports: [ButtonWeb, LxImage, LxIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

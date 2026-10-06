@@ -1,3 +1,5 @@
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +20,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-salary-projection-create-dialog",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, CustomInputTextSignal],
+  imports: [ButtonMobile, ButtonWeb, FormsModule, CustomInputTextSignal],
   template: `
     <div class="d-flex flex-column gap-3 p-3">
       <custom-input-text-signal
@@ -34,7 +36,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
       }
 
       <div class="d-flex justify-content-end gap-2">
-        <il-button
+        <lux-button-web
           label="Crear propuesta"
           iconClass="material-symbols-light:add"
           severity="primary"

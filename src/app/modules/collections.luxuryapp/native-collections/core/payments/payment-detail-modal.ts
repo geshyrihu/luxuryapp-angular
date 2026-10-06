@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,7 +28,7 @@ import { ChargeForm } from "../charges/charge-form";
 
 @Component({
   selector: "app-payment-detail-modal",
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     AppTable,
     AppSortableColumn,

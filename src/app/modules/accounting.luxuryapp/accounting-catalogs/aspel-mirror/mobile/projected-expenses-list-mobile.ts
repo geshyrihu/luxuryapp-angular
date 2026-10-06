@@ -21,8 +21,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class ProjectedExpensesListMobile {
   data = input.required<any[]>();

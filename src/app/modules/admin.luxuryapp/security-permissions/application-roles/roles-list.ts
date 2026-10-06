@@ -35,8 +35,7 @@ export class RolesList implements OnInit {
     "name",
     "displayName",
     "roleType",
-    "departament",
-  ]);
+    "departament"]);
   loading = signal(true);
   ref: DynamicDialogRef;
 

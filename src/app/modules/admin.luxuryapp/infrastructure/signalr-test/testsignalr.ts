@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 @Component({
   selector: "app-testsignalr",
-  imports: [
+  imports: [ButtonWeb, 
     LxCard,
     CustomInputTextSignal,
     InputAutocomplete,

@@ -20,8 +20,7 @@ describe('BrevoEmailLogs', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-        { provide: FlatpickrDefaults, useValue: {} },
-      ],
+        { provide: FlatpickrDefaults, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BrevoEmailLogs);

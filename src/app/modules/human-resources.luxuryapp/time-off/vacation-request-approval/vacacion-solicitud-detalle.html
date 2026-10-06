@@ -72,14 +72,14 @@
   </div>
   @if (requestData().status === 'Pending') {
   <div class="card-footer text-end">
-    <il-button
+    <lux-button-web
       severity="success"
       iconClass="material-symbols-light:check"
       label="Aprobar"
       (clicked)="onApprove()"
       [disabled]="submitting()"
       customClass="mr-2"
-    /><il-button
+    /><lux-button-web
       severity="danger"
       iconClass="material-symbols-light:close"
       label="Rechazar"

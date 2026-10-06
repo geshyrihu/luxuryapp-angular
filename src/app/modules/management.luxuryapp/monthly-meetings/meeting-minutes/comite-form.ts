@@ -39,8 +39,7 @@ export class ComiteForm implements OnInit {
 
   form = new FormGroup({
     comiteparticipante: new FormControl<string | null>(null, [
-      Validators.required,
-    ]),
+      Validators.required]),
   });
 
   get comiteparticipante() {

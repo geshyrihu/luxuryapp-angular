@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
  */
 @Component({
   selector: "app-brevo-email-logs",
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     FormsModule,
     ReactiveFormsModule,

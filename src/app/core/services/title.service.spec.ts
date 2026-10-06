@@ -13,8 +13,7 @@ describe('TitleService', () => {
       providers: [
         TitleService,
         { provide: Router, useValue: { events: routerEvents.asObservable() } },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {} }, params: new Subject(), queryParams: new Subject() } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {} }, params: new Subject(), queryParams: new Subject() } }],
     });
     service = TestBed.inject(TitleService);
   });

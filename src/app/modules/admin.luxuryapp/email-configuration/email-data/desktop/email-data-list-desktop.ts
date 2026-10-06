@@ -29,8 +29,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class EmailDataListDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

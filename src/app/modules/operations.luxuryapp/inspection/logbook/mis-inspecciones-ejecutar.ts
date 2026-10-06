@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { BreakpointObserver } from "@angular/cdk/layout";
 
 import {
@@ -25,7 +26,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppImage } from "@ui/web/image/image";
+
 import { map } from "rxjs";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -35,11 +36,10 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-mis-inspecciones-ejecutar",
-  imports: [
+  imports: [ButtonWeb,
     ReactiveFormsModule,
     CustomInputToggleSwitch,
     CustomInputTextAreaSignal,
-    AppImage,
     LxTooltipDirective,
     AppTable,
 

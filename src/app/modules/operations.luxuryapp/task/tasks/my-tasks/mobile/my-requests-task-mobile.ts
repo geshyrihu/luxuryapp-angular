@@ -9,7 +9,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppImage } from "@ui/web/image/image";
+
 import { TaskStatus } from "../../task-status/task-status";
 
 @Component({
@@ -21,7 +21,6 @@ import { TaskStatus } from "../../task-status/task-status";
     MobileActionMenu,
     DataViewMobile,
     TaskStatus,
-    AppImage,
     MobileListItem,
     LxIcon],
 })

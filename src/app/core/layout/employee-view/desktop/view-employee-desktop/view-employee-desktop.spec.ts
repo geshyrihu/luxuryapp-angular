@@ -41,8 +41,7 @@ describe('ViewEmployeedesktop', () => {
       providers: [
         { provide: MenuService, useValue: menuServiceMock },
         { provide: HidescrollnavService, useValue: hideScroolNavServiceMock },
-        { provide: LayoutService, useValue: layoutServiceMock },
-      ],
+        { provide: LayoutService, useValue: layoutServiceMock }],
     });
 
     fixture = TestBed.createComponent(ViewEmployeedesktop);

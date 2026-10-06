@@ -40,8 +40,7 @@ import { LateFeePolicyForm } from "./late-fee-policy-form";
     AppTable,
     LuxTableCaption,
     DecimalPipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./late-fee-policy-list.html",
 })

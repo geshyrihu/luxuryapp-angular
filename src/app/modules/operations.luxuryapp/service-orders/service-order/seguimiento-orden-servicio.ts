@@ -17,7 +17,7 @@ import {
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -52,7 +52,6 @@ interface ServiceOrderFollowUpItem {
     LxIcon,
     ReactiveFormsModule,
     ButtonWeb,
-    AppSpinner,
     CustomInputTextAreaSignal],
 })
 export class SeguimientoOrdenServicio implements OnInit, OnDestroy {

@@ -27,8 +27,7 @@ import {
     LxAvatar,
     LuxTableCaption,
     ActionMenu,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class MisProveedoresDesktop {
   data = input.required<any[]>();

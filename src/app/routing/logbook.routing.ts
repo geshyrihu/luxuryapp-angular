@@ -276,5 +276,4 @@ export const logbookRoutes: Routes = [
       title: "Inspección de Detector de Humo",
       breadcrumb: "Checklist Detector de Humo",
     },
-  },
-];
+  }];

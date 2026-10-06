@@ -21,8 +21,7 @@ import type { TareasLegalResumenDto } from "./tareas-legal-card.model";
       .text-ds-danger {
         color: var(--ds-danger);
       }
-    `,
-  ],
+    `],
 })
 export class TareasLegalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

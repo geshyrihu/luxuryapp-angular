@@ -56,8 +56,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     MobileListItem,
     FormsModule,
     ReactiveFormsModule,
-    LxTag,
-  ],
+    LxTag],
   templateUrl: "./cobranza-online-movimientos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

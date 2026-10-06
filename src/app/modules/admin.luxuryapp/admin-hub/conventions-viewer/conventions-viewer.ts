@@ -48,8 +48,7 @@ export class ConventionsViewer implements OnInit {
     'styles',
     'catalogs',
     'audit',
-    'operations',
-  ]);
+    'operations']);
   taskTypes = signal<ConventionTaskType[]>([
     'creacion-modulo-fase-0',
     'implementacion-backend',
@@ -57,8 +56,7 @@ export class ConventionsViewer implements OnInit {
     'implementacion-flutter',
     'auditoria',
     'documentacion',
-    'operacion-transversal',
-  ]);
+    'operacion-transversal']);
   severities = signal<SeverityType[]>(['CRÍTICA', 'ALTA', 'MEDIA', 'BAJA']);
   technologies = signal([
     'Angular',
@@ -68,8 +66,7 @@ export class ConventionsViewer implements OnInit {
     'Flutter',
     'Dart',
     'CSS',
-    'Documentacion',
-  ]);
+    'Documentacion']);
 
   ngOnInit(): void {
     this.loadConventions();

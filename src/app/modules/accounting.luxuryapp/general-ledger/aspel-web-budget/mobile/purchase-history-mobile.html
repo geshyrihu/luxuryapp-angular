@@ -31,7 +31,7 @@
         @if (item.invoices && item.invoices.length > 0) {
         <div class="d-flex flex-wrap gap-1 mt-1">
           @for (inv of item.invoices; track inv.pdfFile) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:picture-as-pdf"
             variant="text"
             size="sm"

@@ -49,8 +49,7 @@ interface ILegalEditarForm {
     InputAutocomplete,
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TicketLegalEditar implements OnInit {
   private formB = inject(FormBuilder);
@@ -111,8 +110,7 @@ export class TicketLegalEditar implements OnInit {
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.customersActiveShortName,
-      ),
-    ]);
+      )]);
     this.cb_legal_matter.set(legalMatters as SelectItemDto[]);
     this.cb_customer.set(customers as SelectItemDto[]);
     this.cb_application_user_responsible.set(

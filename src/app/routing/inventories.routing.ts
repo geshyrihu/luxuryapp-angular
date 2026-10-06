@@ -173,7 +173,6 @@ export const inventoriesRoutes: Routes = [
       title: "Inventario de Detectores de Humo",
       breadcrumb: "Inventario de Detectores de Humo",
     },
-  },
-];
+  }];
 
 

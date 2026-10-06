@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import {
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [LxIcon, LxTooltipDirective, LxPopover],
+  imports: [ButtonWeb, LxIcon, LxTooltipDirective, LxPopover],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })

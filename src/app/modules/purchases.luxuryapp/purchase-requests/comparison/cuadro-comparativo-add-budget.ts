@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -24,14 +25,14 @@ import {
     </div>
 
     <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border">
-      <iw-button
+      <lux-button-web displayMode="icon"
         label="Cancelar"
         severity="secondary"
         variant="outline"
         size="small"
         (clicked)="onCancel()"
       />
-      <iw-button
+      <lux-button-web displayMode="icon"
         label="Continuar"
         iconClass="material-symbols-light:arrow-forward"
         severity="contrast"
@@ -41,7 +42,7 @@ import {
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, ReactiveFormsModule, CustomInputSelectSignal],
+  imports: [ButtonWeb, CommonModule, ReactiveFormsModule, CustomInputSelectSignal],
 })
 export class CuadroComparativoAddBudget {
   ref = inject(DynamicDialogRef);

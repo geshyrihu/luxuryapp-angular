@@ -163,8 +163,6 @@ export const COBRANZA_ONLINE_ROUTES: Routes = [
         path: "department-payments",
         redirectTo: "movimientos",
         pathMatch: "full",
-      },
-    ],
-  },
-];
+      }],
+  }];
 

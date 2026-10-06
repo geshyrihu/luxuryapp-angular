@@ -123,13 +123,13 @@
     </div>
     <div class="col-12 col-md-12 mt-2 d-flex justify-content-end">
       @if(isEditing()) {
-      <il-button
+      <lux-button-web
         label="Cancelar"
         severity="secondary"
         (clicked)="onCancelEdit()"
       />
       }
-      <il-button
+      <lux-button-web
         [label]="isEditing() ? 'Actualizar Factura' : 'Agregar Factura'"
         [iconClass]="isEditing() ? 'material-symbols-light:save' : 'material-symbols-light:add'"
         (clicked)="onSubmit()"

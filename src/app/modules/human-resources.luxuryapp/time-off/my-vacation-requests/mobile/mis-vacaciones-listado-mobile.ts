@@ -23,8 +23,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
     MobileActionMenu,
     ButtonMobile,
     LxTag,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class MisVacacionesListadoMobile {
   data = input.required<VacationRequestMyDTO[]>();

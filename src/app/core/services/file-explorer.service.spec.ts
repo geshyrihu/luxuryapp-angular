@@ -9,8 +9,7 @@ describe('FileExplorerService', () => {
     TestBed.configureTestingModule({
       providers: [
         FileExplorerService,
-        { provide: ApiResponseService, useValue: {} },
-      ],
+        { provide: ApiResponseService, useValue: {} }],
     });
     service = TestBed.inject(FileExplorerService);
   });

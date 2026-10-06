@@ -20,11 +20,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { DiagramForm } from "../diagram-form/diagram-form";
 
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -50,7 +46,6 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     NgbTooltipModule,
 
     DataViewMobile],

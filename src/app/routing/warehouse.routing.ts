@@ -60,7 +60,6 @@ export const warehouseRoutes: Routes = [
       title: "Préstamo de Herramientas", // Corregido acento y mayúscula
       breadcrumb: "Préstamo de Herramientas",
     },
-  },
-];
+  }];
 
 

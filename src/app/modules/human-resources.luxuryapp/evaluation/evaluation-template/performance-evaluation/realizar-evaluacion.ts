@@ -42,8 +42,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     LxDivider,
     CustomInputTextAreaSignal,
     Touchspin,
-     ButtonWeb,
-  ],
+     ButtonWeb],
 })
 export class RealizarEvaluacion implements OnInit {
   authS = inject(AuthService);
@@ -144,16 +143,13 @@ export class RealizarEvaluacion implements OnInit {
     this.form = this.fb.nonNullable.group({
       evaluatorId: [
         { value: this.userIdLogged, disabled: this.isEditMode },
-        Validators.required,
-      ],
+        Validators.required],
       evaluatedId: [
         { value: null as string | null, disabled: this.isEditMode },
-        Validators.required,
-      ],
+        Validators.required],
       evaluationTemplateId: [
         { value: null as string | null, disabled: this.isEditMode },
-        Validators.required,
-      ],
+        Validators.required],
       evaluationDate: [this.dateS.getDateNow(), Validators.required],
       answers: this.fb.array([]),
     });
@@ -212,12 +208,10 @@ export class RealizarEvaluacion implements OnInit {
         this.answers.push(
           this.fb.nonNullable.group({
             templateQuestionId: [
-              { value: question.id, disabled: this.isEditMode },
-            ],
+              { value: question.id, disabled: this.isEditMode }],
             score: [
               { value: 1, disabled: this.isEditMode },
-              [Validators.required, Validators.min(0), Validators.max(5)],
-            ],
+              [Validators.required, Validators.min(0), Validators.max(5)]],
             comments: [{ value: "", disabled: this.isEditMode }],
           }),
         );

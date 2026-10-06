@@ -140,8 +140,7 @@ describe("HeaderEmployeedesktop", () => {
           useValue: featureAnnouncementServiceMock,
         },
         { provide: DialogHandlerService, useValue: dialogHandlerServiceMock },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-      ],
+        { provide: ActivatedRoute, useValue: activatedRouteMock }],
     });
 
     fixture = TestBed.createComponent(HeaderEmployeedesktop);

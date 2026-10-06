@@ -51,7 +51,7 @@
             </div>
             <div class="d-flex align-items-center gap-2">
               @if (isAdmin()) {
-              <il-button
+              <lux-button-web
                 class="no-print"
                 iconClass="material-symbols-light:settings"
                 label="Editor"
@@ -60,7 +60,7 @@
                 (clicked)="onOpenEditor(manual()!.id)"
               />
               }
-              <il-button
+              <lux-button-web
                 class="no-print"
                 iconClass="material-symbols-light:print"
                 label="Descargar PDF"
@@ -74,7 +74,7 @@
 
       <div class="p-4 p-md-5">
         <div class="mb-3">
-          <iw-button
+          <lux-button-web displayMode="icon"
             class="no-print"
             iconClass="material-symbols-light:arrow-back"
             [variant]="'text'"
@@ -324,7 +324,7 @@
                 class="text-primary"
               />
               <a [href]="enlace.urlEnlace" target="_blank" class="no-underline">
-                <il-button
+                <lux-button-web
                   label="Abrir Enlace"
                   iconClass="material-symbols-light:open-in-new"
                   severity="info"
@@ -393,7 +393,7 @@
                 </div>
               </div>
               <a [href]="adj.url" target="_blank" download>
-                <il-button
+                <lux-button-web
                   label="Descargar"
                   iconClass="material-symbols-light:download"
                   [text]="true"

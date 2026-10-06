@@ -154,8 +154,7 @@ export class CleaningProcedure {
         emoji: "🗑️",
         text: "Desechar como basura",
       },
-    },
-  ];
+    }];
 
   readonly graphLinks = [
     {
@@ -229,6 +228,5 @@ export class CleaningProcedure {
       target: "a7",
       label: "NO",
       data: { kind: "no" },
-    },
-  ];
+    }];
 }

@@ -269,5 +269,4 @@ export const CONTABILIDAD_ROUTES: Routes = [
       title: "Auditoria Cuentas Aspel",
       breadcrumb: "Auditoria Cuentas Aspel",
     },
-  },
-];
+  }];

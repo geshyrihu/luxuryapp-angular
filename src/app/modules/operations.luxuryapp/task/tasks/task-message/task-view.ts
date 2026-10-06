@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ import {
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
 import { addIcons } from "ionicons";
 import {
   addCircleOutline,
@@ -50,9 +51,8 @@ import { TaskJustificationPanel } from "./task-justification-panel/task-justific
   selector: "app-task-view",
   templateUrl: "./task-view.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     LxTag,
-    AppAvatar,
     LxIcon,
     TaskChecklistPanel,
     TaskJustificationPanel],

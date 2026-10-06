@@ -5,7 +5,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import type { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
+
 import {
   CORPORATE_ROLES,
   KPI_CATALOG,
@@ -18,7 +18,7 @@ import {
 @Component({
   selector: "app-kpi-catalog",
   standalone: true,
-  imports: [FormsModule, CustomInputSelectSignal, AppStatCard],
+  imports: [FormsModule, CustomInputSelectSignal],
   templateUrl: "./kpi-catalog.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

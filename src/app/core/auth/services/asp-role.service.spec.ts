@@ -17,8 +17,7 @@ describe('AspRoleService', () => {
         {
           provide: AuthService,
           useValue: { userToken$ },
-        },
-      ],
+        }],
     });
     service = TestBed.inject(AspRoleService);
   });

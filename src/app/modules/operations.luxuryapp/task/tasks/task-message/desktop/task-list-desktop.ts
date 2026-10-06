@@ -18,18 +18,12 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
+
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppReorderableRow,
-  AppReorderableRowHandle,
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppReorderableRow, AppReorderableRowHandle, AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskStatus } from "../../task-status/task-status";
 import { ITaskMessageDTO } from "../interfaces/task-message.dto";
 
@@ -79,12 +73,9 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     AppReorderableRow,
     AppReorderableRowHandle,
     AppSortableColumn,
-    AppSorticon,
-    ActionMenu,
     CustomInputTextSignal,
     TaskStatus,
     CustomInputSelectSignal,
-    AppAvatar,
     CustomInputToggleSwitch,
     FormsModule,
     LuxTableCaption,

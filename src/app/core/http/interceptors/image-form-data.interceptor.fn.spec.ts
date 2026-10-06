@@ -14,8 +14,7 @@ describe("imageFormDataInterceptor", () => {
     vi.clearAllMocks();
     TestBed.configureTestingModule({
       providers: [
-        { provide: ImageProcessingService, useValue: imageProcessing },
-      ],
+        { provide: ImageProcessingService, useValue: imageProcessing }],
     });
   });
 

@@ -23,8 +23,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ComitesListDesktop {
   data = input.required<any[]>();

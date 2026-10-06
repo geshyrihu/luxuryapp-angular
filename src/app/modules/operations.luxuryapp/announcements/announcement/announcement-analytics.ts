@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
+import { DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -21,7 +21,6 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
   imports: [
     ApiDatePipe,
     RouterModule,
-    DataGrid,
     DataViewMobile,
     LxIcon,
     MobileListItem],

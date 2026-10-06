@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   Component,
   ElementRef,
@@ -11,7 +12,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-digital-signature",
-  imports: [LxIcon, FormsModule],
+  imports: [ButtonWeb, LxIcon, FormsModule],
   templateUrl: "./digital-signature.html",
 })
 export class DigitalSignatureComponent {

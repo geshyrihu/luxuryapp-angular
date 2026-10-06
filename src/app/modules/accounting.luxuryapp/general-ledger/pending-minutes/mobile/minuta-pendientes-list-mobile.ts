@@ -21,8 +21,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     LxIcon,
     MobileListItem,
     DataViewMobile,
-    MobileActionMenu,
-  ],
+    MobileActionMenu],
 })
 export class MinutaPendientesListMobile {
   data = input.required<any[]>();

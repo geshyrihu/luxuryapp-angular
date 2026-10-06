@@ -176,8 +176,7 @@ type CalendarEventKind = "vacation" | "permission" | "holiday" | "default";
           padding: 0.4rem 0.6rem !important;
         }
       }
-    `,
-  ],
+    `],
   imports: [FullCalendarModule],
 })
 export class CalendarioVacacionesPermisos {
@@ -277,8 +276,7 @@ export class CalendarioVacacionesPermisos {
     try {
       const [eventsData, holidaysData] = await Promise.all([
         this.apiResponseS.onGetItem<CalendarEventDTO[]>(eventsUrl),
-        this.apiResponseS.onGetItem<HolidayCalendarEventDTO[]>(holidaysUrl),
-      ]);
+        this.apiResponseS.onGetItem<HolidayCalendarEventDTO[]>(holidaysUrl)]);
 
       console.log(
         "🔶 API response - eventsData:",

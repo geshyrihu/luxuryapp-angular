@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ const TASK_JUSTIFICATION_STATE = {
 @Component({
   selector: "app-task-justification-panel",
   templateUrl: "./task-justification-panel.html",
-  imports: [FormsModule],
+  imports: [ButtonWeb, FormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `

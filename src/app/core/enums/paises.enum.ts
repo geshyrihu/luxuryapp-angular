@@ -287,8 +287,7 @@ export class ECountry {
       { value: "Western Sahara", label: "Western Sahara" },
       { value: "Yemen", label: "Yemen" },
       { value: "Zambia", label: "Zambia" },
-      { value: "Zimbabwe", label: "Zimbabwe" },
-    ];
+      { value: "Zimbabwe", label: "Zimbabwe" }];
     return data;
   }
 }

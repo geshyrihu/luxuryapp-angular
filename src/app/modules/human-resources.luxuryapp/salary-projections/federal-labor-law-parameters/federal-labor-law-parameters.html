@@ -2,7 +2,7 @@
   <div class="card p-3">
     <div class="d-flex align-items-center justify-content-between gap-3">
       <div class="d-flex align-items-center gap-3">
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:arrow-back"
           severity="secondary"
           variant="text"
@@ -15,7 +15,7 @@
           >
         </div>
       </div>
-      <il-button
+      <lux-button-web
         label="Nuevo parámetro"
         iconClass="material-symbols-light:add"
         severity="primary"
@@ -44,7 +44,7 @@
           <td>{{ row.vacationPremiumPercentage * 100 | number: "1.2-4" }}%</td>
           <td>{{ row.sundayPremiumPercentage * 100 | number: "1.2-4" }}%</td>
           <td class="text-center">
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:edit"
               severity="primary"
               size="small"

@@ -28,8 +28,7 @@ import type {
       .text-ds-success {
         color: var(--ds-success);
       }
-    `,
-  ],
+    `],
 })
 export class ContratosVigentesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

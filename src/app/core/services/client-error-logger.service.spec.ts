@@ -9,8 +9,7 @@ describe('ClientErrorLoggerService', () => {
     TestBed.configureTestingModule({
       providers: [
         ClientErrorLoggerService,
-        { provide: HttpClient, useValue: { post: vi.fn().mockReturnValue({ subscribe: vi.fn() }) } },
-      ],
+        { provide: HttpClient, useValue: { post: vi.fn().mockReturnValue({ subscribe: vi.fn() }) } }],
     });
     service = TestBed.inject(ClientErrorLoggerService);
   });

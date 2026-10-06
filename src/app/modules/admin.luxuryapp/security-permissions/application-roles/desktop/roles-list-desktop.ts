@@ -33,8 +33,7 @@ import { ApplicationRoleDto } from "../interfaces/application-role.dto";
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class RolesListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

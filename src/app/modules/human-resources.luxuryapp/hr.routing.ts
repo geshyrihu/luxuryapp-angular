@@ -7,5 +7,4 @@ export const hrRoutes: Routes = [
       import("src/app/routing/human-resources.routing").then(
         (m) => m.humanResourcesRoutes,
       ),
-  },
-];
+  }];

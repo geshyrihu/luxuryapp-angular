@@ -15,8 +15,7 @@ describe('SyncQueueService', () => {
         SyncQueueService,
         { provide: ConnectivityService, useValue: { isOnline$: of(true) } },
         { provide: ConsoleLoggerService, useValue: { custom: vi.fn(), error: vi.fn() } },
-        { provide: Injector, useValue: { get: vi.fn().mockReturnValue({}) } },
-      ],
+        { provide: Injector, useValue: { get: vi.fn().mockReturnValue({}) } }],
     });
     service = TestBed.inject(SyncQueueService);
   });

@@ -35,8 +35,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputCurrencySignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProjectedExpensesForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -87,8 +86,7 @@ export class ProjectedExpensesForm implements OnInit {
       this.loadProviders(),
       this.loadMonths(),
       this.loadExpenseTypes(),
-      this.loadRecurrences(),
-    ]);
+      this.loadRecurrences()]);
 
     if (this.id !== "") {
       this.onLoadData();

@@ -31,8 +31,7 @@ import { AsambleaChecklistTemplateDto } from "../interfaces/asamblea-checklist-t
     AppSorticon,
     LxTag,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class AsambleaChecklistTemplateListDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

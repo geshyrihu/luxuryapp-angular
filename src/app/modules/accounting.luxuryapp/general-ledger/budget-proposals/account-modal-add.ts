@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -39,7 +40,7 @@ interface ISearchForm {
 
 @Component({
   selector: "app-account-modal-add",
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     CustomInputTextSignal,
     LxIcon,

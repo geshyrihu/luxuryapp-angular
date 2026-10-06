@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,7 @@ import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
 
 @Component({
   selector: "app-reglamentos",
-  imports: [
+  imports: [ButtonWeb,
     ReglamentosListDesktop,
     ReglamentosListMobile,
     LxModal,

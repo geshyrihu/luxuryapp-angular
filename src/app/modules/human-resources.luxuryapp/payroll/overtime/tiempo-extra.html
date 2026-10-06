@@ -1,7 +1,7 @@
 <!-- Selector de periodo -->
 <div class="d-flex flex-wrap gap-2 mb-3">
   @for (p of periodos(); track p.value) {
-  <il-button
+  <lux-button-web
     [label]="p.label"
     size="small"
     [variant]="periodoSeleccionado() !== p.value ? 'outline' : 'solid'"

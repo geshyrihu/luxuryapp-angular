@@ -19,7 +19,7 @@ import {
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -54,7 +54,6 @@ interface ITicketMessageFollowupForm {
     ReactiveFormsModule,
     FormsModule,
     ButtonWeb,
-    AppSpinner,
     CustomInputTextAreaSignal,
     LxFileUpload],
 })

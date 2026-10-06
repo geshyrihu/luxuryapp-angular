@@ -133,5 +133,4 @@ export const directoryRoutes: Routes = [
       title: "Mis Proveedores",
       breadcrumb: "Mis Proveedores",
     },
-  },
-];
+  }];

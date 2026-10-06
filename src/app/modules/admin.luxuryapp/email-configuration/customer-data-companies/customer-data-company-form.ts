@@ -32,8 +32,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     InputMask,
     InputPhonePrefix,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CustomerDataCompanyForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -136,8 +135,7 @@ export class CustomerDataCompanyForm implements OnInit {
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.applicationRolesToAdministrator,
-      ),
-    ]);
+      )]);
 
     this.cb_customer.set((customers as SelectItemDto[]) ?? []);
     this.cb_applicationUser.set((users as SelectItemDto[]) ?? []);

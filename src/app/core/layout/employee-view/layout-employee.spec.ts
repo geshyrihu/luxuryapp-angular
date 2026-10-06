@@ -52,8 +52,7 @@ describe("LayoutEmployee", () => {
         { provide: AuthService, useValue: authServiceMock },
         { provide: SignalRService, useValue: signalRServiceMock },
         { provide: OneSignalService, useValue: oneSignalServiceMock },
-        { provide: BreakpointObserver, useValue: breakpointObserverMock },
-      ],
+        { provide: BreakpointObserver, useValue: breakpointObserverMock }],
     });
 
     fixture = TestBed.createComponent(LayoutEmployee);

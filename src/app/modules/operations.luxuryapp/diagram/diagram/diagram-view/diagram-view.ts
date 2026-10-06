@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -16,12 +17,12 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-view",
-  imports: [],
+  imports: [ ButtonWeb, ],
   template: `
     <div class="card p-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="m-0">{{ diagram()?.name }}</h2>
-        <il-button
+        <lux-button-web
           label="Volver"
           iconClass="material-symbols-light:arrow-back"
           (clicked)="goBack()"

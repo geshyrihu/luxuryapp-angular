@@ -29,8 +29,7 @@ describe("ComiteVigilanciaList", () => {
         celular: "5555555555",
         email: "juan@example.com",
         posicionComite: "Presidente",
-      },
-    ]),
+      }]),
     onDelete: vi.fn().mockResolvedValue(true),
     onPost: vi.fn().mockResolvedValue(true),
   };
@@ -54,8 +53,7 @@ describe("ComiteVigilanciaList", () => {
         { provide: AuthService, useValue: {} },
         { provide: CustomerIdService, useValue: { customerId: vi.fn(() => "customer-1") } },
         { provide: ConfirmService, useValue: confirmStub },
-        { provide: SwalService, useValue: swalStub },
-      ],
+        { provide: SwalService, useValue: swalStub }],
     });
     TestBed.overrideComponent(ComiteVigilanciaList, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();
@@ -100,14 +98,12 @@ describe("ComiteVigilanciaList", () => {
         celular: "4444444444",
         email: "ana@example.com",
         posicionComite: "Secretario",
-      },
-    ]);
+      }]);
 
     await component.onDelete("committee-1");
 
     expect(component.dataSignal()).toEqual([
-      expect.objectContaining({ id: "committee-2" }),
-    ]);
+      expect.objectContaining({ id: "committee-2" })]);
   });
 
   it("should not delete when confirmation is cancelled", async () => {
@@ -122,8 +118,7 @@ describe("ComiteVigilanciaList", () => {
         celular: "5555555555",
         email: "juan@example.com",
         posicionComite: "Presidente",
-      },
-    ]);
+      }]);
 
     await component.onDelete("committee-1");
 

@@ -59,8 +59,7 @@ export class SolicitudCompraList {
     "solicita",
     "equipoOInstalacion",
     "justificacionGasto",
-    "ordenesRelacionadas.folio",
-  ];
+    "ordenesRelacionadas.folio"];
   loading = signal(true);
   ref: DynamicDialogRef;
   subRef$: Subscription;
@@ -272,8 +271,7 @@ export class SolicitudCompraList {
       text: [
         `Autorizada por: ${item.autorizadaPorDisplay || "Sin registro"}`,
         `Fecha: ${item.fechaAutorizacion || "Sin registro"}`,
-        `Hora: ${item.horaAutorizacion || "Sin registro"}`,
-      ].join("\n"),
+        `Hora: ${item.horaAutorizacion || "Sin registro"}`].join("\n"),
       icon: "info",
       confirmButtonText: "Cerrar",
     });

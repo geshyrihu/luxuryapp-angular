@@ -39,8 +39,7 @@ import { RoleFormGroup } from "./interfaces/role-form.interface";
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class RoleForm implements OnInit {
   private formB = inject(FormBuilder);

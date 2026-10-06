@@ -16,8 +16,7 @@ describe('ChekadorEmpleadosService', () => {
     TestBed.configureTestingModule({
       providers: [
         ChekadorEmpleadosService,
-        { provide: ApiResponseService, useValue: mockApiResponseService },
-      ],
+        { provide: ApiResponseService, useValue: mockApiResponseService }],
     });
 
     service = TestBed.inject(ChekadorEmpleadosService);

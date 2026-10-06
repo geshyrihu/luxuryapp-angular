@@ -30,8 +30,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class HistorialComprasListDesktop {
   data = input.required<any[]>();

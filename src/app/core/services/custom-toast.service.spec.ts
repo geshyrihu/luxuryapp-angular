@@ -27,8 +27,7 @@ describe('CustomToastService', () => {
         CustomToastService,
         { provide: MessageService, useValue: messageServiceMock },
         { provide: Platform, useValue: platformMock },
-        { provide: ToastController, useValue: toastControllerMock },
-      ],
+        { provide: ToastController, useValue: toastControllerMock }],
     });
 
     service = TestBed.inject(CustomToastService);

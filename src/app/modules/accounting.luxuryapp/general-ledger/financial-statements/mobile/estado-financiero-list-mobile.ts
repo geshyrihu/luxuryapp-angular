@@ -21,8 +21,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ButtonMobile,
     MobileListItem,
     DataViewMobile,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class EstadoFinancieroListMobile {
   data = input.required<any[]>();

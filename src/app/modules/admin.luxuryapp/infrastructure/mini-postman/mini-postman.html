@@ -22,7 +22,7 @@
         customClass="flex-1"
         (enter)="send()"
       />
-      <il-button
+      <lux-button-web
         label="Enviar"
         iconClass="material-symbols-light:send"
         [loading]="loading()"
@@ -87,7 +87,7 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:close"
                 severity="danger"
                 variant="text"
@@ -96,7 +96,7 @@
               />
             </div>
             }
-            <il-button
+            <lux-button-web
               label="Agregar param"
               iconClass="material-symbols-light:add"
               variant="text"
@@ -132,7 +132,7 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:close"
                 severity="danger"
                 variant="text"
@@ -141,7 +141,7 @@
               />
             </div>
             }
-            <il-button
+            <lux-button-web
               label="Agregar header"
               iconClass="material-symbols-light:add"
               variant="text"
@@ -181,7 +181,7 @@
           {{ statusCode() }}
         </span>
         <span class="text-body-secondary text-xs">{{ durationMs() }} ms</span>
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:content-copy"
           variant="text"
           size="small"
@@ -247,7 +247,7 @@
   <div class="bg-body rounded shadow-sm p-3">
     <div class="d-flex align-items-center justify-content-between mb-2">
       <span class="fw-semibold text-sm text-body">Historial reciente</span>
-      <il-button
+      <lux-button-web
         label="Limpiar"
         iconClass="material-symbols-light:delete"
         severity="danger"

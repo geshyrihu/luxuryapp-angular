@@ -12,7 +12,6 @@ export const profileRoutes: Routes = [
       title: "Actualizar Perfil",
       breadcrumb: "Actualizar Perfil",
     },
-  },
-];
+  }];
 
 

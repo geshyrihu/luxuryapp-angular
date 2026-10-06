@@ -41,8 +41,7 @@ import {
     LuxTableCaption,
     TableFooter,
     ButtonWeb,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TicketLegalListaDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

@@ -11,6 +11,7 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -23,9 +24,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
 import { LxCard } from "@ui/adaptive/card/card";
-import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { debounceTime } from "rxjs";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -33,6 +34,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   selector: "app-cuadro-comparativo-cotizacion",
   templateUrl: "./cuadro-comparativo-cotizacion.html",
   imports: [
+    ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     AppTable,

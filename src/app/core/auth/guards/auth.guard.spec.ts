@@ -34,8 +34,7 @@ describe('authGuard', () => {
         { provide: AuthService, useValue: authServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: ConnectivityService, useValue: connectivityMock },
-        { provide: ConsoleLoggerService, useValue: loggerMock },
-      ],
+        { provide: ConsoleLoggerService, useValue: loggerMock }],
     });
   });
 

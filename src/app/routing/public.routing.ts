@@ -59,5 +59,4 @@ export const publicRoutes: Routes = [
       title: "Estados Financieros Cliente",
       breadcrumb: "Estados Financieros Cliente",
     },
-  },
-];
+  }];

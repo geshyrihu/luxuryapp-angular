@@ -30,8 +30,7 @@ import { DateService } from "@core/services/date.service";
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-     ButtonWeb,
-  ],
+     ButtonWeb],
 })
 export class MeetingSeguimientoEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

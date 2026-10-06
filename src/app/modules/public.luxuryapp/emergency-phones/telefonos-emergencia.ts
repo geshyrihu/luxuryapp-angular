@@ -14,7 +14,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -27,11 +26,10 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
   imports: [
     LxIcon,
     AppAvatar,
-    WebButtonLabelAdd,
+    
     ButtonWeb,
     CustomSearchInput,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
 })
 export class TelefonosEmergencia {
   apiResponseS = inject(ApiResponseService);

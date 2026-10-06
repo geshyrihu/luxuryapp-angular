@@ -94,8 +94,7 @@ export class ConsoleLoggerService {
 
     const style = [
       `color: ${config.color}`,
-      `font-style: ${config.fontStyle || "normal"}`,
-    ].join(";");
+      `font-style: ${config.fontStyle || "normal"}`].join(";");
 
     console.log(`%c${config.icon} ${message}`, style, ...data);
   }

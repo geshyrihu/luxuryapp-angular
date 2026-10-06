@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +22,7 @@ import { TiempoExtraMobile } from "./mobile/tiempo-extra-mobile";
 
 @Component({
   selector: "app-tiempo-extra",
-  imports: [TiempoExtraDesktop, TiempoExtraMobile],
+  imports: [ButtonWeb, TiempoExtraDesktop, TiempoExtraMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./tiempo-extra.html",
 })

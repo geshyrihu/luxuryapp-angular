@@ -58,7 +58,7 @@
               }
             </div>
             } @if (item.operationType === 'Update') {
-            <il-button
+            <lux-button-web
               label="Ver cambios"
               variant="text"
               size="sm"
@@ -72,7 +72,7 @@
     </app-data-view-mobile>
 
     @if (data().length < totalRecords()) {
-    <il-button
+    <lux-button-web
       label="Cargar más"
       severity="secondary"
       [fluid]="true"

@@ -19,13 +19,9 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { Mesanio } from "@ui/web/mesanio/mesanio";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+
+
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 @Component({
@@ -36,11 +32,8 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-    AppAvatar,
     LxTag,
-    CustomInputTextSignal,
-    Mesanio],
+    CustomInputTextSignal],
 })
 export class ReporteTickets {
   apiResponseS = inject(ApiResponseService);

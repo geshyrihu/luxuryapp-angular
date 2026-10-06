@@ -227,7 +227,7 @@
 
         <!-- Evidencias (Antes y Después + imágenes adicionales) -->
         <div class="d-flex gap-1 mt-2">
-          <ii-button
+          <lux-button-mobile displayMode="icon"
             iconClass="material-symbols-light:photo-camera"
             variant="ghost"
             size="small"
@@ -235,7 +235,7 @@
             [disabled]="!item.beforeWork && !item.afterWork"
             (clicked)="viewPhotos.emit(item)"
           />
-          <ii-button
+          <lux-button-mobile displayMode="icon"
             iconClass="material-symbols-light:photo-library"
             variant="ghost"
             size="small"

@@ -45,7 +45,7 @@
           Estado de Orden
         </p>
         <div class="d-flex gap-1">
-          <il-button
+          <lux-button-web
             class="flex-fill"
             label="Denegadas"
             (clicked)="selectStatus.emit(1)"
@@ -53,7 +53,7 @@
             [severity]="statusCompra() === 1 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <il-button
+          <lux-button-web
             class="flex-fill"
             label="Autorizadas"
             (clicked)="selectStatus.emit(0)"
@@ -61,7 +61,7 @@
             [severity]="statusCompra() === 0 ? 'primary' : 'secondary'"
             size="sm"
           />
-          <il-button
+          <lux-button-web
             class="flex-fill"
             label="Pendientes"
             (clicked)="selectStatus.emit(2)"

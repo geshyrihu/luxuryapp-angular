@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +30,7 @@ import { PeriodClosureResponseDTO } from "../../interfaces/period-closure.dto";
 
 @Component({
   selector: "app-period-closure-dashboard",
-  imports: [
+  imports: [ButtonWeb, 
     LxCard,
     LxTag,
     LxTooltipDirective,

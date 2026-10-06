@@ -5,12 +5,12 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { EmptyState } from "@ui/web/empty-state/empty-state";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
+
+
 import { EITaskMessageDTOStatus } from "../../shared/enums/task-message-status.enum";
 import { WorkGroupDTO } from "../task-group-list";
 
@@ -21,11 +21,8 @@ import { WorkGroupDTO } from "../task-group-list";
   imports: [
     ButtonWeb,
     LxTag,
-    StatusBadge,
     LxIcon,
-    EmptyState,
-    CustomSearchInput,
-    LxTooltipDirective],
+    CustomSearchInput],
 })
 export class TaskGroupListDesktop {
   data = input.required<WorkGroupDTO[]>();

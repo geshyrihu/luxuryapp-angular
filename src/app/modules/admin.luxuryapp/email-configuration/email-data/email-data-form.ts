@@ -29,8 +29,7 @@ import { EmailDataFormDto, TestEmailResponse } from "@core/interfaces/email-data
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class EmailDataForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

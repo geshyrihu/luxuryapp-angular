@@ -30,14 +30,14 @@
           class="flex-grow-1"
           [noMargin]="true"
         />
-        <il-button
+        <lux-button-web
           label="Consultar"
           iconClass="material-symbols-light:search"
           [disabled]="!propertyIdCtrl.value || loading()"
           (clicked)="searchStatement()"
           [loading]="loading()"
         />
-        <il-button
+        <lux-button-web
           label="Enviar Estado"
           iconClass="material-symbols-light:send-outline"
           severity="secondary"
@@ -45,7 +45,7 @@
           (clicked)="sendStatementEmail()"
           [loading]="sendingStatement()"
         />
-        <il-button
+        <lux-button-web
           label="Enviar Masivo"
           iconClass="material-symbols-light:mail-outline"
           variant="outline"
@@ -54,7 +54,7 @@
           (clicked)="sendBatchStatementEmails()"
           [loading]="sendingBatchStatements()"
         />
-        <il-button
+        <lux-button-web
           label="Procesar Avisos"
           iconClass="material-symbols-light:notifications-outline"
           variant="outline"
@@ -112,7 +112,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="text-lg fw-bold text-body">Movimientos (Kardex)</h3>
           <div class="d-flex gap-2">
-            <il-button
+            <lux-button-web
               label="Ver PDF"
               iconClass="material-symbols-light:visibility"
               variant="outline"
@@ -122,7 +122,7 @@
               [disabled]="exportingPdf()"
               (clicked)="previewPdf()"
             />
-            <il-button
+            <lux-button-web
               label="Descargar PDF"
               iconClass="material-symbols-light:download"
               severity="secondary"
@@ -207,7 +207,7 @@
             </div>
           </div>
           <div class="d-flex gap-2 flex-wrap">
-            <il-button
+            <lux-button-web
               iconClass="material-symbols-light:visibility"
               label="Ver PDF"
               variant="outline"
@@ -217,7 +217,7 @@
               [disabled]="exportingPdf()"
               (clicked)="previewPdf()"
             />
-            <il-button
+            <lux-button-web
               iconClass="material-symbols-light:download"
               label="Descargar"
               severity="secondary"

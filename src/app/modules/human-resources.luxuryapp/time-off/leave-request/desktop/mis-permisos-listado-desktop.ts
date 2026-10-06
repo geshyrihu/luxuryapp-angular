@@ -34,8 +34,7 @@ import {
     LxTag,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class MisPermisosListadoDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

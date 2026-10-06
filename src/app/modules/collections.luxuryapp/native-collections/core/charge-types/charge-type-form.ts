@@ -41,8 +41,7 @@ interface IChargeTypeForm {
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    LxCard,
-  ],
+    LxCard],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-form.html",
 })

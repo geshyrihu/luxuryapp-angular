@@ -31,8 +31,7 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre",
-];
+  "Diciembre"];
 
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
@@ -46,8 +45,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre",
-];
+  "montoDiciembre"];
 
 type ClientRow =
   | { tipo: "header"; descripcion: string }
@@ -67,8 +65,7 @@ type ClientRow =
     AppTable,
     LxSkeleton,
     AccountingNumberPipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-cliente.html",
 })
@@ -90,8 +87,7 @@ export class EstadoResultadosClienteComponent {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)],
-    ];
+      MONTH_NAMES[wr(idx)]];
   });
 
   readonly rows = computed<ClientRow[]>(() => {

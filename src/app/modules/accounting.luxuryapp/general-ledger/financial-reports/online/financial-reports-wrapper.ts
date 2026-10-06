@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -95,7 +96,7 @@ const REPORT_META = [
 
 @Component({
   selector: "app-financial-reports-wrapper",
-  imports: [
+  imports: [ButtonWeb, 
     FormsModule,
     LxTabs,
     CustomInputSelectSignal,

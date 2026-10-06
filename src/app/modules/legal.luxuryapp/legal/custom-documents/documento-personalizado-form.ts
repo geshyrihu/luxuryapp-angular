@@ -38,8 +38,7 @@ interface IDocumentoPersonalizadoForm {
     CustomInputTextSignal,
     CustomInputDateSignal,
     CustomInputFile,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-form.html",
 })

@@ -48,7 +48,7 @@
       </td>
       <td>
         @if (item.nameFileEstadoFinanciero === null) {
-        <iw-button
+        <lux-button-web displayMode="icon"
           lxTooltip="Cargar Informe"
           tooltipPosition="top"
           iconClass="material-symbols-light:upload"
@@ -62,7 +62,7 @@
             <div class="fw-bold">{{ item.personWhoCharge }}</div>
             <div class="text-xs text-body-secondary">{{ item.uploadDate }}</div>
           </div>
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:download"
             variant="text"
             severity="secondary"
@@ -70,7 +70,7 @@
             (clicked)="viewPdf.emit({ url: item.nameFileEstadoFinanciero, fileName: 'Informe Financiero' })"
           />
           @if (item.personWhoAuthorized === "" && item.personWhoSend === "") {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:replay"
             variant="text"
             severity="warn"
@@ -85,7 +85,7 @@
       <td>
         @if (item.nameFileEstadoFinanciero !== null) { @if
         (item.personWhoAuthorized === "") {
-        <iw-button
+        <lux-button-web displayMode="icon"
           lxTooltip="Autorizar"
           tooltipPosition="top"
           iconClass="material-symbols-light:check-box"
@@ -103,7 +103,7 @@
             </div>
           </div>
           @if (item.personWhoSend === "") {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:replay"
             variant="text"
             severity="warn"

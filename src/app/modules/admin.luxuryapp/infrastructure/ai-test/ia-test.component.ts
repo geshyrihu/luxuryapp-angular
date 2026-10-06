@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 @Component({
   selector: "app-ia-test",
 
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     LxCard,
     CustomInputSelectSignal,

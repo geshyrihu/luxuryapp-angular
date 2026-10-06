@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +20,7 @@ import { AppBadge } from "@ui/web/badge/badge";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: "app-notifications-gadget",
-  imports: [
+  imports: [ButtonWeb, 
     RouterModule,
     LxIcon,
     AppBadge,

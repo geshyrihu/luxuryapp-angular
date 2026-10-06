@@ -14,7 +14,7 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between">
       <lux-table-caption [dt]="dt" [showAdd]="false" />
-      <il-button
+      <lux-button-web
         label="Exportar Excel"
         iconClass="material-symbols-light:table-view"
         severity="success"
@@ -64,7 +64,7 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item)"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:picture-as-pdf"
             severity="danger"
             variant="text"

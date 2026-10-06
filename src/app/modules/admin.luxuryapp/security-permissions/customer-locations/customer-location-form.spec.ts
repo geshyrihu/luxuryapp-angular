@@ -44,8 +44,7 @@ describe('CustomerLocationForm', () => {
       providers: [
         { provide: DynamicDialogRef, useValue: mockDialogRef },
         { provide: DynamicDialogConfig, useValue: mockDialogConfig },
-        { provide: ApiResponseService, useValue: mockApiResponseService },
-      ],
+        { provide: ApiResponseService, useValue: mockApiResponseService }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -132,8 +131,7 @@ describe('CustomerLocationForm', () => {
         providers: [
           { provide: DynamicDialogRef, useValue: mockDialogRef },
           { provide: DynamicDialogConfig, useValue: configWithId },
-          { provide: ApiResponseService, useValue: mockApiResponseService },
-        ],
+          { provide: ApiResponseService, useValue: mockApiResponseService }],
         schemas: [NO_ERRORS_SCHEMA],
       });
 

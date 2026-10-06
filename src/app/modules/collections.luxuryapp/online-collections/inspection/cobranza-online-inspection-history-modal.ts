@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +24,7 @@ import type {
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppTable, LuxTableCaption],
+  imports: [ButtonWeb, AppTable, LuxTableCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

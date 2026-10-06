@@ -20,8 +20,7 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
     LxIcon,
     MobileListItem,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class NominaDetalleMobile {
   data = input.required<NominaDetalleDTO[]>();

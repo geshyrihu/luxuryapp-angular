@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,13 +16,12 @@ import { DatabaseBackupConfig } from "../interfaces/database-backup.interface";
   selector: "app-database-backup-list-mobile",
   templateUrl: "./database-backup-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ButtonMobile,
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class DatabaseBackupListMobile {
   data = input.required<DatabaseBackupConfig[]>();

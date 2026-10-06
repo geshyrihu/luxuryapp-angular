@@ -43,8 +43,7 @@ interface ICuadroComparativoAddProveedor {
     CustomInputDateSignal,
     CustomInputNumberSignal,
     ButtonWeb,
-    CustomInputFile,
-  ],
+    CustomInputFile],
 })
 export class CuadroComparativoAddProveedor implements OnInit {
   apiResponseS = inject(ApiResponseService);

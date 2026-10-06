@@ -26,7 +26,7 @@
 
       @if (isConfirmed() && isRolSuperUsuario()) {
       <div class="d-flex gap-1 border-right-1 border pe-2 me-1">
-        <il-button
+        <lux-button-web
           label="Revertir confirmacion"
           iconClass="material-symbols-light:replay"
           severity="danger"
@@ -38,7 +38,7 @@
       } @if(!isConfirmed()){
       <div class="d-flex gap-1 border-right-1 border pe-2 me-1">
         @if (!isVerified()) {
-        <il-button
+        <lux-button-web
           label="Validar"
           iconClass="material-symbols-light:check-circle"
           severity="help"
@@ -46,7 +46,7 @@
           (clicked)="onValidate()"
         />
         } @if (isVerified() && !isAuthorized()) {
-        <il-button
+        <lux-button-web
           label="Revertir verificacion"
           iconClass="material-symbols-light:undo"
           severity="secondary"
@@ -56,7 +56,7 @@
         />
         } @if (isVerified() && !isAuthorized() && (isRolAdministrador() ||
         isRolSuperUsuario())) {
-        <il-button
+        <lux-button-web
           label="Autorizar"
           iconClass="material-symbols-light:verified"
           severity="success"
@@ -65,7 +65,7 @@
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolAdministrador() ||
         isRolSuperUsuario())) {
-        <il-button
+        <lux-button-web
           label="Desautorizar"
           iconClass="material-symbols-light:lock-open"
           severity="danger"
@@ -75,7 +75,7 @@
         />
         } @if (isAuthorized() && !isConfirmed() && (isRolContador() ||
         isRolSuperUsuario())) {
-        <il-button
+        <lux-button-web
           label="Confirmar recepcion"
           iconClass="material-symbols-light:check-box"
           severity="help"
@@ -103,7 +103,7 @@
           <div
             class="d-flex align-items-center gap-1 border-1 border rounded-3xl px-2 py-1 bg-bg-body-tertiary"
           >
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:table-view"
               lxTooltip="Excel"
               tooltipPosition="bottom"
@@ -121,7 +121,7 @@
               ><lux-icon [icon]="'material-symbols-light:format-list-bulleted'"
             /></a>
             } @if (dataSignal().length > 0) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:print"
               lxTooltip="Solicitudes"
               tooltipPosition="bottom"
@@ -131,7 +131,7 @@
               (clicked)="onDownloadAllSolicitudesPago()"
             />
             }
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:upload"
               lxTooltip="Cargar XMLs"
               tooltipPosition="bottom"
@@ -281,7 +281,7 @@
         <span class="fw-bold text-body text-lg"
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="material-symbols-light:folder"
           variant="text"
           severity="secondary"
@@ -478,7 +478,7 @@
           <td class="p-2 text-center">
             <div class="d-flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:wallet"
                 variant="text"
                 severity="success"
@@ -487,7 +487,7 @@
                 (clicked)="onManagePaymentVouchers(orden)"
               />
               <!-- Start Solo lo ve el contador -->
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:edit"
                 variant="text"
                 severity="info"
@@ -538,7 +538,7 @@
         />
       </div>
       @if (isRolAdministrador() || isRolSuperUsuario()) {
-      <il-button
+      <lux-button-web
         label="Agregar OC fuera de proceso"
         iconClass="material-symbols-light:add"
         severity="warn"
@@ -582,7 +582,7 @@
           </td>
           <td class="text-center">
             <div class="d-flex gap-1 justify-content-center">
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:visibility-outline"
                 variant="text"
                 size="sm"

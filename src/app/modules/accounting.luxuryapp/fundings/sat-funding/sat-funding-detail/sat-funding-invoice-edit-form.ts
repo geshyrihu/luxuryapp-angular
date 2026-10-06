@@ -42,8 +42,7 @@ interface ISatFundingInvoiceEditForm {
     ReactiveFormsModule,
     CustomInputSelectSignal,
     ButtonWeb,
-    CustomInputTextSignal,
-  ],
+    CustomInputTextSignal],
 })
 export class SatFundingInvoiceEditFormComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -63,8 +62,7 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" },
-  ];
+    { value: 9, label: "Impuestos y contribuciones" }];
 
   ngOnInit(): void {
     this.id = this.config.data.satFundingDetailId;

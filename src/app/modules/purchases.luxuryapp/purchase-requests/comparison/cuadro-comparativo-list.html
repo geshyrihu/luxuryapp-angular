@@ -26,7 +26,7 @@
     <div
       class="d-flex align-items-center justify-content-end gap-2 overflow-x-auto"
     >
-      <il-button
+      <lux-button-web
         [iconClass]="cleanView ? 'material-symbols-light:visibility-outline' : 'material-symbols-light:visibility-off'"
         [label]="cleanView ? 'Mostrar vista' : 'Limpiar vista'"
         (clicked)="toggleCleanView()"
@@ -35,7 +35,7 @@
         size="small"
       />
       @if (!cleanView && cotizacionProveedorSignal().length > 1) {
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:memory"
         label="AI Auditoria"
         (clicked)="onAnalyzeAI()"
@@ -43,7 +43,7 @@
         severity="help"
         size="small"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:bar-chart"
         label="Evaluar"
         (clicked)="evaluarPrecioIndependiente = !evaluarPrecioIndependiente"
@@ -52,7 +52,7 @@
         size="small"
       />
       @if (canOptimizeProducts()) {
-      <il-button
+      <lux-button-web
         [iconClass]="optimizeProducts ? 'material-symbols-light:view-list' : 'material-symbols-light:table'"
         [label]="optimizeProducts ? 'Ver detalle' : 'Optimizar'"
         (clicked)="toggleOptimizeProducts()"
@@ -61,7 +61,7 @@
         size="small"
       />
       } } @if (!cleanView && cotizacionProveedorSignal().length < 3) {
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:add"
         label="Agregar cotizacion"
         variant="outline"
@@ -69,7 +69,7 @@
         size="small"
       />
       } @if (!cleanView) {
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:wallet"
         label="Agregar presupuesto"
         (clicked)="onOpenAddBudgetModal()"
@@ -85,7 +85,7 @@
         multiple
         (change)="onEvidenceFilesSelected($event)"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:photo-library"
         label="Seleccionar fotos"
         (clicked)="evidenceInput.click()"
@@ -94,7 +94,7 @@
         [disabled]="evidenciasSignal().length >= 4"
         size="small"
       />
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:upload"
         label="Subir fotos"
         (clicked)="onUploadEvidenceFiles()"
@@ -104,7 +104,7 @@
         size="small"
       />
       }
-      <il-button
+      <lux-button-web
         [iconClass]="isAuthorized() ? 'material-symbols-light:close' : (isDenied() ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
         [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
         (clicked)="onOpenAutorizarModal()"
@@ -148,7 +148,7 @@
         <div class="d-flex align-items-center gap-2">
           <span class="fw-semibold text-sm">Requiere contrato:</span>
           @if (!cleanView) {
-          <il-button
+          <lux-button-web
             [iconClass]="solicitudCompra?.requiereContrato ? 'material-symbols-light:edit-note' : 'material-symbols-light:description'"
             [label]="solicitudCompra?.requiereContrato ? 'Si requiere' : 'No requiere'"
             [severity]="solicitudCompra?.requiereContrato ? 'success' : 'secondary'"
@@ -175,7 +175,7 @@
             &mdash; {{ solicitudCompra.comiteEvento.title }}
           </span>
           @if (!cleanView) {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:edit-calendar"
             label="Cambiar"
             size="small"
@@ -184,7 +184,7 @@
             (clicked)="onOpenAsignarJuntaModal()"
           />
           } } @else { @if (!cleanView) {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:calendar-add-on"
             label="Asignar junta"
             size="small"
@@ -239,7 +239,7 @@
                   {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
                 </small>
                 @if (!cleanView && !evidencia.isPending) {
-                <il-button
+                <lux-button-web
                   iconClass="material-symbols-light:delete"
                   label="Eliminar"
                   (clicked)="onDeleteEvidence(evidencia.id)"
@@ -475,7 +475,7 @@
         </td>
         <td class="text-center">
           @if (!cleanView) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:delete"
             (clicked)="onDeleteBudget(budget.id)"
             severity="danger"
@@ -508,7 +508,7 @@
 
   <ng-template pTemplate="footer">
     <div class="d-flex justify-content-end pt-3">
-      <il-button
+      <lux-button-web
         label="Cerrar Reporte"
         icon="material-symbols-light:check"
         (clicked)="showAiModal=false"

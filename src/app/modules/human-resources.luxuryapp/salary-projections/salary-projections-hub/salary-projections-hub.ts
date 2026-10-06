@@ -53,8 +53,7 @@ const MODULE_OPTIONS: SalaryProjectionModuleOption[] = [
     icon: "material-symbols-light:domain",
     color: "#0ea5e9",
     backgroundColor: "#e0f2fe",
-  },
-];
+  }];
 
 @Component({
   selector: "app-salary-projections-hub",

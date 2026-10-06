@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -19,7 +20,7 @@ import { AccountingCatalogWithParent } from "../interfaces/AccountingCatalogWith
   selector: "app-accounting-catalog-desktop",
   templateUrl: "./accounting-catalog-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxIcon,
+  imports: [ButtonWeb, LxIcon,
     LuxTableCaption,
     TableFooter,
     AppSortableColumn,

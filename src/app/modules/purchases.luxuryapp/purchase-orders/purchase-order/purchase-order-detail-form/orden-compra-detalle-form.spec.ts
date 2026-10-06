@@ -30,8 +30,7 @@ describe("OrdenCompraDetalleForm - repro submit inactivo", () => {
               measurementUnits: [{ value: "u1", label: "Caja" }],
             },
           },
-        },
-      ],
+        }],
     }).compileComponents();
   });
 

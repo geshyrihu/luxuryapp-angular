@@ -50,8 +50,7 @@ export class HomeComite {
       title: "Cobranza",
       routeParam: "cobranza",
       image: "assets/images/comite/cobranza.webp",
-    },
-  ];
+    }];
 
   /** Oculta la imagen rota (queda el fondo navy de la tarjeta). */
   onImgError(event: Event): void {

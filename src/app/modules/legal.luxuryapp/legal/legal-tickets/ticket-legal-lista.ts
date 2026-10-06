@@ -210,8 +210,7 @@ export class TicketLegalLista implements OnInit {
       { header: "RESPONSABLE", key: "assignee", width: 24 },
       { header: "ESTATUS", key: "status", width: 14 },
       { header: "FECHA CONCLUSIÓN", key: "completionDate", width: 18 },
-      { header: "DÍAS", key: "dias", width: 8 },
-    ];
+      { header: "DÍAS", key: "dias", width: 8 }];
 
     // Encabezado
     const headerRow = worksheet.getRow(1);

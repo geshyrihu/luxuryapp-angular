@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 
 import {
@@ -27,7 +28,7 @@ import {
   selector: "app-orden-compra-facturas-parcial",
   templateUrl: "./orden-compra-facturas-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     AppTable,
     LxMessage,

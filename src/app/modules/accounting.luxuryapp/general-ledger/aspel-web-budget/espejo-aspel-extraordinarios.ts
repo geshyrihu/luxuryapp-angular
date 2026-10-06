@@ -54,8 +54,7 @@ import { PurchaseHistory } from "./purchase-history";
     AppTable,
     AppFrozenColumn,
     DataViewMobile,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
 })
 export class EspejoAspelExtraordinarios {
   isClientView = input<boolean>(false);

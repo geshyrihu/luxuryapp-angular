@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ declare class BarcodeDetector {
   selector: "app-qr-scanner",
   templateUrl: "./qr-scanner.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [],
+  imports: [ButtonWeb, ],
 })
 export class QrScanner implements OnDestroy {
   apiResponseS = inject(ApiResponseService);

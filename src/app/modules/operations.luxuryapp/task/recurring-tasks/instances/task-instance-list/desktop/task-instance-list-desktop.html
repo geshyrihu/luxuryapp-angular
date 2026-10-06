@@ -35,7 +35,7 @@
       </td>
       <td>{{ task.scheduledDate | apiDate : "medium" }}</td>
       <td>
-        <iw-button
+        <lux-button-web displayMode="icon"
           (clicked)="complete.emit(task)"
           iconClass="material-symbols-light:check"
           [disabled]="task.status === 1"

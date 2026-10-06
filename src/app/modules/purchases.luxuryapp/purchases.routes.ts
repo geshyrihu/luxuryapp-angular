@@ -157,5 +157,4 @@ export const purchasesRoutes: Routes = [
       title: "Mantenimiento de Presupuesto",
       breadcrumb: "Mantenimiento de Presupuesto",
     },
-  },
-];
+  }];

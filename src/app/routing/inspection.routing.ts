@@ -104,7 +104,6 @@ export const inspectionRoutes: Routes = [
       title: "Inspección por QR",
       breadcrumb: "Inspección por QR",
     },
-  },
-];
+  }];
 
 

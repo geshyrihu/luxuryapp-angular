@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 
@@ -27,7 +28,7 @@ interface IGoogleCalendarEventListItem {
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [],
+  imports: [ButtonWeb, ],
 })
 export class GoogleCalendarDetail {
   private readonly config = inject(DynamicDialogConfig);

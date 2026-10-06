@@ -7,5 +7,4 @@ export const accountingRoutes: Routes = [
       import("src/app/routing/accounting.routing").then(
         (m) => m.accountingRoutes,
       ),
-  },
-];
+  }];

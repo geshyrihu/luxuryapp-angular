@@ -53,8 +53,7 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Calentadores centrales y boiler",
             "Elevadores y montacargas",
             "Circuito cerrado de CCTV y control de accesos",
-            "Extintores y sistema contra incendios",
-          ],
+            "Extintores y sistema contra incendios"],
           duration: "1 día",
         },
         {
@@ -70,8 +69,7 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Mensual: calentadores, extractores, equipos de bombeo",
             "Trimestral: elevadores, sistema contra incendios",
             "Semestral: cisternas (limpieza), pintura de áreas comunes",
-            "Anual: dictamen estructural, certificaciones",
-          ],
+            "Anual: dictamen estructural, certificaciones"],
           duration: "2 horas",
         },
         {
@@ -87,11 +85,9 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Considerar temporadas de alta ocupación",
             "Reservar fechas para mantenimiento mayor",
             "Incluir holgura para imprevistos",
-            "Socializar calendario con administración",
-          ],
+            "Socializar calendario con administración"],
           duration: "4 horas",
-        },
-      ],
+        }],
     },
     {
       id: "phase-2",
@@ -111,8 +107,7 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Ajuste de parámetros y calibraciones",
             "Medición de voltaje, amperaje y resistencia",
             "Cambio de filtros y refacciones programadas",
-            "Revisión de fugas en instalaciones hidrosanitarias",
-          ],
+            "Revisión de fugas en instalaciones hidrosanitarias"],
           duration: "30 min por equipo",
         },
         {
@@ -128,8 +123,7 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Actividades realizadas y refacciones utilizadas",
             "Lecturas y mediciones obtenidas",
             "Observaciones y recomendaciones",
-            "Firma del ejecutor y supervisor",
-          ],
+            "Firma del ejecutor y supervisor"],
           duration: "10 min por registro",
         },
         {
@@ -145,19 +139,15 @@ export class PreventiveMaintenance implements AfterViewInit {
             "Ajustar frecuencias si hay sobre-mantenimiento",
             "Reprogramar actividades omitidas",
             "Actualizar calendario para el siguiente mes",
-            "Reportar a administración resultados del periodo",
-          ],
+            "Reportar a administración resultados del periodo"],
           duration: "2 horas / mes",
-        },
-      ],
-    },
-  ];
+        }],
+    }];
 
   kpis = [
     { value: "-80%", label: "Averías inesperadas", icon: "📉" },
     { value: "+40%", label: "Vida útil de equipos", icon: "⏳" },
-    { value: "100%", label: "Trazabilidad documentada", icon: "✅" },
-  ];
+    { value: "100%", label: "Trazabilidad documentada", icon: "✅" }];
 
   deliverables = [
     {
@@ -179,8 +169,7 @@ export class PreventiveMaintenance implements AfterViewInit {
       icon: "📊",
       title: "Reporte mensual de cumplimiento",
       desc: "Indicadores de cumplimiento, desviaciones y recomendaciones del periodo.",
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

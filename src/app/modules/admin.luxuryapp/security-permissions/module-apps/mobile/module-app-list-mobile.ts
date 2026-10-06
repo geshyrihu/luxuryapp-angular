@@ -20,8 +20,7 @@ import { ModuleAppDto } from "../interfaces/module-app.dto";
     LxIcon,
     DataViewMobile,
     MobileActionMenu,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class ModuleAppListMobile {
   data = input.required<ModuleAppDto[]>();

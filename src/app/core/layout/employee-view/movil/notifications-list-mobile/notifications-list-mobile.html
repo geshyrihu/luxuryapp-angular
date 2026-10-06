@@ -25,7 +25,7 @@
         <p>{{ notification.message }}</p>
         <p class="timestamp">{{ notification.createdAt }}</p>
       </ion-label>
-      <ii-button-delete
+      <lux-button-mobile displayMode="icon"-delete
         slot="end"
         (click)="$event.stopPropagation()"
         (confirmed)="deleteNotification(notification.id)"

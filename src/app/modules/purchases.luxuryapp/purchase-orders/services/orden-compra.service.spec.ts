@@ -9,8 +9,7 @@ describe('OrdenCompraService', () => {
     TestBed.configureTestingModule({
       providers: [
         OrdenCompraService,
-        { provide: ApiResponseService, useValue: {} },
-      ],
+        { provide: ApiResponseService, useValue: {} }],
     });
     service = TestBed.inject(OrdenCompraService);
   });

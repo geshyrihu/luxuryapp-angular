@@ -23,8 +23,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     MobileActionMenu,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TicketLegalListaClienteMobile {
   data = input.required<any[]>();

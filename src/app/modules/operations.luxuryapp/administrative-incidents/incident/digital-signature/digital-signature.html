@@ -18,7 +18,7 @@
   </div>
 
   <div class="d-flex mt-3 gap-2">
-    <il-button
+    <lux-button-web
       label="Limpiar"
       severity="secondary"
       variant="outline"
@@ -26,7 +26,7 @@
       (clicked)="clearSignature()"
     />
 
-    <il-button
+    <lux-button-web
       label="Guardar Firma"
       iconClass="material-symbols-light:save"
       [disabled]="!hasSignature()"

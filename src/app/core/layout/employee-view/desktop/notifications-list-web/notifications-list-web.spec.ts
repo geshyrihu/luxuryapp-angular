@@ -44,8 +44,7 @@ describe("NotificationsListWeb", () => {
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: SignalRService, useValue: signalRServiceMock },
-        { provide: ConsoleLoggerService, useValue: consoleLoggerServiceMock },
-      ],
+        { provide: ConsoleLoggerService, useValue: consoleLoggerServiceMock }],
     });
 
     fixture = TestBed.createComponent(NotificationsListWeb);

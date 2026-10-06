@@ -29,8 +29,7 @@ import { CustomerLocationDto } from "../interfaces/customer-location.dto";
     TableEmptyMessage,
     TableFooter,
     AppTable,
-    NgbTooltipModule,
-  ],
+    NgbTooltipModule],
 })
 export class CustomerLocationListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

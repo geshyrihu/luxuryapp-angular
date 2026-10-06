@@ -33,8 +33,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
     AppAvatar,
     AppDivider,
     LxIcon,
-    AppSpinner,
-  ],
+    AppSpinner],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./sidebar.html",
@@ -86,8 +85,7 @@ export class Sidebar {
               label: "Typography",
               icon: "material-symbols-light:text-fields",
               routerLink: [...this.catalogBase, "tokens", "typography"],
-            },
-          ],
+            }],
         },
         {
           label: "Componentes",
@@ -290,8 +288,7 @@ export class Sidebar {
                   label: "Mobile: Page Structure",
                   icon: "material-symbols-light:web",
                   routerLink: [...this.catalogBase, "mobile", "page-structure"],
-                },
-              ],
+                }],
             },
             {
               label: "Gráficos",
@@ -322,10 +319,8 @@ export class Sidebar {
                   label: "Radar Chart",
                   icon: "material-symbols-light:radar",
                   routerLink: [...this.catalogBase, "charts", "radar"],
-                },
-              ],
-            },
-          ],
+                }],
+            }],
         },
         {
           label: "Core Components",
@@ -619,8 +614,7 @@ export class Sidebar {
               label: "Pivot Table",
               icon: "material-symbols-light:table",
               routerLink: [...this.catalogBase, "core", "pivottable"],
-            },
-          ],
+            }],
         },
         {
           label: "Patrones y Layouts",
@@ -641,8 +635,7 @@ export class Sidebar {
                   routerLink: [
                     ...this.catalogBase,
                     "patterns",
-                    "datatablehybrid",
-                  ],
+                    "datatablehybrid"],
                 },
                 {
                   label: "Filtros + Tabla",
@@ -661,23 +654,20 @@ export class Sidebar {
                   routerLink: [
                     ...this.catalogBase,
                     "patterns",
-                    "loginreference",
-                  ],
+                    "loginreference"],
                 },
                 {
                   label: "Navigation Reference",
                   routerLink: [
                     ...this.catalogBase,
                     "patterns",
-                    "navigationreference",
-                  ],
+                    "navigationreference"],
                 },
                 {
                   label: "Navigation Hub Page",
                   icon: "material-symbols-light:dashboard-outline",
                   routerLink: [...this.catalogBase, "patterns", "navhub"],
-                },
-              ],
+                }],
             },
             {
               label: "Layouts",
@@ -693,8 +683,7 @@ export class Sidebar {
                   routerLink: [
                     ...this.catalogBase,
                     "layouts",
-                    "sidebarcontent",
-                  ],
+                    "sidebarcontent"],
                 },
                 {
                   label: "Master–Detail",
@@ -707,10 +696,8 @@ export class Sidebar {
                 {
                   label: "Split Panels",
                   routerLink: [...this.catalogBase, "layouts", "splitpanels"],
-                },
-              ],
-            },
-          ],
+                }],
+            }],
         },
         {
           label: "Guía y Estándares",
@@ -735,8 +722,7 @@ export class Sidebar {
                   routerLink: [
                     ...this.catalogBase,
                     "guide",
-                    "componentcatalog",
-                  ],
+                    "componentcatalog"],
                 },
                 {
                   label: "Button Rules",
@@ -750,8 +736,7 @@ export class Sidebar {
                 {
                   label: "Reference Form",
                   routerLink: [...this.catalogBase, "guide", "referenceform"],
-                },
-              ],
+                }],
             },
             {
               label: "Estándar Documental",
@@ -769,8 +754,7 @@ export class Sidebar {
                 {
                   label: "Access Matrix",
                   routerLink: [...this.catalogBase, "docs", "accessmatrix"],
-                },
-              ],
+                }],
             },
             {
               label: "Auditoría",
@@ -784,14 +768,10 @@ export class Sidebar {
                 {
                   label: "Quick Checklist",
                   routerLink: [...this.catalogBase, "audit", "quickchecklist"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
+                }],
+            }],
+        }],
+    }];
 
   public isShow: boolean = false;
   public pinnedData: boolean = false;

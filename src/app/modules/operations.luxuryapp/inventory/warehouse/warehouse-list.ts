@@ -27,14 +27,10 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { WarehouseForm } from "./warehouse-form";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -50,12 +46,10 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     ButtonMobile,
     LxIcon,
     MobileListItem,
-    LxTooltipDirective,
     MobileActionMenu,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption,
     TableFooter,
     DataViewMobile],

@@ -31,7 +31,7 @@
               [showButtonBar]="false"
             />
             @if (selectedDateControl().value) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:close"
               (clicked)="clearFilter.emit()"
               severity="danger"
@@ -58,7 +58,7 @@
             placeholder="Buscar..."
             [horizontal]="false"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:search"
             (clicked)="loadData.emit()"
             severity="primary"

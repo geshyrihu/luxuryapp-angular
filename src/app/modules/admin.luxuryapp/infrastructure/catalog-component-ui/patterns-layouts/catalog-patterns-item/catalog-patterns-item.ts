@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ const PATTERNS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-patterns-item",
-  imports: [
+  imports: [ButtonWeb, 
     FormsModule,
     AppDivider,
     CustomInputTextSignal,
@@ -60,7 +61,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 </div>
               </ng-template>
               <ng-template #end>
-                <il-button
+                <lux-button-web
                   label="Nueva Orden"
                   iconClass="material-symbols-light:add"
                 />
@@ -85,12 +86,12 @@ const PATTERNS_LABELS: Record<string, string> = {
                   <div
                     class="col-12 col-md-5 d-flex gap-2 justify-content-end align-items-end"
                   >
-                    <il-button
+                    <lux-button-web
                       variant="outlined"
                       label="Limpiar"
                       severity="secondary"
                     />
-                    <il-button
+                    <lux-button-web
                       label="Buscar"
                       iconClass="material-symbols-light:search"
                     />
@@ -118,7 +119,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <td>{{ row.total }}</td>
                       <td><lux-status-badge-web [status]="EStatus.Aprobado" /></td>
                       <td class="text-end">
-                        <iw-button-icon
+                        <lux-button-web displayMode="icon"-icon
                           icon="material-symbols-light:visibility"
                           variant="text"
                         />
@@ -334,7 +335,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                   [onlyInput]="true"
                   class="w-full mb-2"
                 />
-                <il-button label="Iniciar Sesión" class="w-full" />
+                <lux-button-web label="Iniciar Sesión" class="w-full" />
               </div>
             </div>
           </div>

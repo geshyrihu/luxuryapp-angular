@@ -22,8 +22,7 @@ import { EmployeeWorkContractListDTO } from "../interfaces/work-contract.dto";
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class WorkContractListMobile {
   data = input.required<EmployeeWorkContractListDTO[]>();

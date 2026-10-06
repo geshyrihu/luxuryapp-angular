@@ -180,7 +180,7 @@
                   candidateStatusLabel(found.status) }}
                 </div>
               </div>
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:close"
                 severity="secondary"
                 variant="text"
@@ -189,7 +189,7 @@
               />
             </div>
             <div class="d-flex flex-wrap gap-2 mt-3">
-              <il-button
+              <lux-button-web
                 label="Ver / actualizar datos"
                 iconClass="material-symbols-light:edit-outline"
                 severity="secondary"
@@ -197,7 +197,7 @@
                 size="small"
                 (clicked)="onLoadDuplicateCandidate()"
               />
-              <il-button
+              <lux-button-web
                 label="Asignar a entrevista"
                 iconClass="material-symbols-light:event-available"
                 severity="secondary"
@@ -206,7 +206,7 @@
                 (clicked)="onAssignDuplicateCandidateToInterview()"
               />
               @if (found.status === CandidateStatus.Archived) {
-              <il-button
+              <lux-button-web
                 label="Desarchivar"
                 iconClass="material-symbols-light:archive"
                 severity="secondary"
@@ -234,7 +234,7 @@
                   Registra el historial laboral estructurado del candidato.
                 </div>
               </div>
-              <il-button
+              <lux-button-web
                 label="Agregar experiencia"
                 iconClass="material-symbols-light:add"
                 severity="secondary"
@@ -256,7 +256,7 @@
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
                   <div class="fw-medium">Experiencia {{ $index + 1 }}</div>
-                  <il-button
+                  <lux-button-web
                     label="Eliminar"
                     iconClass="material-symbols-light:delete-outline"
                     severity="danger"

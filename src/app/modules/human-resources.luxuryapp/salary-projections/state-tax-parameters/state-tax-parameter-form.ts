@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { FormsModule, FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -13,7 +14,7 @@ import { Endpoints } from '@core/constants/endpoints/endpoints';
   selector: "app-state-tax-parameter-form",
   templateUrl: "./state-tax-parameter-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, ReactiveFormsModule, CustomInputSelectSignal, CustomInputTextSignal],
+  imports: [ButtonWeb, FormsModule, ReactiveFormsModule, CustomInputSelectSignal, CustomInputTextSignal],
 })
 export class StateTaxParameterForm {
   private readonly api = inject(ApiResponseService);

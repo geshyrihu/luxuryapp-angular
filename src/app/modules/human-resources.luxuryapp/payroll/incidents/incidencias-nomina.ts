@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import { IncidenciasNominaMobile } from "./mobile/incidencias-nomina-mobile";
 
 @Component({
   selector: "app-incidencias-nomina",
-  imports: [
+  imports: [ButtonWeb, 
     IncidenciasNominaDesktop,
     IncidenciasNominaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,

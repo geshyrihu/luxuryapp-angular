@@ -61,8 +61,7 @@ describe('CustomerLocationList', () => {
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightService },
         { provide: PlatformService, useValue: { isMobile: () => false } },
         { provide: EndpointsAdmin, useValue: mockEndpoints },
-        CustomerLocationList,
-      ],
+        CustomerLocationList],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -90,8 +89,7 @@ describe('CustomerLocationList', () => {
       'name',
       'locationType',
       'phoneOne',
-      'contactName',
-    ]);
+      'contactName']);
   });
 
   describe('onLoadData', () => {
@@ -120,8 +118,7 @@ describe('CustomerLocationList', () => {
           notes: '',
           sortOrder: 2,
           isActive: true,
-        },
-      ];
+        }];
 
       mockApiResponseService.onGetList.mockResolvedValue(mockData);
       component.onLoadData();
@@ -242,8 +239,7 @@ describe('CustomerLocationList', () => {
           notes: '',
           sortOrder: 0,
           isActive: true,
-        },
-      ];
+        }];
 
       component.dataSignal.set(mockData);
       mockApiResponseService.onDelete.mockResolvedValue(true);
@@ -272,8 +268,7 @@ describe('CustomerLocationList', () => {
           notes: '',
           sortOrder: 0,
           isActive: true,
-        },
-      ];
+        }];
 
       component.dataSignal.set(mockData);
       mockApiResponseService.onDelete.mockResolvedValue(false);

@@ -144,8 +144,7 @@ export class MaintenancePage implements AfterViewInit {
       emoji: "🌿",
       gradient: "linear-gradient(135deg, #15803d 0%, #22c55e 100%)",
       steps: 7,
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

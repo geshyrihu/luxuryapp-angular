@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -42,7 +43,7 @@ import {
   templateUrl: "./org-chart.html",
   styleUrl: "./org-chart.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     CommonModule,
     GraphModule,

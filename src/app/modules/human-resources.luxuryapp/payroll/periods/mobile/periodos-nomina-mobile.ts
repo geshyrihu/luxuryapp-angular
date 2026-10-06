@@ -24,8 +24,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     MobileListItem,
     LxTag,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class PeriodosNominaMobile {
   data = input.required<PeriodoNominaDTO[]>();

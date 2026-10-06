@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,7 +9,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppImage } from "@ui/web/image/image";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
@@ -25,7 +26,7 @@ interface ITaskAreaGroup {
   selector: "app-task-pending-board",
   templateUrl: "./task-pending-board.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ AppImage, LxTag, LxIcon],
+  imports: [ButtonWeb, LxTag, LxIcon],
 })
 export class TaskPendingBoard implements OnInit {
   private readonly route = inject(ActivatedRoute);

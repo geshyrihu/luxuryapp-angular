@@ -36,8 +36,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     CustomInputTextAreaSignal,
     CustomInputSelectSignal,
     InputSelectBool,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CustomerLocationForm implements OnInit {
   ref = inject(DynamicDialogRef);

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
@@ -31,7 +32,7 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
 
 @Component({
   selector: "app-ledger-viewer",
-  imports: [
+  imports: [ButtonWeb, 
     AppTable,
     LuxTableCaption,
     LxCard,

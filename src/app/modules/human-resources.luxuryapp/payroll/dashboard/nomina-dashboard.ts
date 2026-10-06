@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -545,7 +546,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [LxTag, LxIcon],
+  imports: [ButtonWeb, LxTag, LxIcon],
   templateUrl: "./nomina-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],

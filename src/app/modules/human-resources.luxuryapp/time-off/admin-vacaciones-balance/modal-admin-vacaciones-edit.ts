@@ -28,8 +28,7 @@ interface AdminVacationEditDialogData {
     ReactiveFormsModule,
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
-     ButtonWeb,
-  ],
+     ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./admin-vacaciones-edit-modal.html",
 })
@@ -44,16 +43,13 @@ export class AdminVacacionesEditModalComponent implements OnInit {
   form = this.formBuilder.nonNullable.group({
     newAvailableBalance: [
       this.employeeData.currentSystemBalance,
-      [Validators.required, Validators.min(0)],
-    ],
+      [Validators.required, Validators.min(0)]],
     justification: [
       "",
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(500),
-      ],
-    ],
+        Validators.maxLength(500)]],
   });
 
   submitting = false;

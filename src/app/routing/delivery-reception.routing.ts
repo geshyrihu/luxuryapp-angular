@@ -122,5 +122,4 @@ export const deliveryReceptionRoutes: Routes = [
       title: "Entrega Recepción - Mantenimientos Pendientes",
       breadcrumb: "Entrega Recepción - Mantenimientos Pendientes",
     },
-  },
-];
+  }];

@@ -21,8 +21,7 @@ export const SAT_FUNDING_ROUTES: Routes = [
       title: "Detalle de Fondeo",
       breadcrumb: "Detalle de Fondeo",
     },
-  },
-];
+  }];
 
 
 

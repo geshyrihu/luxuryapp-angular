@@ -34,8 +34,7 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre",
-];
+  "Diciembre"];
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
   "montoFebrero",
@@ -48,8 +47,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre",
-];
+  "montoDiciembre"];
 
 @Component({
   selector: "app-estado-resultados",
@@ -59,8 +57,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     AppTable,
     LxSkeleton,
     DataViewMobile,
-    AccountingNumberPipe,
-  ],
+    AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados.html",
 })
@@ -79,8 +76,7 @@ export class EstadoResultados {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)],
-    ];
+      MONTH_NAMES[wr(idx)]];
   });
 
   rows = computed(() => {

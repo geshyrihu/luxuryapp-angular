@@ -24,8 +24,7 @@ import { TiempoExtraDTO } from "../../interfaces/tiempo-extra.interface";
     MobileListItem,
     LxTag,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class TiempoExtraMobile {
   data = input.required<TiempoExtraDTO[]>();

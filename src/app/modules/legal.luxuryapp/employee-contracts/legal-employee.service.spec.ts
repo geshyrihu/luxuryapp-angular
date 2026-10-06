@@ -19,8 +19,7 @@ describe('LegalEmployeeService', () => {
       providers: [
         LegalEmployeeService,
         { provide: ApiResponseService, useValue: mockApiResponseService },
-        { provide: CustomerIdService, useValue: mockCustomerIdService },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdService }],
     });
 
     service = TestBed.inject(LegalEmployeeService);
@@ -39,8 +38,7 @@ describe('LegalEmployeeService', () => {
   it('should sort employees by department and name', () => {
     service.employees.set([
       { department: 'B', fullName: 'Zoe', employeeId: '1' } as any,
-      { department: 'A', fullName: 'Ana', employeeId: '2' } as any,
-    ]);
+      { department: 'A', fullName: 'Ana', employeeId: '2' } as any]);
 
     const sorted = service.employeesByDepartment();
 

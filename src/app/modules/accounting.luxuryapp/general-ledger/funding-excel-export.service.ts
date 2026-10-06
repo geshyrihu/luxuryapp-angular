@@ -47,8 +47,7 @@ export class FundingExcelExportService {
       center: { left: 0, top: 0 },
       stops: [
         { position: 0, color: { argb: "FF000000" } },
-        { position: 1, color: { argb: "FF203988" } },
-      ],
+        { position: 1, color: { argb: "FF203988" } }],
     };
     const totalFill = {
       type: "pattern" as const,
@@ -93,8 +92,7 @@ export class FundingExcelExportService {
       "TOTAL",
       "BANCO",
       "CUENTA/CLABE",
-      "REFERENCIA",
-    ];
+      "REFERENCIA"];
     let groupIndex = 1;
 
     DTO.grupos.forEach((grupo) => {
@@ -106,8 +104,7 @@ export class FundingExcelExportService {
         "",
         "",
         "",
-        "DATOS PARA PAGO",
-      ]);
+        "DATOS PARA PAGO"]);
       groupHeaderRow.font = { ...fontYuGothic12, bold: true };
       ws.mergeCells(groupHeaderRow.number, 1, groupHeaderRow.number, 6);
       ws.mergeCells(groupHeaderRow.number, 7, groupHeaderRow.number, 10);
@@ -145,8 +142,7 @@ export class FundingExcelExportService {
           Number(orden.total),
           orden.shortName,
           orden.cuentaClave,
-          orden.reference,
-        ];
+          orden.reference];
         const dataRow = ws.addRow(rowData);
         dataRow.height = 35;
 
@@ -239,8 +235,7 @@ export class FundingExcelExportService {
       "",
       "FIRMAS",
       "",
-      "",
-    ]);
+      ""]);
 
     // Style Summary Header (Black Background, White Text)
     const summaryHeaderCellNo = summaryHeaderRow.getCell(1);
@@ -278,8 +273,7 @@ export class FundingExcelExportService {
     const signatureLines = [
       { label: "Elabora:", name: DTO.verifiedBy || "" },
       { label: "Vo. Bo.", name: DTO.authorizedBy || "" },
-      { label: "Autoriza", name: DTO.tesorero || "" },
-    ];
+      { label: "Autoriza", name: DTO.tesorero || "" }];
 
     const maxRows = Math.max(DTO.grupos.length, signatureLines.length * 2);
 

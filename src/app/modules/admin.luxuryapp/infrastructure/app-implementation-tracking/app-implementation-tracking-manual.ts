@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +13,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 @Component({
   selector: "app-implementation-tracking-manual",
 
-  imports: [],
+  imports: [ButtonWeb, ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="card p-4">
@@ -26,7 +27,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
         internamente).
       </p>
 
-      <il-button
+      <lux-button-web
         label="Ejecutar Validación de Empleados"
         iconClass="material-symbols-light:send"
         severity="primary"

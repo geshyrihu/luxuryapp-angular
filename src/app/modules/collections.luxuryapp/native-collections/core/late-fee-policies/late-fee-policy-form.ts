@@ -44,8 +44,7 @@ interface ILateFeePolicyForm {
     CustomInputDecimal,
     CustomInputSelectSignal,
     CustomInputCheckSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./late-fee-policy-form.html",
 })
@@ -80,8 +79,7 @@ export class LateFeePolicyForm implements OnInit {
 
   typeOptions = [
     { label: "Monto Fijo", value: ELateFeeType.Fijo },
-    { label: "Porcentaje", value: ELateFeeType.Porcentaje },
-  ];
+    { label: "Porcentaje", value: ELateFeeType.Porcentaje }];
 
   ngOnInit() {
     this.id = this.config.data.id;

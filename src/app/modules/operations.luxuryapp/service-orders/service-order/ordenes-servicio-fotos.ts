@@ -5,7 +5,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AppImage } from "@ui/web/image/image";
+
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -18,7 +18,7 @@ import { ButtonWeb } from "@ui/buttons/web";
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [ ButtonWeb, LxIcon, AppImage],
+  imports: [ ButtonWeb, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OrdenesServicioFotos implements OnInit {

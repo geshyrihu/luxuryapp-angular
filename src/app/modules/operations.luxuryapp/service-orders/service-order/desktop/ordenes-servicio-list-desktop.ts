@@ -15,11 +15,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-ordenes-servicio-list-desktop",
@@ -34,7 +30,6 @@ import {
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
     LxTooltipDirective],
 })

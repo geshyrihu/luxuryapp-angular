@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +12,7 @@ import { PurchaseOrderPaymentData } from "../purchase-order.types";
   selector: "app-orden-compra-datos-pago-parcial",
   templateUrl: "./orden-compra-datos-pago-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ LxIcon, LxTag],
+  imports: [ButtonWeb,  LxIcon, LxTag],
 })
 export class OrdenCompraDatosPagoParcial {
   ordenCompra = input<PurchaseOrderPaymentData>();

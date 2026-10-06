@@ -34,8 +34,7 @@ export class LegalPage implements AfterViewInit {
       icon: "📄",
       title: "Documentación Corporativa",
       desc: "Gestión de actas, reglamentos internos, poderes y documentación legal del condominio.",
-    },
-  ];
+    }];
 
   process = [
     {
@@ -53,8 +52,7 @@ export class LegalPage implements AfterViewInit {
     {
       title: "Monitoreo Continuo",
       desc: "Damos seguimiento y actualizamos según cambios normativos.",
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

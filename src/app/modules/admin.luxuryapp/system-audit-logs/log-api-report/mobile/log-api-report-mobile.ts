@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { LogEntry } from "../interfaces/log-entry.interface";
   selector: "app-log-api-report-mobile",
   templateUrl: "./log-api-report-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     LxCard,
     LxTag,

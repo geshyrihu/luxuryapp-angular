@@ -7,11 +7,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({
@@ -23,7 +19,6 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     CustomInputTextSignal,
     LxTag,
     CustomInputCheckSignal,

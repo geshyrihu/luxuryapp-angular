@@ -35,7 +35,7 @@
             accept="application/pdf,.pdf"
             (change)="onUpload(row, $event)"
           />
-          <il-button
+          <lux-button-web
             label="Subir archivo"
             iconClass="material-symbols-light:upload-file"
             [disabled]="uploadingId() !== null"
@@ -52,7 +52,7 @@
                 [fileName]="row.option.label"
               />
               @if (!row.document?.isValidated) {
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:delete"
                 severity="danger"
                 [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"
@@ -79,7 +79,7 @@
               [loading]="validatingId() === row.document?.id"
               (clicked)="onValidate(row.document)"
             />
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:cancel"
               severity="danger"
               [disabled]="validatingId() !== null || rejectingId() !== null"

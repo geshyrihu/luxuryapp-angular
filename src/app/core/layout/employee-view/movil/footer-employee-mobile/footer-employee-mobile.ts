@@ -91,8 +91,7 @@ export class FooterEmployeeMobile implements OnInit {
           icon: "notifications-outline",
           link: ["/notifications"],
           showNotification: true,
-        },
-      ]);
+        }]);
     } else if (this.aspRoleS.hasRole(ApplicationRole.SuperUsuario)) {
       this.footerItems.set([
         {
@@ -120,8 +119,7 @@ export class FooterEmployeeMobile implements OnInit {
           label: "Config",
           icon: "settings-outline",
           link: ["/admin"],
-        },
-      ]);
+        }]);
     } else {
       this.footerItems.set([
         {
@@ -139,8 +137,7 @@ export class FooterEmployeeMobile implements OnInit {
           icon: "notifications-outline",
           link: ["/notifications"],
           showNotification: true,
-        },
-      ]);
+        }]);
     }
   }
 

@@ -139,8 +139,7 @@ interface LeaveRequestCalendarDetailDTO {
           grid-template-columns: 1fr;
         }
       }
-    `,
-  ],
+    `],
 })
 export class PermisoDetalleModal implements OnInit {
   apiResponseS = inject(ApiResponseService);

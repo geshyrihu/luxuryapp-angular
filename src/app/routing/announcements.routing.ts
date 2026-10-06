@@ -53,7 +53,6 @@ export const announcementsRoutes: Routes = [
       title: "Análisis de vistas",
       breadcrumb: "Análisis de vistas",
     },
-  },
-];
+  }];
 
 

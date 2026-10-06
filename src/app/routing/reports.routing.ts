@@ -76,7 +76,6 @@ export const reportsRoutes: Routes = [
       title: "Reporte de Estados Financieros", // Ajustado para consistencia
       breadcrumb: "Reporte de Estados Financieros",
     },
-  },
-];
+  }];
 
 

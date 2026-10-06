@@ -31,8 +31,7 @@ import { ModuleAppDto } from "../interfaces/module-app.dto";
     AppSorticon,
     LxTag,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ModuleAppListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

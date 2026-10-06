@@ -11,8 +11,7 @@ describe('AspelSyncService', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        AspelSyncService,
-      ],
+        AspelSyncService],
     });
     service = TestBed.inject(AspelSyncService);
   });

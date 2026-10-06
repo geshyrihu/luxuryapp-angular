@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -38,7 +39,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   selector: "app-candidate-work-position-candidates",
   templateUrl: "./candidate-work-position-candidates.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+   imports: [ButtonWeb, 
     PdfViewerTrigger,
     ApiDatePipe,
     CurrencyPipe,

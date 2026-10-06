@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { DatePipe, DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -32,7 +33,7 @@ const LIST_URL = "/hr/salary-projections";
   selector: "app-salary-projections-detail",
   templateUrl: "./salary-projections-detail.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     AppTable,
     TableEmptyMessage,
     LxTag,

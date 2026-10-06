@@ -46,8 +46,7 @@ export class CustomerLocationList implements OnInit {
     "name",
     "locationType",
     "phoneOne",
-    "contactName",
-  ]);
+    "contactName"]);
 
   customerId: string = "";
   customerName: string = "";

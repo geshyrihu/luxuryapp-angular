@@ -105,8 +105,7 @@ import {
     LxTooltipDirective,
     AppTable,
     MultipleSegmentedControl,
-    NgxMaskDirective,
-  ],
+    NgxMaskDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
 })
@@ -1004,8 +1003,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.gastoSeptiembre,
         item.gastoOctubre,
         item.gastoNoviembre,
-        item.gastoDiciembre,
-      ].filter((expense) => typeof expense === "number") as number[];
+        item.gastoDiciembre].filter((expense) => typeof expense === "number") as number[];
     }
 
     if (expensesToAverage.length === 0) {
@@ -1069,8 +1067,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.presupuestoSeptiembre,
         item.presupuestoOctubre,
         item.presupuestoNoviembre,
-        item.presupuestoDiciembre,
-      ].filter((budget) => typeof budget === "number") as number[];
+        item.presupuestoDiciembre].filter((budget) => typeof budget === "number") as number[];
     }
 
     if (budgetsToAverage.length === 0) {
@@ -1339,8 +1336,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       charIndex: 12,
       gastoKey: "gastoDiciembre",
       pptKey: "presupuestoDiciembre",
-    },
-  ] as const;
+    }] as const;
 
   /** Lista de meses para iterar en la plantilla (mantenido para reportes y utilidades) */
   readonly months: string[] = this.monthColumns.map((m) => m.name);
@@ -1358,8 +1354,7 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     { value: "septiembre", label: "SEP" },
     { value: "octubre", label: "OCT" },
     { value: "noviembre", label: "NOV" },
-    { value: "diciembre", label: "DIC" },
-  ];
+    { value: "diciembre", label: "DIC" }];
 
   /** Signal que almacena los meses seleccionados para calcular el promedio. */
   selectedMonthsForAvg = signal<string[]>([...this.months]);

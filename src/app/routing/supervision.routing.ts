@@ -123,7 +123,6 @@ export const supervisionRoutes: Routes = [
       title: "Presentaciones de Juntas de Comité", // Ajustado para mayor claridad
       breadcrumb: "Presentaciones de Juntas de Comité",
     },
-  },
-];
+  }];
 
 

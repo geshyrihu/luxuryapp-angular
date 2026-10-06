@@ -194,13 +194,13 @@ import { ApprovalInfoService } from "./approval-info.service";
         </div>
 
         <div class="d-flex justify-end mt-5">
-          <il-button
+          <lux-button-web
             (clicked)="ref.close(false)"
             label="Cancelar"
             variant="text"
             severity="secondary"
           />
-          <il-button
+          <lux-button-web
             (clicked)="onApprove()"
             label="Aprobar Solicitud"
             iconClass="material-symbols-light:check"

@@ -18,8 +18,7 @@ describe('CustomerModulEdit', () => {
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerModulEdit);

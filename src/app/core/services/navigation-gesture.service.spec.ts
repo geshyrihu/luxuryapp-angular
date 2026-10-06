@@ -12,8 +12,7 @@ describe('NavigationGestureService', () => {
     TestBed.configureTestingModule({
       providers: [
         NavigationGestureService,
-        { provide: Router, useValue: { events: routerEvents.asObservable() } },
-      ],
+        { provide: Router, useValue: { events: routerEvents.asObservable() } }],
     });
     service = TestBed.inject(NavigationGestureService);
   });

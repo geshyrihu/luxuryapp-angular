@@ -67,8 +67,7 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     LxTooltipDirective,
     ButtonWeb,
     LxCard,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class SatFundingDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -95,8 +94,7 @@ export class SatFundingDetailComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" },
-  ];
+    { value: 9, label: "Impuestos y contribuciones" }];
 
   form = this.formBuilder.nonNullable.group({
     startDate: [null as string | null, [Validators.required]],

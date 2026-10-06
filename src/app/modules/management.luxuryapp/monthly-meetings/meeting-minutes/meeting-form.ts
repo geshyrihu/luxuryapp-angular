@@ -53,8 +53,7 @@ interface IMeetingForm {
     ButtonWeb,
     ComiteForm,
     InvitedForm,
-    AdministrationFormList,
-  ],
+    AdministrationFormList],
 })
 export class MeetingForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

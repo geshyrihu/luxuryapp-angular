@@ -15,7 +15,7 @@
       <div class="d-flex align-items-center justify-content-between p-2">
         <h5 class="m-0 text-xl fw-bold text-body">Gestión de Diagramas</h5>
         <div class="d-flex gap-2">
-          <il-button
+          <lux-button-web
             label="Galeróa"
             iconClass="material-symbols-light:photo-library"
             severity="secondary"
@@ -51,7 +51,7 @@
         </td>
         <td>
           <div class="d-flex justify-content-center gap-2">
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:edit"
               (clicked)="onEditDiagram(diagram.id)"
               ngbTooltip="Editar Propiedades"
@@ -60,7 +60,7 @@
               lxTooltip="Propiedades"
               tooltipPosition="top"
             />
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:palette"
               (clicked)="onOpenEditor(diagram.id)"
               ngbTooltip="Abrir Editor Grófico"
@@ -69,7 +69,7 @@
               lxTooltip="Editor"
               tooltipPosition="top"
             />
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:visibility-outline"
               (clicked)="onViewDiagram(diagram.id)"
               ngbTooltip="Visualizar Diagrama"
@@ -134,14 +134,14 @@
             kind="edit"
             (clicked)="onEditDiagram(diagram.id)"
           />
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:palette"
             (clicked)="onOpenEditor(diagram.id)"
             label="Editor"
             variant="text"
             severity="info"
           />
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:visibility-outline"
             (clicked)="onViewDiagram(diagram.id)"
             label="Ver"

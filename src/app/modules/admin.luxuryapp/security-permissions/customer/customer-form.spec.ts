@@ -52,8 +52,7 @@ describe("CustomerForm", () => {
           provide: "HttpClientWithoutInterceptors",
           useValue: (globalThis as any).__mockHttpClient,
         },
-        { provide: FlatpickrDefaults, useValue: {} },
-      ],
+        { provide: FlatpickrDefaults, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerForm);

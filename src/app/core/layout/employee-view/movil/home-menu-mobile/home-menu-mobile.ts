@@ -33,8 +33,7 @@ import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
     IonItem,
     IonLabel,
     IonList,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

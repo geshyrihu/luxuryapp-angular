@@ -32,6 +32,7 @@ import { BankDto } from "../interfaces/banks.dto";
     AppSortableColumn,
     AppSorticon,
     ButtonWeb,
+  ],
 })
 export class BankListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

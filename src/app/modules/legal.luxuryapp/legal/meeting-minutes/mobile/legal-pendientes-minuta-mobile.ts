@@ -23,8 +23,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     DataViewMobile,
     SanitizeHtmlPipe,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class LegalPendientesMinutaMobile {
   data = input.required<any[]>();

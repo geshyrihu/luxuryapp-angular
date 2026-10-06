@@ -17,8 +17,8 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppTag } from "@ui/web/tag/tag";
+
+
 import { InspeccionActivoCondominio } from "../inspection-asset-add/inspeccion-activo-condominio";
 import { InspeccionActivoCondominioEditar } from "../inspection-asset-edit/inspeccion-activo-condominio-editar";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
@@ -33,9 +33,7 @@ import { InspectionEdit } from "../models/inspection.model";
     RouterModule,
     LxCard,
     LxSkeleton,
-    AppTag,
-    LxIcon,
-    ActionMenu],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-4">
@@ -134,7 +132,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 Equipos y criterios de revisión
               </h2>
               @if (equipmentItems().length > 0) {
-                <il-button
+                <lux-button-web
                   iconClass="material-symbols-light:add-circle"
                   label="Agregar Equipo"
                   size="sm"
@@ -239,7 +237,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 <p class="text-body-secondary m-0">
                   No hay equipos configurados en este recorrido.
                 </p>
-                <il-button
+                <lux-button-web
                   label="Agregar el primer equipo"
                   iconClass="material-symbols-light:add-circle"
                   size="sm"
@@ -326,7 +324,7 @@ import { InspectionEdit } from "../models/inspection.model";
                   Equipos y criterios de revisión
                 </h2>
                 @if (equipmentItems().length > 0) {
-                  <il-button
+                  <lux-button-web
                     iconClass="material-symbols-light:add-circle"
                     label="Agregar Equipo"
                     size="sm"
@@ -431,7 +429,7 @@ import { InspectionEdit } from "../models/inspection.model";
                   <p class="text-body-secondary m-0">
                     No hay equipos configurados en este recorrido.
                   </p>
-                  <il-button
+                  <lux-button-web
                     label="Agregar el primer equipo"
                     iconClass="material-symbols-light:add-circle"
                     size="sm"

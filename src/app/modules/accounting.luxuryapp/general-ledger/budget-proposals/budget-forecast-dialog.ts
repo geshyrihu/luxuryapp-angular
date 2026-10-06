@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -40,7 +41,7 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   selector: "app-budget-forecast-dialog",
   templateUrl: "./budget-forecast-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     CommonModule,
     AppTable,

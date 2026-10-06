@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +13,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-status-parcial",
   templateUrl: "./orden-compra-status-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ LxIcon, LxTag],
+  imports: [ButtonWeb,  LxIcon, LxTag],
 })
 export class OrdenCompraStatusParcial {
   ordenCompra = input<PurchaseOrderView>();

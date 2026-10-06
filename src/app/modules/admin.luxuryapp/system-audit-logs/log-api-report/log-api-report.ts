@@ -46,8 +46,7 @@ export class LogApiReport implements OnInit {
     { label: "Error", value: "Error" },
     { label: "Critical", value: "Critical" },
     { label: "debug", value: "debug" },
-    { label: "Trace", value: "Trace" },
-  ];
+    { label: "Trace", value: "Trace" }];
 
   readonly globalFilterFields = computed(() => {
     const data = this.data();

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -9,7 +10,7 @@ import { EstadoDeCuentaResponse, MockAspelService, MockAspelSyncCustomer, Movimi
 
 @Component({
   selector: "app-mock-aspel-dashboard",
-  imports: [CommonModule, DecimalPipe, FormsModule, ReactiveFormsModule, RouterLink, LxCard, InputSelect, LxIcon],
+  imports: [ButtonWeb, CommonModule, DecimalPipe, FormsModule, ReactiveFormsModule, RouterLink, LxCard, InputSelect, LxIcon],
   templateUrl: "./mock-aspel-dashboard.html",
   styleUrl: "./mock-aspel-dashboard.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

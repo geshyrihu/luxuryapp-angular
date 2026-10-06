@@ -37,8 +37,7 @@ import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface"
     FormsModule,
     MobileListItem,
     IonInputToggle,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-modul-edit.html",
 })

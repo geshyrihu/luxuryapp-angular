@@ -262,7 +262,7 @@
             organizacion de la asamblea.
           </small>
         </div>
-        <il-button
+        <lux-button-web
           size="small"
           label="Agregar invitado"
           type="button"
@@ -282,7 +282,7 @@
             <span class="fw-semibold text-body-secondary"
               >Invitado {{ index + 1 }}</span
             >
-            <iw-button
+            <lux-button-web displayMode="icon"
               [iconClass]="invitee.controls.isImplicit.value ? 'material-symbols-light:lock' : 'material-symbols-light:delete'"
               [severity]="invitee.controls.isImplicit.value ? 'secondary' : 'danger'"
               type="button"
@@ -417,7 +417,7 @@
             esta junta.
           </small>
         </div>
-        <il-button
+        <lux-button-web
           size="small"
           label="Agregar invitado"
           type="button"
@@ -454,7 +454,7 @@
           </div>
 
           <div class="flex-none d-flex align-items-center h-full">
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:delete"
               severity="danger"
               type="button"
@@ -521,7 +521,7 @@
     @if (isEditMode() && (originalEventDetail()?.isRecurring || isRecurring()))
     {
     <div class="d-flex gap-2">
-      <il-button
+      <lux-button-web
         variant="outline"
         size="small"
         type="button"
@@ -530,7 +530,7 @@
         (clicked)="onSubmitSeries()"
       />
       @if (originalEventDetail()?.isRecurring) {
-      <il-button
+      <lux-button-web
         severity="danger"
         variant="outline"
         size="small"

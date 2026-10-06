@@ -9,17 +9,13 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IAnnouncementAdminList } from "../announcement.model";
 
 @Component({
@@ -32,9 +28,7 @@ import { IAnnouncementAdminList } from "../announcement.model";
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
-    LxTooltipDirective,
     LuxTableCaption,
     TableFooter,
     CustomInputSelectSignal],

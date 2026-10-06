@@ -48,8 +48,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     TableEmptyMessage,
     TableFooter,
     DataViewMobile,
-    MobileListItem,
-  ],
+    MobileListItem],
   templateUrl: "./cobranza-online-detalle-condominos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -85,8 +84,7 @@ export class CobranzaOnlineDetalleCondominos {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS",
-  ];
+    "ANTICIPOS"];
 
   /** Todos los condóminos ordenados mayor→menor deuda */
   readonly allRows = computed(() => {
@@ -97,8 +95,7 @@ export class CobranzaOnlineDetalleCondominos {
       ...d.morosos,
       ...d.deudaCorriente,
       ...d.sinAdeudo,
-      ...d.anticipos,
-    ].sort((a, b) => Math.abs(b.saldo) - Math.abs(a.saldo));
+      ...d.anticipos].sort((a, b) => Math.abs(b.saldo) - Math.abs(a.saldo));
   });
 
   /** Filas filtradas por clasificación seleccionada */

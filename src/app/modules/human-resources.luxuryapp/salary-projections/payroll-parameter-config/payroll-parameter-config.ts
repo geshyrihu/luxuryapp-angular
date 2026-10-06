@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -32,7 +33,7 @@ const LIST_URL = "/hr/salary-projections";
   selector: "app-payroll-parameter-config",
   templateUrl: "./payroll-parameter-config.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     AppTable,
     AppSortableColumn,
     AppSorticon,

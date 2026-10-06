@@ -38,15 +38,13 @@ export class CustomerDataCompanyList implements OnInit {
     "email",
     "phoneNumber",
     "applicationUser",
-    "applicationRoleName",
-  ]);
+    "applicationRoleName"]);
   loading = signal(true);
   ref: DynamicDialogRef;
 
   groupingOptions = [
     { label: "Agrupar por Cliente", value: "numeroCliente" },
-    { label: "Agrupar por Rol", value: "applicationRoleSortOrder" },
-  ];
+    { label: "Agrupar por Rol", value: "applicationRoleSortOrder" }];
   groupingOptionControl = new FormControl<string>("numeroCliente", {
     nonNullable: true,
   });

@@ -51,8 +51,7 @@ describe("FinancialAuditLog", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FinancialAuditLog);
@@ -61,15 +60,13 @@ describe("FinancialAuditLog", () => {
 
   it("should prepend the condominium-wide option to properties", async () => {
     apiResponseMock.onGetSelectItem.mockResolvedValue([
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
 
     await component.loadProperties("customer-1");
 
     expect(component.properties()).toEqual([
       { label: "Todo el condominio", value: "" },
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
   });
 
   it("should search by customer when no property is selected", async () => {
@@ -86,8 +83,7 @@ describe("FinancialAuditLog", () => {
         occurredAt: "2026-07-31T10:00:00",
         isSuccess: true,
         detail: null,
-      },
-    ]);
+      }]);
 
     await component.onSearch();
 

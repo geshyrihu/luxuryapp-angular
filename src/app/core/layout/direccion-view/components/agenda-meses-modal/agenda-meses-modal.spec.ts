@@ -30,8 +30,7 @@ describe("AgendaMesesModal", () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
-        { provide: DynamicDialogRef, useValue: dynamicDialogRefMock },
-      ],
+        { provide: DynamicDialogRef, useValue: dynamicDialogRefMock }],
     });
 
     fixture = TestBed.createComponent(AgendaMesesModal);

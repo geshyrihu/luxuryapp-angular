@@ -144,7 +144,7 @@
 
             <!-- Ver acta firmada en visor é solo si ya fue subida -->
             @if (item.isActGenerated && item.administrativeActPdfUrl) {
-            <iw-button-view-pdf
+            <lux-button-web displayMode="icon"-view-pdf
               iconClass="material-symbols-light:picture-as-pdf"
               [url]="item.administrativeActPdfUrl"
               fileName="Acta Administrativa"

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,7 +27,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [LxIcon, LxTag, LxCard, LxTabs, MobileListItem],
+  imports: [ButtonWeb, LxIcon, LxTag, LxCard, LxTabs, MobileListItem],
   templateUrl: "./cobranza-nativa-wrapper.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-wrapper.scss"],

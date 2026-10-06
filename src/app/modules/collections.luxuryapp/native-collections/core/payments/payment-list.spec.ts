@@ -72,8 +72,7 @@ describe("PaymentList", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentList);
@@ -94,8 +93,7 @@ describe("PaymentList", () => {
         method: EPaymentMethod.Cash,
         reference: "REF-001",
         status: EPaymentStatus.Registrado,
-      },
-    ]);
+      }]);
 
     await component.onLoadData();
 

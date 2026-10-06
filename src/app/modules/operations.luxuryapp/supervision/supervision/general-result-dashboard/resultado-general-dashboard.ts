@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -33,7 +34,7 @@ import {
   selector: "app-resultado-general-dashboard",
   templateUrl: "./resultado-general-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     CommonModule,
     AppTable,
     AppSortableColumn,

@@ -47,8 +47,7 @@ export interface IOrdenCompraDetalleForm {
     CustomInputSelectSignal,
     CustomInputCurrencySignal,
     CustomInputDecimal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush, // Add OnPush strategy
 })
 export class OrdenCompraEditDetalle implements OnInit {

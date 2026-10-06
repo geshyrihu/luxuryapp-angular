@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +23,7 @@ import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approva
 
 @Component({
   selector: "app-approval-detail-modal",
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     LxCard,
     ReactiveFormsModule,

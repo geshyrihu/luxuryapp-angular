@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +34,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   selector: "app-candidate-interview-response",
   templateUrl: "./candidate-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     PdfViewerTrigger,
     ApiDatePipe,
     AppTable,

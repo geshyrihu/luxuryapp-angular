@@ -15,8 +15,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
   imports: [
     ButtonMobile,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class LevelThreeAccountListMobile {
   data = input.required<any[]>();

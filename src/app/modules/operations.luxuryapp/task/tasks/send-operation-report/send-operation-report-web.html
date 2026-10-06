@@ -1,33 +1,33 @@
 <div class="d-flex flex-wrap align-items-center">
-  <il-button
+  <lux-button-web
     iconClass="material-symbols-light:check-box"
     label="Seleccionar Todos"
     customClass="mr-2"
     size="small"
     (clicked)="service.onSelectAll()"
   />
-  <il-button
+  <lux-button-web
     iconClass="material-symbols-light:cancel"
     label="Desmarcar Todos"
     customClass="mr-2"
     size="small"
     (clicked)="service.onDeselecteAll()"
   />
-  <il-button
+  <lux-button-web
     [iconClass]="'material-symbols-light:add'"
     label="Agregar PARA"
     customClass="mr-2"
     size="small"
     (clicked)="service.onMostrarInput(true, false, false, 'PARA')"
   />
-  <il-button
+  <lux-button-web
     [iconClass]="'material-symbols-light:add'"
     label="Agregar CC"
     customClass="mr-2"
     size="small"
     (clicked)="service.onMostrarInput(false, true, false, 'CC')"
   />
-  <il-button
+  <lux-button-web
     [iconClass]="'material-symbols-light:add'"
     label="Agregar CCO"
     customClass="mr-2"

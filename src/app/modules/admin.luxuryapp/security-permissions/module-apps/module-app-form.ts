@@ -34,8 +34,7 @@ import { ModuleAppGetDto } from "./interfaces/module-app-get.dto";
     CustomInputCheckSignal,
     CustomInputSelectSignal,
     ButtonWeb,
-    RouterModule,
-  ],
+    RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./module-app-form.html",
 })

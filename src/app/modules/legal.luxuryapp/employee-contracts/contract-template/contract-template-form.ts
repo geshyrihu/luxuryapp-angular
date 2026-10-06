@@ -44,8 +44,7 @@ interface IContractTemplateForm {
     CustomInputSelectSignal,
     CustomInputSwitch,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ContractTemplateFormComponent implements OnInit {
   apiS = inject(ApiResponseService);
@@ -77,8 +76,7 @@ export class ContractTemplateFormComponent implements OnInit {
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
     { value: "Practicas", label: "Prácticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
-    { value: "Honorarios", label: "Honorarios" },
-  ];
+    { value: "Honorarios", label: "Honorarios" }];
 
   ngOnInit(): void {
     const data = this.config.data?.item as ContractTemplateListDTO | null;

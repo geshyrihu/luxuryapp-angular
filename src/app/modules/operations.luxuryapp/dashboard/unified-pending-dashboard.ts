@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,17 +22,13 @@ import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-for
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/action-icons-group.component";
+
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppAvatar } from "@ui/web/avatar/avatar";
+
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
@@ -48,19 +45,16 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-unified-pending-dashboard",
-  imports: [
+  imports: [ButtonWeb,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
-    AppAvatar,
     DataViewMobile,
     LxTooltipDirective,
     TableFooter,
     LuxTableCaption,
     ImageAnalysisDialogComponent,
-    ActionIconsGroupComponent,
     LxIcon],
   templateUrl: "./unified-pending-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,

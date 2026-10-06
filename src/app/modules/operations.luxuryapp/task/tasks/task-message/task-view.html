@@ -17,7 +17,7 @@
 <!-- DESKTOP VIEW -->
 <div class="d-none d-md-block animate__animated animate__fadeIn">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <il-button
+    <lux-button-web
       (clicked)="goBack()"
       label="Volver al Listado"
       iconClass="material-symbols-light:arrow-back"
@@ -182,20 +182,20 @@
       <!-- Actions -->
       @if (t.seeEditingOptions) {
       <div class="d-flex flex-wrap gap-2 mb-5">
-        <il-button
+        <lux-button-web
           (clicked)="onModalForm(t)"
           label="Editar Ticket"
           iconClass="material-symbols-light:edit"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           (clicked)="onFollowUp(t.id)"
           label="Anadir Seguimiento"
           iconClass="material-symbols-light:forum"
           severity="help"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           (clicked)="onProgram(t.id)"
           label="Programar"
           iconClass="material-symbols-light:calendar-today"
@@ -203,14 +203,14 @@
           variant="outline"
         />
         @if (t.status !== 'Cerrado' && t.status !== 'Completed') {
-        <il-button
+        <lux-button-web
           (clicked)="onProgress(t.id)"
           label="En Proceso"
           iconClass="material-symbols-light:sync"
           severity="warn"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           (clicked)="onClosed(t.id)"
           label="Cerrar Ticket"
           iconClass="material-symbols-light:lock"
@@ -218,7 +218,7 @@
           variant="outline"
         />
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
-        <il-button
+        <lux-button-web
           (clicked)="onReopen(t.id)"
           label="Reabrir Ticket"
           iconClass="material-symbols-light:lock-open"

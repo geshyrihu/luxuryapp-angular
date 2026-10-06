@@ -15,20 +15,20 @@
         />
       </div>
       <div class="col-12 col-md-6 d-flex flex-column flex-md-row g-4">
-        <il-button
+        <lux-button-web
           (clicked)="sendSignalRToUser()"
           [disabled]="!selectedUserId()"
           iconClass="material-symbols-light:send"
           label="Enviar SignalR"
         />
-        <il-button
+        <lux-button-web
           severity="success"
           (clicked)="sendOneSignalToUser()"
           [disabled]="!selectedUserId()"
           iconClass="material-symbols-light:notifications"
           label="Enviar Push (OneSignal)"
         />
-        <il-button
+        <lux-button-web
           severity="success"
           (clicked)="sendOneSignalWebToUser()"
           [disabled]="!selectedUserId()"
@@ -95,27 +95,27 @@
       />
     </div>
     <div class="d-flex flex-wrap gap-2">
-      <il-button
+      <lux-button-web
         (clicked)="sendWhatsAppLegalTicket()"
         [disabled]="!phoneControl.value"
         iconClass="material-symbols-light:chat"
         label="Enviar LegalTicket"
       />
-      <il-button
+      <lux-button-web
         severity="success"
         (clicked)="sendWhatsAppSolicitudRecibida()"
         [disabled]="!phoneControl.value"
         iconClass="material-symbols-light:mail"
         label="Enviar SolicitudRecibida"
       />
-      <il-button
+      <lux-button-web
         severity="success"
         (clicked)="sendWhatsAppSolicitudTerminada()"
         [disabled]="!phoneControl.value"
         iconClass="material-symbols-light:check-circle"
         label="Enviar SolicitudTerminada"
       />
-      <il-button
+      <lux-button-web
         severity="danger"
         (clicked)="sendWhatsAppAlertaTareaUrgente()"
         [disabled]="!phoneControl.value"
@@ -139,7 +139,7 @@
         />
       </div>
       <div class="col-12 col-md-4 d-flex align-items-end">
-        <il-button
+        <lux-button-web
           [fluid]="true"
           (clicked)="sendSignalRToUsers()"
           [disabled]="!selectedUserIds().length"

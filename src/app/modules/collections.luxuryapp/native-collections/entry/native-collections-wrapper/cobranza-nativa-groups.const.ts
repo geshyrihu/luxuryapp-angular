@@ -39,8 +39,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           {
             label:
               "Definir si el siguiente paso sera feature propia o adaptador local",
-          },
-        ],
+          }],
         endpoints: [
           {
             method: "GET",
@@ -61,8 +60,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "DELETE",
             path: pathOf(Endpoints.Properties.delete("{id}")),
             description: "Contrato externo actual para eliminar propiedad",
-          },
-        ],
+          }],
         notes:
           "La navegacion ya no sale a resident.luxuryapp. Esta card queda como frontera documentada mientras se completa la separacion.",
       },
@@ -79,8 +77,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Asignar nuevo miembro con rol y vigencia" },
           { label: "Cambiar responsable financiero activo" },
           { label: "Dar de baja a un miembro" },
-          { label: "Migrar datos del modelo legacy" },
-        ],
+          { label: "Migrar datos del modelo legacy" }],
         endpoints: [
           {
             method: "GET",
@@ -117,8 +114,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Migracion legacy",
-          },
-        ],
+          }],
         states: ["Activo", "Baja"],
         notes:
           "Solo puede existir un responsable financiero activo por propiedad.",
@@ -135,8 +131,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Ver tipos base del sistema" },
           { label: "Crear tipos de cargo personalizados" },
           { label: "Asignar cuenta contable por tipo" },
-          { label: "Desactivar tipos que ya no se usan" },
-        ],
+          { label: "Desactivar tipos que ya no se usan" }],
         endpoints: [
           {
             method: "GET",
@@ -161,8 +156,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "DELETE",
             path: pathOf(Endpoints.CobranzaCore.ChargeTypes.delete("{id}")),
             description: "Eliminar o desactivar tipo de cargo",
-          },
-        ],
+          }],
         notes:
           "Los tipos del sistema estan protegidos porque participan en automatizaciones y calculos del modulo.",
       },
@@ -178,8 +172,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Crear plantilla de mantenimiento mensual" },
           { label: "Configurar cuota fija o por indiviso" },
           { label: "Activar o desactivar plantilla" },
-          { label: "Revisar historial de cambios de monto" },
-        ],
+          { label: "Revisar historial de cambios de monto" }],
         endpoints: [
           {
             method: "GET",
@@ -202,8 +195,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "DELETE",
             path: pathOf(Endpoints.CobranzaCore.Templates.delete("{id}")),
             description: "Eliminar plantilla",
-          },
-        ],
+          }],
       },
       {
         title: "Cuotas Vigentes por Propiedad",
@@ -216,8 +208,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         actions: [
           { label: "Ver cuotas activas por propiedad y mes" },
           { label: "Ver cuotas fijas y calculadas por indiviso" },
-          { label: "Detectar propiedades sin cobertura" },
-        ],
+          { label: "Detectar propiedades sin cobertura" }],
         endpoints: [
           {
             method: "GET",
@@ -225,8 +216,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               Endpoints.CobranzaCore.Templates.coverage(customerIdPlaceholder),
             ),
             description: "Matriz de cuotas vigentes",
-          },
-        ],
+          }],
       },
       {
         title: "Politicas de Mora",
@@ -240,8 +230,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Definir dias de gracia" },
           { label: "Configurar tasa fija o porcentual" },
           { label: "Establecer monto maximo de recargo" },
-          { label: "Activar o desactivar politica" },
-        ],
+          { label: "Activar o desactivar politica" }],
         endpoints: [
           {
             method: "GET",
@@ -266,10 +255,8 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "DELETE",
             path: pathOf(Endpoints.CobranzaCore.LateFeePolicies.delete("{id}")),
             description: "Eliminar politica",
-          },
-        ],
-      },
-    ],
+          }],
+      }],
   },
   {
     label: "Core Nativo - Operacion y Cobro",
@@ -288,15 +275,13 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         actions: [
           { label: "Ver porcentaje de cobranza del mes" },
           { label: "Identificar top deudores" },
-          { label: "Revisar tendencia de ingresos" },
-        ],
+          { label: "Revisar tendencia de ingresos" }],
         endpoints: [
           {
             method: "GET",
             path: metricsPath,
             description: "Metricas consolidadas del condominio",
-          },
-        ],
+          }],
       },
       {
         title: "Cargos",
@@ -311,8 +296,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Crear cargo manual extraordinario" },
           { label: "Cancelar un cargo" },
           { label: "Consultar saldo y vencimiento por propiedad" },
-          { label: "Revisar detalle operativo del cargo" },
-        ],
+          { label: "Revisar detalle operativo del cargo" }],
         endpoints: [
           {
             method: "GET",
@@ -350,8 +334,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Calcular recargos mora",
-          },
-        ],
+          }],
         states: ["Pendiente", "Pagado", "PagoParcial", "Vencido", "Cancelado"],
       },
       {
@@ -364,8 +347,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         roles: ["Administrador", "Contador"],
         actions: [
           { label: "Ver estado de saldo inicial por propiedad" },
-          { label: "Guardar saldos iniciales de forma masiva" },
-        ],
+          { label: "Guardar saldos iniciales de forma masiva" }],
         endpoints: [
           {
             method: "GET",
@@ -380,8 +362,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "POST",
             path: pathOf(Endpoints.CobranzaCore.Charges.bulkSetInitialBalance),
             description: "Guardar saldos iniciales",
-          },
-        ],
+          }],
       },
       {
         title: "Registrar Pagos",
@@ -395,8 +376,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Registrar pago y aplicarlo automaticamente" },
           { label: "Aplicar nota de credito a cargos pendientes" },
           { label: "Cancelar un pago registrado" },
-          { label: "Ver historial de pagos por propiedad" },
-        ],
+          { label: "Ver historial de pagos por propiedad" }],
         endpoints: [
           {
             method: "GET",
@@ -429,8 +409,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Notas de credito disponibles",
-          },
-        ],
+          }],
         states: ["Registrado", "Verificado", "Rechazado"],
       },
       {
@@ -445,8 +424,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Consultar estado de cuenta por propiedad" },
           { label: "Ver saldo al corte" },
           { label: "Generar PDF" },
-          { label: "Enviar estado de cuenta por email" },
-        ],
+          { label: "Enviar estado de cuenta por email" }],
         endpoints: [
           {
             method: "GET",
@@ -461,10 +439,8 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               Endpoints.CobranzaCore.Statements.pdf(propertyIdPlaceholder),
             ),
             description: "PDF del estado de cuenta",
-          },
-        ],
-      },
-    ],
+          }],
+      }],
   },
   {
     label: "Core Nativo - Control Financiero",
@@ -484,8 +460,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Consultar movimientos por propiedad" },
           { label: "Filtrar por tipo de evento" },
           { label: "Ver saldo actual segun ledger" },
-          { label: "Validar integridad ledger vs operacion" },
-        ],
+          { label: "Validar integridad ledger vs operacion" }],
         endpoints: [
           {
             method: "GET",
@@ -515,15 +490,13 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Verificar integridad completa",
-          },
-        ],
+          }],
         states: [
           "EmisionCargo",
           "AplicacionPago",
           "ReversoPago",
           "CondonacionCargo",
-          "CierrePeriodo",
-        ],
+          "CierrePeriodo"],
         notes:
           "Las correcciones no editan historia; se modelan como reversos o ajustes.",
       },
@@ -537,8 +510,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         roles: ["Contador"],
         actions: [
           { label: "Ver pagos sin aplicar" },
-          { label: "Revisar coincidencias antes de aplicar" },
-        ],
+          { label: "Revisar coincidencias antes de aplicar" }],
         endpoints: [
           {
             method: "GET",
@@ -549,8 +521,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "POST",
             path: pathOf(Endpoints.CobranzaCore.Reconciliation.autoApplyAll),
             description: "Ejecutar auto-conciliacion",
-          },
-        ],
+          }],
       },
       {
         title: "Aprobaciones Financieras",
@@ -564,8 +535,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Ver solicitudes pendientes" },
           { label: "Revisar payload tecnico de la operacion" },
           { label: "Aprobar y ejecutar" },
-          { label: "Rechazar con nota obligatoria" },
-        ],
+          { label: "Rechazar con nota obligatoria" }],
         endpoints: [
           {
             method: "GET",
@@ -589,8 +559,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               Endpoints.CobranzaCore.FinancialApprovals.reject("{id}"),
             ),
             description: "Rechazar con nota",
-          },
-        ],
+          }],
         states: ["Pendiente", "Aprobada", "Rechazada", "Cancelada"],
       },
       {
@@ -605,8 +574,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Cerrar el mes actual" },
           { label: "Ver historial de cierres" },
           { label: "Reabrir periodo con control" },
-          { label: "Validar si un periodo esta cerrado" },
-        ],
+          { label: "Validar si un periodo esta cerrado" }],
         endpoints: [
           {
             method: "GET",
@@ -647,8 +615,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               .replace("/NaN/", "/{year}/")
               .replace("/NaN/", "/{month}/"),
             description: "Verificar cierre",
-          },
-        ],
+          }],
       },
       {
         title: "Auditoria Financiera",
@@ -661,8 +628,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         actions: [
           { label: "Consultar bitacora por fechas" },
           { label: "Filtrar por propiedad" },
-          { label: "Ver operaciones exitosas o fallidas" },
-        ],
+          { label: "Ver operaciones exitosas o fallidas" }],
         endpoints: [
           {
             method: "GET",
@@ -682,10 +648,8 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Bitacora de una propiedad",
-          },
-        ],
-      },
-    ],
+          }],
+      }],
   },
   {
     label: "Cobranza Extendida",
@@ -704,8 +668,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         actions: [
           { label: "Ver casos activos" },
           { label: "Registrar actividad o gestion" },
-          { label: "Revisar historial de contactos" },
-        ],
+          { label: "Revisar historial de contactos" }],
         endpoints: [
           {
             method: "GET",
@@ -731,8 +694,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               ),
             ),
             description: "Evaluar y escalar",
-          },
-        ],
+          }],
         states: ["Activo", "Resuelto", "Pausado"],
         notes:
           "Los casos tambien pueden nacer por procesos automatizados de escalamiento.",
@@ -748,8 +710,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         actions: [
           { label: "Agregar articulo y referencia oficial" },
           { label: "Definir monto predeterminado de multa" },
-          { label: "Activar o desactivar articulos" },
-        ],
+          { label: "Activar o desactivar articulos" }],
         endpoints: [
           {
             method: "GET",
@@ -778,8 +739,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               Endpoints.CobranzaCore.RegulationArticles.delete("{id}"),
             ),
             description: "Eliminar articulo",
-          },
-        ],
+          }],
       },
       {
         title: "Multas Reglamentarias",
@@ -793,8 +753,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Emitir multa a una propiedad" },
           { label: "Adjuntar evidencia" },
           { label: "Generar cargo financiero por multa" },
-          { label: "Anular multa si aplica" },
-        ],
+          { label: "Anular multa si aplica" }],
         endpoints: [
           {
             method: "GET",
@@ -837,8 +796,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
               Endpoints.CobranzaCore.PropertyFines.addEvidence("{id}"),
             ),
             description: "Subir evidencia",
-          },
-        ],
+          }],
         states: ["Emitida", "Notificada", "CargoGenerado", "Pagada", "Anulada"],
       },
       {
@@ -853,8 +811,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Ver facturas de un cargo" },
           { label: "Emitir CFDI" },
           { label: "Cancelar CFDI vigente" },
-          { label: "Descargar XML y PDF" },
-        ],
+          { label: "Descargar XML y PDF" }],
         endpoints: [
           {
             method: "GET",
@@ -872,11 +829,9 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "POST",
             path: pathOf(Endpoints.CobranzaCore.Invoices.cancel("{id}")),
             description: "Cancelar CFDI",
-          },
-        ],
+          }],
         states: ["Vigente", "Cancelado"],
-      },
-    ],
+      }],
   },
   {
     label: "Automatizacion",
@@ -897,8 +852,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
           { label: "Calcular recargos por mora" },
           { label: "Escalar cartera a cobranza legal" },
           { label: "Ejecutar auto-conciliacion de pagos" },
-          { label: "Consultar que servicios son automaticos vs manuales" },
-        ],
+          { label: "Consultar que servicios son automaticos vs manuales" }],
         endpoints: [
           {
             method: "POST",
@@ -938,12 +892,10 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
             method: "POST",
             path: processNotificationsPath,
             description: "Procesar notificaciones",
-          },
-        ],
+          }],
         notes:
           "La configuracion de canales email/push existe, pero el motor de notificaciones sigue siendo una capacidad transversal y no una pagina navegable independiente.",
-      },
-    ],
+      }],
   },
   {
     label: "Onboarding del Modulo",
@@ -961,8 +913,7 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
         actions: [
           { label: "Entender el flujo general del modulo" },
-          { label: "Revisar conceptos clave y entidades" },
-        ],
+          { label: "Revisar conceptos clave y entidades" }],
         endpoints: [],
       },
       {
@@ -975,11 +926,8 @@ export const COBRANZA_GROUPS: CobranzaGroup[] = [
         roles: ["Administrador", "Cobranza", "Contador", "SuperUsuario"],
         actions: [
           { label: "Entender rapidamente como se conecta el modulo" },
-          { label: "Explicar el flujo a UI, QA o negocio" },
-        ],
+          { label: "Explicar el flujo a UI, QA o negocio" }],
         endpoints: [],
-      },
-    ],
-  },
-];
+      }],
+  }];
 

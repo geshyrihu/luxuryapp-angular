@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -28,7 +29,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 @Component({
   selector: "app-solicitud-compra-presentacion",
   templateUrl: "./solicitud-compra-presentacion.html",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     AppImage,
     AppTable,

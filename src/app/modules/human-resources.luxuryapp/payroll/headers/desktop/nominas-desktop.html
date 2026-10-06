@@ -55,7 +55,7 @@
       <td>{{ item.aprobadoPor ?? "-" }}</td>
       <td>
         <div class="d-flex gap-1">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:visibility-outline"
             severity="info"
             variant="text"
@@ -63,7 +63,7 @@
             (clicked)="view.emit(item)"
           />
           @if (puedeEnviar(item.estadoValue)) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:send"
             severity="secondary"
             variant="text"
@@ -71,7 +71,7 @@
             (clicked)="changeState.emit({ item, action: 'enviar-revision' })"
           />
           } @if (puedeAprobar(item.estadoValue)) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:check"
             severity="success"
             variant="text"
@@ -79,7 +79,7 @@
             (clicked)="changeState.emit({ item, action: 'aprobar' })"
           />
           } @if (puedePagar(item.estadoValue)) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:attach-money"
             severity="contrast"
             variant="text"
@@ -87,7 +87,7 @@
             (clicked)="changeState.emit({ item, action: 'marcar-pagada' })"
           />
           } @if (puedeCerrar(item.estadoValue)) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:lock"
             severity="secondary"
             variant="text"

@@ -22,7 +22,7 @@
 >
   <ng-template select="[customFilters]">
     <div class="px-2 pb-2">
-      <il-button
+      <lux-button-web
         label="Descargar PDF"
         iconClass="material-symbols-light:picture-as-pdf"
         [severity]="'danger'"
@@ -30,7 +30,7 @@
         [isFullWidth]="true"
         (clicked)="downloadPdf.emit()"
       />
-      <il-button
+      <lux-button-web
         label="QR Global"
         iconClass="material-symbols-light:qr-code"
         [severity]="'secondary'"

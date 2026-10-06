@@ -36,8 +36,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     InputAutocomplete,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CreateOrdenCompra implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -64,8 +63,7 @@ export class CreateOrdenCompra implements OnInit {
   form: FormGroup = new FormGroup({
     id: new FormControl(0, [Validators.required]),
     customerId: new FormControl(this.customerIdS.customerId(), [
-      Validators.required,
-    ]),
+      Validators.required]),
     folio: new FormControl(""),
     indice: new FormControl("0"),
     fechaSolicitud: new FormControl("", [Validators.required]),

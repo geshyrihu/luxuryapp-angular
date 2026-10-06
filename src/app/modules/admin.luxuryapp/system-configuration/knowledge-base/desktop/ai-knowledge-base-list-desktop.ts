@@ -31,8 +31,7 @@ import { AiKnowledgeBaseDto } from "@core/interfaces/ai-knowledge-base.dto";
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class AiKnowledgeBaseListDesktop {
   data = input.required<AiKnowledgeBaseDto[]>();

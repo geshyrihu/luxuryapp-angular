@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
 
 @Component({
   selector: "app-initial-balance",
-  imports: [
+  imports: [ButtonWeb, 
     FormsModule,
     AppTable,
     CustomInputCurrencySignal,

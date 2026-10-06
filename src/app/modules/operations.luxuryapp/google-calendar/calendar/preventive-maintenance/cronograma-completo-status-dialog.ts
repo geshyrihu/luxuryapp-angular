@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,7 +24,7 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
   selector: "app-cronograma-completo-status-dialog",
   templateUrl: "./cronograma-completo-status-dialog.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,

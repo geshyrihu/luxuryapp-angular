@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,7 +24,7 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
   selector: "app-nominas-desktop",
   templateUrl: "./nominas-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxTag,
     LxTooltipDirective,

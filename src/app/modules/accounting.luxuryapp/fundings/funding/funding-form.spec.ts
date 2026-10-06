@@ -48,8 +48,7 @@ describe("FundingForm", () => {
         { provide: SignalRService, useValue: mockSignalRS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     await TestBed.compileComponents();

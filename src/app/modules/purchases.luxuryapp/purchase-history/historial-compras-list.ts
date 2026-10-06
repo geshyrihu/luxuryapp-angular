@@ -37,28 +37,24 @@ const TIPO_COMPRA_OPTIONS: SegmentItem[] = [
   { label: "Tarjeta Debito", value: "5" },
   { label: "Proyectos", value: "6" },
   { label: "Nomina", value: "7" },
-  { label: "Impuestos", value: "8" },
-];
+  { label: "Impuestos", value: "8" }];
 
 const TIPO_ORDEN_OPTIONS: SegmentItem[] = [
   { label: "Todas", value: "all" },
   { label: "Ordinaria", value: "1" },
   { label: "Progresiva", value: "2" },
-  { label: "Fuera de fondeo", value: "3" },
-];
+  { label: "Fuera de fondeo", value: "3" }];
 
 const ESTADO_PAGO_OPTIONS: SegmentItem[] = [
   { label: "Todas", value: "0" },
   { label: "Pagadas", value: "1" },
-  { label: "No pagadas", value: "2" },
-];
+  { label: "No pagadas", value: "2" }];
 
 const ESTADO_AUTORIZACION_OPTIONS: SegmentItem[] = [
   { label: "Todas", value: "all" },
   { label: "Autorizadas", value: "0" },
   { label: "Denegadas", value: "1" },
-  { label: "Pendientes", value: "2" },
-];
+  { label: "Pendientes", value: "2" }];
 
 type HistorialComprasDateFilterForm = {
   fechaInicio: FormControl<Date | string | null>;
@@ -73,8 +69,7 @@ type HistorialComprasDateFilterForm = {
     SegmentedControl,
     CustomInputDateSignal,
     HistorialComprasListDesktop,
-    HistorialComprasListMobile,
-  ],
+    HistorialComprasListMobile],
 })
 export class HistorialComprasList {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -97,8 +92,7 @@ export class HistorialComprasList {
     { label: "Esta semana", mode: "week" as const },
     { label: "Este mes", mode: "month" as const },
     { label: "Ultimos 30 dias", days: 30, mode: "days" as const },
-    { label: "Este anio", mode: "year" as const },
-  ];
+    { label: "Este anio", mode: "year" as const }];
   readonly globalFilterFields = computed(() =>
     globalFilterFields(this.dataSignal()),
   );
@@ -243,7 +237,7 @@ export class HistorialComprasList {
 
       const localMatch = value.match(/(\d{2})\/(\d{2})\/(\d{4})/);
       if (localMatch) {
-        const [, day, month, year] = localMatch;
+        const [ day, month, year] = localMatch;
         return `${year}-${month}-${day}`;
       }
 

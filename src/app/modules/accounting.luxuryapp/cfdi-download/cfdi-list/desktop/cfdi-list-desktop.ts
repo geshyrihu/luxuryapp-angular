@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
@@ -17,7 +18,7 @@ import { SatCfdiRecibidoDto } from "../../interfaces/cfdi-download.interfaces";
   selector: "app-cfdi-list-desktop",
   templateUrl: "./cfdi-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxTag,
     LxIcon,

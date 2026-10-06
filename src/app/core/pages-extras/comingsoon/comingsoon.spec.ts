@@ -33,8 +33,7 @@ describe('Comingsoon', () => {
     expect(component.images).toEqual([
       './assets/images/bg-1.jpg',
       './assets/images/bg-2.jpg',
-      './assets/images/bg-3.jpg',
-    ]);
+      './assets/images/bg-3.jpg']);
   });
 
   it('should calculate days correctly', () => {

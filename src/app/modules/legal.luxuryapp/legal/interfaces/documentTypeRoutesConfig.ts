@@ -79,8 +79,7 @@ export const documentTypeRoutesConfig = [
     routeParam: "well-concession", // Ruta anterior: 'concesion-pozo'
     title: "Concesión Pozo",
     breadcrumb: "Concesión Pozo",
-  },
-];
+  }];
 
 
 

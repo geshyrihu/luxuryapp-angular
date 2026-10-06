@@ -25,8 +25,7 @@ import { TicketLegalReportesExternosMobile } from "./mobile/ticket-legal-reporte
     PageTitleReport,
     TaskDateRangeSelector,
     TicketLegalReportesExternosDesktop,
-    TicketLegalReportesExternosMobile,
-  ],
+    TicketLegalReportesExternosMobile],
 })
 export class TicketLegalReportesExternos implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -81,8 +80,7 @@ export class TicketLegalReportesExternos implements OnInit {
         iconColor: "var(--ds-danger)",
         value: d.pendientesAlFinal,
         label: "SOLICITUDES PENDIENTES ACUMULADAS",
-      },
-    ];
+      }];
   });
 
   async ngOnInit(): Promise<void> {
@@ -108,8 +106,7 @@ export class TicketLegalReportesExternos implements OnInit {
     await Promise.all([
       this.onLoadReport(formattedStartDate, formattedEndDate),
       this.onRequestsAttended(formattedStartDate, formattedEndDate),
-      this.onRequestsPending(),
-    ]);
+      this.onRequestsPending()]);
   }
 
   onLoadReport(startDate: string, endDate: string) {

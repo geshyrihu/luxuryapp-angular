@@ -44,8 +44,7 @@ import {
     IonTitle,
     IonButtons,
     IonButton,
-    IonContent,
-  ],
+    IonContent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ion-header>
@@ -95,8 +94,7 @@ export class IonicDialogModal implements OnInit {
       parent: this.parentInjector,
       providers: [
         { provide: DynamicDialogConfig, useValue: dialogConfigStub },
-        { provide: DynamicDialogRef, useValue: dialogRefStub },
-      ],
+        { provide: DynamicDialogRef, useValue: dialogRefStub }],
     });
   }
 

@@ -38,8 +38,7 @@ import {
     CustomInputDecimal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-incidencia-add.html",
 })

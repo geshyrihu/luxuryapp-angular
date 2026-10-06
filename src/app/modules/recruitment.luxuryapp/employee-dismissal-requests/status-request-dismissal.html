@@ -33,7 +33,7 @@
         @if (aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Reclutamiento])) {
         <td>
           <div class="d-flex justify-content-end">
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="edit"
               lxTooltip="Editar"
               tooltipPosition="bottom"
@@ -129,7 +129,7 @@
           {
           <div class="col-3">
             <div class="d-flex justify-content-end">
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="edit"
                 (clicked)="
                         onModalFormDiscounts({

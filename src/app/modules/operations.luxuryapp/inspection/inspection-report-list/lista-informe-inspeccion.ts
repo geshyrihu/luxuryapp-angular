@@ -8,7 +8,7 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppImage } from "@ui/web/image/image";
+
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -26,8 +26,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ButtonWeb,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    CustomInputDateSignal,
-    AppImage],
+    CustomInputDateSignal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-informe-inspeccion.html",
 })

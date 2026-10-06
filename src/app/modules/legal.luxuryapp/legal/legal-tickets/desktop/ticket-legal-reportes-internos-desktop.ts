@@ -22,8 +22,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     AppTable,
     LxIcon,
     LxEmptyState,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class TicketLegalReportesInternosDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

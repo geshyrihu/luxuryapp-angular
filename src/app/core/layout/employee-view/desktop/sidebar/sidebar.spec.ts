@@ -65,8 +65,7 @@ describe("Sidebar", () => {
         { provide: AuthService, useValue: authServiceMock },
         { provide: AspRoleService, useValue: aspRoleServiceMock },
         { provide: Router, useValue: routerMock },
-        { provide: LayoutService, useValue: layoutServiceMock },
-      ],
+        { provide: LayoutService, useValue: layoutServiceMock }],
     });
 
     fixture = TestBed.createComponent(Sidebar);
@@ -102,8 +101,7 @@ describe("Sidebar", () => {
         label: "test",
         routerLink: "/test",
         nameModule: "test-module",
-      },
-    ];
+      }];
     component.isSearching = true;
     component.clearSearch();
     expect(component.searchText).toBe("");

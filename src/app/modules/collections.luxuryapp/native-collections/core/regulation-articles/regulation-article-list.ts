@@ -39,8 +39,7 @@ import { RegulationArticleForm } from "./regulation-article-form";
     LuxTableCaption,
     CurrencyPipe,
     DataViewMobile,
-    MobileListItem,
-  ],
+    MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./regulation-article-list.html",
 })

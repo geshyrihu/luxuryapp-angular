@@ -4,7 +4,7 @@
     class="bg-body p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="d-flex align-items-center gap-3">
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:arrow-back"
         [variant]="'text'"
         severity="secondary"
@@ -21,7 +21,7 @@
     </div>
     <div class="d-flex align-items-center gap-2">
       @if (activeTab() === 'pasos') {
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:add"
         label="Agregar Paso"
         severity="primary"
@@ -29,7 +29,7 @@
         (clicked)="onNewPaso()"
       />
       }
-      <il-button
+      <lux-button-web
         [label]="'Pasos (' + pasos().length + ')'"
         iconClass="material-symbols-light:format-list-bulleted"
         [severity]="activeTab() === 'pasos' ? 'primary' : 'secondary'"
@@ -37,7 +37,7 @@
         size="small"
         (clicked)="activeTab.set('pasos')"
       />
-      <il-button
+      <lux-button-web
         [label]="'Versiones (' + versiones().length + ')'"
         iconClass="material-symbols-light:history"
         [severity]="activeTab() === 'versiones' ? 'primary' : 'secondary'"
@@ -45,7 +45,7 @@
         size="small"
         (clicked)="activeTab.set('versiones')"
       />
-      <il-button
+      <lux-button-web
         [label]="'Adjuntos (' + adjuntos().length + ')'"
         iconClass="material-symbols-light:attach-file"
         [severity]="activeTab() === 'adjuntos' ? 'primary' : 'secondary'"
@@ -126,7 +126,7 @@
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:account-tree"
               [variant]="'text'"
               severity="info"
@@ -164,7 +164,7 @@
           <strong>Agregar Paso</strong> para crear una nueva instrucción.
         </p>
         @if (pasos().length === 0) {
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:add"
           label="Crear Primer Paso"
           severity="primary"
@@ -253,7 +253,7 @@
         <div class="d-flex flex-column gap-3 pt-3 border-top-1 border-200">
           <div class="d-flex align-items-center justify-content-between">
             <h4 class="text-base fw-bold text-body m-0">Diagrama de Flujo</h4>
-            <il-button
+            <lux-button-web
               [iconClass]="selectedPaso()!.diagramaId ? 'material-symbols-light:account-tree' : 'material-symbols-light:add'"
               [label]="selectedPaso()!.diagramaId ? 'Abrir Diagrama' : 'Crear Diagrama'"
               [severity]="selectedPaso()!.diagramaId ? 'info' : 'secondary'"
@@ -343,7 +343,7 @@
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:close"
                   severity="danger"
                   size="small"
@@ -389,7 +389,7 @@
                 />
               </div>
               <div class="col-12 col-md-2 pb-3 d-flex justify-content-end">
-                <il-button
+                <lux-button-web
                   type="submit"
                   label="Agregar"
                   iconClass="material-symbols-light:add"
@@ -408,7 +408,7 @@
               class="relative rounded overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:delete"
                   severity="danger"
                   size="small"
@@ -445,7 +445,7 @@
                   target="_blank"
                   class="no-underline"
                 >
-                  <il-button
+                  <lux-button-web
                     iconClass="material-symbols-light:open-in-new"
                     label="Abrir Enlace"
                     severity="info"
@@ -483,7 +483,7 @@
     <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
       <div class="d-flex align-items-center justify-content-between">
         <h3 class="text-lg fw-bold text-body m-0">Historial de Versiones</h3>
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:add"
           label="Nueva Version"
           severity="primary"
@@ -536,7 +536,7 @@
             [horizontal]="false"
           />
           <div class="d-flex justify-content-end gap-2">
-            <il-button
+            <lux-button-web
               label="Cancelar"
               severity="secondary"
               [variant]="'outlined'"
@@ -585,7 +585,7 @@
             </p>
             }
           </div>
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:delete"
             [variant]="'text'"
             severity="danger"
@@ -682,14 +682,14 @@
           </div>
           <div class="d-flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <iw-button
+              <lux-button-web displayMode="icon"
                 iconClass="material-symbols-light:download"
                 [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:delete"
               [variant]="'text'"
               severity="danger"

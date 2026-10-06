@@ -35,8 +35,7 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre",
-];
+  "Diciembre"];
 
 @Component({
   selector: "app-client-reports-wrapper",
@@ -53,8 +52,7 @@ const MONTH_NAMES = [
     PresupuestoContabilidadClienteComponent,
     BancosInversionesClienteComponent,
     FondoReservaClienteComponent,
-    ProyectosAprobadosClienteComponent,
-  ],
+    ProyectosAprobadosClienteComponent],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./client-reports-wrapper.html",
 })
@@ -97,8 +95,7 @@ export default class ClientReportsWrapper {
     { id: "8", label: "Presupuesto" },
     { id: "9", label: "Bancos Inversiones" },
     { id: "10", label: "Fondo Reserva" },
-    { id: "11", label: "Proyectos" },
-  ]);
+    { id: "11", label: "Proyectos" }]);
 
   onTabChange(tab: TabItem) {
     this.tabIndex.set(Number(tab.id));

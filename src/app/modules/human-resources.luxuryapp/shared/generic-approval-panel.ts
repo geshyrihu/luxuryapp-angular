@@ -90,7 +90,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
                   fileName="Comprobante"
                 />
               }
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:visibility"
                 label="Detalle"
                 size="small"
@@ -98,13 +98,13 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
                 severity="info"
                 (clicked)="onViewDetail(request)"
               />
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:check-box"
                 label="Aprobar"
                 size="small"
                 (clicked)="onApprove(request)"
               />
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:close"
                 label="Rechazar"
                 size="small"

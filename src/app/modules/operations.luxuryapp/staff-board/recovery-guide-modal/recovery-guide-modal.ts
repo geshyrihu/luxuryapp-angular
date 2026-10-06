@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +11,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-recovery-guide-modal",
 
-  imports: [LxIcon],
+  imports: [ButtonWeb, LxIcon],
   templateUrl: "./recovery-guide-modal.html",
   styleUrl: "./recovery-guide-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

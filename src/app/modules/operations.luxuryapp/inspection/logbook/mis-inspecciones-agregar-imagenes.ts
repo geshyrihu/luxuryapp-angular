@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -29,7 +30,7 @@ interface NewInspectionImage {
 
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
-  imports: [
+  imports: [ButtonWeb,
     LxTooltipDirective,
     NgbTooltipModule,
     LxIcon],

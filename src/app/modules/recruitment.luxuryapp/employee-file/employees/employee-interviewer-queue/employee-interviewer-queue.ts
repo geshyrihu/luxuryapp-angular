@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +38,7 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   selector: "app-employee-interviewer-queue",
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, AppAvatar],
+  imports: [ButtonWeb, ApiDatePipe, AppAvatar],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);

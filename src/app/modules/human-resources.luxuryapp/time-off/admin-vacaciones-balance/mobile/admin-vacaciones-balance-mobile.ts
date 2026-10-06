@@ -24,8 +24,7 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
     DataViewMobile,
     MobileListItem,
     LxIcon,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class AdminVacacionesBalanceMobile {
   data = input.required<VacationBalanceAdminViewDto[]>();

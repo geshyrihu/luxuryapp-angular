@@ -154,9 +154,6 @@ export const committeeRoutes: Routes = [
               breadcrumb: "Documentos",
             },
           },
-          ...documentRoutes,
-        ],
-      },
-    ],
-  },
-];
+          ...documentRoutes],
+      }],
+  }];

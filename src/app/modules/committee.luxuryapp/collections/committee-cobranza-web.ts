@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -21,7 +22,7 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
 @Component({
   selector: "app-committee-cobranza-web",
 
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     AppTable,
     AppSortableColumn,

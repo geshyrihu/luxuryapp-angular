@@ -1,3 +1,4 @@
+import { ButtonMobile } from "@ui/buttons/mobile";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -68,7 +69,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel],
+  imports: [ButtonMobile, LxIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);

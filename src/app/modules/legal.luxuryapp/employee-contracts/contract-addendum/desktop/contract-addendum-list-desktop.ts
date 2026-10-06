@@ -25,8 +25,7 @@ import { ContractAddendumListDTO } from "../interfaces/contract-addendum.dto";
     ApiDatePipe,
     AppTable,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ContractAddendumListDesktop {
   private tableScrollH = inject(TableScrollHeightService);

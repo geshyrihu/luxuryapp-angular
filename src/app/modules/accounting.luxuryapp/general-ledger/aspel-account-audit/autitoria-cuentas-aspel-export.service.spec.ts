@@ -19,8 +19,7 @@ describe('AutitoriaCuentasAspelExportService', () => {
     TestBed.configureTestingModule({
       providers: [
         AutitoriaCuentasAspelExportService,
-        { provide: HtmlPrintService, useValue: mockHtmlPrintService },
-      ],
+        { provide: HtmlPrintService, useValue: mockHtmlPrintService }],
     });
     service = TestBed.inject(AutitoriaCuentasAspelExportService);
   });

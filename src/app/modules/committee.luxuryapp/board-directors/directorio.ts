@@ -44,8 +44,7 @@ export class CommitteeDirectorio implements OnInit {
       value: "casetas",
       label: "Casetas",
       icon: "material-symbols-light:location-city",
-    },
-  ];
+    }];
 
   /** Personal de administración: entradas sin grupo. */
   private personalItems = computed(() =>

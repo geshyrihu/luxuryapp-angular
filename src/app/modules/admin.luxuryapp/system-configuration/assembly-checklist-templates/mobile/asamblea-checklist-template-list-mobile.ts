@@ -20,8 +20,7 @@ import { AsambleaChecklistTemplateDto } from "../interfaces/asamblea-checklist-t
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class AsambleaChecklistTemplateListMobile {
   data = input.required<AsambleaChecklistTemplateDto[]>();

@@ -20,8 +20,7 @@ export function passwordValidation(): ValidatorFn {
       provide: NG_VALIDATORS,
       useExisting: PasswordValidationDirective,
       multi: true,
-    },
-  ],
+    }],
 })
 export class PasswordValidationDirective implements Validator {
   passwordsProhibidos = ["123456", "querty", "123456789"];

@@ -7,7 +7,7 @@
       >
     </div>
     <div class="d-flex gap-2">
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:book"
         severity="secondary"
         lxTooltip="Ver guía del módulo"
@@ -62,7 +62,7 @@
         <td>{{ r.createdAt | apiDate: 'dd/MM/yyyy' }}</td>
         <td>
           <div class="d-flex gap-1">
-            <iw-button
+            <lux-button-web displayMode="icon"
               (clicked)="ver(r.id)"
               iconClass="material-symbols-light:visibility-outline"
               ngbTooltip="Ver reporte"
@@ -119,7 +119,7 @@
           >{{ r.createdAt | apiDate: 'dd/MM/yyyy' }}</span
         >
         <div class="d-flex mt-2 justify-content-end gap-1">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:visibility-outline"
             (clicked)="ver(r.id)"
           />
@@ -170,7 +170,7 @@
         </td>
         <td>{{ r.createdBy }}</td>
         <td>
-          <iw-button
+          <lux-button-web displayMode="icon"
             (clicked)="ver(r.id)"
             iconClass="material-symbols-light:visibility-outline"
             ngbTooltip="Ver plantilla"
@@ -202,7 +202,7 @@
         <p class="text-sm text-body-secondary m-0">{{ r.description }}</p>
         <span class="text-xs text-body-secondary">Por: {{ r.createdBy }}</span>
         <div class="d-flex mt-2 justify-content-end">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:visibility-outline"
             (clicked)="ver(r.id)"
           />

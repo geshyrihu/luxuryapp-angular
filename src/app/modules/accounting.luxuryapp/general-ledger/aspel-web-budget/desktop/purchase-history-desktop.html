@@ -77,7 +77,7 @@
         @if (item.invoices && item.invoices.length > 0) {
         <div class="d-flex flex-wrap gap-1 justify-content-center">
           @for (inv of item.invoices; track inv.pdfFile) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:picture-as-pdf"
             variant="text"
             size="sm"

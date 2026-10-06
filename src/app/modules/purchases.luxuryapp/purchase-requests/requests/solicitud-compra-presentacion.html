@@ -20,7 +20,7 @@
   </div>
   }
   <div class="presentation-nav-floating d-flex align-items-center gap-1">
-    <iw-button
+    <lux-button-web displayMode="icon"
       iconClass="material-symbols-light:receipt-long"
       (clicked)="goToSummary()"
       severity="secondary"
@@ -30,7 +30,7 @@
       [disabled]="currentPage() === 0"
       tooltip="Ir al resumen de solicitudes de compra"
     />
-    <iw-button
+    <lux-button-web displayMode="icon"
       iconClass="material-symbols-light:chevron-left"
       (clicked)="previousSlide()"
       severity="secondary"
@@ -40,7 +40,7 @@
       [disabled]="currentPage() === 0"
       tooltip="Solicitud anterior"
     />
-    <iw-button
+    <lux-button-web displayMode="icon"
       iconClass="material-symbols-light:chevron-right"
       (clicked)="nextSlide()"
       severity="secondary"
@@ -256,7 +256,7 @@
         </div>
 
         <div class="d-flex flex-wrap justify-content-end gap-2 mb-2">
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:list"
             label="Ver productos"
             (clicked)="openProductDetailModal(solicitud)"
@@ -264,7 +264,7 @@
             variant="outline"
             size="small"
           />
-          <il-button
+          <lux-button-web
             [iconClass]="isAuthorized(solicitud) ? 'material-symbols-light:close' : (isDenied(solicitud) ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
             [label]="isAuthorized(solicitud) ? 'Desautorizar' : (isDenied(solicitud) ? 'Resolver' : 'Autorizar')"
             (clicked)="onOpenAutorizarModal(solicitud)"

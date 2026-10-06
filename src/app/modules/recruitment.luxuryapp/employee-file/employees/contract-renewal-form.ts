@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -39,7 +40,7 @@ interface DecisionOption {
 @Component({
   selector: "app-contract-renewal-form",
   standalone: true,
-  imports: [
+   imports: [ButtonWeb, 
     CommonModule,
     ReactiveFormsModule,
     LxTag,
@@ -179,14 +180,14 @@ interface DecisionOption {
 
       <!-- Submit Buttons -->
       <div class="modal-actions">
-        <il-button
+        <lux-button-web
           type="button"
           label="Cancelar"
           variant="text"
           icon="material-symbols-light:close"
           (clicked)="onCancel()"
         />
-        <il-button
+        <lux-button-web
           type="submit"
           [label]="isSubmitting() ? 'Guardando...' : 'Guardar Decisión'"
           [disabled]="form.invalid || isSubmitDisabled() || isSubmitting()"

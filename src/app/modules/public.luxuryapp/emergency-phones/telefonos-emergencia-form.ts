@@ -39,8 +39,7 @@ interface ITelefonosEmergenciaForm {
     InputImg,
     InputMask,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TelefonosEmergenciaForm {
   apiResponseS = inject(ApiResponseService);

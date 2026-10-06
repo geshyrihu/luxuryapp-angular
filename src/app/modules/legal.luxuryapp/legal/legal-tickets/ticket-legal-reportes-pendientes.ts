@@ -21,8 +21,7 @@ import { TicketLegalReportesPendientesMobile } from "./mobile/ticket-legal-repor
     LxEmptyState,
     PageTitleReport,
     TicketLegalReportesPendientesDesktop,
-    TicketLegalReportesPendientesMobile,
-  ],
+    TicketLegalReportesPendientesMobile],
 })
 export class TicketLegalReportesPendientes implements OnInit {
   apiResponseS = inject(ApiResponseService);

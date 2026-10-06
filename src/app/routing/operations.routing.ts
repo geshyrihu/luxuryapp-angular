@@ -29,9 +29,7 @@ export const operationsRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Incidencias Disciplinarias",
       breadcrumb: "Incidencias",
@@ -48,9 +46,7 @@ export const operationsRoutes: Routes = [
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
-          ApplicationRole.Direccion,
-        ]),
-    ],
+          ApplicationRole.Direccion])],
     data: {
       title: "Dashboard de Incidencias",
       breadcrumb: "Dashboard",
@@ -70,9 +66,7 @@ export const operationsRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Reportes de Incidencias",
       breadcrumb: "Reportes de Incidencias",
@@ -92,9 +86,7 @@ export const operationsRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Sanciones",
       breadcrumb: "Sanciones",
@@ -161,7 +153,6 @@ export const operationsRoutes: Routes = [
       title: "Alertas de Pánico",
       breadcrumb: "Alertas de Pánico",
     },
-  },
-];
+  }];
 
 

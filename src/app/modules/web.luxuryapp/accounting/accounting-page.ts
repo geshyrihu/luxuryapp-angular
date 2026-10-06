@@ -34,8 +34,7 @@ export class AccountingPage implements AfterViewInit {
       icon: "✅",
       title: "Auditoría y Cumplimiento",
       desc: "Conciliaciones bancarias, declaraciones fiscales y preparación de documentación para auditorías externas.",
-    },
-  ];
+    }];
 
   process = [
     {
@@ -53,8 +52,7 @@ export class AccountingPage implements AfterViewInit {
     {
       title: "Reportes Trimestrales",
       desc: "Presentación de resultados a la asamblea.",
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

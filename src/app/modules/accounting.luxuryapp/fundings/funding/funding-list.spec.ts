@@ -47,8 +47,7 @@ describe("FundingList", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: Router, useValue: mockRouter },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     TestBed.overrideComponent(FundingList, {
@@ -76,8 +75,7 @@ describe("FundingList", () => {
     await new Promise((resolve) => setTimeout(resolve));
     component.dataSignal.set([
       { id: "1", period: "2024-01" },
-      { id: "2", period: "2024-02" },
-    ]);
+      { id: "2", period: "2024-02" }]);
     mockApiResponseS.onDelete.mockResolvedValue(true);
 
     component.onDelete("1");

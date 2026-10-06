@@ -61,8 +61,7 @@ export interface VacationHistoryItemDTO {
     CustomInputSelectSignal,
     LxMessage,
     AppTable,
-    LxTag,
-  ],
+    LxTag],
 })
 export class VacacionesAdminAuditoria implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -193,8 +192,7 @@ export class VacacionesAdminAuditoria implements OnInit {
       this.apiResponseS.onGetList<VacationHistoryItemDTO[]>(
         Endpoints.HR.VacationRequestApproval.history,
         { employeeId },
-      ),
-    ]);
+      )]);
 
     this.balance.set(balanceData);
 

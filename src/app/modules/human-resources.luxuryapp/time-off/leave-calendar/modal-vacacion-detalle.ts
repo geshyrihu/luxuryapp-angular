@@ -126,8 +126,7 @@ interface VacationRequestCalendarDetailDTO {
           grid-template-columns: 1fr;
         }
       }
-    `,
-  ],
+    `],
 })
 export class VacacionDetalleModal implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -34,8 +34,7 @@ export class IncidentTypeList implements OnInit {
   readonly globalFilterFields = globalFilterFields([
     "name",
     "category",
-    "defaultSeverity",
-  ]);
+    "defaultSeverity"]);
 
   ngOnInit(): void {
     this.onLoadData();

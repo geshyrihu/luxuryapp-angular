@@ -41,8 +41,7 @@ import { CustomerFormGroup } from "./interfaces/customer-form.interface";
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CustomerForm implements OnInit {
   formB = inject(FormBuilder);
@@ -55,8 +54,7 @@ export class CustomerForm implements OnInit {
   id: string = "";
   optionActive: SelectItemDto[] = [
     { value: true, label: "Activo" },
-    { value: false, label: "Inactivo" },
-  ];
+    { value: false, label: "Inactivo" }];
 
   /** Entidades federativas (espejo de MexicanStateEnum del backend). */
   stateOptions: SelectItemDto[] = [
@@ -91,8 +89,7 @@ export class CustomerForm implements OnInit {
     "Tlaxcala",
     "Veracruz",
     "Yucatán",
-    "Zacatecas",
-  ].map((label, index) => ({ value: index, label }));
+    "Zacatecas"].map((label, index) => ({ value: index, label }));
 
   model: CustomerFormDto;
   photoFileUpdate: boolean = false;

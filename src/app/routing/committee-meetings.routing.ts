@@ -99,5 +99,4 @@ export const committeeMeetingsRoutes: Routes = [
       title: "Seguimiento de Minutas",
       breadcrumb: "Seguimiento de Minutas",
     },
-  },
-];
+  }];

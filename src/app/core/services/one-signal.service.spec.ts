@@ -13,8 +13,7 @@ describe('OneSignalService', () => {
         OneSignalService,
         { provide: AuthService, useValue: {} },
         { provide: ConsoleLoggerService, useValue: { custom: vi.fn() } },
-        { provide: Router, useValue: { navigateByUrl: vi.fn() } },
-      ],
+        { provide: Router, useValue: { navigateByUrl: vi.fn() } }],
     });
     service = TestBed.inject(OneSignalService);
   });

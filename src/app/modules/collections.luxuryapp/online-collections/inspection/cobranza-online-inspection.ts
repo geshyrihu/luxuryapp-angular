@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -33,7 +34,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-cobranza-online-inspection",
   templateUrl: "./cobranza-online-inspection.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     LxTooltipDirective,
     RouterModule,

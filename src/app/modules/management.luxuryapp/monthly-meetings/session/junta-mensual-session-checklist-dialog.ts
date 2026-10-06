@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -61,7 +62,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   selector: "app-junta-mensual-session-checklist-dialog",
   templateUrl: "./junta-mensual-session-checklist-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     LxTooltipDirective,
     ApiDatePipe,
     FormsModule,

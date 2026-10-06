@@ -37,8 +37,7 @@ export class ConventionsService {
         'implementacion-backend',
         'implementacion-frontend',
         'implementacion-flutter',
-        'auditoria',
-      ],
+        'auditoria'],
       technologies: ['Angular', '.NET', 'Flutter', 'Documentacion'],
       examples: {
         dotnet: {
@@ -78,8 +77,7 @@ public class BanksController : ControllerBase { }`,
       },
       sourceDocuments: [
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/operations/available-features.md',
-      ],
+        'docs/conventions/operations/available-features.md'],
       importance:
         'Conserva consistencia arquitectonica y evita introducir deuda en el stack backend.',
     },
@@ -104,8 +102,7 @@ public record SharedBankDto { } // editar directo`,
       },
       sourceDocuments: [
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/backend/backend-generic-services-catalog.md',
-      ],
+        'docs/conventions/backend/backend-generic-services-catalog.md'],
       importance:
         'Protege contratos vivos y evita romper modulos no visibles en el cambio actual.',
     },
@@ -139,8 +136,7 @@ public class PurchaseOrderService()
       },
       sourceDocuments: [
         'docs/conventions/backend/backend-shared-services-catalog.md',
-        'CONVENTIONS.md',
-      ],
+        'CONVENTIONS.md'],
       importance:
         'Reduce duplicacion, protege shared sensible y vuelve repetible el criterio entre agentes.',
     },
@@ -176,8 +172,7 @@ const endpoint = 'api/Banks';`,
       },
       sourceDocuments: [
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/frontend/frontend-api-endpoints.md',
-      ],
+        'docs/conventions/frontend/frontend-api-endpoints.md'],
       importance: 'Evita drift entre front y back y mantiene el contrato estable.',
     },
     {
@@ -208,8 +203,7 @@ public record BankDTO
       sourceDocuments: [
         'CONVENTIONS.md',
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/backend/backend-module-structure.md',
-      ],
+        'docs/conventions/backend/backend-module-structure.md'],
       importance:
         'Uniforma contratos, reduce variaciones accidentales y facilita auditoria de DTOs.',
     },
@@ -238,8 +232,7 @@ DTOs/BankDtos.cs`,
       sourceDocuments: [
         'CONVENTIONS.md',
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/backend/backend-module-structure.md',
-      ],
+        'docs/conventions/backend/backend-module-structure.md'],
       importance:
         'Mejora trazabilidad, busqueda semantica, diff limpio y mantenimiento por modulo.',
     },
@@ -269,8 +262,7 @@ namespace LuxuryApp.Application.Moduls.CobranzaLuxuryApp.CobranzaOnline.DTOs;`,
       sourceDocuments: [
         'CONVENTIONS.md',
         'docs/conventions/backend/backend-rules.md',
-        'docs/conventions/backend/backend-namespaces.md',
-      ],
+        'docs/conventions/backend/backend-namespaces.md'],
       importance:
         'Elimina ambiguedad entre agentes y hace repetible la alineacion de codigo backend.',
     },
@@ -300,8 +292,7 @@ users$ = new BehaviorSubject<UserDto[]>([]);`,
       },
       sourceDocuments: [
         'docs/conventions/frontend/frontend-rules.md',
-        'docs/conventions/operations/available-features.md',
-      ],
+        'docs/conventions/operations/available-features.md'],
       importance:
         'Alinea todas las features al modelo reactivo y de rendimiento oficial.',
     },
@@ -373,8 +364,7 @@ import { TagModule } from 'Bootstrap/tag';`,
       },
       sourceDocuments: [
         'docs/conventions/ui/ui-shared-library-architecture.md',
-        'docs/conventions/ui/ui-desktop-rules.md',
-      ],
+        'docs/conventions/ui/ui-desktop-rules.md'],
       importance:
         'Centraliza decisiones visuales y evita componentes paralelos.',
     },
@@ -403,8 +393,7 @@ import { TagModule } from 'Bootstrap/tag';`,
       },
       sourceDocuments: [
         'docs/conventions/ui/ui-mobile-rules.md',
-        'docs/conventions/ui/ui-desktop-rules.md',
-      ],
+        'docs/conventions/ui/ui-desktop-rules.md'],
       importance: 'Evita Frankenstein visual y mejora UX real por plataforma.',
     },
     {
@@ -419,8 +408,8 @@ import { TagModule } from 'Bootstrap/tag';`,
       examples: {
         angular: {
           code: `<!-- OK -->
-<il-button-primary (clicked)="save()">Guardar</il-button-primary>
-<iw-button-edit aria-label="Editar registro" />
+<lux-button-web-primary (clicked)="save()">Guardar</il-button-primary>
+<lux-button-web displayMode="icon"-edit aria-label="Editar registro" />
 <custom-input-text-signal [control]="form.controls.name" />
 
 <!-- NO -->
@@ -470,8 +459,7 @@ import { TagModule } from 'Bootstrap/tag';`,
       relatedRules: ['ui-catalog-first', 'styles-controlled-layer'],
       sourceDocuments: [
         'docs/conventions/ui/icon-usage-rule.md',
-        'CONVENTIONS.md',
-      ],
+        'CONVENTIONS.md'],
       importance:
         'Es la unica regla visual cuyo incumplimiento es invisible para el compilador, para la consola y para las pruebas: solo se ve abriendo la pantalla. Por eso se valida con un gate y no con revision.',
     },
@@ -498,8 +486,7 @@ import { TagModule } from 'Bootstrap/tag';`,
       },
       sourceDocuments: [
         'docs/conventions/styles/styles-rules.md',
-        'docs/conventions/styles/styles-structure.md',
-      ],
+        'docs/conventions/styles/styles-structure.md'],
       importance:
         'Evita hardcodes, caos de cascada y proliferacion de estilos fuera de capa.',
     },
@@ -539,15 +526,13 @@ background: #1B365D;`,
         'implementacion-backend',
         'implementacion-frontend',
         'implementacion-flutter',
-        'auditoria',
-      ],
+        'auditoria'],
       technologies: ['Angular', '.NET', 'Flutter', 'Documentacion'],
       examples: {},
       sourceDocuments: [
         'docs/conventions/catalogs/naming-conventions.md',
         'docs/conventions/catalogs/folder-structure-conventions.md',
-        'docs/conventions/catalogs/file-structure-conventions.md',
-      ],
+        'docs/conventions/catalogs/file-structure-conventions.md'],
       importance:
         'La estructura y el naming reducen confusion operativa y facilitan auditorias.',
     },
@@ -564,8 +549,7 @@ background: #1B365D;`,
       sourceDocuments: [
         'docs/conventions/audit/audit-module-conventions.md',
         'docs/conventions/audit/audit-checklist.md',
-        'docs/conventions/AUDIT_LAYERS_CHECKLIST.md',
-      ],
+        'docs/conventions/AUDIT_LAYERS_CHECKLIST.md'],
       importance:
         'Evita mezclar diagnostico con ejecucion y reduce remediaciones peligrosas.',
     },
@@ -591,8 +575,7 @@ background: #1B365D;`,
       },
       sourceDocuments: [
         'docs/conventions/operations/plan-creation-protocol.md',
-        'docs/conventions/operations/plan-agent-instructions.md',
-      ],
+        'docs/conventions/operations/plan-agent-instructions.md'],
       importance:
         'Evita planes incompletos, duplicados o contradictorios y conserva la trazabilidad.',
     },
@@ -646,8 +629,7 @@ Diagnosticar primero, corregir despues.
       },
       sourceDocuments: [
         'docs/conventions/operations/guides-creation-protocol.md',
-        'docs/guides/GUIDE_AGENT_INSTRUCTIONS.md',
-      ],
+        'docs/guides/GUIDE_AGENT_INSTRUCTIONS.md'],
       importance:
         'Permite que distintos agentes ejecuten intervenciones sensibles con el mismo criterio.',
     },
@@ -711,8 +693,7 @@ documentacion-final-modulo.md`,
       },
       sourceDocuments: [
         'docs/conventions/audit/audit-module-conventions.md',
-        'docs/conventions/audit/audit-checklist.md',
-      ],
+        'docs/conventions/audit/audit-checklist.md'],
       importance:
         'Evita falsos positivos de auditoria y detecta fallos reales de flujo y negocio.',
     },
@@ -726,14 +707,12 @@ documentacion-final-modulo.md`,
       taskTypes: [
         'implementacion-backend',
         'implementacion-frontend',
-        'implementacion-flutter',
-      ],
+        'implementacion-flutter'],
       technologies: ['Documentacion'],
       examples: {},
       sourceDocuments: [
         'docs/conventions/operations/available-features.md',
-        'docs/conventions/operations/implementation-checklist.md',
-      ],
+        'docs/conventions/operations/implementation-checklist.md'],
       importance:
         'Obliga a preparar bien la implementacion y reduce errores por stack no verificado.',
     },
@@ -772,8 +751,7 @@ documentacion-final-modulo.md`,
       },
       sourceDocuments: [
         'CONVENTIONS.md',
-        'docs/conventions/ui/conventions-viewer-governance.md',
-      ],
+        'docs/conventions/ui/conventions-viewer-governance.md'],
       importance:
         'Evita que agentes o developers consulten una capa visual con taxonomia vieja o reglas incompletas.',
     },
@@ -802,8 +780,7 @@ documentacion-final-modulo.md`,
       sourceDocuments: [
         'docs/conventions/flutter/flutter-rules.md',
         'docs/conventions/flutter/flutter-feature-structure.md',
-        'docs/conventions/flutter/flutter-generic-services-catalog.md',
-      ],
+        'docs/conventions/flutter/flutter-generic-services-catalog.md'],
       importance:
         'Permite que Flutter crezca ordenado desde ahora y no repita el desorden historico.',
     },
@@ -834,8 +811,7 @@ public record ReportFilterDTO { ... }     // ← PROHIBIDO
       sourceDocuments: [
         'docs/conventions/backend/dto-file-organization-rule.md',
         'docs/conventions/backend/backend-rules.md',
-        'CONVENTIONS.md §6.1',
-      ],
+        'CONVENTIONS.md §6.1'],
       importance:
         'Cumplimiento obligatorio en toda auditoría. Violación = Hallazgo CRÍTICO. Refactorizar en 1-2 sprints.',
     },
@@ -864,8 +840,7 @@ group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppServ
       sourceDocuments: [
         'docs/conventions/backend/backend-rules.md',
         'docs/conventions/backend/document-read-write-pattern.md',
-        'CONVENTIONS.md §6.1',
-      ],
+        'CONVENTIONS.md §6.1'],
       importance:
         'Evita el 415 en subidas de archivos/imágenes. Revisar todo MapPost/MapPut con DTO de IFormFile.',
     },
@@ -898,8 +873,7 @@ group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppServ
       sourceDocuments: [
         'docs/conventions/operations/fase-0-business-rules-discovery.md',
         'docs/conventions/operations/plan-creation-protocol.md',
-        'CONVENTIONS.md',
-      ],
+        'CONVENTIONS.md'],
       importance:
         'Evita planes incompletos, reduce retrabajo en implementacion y garantiza trazabilidad auditoria→codigo.',
     },
@@ -930,8 +904,7 @@ group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppServ
       },
       sourceDocuments: [
         'docs/conventions/operations/fase-0-business-rules-discovery.md',
-        'docs/reporte_maestro/AUDIT_AGENT_INSTRUCTIONS.md',
-      ],
+        'docs/reporte_maestro/AUDIT_AGENT_INSTRUCTIONS.md'],
       importance:
         'Garantiza consistencia entre plan, codigo e auditoria. Cada RN es trazable de principio a fin.',
     },
@@ -958,8 +931,7 @@ group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppServ
       },
       sourceDocuments: [
         'docs/reporte_maestro/AUDIT_AGENT_INSTRUCTIONS.md',
-        'docs/conventions/audit/audit-module-conventions.md',
-      ],
+        'docs/conventions/audit/audit-module-conventions.md'],
       importance:
         'Detecta brechas entre lo planeado y lo implementado. Garantiza que codigo cumple reglas de negocio.',
     },
@@ -977,8 +949,7 @@ group.MapPost("", async (RecepcionPipaAguaAddDTO DTO, IRecepcionPipasAguaAppServ
         'docs/audit/AUDIT_PROMPT_COMPREHENSIVE.md',
         'docs/audit/AUDIT_CHECKLIST_COMPLETO.md',
         'docs/audit/EJEMPLO_AUDITORIA_CANDIDATES.md',
-        'docs/audit/20260810-auditoria-conventions-md.md',
-      ],
+        'docs/audit/20260810-auditoria-conventions-md.md'],
       importance:
         'Estandariza auditoria exhaustiva. Busca: estructura (entidades, DTOs), validaciones, permisos, flujos, errores lógica, inconsistencias front/back.',
     },
@@ -1016,8 +987,7 @@ Frontend Decisiones: client/angular/.../[modulo]/docs/decisiones.md
         'CONVENTIONS.md §4.5',
         'CONVENTIONS.md §4.7',
         'docs/conventions/operations/module-documentation-instructions.md',
-        'docs/guides/GUIA_DELEGACION_DOCUMENTACION_MODULOS.md',
-      ],
+        'docs/guides/GUIA_DELEGACION_DOCUMENTACION_MODULOS.md'],
       importance:
         'Asegura consistencia en documentacion de modulos. Centraliza: operativo, onboarding, matriz decisiones, auditoria en ubicaciones predecibles.',
     },
@@ -1033,12 +1003,10 @@ Frontend Decisiones: client/angular/.../[modulo]/docs/decisiones.md
       examples: {},
       sourceDocuments: [
         'CONVENTIONS.md §2 (Precedencia Documental)',
-        'CONVENTIONS.md §4.7 (Documentacion de Modulo Existente)',
-      ],
+        'CONVENTIONS.md §4.7 (Documentacion de Modulo Existente)'],
       importance:
         'Resuelve ambigüedad sobre autoridad de documentos. Si hay conflicto entre docs/architecture y [module]/docs, documentacion de modulo es fuente de verdad operativa (vivo), arquitectura es permanente (decisiones).',
-    },
-  ];
+    }];
 
   getConventions(): Observable<ConventionRule[]> {
     return of(this.conventions);

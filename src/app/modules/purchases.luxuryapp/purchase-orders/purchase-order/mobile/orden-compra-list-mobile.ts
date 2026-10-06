@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -16,7 +17,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-orden-compra-list-mobile",
   templateUrl: "./orden-compra-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ButtonMobile,
     CommonModule,
     ApiDatePipe,

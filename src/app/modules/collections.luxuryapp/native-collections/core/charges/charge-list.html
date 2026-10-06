@@ -19,7 +19,7 @@
           [noPadding]="true"
           class="flex-grow-1"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:download"
           label="Descargar Plantilla"
           variant="outline"
@@ -28,7 +28,7 @@
           (clicked)="downloadBulkImportTemplate()"
           customClass="ml-3"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:upload"
           label="Importar Saldos Iniciales"
           severity="warn"
@@ -98,7 +98,7 @@
               (clicked)="onModalForm(item.id)"
             />
             @if (item.status !== EChargeStatus.Cancelado) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:cancel"
               severity="warning"
               variant="outline"
@@ -151,7 +151,7 @@
             (clicked)="onModalForm(item.id)"
           />
           @if (item.status !== EChargeStatus.Cancelado) {
-          <il-button
+          <lux-button-web
             label="Cancelar"
             iconClass="material-symbols-light:cancel"
             severity="warning"

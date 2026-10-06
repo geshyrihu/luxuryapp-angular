@@ -22,8 +22,7 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
     MobileActionMenu,
     ButtonMobile,
     ApiDatePipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class MisPermisosListadoMobile {
   data = input.required<LeaveRequestMyDTO[]>();

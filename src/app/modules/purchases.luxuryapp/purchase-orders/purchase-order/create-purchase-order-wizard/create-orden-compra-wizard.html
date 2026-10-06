@@ -159,7 +159,7 @@
               </ng-template>
             </custom-input-autocomplete-signal>
           </div>
-          <il-button
+          <lux-button-web
             label="Registrar nuevo producto"
             iconClass="material-symbols-light:add-circle"
             variant="outline"
@@ -212,19 +212,19 @@
                 {{ calculateItemTotal(item) | currency: "MXN" }}
               </td>
               <td class="text-center">
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:visibility"
                   variant="text"
                   severity="secondary"
                   (clicked)="onModalTarjetaProducto(item.productoId)"
                 />
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:edit"
                   variant="text"
                   severity="info"
                   (clicked)="editItem(item, i)"
                 />
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:delete"
                   variant="text"
                   severity="danger"
@@ -301,7 +301,7 @@
                 ></custom-input-currency-signal>
               </td>
               <td>
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:delete"
                   severity="danger"
                   variant="text"
@@ -493,7 +493,7 @@
   </div>
 
   <div class="wizard-navigation mt-4 d-flex justify-content-between">
-    <il-button
+    <lux-button-web
       label="Anterior"
       iconClass="material-symbols-light:arrow-back"
       (clicked)="prevStep()"
@@ -502,14 +502,14 @@
     />
 
     @if (activeIndex < items.length - 1) {
-    <il-button
+    <lux-button-web
       label="Siguiente"
       iconClass="material-symbols-light:arrow-forward"
       (clicked)="nextStep()"
       iconPosition="right"
     />
     } @if (activeIndex === items.length - 1) {
-    <il-button
+    <lux-button-web
       label="Finalizar y Crear Orden"
       iconClass="material-symbols-light:check"
       (clicked)="onSubmit()"

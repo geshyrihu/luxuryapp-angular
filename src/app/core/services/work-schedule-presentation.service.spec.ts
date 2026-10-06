@@ -29,8 +29,7 @@ describe('WorkSchedulePresentationService', () => {
         { diaSemana: 4, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
         { diaSemana: 5, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
         { diaSemana: 6, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
-        { diaSemana: 0, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
-      ],
+        { diaSemana: 0, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true }],
     });
     expect(result).toBe(16);
   });
@@ -44,8 +43,7 @@ describe('WorkSchedulePresentationService', () => {
         { diaSemana: 4, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
         { diaSemana: 5, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
         { diaSemana: 6, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
-        { diaSemana: 0, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true },
-      ],
+        { diaSemana: 0, numeroSemanaCiclo: 1, horaEntrada: null, horaSalida: null, esDescanso: true }],
     });
     expect(result).toContain('Sem:');
     expect(result).toContain('Quin:');

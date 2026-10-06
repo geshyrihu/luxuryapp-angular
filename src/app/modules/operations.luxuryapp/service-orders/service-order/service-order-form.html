@@ -58,7 +58,7 @@
           <label class="form-btn-group-label">Estatus</label>
           <div class="d-flex flex-wrap gap-2 mt-1">
             @for (opt of cb_Status(); track opt.value) {
-            <il-button
+            <lux-button-web
               [label]="opt.label"
               [severity]="form.controls.status.value === opt.value ? 'primary' : 'secondary'"
               [variant]="form.controls.status.value === opt.value ? 'solid' : 'soft'"
@@ -84,7 +84,7 @@
           <label class="form-btn-group-label">Tipo de mantenimiento</label>
           <div class="d-flex flex-wrap gap-2 mt-1">
             @for (opt of cb_TypeMaintance(); track opt.value) {
-            <il-button
+            <lux-button-web
               [label]="opt.label"
               [severity]="form.controls.typeMaintance.value === opt.value ? 'primary' : 'secondary'"
               [variant]="form.controls.typeMaintance.value === opt.value ? 'solid' : 'soft'"

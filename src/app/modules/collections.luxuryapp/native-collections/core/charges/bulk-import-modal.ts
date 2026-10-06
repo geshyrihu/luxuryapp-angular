@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +28,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [CustomInputFile, LxMessage, LxIcon],
+  imports: [ButtonWeb, CustomInputFile, LxMessage, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })

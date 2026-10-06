@@ -13,11 +13,7 @@ import {
   rowsPerPageOptions,
   tableRows,
 } from "@core/helpers/table-options";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -31,7 +27,6 @@ import { ReportHeader } from "@ui/web/report-header/report-header";
   imports: [
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     ReportHeader,
     FormsModule,
     CustomInputCheckSignal,

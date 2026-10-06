@@ -56,8 +56,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     LxAvatar,
     LuxTableCaption,
     TableFooter,
-    CustomInputSelectSignal,
-  ],
+    CustomInputSelectSignal],
 })
 export class UserAccountList implements OnInit {
   readonly platform = inject(PlatformService);
@@ -128,8 +127,7 @@ export class UserAccountList implements OnInit {
 
           // Agrupar customers ónicos para el select
           const uniqueCustomers = [
-            ...new Set(result.map((item: any) => item.customer)),
-          ];
+            ...new Set(result.map((item: any) => item.customer))];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
@@ -137,8 +135,7 @@ export class UserAccountList implements OnInit {
             ...uniqueCustomers.map((customer): SelectItemDto => ({
               label: customer ? String(customer) : "Sin Cliente",
               value: customer ? String(customer) : "sin_cliente",
-            })),
-          ]);
+            }))]);
         }
       });
   }

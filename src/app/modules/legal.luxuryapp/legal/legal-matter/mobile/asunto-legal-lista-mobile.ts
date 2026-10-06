@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +16,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-asunto-legal-lista-mobile",
   templateUrl: "./asunto-legal-lista-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     MobileListItem,
     MobileActionMenu,

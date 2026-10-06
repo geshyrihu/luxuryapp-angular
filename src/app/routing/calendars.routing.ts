@@ -96,7 +96,6 @@ export const calendarsRoutes: Routes = [
       title: "Agenda de Comité",
       breadcrumb: "Agenda de Comité",
     },
-  },
-];
+  }];
 
 

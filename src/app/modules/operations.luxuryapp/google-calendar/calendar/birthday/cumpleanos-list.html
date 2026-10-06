@@ -6,7 +6,7 @@
     <!-- Botones de meses agrupados -->
     <div class="d-flex justify-content-center mb-5 gap-1 flex-wrap">
       @for (month of months; track month; let i = $index) {
-      <il-button
+      <lux-button-web
         [label]="month"
         [variant]="selectedMonth() !== i ? 'outlined' : null"
         size="small"

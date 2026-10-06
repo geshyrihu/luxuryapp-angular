@@ -17,7 +17,7 @@
 
     <div class="d-flex gap-1">
       @for (m of [3, 6, 12]; track m) {
-      <il-button
+      <lux-button-web
         [label]="m + ' meses'"
         size="small"
         [severity]="meses() === m ? 'primary' : 'secondary'"
@@ -353,7 +353,7 @@
   </div>
 
   <div class="d-flex justify-content-end">
-    <il-button
+    <lux-button-web
       label="Ir a registrar pagos"
       iconClass="material-symbols-light:attach-money"
       variant="outline"

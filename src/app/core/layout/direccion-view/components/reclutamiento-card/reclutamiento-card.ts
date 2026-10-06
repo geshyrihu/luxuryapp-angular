@@ -23,8 +23,7 @@ import type { VacantesResumenDto } from "./reclutamiento-card.model";
       .text-ds-warning {
         color: var(--ds-warning);
       }
-    `,
-  ],
+    `],
 })
 export class ReclutamientoCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

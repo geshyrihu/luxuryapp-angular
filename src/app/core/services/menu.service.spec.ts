@@ -37,8 +37,7 @@ describe('MenuService', () => {
             customerId: customerIdSignal,
             customerDataReady: customerDataReadySignal,
           },
-        },
-      ],
+        }],
     });
     service = TestBed.inject(MenuService);
   });

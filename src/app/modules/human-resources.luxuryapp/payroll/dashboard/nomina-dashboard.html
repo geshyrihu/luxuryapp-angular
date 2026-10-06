@@ -10,13 +10,13 @@
         desde un solo lugar.
       </p>
       <div class="d-flex flex-wrap gap-2">
-        <il-button
+        <lux-button-web
           label="Periodos de nomina"
           iconClass="material-symbols-light:calendar-today"
           size="small"
           (clicked)="navigateTo('/recursos-humanos/nomina/periodos')"
         />
-        <il-button
+        <lux-button-web
           label="Generar nomina"
           iconClass="material-symbols-light:fact-check"
           variant="outline"
@@ -93,7 +93,7 @@
             <div class="d-flex gap-2 mt-auto">
               @if (card.route) {
               <div class="flex-fill">
-                <il-button
+                <lux-button-web
                   label="Abrir"
                   iconClass="material-symbols-light:arrow-forward"
                   size="small"
@@ -112,7 +112,7 @@
                 Acceso desde otra pagina
               </span>
               }
-              <iw-button
+              <lux-button-web displayMode="icon"
                 [iconClass]="isExpanded(card.title) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
                 variant="outline"
                 severity="secondary"
@@ -223,7 +223,7 @@
         finalmente cierra para aplicar los descuentos de prestamos.
       </div>
     </div>
-    <il-button
+    <lux-button-web
       label="Ver periodos"
       iconClass="material-symbols-light:calendar-today"
       size="small"

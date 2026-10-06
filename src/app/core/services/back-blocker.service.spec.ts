@@ -12,8 +12,7 @@ describe('BackBlockerService', () => {
     TestBed.configureTestingModule({
       providers: [
         BackBlockerService,
-        { provide: Router, useValue: { events: routerEvents.asObservable() } },
-      ],
+        { provide: Router, useValue: { events: routerEvents.asObservable() } }],
     });
     service = TestBed.inject(BackBlockerService);
   });

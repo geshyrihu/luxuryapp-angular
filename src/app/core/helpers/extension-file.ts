@@ -116,8 +116,7 @@ const App = () => {
       documentName: "Video Tutorial",
       fileExtension: "mp4",
       filePath: "#",
-    },
-  ];
+    }];
 };
 
 

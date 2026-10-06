@@ -45,8 +45,7 @@ import { ChargeTemplateForm } from "./charge-template-form";
     NgClass,
     TableEmptyMessage,
     LuxTableCaption,
-    AppTable,
-  ],
+    AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-list.html",
 })

@@ -59,7 +59,7 @@ export interface DataGridColumn {
             />
           }
           @if (showActions()) {
-            <il-button
+            <lux-button-web
               label="Agregar"
               iconClass="material-symbols-light:add"
               severity="primary"
@@ -185,7 +185,7 @@ export interface DataGridColumn {
             @if (showActions()) {
               <td>
                 <div class="d-flex gap-1">
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     iconClass="material-symbols-light:edit"
                     severity="info"
                     size="sm"
@@ -193,7 +193,7 @@ export interface DataGridColumn {
                     [text]="true"
                     (clicked)="editRow.emit(row)"
                   />
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     iconClass="material-symbols-light:delete"
                     severity="danger"
                     size="sm"

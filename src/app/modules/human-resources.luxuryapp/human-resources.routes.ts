@@ -20,9 +20,7 @@ export const humanResourcesRoutes: Routes = [
           ApplicationRole.Administrador,
           ApplicationRole.GerenteOperaciones,
           ApplicationRole.GerenteAtencion,
-          ApplicationRole.Asistente,
-        ]),
-    ],
+          ApplicationRole.Asistente])],
     data: {
       title: "Recursos Humanos - Dashboard",
       breadcrumb: "Recursos Humanos",
@@ -167,8 +165,7 @@ export const humanResourcesRoutes: Routes = [
         (m) => m.AdminVacacionesBalance,
       ),
     canActivate: [
-      () => inject(AspRoleService).hasRole(ApplicationRole.SuperUsuario),
-    ],
+      () => inject(AspRoleService).hasRole(ApplicationRole.SuperUsuario)],
     data: {
       title: "Administración de Balances",
       breadcrumb: "Admin Balances",
@@ -184,9 +181,7 @@ export const humanResourcesRoutes: Routes = [
       () =>
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
-          ApplicationRole.RecursosHumanos,
-        ]),
-    ],
+          ApplicationRole.RecursosHumanos])],
     data: {
       title: "Auditoría de Vacaciones",
       breadcrumb: "Auditoría Vacaciones",
@@ -299,9 +294,7 @@ export const humanResourcesRoutes: Routes = [
         inject(AspRoleService).hasAny([
           ApplicationRole.SuperUsuario,
           ApplicationRole.RecursosHumanos,
-          ApplicationRole.Administrador,
-        ]),
-    ],
+          ApplicationRole.Administrador])],
     data: {
       title: "Checador de Empleados",
       breadcrumb: "Checador",
@@ -492,5 +485,4 @@ export const humanResourcesRoutes: Routes = [
       title: "Resultado de Evaluación",
       breadcrumb: "Resultado de Evaluación",
     },
-  },
-];
+  }];

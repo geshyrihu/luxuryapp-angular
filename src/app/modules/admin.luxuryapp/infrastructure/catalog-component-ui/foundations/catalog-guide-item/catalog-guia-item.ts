@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -39,7 +40,7 @@ const GUIA_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-guia-item",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     FormsModule,
     InputText,
@@ -383,12 +384,12 @@ const GUIA_LABELS: Record<string, string> = {
               </div>
             </div>
             <div class="d-flex justify-content-end gap-2 mt-4">
-              <il-button
+              <lux-button-web
                 label="Cancelar"
                 severity="secondary"
                 variant="outline"
               />
-              <il-button
+              <lux-button-web
                 label="Guardar cambios"
                 iconClass="icon.content-save"
               />

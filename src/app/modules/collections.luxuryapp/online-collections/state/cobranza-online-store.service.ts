@@ -127,8 +127,7 @@ export class CobranzaOnlineStoreService {
           ? this.apiResponseS.onGetItem<CobranzaOnlineSyncMetadata>(
               Endpoints.CobranzaOnline.Dashboard.syncStatus(customerId, year),
             )
-          : Promise.resolve(null),
-      ]);
+          : Promise.resolve(null)]);
 
       if (this.currentRequestId !== reqId) {
         return;

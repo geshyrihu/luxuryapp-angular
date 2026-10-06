@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ interface VacationApprovalDetailDTO {
   selector: "app-vacacion-solicitud-detalle",
   templateUrl: "./vacacion-solicitud-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag],
+  imports: [ButtonWeb, LxTag],
 })
 export class VacacionSolicitudDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

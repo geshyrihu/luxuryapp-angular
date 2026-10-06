@@ -83,7 +83,7 @@ ${this.getStandardCss()}
 </div>
 </body></html>`;
 
-    const fileName = `${options.title.replace(/\s+/g, "_")}_${this.formatDateTime(generatedAt).replace(/[:\/,]/g, "")}`;
+    const fileName = `${options.title.replace(/\s+/g, "_")}_${this.formatDateTime(generatedAt).replace(/[:\/]/g, "")}`;
     this.printHtml(html, fileName);
   }
 

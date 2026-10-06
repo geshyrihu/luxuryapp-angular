@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -27,7 +28,7 @@ import { LogEntry } from "../interfaces/log-entry.interface";
   selector: "app-log-api-report-desktop",
   templateUrl: "./log-api-report-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     TableEmptyMessage,
     CommonModule,
     ApiDatePipe,

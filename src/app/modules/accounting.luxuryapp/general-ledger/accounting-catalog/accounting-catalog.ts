@@ -47,8 +47,7 @@ export class AccountingCatalog {
     "codigoCuenta",
     "descripcionCuenta",
     "cuentaPadre",
-    "cuentaPadreDescripcion",
-  ]);
+    "cuentaPadreDescripcion"]);
 
   constructor() {
     effect(() => {

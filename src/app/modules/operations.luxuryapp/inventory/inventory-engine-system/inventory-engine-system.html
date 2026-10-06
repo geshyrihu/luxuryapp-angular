@@ -36,31 +36,31 @@
               <div class="card-body text-center">
                 <h4 class="text-lg fw-bold">{{ item.nameMachinery }}</h4>
                 <div class="d-flex justify-content-center">
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     lxTooltip="Servicios calendarizados"
                     class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:calendar-today"
                     (clicked)="showModalListOrderService(item.id)"
                   />
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     lxTooltip="Historico de servicios"
                     class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:palette"
                     (clicked)="onServiceHistory(item.id)"
                   />
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     lxTooltip="Bitacora"
                     class="btn btn-outline-warning btn-sm"
                     iconClass="material-symbols-light:book"
                     (clicked)="onBitacoraIndividual(item.id)"
                   />
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     lxTooltip="Ficha tócnica"
                     class="btn btn-outline-primary btn-sm"
                     iconClass="material-symbols-light:book"
                     (clicked)="showModalFichatecnica(item)"
                   />
-                  <iw-button
+                  <lux-button-web displayMode="icon"
                     iconClass="material-symbols-light:edit"
                     class="btn btn-outline-secondary btn-sm"
                     lxTooltip="Editar"

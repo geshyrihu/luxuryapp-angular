@@ -47,8 +47,7 @@ export interface DiasNoHabilesCreateDTO {
 
 export const QUINCENA_OPTIONS = [
   { label: "Primera Quincena",  value: 1 },
-  { label: "Segunda Quincena", value: 2 },
-];
+  { label: "Segunda Quincena", value: 2 }];
 
 export const MES_OPTIONS = [
   { label: "Enero",      value: 1 },
@@ -62,5 +61,4 @@ export const MES_OPTIONS = [
   { label: "Septiembre", value: 9 },
   { label: "Octubre",    value: 10 },
   { label: "Noviembre",  value: 11 },
-  { label: "Diciembre",  value: 12 },
-];
+  { label: "Diciembre",  value: 12 }];

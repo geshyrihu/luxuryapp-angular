@@ -31,8 +31,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     RouterModule,
     GooglePieChart4,
     AppStatCard,
-    AppBreakdownList,
-  ],
+    AppBreakdownList],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./cobranza-online-analysis.html",
 })
@@ -69,14 +68,12 @@ export class CobranzaOnlineAnalysis {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS",
-  ];
+    "ANTICIPOS"];
 
   readonly globalFilterFields = computed(() => [
     "numeroCuenta",
     "condomino",
-    "clasificacion",
-  ]);
+    "clasificacion"]);
 
   readonly messageSeverity = computed(() =>
     this.data()?.syncMetadata?.dataSource === "aspel-live" ? "success" : "warn",
@@ -117,8 +114,7 @@ export class CobranzaOnlineAnalysis {
         color: "var(--ds-success)",
         description: "Residual: perfecta - morosos - corriente",
       },
-      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
-    ];
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true }];
   });
 
   /** Flujo real del periodo: lo abonado contra la cuota del mes. */
@@ -150,8 +146,7 @@ export class CobranzaOnlineAnalysis {
         color: "var(--ds-warning)",
         description: "Cobranza perfecta - cobrado",
       },
-      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
-    ];
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true }];
 
     return filas;
   });
@@ -181,8 +176,7 @@ export class CobranzaOnlineAnalysis {
         color: "var(--ds-info)",
         description: "Debe sin alcanzar los umbrales de moroso",
       },
-      { label: "Total deuda", value: d.totalDeuda, isTotal: true },
-    ];
+      { label: "Total deuda", value: d.totalDeuda, isTotal: true }];
   });
 
   private moneda(value: number): string {
@@ -239,8 +233,7 @@ export class CobranzaOnlineAnalysis {
       const datos = [
         { label: "MOROSOS", value: morosos, color: danger },
         { label: "DEUDA CORRIENTE", value: corriente, color: info },
-        { label: "COBRADO", value: cobrado, color: success },
-      ].filter((d) => d.value > 0);
+        { label: "COBRADO", value: cobrado, color: success }].filter((d) => d.value > 0);
 
       return {
         labels: datos.map((d) => d.label),
@@ -251,8 +244,7 @@ export class CobranzaOnlineAnalysis {
             hoverBackgroundColor: datos.map((d) => d.color),
             borderWidth: 2,
             borderColor: "transparent",
-          },
-        ],
+          }],
       };
     }
 
@@ -260,8 +252,7 @@ export class CobranzaOnlineAnalysis {
     const datos = [
       { label: "COBRANZA JUDICIAL", value: judicial, color: danger },
       { label: "MOROSOS", value: morosos, color: warning },
-      { label: "DEUDA CORRIENTE", value: corriente, color: info },
-    ].filter((d) => d.value > 0);
+      { label: "DEUDA CORRIENTE", value: corriente, color: info }].filter((d) => d.value > 0);
 
     return {
       labels: datos.map((d) => d.label),
@@ -272,8 +263,7 @@ export class CobranzaOnlineAnalysis {
           hoverBackgroundColor: datos.map((d) => d.color),
           borderWidth: 2,
           borderColor: "transparent",
-        },
-      ],
+        }],
     };
   });
 
@@ -300,8 +290,7 @@ export class CobranzaOnlineAnalysis {
           ...analysis.morosos,
           ...analysis.deudaCorriente,
           ...analysis.sinAdeudo,
-          ...analysis.anticipos,
-        ];
+          ...analysis.anticipos];
     }
   });
 

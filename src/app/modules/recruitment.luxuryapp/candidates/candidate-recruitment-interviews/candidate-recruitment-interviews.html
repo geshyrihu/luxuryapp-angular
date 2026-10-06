@@ -10,7 +10,7 @@
       </p>
     </div>
     <div class="d-flex flex-wrap gap-2 justify-content-end">
-      <il-button
+      <lux-button-web
         label="Lista"
         iconClass="material-symbols-light:view-list"
         severity="primary"
@@ -18,7 +18,7 @@
         [variant]="viewMode() === 'board' ? 'solid' : 'outline'"
         (clicked)="setViewMode('board')"
       />
-      <il-button
+      <lux-button-web
         label="Agenda"
         iconClass="material-symbols-light:calendar-month"
         severity="primary"
@@ -26,7 +26,7 @@
         [variant]="viewMode() === 'agenda' ? 'solid' : 'outline'"
         (clicked)="setViewMode('agenda')"
       />
-      <il-button
+      <lux-button-web
         label="Actualizar"
         iconClass="material-symbols-light:refresh"
         severity="secondary"
@@ -48,7 +48,7 @@
         seleccionada desde correo o notificación.
       </div>
     </div>
-    <il-button
+    <lux-button-web
       label="Ver todas las vacantes"
       iconClass="material-symbols-light:filter-alt-off"
       severity="secondary"
@@ -279,7 +279,7 @@
 
           <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
             @if (candidate.canSendToInterview) {
-            <il-button
+            <lux-button-web
               label="Enviar a entrevista"
               iconClass="material-symbols-light:send"
               severity="primary"
@@ -287,7 +287,7 @@
               (clicked)="onAction(vacancy, candidate, 'send')"
             />
             } @if (candidate.canSchedule) {
-            <il-button
+            <lux-button-web
               label="Agendar cita"
               iconClass="material-symbols-light:calendar-add-on"
               severity="info"
@@ -295,7 +295,7 @@
               (clicked)="onAction(vacancy, candidate, 'schedule')"
             />
             } @if (candidate.canReschedule) {
-            <il-button
+            <lux-button-web
               label="Reagendar"
               iconClass="material-symbols-light:event-repeat"
               severity="info"
@@ -304,7 +304,7 @@
               (clicked)="onAction(vacancy, candidate, 'reschedule')"
             />
             } @if (candidate.canReschedule) {
-            <il-button
+            <lux-button-web
               label="Cambiar entrevistador"
               iconClass="material-symbols-light:sync"
               severity="warn"
@@ -314,7 +314,7 @@
             />
             }
             @if (candidate.canProceedToHiring) {
-            <il-button
+            <lux-button-web
               label="Proceder a Alta"
               iconClass="material-symbols-light:person-add"
               severity="success"
@@ -323,7 +323,7 @@
             />
             }
             @if (candidate.canReconfirmPresentation) {
-            <il-button
+            <lux-button-web
               [label]="
                 candidate.hasHiringRequest ? 'Reenviar alta' : 'Reintentar alta'
               "
@@ -338,7 +338,7 @@
               (clicked)="reconfirmPresentation(candidate)"
             />
             }
-            <il-button
+            <lux-button-web
               label="Ver historial"
               iconClass="material-symbols-light:history"
               severity="secondary"

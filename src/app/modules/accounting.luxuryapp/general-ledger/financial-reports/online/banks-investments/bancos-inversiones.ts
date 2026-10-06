@@ -27,8 +27,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     CommonModule,
     AppTable,
     DataViewMobile,
-    AccountingNumberPipe,
-  ],
+    AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })

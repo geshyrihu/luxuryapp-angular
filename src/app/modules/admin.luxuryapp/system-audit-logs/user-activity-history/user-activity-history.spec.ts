@@ -22,8 +22,7 @@ describe('UserActivityHistory', () => {
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
         { provide: FlatpickrDefaults, useValue: {} },
-        { provide: PlatformService, useValue: { isMobile: () => false } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: () => false } }],
     });
     TestBed.overrideComponent(UserActivityHistory, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();

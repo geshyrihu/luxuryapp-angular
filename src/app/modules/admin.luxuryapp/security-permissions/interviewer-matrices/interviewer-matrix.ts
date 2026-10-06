@@ -101,8 +101,7 @@ export class InterviewerMatrix implements OnInit {
 
   private readonly invalidRoleLabels = [
     "--seleccione una opción--",
-    "--seleccione una opcion--",
-  ];
+    "--seleccione una opcion--"];
 
   constructor() {
     effect(() => {

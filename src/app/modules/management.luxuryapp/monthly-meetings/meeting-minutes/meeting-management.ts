@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 
 @Component({
   selector: "app-meeting-management",
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     RouterModule,
     AreaDetailsTable,

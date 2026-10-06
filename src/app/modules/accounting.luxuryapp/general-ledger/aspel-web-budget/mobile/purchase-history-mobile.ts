@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -14,7 +15,7 @@ import { PurchaseHistoryDTO } from "../presupuestos.interfaces";
   selector: "app-purchase-history-mobile",
   templateUrl: "./purchase-history-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, LxIcon, DataViewMobile, MobileListItem],
+  imports: [ButtonWeb, CommonModule, LxIcon, DataViewMobile, MobileListItem],
 })
 export class PurchaseHistoryMobile {
   data = input.required<PurchaseHistoryDTO[]>();

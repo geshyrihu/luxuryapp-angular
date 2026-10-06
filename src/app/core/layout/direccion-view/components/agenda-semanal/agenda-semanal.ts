@@ -30,8 +30,7 @@ import type {
         background: color-mix(in srgb, var(--ds-bg-surface) 20%, transparent);
         color: var(--ds-text-inverse, #edf0ff);
       }
-    `,
-  ],
+    `],
 })
 export class AgendaSemanal {
   private apiResponseS = inject(ApiResponseService);

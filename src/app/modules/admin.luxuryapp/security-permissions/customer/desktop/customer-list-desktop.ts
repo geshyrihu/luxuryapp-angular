@@ -36,8 +36,7 @@ import { CustomerDto } from "../interfaces/customer.dto";
     LxAvatar,
     NgbTooltipModule,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class CustomerListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

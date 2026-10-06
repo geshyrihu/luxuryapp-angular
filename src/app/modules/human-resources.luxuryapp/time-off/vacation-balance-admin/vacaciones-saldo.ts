@@ -71,8 +71,7 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
     LxMessage,
     AppTable,
 
-    LxTag,
-  ],
+    LxTag],
 })
 export class VacacionesSaldo implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -176,8 +175,7 @@ export class VacacionesSaldo implements OnInit {
       ),
       this.apiResponseS.onGetList<VacationRequestMyDTO[]>(
         Endpoints.HR.VacationRequest.getAll,
-      ),
-    ])
+      )])
       .then(([balanceData, allRequests]) => {
         this.balance.set(balanceData);
         this.checkAnniversaryReminder();

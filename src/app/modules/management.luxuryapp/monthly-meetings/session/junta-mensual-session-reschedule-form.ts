@@ -39,8 +39,7 @@ interface IRescheduleForm {
     ButtonWeb,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
 })
 export class JuntaMensualSessionRescheduleForm implements OnInit {
   private readonly formB = inject(FormBuilder);
@@ -158,7 +157,7 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     );
 
     if (match) {
-      const [, year, month, day, hour, minute, second] = match;
+      const [ year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,

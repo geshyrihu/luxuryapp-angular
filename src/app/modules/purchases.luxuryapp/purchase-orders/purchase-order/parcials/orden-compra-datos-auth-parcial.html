@@ -7,7 +7,7 @@ purchaseOrderAuthorizationStatus.Pendiente) {
       <span class="text-sm fw-semibold">Pendiente de autorización</span>
     </div>
     @if (!isAuthorizationDisabled()) {
-    <il-button
+    <lux-button-web
       label="Autorizar"
       size="small"
       severity="success"
@@ -41,7 +41,7 @@ purchaseOrderAuthorizationStatus.Autorizado) {
       </div>
     </div>
     @if (canRevoke()) {
-    <il-button
+    <lux-button-web
       label="Revocar"
       size="small"
       severity="danger"

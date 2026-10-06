@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -25,7 +26,7 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
   selector: "app-candidate-application-kpis",
   templateUrl: "./candidate-application-kpis.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     AppTable,
     MappedPTag,

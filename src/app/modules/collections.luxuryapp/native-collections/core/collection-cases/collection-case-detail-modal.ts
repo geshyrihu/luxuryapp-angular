@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -21,7 +22,7 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
 
 @Component({
   selector: "app-collection-case-detail-modal",
-  imports: [
+  imports: [ButtonWeb, 
     LxIcon,
     ReactiveFormsModule,
     CustomInputTextAreaSignal,

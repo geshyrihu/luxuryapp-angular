@@ -40,8 +40,7 @@ import { ChargeTypeForm } from "./charge-type-form";
     LxIcon,
     ButtonWeb,
     MobileActionMenu,
-    ButtonMobile,
-  ],
+    ButtonMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-list.html",
 })

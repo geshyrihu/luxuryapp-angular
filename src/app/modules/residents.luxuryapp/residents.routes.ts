@@ -133,5 +133,4 @@ export const residentsRoutes: Routes = [
       title: "Mis Proveedores",
       breadcrumb: "Mis Proveedores",
     },
-  },
-];
+  }];

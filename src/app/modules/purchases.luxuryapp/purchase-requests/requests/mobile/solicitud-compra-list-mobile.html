@@ -56,12 +56,12 @@
             (clicked)="edit.emit(item.id)"
           />
           @if (isAuthorizedView()) {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:info"
             label="Ver autorización"
             (clicked)="authorizationDetail.emit(item)"
           />
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:undo"
             label="Desautorizar"
             (clicked)="desauthorize.emit(item)"
@@ -79,7 +79,7 @@
 </app-data-view-mobile>
 
 <div class="mt-3 d-flex justify-content-end">
-  <il-button
+  <lux-button-web
     iconClass="material-symbols-light:play-lesson"
     label="Modo presentacion"
     (clicked)="presentationMode.emit()"

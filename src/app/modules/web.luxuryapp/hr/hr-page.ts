@@ -34,8 +34,7 @@ export class HrPage implements AfterViewInit {
       icon: "💪",
       title: "Clima Laboral",
       desc: "Evaluación y mejora del ambiente laboral, comunicación interna y programas de reconocimiento.",
-    },
-  ];
+    }];
 
   process = [
     {
@@ -50,8 +49,7 @@ export class HrPage implements AfterViewInit {
     {
       title: "Evaluación y Crecimiento",
       desc: "Seguimiento de desempeño y planes de carrera.",
-    },
-  ];
+    }];
 
   constructor(private elementRef: ElementRef) {}
 

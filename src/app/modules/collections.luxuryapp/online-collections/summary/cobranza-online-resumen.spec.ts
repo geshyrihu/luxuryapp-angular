@@ -63,8 +63,7 @@ describe("CobranzaOnlineResumen", () => {
         currentMonthCharge: 5000,
         categoryId: "CAT1",
         movementCount: 5,
-      },
-    ],
+      }],
     towers: [],
     advances: [],
     departmentCharges: [],
@@ -105,8 +104,7 @@ describe("CobranzaOnlineResumen", () => {
         { provide: ModalController, useValue: {} },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
-        CobranzaOnlineStoreService,
-      ],
+        CobranzaOnlineStoreService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CobranzaOnlineResumen);
@@ -141,8 +139,7 @@ describe("CobranzaOnlineResumen", () => {
       "COBRANZA PERFECTA",
       "MOROSOS",
       "DEUDA CORRIENTE",
-      "COBRADO / SIN ADEUDO",
-    ]);
+      "COBRADO / SIN ADEUDO"]);
   });
 
   it("should compute tableDeudaCondominos groups", () => {
@@ -156,7 +153,6 @@ describe("CobranzaOnlineResumen", () => {
       "COBRANZA JUDICIAL",
       "MOROSOS",
       "DEUDA CORRIENTE",
-      "TOTAL DEUDA",
-    ]);
+      "TOTAL DEUDA"]);
   });
 });

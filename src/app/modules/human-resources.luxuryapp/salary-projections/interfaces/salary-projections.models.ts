@@ -163,8 +163,7 @@ export const SALARY_PROJECTION_STATES = [
   { id: 2, text: "En revisión", severity: "warn" },
   { id: 3, text: "Aprobado", severity: "success" },
   { id: 4, text: "Rechazado", severity: "danger" },
-  { id: 5, text: "Cancelado", severity: "secondary" },
-] as const;
+  { id: 5, text: "Cancelado", severity: "secondary" }] as const;
 
 /** Entidades federativas (espejo de MexicanStateEnum del backend). */
 export const MEXICAN_STATES = [
@@ -199,8 +198,7 @@ export const MEXICAN_STATES = [
   "Tlaxcala",
   "Veracruz",
   "Yucatán",
-  "Zacatecas",
-] as const;
+  "Zacatecas"] as const;
 
 export function salaryProjectionStateText(state: number): string {
   return SALARY_PROJECTION_STATES.find((item) => item.id === state)?.text ?? "—";

@@ -72,8 +72,7 @@ describe("PresentacionJuntaComite", () => {
         { provide: DateService, useValue: { parseDate: vi.fn() } },
         { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
         { provide: ConfirmService, useValue: mockConfirmS },
-        { provide: SwalService, useValue: mockSwalS },
-      ],
+        { provide: SwalService, useValue: mockSwalS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

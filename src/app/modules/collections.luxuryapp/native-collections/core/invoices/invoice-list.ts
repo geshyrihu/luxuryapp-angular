@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +28,7 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
 
 @Component({
   selector: "app-invoice-list",
-  imports: [
+  imports: [ButtonWeb, 
     LxTooltipDirective,
     LxCard,
     LxTag,

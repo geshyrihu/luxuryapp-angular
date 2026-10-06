@@ -36,8 +36,7 @@ export interface IOrdenCompraPresupuestoForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputCurrencySignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class OrdenCompraEditPresupustoUtilizado implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -18,8 +18,7 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
     IonContent,
     IonHeader,
     IonToolbar,
-    LxLoader,
-  ],
+    LxLoader],
   templateUrl: "./view-direccion-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
@@ -34,8 +33,7 @@ import { HeaderMobile } from "../../../shared/header-mobile/header-mobile";
         height: 100%;
         width: 100%;
       }
-    `,
-  ],
+    `],
 })
 export class ViewDireccionMobile {}
 

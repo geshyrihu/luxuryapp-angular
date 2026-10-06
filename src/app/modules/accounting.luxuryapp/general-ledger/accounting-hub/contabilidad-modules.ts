@@ -15,8 +15,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       ApplicationRole.Administrador,
       ApplicationRole.GerenteOperaciones,
       ApplicationRole.Asistente,
-      ApplicationRole.Cobranza,
-    ],
+      ApplicationRole.Cobranza],
     cards: [
       {
         title: "Catálogo Contable",
@@ -42,8 +41,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.GerenteAtencion,
           ApplicationRole.Asistente,
           ApplicationRole.GerenteMantenimiento,
-          ApplicationRole.SupervisionOperativa,
-        ],
+          ApplicationRole.SupervisionOperativa],
       },
       {
         title: "END PIONTS Aspel",
@@ -60,8 +58,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
           ApplicationRole.GerenteOperaciones,
-          ApplicationRole.Cobranza,
-        ],
+          ApplicationRole.Cobranza],
       },
       {
         title: "Simulador Aspel COI",
@@ -111,8 +108,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
           ApplicationRole.GerenteOperaciones,
-          ApplicationRole.SuperUsuario,
-        ],
+          ApplicationRole.SuperUsuario],
       },
       {
         title: "Reportes Dinámicos",
@@ -133,8 +129,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         color: "#c026d3",
         bgColor: "#fae8ff",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
-      },
-    ],
+      }],
   },
   // -------------------------------------------------------------
   // CONTABILIDAD PRESUPUESTAL
@@ -148,8 +143,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
       ApplicationRole.Asistente,
       ApplicationRole.Administrador,
       ApplicationRole.GerenteOperaciones,
-      ApplicationRole.Cobranza,
-    ],
+      ApplicationRole.Cobranza],
     cards: [
       {
         title: "Propuesta Presupuesto Nuevo",
@@ -163,8 +157,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.SuperUsuario,
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
-          ApplicationRole.GerenteOperaciones,
-        ],
+          ApplicationRole.GerenteOperaciones],
       },
       {
         title: "Presupuesto Espejo Aspel",
@@ -178,8 +171,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.SuperUsuario,
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
-          ApplicationRole.GerenteOperaciones,
-        ],
+          ApplicationRole.GerenteOperaciones],
       },
       {
         title: "Cobranza Online",
@@ -194,8 +186,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.Contador,
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
-          ApplicationRole.GerenteOperaciones,
-        ],
+          ApplicationRole.GerenteOperaciones],
       },
       {
         title: "Espejo Aspel Full",
@@ -216,8 +207,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
         color: "#7c2d12",
         bgColor: "#ffedd5",
         roles: [ApplicationRole.Contador, ApplicationRole.SuperUsuario],
-      },
-    ],
+      }],
   },
 
   // -------------------------------------------------------------
@@ -241,10 +231,7 @@ export const CONTABILIDAD_MODULES: ContabilidadModuleGroup[] = [
           ApplicationRole.SuperUsuario,
           ApplicationRole.Asistente,
           ApplicationRole.Administrador,
-          ApplicationRole.GerenteOperaciones,
-        ],
-      },
-    ],
-  },
-];
+          ApplicationRole.GerenteOperaciones],
+      }],
+  }];
 

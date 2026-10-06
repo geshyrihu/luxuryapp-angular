@@ -39,8 +39,7 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     IonList,
     IonListHeader,
     IonNote,
-    IonProgressBar,
-  ],
+    IonProgressBar],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-mobile.html",
 })

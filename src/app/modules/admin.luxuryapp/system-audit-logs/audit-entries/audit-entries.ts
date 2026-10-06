@@ -44,8 +44,7 @@ export class AuditEntries implements OnInit {
   operationOptions: SelectItemDto[] = [
     { label: "Create", value: "Create" },
     { label: "Update", value: "Update" },
-    { label: "Delete", value: "Delete" },
-  ];
+    { label: "Delete", value: "Delete" }];
 
   entityOptions: SelectItemDto[] = [];
 

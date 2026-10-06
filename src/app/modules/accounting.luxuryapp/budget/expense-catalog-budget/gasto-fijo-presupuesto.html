@@ -110,7 +110,7 @@
           @if (submitting()) {
           <lux-spinner [size]="32" [strokeWidth]="8" />
           } @else {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:save"
             (clicked)="onSubmit(item)"
           />

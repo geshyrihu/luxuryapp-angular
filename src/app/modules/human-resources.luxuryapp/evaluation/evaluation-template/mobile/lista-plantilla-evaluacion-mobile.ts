@@ -19,8 +19,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
     MobileListItem,
     MobileActionMenu,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class ListaPlantillaEvaluacionMobile {
   data = input.required<any[]>();

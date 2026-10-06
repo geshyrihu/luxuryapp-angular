@@ -31,8 +31,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
     CommonModule,
     ReportHeader,
     SanitizeHtmlPipe,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class MinutaPendientes {
   apiResponseS = inject(ApiResponseService);
@@ -82,8 +81,7 @@ export class MinutaPendientes {
       { header: "Solicitud", key: "solicitud", width: 50 },
       { header: "Último Seguimiento", key: "seguimiento", width: 50 },
       { header: "Fecha último Seguimiento", key: "fecha", width: 25 },
-      { header: "Estatus", key: "estatus", width: 15 },
-    ];
+      { header: "Estatus", key: "estatus", width: 15 }];
 
     // Style header
     const headerRow = worksheet.getRow(1);

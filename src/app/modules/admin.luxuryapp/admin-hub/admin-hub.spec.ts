@@ -37,8 +37,7 @@ describe("SettingsHome", () => {
         {
           provide: "HttpClientWithoutInterceptors",
           useValue: (globalThis as any).__mockHttpClient,
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdminHub);

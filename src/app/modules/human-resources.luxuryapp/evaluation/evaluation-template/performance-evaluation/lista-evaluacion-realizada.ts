@@ -142,8 +142,7 @@ export class ListaEvaluacionRealizada {
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgb(54, 162, 235)",
             pointBackgroundColor: "rgb(54, 162, 235)",
-          },
-        ],
+          }],
       };
 
       // 2. Generar imagen del gráfico de forma headless

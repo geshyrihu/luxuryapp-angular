@@ -381,8 +381,7 @@ const ROUTE_WHITELIST = new Set([
   "/publico/operation-report-client",
   "/publico/reporte-minuta",
   "/publico/reporte-ticket-pendientes-proveedor",
-  "/publico/contabilidad-cliente",
-]);
+  "/publico/contabilidad-cliente"]);
 
 export function isRouteValid(route: string): boolean {
   return (

@@ -24,17 +24,14 @@ export function downloadInitialBalanceTemplate(
       "FechaVencimiento",
       "Concepto",
       "ReferenciaCuenta",
-      "ReferenciaPropiedad",
-    ],
+      "ReferenciaPropiedad"],
     ...properties.map((property) => [
       property.propertyId,
       "",
       "",
       "Saldo Inicial",
       property.accountNumber ?? "",
-      property.propertyFullName ?? "",
-    ]),
-  ];
+      property.propertyFullName ?? ""])];
 
   const csvContent = rows
     .map((row) => row.map((cell) => escapeCsvCell(String(cell))).join(","))

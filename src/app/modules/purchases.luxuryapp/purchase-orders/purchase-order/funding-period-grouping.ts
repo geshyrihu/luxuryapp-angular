@@ -32,8 +32,7 @@ export function generateYearOptions(): SelectItemDto[] {
   return [
     { label: (currentYear - 1).toString(), value: currentYear - 1 },
     { label: currentYear.toString(), value: currentYear },
-    { label: (currentYear + 1).toString(), value: currentYear + 1 },
-  ];
+    { label: (currentYear + 1).toString(), value: currentYear + 1 }];
 }
 
 /**

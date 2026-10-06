@@ -45,7 +45,7 @@
     </div>
 
     <div class="d-flex flex-wrap gap-2 mt-4">
-      <il-button
+      <lux-button-web
         label="Sincronización Completa"
         iconClass="material-symbols-light:sync"
         severity="success"
@@ -53,7 +53,7 @@
         [disabled]="!canExecute()"
         (clicked)="syncCompleto()"
       />
-      <il-button
+      <lux-button-web
         label="Solo Contabilidad"
         iconClass="material-symbols-light:book"
         severity="info"
@@ -61,7 +61,7 @@
         [disabled]="!canExecute()"
         (clicked)="syncContabilidad()"
       />
-      <il-button
+      <lux-button-web
         label="Solo Cobranza"
         iconClass="material-symbols-light:wallet"
         severity="warning"

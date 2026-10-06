@@ -1,10 +1,11 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { Component, output, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-task-report-actions",
   templateUrl: "./task-report-actions.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [],
+  imports: [ButtonWeb, ],
 })
 export class TaskReportActions {
   previewClicked = output<void>();

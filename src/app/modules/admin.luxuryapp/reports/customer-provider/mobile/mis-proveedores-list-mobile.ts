@@ -19,8 +19,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     MobileListItem,
     MobileActionMenu,
     LxIcon,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class MisProveedoresMobile {
   data = input.required<any[]>();

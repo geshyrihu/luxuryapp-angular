@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -113,7 +114,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     CustomInputDateSignal,
     CustomInputSelectButton,

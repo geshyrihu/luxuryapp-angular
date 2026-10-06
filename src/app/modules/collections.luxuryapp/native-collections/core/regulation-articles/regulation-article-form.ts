@@ -42,8 +42,7 @@ interface IRegulationArticleForm {
     CustomInputTextAreaSignal,
     CustomInputDecimal,
     CustomInputCheckSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./regulation-article-form.html",
 })

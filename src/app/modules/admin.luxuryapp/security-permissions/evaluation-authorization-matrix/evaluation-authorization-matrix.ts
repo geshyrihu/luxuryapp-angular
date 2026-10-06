@@ -31,8 +31,7 @@ const GLOBAL_ADMINISTRATORS = new Set([
   "Administrador",
   "GerenteOperaciones",
   "GerenteAtencion",
-  "JefeMantenimiento",
-]);
+  "JefeMantenimiento"]);
 
 @Component({
   selector: "app-evaluation-authorization-matrix",
@@ -77,8 +76,7 @@ export class EvaluationAuthorizationMatrix implements OnInit {
         this.apiResponseS.onGetItem<EvaluationAuthorizationMatrixDto[]>(MATRIX_ENDPOINT),
         this.apiResponseS.onGetItem<ApplicationRoleDto[]>(
           EndpointsSelectItem.SelectItems.applicationRoles,
-        ),
-      ]);
+        )]);
       this.matrices.set(matrices ?? []);
       this.roles.set(
         (roles ?? []).map((role) => ({

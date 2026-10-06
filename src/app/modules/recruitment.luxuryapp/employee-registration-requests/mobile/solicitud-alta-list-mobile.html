@@ -24,25 +24,25 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button
+          <lux-button-mobile
             (clicked)="sendHiringDocs.emit(item)"
             [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
             iconClass="material-symbols-light:send"
           />
           @if (canCompleteAlta(item)) {
-          <ili-button
+          <lux-button-mobile
             (clicked)="completeAlta.emit(item)"
             label="Completar Alta"
             iconClass="material-symbols-light:person-add"
           />
-          <ili-button
+          <lux-button-mobile
             (clicked)="abortHiring.emit(item)"
             label="Cancelar"
             iconClass="material-symbols-light:cancel"
             color="danger"
           />
           } @else if (canManageLinkedAlta(item)) {
-          <ili-button
+          <lux-button-mobile
             (clicked)="goToEmployeeFile.emit(item)"
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
@@ -54,20 +54,20 @@
             iconClass="material-symbols-light:check"
             (clicked)="concludeHiring.emit(item.id)"
           />
-          <ili-button
+          <lux-button-mobile
             (clicked)="abortHiring.emit(item)"
             label="Abortar Alta"
             iconClass="material-symbols-light:cancel"
             color="danger"
           />
           } @else if (canOpenCompletedFile(item)) {
-          <ili-button
+          <lux-button-mobile
             (clicked)="goToEmployeeFile.emit(item)"
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
           />
           } @else if (isCancelled(item)) {
-          <ili-button
+          <lux-button-mobile
             (clicked)="viewRequestDetails.emit(item)"
             label="Ver Detalles"
             iconClass="material-symbols-light:visibility"

@@ -22,8 +22,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     DataViewMobile,
     LxEmptyState,
     MobileListItem,
-    LxTag,
-  ],
+    LxTag],
 })
 export class TicketLegalReportesExternosMobile {
   reportData = input<any>(null);

@@ -11,8 +11,7 @@ describe('AiChatService', () => {
       providers: [
         AiChatService,
         { provide: ApiResponseService, useValue: { onGetList: vi.fn().mockResolvedValue([]) } },
-        { provide: CustomerIdService, useValue: { customerId: vi.fn(), customerDataReady: vi.fn() } },
-      ],
+        { provide: CustomerIdService, useValue: { customerId: vi.fn(), customerDataReady: vi.fn() } }],
     });
     service = TestBed.inject(AiChatService);
   });

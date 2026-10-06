@@ -31,8 +31,7 @@ import { DatabaseBackupConfig } from "../interfaces/database-backup.interface";
     AppSorticon,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class DatabaseBackupListDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

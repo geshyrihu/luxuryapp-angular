@@ -32,8 +32,7 @@ import {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-prestamo-add.html",
 })

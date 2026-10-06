@@ -19,8 +19,7 @@ describe("ImageProcessingService", () => {
     TestBed.configureTestingModule({
       providers: [
         ImageProcessingService,
-        { provide: HeicConverterService, useValue: heicConverter },
-      ],
+        { provide: HeicConverterService, useValue: heicConverter }],
     });
     service = TestBed.inject(ImageProcessingService);
   });

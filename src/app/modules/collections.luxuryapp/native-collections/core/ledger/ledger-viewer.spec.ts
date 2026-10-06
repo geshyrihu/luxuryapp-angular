@@ -52,8 +52,7 @@ describe("LedgerViewer", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LedgerViewer);
@@ -62,14 +61,12 @@ describe("LedgerViewer", () => {
 
   it("should load properties for the active customer", async () => {
     apiResponseMock.onGetSelectItem.mockResolvedValue([
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
 
     await component.loadProperties("customer-1");
 
     expect(component.properties()).toEqual([
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
   });
 
   it("should search entries and filter by event type", async () => {
@@ -107,8 +104,7 @@ describe("LedgerViewer", () => {
         chargeId: "charge-1",
         paymentId: null,
         allocationId: null,
-      },
-    ]);
+      }]);
 
     await component.onSearch();
 
@@ -139,8 +135,7 @@ describe("LedgerViewer", () => {
         chargeId: "charge-1",
         paymentId: null,
         allocationId: null,
-      },
-    ]);
+      }]);
 
     component.onClear();
 

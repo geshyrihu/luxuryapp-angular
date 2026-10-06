@@ -26,8 +26,7 @@ export interface ComiteVigilanciaFormData {
     MobileListItem,
     MobileActionMenu,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class ComiteVigilanciaListMobile {
   data = input.required<ComiteVigilancia[]>();

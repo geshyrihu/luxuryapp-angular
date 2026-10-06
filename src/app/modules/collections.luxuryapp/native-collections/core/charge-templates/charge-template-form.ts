@@ -70,8 +70,7 @@ interface IChargeTemplateForm {
     CustomInputDateSignal,
     CustomInputNumberSignal,
     ButtonWeb,
-    LxCard,
-  ],
+    LxCard],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-form.html",
 })
@@ -111,18 +110,15 @@ export class ChargeTemplateForm implements OnInit {
     { label: "Cuatrimestral", value: Recurrence.Cuatrimestral },
     { label: "Quimestral", value: Recurrence.Quimestral },
     { label: "Semestral", value: Recurrence.Semestral },
-    { label: "Anual", value: Recurrence.Anual },
-  ];
+    { label: "Anual", value: Recurrence.Anual }];
 
   calculationMethods = [
     { label: "Monto Fijo por Depto", value: ECalculationMethod.FixedAmount },
-    { label: "Prorrateo por Indiviso", value: ECalculationMethod.Indiviso },
-  ];
+    { label: "Prorrateo por Indiviso", value: ECalculationMethod.Indiviso }];
 
   discountTypes = [
     { label: "Monto Fijo ($)", value: EDiscountType.FixedValue },
-    { label: "Porcentaje (%)", value: EDiscountType.Percentage },
-  ];
+    { label: "Porcentaje (%)", value: EDiscountType.Percentage }];
 
   async ngOnInit() {
     this.id = this.config.data.id;
@@ -154,8 +150,7 @@ export class ChargeTemplateForm implements OnInit {
         validators: [
           Validators.required,
           Validators.min(1),
-          Validators.max(31),
-        ],
+          Validators.max(31)],
       }),
       startDate: new FormControl(new Date(), {
         nonNullable: true,

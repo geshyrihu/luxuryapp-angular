@@ -14,8 +14,7 @@ describe('DialogHandlerService', () => {
         { provide: ModalController, useValue: {} },
         { provide: NgbModal, useValue: {} },
         { provide: Platform, useValue: { is: vi.fn(() => false), ready: vi.fn().mockResolvedValue(undefined) } },
-        { provide: DialogService, useValue: { open: vi.fn(), getInstance: vi.fn() } },
-      ],
+        { provide: DialogService, useValue: { open: vi.fn(), getInstance: vi.fn() } }],
     });
     service = TestBed.inject(DialogHandlerService);
   });

@@ -45,8 +45,7 @@ describe("ProductosForm", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: EnumSelectService, useValue: mockEnumSelectS },
-      ],
+        { provide: EnumSelectService, useValue: mockEnumSelectS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -23,7 +24,7 @@ import {
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 @Component({
   selector: "app-cobranza-online-resumen",
-  imports: [AccountingNumberPipe, CommonModule, PieChart],
+  imports: [ButtonWeb, AccountingNumberPipe, CommonModule, PieChart],
   templateUrl: "./cobranza-online-resumen.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -110,8 +111,7 @@ export class CobranzaOnlineResumen {
         saldo: saldoCobradoCalculado,
         porcentaje: total ? saldoCobradoCalculado / total : 0,
         isTotal: false,
-      },
-    ];
+      }];
   });
 
   readonly tableDeudaCondominos = computed(() => {
@@ -163,8 +163,7 @@ export class CobranzaOnlineResumen {
         saldo: total,
         porcentaje: total ? 1 : 0,
         isTotal: true,
-      },
-    ];
+      }];
   });
 
   private theme = inject(ThemeService);
@@ -228,12 +227,10 @@ export class CobranzaOnlineResumen {
     return {
       data: [
         { name: "Cobrado", value: m.collected },
-        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
-      ],
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 }],
       colors: [
         this.token("--ds-success", "green"),
-        this.token("--ds-warning", "orange"),
-      ],
+        this.token("--ds-warning", "orange")],
     };
   });
 
@@ -246,12 +243,10 @@ export class CobranzaOnlineResumen {
     return {
       data: [
         { name: "Cobrado", value: m.collected },
-        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
-      ],
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 }],
       colors: [
         this.token("--ds-success", "green"),
-        this.token("--ds-warning", "orange"),
-      ],
+        this.token("--ds-warning", "orange")],
     };
   });
 
@@ -268,12 +263,10 @@ export class CobranzaOnlineResumen {
     return {
       data: [
         { name: "Cobrado", value: m.collected },
-        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 },
-      ],
+        { name: "Pendiente", value: m.pending > 0 ? m.pending : 0 }],
       colors: [
         this.token("--ds-success", "green"),
-        this.token("--ds-warning", "orange"),
-      ],
+        this.token("--ds-warning", "orange")],
     };
   });
 

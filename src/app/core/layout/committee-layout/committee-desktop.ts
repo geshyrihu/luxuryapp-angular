@@ -11,8 +11,7 @@ import { FooterCommitteedesktop } from "./desktop/footer";
     RouterOutlet,
     HeaderCommitteedesktop,
     FooterCommitteedesktop,
-    AppLoader,
-  ],
+    AppLoader],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-desktop.html",
 })

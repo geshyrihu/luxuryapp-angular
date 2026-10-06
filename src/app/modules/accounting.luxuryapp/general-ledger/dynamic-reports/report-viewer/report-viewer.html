@@ -22,7 +22,7 @@
           [filter]="true"
         />
       </div>
-      <il-button
+      <lux-button-web
         label="Ejecutar"
         iconClass="material-symbols-light:play-arrow"
         [loading]="loading()"
@@ -31,25 +31,25 @@
     </div>
     @if (resultado()) {
     <div class="d-flex gap-2">
-      <il-button
+      <lux-button-web
         label="Excel"
         iconClass="material-symbols-light:table-view"
         severity="success"
         (clicked)="exportarExcel()"
       />
-      <il-button
+      <lux-button-web
         label="PDF"
         iconClass="material-symbols-light:picture-as-pdf"
         severity="danger"
         (clicked)="exportarPdf()"
       />
-      <il-button
+      <lux-button-web
         label="Compartir"
         iconClass="material-symbols-light:link"
         severity="secondary"
         (clicked)="compartir()"
       />
-      <il-button
+      <lux-button-web
         label="Auditor IA"
         iconClass="material-symbols-light:auto-awesome-motion"
         severity="info"

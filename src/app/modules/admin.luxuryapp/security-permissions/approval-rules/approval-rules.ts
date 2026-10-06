@@ -64,8 +64,7 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     IonSelect,
     IonSelectOption,
     IonTitle,
-    IonToolbar,
-  ],
+    IonToolbar],
 })
 export class ApprovalRules implements OnInit {
   readonly platform = inject(PlatformService);
@@ -99,8 +98,7 @@ export class ApprovalRules implements OnInit {
       value: ApprovalScope.Global,
       icon: "material-symbols-light:public",
       class: "opt-global",
-    },
-  ];
+    }];
 
   ngOnInit(): void {
     this.loadMatrix();

@@ -34,11 +34,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -149,8 +145,6 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     AppTable,
 
     AppSortableColumn,
-
-    AppSorticon,
     LxTag,
     LuxTableCaption,
     DataViewMobile,

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -36,7 +37,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   selector: "app-employee-queue-candidate-detail-modal",
   templateUrl: "./employee-queue-candidate-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     PdfViewerTrigger,
     ApiDatePipe,
 

@@ -22,8 +22,7 @@ import { ApplicationRoleDto } from "../interfaces/application-role.dto";
     LxIcon,
     MobileActionMenu,
     MobileListItem,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class RolesListMobile {
   data = input.required<ApplicationRoleDto[]>();

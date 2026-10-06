@@ -1,5 +1,5 @@
 <div class="text-end">
-  <il-button
+  <lux-button-web
     [customClass]="'btn-outline-primary'"
     iconClass="material-symbols-light:add"
     label="Nuevo Servicio"
@@ -53,7 +53,7 @@
       <td>
         <div class="d-flex justify-content-center">
           <!-- Duplicar Servicio -->
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:content-copy"
             lxTooltip="Duplicar Servicio"
             tooltipPosition="top"
@@ -71,7 +71,7 @@
           />
           <!-- Duplicar Servicio -->
           <!-- Editar  -->
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:edit"
             (clicked)="
                   showModalMaintenanceCalendar({
@@ -83,7 +83,7 @@
                 "
           />
           <!-- Borrar -->
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:delete"
             lxTooltip="Eliminar"
             tooltipPosition="top"

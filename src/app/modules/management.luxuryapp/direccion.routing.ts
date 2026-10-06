@@ -16,5 +16,4 @@ export const direccionRoutes: Routes = [
     path: "profile",
     loadChildren: () =>
       import("src/app/routing/profile.routing").then((m) => m.profileRoutes),
-  },
-];
+  }];

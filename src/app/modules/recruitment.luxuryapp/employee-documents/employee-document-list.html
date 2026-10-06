@@ -58,7 +58,7 @@
         />
       </div>
       <div class="mt-2 mt-md-0">
-        <il-button
+        <lux-button-web
           label="Cargar"
           iconClass="material-symbols-light:upload"
           (clicked)="uploadNewDocument()"
@@ -166,7 +166,7 @@
               [loading]="validatingId() === doc.id"
               (clicked)="onValidate(doc)"
             />
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:cancel"
               severity="danger"
               [disabled]="validatingId() !== null || rejectingId() !== null"
@@ -174,7 +174,7 @@
               (clicked)="onReject(doc)"
             />
             } @if (!doc.isValidated) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:delete"
               severity="danger"
               [disabled]="deletingId() !== null || validatingId() !== null || rejectingId() !== null"

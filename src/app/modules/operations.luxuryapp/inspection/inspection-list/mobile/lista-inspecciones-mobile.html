@@ -28,20 +28,20 @@
       [filter]="true"
     />
     <div class="d-flex gap-2">
-      <ili-button
+      <lux-button-mobile
         label="Limpiar filtros"
         severity="secondary"
         variant="outline"
         iconClass="material-symbols-light:filter-alt-off"
         (clicked)="clearFilters.emit()"
       />
-      <ili-button
+      <lux-button-mobile
         label="Aplicar filtros"
         iconClass="material-symbols-light:filter-alt"
         (clicked)="applyFilters.emit()"
       />
     </div>
-    <ili-button
+    <lux-button-mobile
       iconClass="material-symbols-light:menu-book-outline"
       label="Reportes"
       (clicked)="reportes.emit()"

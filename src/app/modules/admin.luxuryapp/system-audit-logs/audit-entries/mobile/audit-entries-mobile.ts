@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ import { AuditEntry } from "../interfaces/audit-entry.interface";
   selector: "app-audit-entries-mobile",
   templateUrl: "./audit-entries-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     LxCard,
     LxTag,

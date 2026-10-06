@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -30,7 +31,7 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxIcon],
+  imports: [ButtonWeb, LxIcon],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

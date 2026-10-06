@@ -175,7 +175,7 @@
         @if (!isClientView) {
 
         <!-- Botón para navegar a la guía del módulo -->
-        <iw-button
+        <lux-button-web displayMode="icon"
           iconClass="menu-book"
           label="Guía del Módulo"
           ngbTooltip="Abrir guía de flujo y componentes del módulo"
@@ -186,7 +186,7 @@
 
         <div class="d-flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:settings"
             [outlined]="true"
             severity="secondary"
@@ -195,7 +195,7 @@
             (clicked)="onManageRules()"
           />
           } @if (sharedS.allMonths()) {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:close"
             label="Ninguno"
             ngbTooltip="Ningún mes"
@@ -204,7 +204,7 @@
             severity="info"
           />
           } @else {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:check"
             label="Todos"
             ngbTooltip="Todos los meses"
@@ -213,7 +213,7 @@
             severity="info"
           />
           } @if (activeTabValue() === 'presupuesto') {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:search"
             label="Full"
             ngbTooltip="Ver todo!!"
@@ -221,7 +221,7 @@
             variant="outline"
             severity="info"
           />
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:auto-awesome-motion"
             label="IA"
             ngbTooltip="Analizar con IA"
@@ -230,7 +230,7 @@
             (clicked)="analyzeFinancialData()"
           />
           } @if (sharedS.budgetData()) {
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:table-view"
             label="Excel"
             ngbTooltip="Descargar reporte Excel con indicadores"

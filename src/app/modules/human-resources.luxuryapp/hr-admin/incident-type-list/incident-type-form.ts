@@ -35,8 +35,7 @@ import { IncidentTypeFormGroup } from "./interfaces/incident-type-form.interface
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class IncidentTypeForm implements OnInit {
   apiS = inject(ApiResponseService);

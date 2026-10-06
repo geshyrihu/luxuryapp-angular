@@ -11,8 +11,7 @@ describe('ElevenLabsService', () => {
       providers: [
         ElevenLabsService,
         { provide: ApiResponseService, useValue: {} },
-        { provide: ElevenLabsSettingsService, useValue: { getSettings: vi.fn(), loadFromServer: vi.fn(), saveSettings: vi.fn() } },
-      ],
+        { provide: ElevenLabsSettingsService, useValue: { getSettings: vi.fn(), loadFromServer: vi.fn(), saveSettings: vi.fn() } }],
     });
     service = TestBed.inject(ElevenLabsService);
   });

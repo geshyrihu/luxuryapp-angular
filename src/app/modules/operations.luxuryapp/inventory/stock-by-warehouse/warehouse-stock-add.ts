@@ -30,11 +30,7 @@ import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto"
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;
@@ -47,7 +43,7 @@ interface IWarehouseStockRowForm {
 }
 
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { ButtonWeb } from "@ui/buttons/web";
 
@@ -57,12 +53,9 @@ import { ButtonWeb } from "@ui/buttons/web";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     AppTable,
 
     AppSortableColumn,
-
-    AppSorticon,
     CustomInputSelectSignal,
     TableFooter,
     CustomInputNumberSignal,

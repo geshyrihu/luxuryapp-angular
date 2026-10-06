@@ -9,8 +9,7 @@ describe('FiltroCalendarService', () => {
     TestBed.configureTestingModule({
       providers: [
         FiltroCalendarService,
-        { provide: DateService, useValue: {} },
-      ],
+        { provide: DateService, useValue: {} }],
     });
     service = TestBed.inject(FiltroCalendarService);
   });

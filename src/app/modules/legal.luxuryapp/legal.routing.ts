@@ -18,6 +18,5 @@ export const legalRoutes: Routes = [
       title: "Empleados y Contratos",
       breadcrumb: "Empleados y Contratos",
     },
-  },
-];
+  }];
 

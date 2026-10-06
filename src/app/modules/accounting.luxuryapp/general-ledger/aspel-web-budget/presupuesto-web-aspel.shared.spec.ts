@@ -65,8 +65,7 @@ describe("presupuesto-web-aspel.shared", () => {
       createAccount({ codigo_Cuenta: "6000-00-00-000" }),
       createAccount({ codigo_Cuenta: "6000-01-00-000" }),
       createAccount({ codigo_Cuenta: "6000-01-01-000" }),
-      createAccount({ codigo_Cuenta: "6000-01-01-001" }),
-    ]);
+      createAccount({ codigo_Cuenta: "6000-01-01-001" })]);
 
     expect(result[0].esFilaAgrupadora).toBe(true);
     expect(result[0].nivel_Cuenta).toBe(1);
@@ -96,8 +95,7 @@ describe("presupuesto-web-aspel.shared", () => {
           Monto_Enero: 111759.33,
           Presup_Enero: 0,
           Acumulado_Anual: 699895.66,
-        },
-      ],
+        }],
       totalEneroMonto: 0,
       totalEneroPresupuesto: 0,
       totalFebreroMonto: 0,
@@ -176,16 +174,14 @@ describe("presupuesto-web-aspel.shared", () => {
         cuenta_Padre: "601-000-000",
         nivel_Cuenta: 2,
         esFilaAgrupadora: true,
-      }),
-    ];
+      })];
 
     const result = filterVisibleAccounts(cuentas);
 
     expect(result.map((x) => x.codigo_Cuenta)).toEqual([
       "600-000-000",
       "600-001-000",
-      "600-001-001",
-    ]);
+      "600-001-001"]);
   });
 
   it("splits maintenance, extraordinarias and proyectos and keeps 607 under presupuesto", () => {
@@ -209,8 +205,7 @@ describe("presupuesto-web-aspel.shared", () => {
         codigo_Cuenta: "607-001-001",
         descripcion_Cuenta: "Extra 2",
         cuenta_Padre: "607-001-000",
-      }),
-    ];
+      })];
 
     const rules: BudgetAccountRuleDataDTO[] = [
       {
@@ -218,21 +213,17 @@ describe("presupuesto-web-aspel.shared", () => {
         customerId: "customer",
         ruleType: 1,
         accountNumber: "600-999-999",
-      },
-    ];
+      }];
 
     const result = splitAspelAccounts(cuentas, "customer", rules);
 
     expect(result.mantenimiento.map((x) => x.codigo_Cuenta)).toEqual([
       "600-001-001",
-      "607-001-001",
-    ]);
+      "607-001-001"]);
     expect(result.extraordinarias.map((x) => x.codigo_Cuenta)).toEqual([
-      "605-001-001",
-    ]);
+      "605-001-001"]);
     expect(result.proyectos.map((x) => x.codigo_Cuenta)).toEqual([
-      "606-001-001",
-    ]);
+      "606-001-001"]);
   });
 
   it("gets month values and preserves the current monthly budget fallback behavior", () => {

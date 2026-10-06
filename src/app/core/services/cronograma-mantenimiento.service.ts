@@ -19,8 +19,7 @@ export class CronogramaMantenimientoService {
     {
       value: "sistemas",
       label: "Sistemas",
-    },
-  ];
+    }];
 }
 
 

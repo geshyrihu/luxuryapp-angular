@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +25,7 @@ import {
 
 @Component({
   selector: "app-espejo-aspel-full",
-  imports: [FormsModule,
+  imports: [ButtonWeb, FormsModule,
     AppTable,
     CustomInputSelectButton,
     LxSpinner,

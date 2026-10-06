@@ -24,8 +24,7 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputSwitch,
-     ButtonWeb,
-  ],
+     ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-generar-nomina.html",
 })

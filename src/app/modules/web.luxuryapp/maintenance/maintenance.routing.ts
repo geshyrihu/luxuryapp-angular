@@ -184,6 +184,5 @@ export const maintenanceRoutes: Routes = [
       title: "Inspección de Instalaciones",
       breadcrumb: "Inspección de Instalaciones",
     },
-  },
-];
+  }];
 

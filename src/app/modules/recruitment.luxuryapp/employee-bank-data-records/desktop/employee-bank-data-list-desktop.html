@@ -32,7 +32,7 @@
       <td class="no-print">
         <div class="d-flex justify-content-center">
           @if (!isReadOnly()) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="edit"
             ngbTooltip="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Registro Bancario' })"

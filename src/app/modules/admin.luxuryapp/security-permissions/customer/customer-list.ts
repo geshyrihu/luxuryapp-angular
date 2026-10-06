@@ -180,8 +180,7 @@ export class CustomerList implements OnInit {
       "Tlaxcala",
       "Veracruz",
       "Yucatán",
-      "Zacatecas",
-    ].map((label, index) => ({ value: index, label })),
+      "Zacatecas"].map((label, index) => ({ value: index, label })),
   );
 
   /** Obtiene el label del estado para un valor numérico. */

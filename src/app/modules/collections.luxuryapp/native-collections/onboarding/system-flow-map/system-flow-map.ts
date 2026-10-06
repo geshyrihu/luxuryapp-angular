@@ -28,8 +28,7 @@ export default class SystemFlowMap {
       tone: "sky",
       bullets: [
         "Cada propiedad concentra deuda, pagos y estado de cuenta",
-        "Puede tener indiviso, torre, departamento y estatus operativo",
-      ],
+        "Puede tener indiviso, torre, departamento y estatus operativo"],
     },
     {
       title: "Miembros y responsable",
@@ -38,8 +37,7 @@ export default class SystemFlowMap {
       tone: "sky",
       bullets: [
         "Se identifica un responsable financiero activo",
-        "El modulo usa esa relacion para cobranza y salida documental",
-      ],
+        "El modulo usa esa relacion para cobranza y salida documental"],
     },
     {
       title: "Configuracion",
@@ -48,10 +46,8 @@ export default class SystemFlowMap {
       tone: "sky",
       bullets: [
         "BillingConfig define el modo nativo",
-        "NotificationSettings activa email y push",
-      ],
-    },
-  ];
+        "NotificationSettings activa email y push"],
+    }];
 
   readonly generationNodes: FlowNode[] = [
     {
@@ -61,8 +57,7 @@ export default class SystemFlowMap {
       tone: "teal",
       bullets: [
         "Monto fijo o por indiviso",
-        "Base para generacion manual y automatica",
-      ],
+        "Base para generacion manual y automatica"],
     },
     {
       title: "Cargos emitidos",
@@ -71,8 +66,7 @@ export default class SystemFlowMap {
       tone: "teal",
       bullets: [
         "Cargo manual, recurrente, recargo, multa o ajuste",
-        "Cada cargo afecta saldo y vencimiento",
-      ],
+        "Cada cargo afecta saldo y vencimiento"],
     },
     {
       title: "Eventos especiales",
@@ -81,10 +75,8 @@ export default class SystemFlowMap {
       tone: "teal",
       bullets: [
         "Notas de credito, condonaciones, multas y ajustes",
-        "No borran historia, generan nuevos eventos",
-      ],
-    },
-  ];
+        "No borran historia, generan nuevos eventos"],
+    }];
 
   readonly engineNodes: FlowNode[] = [
     {
@@ -94,8 +86,7 @@ export default class SystemFlowMap {
       tone: "amber",
       bullets: [
         "Aplicacion FIFO a cargos pendientes",
-        "Excedente queda para conciliacion o aplicacion posterior",
-      ],
+        "Excedente queda para conciliacion o aplicacion posterior"],
     },
     {
       title: "Automatizaciones",
@@ -104,8 +95,7 @@ export default class SystemFlowMap {
       tone: "amber",
       bullets: [
         "Generacion de cargos, calculo de mora, avisos y escalamiento",
-        "La vision futura incluye reaccion por socket/signal ante cargos y abonos",
-      ],
+        "La vision futura incluye reaccion por socket/signal ante cargos y abonos"],
     },
     {
       title: "Aprobaciones y cierres",
@@ -114,10 +104,8 @@ export default class SystemFlowMap {
       tone: "amber",
       bullets: [
         "Maker-checker para operaciones sensibles",
-        "Cierre de periodo bloquea movimientos fuera de regla",
-      ],
-    },
-  ];
+        "Cierre de periodo bloquea movimientos fuera de regla"],
+    }];
 
   readonly outputNodes: FlowNode[] = [
     {
@@ -127,8 +115,7 @@ export default class SystemFlowMap {
       tone: "violet",
       bullets: [
         "Cada cargo, pago, reverso o ajuste genera entradas append-only",
-        "Desde aqui se proyecta el saldo real",
-      ],
+        "Desde aqui se proyecta el saldo real"],
     },
     {
       title: "Estado de cuenta y PDF",
@@ -137,8 +124,7 @@ export default class SystemFlowMap {
       tone: "violet",
       bullets: [
         "Consulta por fecha de corte",
-        "Preview, descarga y envio por email",
-      ],
+        "Preview, descarga y envio por email"],
     },
     {
       title: "Notificaciones y casos",
@@ -147,10 +133,8 @@ export default class SystemFlowMap {
       tone: "violet",
       bullets: [
         "Avisos de cobro, push, correo y escalamiento",
-        "Casos de cobranza cuando la mora madura",
-      ],
-    },
-  ];
+        "Casos de cobranza cuando la mora madura"],
+    }];
 
   readonly eventStream = [
     "Propiedad activa",
@@ -160,8 +144,7 @@ export default class SystemFlowMap {
     "Se recibe pago",
     "Se aplica a cargos",
     "Se recalcula saldo y aging",
-    "Se genera estado de cuenta",
-  ];
+    "Se genera estado de cuenta"];
 
   toneClass(tone: FlowNode["tone"]): string {
     return `tone-${tone}`;

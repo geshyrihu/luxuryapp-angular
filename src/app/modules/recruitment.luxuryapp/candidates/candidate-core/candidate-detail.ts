@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -28,7 +29,7 @@ import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dt
   templateUrl: "./candidate-detail.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     LxTabs,
     LxDivider,

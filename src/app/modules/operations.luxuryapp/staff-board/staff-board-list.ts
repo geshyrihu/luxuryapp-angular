@@ -34,11 +34,7 @@ import {
 } from "@ui/primitives/segmented-control/segmented-control";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ConfirmPresentationModal } from "./confirm-presentation-modal/confirm-presentation-modal";
 import { RecoveryGuideModal } from "./recovery-guide-modal/recovery-guide-modal";
 
@@ -67,8 +63,6 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     AppTable,
 
     AppSortableColumn,
-
-    AppSorticon,
     LxAvatar,
     LxTag,
     LuxTableCaption,

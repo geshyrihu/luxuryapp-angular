@@ -9,8 +9,7 @@ describe('PlatformService', () => {
     TestBed.configureTestingModule({
       providers: [
         PlatformService,
-        { provide: Platform, useValue: { is: vi.fn().mockReturnValue(false) } },
-      ],
+        { provide: Platform, useValue: { is: vi.fn().mockReturnValue(false) } }],
     });
     service = TestBed.inject(PlatformService);
   });

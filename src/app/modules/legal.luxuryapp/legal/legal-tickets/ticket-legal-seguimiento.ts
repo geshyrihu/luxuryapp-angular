@@ -39,8 +39,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     FormsModule,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TicketLegalSeguimiento implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
@@ -68,9 +67,7 @@ export class TicketLegalSeguimiento implements OnInit, OnDestroy {
       [
         Validators.required,
         Validators.maxLength(200),
-        Validators.minLength(10),
-      ],
-    ],
+        Validators.minLength(10)]],
   });
 
   constructor() {

@@ -65,8 +65,7 @@ describe('HeaderMobile', () => {
       providers: [
         { provide: Location, useValue: locationMock },
         { provide: NavigationService, useValue: navigationServiceMock },
-        { provide: Router, useValue: routerMock },
-      ],
+        { provide: Router, useValue: routerMock }],
     });
 
     fixture = TestBed.createComponent(HeaderMobile);

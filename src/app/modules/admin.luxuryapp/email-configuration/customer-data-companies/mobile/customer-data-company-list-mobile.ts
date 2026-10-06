@@ -25,8 +25,7 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     MobileActionMenu,
     CustomInputSelectSignal,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CustomerDataCompanyListMobile {
   data = input.required<CustomerDataCompanyDto[]>();

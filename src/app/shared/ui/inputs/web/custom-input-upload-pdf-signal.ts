@@ -26,7 +26,7 @@ import { FileUpload } from "@ui/web/file-upload/file-upload";
       />
       @if (pendingFiles.length) {
         <div class="d-flex justify-content-end mt-3">
-          <il-button label="Cargar PDFs" [loading]="uploading" (clicked)="uploadAll()" />
+          <lux-button-web label="Cargar PDFs" [loading]="uploading" (clicked)="uploadAll()" />
         </div>
       }
     </div>

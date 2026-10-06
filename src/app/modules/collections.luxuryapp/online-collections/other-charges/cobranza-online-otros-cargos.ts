@@ -33,8 +33,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     LuxTableCaption,
     TableEmptyMessage,
     DataViewMobile,
-    MobileListItem,
-  ],
+    MobileListItem],
   templateUrl: "./cobranza-online-otros-cargos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -81,8 +81,7 @@ export class PresupuestoAspelExcelService {
       { key: "acum",     width: 13 },
       { key: "pct",      width:  9 },
       { key: "preTotal", width: 13 },
-      { key: "rest",     width: 13 },
-    ];
+      { key: "rest",     width: 13 }];
 
     const lastCol = this.colLetter(NCOLS);
     const titleText =
@@ -105,8 +104,7 @@ export class PresupuestoAspelExcelService {
       if (cuenta.esFilaAgrupadora) {
         const row = ws.addRow([
           `${cuenta.codigo_Cuenta}  |  ${cuenta.descripcion_Cuenta}`,
-          ...Array(NCOLS - 1).fill(null),
-        ]);
+          ...Array(NCOLS - 1).fill(null)]);
         row.height = 20;
         ws.mergeCells(`A${row.number}:B${row.number}`);
         row.eachCell({ includeEmpty: true }, (cell) => {
@@ -132,8 +130,7 @@ export class PresupuestoAspelExcelService {
           cuenta.descripcion_Cuenta,
           preMen,
           ...ASPEL_MONTHS.map(m => getCuentaMonthValue(cuenta, m, "presup") || null),
-          null, null, null, null,
-        ]);
+          null, null, null, null]);
         presupRow.height = 13;
         presupRow.eachCell({ includeEmpty: true }, (cell, ci) => {
           cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: bgColor } };
@@ -157,8 +154,7 @@ export class PresupuestoAspelExcelService {
           acum || null,
           pct,
           preTotal || null,
-          rest,
-        ]);
+          rest]);
         gastoRow.height = 16;
         gastoRow.eachCell({ includeEmpty: true }, (cell, ci) => {
           cell.fill  = { type: "pattern", pattern: "solid", fgColor: { argb: bgColor } };
@@ -207,8 +203,7 @@ export class PresupuestoAspelExcelService {
       "PRESUP. MES:",
       tPreMen || null,
       ...ASPEL_MONTHS.map(m => leaves.reduce((s, c) => s + getCuentaMonthValue(c, m, "presup"), 0) || null),
-      tPreTotal || null, null, tPreTotal || null, null,
-    ]);
+      tPreTotal || null, null, tPreTotal || null, null]);
     presupTotalRow.height = 16;
     presupTotalRow.eachCell({ includeEmpty: true }, (cell, ci) => {
       cell.font  = { name: "Yu Gothic", size: 9, bold: true, color: { argb: "FF5F7FA5" } };
@@ -230,8 +225,7 @@ export class PresupuestoAspelExcelService {
       tAcum    || null,
       tPct,
       tPreTotal || null,
-      tRest || null,
-    ]);
+      tRest || null]);
     totalRow.height = 22;
     totalRow.eachCell({ includeEmpty: true }, (cell, ci) => {
       cell.font  = { name: "Yu Gothic", size: 10, bold: true, color: { argb: this.C.totalsFg } };
@@ -289,8 +283,7 @@ export class PresupuestoAspelExcelService {
     ws.columns = [
       { key: "cuenta", width: 48 },
       ...ASPEL_MONTHS.map(m => ({ key: m, width: 11 })),
-      { key: "acum", width: 13 },
-    ];
+      { key: "acum", width: 13 }];
 
     this.addTitleRow(ws, `GASTOS EXTRAORDINARIOS (605) é ${year}${empresa ? "  |  " + empresa.toUpperCase() : ""}`, lastCol, 1);
     this.addSubtitleRow(ws, lastCol, 2);
@@ -303,8 +296,7 @@ export class PresupuestoAspelExcelService {
       if (cuenta.esFilaAgrupadora) {
         const row = ws.addRow([
           `${cuenta.codigo_Cuenta}  |  ${cuenta.descripcion_Cuenta}`,
-          ...Array(NCOLS - 1).fill(null),
-        ]);
+          ...Array(NCOLS - 1).fill(null)]);
         row.height = 20;
         row.eachCell({ includeEmpty: true }, (cell) => {
           cell.font  = { name: "Yu Gothic", size: 9, bold: true, color: { argb: this.C.groupFg } };
@@ -318,8 +310,7 @@ export class PresupuestoAspelExcelService {
         const row  = ws.addRow([
           cuenta.descripcion_Cuenta,
           ...ASPEL_MONTHS.map(m => getCuentaMonthValue(cuenta, m, "monto") || null),
-          acum || null,
-        ]);
+          acum || null]);
         row.height = 16;
         const bgColor = evenIdx % 2 === 0 ? this.C.evenBg : "FFFFFFFF";
         row.eachCell({ includeEmpty: true }, (cell, ci) => {
@@ -341,8 +332,7 @@ export class PresupuestoAspelExcelService {
     const totalRow = ws.addRow([
       "TOTALES",
       ...ASPEL_MONTHS.map(m => leaves.reduce((s, c) => s + getCuentaMonthValue(c, m, "monto"), 0) || null),
-      leaves.reduce((s, c) => s + this.sumAll(c, "monto"), 0) || null,
-    ]);
+      leaves.reduce((s, c) => s + this.sumAll(c, "monto"), 0) || null]);
     totalRow.height = 22;
     totalRow.eachCell({ includeEmpty: true }, (cell, ci) => {
       cell.font  = { name: "Yu Gothic", size: 10, bold: true, color: { argb: this.C.totalsFg } };
@@ -375,8 +365,7 @@ export class PresupuestoAspelExcelService {
       { key: "b", width: 18 },
       { key: "c", width: 18 },
       { key: "d", width: 18 },
-      { key: "e", width: 13 },
-    ];
+      { key: "e", width: 13 }];
 
     // -- Cabecera --
     ws.addRow([`RESUMEN EJECUTIVO  |  EJERCICIO FISCAL ${year}`]);
@@ -399,8 +388,7 @@ export class PresupuestoAspelExcelService {
     const allLeaves = [
       ...cuentas.filter(c => !c.esFilaAgrupadora),
       ...extraordinarias.filter(c => !c.esFilaAgrupadora),
-      ...proyectos.filter(c => !c.esFilaAgrupadora),
-    ];
+      ...proyectos.filter(c => !c.esFilaAgrupadora)];
     const totalPresupuesto = allLeaves.reduce((s, c) => s + this.sumAll(c, "presup"), 0);
     const totalGasto       = allLeaves.reduce((s, c) => s + this.sumAll(c, "monto"), 0);
     const pctEjercido      = totalPresupuesto > 0 ? totalGasto / totalPresupuesto : 0;
@@ -412,8 +400,7 @@ export class PresupuestoAspelExcelService {
       ["Presupuesto Total Anual",    totalPresupuesto, "#,##0"],
       ["Gasto Total Ejercido",       totalGasto,       "#,##0"],
       ["% del Presupuesto Ejercido", pctEjercido,      "0.0%"],
-      ["Presupuesto Restante",       totalRestante,    "#,##0"],
-    ];
+      ["Presupuesto Restante",       totalRestante,    "#,##0"]];
 
     kpis.forEach(([label, value, fmt], idx) => {
       const row = ws.addRow([label, value]);
@@ -470,8 +457,7 @@ export class PresupuestoAspelExcelService {
           item.presup,
           item.gasto,
           item.excedido,
-          item.presup > 0 ? item.excedido / item.presup : null,
-        ]);
+          item.presup > 0 ? item.excedido / item.presup : null]);
         row.height = 16;
         const bg = idx % 2 === 1 ? this.C.evenBg : "FFFFFFFF";
         row.eachCell({ includeEmpty: true }, (cell, ci) => {
@@ -506,8 +492,7 @@ export class PresupuestoAspelExcelService {
         presup || null,
         gasto  || null,
         diff !== 0 ? diff : null,
-        pct,
-      ]);
+        pct]);
       row.height = 16;
       const bg = idx % 2 === 1 ? this.C.evenBg : "FFFFFFFF";
       row.eachCell({ includeEmpty: true }, (cell, ci) => {
@@ -537,8 +522,7 @@ export class PresupuestoAspelExcelService {
       totalPresupuesto || null,
       totalGasto       || null,
       totalRestante    || null,
-      pctEjercido      || null,
-    ]);
+      pctEjercido      || null]);
     totalMes.height = 22;
     totalMes.eachCell({ includeEmpty: true }, (cell, ci) => {
       cell.font  = { name: "Yu Gothic", size: 10, bold: true, color: { argb: this.C.totalsFg } };

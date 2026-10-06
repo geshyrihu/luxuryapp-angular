@@ -11,8 +11,7 @@ describe('superUsuarioGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AspRoleService, useValue: { hasRole: vi.fn() } },
-        { provide: Router, useValue: { navigate: vi.fn() } },
-      ],
+        { provide: Router, useValue: { navigate: vi.fn() } }],
     });
   });
 

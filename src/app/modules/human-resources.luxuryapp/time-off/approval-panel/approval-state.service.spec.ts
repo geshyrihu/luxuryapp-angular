@@ -27,8 +27,7 @@ describe('ApprovalStateService', () => {
         ApprovalStateService,
         { provide: ApiResponseService, useValue: mockApiResponseService },
         { provide: AuthService, useValue: mockAuthService },
-        { provide: CustomerIdService, useValue: mockCustomerIdService },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdService }],
     });
 
     service = TestBed.inject(ApprovalStateService);
@@ -46,8 +45,7 @@ describe('ApprovalStateService', () => {
 
   it('should call loadRequests and update state', async () => {
     mockApiResponseService.onGetList.mockResolvedValue([
-      { id: '1', requestDate: '2026-01-01' },
-    ]);
+      { id: '1', requestDate: '2026-01-01' }]);
 
     await service.loadRequests();
 

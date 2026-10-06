@@ -31,8 +31,7 @@ import { DocumentoPersonalizadoListaMobile } from "./mobile/documento-personaliz
   selector: "app-documento-personalizado-lista",
   imports: [
     DocumentoPersonalizadoListaDesktop,
-    DocumentoPersonalizadoListaMobile,
-  ],
+    DocumentoPersonalizadoListaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-lista.html",
 })

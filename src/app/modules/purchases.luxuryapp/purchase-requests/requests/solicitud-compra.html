@@ -28,7 +28,7 @@
 
       <div class="d-flex flex-wrap">
         @if (id && id !== "" && id !== "0") {
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:chat"
           label="Compartir WA"
           (clicked)="onSendWhatsApp()"
@@ -37,7 +37,7 @@
           class="me-2"
           size="small"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:mail-outline"
           label="Enviar Correo"
           (clicked)="onSendEmail()"
@@ -50,7 +50,7 @@
           [routerLink]="['/purchases/pdf-solicitud-compra', id]"
           class="no-underline me-2"
         >
-          <il-button
+          <lux-button-web
             iconClass="material-symbols-light:picture-as-pdf"
             label="Ver PDF"
             severity="danger"
@@ -58,7 +58,7 @@
             size="small"
           />
         </a>
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:table"
           label="Cuadro Comparativo"
           (clicked)="router.navigate(['/purchases/cuadro-comparativo', id])"
@@ -180,7 +180,7 @@
       <span class="text-sm fw-bold text-body-secondary text-uppercase"
         >Órdenes de Compra Relacionadas:</span
       >
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:link"
         label="Actualizar Referencias"
         (clicked)="onManageLinks()"

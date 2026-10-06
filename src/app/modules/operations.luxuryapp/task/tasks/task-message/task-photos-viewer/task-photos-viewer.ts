@@ -10,7 +10,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+
 import { TaskAdditionalImage } from "../../shared/interfaces/task-refactor.interface";
 
 export type TaskPhotosViewerMode = "before-after" | "additional";
@@ -19,7 +19,7 @@ export type TaskPhotosViewerMode = "before-after" | "additional";
   selector: "app-task-photos-viewer",
   templateUrl: "./task-photos-viewer.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxIcon, AppSpinner, LxImage],
+  imports: [LxIcon, LxImage],
   styles: [
     `
       .photos-label {

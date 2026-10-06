@@ -55,8 +55,7 @@ export class BibliotecaConsejoDirectivo implements OnInit {
       image: "assets/images/comite/concesion.jpg",
       routeParam: "well-concession",
       allowedCustomerIds: ["4"],
-    },
-  ];
+    }];
 
   ngOnInit(): void {
     this.filterCategoriesByCustomerId();

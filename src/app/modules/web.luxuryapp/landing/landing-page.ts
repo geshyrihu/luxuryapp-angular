@@ -68,15 +68,13 @@ export class LandingPage implements AfterViewInit {
       route: "/web/hr",
       gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)",
       accent: "#4338ca",
-    },
-  ];
+    }];
 
   stats = [
     { value: "15+", label: "Años de experiencia" },
     { value: "120+", label: "Residenciales administrados" },
     { value: "98%", label: "Satisfacción de clientes" },
-    { value: "50+", label: "Profesionales en equipo" },
-  ];
+    { value: "50+", label: "Profesionales en equipo" }];
 
   constructor(private elementRef: ElementRef) {}
 

@@ -662,5 +662,4 @@ export const pagesRoutes: Routes = [
       title: "Página No Encontrada",
       breadcrumb: "Error 404",
     },
-  },
-];
+  }];

@@ -27,7 +27,7 @@
         class="d-flex align-items-center flex-wrap gap-1 p-1 rounded bg-body-tertiary"
       >
         @for (item of filtroEquipos(); track item) {
-        <iw-button
+        <lux-button-web displayMode="icon"
           [lxTooltip]="'Ver ' + item.nombre"
           tooltipPosition="bottom"
           [iconClass]="item.icon"
@@ -38,7 +38,7 @@
         />
         }
       </div>
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:help"
         size="sm"
         variant="outline"
@@ -48,21 +48,21 @@
         (clicked)="help.emit()"
       />
       <div class="d-flex align-items-center flex-wrap gap-2">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:description"
           label="Reporte de órdenes"
           size="sm"
           (click)="report.emit()"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:table"
           label="Reporte por categoria"
           size="sm"
           (click)="reportTabla.emit()"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:precision-manufacturing"
           label="Reporte por equipo"
           size="sm"

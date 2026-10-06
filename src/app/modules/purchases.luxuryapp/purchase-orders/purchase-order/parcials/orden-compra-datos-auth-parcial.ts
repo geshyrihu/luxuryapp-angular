@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ LxIcon, LxMessage],
+  imports: [ButtonWeb,  LxIcon, LxMessage],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);

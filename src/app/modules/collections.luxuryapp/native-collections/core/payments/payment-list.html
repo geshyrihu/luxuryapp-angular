@@ -20,7 +20,7 @@
           [noMargin]="true"
           [noPadding]="true"
         />
-        <il-button
+        <lux-button-web
           label="Nota de Crédito"
           iconClass="material-symbols-light:credit-card"
           severity="secondary"
@@ -78,7 +78,7 @@
         </td>
         <td class="text-center">
           <div class="d-flex justify-content-center gap-1">
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:visibility-outline"
               severity="info"
               variant="outline"
@@ -100,7 +100,7 @@
             @if (item.status !== EPaymentStatus.Rechazado && item.status !==
             EPaymentStatus.Cancelado && item.status !==
             EPaymentStatus.Revertido) {
-            <iw-button
+            <lux-button-web displayMode="icon"
               iconClass="material-symbols-light:cancel"
               severity="warning"
               variant="outline"
@@ -151,7 +151,7 @@
       </div>
       <ili-action-menu slot="end">
         <ng-container actions>
-          <il-button
+          <lux-button-web
             label="Detalle"
             iconClass="material-symbols-light:visibility-outline"
             severity="info"
@@ -166,7 +166,7 @@
           @if (item.status !== EPaymentStatus.Rechazado && item.status !==
           EPaymentStatus.Cancelado && item.status !== EPaymentStatus.Revertido)
           {
-          <il-button
+          <lux-button-web
             label="Cancelar"
             iconClass="material-symbols-light:cancel"
             severity="warning"

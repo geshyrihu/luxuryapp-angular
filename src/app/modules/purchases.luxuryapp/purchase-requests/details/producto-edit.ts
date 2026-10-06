@@ -34,8 +34,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProductoEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

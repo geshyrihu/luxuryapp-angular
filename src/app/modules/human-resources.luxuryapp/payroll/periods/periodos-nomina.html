@@ -1,7 +1,7 @@
 <!-- Filtro de año -->
 <div class="d-flex gap-2 mb-3">
   @for (anio of aniosDisponibles; track anio) {
-  <il-button
+  <lux-button-web
     [label]="String(anio)"
     size="small"
     [variant]="anioFiltro() !== anio ? 'outline' : 'solid'"

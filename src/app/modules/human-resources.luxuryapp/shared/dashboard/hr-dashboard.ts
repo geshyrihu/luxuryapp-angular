@@ -32,8 +32,7 @@ interface HRModuleGroup {
         display: block;
         padding: 1.5rem;
       }
-    `,
-  ],
+    `],
 })
 export class HRDashboard {
   private router = inject(Router);
@@ -67,8 +66,7 @@ title: "Incidencias Disciplinarias",
             ApplicationRole.Administrador,
             ApplicationRole.Direccion,
             ApplicationRole.GerenteOperaciones,
-            ApplicationRole.GerenteAtencion,
-          ],
+            ApplicationRole.GerenteAtencion],
         },
         {
 title: "Dashboard de Incidencias",
@@ -81,8 +79,7 @@ title: "Dashboard de Incidencias",
           roles: [
             ApplicationRole.SuperUsuario,
             ApplicationRole.RecursosHumanos,
-            ApplicationRole.Direccion,
-          ],
+            ApplicationRole.Direccion],
         },
         {
 title: "Reportes de Incidencias",
@@ -94,8 +91,7 @@ title: "Reportes de Incidencias",
           bgColor: "#cffafe",
           roles: [
             ApplicationRole.SuperUsuario,
-            ApplicationRole.RecursosHumanos,
-          ],
+            ApplicationRole.RecursosHumanos],
         },
         {
 title: "Sanciones",
@@ -109,10 +105,8 @@ title: "Sanciones",
             ApplicationRole.SuperUsuario,
             ApplicationRole.RecursosHumanos,
             ApplicationRole.Administrador,
-            ApplicationRole.Direccion,
-          ],
-        },
-      ],
+            ApplicationRole.Direccion],
+        }],
     },
 
     // -------------------------------------------------------------
@@ -146,10 +140,8 @@ title: "Aprobaciones de Permisos",
             ApplicationRole.Administrador,
             ApplicationRole.GerenteOperaciones,
             ApplicationRole.GerenteAtencion,
-            ApplicationRole.Direccion,
-          ],
-        },
-      ],
+            ApplicationRole.Direccion],
+        }],
     },
 
     // -------------------------------------------------------------
@@ -210,8 +202,7 @@ title: "Registrar Vacaciones Pasadas",
           roles: [
             ApplicationRole.SuperUsuario,
             ApplicationRole.RecursosHumanos,
-            ApplicationRole.Administrador,
-          ],
+            ApplicationRole.Administrador],
         },
         {
 title: "Auditoría de Vacaciones",
@@ -223,8 +214,7 @@ title: "Auditoría de Vacaciones",
           bgColor: "#dbeafe",
           roles: [
             ApplicationRole.SuperUsuario,
-            ApplicationRole.RecursosHumanos,
-          ],
+            ApplicationRole.RecursosHumanos],
         },
         {
 title: "Administración de Balances",
@@ -235,8 +225,7 @@ title: "Administración de Balances",
           color: "#374151",
           bgColor: "#e5e7eb",
           roles: [ApplicationRole.SuperUsuario],
-        },
-      ],
+        }],
     },
 
     // -------------------------------------------------------------
@@ -257,8 +246,7 @@ title: "Contratos Laborales",
           roles: [
             ApplicationRole.SuperUsuario,
             ApplicationRole.RecursosHumanos,
-            ApplicationRole.Comite,
-          ],
+            ApplicationRole.Comite],
         },
         {
 title: "Machotes de Contratos",
@@ -270,8 +258,7 @@ title: "Machotes de Contratos",
           bgColor: "#d1fae5",
           roles: [
             ApplicationRole.SuperUsuario,
-            ApplicationRole.RecursosHumanos,
-          ],
+            ApplicationRole.RecursosHumanos],
         },
         {
 title: "Adendas a Contratos",
@@ -284,8 +271,7 @@ title: "Adendas a Contratos",
           roles: [
             ApplicationRole.SuperUsuario,
             ApplicationRole.RecursosHumanos,
-            ApplicationRole.Comite,
-          ],
+            ApplicationRole.Comite],
         },
         {
 title: "Machotes de Adendas",
@@ -297,10 +283,8 @@ title: "Machotes de Adendas",
           bgColor: "#ffedd5",
           roles: [
             ApplicationRole.SuperUsuario,
-            ApplicationRole.RecursosHumanos,
-          ],
-        },
-      ],
+            ApplicationRole.RecursosHumanos],
+        }],
     },
 
     // -------------------------------------------------------------
@@ -320,12 +304,9 @@ title: "Catálogos de RH",
           bgColor: "#e0e7ff",
           roles: [
             ApplicationRole.SuperUsuario,
-            ApplicationRole.RecursosHumanos,
-          ],
-        },
-      ],
-    },
-  ];
+            ApplicationRole.RecursosHumanos],
+        }],
+    }];
 
   getVisibleGroups(): HRModuleGroup[] {
     return this.allGroups

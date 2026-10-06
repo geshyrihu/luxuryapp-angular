@@ -9,8 +9,7 @@ describe('ModulePermissionService', () => {
     TestBed.configureTestingModule({
       providers: [
         ModulePermissionService,
-        { provide: CustomerIdService, useValue: {} },
-      ],
+        { provide: CustomerIdService, useValue: {} }],
     });
     service = TestBed.inject(ModulePermissionService);
   });

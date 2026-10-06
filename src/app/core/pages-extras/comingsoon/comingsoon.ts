@@ -9,8 +9,7 @@ import { map } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterModule,
-    Carousel,
-  ],
+    Carousel],
 })
 
 /**
@@ -21,8 +20,7 @@ export class Comingsoon implements OnInit {
   images: string[] = [
     "./assets/images/bg-1.jpg",
     "./assets/images/bg-2.jpg",
-    "./assets/images/bg-3.jpg",
-  ];
+    "./assets/images/bg-3.jpg"];
 
   constructor() {}
 

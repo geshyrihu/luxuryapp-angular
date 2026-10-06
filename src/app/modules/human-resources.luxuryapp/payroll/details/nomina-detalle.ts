@@ -62,8 +62,7 @@ export default class NominaDetalle {
       ),
       this.apiResponseS.onGetItem<NominaResumenDTO>(
         Endpoints.HR.Nomina.Encabezado.getResumenEjecutivo(nominaId),
-      ),
-    ]);
+      )]);
     this.encabezado.set(enc ?? null);
     this.data.set(det ?? []);
     this.resumen.set(res ?? null);

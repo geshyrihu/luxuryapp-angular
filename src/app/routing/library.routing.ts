@@ -201,5 +201,4 @@ export const libraryRoutes: Routes = [
       title: "Inventario de Iluminación", // Ajustado para mayor claridad
       breadcrumb: "Inventario de Iluminación",
     },
-  },
-];
+  }];

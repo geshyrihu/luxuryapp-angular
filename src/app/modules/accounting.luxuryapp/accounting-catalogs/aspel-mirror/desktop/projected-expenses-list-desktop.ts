@@ -26,8 +26,7 @@ import {
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class ProjectedExpensesListDesktop {
   data = input.required<any[]>();

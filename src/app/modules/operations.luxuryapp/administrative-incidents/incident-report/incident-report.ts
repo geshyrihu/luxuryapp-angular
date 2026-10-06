@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,7 +36,7 @@ interface IReportFilterForm {
   selector: "app-incident-report",
   templateUrl: "./incident-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     LxIcon,
     ReactiveFormsModule,
     CustomInputDateSignal,

@@ -30,8 +30,7 @@ import {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputDateSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-periodo-add.html",
 })

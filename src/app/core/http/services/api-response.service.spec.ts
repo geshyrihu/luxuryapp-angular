@@ -42,8 +42,7 @@ describe("ApiResponseService", () => {
             getFileFromFullUrl: vi.fn(),
           },
         },
-        { provide: LoaderService, useValue: { show: vi.fn(), hide: vi.fn() } },
-      ],
+        { provide: LoaderService, useValue: { show: vi.fn(), hide: vi.fn() } }],
     });
     service = TestBed.inject(ApiResponseService);
   });

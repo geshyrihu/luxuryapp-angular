@@ -21,8 +21,7 @@ describe('superUserGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AspRoleService, useValue: aspRoleMock },
-        { provide: Router, useValue: routerMock },
-      ],
+        { provide: Router, useValue: routerMock }],
     });
   });
 

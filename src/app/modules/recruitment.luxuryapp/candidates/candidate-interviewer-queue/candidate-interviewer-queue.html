@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="d-flex flex-wrap gap-2">
-      <il-button
+      <lux-button-web
         label="Actualizar"
         iconClass="material-symbols-light:refresh"
         severity="secondary"
@@ -51,35 +51,35 @@
 <div class="card p-3 mb-4">
   <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 g-4">
     <div class="d-flex flex-wrap gap-2">
-      <il-button
+      <lux-button-web
         label="Pendientes"
         iconClass="material-symbols-light:schedule"
         [severity]="mode() === 'pending' ? 'primary' : 'secondary'"
         [variant]="mode() === 'pending' ? 'solid' : 'outlined'"
         (clicked)="setMode('pending')"
       />
-      <il-button
+      <lux-button-web
         label="Historico"
         iconClass="material-symbols-light:history"
         [severity]="mode() === 'history' ? 'primary' : 'secondary'"
         [variant]="mode() === 'history' ? 'solid' : 'outlined'"
         (clicked)="setMode('history')"
       />
-      <il-button
+      <lux-button-web
         label="Vencidas"
         iconClass="material-symbols-light:error-outline"
         [severity]="mode() === 'overdue' ? 'danger' : 'secondary'"
         [variant]="mode() === 'overdue' ? 'solid' : 'outlined'"
         (clicked)="setMode('overdue')"
       />
-      <il-button
+      <lux-button-web
         label="Con feedback"
         iconClass="material-symbols-light:fact-check"
         [severity]="mode() === 'feedback' ? 'success' : 'secondary'"
         [variant]="mode() === 'feedback' ? 'solid' : 'outlined'"
         (clicked)="setMode('feedback')"
       />
-      <il-button
+      <lux-button-web
         label="Todo"
         iconClass="material-symbols-light:view-list"
         [severity]="mode() === 'all' ? 'info' : 'secondary'"
@@ -204,7 +204,7 @@
                   variant="outline"
                 />
                 
-                <il-button
+                <lux-button-web
                   label="Seguimiento"
                   iconClass="material-symbols-light:timeline"
                   severity="secondary"
@@ -291,7 +291,7 @@
           severity="danger"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           label="Ver seguimiento"
           iconClass="material-symbols-light:timeline"
           severity="secondary"
@@ -308,7 +308,7 @@
         </div>
         }
         <div class="d-flex flex-wrap gap-2">
-          <il-button
+          <lux-button-web
             label="Responder entrevista"
             iconClass="material-symbols-light:fact-check"
             severity="info"
@@ -317,7 +317,7 @@
             (clicked)="onFeedback(selectedCandidate()!)"
           />
           @if (selectedCandidate()?.canMarkNoShow) {
-          <il-button
+          <lux-button-web
             label="No asistio"
             iconClass="material-symbols-light:person-off"
             severity="warn"
@@ -325,7 +325,7 @@
           />
           }
           @if (selectedCandidate()?.canApprove) {
-          <il-button
+          <lux-button-web
             label="Aprobar"
             iconClass="material-symbols-light:check-circle-outline"
             severity="success"

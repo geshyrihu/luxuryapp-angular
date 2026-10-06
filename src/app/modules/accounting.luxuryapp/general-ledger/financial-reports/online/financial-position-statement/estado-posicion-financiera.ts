@@ -40,8 +40,7 @@ export class EstadoPosicionFinanciera {
     "Septiembre",
     "Octubre",
     "Noviembre",
-    "Diciembre",
-  ];
+    "Diciembre"];
 
   loading = signal<boolean>(false);
   data = signal<IEpfDTO | null>(null);

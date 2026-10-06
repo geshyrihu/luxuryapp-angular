@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +30,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
   selector: "app-inventory-engine-system",
   templateUrl: "./inventory-engine-system.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ CustomInputSelectSignal, LxTooltipDirective],
+  imports: [ButtonWeb,  CustomInputSelectSignal, LxTooltipDirective],
 })
 export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);

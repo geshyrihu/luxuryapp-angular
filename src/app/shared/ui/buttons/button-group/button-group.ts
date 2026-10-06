@@ -19,7 +19,7 @@ export interface ButtonGroupOption<T = string> {
   template: `
     <div class="d-flex flex-wrap gap-2" role="group">
       @for (opt of options(); track opt.value) {
-        <il-button
+        <lux-button-web
           [label]="opt.label"
           [iconClass]="opt.iconClass ?? ''"
           [severity]="value() === opt.value ? activeSeverity() : 'secondary'"

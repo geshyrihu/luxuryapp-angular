@@ -67,8 +67,7 @@ describe("NativeStatement", () => {
             joinNativeCollectionPropertyGroup: vi.fn().mockResolvedValue(undefined),
             leaveNativeCollectionPropertyGroup: vi.fn().mockResolvedValue(undefined),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NativeStatement);
@@ -78,14 +77,12 @@ describe("NativeStatement", () => {
 
   it("should load selectable properties for the active customer", async () => {
     apiResponseMock.onGetSelectItem.mockResolvedValue([
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
 
     await component.loadProperties();
 
     expect(component.properties()).toEqual([
-      { label: "Torre A / 101", value: "property-1" },
-    ]);
+      { label: "Torre A / 101", value: "property-1" }]);
   });
 
   it("should fetch statement for the selected property", async () => {

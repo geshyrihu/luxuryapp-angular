@@ -76,8 +76,7 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([
         imageFormDataInterceptor,
         offlineInterceptorFn,
-        jwtInterceptor,
-      ]),
+        jwtInterceptor]),
       withInterceptorsFromDi(),
       // withFetch(),
     ),
@@ -132,6 +131,5 @@ export const appConfig: ApplicationConfig = {
     }),
 
     // --- Configuración de Ionic (Hibrido) ---
-    provideIonicAngular({ mode: "ios" }),
-  ],
+    provideIonicAngular({ mode: "ios" })],
 };

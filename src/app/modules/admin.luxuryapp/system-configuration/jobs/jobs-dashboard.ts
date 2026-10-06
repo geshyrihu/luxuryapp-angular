@@ -38,8 +38,7 @@ import { environment } from "src/environments/environment";
           min-height: 38rem;
         }
       }
-    `,
-  ],
+    `],
 })
 export class JobsDashboard {
   private sanitizer = inject(DomSanitizer);

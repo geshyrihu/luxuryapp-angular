@@ -38,5 +38,4 @@ export const CONCEPTS_CATALOG: CobranzaConcepto[] = [
   { id: "023", name: "CONSUMO DE AGUA", label: "AGUA" },
   { id: "024", name: "CONSUMO ENERGIA ELECTRICA", label: "LUZ" },
   { id: "025", name: "DEPOSITO EN GARANTIA", label: "DEPÓSITO GARANTÍA" },
-  { id: "026", name: "CINE", label: "CINE" },
-];
+  { id: "026", name: "CINE", label: "CINE" }];

@@ -17,5 +17,4 @@ export const COBRANZA_ROUTES: Routes = [
   {
     path: "online",
     redirectTo: "aspel-online",
-  },
-];
+  }];

@@ -30,5 +30,4 @@ export interface ConfiguracionNominaUpdateDTO {
 export const FRECUENCIA_PAGO_OPTIONS = [
   { label: "Quincenal", value: 0 },
   { label: "Semanal",   value: 1 },
-  { label: "Mensual",   value: 2 },
-];
+  { label: "Mensual",   value: 2 }];

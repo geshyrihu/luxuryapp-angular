@@ -65,8 +65,7 @@ export class ApprovalStateService {
           Endpoints.HR.VacationRequestApproval.getAll,
           params,
           "Vacaciones",
-        ),
-      ]);
+        )]);
 
       const combined = [...leaveRequests, ...vacationRequests].sort(
         (a, b) =>

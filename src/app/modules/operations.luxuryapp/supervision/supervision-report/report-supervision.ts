@@ -7,13 +7,13 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 @Component({
   selector: "app-report-supervision",
-  imports: [CommonModule, LxTag, AppSpinner],
+  imports: [CommonModule, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-supervision.html",
 })

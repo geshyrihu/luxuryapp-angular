@@ -34,8 +34,7 @@ import {
     CustomInputDateSignal,
     ButtonWeb,
     CurrencyPipe,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./issue-fine-charge-form.html",
 })

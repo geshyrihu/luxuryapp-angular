@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +15,7 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppSpinner } from "@ui/web/spinner/spinner";
+
 import { ITaskMessageDTO, ITaskResultDTO } from "../interfaces/task-message.dto";
 
 interface SummaryRow {
@@ -41,11 +42,10 @@ const MAX_PAGES = 10;
   selector: "app-task-summary-report",
   templateUrl: "./task-summary-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     ReactiveFormsModule,
     CustomInputDateSignal,
-    LxIcon,
-    AppSpinner],
+    LxIcon],
   styles: [
     `
       .summary-screen-table {

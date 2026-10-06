@@ -33,8 +33,7 @@ export interface AreaDireccion {
     ReclutamientoCard,
     PersonalAusenteCard,
     ContratosCard,
-    TareasLegalCard,
-  ],
+    TareasLegalCard],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home-direccion.html",
 })
@@ -88,8 +87,7 @@ export class HomeDireccion {
       iconPi: "material-symbols-light:build",
       color: "#8b5cf6",
       metricas: ["Pendiente 1", "Pendiente 2", "Pendiente 3"],
-    },
-  ];
+    }];
 
   constructor() {
     addIcons({

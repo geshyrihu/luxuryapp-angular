@@ -20,8 +20,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     LxIcon,
     DataViewMobile,
     MobileActionMenu,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class EmailDataListMobile {
   data = input.required<EmailDataFormDto[]>();

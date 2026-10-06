@@ -42,8 +42,7 @@ import {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-form.html",
 })
@@ -67,8 +66,7 @@ export class BudgetRuleForm implements OnInit {
   // Opciones para el selector de tipo
   ruleTypes = [
     { label: "Cuenta Extra (Inclusión)", value: 0 },
-    { label: "Exclusión (Ocultar)", value: 1 },
-  ];
+    { label: "Exclusión (Ocultar)", value: 1 }];
 
   initialData: any;
 

@@ -110,8 +110,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
         padding: 0.55rem 0.65rem;
         white-space: nowrap;
       }
-    `,
-  ],
+    `],
 })
 export class ProductDetailModalComponent {
   private readonly dialogConfig = inject(DynamicDialogConfig);

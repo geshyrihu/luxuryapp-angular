@@ -23,7 +23,7 @@
         <lux-table-caption [dt]="dt" [showAdd]="false" [noMargin]="true" />
       </div>
       <div class="d-flex flex-wrap gap-2 align-items-end pb-2">
-        <il-button
+        <lux-button-web
           (clicked)="onGoToMyPendingInterviews()"
           iconClass="material-symbols-light:calendar-clock"
           [label]="interviewerPendingCount() > 0 ? 'Entrevistas y seguimiento (' + interviewerPendingCount() + ')' : 'Entrevistas y seguimiento'"
@@ -32,7 +32,7 @@
         />
         @if (aspRoleS.hasAny([ AspRole.Administrador, AspRole.SuperUsuario,
         AspRole.Reclutamiento ])) {
-        <il-button
+        <lux-button-web
           (clicked)="onModalForm({ id: '', title: 'Nuevo Puesto de Trabajo' })"
           iconClass="material-symbols-light:work"
           label="Agregar Puesto"
@@ -40,21 +40,21 @@
           variant="outline"
         />
         }
-        <il-button
+        <lux-button-web
           (clicked)="onExportExcel()"
           iconClass="material-symbols-light:table-view"
           label="Exportar Excel"
           severity="info"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           (clicked)="onOpenInactivos()"
           iconClass="material-symbols-light:package"
           label="Inactivos"
           severity="info"
           variant="outline"
         />
-        <il-button
+        <lux-button-web
           (clicked)="onOrgChart()"
           iconClass="material-symbols-light:account-tree"
           label="Organigrama"
@@ -539,7 +539,7 @@
 >
   <!-- Tabs de selecciÃ³n -->
   <div class="d-flex mb-4">
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:apartment"
       [label]="'Puestos (' + inactivePositions().length + ')'"
       [severity]="inactivosTab() === 'positions' ? 'primary' : 'secondary'"
@@ -547,7 +547,7 @@
       size="small"
       (clicked)="inactivosTab.set('positions')"
     />
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:person"
       [label]="'Colaboradores (' + inactiveEmployees().length + ')'"
       [severity]="inactivosTab() === 'employees' ? 'primary' : 'secondary'"

@@ -73,14 +73,14 @@
 
               <!-- Action Icons Group -->
               <app-action-icons-group>
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:photo-camera"
                   severity="secondary"
                   variant="text"
                   size="sm"
                   (clicked)="openVision()"
                 />
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:auto-awesome-motion"
                   severity="help"
                   variant="text"
@@ -89,7 +89,7 @@
                 />
                 @if (aspRoleS.roleSignal(AspRole.SuperUsuario)()) {
                 <div class="border-left-1 border h-1rem mx-1"></div>
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:mail-outline"
                   severity="danger"
                   variant="text"

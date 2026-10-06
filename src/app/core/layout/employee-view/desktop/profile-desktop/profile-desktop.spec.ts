@@ -77,8 +77,7 @@ describe("Profiledesktop", () => {
         { provide: CustomerIdService, useValue: customerIdServiceMock },
         { provide: ProfielService, useValue: profielServiceMock },
         { provide: Router, useValue: routerMock },
-        { provide: ConsoleLoggerService, useValue: consoleLoggerServiceMock },
-      ],
+        { provide: ConsoleLoggerService, useValue: consoleLoggerServiceMock }],
     });
 
     fixture = TestBed.createComponent(Profiledesktop);

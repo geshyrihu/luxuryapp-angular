@@ -39,7 +39,7 @@
 
         <div class="field col-12 col-md-3 d-flex gap-2">
           @if (!currentPeriodClosed()) {
-          <il-button
+          <lux-button-web
             label="Cerrar Período"
             iconClass="material-symbols-light:lock"
             severity="warn"
@@ -116,7 +116,7 @@
         <td class="text-body-secondary">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <iw-button
+          <lux-button-web displayMode="icon"
             lxTooltip="Reabrir"
             tooltipPosition="top"
             iconClass="material-symbols-light:lock-open"
@@ -167,7 +167,7 @@
           }
         </div>
         @if (item.isClosed) {
-        <il-button
+        <lux-button-web
           end
           label="Reabrir"
           iconClass="material-symbols-light:lock-open"

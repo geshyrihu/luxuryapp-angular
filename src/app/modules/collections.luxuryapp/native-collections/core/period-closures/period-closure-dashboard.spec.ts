@@ -53,8 +53,7 @@ describe("PeriodClosureDashboard", () => {
           useValue: {
             scrollHeight: signal("400px"),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PeriodClosureDashboard);
@@ -72,8 +71,7 @@ describe("PeriodClosureDashboard", () => {
         closedBy: "Administrador Demo",
         closedAt: "2026-07-31T10:00:00",
         closureNotes: "Cierre mensual",
-      },
-    ]);
+      }]);
 
     await component.onLoadData("customer-1");
 
@@ -143,8 +141,7 @@ describe("PeriodClosureDashboard", () => {
         closedBy: "Administrador Demo",
         closedAt: "2026-07-31T10:00:00",
         closureNotes: "Cierre mensual",
-      },
-    ]);
+      }]);
 
     expect(component.monthName(7)).toBe("Julio");
     expect(component.currentPeriodClosed()).toBe(true);

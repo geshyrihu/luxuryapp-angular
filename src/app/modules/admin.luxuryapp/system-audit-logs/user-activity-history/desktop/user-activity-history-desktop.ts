@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,7 +24,7 @@ import {
   selector: "app-user-activity-history-desktop",
   templateUrl: "./user-activity-history-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,

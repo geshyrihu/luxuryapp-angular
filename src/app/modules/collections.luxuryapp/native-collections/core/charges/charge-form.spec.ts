@@ -35,8 +35,7 @@ describe("ChargeForm", () => {
             getDateFormat: (value: Date | null) =>
               value instanceof Date ? value.toISOString().slice(0, 10) : null,
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChargeForm);

@@ -28,7 +28,7 @@
           (searchChange)="searchTerm.set($event)"
         />
         @if (isAdmin()) {
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:add"
           label="Nuevo Manual"
           severity="primary"
@@ -175,7 +175,7 @@
                 variant="soft"
                 (clicked)="onModalForm({ id: manual.id })"
               />
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:settings"
                 label="Editor"
                 severity="primary"
@@ -189,7 +189,7 @@
                 (clicked)="onDelete(manual)"
               />
               }
-              <il-button
+              <lux-button-web
                 iconClass="material-symbols-light:description"
                 label="Ver"
                 severity="secondary"

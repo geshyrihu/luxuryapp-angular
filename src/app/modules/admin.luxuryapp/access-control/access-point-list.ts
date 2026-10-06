@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +28,7 @@ import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
   selector: "app-access-point-list",
   templateUrl: "./access-point-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     AppTable,
     CustomInputTextSignal,

@@ -47,8 +47,7 @@ export interface IGastoFijoDetalleForm {
     CustomInputSelectSignal,
     CustomInputCurrencySignal,
     CustomInputDecimal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GastoFijoDetalleEdit implements OnInit {

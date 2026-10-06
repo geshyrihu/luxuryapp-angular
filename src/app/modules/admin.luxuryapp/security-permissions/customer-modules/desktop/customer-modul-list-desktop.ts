@@ -28,8 +28,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     TableFooter,
     LuxTableCaption,
     ButtonWeb,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CustomerModulListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

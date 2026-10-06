@@ -1,7 +1,7 @@
 <!-- Vista Escritorio -->
 <div class="d-none d-md-flex w-full" role="group" aria-label="Estado">
   @for (item of cb_status; track item.value) {
-  <il-button
+  <lux-button-web
     [iconClass]="item.icon"
     [label]="item.label"
     [severity]="status === item.value ? getSeverityForStatus(item.value) : 'secondary'"
@@ -15,9 +15,9 @@
 
 <!-- Vista Móvil -->
 <div class="w-full d-md-none mb-2">
-  <ion-segment 
-    mode="ios" 
-    [value]="status" 
+  <ion-segment
+    mode="ios"
+    [value]="status"
     (ionChange)="onStatusChange($event.detail.value)"
     class="bg-bg-body-tertiary p-1"
     scrollable="true"

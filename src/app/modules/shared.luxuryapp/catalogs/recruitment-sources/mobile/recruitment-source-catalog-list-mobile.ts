@@ -20,7 +20,8 @@ import { RecruitmentSourceCatalogDTO } from "../interfaces/recruitment-source-ca
     ButtonMobile,
     MobileListItem,
     DataViewMobile,
-    AppIcon],
+    AppIcon,
+  ],
 })
 export class RecruitmentSourceCatalogListMobile {
   data = input.required<RecruitmentSourceCatalogDTO[]>();

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,7 +28,7 @@ import {
 
 @Component({
   selector: "app-report-viewer",
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     LxSpinner,
     CustomInputNumberSignal,

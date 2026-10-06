@@ -11,8 +11,7 @@ describe('AiKnowledgeBaseService', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        AiKnowledgeBaseService,
-      ],
+        AiKnowledgeBaseService],
     });
     service = TestBed.inject(AiKnowledgeBaseService);
   });

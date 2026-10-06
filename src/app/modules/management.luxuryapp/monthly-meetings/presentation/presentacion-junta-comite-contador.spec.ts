@@ -68,8 +68,7 @@ describe("PresentacionJuntaComiteContador", () => {
         },
         { provide: DateService, useValue: { parseDate: vi.fn() } },
         { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -57,7 +58,7 @@ interface IAddProductRow {
 @Component({
   selector: "app-product-modal-add",
   templateUrl: "./product-modal-add.html",
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,

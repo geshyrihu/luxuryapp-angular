@@ -53,14 +53,14 @@
   </div>
 
   <ng-template #footer>
-    <il-button
+    <lux-button-web
       label="Cancelar"
       iconClass="material-symbols-light:close"
       variant="text"
       [disabled]="consultingDoc()"
       (clicked)="showConsultationDialog.set(false)"
     />
-    <il-button
+    <lux-button-web
       label="Consultar"
       iconClass="material-symbols-light:search"
       [loading]="consultingDoc()"

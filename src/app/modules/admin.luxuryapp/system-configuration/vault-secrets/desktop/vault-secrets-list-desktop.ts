@@ -31,8 +31,7 @@ import { VaultSecretSummary } from "../interfaces/vault-secret.model";
     ButtonWeb,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class VaultSecretsListDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

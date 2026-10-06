@@ -27,7 +27,7 @@
 
         <!-- Grupo 1ra Quincena -->
 
-        <il-button
+        <lux-button-web
           (clicked)="selectByQuincena.emit(0)"
           label="Marcar 1ra Quincena"
           size="small"
@@ -36,7 +36,7 @@
           [iconClass]="isFirstQuincenaSelected() ?  'material-symbols-light:check' : 'material-symbols-light:close'"
         />
 
-        <il-button
+        <lux-button-web
           (clicked)="generateQuincena.emit(0)"
           label="Generar 1ra Quincena"
           iconClass="material-symbols-light:calendar-today"
@@ -47,7 +47,7 @@
 
         <!-- Grupo 2da Quincena -->
 
-        <il-button
+        <lux-button-web
           (clicked)="selectByQuincena.emit(1)"
           label="Marcar 2da Quincena"
           lxTooltip="Seleccionar ótems de 2da Quincena"
@@ -57,7 +57,7 @@
           [iconClass]="isSecondQuincenaSelected() ?'material-symbols-light:check' : 'material-symbols-light:close'"
         />
 
-        <il-button
+        <lux-button-web
           [label]="'Generar 2da Quincena'"
           (clicked)="generateQuincena.emit(1)"
           iconClass="material-symbols-light:calendar-today"
@@ -79,7 +79,7 @@
       <div class="d-flex flex-wrap gap-1 w-100 g-4">
         @for (month of fundingPeriodsByMonth(); track month.monthName) {
         <div class="p-1">
-          <il-button
+          <lux-button-web
             (clicked)="selectMonth.emit(month.monthName)"
             [label]="month.monthName | uppercase"
             [variant]="selectedMonthName() === month.monthName ? null : 'outlined'"
@@ -247,7 +247,7 @@
 
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-edit
+          <lux-button-web displayMode="icon"-edit
             [routerLink]="['/purchases/catalogo-gastos-fijos-form', item.id]"
           />
           <lux-button-web

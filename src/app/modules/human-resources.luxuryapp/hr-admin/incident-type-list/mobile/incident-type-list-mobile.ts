@@ -20,8 +20,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
     MobileListItem,
     MobileActionMenu,
     ButtonMobile,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class IncidentTypeListMobile {
   data = input.required<IncidentTypeListDTO[]>();

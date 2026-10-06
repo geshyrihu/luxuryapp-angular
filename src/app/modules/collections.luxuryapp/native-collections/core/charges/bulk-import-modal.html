@@ -9,7 +9,7 @@
     />
 
     <div class="d-flex justify-content-end mb-3">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:download"
         label="Descargar Plantilla CSV"
         variant="outline"
@@ -38,7 +38,7 @@
   </div>
 
   <div class="d-flex justify-content-end mt-4">
-    <il-button
+    <lux-button-web
       label="Cancelar"
       iconClass="material-symbols-light:close"
       variant="text"
@@ -46,7 +46,7 @@
       (clicked)="onClose()"
       [disabled]="isLoading"
     />
-    <il-button
+    <lux-button-web
       label="Importar Cargos"
       iconClass="material-symbols-light:check"
       [disabled]="!selectedFile"
@@ -114,7 +114,7 @@
     }
 
     <div class="d-flex justify-content-center mt-5">
-      <il-button
+      <lux-button-web
         label="Cerrar y Actualizar"
         iconClass="material-symbols-light:check"
         (clicked)="onClose()"

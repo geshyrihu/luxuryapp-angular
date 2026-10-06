@@ -50,8 +50,7 @@ export class PresupuestoContabilidadClienteComponent {
       "SEP",
       "OCT",
       "NOV",
-      "DIC",
-    ];
+      "DIC"];
     return `ACUMULADO ENE-${names[this.mes() - 1]}`;
   });
 

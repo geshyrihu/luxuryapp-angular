@@ -24,6 +24,5 @@ export class AspelCobranzaReglasNegocioComponent {
     },
     { id: "2", title: "3. Cargos Vencidos y Algoritmo de Conciliación (FIFO)" },
     { id: "3", title: "4. Saldos a Favor (Adelantos) y Movimientos Negativos" },
-    { id: "4", title: "5. Cuotas Extraordinarias, Recargos y Penalizaciones" },
-  ];
+    { id: "4", title: "5. Cuotas Extraordinarias, Recargos y Penalizaciones" }];
 }

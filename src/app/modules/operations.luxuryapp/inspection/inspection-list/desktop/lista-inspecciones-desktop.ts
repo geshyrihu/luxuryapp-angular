@@ -14,11 +14,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   InspectionListItem,
   InspectionSummary,
@@ -41,7 +37,6 @@ type InspectionTableRow = InspectionSummary & {
     CustomInputSelectSignal,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     TableEmptyMessage],
 })
 export class ListaInspeccionesDesktop {

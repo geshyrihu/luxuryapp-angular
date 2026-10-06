@@ -19,7 +19,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ButtonMobile,
     MobileListItem,
     DataViewMobile,
-    AppIcon],
+    AppIcon,
+  ],
 })
 export class PaymentTypeListMobile {
   data = input.required<any[]>();

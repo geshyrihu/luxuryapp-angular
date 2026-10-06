@@ -22,8 +22,7 @@ import { CommitteeMobil } from "./committee-mobile";
         height: 100%;
         width: 100%;
       }
-    `,
-  ],
+    `],
 })
 export class LayoutCommittee implements OnInit {
   public breakpointObserver = inject(BreakpointObserver);

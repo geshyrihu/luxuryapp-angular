@@ -34,8 +34,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     EAreaMinutasDetallesPipe,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class MeetingDetailForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -32,8 +32,7 @@ describe("BillingConfigModal", () => {
           useValue: {
             billingMode: () => of([{ label: "Nativa", value: 0 }]),
           },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BillingConfigModal);

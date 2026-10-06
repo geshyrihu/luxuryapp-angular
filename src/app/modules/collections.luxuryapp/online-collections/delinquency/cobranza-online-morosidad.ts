@@ -48,8 +48,7 @@ export class CobranzaOnlineMorosidad {
     const index = new Map<string, CobranzaOnlineAnalysisCondomino>();
     for (const item of [
       ...(source?.morosos ?? []),
-      ...(source?.cobranzaJudicial ?? []),
-    ]) {
+      ...(source?.cobranzaJudicial ?? [])]) {
       index.set(item.numeroCuenta, item);
     }
     return index;

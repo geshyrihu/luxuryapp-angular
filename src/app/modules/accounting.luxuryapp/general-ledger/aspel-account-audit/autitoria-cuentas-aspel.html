@@ -30,7 +30,7 @@
     />
 
     <div class="d-flex align-items-center gap-1">
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:chevron-left"
         variant="text"
         severity="secondary"
@@ -38,7 +38,7 @@
         (clicked)="filterS.year.set(filterS.year() - 1)"
       />
       <span class="fw-bold text-body px-1"> {{ filterS.year() }} </span>
-      <iw-button
+      <lux-button-web displayMode="icon"
         iconClass="material-symbols-light:chevron-right"
         variant="text"
         severity="secondary"
@@ -50,7 +50,7 @@
     @if (!loading() && rawData()) {
     <span class="border-left-1 border"></span>
 
-    <il-button
+    <lux-button-web
       [label]="soloParciales() ? 'Solo diferencias' : 'Mostrando todo'"
       size="small"
       [severity]="soloParciales() ? 'primary' : 'secondary'"

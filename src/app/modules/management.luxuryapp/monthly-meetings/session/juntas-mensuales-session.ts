@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -117,7 +118,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
   selector: "app-juntas-mensuales-session",
   templateUrl: "./juntas-mensuales-session.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb, 
     TableEmptyMessage,
     ApiDatePipe,
     RouterModule,

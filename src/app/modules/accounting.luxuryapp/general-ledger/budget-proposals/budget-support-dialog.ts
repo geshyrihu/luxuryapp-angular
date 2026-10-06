@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 /**
  * ============================================================================
@@ -37,7 +38,7 @@ import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budg
 import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-budget-support-dialog",
-  imports: [
+  imports: [ButtonWeb, 
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,

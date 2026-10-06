@@ -25,7 +25,7 @@
 <div class="mb-1 d-flex">
   @if (!isConfirmed() && inProgress()) {
 
-  <il-button
+  <lux-button-web
     label="PROCESAR FONDEO"
     iconClass="material-symbols-light:check-box"
     customClass="mr-1  border-2 border"
@@ -45,7 +45,7 @@
   />
   } @if (isConfirmed() && inProgress()) {
 
-  <il-button
+  <lux-button-web
     label="FINALIZAR FONDEO"
     iconClass="material-symbols-light:lock"
     customClass="mr-1  border-2 border"
@@ -54,7 +54,7 @@
   />
   } @if ( !inProgress()) {
 
-  <il-button
+  <lux-button-web
     label="REVERTIR FONDEO COMPLETADO"
     iconClass="material-symbols-light:warning"
     customClass="mr-1  border-2 border"
@@ -62,21 +62,21 @@
     (clicked)="onRevertComplete()"
   />
   } @if (isVerified() && isAuthorized()) {
-  <il-button
+  <lux-button-web
     iconClass="material-symbols-light:bar-chart"
     label="Excel"
     customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onDownloadFileExcel()"
   />
-  <il-button
+  <lux-button-web
     iconClass="material-symbols-light:book"
     label="Pdf"
     customClass="mr-1  border-2 border"
     size="small"
     (clicked)="onDownloadFilePdf()"
   />
-  <il-button
+  <lux-button-web
     [iconClass]="'material-symbols-light:upload'"
     label="Facturas"
     customClass="mr-1  border-2 border"

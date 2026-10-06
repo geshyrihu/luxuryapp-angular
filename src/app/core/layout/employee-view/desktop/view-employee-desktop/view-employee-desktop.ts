@@ -1,17 +1,17 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
   OnInit,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HidescrollnavService } from "@core/services/hidescrollnav.service";
 import { LayoutService } from "@core/services/layout.service";
 import { MenuService } from "@core/services/menu.service";
 import { RefreshService } from "@core/services/refresh.service";
+import { LxLoader } from "@ui/adaptive/loader/loader";
 import { HeaderEmployeedesktop } from "../header-employee-desktop/header-employee-desktop";
 import { Sidebar } from "../sidebar/sidebar";
 @Component({
@@ -66,4 +66,3 @@ export class ViewEmployeedesktop implements OnInit, AfterViewInit {
     this.footerDark = false;
   }
 }
-

@@ -24,7 +24,6 @@ export const fundingRoutes: Routes = [
       title: "Detalle",
       breadcrumb: "Detalle",
     },
-  },
-];
+  }];
 
 

@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, CurrencyPipe, UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -32,7 +33,7 @@ import {
 
 @Component({
   selector: "app-native-statement",
-  imports: [
+  imports: [ButtonWeb, 
     CommonModule,
     ReactiveFormsModule,
     AppTable,

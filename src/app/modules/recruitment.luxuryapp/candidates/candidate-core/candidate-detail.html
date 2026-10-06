@@ -73,7 +73,7 @@
       <lux-divider />
     </div>
     <div class="col-12 d-flex justify-content-end">
-      <il-button
+      <lux-button-web
         iconClass="material-symbols-light:person-add"
         label="Asignar vacante / entrevista"
         customClass="btn-outline btn-sm"
@@ -103,7 +103,7 @@
       <p class="text-sm m-0 text-blue-700">{{ app.cvFileName }}</p>
       } @if (isSelected(app.currentStage)) {
       <div class="d-flex justify-content-end">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:shopping-cart"
           label="Procesar alta"
           customClass="btn-sm btn-outline-success"
@@ -112,7 +112,7 @@
       </div>
       } @if (canManageHiringDocuments(app)) {
       <div class="d-flex justify-content-end">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:folder-open"
           label="Documentos de contratacion"
           customClass="btn-sm btn-outline"

@@ -65,7 +65,7 @@
       </div>
 
       <div class="d-flex align-items-center gap-2">
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:grid-view"
           label="Tablero"
           variant="outline"
@@ -73,7 +73,7 @@
           size="small"
           (clicked)="pendingBoard.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:article"
           label="Plan de trabajo"
           variant="outline"
@@ -81,7 +81,7 @@
           size="small"
           (clicked)="previewWorkPlan.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:visibility-outline"
           label="Vista previa"
           variant="outline"
@@ -89,7 +89,7 @@
           size="small"
           (clicked)="previewWeeklyReport.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:send"
           label="Enviar reporte"
           variant="outline"
@@ -97,7 +97,7 @@
           [disabled]="wekklyIsNullOrEmpty()"
           (clicked)="sendWeeklyReport.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:print"
           label="Imprimir pendientes"
           variant="outline"
@@ -105,7 +105,7 @@
           size="small"
           (clicked)="printReport.emit()"
         />
-        <il-button
+        <lux-button-web
           iconClass="material-symbols-light:summarize"
           label="Resumen copiable"
           variant="outline"
@@ -154,7 +154,7 @@
         </span>
 
         <!-- Ayuda de interacciones -->
-        <il-button
+        <lux-button-web
           label="?"
           variant="soft"
           size="small"
@@ -471,7 +471,7 @@
           } @if (!item.beforeWork && !item.afterWork) {
           <span class="text-xs text-body-secondary">—</span>
           }
-          <iw-button
+          <lux-button-web displayMode="icon"
             icon="material-symbols-light:photo-library"
             variant="soft"
             size="small"

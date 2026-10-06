@@ -29,7 +29,8 @@ import { RecruitmentSourceCatalogDTO } from "../interfaces/recruitment-source-ca
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class RecruitmentSourceCatalogListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

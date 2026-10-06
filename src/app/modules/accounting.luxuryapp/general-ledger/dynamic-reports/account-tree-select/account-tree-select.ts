@@ -137,8 +137,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
       .cursor-move {
         cursor: move;
       }
-    `,
-  ],
+    `],
 })
 export class AccountTreeSelect {
   private apiResponseS = inject(ApiResponseService);
@@ -185,8 +184,7 @@ export class AccountTreeSelect {
               typeof item.level === "number",
           )
           .map((item) => [item.code, item]),
-      ).values(),
-    ];
+      ).values()];
 
     const codes = selected
       .filter((item) => item.level > 0)

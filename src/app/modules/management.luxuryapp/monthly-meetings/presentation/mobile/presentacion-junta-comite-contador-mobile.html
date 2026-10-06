@@ -58,7 +58,7 @@
           >
             @if ( !item.archivoPortada &&
             aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])() ) {
-            <il-button
+            <lux-button-web
               label="Cargar archivo"
               iconClass="material-symbols-light:upload"
               size="sm"
@@ -108,7 +108,7 @@
           >
             @if ( !item.archivoContable && aspRoleS.anyOf([AspRole.Contador,
             AspRole.SuperUsuario])() ) {
-            <il-button
+            <lux-button-web
               label="Cargar archivo"
               iconClass="material-symbols-light:upload"
               size="sm"
@@ -160,7 +160,7 @@
           >
             @if ( !item.archivoJunta && aspRoleS.anyOf([AspRole.Administrador,
             AspRole.SuperUsuario])() ) {
-            <il-button
+            <lux-button-web
               label="Cargar archivo"
               iconClass="material-symbols-light:upload"
               size="sm"

@@ -12,8 +12,7 @@ describe('StorageService', () => {
         {
           provide: ConsoleLoggerService,
           useValue: { custom: vi.fn() },
-        },
-      ],
+        }],
     });
 
     service = TestBed.inject(StorageService);

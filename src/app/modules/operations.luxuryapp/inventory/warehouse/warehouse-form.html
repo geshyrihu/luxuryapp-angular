@@ -1,5 +1,5 @@
 <div class="card">
-  
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <!-- Campo: Nombre del almacén -->
       <custom-input-text-signal
@@ -69,7 +69,7 @@
                 @dropAnimation
               >
                 <span>{{ user.label }}</span>
-                <iw-button
+                <lux-button-web displayMode="icon"
                   iconClass="material-symbols-light:delete"
                   severity="danger"
                   variant="text"
@@ -95,7 +95,7 @@
         [loading]="submitting()"
       />
     </form>
-  
+
 </div>
 
 

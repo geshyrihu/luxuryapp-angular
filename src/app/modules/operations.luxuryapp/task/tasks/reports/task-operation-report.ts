@@ -25,14 +25,10 @@ import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-dat
 import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-actions/task-report-actions";
 import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { AppImage } from "@ui/web/image/image";
+
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { ButtonWeb } from "@ui/buttons/web";
@@ -64,11 +60,8 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
     AppSortableColumn,
 
-    AppSorticon,
-
     LuxTableCaption,
     LuxTableCaption,
-    AppImage,
     CustomInputSwitch,
     ReactiveFormsModule],
 })

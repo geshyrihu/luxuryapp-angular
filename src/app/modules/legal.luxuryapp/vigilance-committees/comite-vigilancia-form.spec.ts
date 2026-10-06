@@ -17,8 +17,7 @@ describe("ComiteVigilanciaForm", () => {
 
   const apiResponseStub = {
     onGetSelectItem: vi.fn().mockResolvedValue([
-      { label: "Depto 101", value: "member-1" },
-    ]),
+      { label: "Depto 101", value: "member-1" }]),
     onGetItem: vi.fn().mockResolvedValue({
       customerId: "customer-1",
       propertyMemberId: "member-1",
@@ -31,8 +30,7 @@ describe("ComiteVigilanciaForm", () => {
     typePosicionComite: vi.fn(() =>
       of([
         { label: "Presidente", value: 1 },
-        { label: "Secretario", value: 2 },
-      ]),
+        { label: "Secretario", value: 2 }]),
     ),
   };
 
@@ -47,8 +45,7 @@ describe("ComiteVigilanciaForm", () => {
         { provide: CustomerIdService, useValue: { customerId: vi.fn(() => "customer-1") } },
         { provide: EnumSelectService, useValue: enumSelectStub },
         { provide: DynamicDialogConfig, useValue: { data: { id: "", nameProperty: "" } } },
-        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-      ],
+        { provide: DynamicDialogRef, useValue: { close: vi.fn() } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ComiteVigilanciaForm);
@@ -66,12 +63,10 @@ describe("ComiteVigilanciaForm", () => {
 
     expect(apiResponseStub.onGetSelectItem).toHaveBeenCalledOnce();
     expect(component.cb_condomino()).toEqual([
-      { label: "Depto 101", value: "member-1" },
-    ]);
+      { label: "Depto 101", value: "member-1" }]);
     expect(component.cb_position()).toEqual([
       { label: "Presidente", value: 1 },
-      { label: "Secretario", value: 2 },
-    ]);
+      { label: "Secretario", value: 2 }]);
   });
 
   it("should patch typed edit data into the form", async () => {
@@ -154,8 +149,7 @@ describe("ComiteVigilanciaForm", () => {
 
   it("should match property member ids even with different casing", async () => {
     apiResponseStub.onGetSelectItem.mockResolvedValueOnce([
-      { label: "Depto 101", value: "019C6C05-E521-79EA-BF10-F6D37520D716" },
-    ]);
+      { label: "Depto 101", value: "019C6C05-E521-79EA-BF10-F6D37520D716" }]);
     apiResponseStub.onGetItem.mockResolvedValueOnce({
       customerId: "customer-1",
       propertyMemberId: "019c6c05-e521-79ea-bf10-f6d37520d716",
@@ -165,8 +159,7 @@ describe("ComiteVigilanciaForm", () => {
     enumSelectStub.typePosicionComite.mockReturnValueOnce(
       of([
         { label: "Presidente", value: 1 },
-        { label: "Tesorero", value: 2 },
-      ]),
+        { label: "Tesorero", value: 2 }]),
     );
 
     await component.onLoadSelectItems();

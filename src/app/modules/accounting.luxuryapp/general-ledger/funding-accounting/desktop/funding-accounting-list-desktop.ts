@@ -30,8 +30,7 @@ import {
     AppSorticon,
     TableEmptyMessage,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class FundingAccountingListDesktop {
   data = input.required<any[]>();

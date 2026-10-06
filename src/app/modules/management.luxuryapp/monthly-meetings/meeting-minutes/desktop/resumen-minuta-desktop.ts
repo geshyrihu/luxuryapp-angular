@@ -35,8 +35,7 @@ import {
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class ResumenMinutaDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

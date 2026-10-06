@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,31 +27,24 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { AppAvatar } from "@ui/web/avatar/avatar";
-import { AppImage } from "@ui/web/image/image";
+
+
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import {
-  AppSortableColumn,
-  AppSorticon,
-  AppTable,
-} from "src/app/shared/ui/web/lux-table/lux-table";
+import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskForm } from "../task-message/task-form";
 
 @Component({
   selector: "app-task-report-work-plan",
   templateUrl: "./task-report-work-plan.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
+  imports: [ButtonWeb,
     DataViewMobile,
     MobileListItem,
     LuxTableCaption,
     LxIcon,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-    AppImage,
-    AppAvatar,
     CustomInputSelectSignal,
     ReactiveFormsModule],
 })

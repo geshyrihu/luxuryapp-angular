@@ -23,8 +23,7 @@ import { CustomerDto } from "../interfaces/customer.dto";
     MobileActionMenu,
     MobileListItem,
     LxIcon,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class CustomerListMobile {
   data = input.required<CustomerDto[]>();

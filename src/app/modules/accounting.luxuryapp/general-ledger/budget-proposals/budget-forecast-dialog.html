@@ -91,20 +91,20 @@
     * Los montos sugeridos se redondearon a centenas.
   </div>
   <div>
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:close"
       (clicked)="close()"
       label="Cancelar"
       variant="text"
     />
-    <il-button
+    <lux-button-web
       iconClass="material-symbols-light:check"
       (clicked)="apply()"
       label="Aplicar {{selectedForecastItems().length}} Cambios"
       [disabled]="selectedForecastItems().length === 0"
       severity="success"
     >
-    </il-button>
+    </lux-button-web>
   </div>
 </div>
 }

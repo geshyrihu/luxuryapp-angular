@@ -49,8 +49,7 @@ interface IComiteVigilanciaForm {
     CustomInputTextSignal,
     CustomInputSelectSignal,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ComiteVigilanciaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -95,8 +94,7 @@ export class ComiteVigilanciaForm implements OnInit {
           this.customerIdS.customerId(),
         ),
       ),
-      firstValueFrom(this.enumSelectS.typePosicionComite()),
-    ]);
+      firstValueFrom(this.enumSelectS.typePosicionComite())]);
 
     this.cb_condomino.set(condominos as SelectItemDto[]);
     this.cb_position.set(positions);

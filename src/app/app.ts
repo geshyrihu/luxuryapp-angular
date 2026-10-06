@@ -51,13 +51,7 @@ import { ConsoleLoggerService } from "./core/services/console-logger.service";
 import { TitleService } from "./core/services/title.service";
 @Component({
   selector: "app-root",
-  imports: [
-    RouterOutlet,
-    LxScrollTop,
-    AppToast,
-    // WhatsNew,
-    // AiChatWidget,
-  ],
+  imports: [ RouterOutlet, LxScrollTop, AppToast ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./app.html",
 })

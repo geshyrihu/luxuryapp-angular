@@ -31,7 +31,7 @@
         noMargin
       />
       <div class="d-flex gap-2">
-        <il-button
+        <lux-button-web
           label="Filtrar"
           iconClass="material-symbols-light:filter"
           severity="primary"
@@ -39,7 +39,7 @@
           [fluid]="true"
           (clicked)="applyFilters.emit()"
         />
-        <il-button
+        <lux-button-web
           label="Limpiar"
           iconClass="material-symbols-light:close"
           severity="secondary"
@@ -88,14 +88,14 @@
         <lux-tag [value]="item.tipoAnomalia ?? 'Anomalía'" severity="danger" />
         @if (item.estadoAnomalia === 'Pendiente de revisión') {
         <div class="d-flex gap-1">
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:check"
             severity="success"
             size="small"
             variant="text"
             (clicked)="approve.emit(item)"
           />
-          <iw-button
+          <lux-button-web displayMode="icon"
             iconClass="material-symbols-light:close"
             severity="danger"
             size="small"

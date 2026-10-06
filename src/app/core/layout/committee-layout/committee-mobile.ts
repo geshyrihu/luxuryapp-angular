@@ -35,8 +35,7 @@ import { ProfileCommitteedesktop } from "./desktop/profile";
     IonToolbar,
     IonButtons,
     IonButton,
-    LxLoader,
-  ],
+    LxLoader],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-mobile.html",
 })

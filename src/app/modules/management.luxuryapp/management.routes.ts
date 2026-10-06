@@ -97,5 +97,4 @@ export const managementRoutes: Routes = [
       title: "Seguimiento de Minutas",
       breadcrumb: "Seguimiento de Minutas",
     },
-  },
-];
+  }];

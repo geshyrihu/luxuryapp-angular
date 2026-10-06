@@ -1,3 +1,4 @@
+import { ButtonWeb } from "@ui/buttons/web";
 import { UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -27,7 +28,7 @@ import {
   selector: "app-catalogo-gastos-fijos-list-desktop",
   templateUrl: "./catalogo-gastos-fijos-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
+  imports: [ButtonWeb, 
     UpperCasePipe,
     FormsModule,
     RouterModule,
