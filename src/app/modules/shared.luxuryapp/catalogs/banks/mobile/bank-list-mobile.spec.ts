@@ -12,16 +12,14 @@ describe('BankListMobile', () => {
   const mockBanks: BankDto[] = [
     { id: '1', code: 'BOA', shortName: 'Bank of America', largeName: 'The Bank of America Corporation' },
     { id: '2', code: 'JPM', shortName: 'JP Morgan', largeName: 'JPMorgan Chase & Co' },
-    { id: '3', code: 'WF', shortName: 'Wells Fargo', largeName: 'Wells Fargo & Company' },
-  ];
+    { id: '3', code: 'WF', shortName: 'Wells Fargo', largeName: 'Wells Fargo & Company' }];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BankListMobile],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BankListMobile);

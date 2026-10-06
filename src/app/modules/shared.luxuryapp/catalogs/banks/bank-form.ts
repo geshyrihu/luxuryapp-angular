@@ -68,8 +68,7 @@ export class BankForm implements OnInit {
         validators: [
           Validators.required,
           Validators.minLength(4),
-          Validators.maxLength(15),
-        ],
+          Validators.maxLength(15)],
       }),
       largeName: new FormControl("", {
         nonNullable: true,

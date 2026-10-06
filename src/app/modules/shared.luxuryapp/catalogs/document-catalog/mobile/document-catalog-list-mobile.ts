@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -19,11 +18,9 @@ import { DocumentCatalogDto } from "../interfaces/document-catalog.dto";
   imports: [
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelEdit,
     MobileListItem,
     DataViewMobile,
-    AppIcon,
-  ],
+    AppIcon],
 })
 export class DocumentCatalogListMobile {
   data = input.required<DocumentCatalogDto[]>();

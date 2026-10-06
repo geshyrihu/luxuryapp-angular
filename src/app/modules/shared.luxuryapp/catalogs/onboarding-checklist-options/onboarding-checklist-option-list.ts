@@ -23,8 +23,7 @@ import { OnboardingChecklistOptionForm } from "./onboarding-checklist-option-for
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     OnboardingChecklistOptionListDesktop,
-    OnboardingChecklistOptionListMobile,
-  ],
+    OnboardingChecklistOptionListMobile],
 })
 export class OnboardingChecklistOptionList implements OnInit {
   readonly dialogHandlerS = inject(DialogHandlerService);

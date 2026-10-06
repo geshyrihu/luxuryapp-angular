@@ -24,8 +24,7 @@ describe('CfdiUseList', () => {
         { provide: ModalController, useValue: {} },
         { provide: NgbModal, useValue: {} },
         { provide: PlatformService, useValue: { isMobile: () => false } },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     });
     TestBed.overrideComponent(CfdiUseList, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();

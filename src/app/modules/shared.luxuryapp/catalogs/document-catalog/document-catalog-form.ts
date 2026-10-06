@@ -35,8 +35,7 @@ import { DocumentCatalogFormGroup } from "./interfaces/document-catalog-form.int
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class DocumentCatalogForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

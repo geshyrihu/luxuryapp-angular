@@ -42,8 +42,7 @@ describe("BankList", () => {
         { provide: Platform, useValue: { is: vi.fn().mockReturnValue(false) } },
         { provide: ModalController, useValue: { create: vi.fn(), dismiss: vi.fn() } },
         { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
-        TableScrollHeightService,
-      ],
+        TableScrollHeightService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BankList);
@@ -60,8 +59,7 @@ describe("BankList", () => {
 
   it("should load data on init", async () => {
     const banks = [
-      { id: "1", code: "BOA", shortName: "Bank", largeName: "Bank Corp" },
-    ];
+      { id: "1", code: "BOA", shortName: "Bank", largeName: "Bank Corp" }];
     const onGetListSpy = vi
       .spyOn(component.apiResponseS, "onGetList")
       .mockResolvedValue(banks);
@@ -78,14 +76,12 @@ describe("BankList", () => {
     vi.spyOn(component.apiResponseS, "onDelete").mockResolvedValue(true);
     component.dataSignal.set([
       { id: "1", code: "BOA", shortName: "Bank A", largeName: "Bank A SA" },
-      { id: "2", code: "JPM", shortName: "Bank B", largeName: "Bank B SA" },
-    ]);
+      { id: "2", code: "JPM", shortName: "Bank B", largeName: "Bank B SA" }]);
 
     await component.onDelete("1");
 
     expect(component.dataSignal()).toEqual([
-      { id: "2", code: "JPM", shortName: "Bank B", largeName: "Bank B SA" },
-    ]);
+      { id: "2", code: "JPM", shortName: "Bank B", largeName: "Bank B SA" }]);
   });
 
   it("should reload data after modal returns success", async () => {

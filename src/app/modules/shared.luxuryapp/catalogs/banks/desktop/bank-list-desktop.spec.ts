@@ -10,16 +10,14 @@ describe('BankListDesktop', () => {
 
   const mockBanks: BankDto[] = [
     { id: '1', code: 'BOA', shortName: 'Bank of America', largeName: 'The Bank of America Corporation' },
-    { id: '2', code: 'JPM', shortName: 'JP Morgan', largeName: 'JPMorgan Chase & Co' },
-  ];
+    { id: '2', code: 'JPM', shortName: 'JP Morgan', largeName: 'JPMorgan Chase & Co' }];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BankListDesktop],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide: TableScrollHeightService, useValue: { scrollHeight: () => '400px' } },
-      ],
+        { provide: TableScrollHeightService, useValue: { scrollHeight: () => '400px' } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BankListDesktop);

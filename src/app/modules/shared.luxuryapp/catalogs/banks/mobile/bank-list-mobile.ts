@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileButtonLabelEdit } from "@ui/buttons/mobile-label/button-edit";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -23,10 +22,8 @@ import { BankDto } from "../interfaces/banks.dto";
   imports: [
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelEdit,
     MobileListItem,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class BankListMobile {
   data = input.required<BankDto[]>();

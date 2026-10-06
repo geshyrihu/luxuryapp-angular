@@ -30,8 +30,7 @@ import { RecruitmentSourceCatalogFormGroup } from "./interfaces/recruitment-sour
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class RecruitmentSourceCatalogForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

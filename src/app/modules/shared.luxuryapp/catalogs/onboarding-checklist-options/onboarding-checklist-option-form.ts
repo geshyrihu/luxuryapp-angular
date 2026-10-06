@@ -42,8 +42,7 @@ import {
     CustomInputTextAreaSignal,
     CustomInputNumberSignal,
     CustomInputMultiselectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class OnboardingChecklistOptionForm implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
