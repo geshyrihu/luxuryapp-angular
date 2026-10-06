@@ -83,7 +83,7 @@
       <td>{{ legalMatter.isInternal ? "Interno" : "Externo" }}</td>
       <!-- Opciones -->
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <lux-button-web
               kind="edit"
@@ -98,7 +98,7 @@
               (clicked)="delete.emit(legalMatter.id)"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       <!-- Opciones -->
     </tr>

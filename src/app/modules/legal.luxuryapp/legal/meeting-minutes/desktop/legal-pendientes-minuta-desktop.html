@@ -28,23 +28,23 @@
     <tr>
       <th appSortableColumn="code">
         FOLIO
-        <app-sorticon field="code" />
+        <lux-sorticon-web field="code" />
       </th>
       <th appSortableColumn="cliente">
         CLIENTE
-        <app-sorticon field="cliente" />
+        <lux-sorticon-web field="cliente" />
       </th>
       <th appSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <app-sorticon field="fechaSolicitudFiltro" />
+        <lux-sorticon-web field="fechaSolicitudFiltro" />
       </th>
       <th appSortableColumn="pendiente">
         SEGUIMIENTO
-        <app-sorticon field="pendiente" />
+        <lux-sorticon-web field="pendiente" />
       </th>
       <th appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th>OP</th>
     </tr>
@@ -90,7 +90,7 @@
       </td>
 
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <lux-button-web
               kind="item"
@@ -114,7 +114,7 @@
               (clicked)="editMinuta.emit(item.id)"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       <!-- Opciones -->
     </tr>

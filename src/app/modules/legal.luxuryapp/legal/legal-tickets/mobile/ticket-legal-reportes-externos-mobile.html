@@ -9,7 +9,7 @@
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
           class="w-3rem h-3rem bg-primary-50"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:confirmation-number"
             class="text-xl text-primary"
           />
@@ -46,7 +46,7 @@
 } @if (requestsAttended().length > 0) {
 <div class="card mb-4">
   <h5 class="p-3 m-0 text-center">
-    <app-icon icon="material-symbols-light:check-circle" class="me-2" />
+    <lux-icon icon="material-symbols-light:check-circle" class="me-2" />
     SOLICITUDES ATENDIDAS
   </h5>
   <app-data-view-mobile [data]="requestsAttended()" [showAdd]="false">
@@ -56,7 +56,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:check" />
+          <lux-icon icon="material-symbols-light:check" />
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
@@ -70,7 +70,7 @@
 } @if (requestsPending().length > 0) {
 <div class="card mb-4">
   <h5 class="p-3 m-0 text-center">
-    <app-icon icon="material-symbols-light:warning" class="me-2" />
+    <lux-icon icon="material-symbols-light:warning" class="me-2" />
     SOLICITUDES PENDIENTES
   </h5>
   <app-data-view-mobile [data]="requestsPending()" [showAdd]="false">
@@ -80,7 +80,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:confirmation-number" />
+          <lux-icon icon="material-symbols-light:confirmation-number" />
         </div>
 
         <div class="d-flex justify-content-between align-items-center">

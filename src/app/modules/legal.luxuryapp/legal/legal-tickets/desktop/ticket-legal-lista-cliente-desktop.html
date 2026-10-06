@@ -38,7 +38,7 @@
       <td>{{ item.title }}</td>
       <td class="text-center">
         @if (item.description && item.description.length > 0) {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:book'"
           class="icon-xl cursor-pointer"
           (click)="viewDetail.emit({ id: item.id })"

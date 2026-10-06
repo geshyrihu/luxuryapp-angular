@@ -61,17 +61,17 @@
       <th class="table-col-8">FOLIO</th>
       <th class="table-col-12" appSortableColumn="requestDate">
         FECHA SOLICITUD
-        <app-sorticon field="requestDate" />
+        <lux-sorticon-web field="requestDate" />
       </th>
       <th class="table-col-8" appSortableColumn="customer">
         CLIENTE
-        <app-sorticon field="customer" />
+        <lux-sorticon-web field="customer" />
       </th>
       <th class="table-col-30">ASUNTO</th>
       <th class="table-col-12">RESPONSABLE</th>
       <th class="table-col-10" appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th class="table-col-10">FECHA CONCLUSIÓN</th>
       <th class="table-col-3">DÍAS</th>
@@ -91,7 +91,7 @@
             class="p-link text-primary ms-2"
             lxTooltip="Corregir Cliente"
           >
-            <app-icon icon="material-symbols-light:edit-square" />
+            <lux-icon icon="material-symbols-light:edit-square" />
           </button>
         </div>
       </td>
@@ -101,7 +101,7 @@
         <span>{{ item.description }}</span>
       </td>
       <td>
-        <app-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
+        <lux-icon [icon]="'material-symbols-light:person'" class="me-2" />{{
         item.assignee }}
       </td>
       <td class="text-center">
