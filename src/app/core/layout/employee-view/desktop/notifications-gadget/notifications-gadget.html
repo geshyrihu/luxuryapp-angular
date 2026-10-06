@@ -49,8 +49,16 @@
               <p class="mb-1 text-sm" [class.fw-bold]="!notification.isRead" [class.fw-medium]="notification.isRead">{{ notification.title }}</p>
               <p class="mb-0 text-xs text-muted">{{ notification.message }}</p>
             </div>
-            <div class="flex-shrink-0" (click)="$event.stopPropagation(); deleteNotification(notification.id)">
-              <lux-button-web displayMode="icon"-delete tooltip="Eliminar notificación" />
+            <div class="flex-shrink-0" (click)="$event.stopPropagation(); onDeleteNotification(notification.id)">
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Eliminar notificación"
+                ariaLabel="Eliminar notificación"
+              />
             </div>
           </div>
         </a>

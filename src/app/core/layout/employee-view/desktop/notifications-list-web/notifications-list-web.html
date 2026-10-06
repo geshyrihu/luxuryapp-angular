@@ -10,10 +10,16 @@
             [checked]="allSelected()"
             (checkedChange)="toggleSelectAll()"
           />
-          <lux-button-web displayMode="icon"-delete
-            lxTooltip="Eliminar seleccionadas"
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar seleccionadas"
+            ariaLabel="Eliminar notificaciones seleccionadas"
             [disabled]="selectedIds().size === 0"
-            (confirmed)="deleteSelected()"
+            (clicked)="onDeleteSelected()"
           />
           }
           <lux-button-web
@@ -79,10 +85,16 @@
             @if (!selectionMode() && !notification.isRead) {
             <lux-badge-web color="danger" />
             } @if (!selectionMode()) {
-            <lux-button-web displayMode="icon"-delete
-              lxTooltip="Eliminar notificacion"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar notificación"
+              ariaLabel="Eliminar notificación"
               (click)="$event.stopPropagation()"
-              (confirmed)="deleteNotification(notification.id)"
+              (clicked)="onDeleteNotification(notification.id)"
             />
             }
           </div>

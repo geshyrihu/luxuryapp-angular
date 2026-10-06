@@ -10,6 +10,7 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
@@ -38,6 +39,7 @@ export class NotificationsGadget implements OnInit {
   public signalRService = inject(SignalRService);
   private destroyRef = inject(DestroyRef);
   private consoleLogger = inject(ConsoleLoggerService);
+  private confirmS = inject(ConfirmService);
   // --- ESTADO DEL COMPONENTE CON SIGNALS ---
   public drawerVisible = signal(false);
   public messageInNotRead = signal(0);
@@ -91,6 +93,18 @@ export class NotificationsGadget implements OnInit {
         this.onLoadNotification();
       }
     });
+  }
+
+  /**
+   * Confirma y elimina una notificación. Contrato Fase 3: la confirmación
+   * vive en el consumidor, no en el botón.
+   */
+  async onDeleteNotification(notificationId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta notificación?",
+    );
+    if (!confirmed) return;
+    this.deleteNotification(notificationId);
   }
 
   irATodasLasNotificaciones(): void {

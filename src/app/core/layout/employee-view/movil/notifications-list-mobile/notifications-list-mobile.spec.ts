@@ -2,24 +2,24 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
+import { AuthService } from "@core/auth/services/auth.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
-import { NotificationsGadget } from "./notifications-gadget";
+import { NotificationsListMobile } from "./notifications-list-mobile";
 
 const apiResponseServiceMock = {
-  onGetListNotLoading: vi.fn((endpoint: string) => {
-    if (endpoint === "notifications/unread-count") return Promise.resolve(0);
-    return Promise.resolve([]);
-  }),
+  onGetListNotLoading: vi.fn(() => Promise.resolve([])),
   onGetItem: vi.fn(() => Promise.resolve({})),
   onDelete: vi.fn(() => Promise.resolve(true)),
 };
 
+const authServiceMock = {};
+
 const routerMock = {
-  navigate: vi.fn(() => Promise.resolve(true)),
+  navigateByUrl: vi.fn(() => Promise.resolve(true)),
 };
 
 const signalRServiceMock = {
@@ -34,22 +34,17 @@ const confirmServiceMock = {
   confirm: vi.fn(() => Promise.resolve(true)),
 };
 
-describe("NotificationsGadget", () => {
-  let component: NotificationsGadget;
-  let fixture: ComponentFixture<NotificationsGadget>;
+describe("NotificationsListMobile", () => {
+  let component: NotificationsListMobile;
+  let fixture: ComponentFixture<NotificationsListMobile>;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    apiResponseServiceMock.onGetListNotLoading.mockImplementation(
-      (endpoint: string) => {
-        if (endpoint === "notifications/unread-count") return Promise.resolve(0);
-        return Promise.resolve([]);
-      },
-    );
+    apiResponseServiceMock.onGetListNotLoading.mockResolvedValue([]);
     apiResponseServiceMock.onDelete.mockResolvedValue(true);
     confirmServiceMock.confirm.mockResolvedValue(true);
 
-    TestBed.overrideComponent(NotificationsGadget, {
+    TestBed.overrideComponent(NotificationsListMobile, {
       set: {
         template: "<div>Mock</div>",
         imports: [],
@@ -57,36 +52,24 @@ describe("NotificationsGadget", () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [NotificationsGadget],
+      imports: [NotificationsListMobile],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
+        { provide: AuthService, useValue: authServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: SignalRService, useValue: signalRServiceMock },
         { provide: ConsoleLoggerService, useValue: consoleLoggerServiceMock },
         { provide: ConfirmService, useValue: confirmServiceMock }],
     });
 
-    fixture = TestBed.createComponent(NotificationsGadget);
+    fixture = TestBed.createComponent(NotificationsListMobile);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it("should create", () => {
     expect(component).toBeTruthy();
-  });
-
-  it("should load notifications on init", () => {
-    expect(apiResponseServiceMock.onGetListNotLoading).toHaveBeenCalledWith(
-      "notifications",
-    );
-    expect(apiResponseServiceMock.onGetListNotLoading).toHaveBeenCalledWith(
-      "notifications/unread-count",
-    );
-  });
-
-  it("should start with 0 unread messages", () => {
-    expect(component.messageInNotRead()).toBe(0);
   });
 
   it("onDeleteNotification should not delete when confirmation is cancelled", async () => {
