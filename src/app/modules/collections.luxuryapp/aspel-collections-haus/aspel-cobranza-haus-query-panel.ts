@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +6,7 @@ import {
   Output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
@@ -18,7 +18,8 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-query-panel",
 
-  imports: [ ButtonWeb, 
+  imports: [
+    ButtonWeb,
     FormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
