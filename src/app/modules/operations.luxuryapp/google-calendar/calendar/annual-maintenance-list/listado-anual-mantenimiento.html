@@ -149,7 +149,14 @@
                 "
           />
 
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Duplicar"
+            tooltipPosition="top"
+            iconClass="material-symbols-light:content-copy"
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -158,13 +165,17 @@
                     header: 'Duplicar servicio',
                   })
                 "
-            lxTooltip="Duplicar"
-            tooltipPosition="top"
-            iconClass="material-symbols-light:content-copy"
           />
-          <iw-button-delete
-            (confirmed)="onDelete(item.id)"
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
             [isLinked]="item.hasServiceOrder"
+            (clicked)="onDelete(item.id)"
           />
         </div>
       </td>
@@ -253,7 +264,10 @@
                   })
                 "
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            label="Duplicar"
+            iconName="document-text-outline"
             (clicked)="
                   onModalForm({
                     idnombre: item.id,
@@ -262,13 +276,12 @@
                     header: 'Duplicar servicio',
                   })
                 "
-            label="Duplicar"
-            iconName="document-text-outline"
           />
-          <ili-button-delete
-            (confirmed)="onDelete(item.id)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             [isLinked]="item.hasServiceOrder"
-            label="Eliminar"
+            (clicked)="onDelete(item.id)"
           />
         </ng-container>
       </ili-action-menu>

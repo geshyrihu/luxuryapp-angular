@@ -140,7 +140,16 @@
               ariaLabel="Editar"
               (clicked)="onModalForm(item.id)"
             />
-            <iw-button-delete (confirmed)="onDelete(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="onDelete(item.id)"
+            />
           </td>
           }
         </tr>
@@ -250,9 +259,10 @@
                 kind="edit"
                 (clicked)="onModalForm(item.id)"
               />
-              <ili-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
+              <lux-button-mobile
+                kind="delete"
+                color="danger"
+                (clicked)="onDelete(item.id)"
               />
               }
             </ng-container>

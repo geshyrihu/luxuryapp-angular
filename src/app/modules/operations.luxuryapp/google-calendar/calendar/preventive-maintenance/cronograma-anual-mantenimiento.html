@@ -142,12 +142,14 @@
               <div class="d-flex gap-1 ms-2">
                 @for (filtro of filtroEquipos; track trackByFiltro($index,
                 filtro)) {
-                <iw-button-item
+                <lux-button-web
+                  kind="item"
+                  displayMode="icon"
+                  severity="secondary"
+                  variant="outline"
                   [iconClass]="getFiltroIconClass(filtro.emoji)"
                   [lxTooltip]="'Ver ' + filtro.nombre"
                   tooltipPosition="top"
-                  variant="outline"
-                  severity="secondary"
                   [customClass]="
                     filtroEquiposValue === filtro.nombre ? 'text-warning' : ''
                   "

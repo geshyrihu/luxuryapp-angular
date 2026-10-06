@@ -6,6 +6,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { ListadoAnualMantenimiento } from "./listado-anual-mantenimiento";
 
@@ -24,6 +25,7 @@ const dialogHandlerSMock = {
   openDialog: vi.fn().mockResolvedValue(true),
   sizeLg: "lg" as any,
 };
+const confirmSMock = { confirm: vi.fn().mockResolvedValue(true) };
 
 describe("ListadoAnualMantenimiento", () => {
   let component: ListadoAnualMantenimiento;
@@ -43,6 +45,7 @@ describe("ListadoAnualMantenimiento", () => {
         { provide: AspRoleService, useValue: aspRoleSMock },
         { provide: CustomerIdService, useValue: customerIdSMock },
         { provide: DialogHandlerService, useValue: dialogHandlerSMock },
+        { provide: ConfirmService, useValue: confirmSMock },
       ],
     });
 
@@ -100,6 +103,15 @@ describe("ListadoAnualMantenimiento", () => {
     apiResponseSMock.onDelete.mockResolvedValue(false);
     component.onDelete(1);
     await new Promise((resolve) => setTimeout(resolve));
+    expect(component.dataSignal()).toEqual([{ id: 1 }, { id: 2 }]);
+  });
+
+  it("onDelete should not call api when confirmation is cancelled", async () => {
+    component.dataSignal.set([{ id: 1 }, { id: 2 }]);
+    apiResponseSMock.onDelete.mockClear();
+    confirmSMock.confirm.mockResolvedValueOnce(false);
+    await component.onDelete(1);
+    expect(apiResponseSMock.onDelete).not.toHaveBeenCalled();
     expect(component.dataSignal()).toEqual([{ id: 1 }, { id: 2 }]);
   });
 

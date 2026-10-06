@@ -26,8 +26,6 @@ import {
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -42,8 +40,7 @@ import {
 import { MantenimientoPreventivoForm } from "../preventive-maintenance/mantenimiento-preventivo-form";
 const date = new Date();
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -56,11 +53,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     ButtonWeb,
     ButtonMobile,
-    WebButtonIconItem,
-    WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
@@ -83,6 +76,7 @@ export class ListadoAnualMantenimiento {
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
 
   public AspRole = ApplicationRole;
@@ -144,7 +138,11 @@ export class ListadoAnualMantenimiento {
     }
     return total;
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.MaintenanceCalendars.deleteLegacy(id))
       .then((result: boolean) => {

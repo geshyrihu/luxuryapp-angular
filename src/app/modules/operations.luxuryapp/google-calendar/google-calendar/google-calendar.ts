@@ -64,14 +64,13 @@ interface IGoogleCalendarEventListItem {
   recurrenceSummary: string;
 }
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 
@@ -149,9 +148,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     WebButtonLabel,
     WebButtonIcon,
     LxTooltipDirective,
-    WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     FullCalendarModule,
     AppTable,
@@ -171,6 +168,7 @@ export class GoogleCalendar {
   private readonly customerIdS = inject(CustomerIdService);
   private readonly dateS = inject(DateService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
+  private readonly confirmS = inject(ConfirmService);
   private readonly aspRoleS = inject(AspRoleService);
   private readonly signalRService = inject(SignalRService);
   private readonly destroyRef = inject(DestroyRef);
@@ -332,7 +330,11 @@ export class GoogleCalendar {
       );
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este evento?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.GoogleCalendarEvents.delete(id))
       .then((result) => {

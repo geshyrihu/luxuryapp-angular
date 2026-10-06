@@ -25,8 +25,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { Workbook } from "exceljs";
@@ -49,7 +49,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
   templateUrl: "./cronograma-anual-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     AppTable,
     AppSortableColumn,
     AppSorticon,
