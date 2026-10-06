@@ -9,7 +9,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
@@ -29,7 +28,6 @@ import {
     CommonModule,
     WebButtonLabel,
     AppIcon,
-    WebButtonIconActiveDesactive,
     ButtonWeb,
     AppTable,
     AppSortableColumn,

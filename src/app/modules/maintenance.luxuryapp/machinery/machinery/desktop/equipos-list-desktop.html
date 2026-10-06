@@ -78,9 +78,12 @@
             tooltipPosition="top"
           />
           <div class="flex-shrink-0">
-            <iw-button-active-desactive
-              [state]="active()"
-              (stateChange)="stateChange.emit($event ? 0 : 1)"
+            <lux-button-web
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              [icon]="active() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+              (clicked)="stateChange.emit(!active() ? 0 : 1)"
             />
           </div>
         </div>

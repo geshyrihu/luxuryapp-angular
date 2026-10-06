@@ -13,6 +13,7 @@ describe("TaskGroupCategoryList", () => {
   let mockApiResponseS: any;
   let mockDialogHandlerS: any;
   let mockTableScrollHeightS: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -24,6 +25,7 @@ describe("TaskGroupCategoryList", () => {
       sizeLg: "1200px",
     };
     mockTableScrollHeightS = { scrollHeight: signal("600px") };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(TaskGroupCategoryList, {
@@ -35,7 +37,7 @@ describe("TaskGroupCategoryList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -73,6 +75,17 @@ describe("TaskGroupCategoryList", () => {
 
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");
+  });
+
+  it("onDelete should not delete when confirmation is cancelled", async () => {
+    await new Promise((resolve) => setTimeout(resolve));
+    component.dataSignal.set([{ id: "1" }]);
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().length).toBe(1);
   });
 
   it("onModalForm should open dialog and reload on success", async () => {

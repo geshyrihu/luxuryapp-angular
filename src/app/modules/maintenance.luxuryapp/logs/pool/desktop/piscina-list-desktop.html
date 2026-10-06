@@ -72,10 +72,12 @@
               tooltip="Eliminar"
               (clicked)="delete.emit(item.id)"
             />
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
               iconClass="material-symbols-light:book"
-              lxTooltip="Bitácora"
-              tooltipPosition="top"
+              variant="soft"
+              tooltip="Bitácora"
               [routerLink]="['/logbook/piscina-bitacora/', item.id]"
             />
           </div>
