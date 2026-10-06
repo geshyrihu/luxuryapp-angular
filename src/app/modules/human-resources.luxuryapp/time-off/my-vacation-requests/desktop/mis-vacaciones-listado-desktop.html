@@ -92,11 +92,16 @@
         <td class="no-print">
           <div class="d-flex justify-content-end">
             <!-- botón Ver Detalle -->
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="both"
+              severity="secondary"
+              variant="soft"
               icon="material-symbols-light:visibility-outline"
               label="Ver Detalle"
+              tooltip="Ver detalle"
+              ariaLabel="Ver Detalle"
               (clicked)="detail.emit(item.id)"
-              lxTooltip="Ver detalle"
             />
 
             @if (item.status === "Pendiente") {
@@ -110,7 +115,16 @@
               ariaLabel="Editar"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
-            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="delete.emit(item.id)"
+            />
             }
           </div>
         </td>

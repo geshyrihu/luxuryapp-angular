@@ -83,11 +83,17 @@
 
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            icon="material-symbols-light:visibility-outline"
+            tooltip="Ver detalle"
+            ariaLabel="Ver detalle"
             (clicked)="
               detail.emit({ id: item.id, title: 'Detalle de la Solicitud' })
             "
-            lxTooltip="??"
           />
           @if (item.status != "Aprobada") {
           <lux-button-web
@@ -100,7 +106,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
           }
         </div>
       </td>

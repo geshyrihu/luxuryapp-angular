@@ -11,6 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PrestamoEmpleadoDTO } from "../interfaces/prestamo-empleado.interface";
 import ModalPrestamoAdd from "./add-loan-modal/modal-prestamo-add";
 import { PrestamosEmpleadoDesktop } from "./desktop/prestamos-empleado-desktop";
@@ -29,6 +30,7 @@ export default class PrestamosEmpleado {
   private dialogHandlerS = inject(DialogHandlerService);
 
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   loading = signal(true);
   data = signal<PrestamoEmpleadoDTO[]>([]);
@@ -83,7 +85,11 @@ export default class PrestamosEmpleado {
       });
   }
 
-  onDelete(item: PrestamoEmpleadoDTO): void {
+  async onDelete(item: PrestamoEmpleadoDTO): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este préstamo?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Nomina.Prestamos.delete(item.id))
       .then((result) => {

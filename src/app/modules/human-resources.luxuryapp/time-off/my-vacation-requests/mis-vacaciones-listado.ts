@@ -12,6 +12,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { VacationRequestMyDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
 import { ROUTES } from "src/app/routing/route-paths";
 import { MisVacacionesListadoDesktop } from "./desktop/mis-vacaciones-listado-desktop";
@@ -29,6 +30,7 @@ export class MisVacacionesListado implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   router = inject(Router);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<VacationRequestMyDTO[]>([]);
   loading = signal(true);
@@ -53,7 +55,11 @@ export class MisVacacionesListado implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta solicitud de vacaciones?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.VacationRequest.delete(id))
       .then(() => {

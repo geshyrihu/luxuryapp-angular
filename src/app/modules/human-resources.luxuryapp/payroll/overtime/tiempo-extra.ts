@@ -13,6 +13,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
 import ModalTiempoExtraAdd from "./add-overtime-modal/modal-tiempo-extra-add";
@@ -31,6 +32,7 @@ export default class TiempoExtra {
   private dialogHandlerS = inject(DialogHandlerService);
 
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   loading = signal(true);
   data = signal<TiempoExtraDTO[]>([]);
@@ -122,7 +124,11 @@ export default class TiempoExtra {
     if (result) this.onLoadData(this.periodoSeleccionado());
   }
 
-  onDelete(item: TiempoExtraDTO): void {
+  async onDelete(item: TiempoExtraDTO): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este tiempo extra?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Nomina.TiempoExtra.delete(item.id))
       .then((result) => {

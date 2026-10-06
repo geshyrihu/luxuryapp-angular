@@ -14,7 +14,7 @@ import {
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -38,7 +38,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
+    PdfViewerTrigger,
     LuxTableCaption,
     TableFooter,
   ],
@@ -88,7 +88,7 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
           <td class="text-center">
             <div class="d-flex gap-1 justify-center">
               @if (request.attachmentPath) {
-                <il-button-view-pdf
+                <lux-pdf-viewer-trigger
                   [url]="request.attachmentPath"
                   fileName="Comprobante"
                 />

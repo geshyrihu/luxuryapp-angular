@@ -13,6 +13,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { addIcons } from "ionicons";
 import { clipboardOutline } from "ionicons/icons";
 import { ListaPlantillaEvaluacionDesktop } from "./desktop/lista-plantilla-evaluacion-desktop";
@@ -29,6 +30,7 @@ export class ListaPlantillaEvaluacion implements OnInit {
   customerIdS = inject(CustomerIdService);
   router = inject(Router);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<any[]>([]);
   loading = signal(true);
@@ -60,7 +62,11 @@ export class ListaPlantillaEvaluacion implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta plantilla de evaluación?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.TemplateEvaluation.delete(id))
       .then(() => {

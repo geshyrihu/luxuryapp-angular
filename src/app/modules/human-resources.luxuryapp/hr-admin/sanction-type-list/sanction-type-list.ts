@@ -13,6 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { SanctionTypeListDesktop } from "./desktop/sanction-type-list-desktop";
 import { SanctionTypeListMobile } from "./mobile/sanction-type-list-mobile";
 import { SanctionTypeForm } from "./sanction-type-form";
@@ -27,6 +28,7 @@ export class SanctionTypeList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   items = signal<SanctionTypeListDTO[]>([]);
   readonly globalFilterFields = globalFilterFields(["name", "severityLevel"]);
@@ -49,7 +51,11 @@ export class SanctionTypeList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este tipo de sanción?",
+    );
+    if (!ok) return;
     this.apiS
       .onDelete(Endpoints.Settings.deleteSanctionType(id))
       .then(() => this.onLoadData());

@@ -12,6 +12,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import ModalPeriodoAdd from "./add-period-modal/modal-periodo-add";
 import { PeriodosNominaDesktop } from "./desktop/periodos-nomina-desktop";
@@ -30,6 +31,7 @@ export default class PeriodosNomina {
   private dialogHandlerS = inject(DialogHandlerService);
 
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   loading = signal(true);
   data = signal<PeriodoNominaDTO[]>([]);
@@ -109,7 +111,11 @@ export default class PeriodosNomina {
       .then(() => {});
   }
 
-  onDelete(item: PeriodoNominaDTO): void {
+  async onDelete(item: PeriodoNominaDTO): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este periodo de nómina?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Nomina.Periodos.delete(item.id))
       .then((result) => {

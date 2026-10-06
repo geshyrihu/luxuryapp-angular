@@ -53,15 +53,17 @@
               variant="text"
               title="Editar"
               (clicked)="openModal(row)"
-            /><iw-button-confirm
-              iconClass="material-symbols-light:delete"
+            /><lux-button-web
+              kind="confirm"
+              displayMode="icon"
               severity="danger"
-              size="small"
               variant="text"
-              title="Eliminar"
-              swalText="¿Estás seguro de que quieres eliminar este parámetro?"
+              size="sm"
+              icon="material-symbols-light:delete"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
               [loading]="deletingKey() === row.state + '-' + row.year"
-              (confirmed)="delete(row)"
+              (clicked)="delete(row)"
             />
           </td></tr></ng-template
       ><ng-template #emptymessage

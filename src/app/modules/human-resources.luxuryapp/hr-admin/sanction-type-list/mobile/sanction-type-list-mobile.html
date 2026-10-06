@@ -35,9 +35,10 @@
               kind="edit"
               (clicked)="edit.emit({ id: item.id, title: 'Editar Tipo de Sanción' })"
             />
-            <ili-button-delete
-              (confirmed)="delete.emit(item.id)"
-              label="Eliminar"
+            <lux-button-mobile
+              kind="delete"
+              color="danger"
+              (clicked)="delete.emit(item.id)"
             />
           </ng-container>
         </ili-action-menu>

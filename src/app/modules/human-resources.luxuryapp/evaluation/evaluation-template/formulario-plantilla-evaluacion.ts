@@ -27,7 +27,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -57,7 +57,6 @@ interface CategoryForm {
     LxTooltipDirective,
     LxFieldset,
     WebButtonLabel,
-    WebButtonLabelDelete,
      ButtonWeb,
     CustomInputCheckSignal,
     CustomInputTextSignal,
@@ -74,6 +73,7 @@ export class FormularioPlantillaEvaluacion implements OnInit {
   customerSelectS = inject(CustomerIdService);
   activatedRoute = inject(ActivatedRoute);
   route = inject(Router);
+  confirmS = inject(ConfirmService);
 
   id: string | null = null;
   customerId: string = this.customerSelectS.customerId();
@@ -164,7 +164,11 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     this.categories.push(categoryGroup);
   }
 
-  removeCategory(index: number): void {
+  async removeCategory(index: number): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta categoría?",
+    );
+    if (!ok) return;
     this.categories.removeAt(index);
   }
 
@@ -195,7 +199,14 @@ export class FormularioPlantillaEvaluacion implements OnInit {
     questionsArray.push(questionGroup);
   }
 
-  removeQuestion(categoryIndex: number, questionIndex: number): void {
+  async removeQuestion(
+    categoryIndex: number,
+    questionIndex: number,
+  ): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta pregunta?",
+    );
+    if (!ok) return;
     this.questions(categoryIndex).removeAt(questionIndex);
   }
 

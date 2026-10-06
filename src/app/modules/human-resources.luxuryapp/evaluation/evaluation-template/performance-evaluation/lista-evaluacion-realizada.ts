@@ -21,6 +21,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ListaEvaluacionRealizadaDesktop } from "./desktop/lista-evaluacion-realizada-desktop";
 import { ListaEvaluacionRealizadaMobile } from "./mobile/lista-evaluacion-realizada-mobile";
@@ -41,6 +42,7 @@ export class ListaEvaluacionRealizada {
   chartGeneratorS = inject(ChartGeneratorService);
   dateS = inject(DateService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
   loading = signal(true);
   globalFilterFields = computed(() => {
@@ -63,7 +65,11 @@ export class ListaEvaluacionRealizada {
       .then((result: any) => this.dataSignal.set(result || []));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta evaluación realizada?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PerformanceEvaluations.delete(id))
       .then((result: boolean) => {

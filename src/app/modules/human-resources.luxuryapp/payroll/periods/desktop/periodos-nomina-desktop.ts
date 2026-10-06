@@ -13,7 +13,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -33,7 +32,6 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     LxTag,
     WebButtonIcon,
     ButtonWeb,
-    WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

@@ -11,10 +11,11 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -43,7 +44,7 @@ const DETAIL_URL = "/hr/salary-projections";
     LxTag,
     WebButtonLabel,
     WebButtonIcon,
-    WebButtonIconConfirm,
+    ButtonWeb,
     ApiDatePipe,
   ],
 })
@@ -52,6 +53,7 @@ export class SalaryProjectionsList {
   private readonly customerIdService = inject(CustomerIdService);
   private readonly router = inject(Router);
   private readonly dialogHandler = inject(DialogHandlerService);
+  private readonly swalS = inject(SwalService);
 
   readonly rows = signal<ISalaryProjection[]>([]);
   readonly loading = signal(true);
@@ -95,6 +97,16 @@ export class SalaryProjectionsList {
     if (this.deletingId()) {
       return;
     }
+
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Estás seguro de que quieres eliminar esta propuesta?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
 
     this.deletingId.set(item.id);
     try {

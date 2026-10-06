@@ -100,7 +100,12 @@
                 label="Pregunta"
                 customClass="btn-text-primary btn-sm"
               />
-              <il-button-delete (confirmed)="removeCategory(i)" />
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="removeCategory(i)"
+              />
             </div>
           </div>
         </ng-template>
@@ -140,7 +145,12 @@
               />
             </div>
 
-            <il-button-delete (confirmed)="removeQuestion(i, j)" />
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="removeQuestion(i, j)"
+            />
           </div>
           } @if (questions(i).controls.length === 0) {
           <div

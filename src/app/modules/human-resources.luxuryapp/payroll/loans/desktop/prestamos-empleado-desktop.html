@@ -73,7 +73,16 @@
             (clicked)="view.emit(item)"
           />
           @if (item.estadoValue === 0) {
-          <iw-button-delete (confirmed)="delete.emit(item)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item)"
+          />
           }
         </div>
       </td>

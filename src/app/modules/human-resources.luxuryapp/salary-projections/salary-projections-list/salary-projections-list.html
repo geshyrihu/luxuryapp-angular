@@ -70,15 +70,17 @@
             variant="text"
             (clicked)="openDetail(item)"
           />
-          <iw-button-confirm
-            iconClass="material-symbols-light:delete"
+          <lux-button-web
+            kind="confirm"
+            displayMode="icon"
             severity="danger"
             variant="text"
-            size="small"
-            title="Eliminar propuesta"
-            swalText="¿Estás seguro de que quieres eliminar esta propuesta?"
+            size="sm"
+            icon="material-symbols-light:delete"
+            tooltip="Eliminar propuesta"
+            ariaLabel="Eliminar propuesta"
             [loading]="deletingId() === item.id"
-            (confirmed)="deleteProjection(item)"
+            (clicked)="deleteProjection(item)"
           />
         </td>
       </tr>

@@ -13,6 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { IncidentTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { IncidentTypeListDesktop } from "./desktop/incident-type-list-desktop";
 import { IncidentTypeListMobile } from "./mobile/incident-type-list-mobile";
 import { IncidentTypeForm } from "./incident-type-form";
@@ -27,6 +28,7 @@ export class IncidentTypeList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   items = signal<IncidentTypeListDTO[]>([]);
   readonly globalFilterFields = globalFilterFields([
@@ -53,7 +55,11 @@ export class IncidentTypeList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este tipo de incidencia?",
+    );
+    if (!ok) return;
     this.apiS
       .onDelete(Endpoints.Settings.deleteIncidentType(id))
       .then(() => this.onLoadData());

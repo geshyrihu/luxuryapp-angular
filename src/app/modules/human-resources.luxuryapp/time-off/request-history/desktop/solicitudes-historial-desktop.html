@@ -170,16 +170,26 @@
           <td class="text-center">
             <div class="d-flex justify-content-center">
               <!-- Added  for spacing -->
-              <iw-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                icon="material-symbols-light:info"
+                tooltip="Ver Detalle"
+                ariaLabel="Ver Detalle"
                 (clicked)="showDetail.emit(item)"
-                iconClass="material-symbols-light:info"
-                lxTooltip="Ver Detalle"
               />
               @if(item.status === 'Aprobada' && canCancel()){
-              <iw-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                icon="material-symbols-light:block"
+                tooltip="Cancelar"
+                ariaLabel="Cancelar"
                 (clicked)="cancel.emit(item)"
-                iconClass="material-symbols-light:block"
-                lxTooltip="Cancelar"
               />
               }
             </div>

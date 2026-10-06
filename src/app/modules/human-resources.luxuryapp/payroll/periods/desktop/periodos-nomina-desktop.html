@@ -68,7 +68,16 @@
             lxTooltip="Días no habiles"
             (clicked)="nonWorkingDays.emit(item)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item)"
+          />
         </div>
       </td>
     </tr>

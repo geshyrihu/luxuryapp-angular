@@ -5,10 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -25,11 +22,8 @@ import {
   templateUrl: "./lista-evaluacion-realizada-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    LxTooltipDirective,
     WebButtonLabel,
     ButtonWeb,
-    WebButtonIconItem,
-    WebButtonIconDelete,
     ApiDatePipe,
     LuxTableCaption,
     TableEmptyMessage,

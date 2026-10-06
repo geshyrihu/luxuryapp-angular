@@ -70,19 +70,36 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item.id)"
           />
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            icon="material-symbols-light:receipt"
+            tooltip="Detalle"
+            ariaLabel="Detalle"
             (clicked)="detail.emit(item.id)"
-            lxTooltip="Detalle"
-            tooltipPosition="top"
-            [iconClass]="'material-symbols-light:receipt'"
           />
-          <iw-button-item
-            (clicked)="downloadIndividual.emit({ id: item.id, employeeName: item.employeeName })"
-            lxTooltip="Descargar"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             icon="material-symbols-light:download"
+            tooltip="Descargar"
+            ariaLabel="Descargar"
+            (clicked)="downloadIndividual.emit({ id: item.id, employeeName: item.employeeName })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
       <!-- Opciones -->

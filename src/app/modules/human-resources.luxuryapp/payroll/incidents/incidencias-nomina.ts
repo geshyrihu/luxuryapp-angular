@@ -13,6 +13,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   IncidenciaNominaDTO,
   SincronizarIncidenciasDTO,
@@ -38,6 +39,7 @@ export default class IncidenciasNomina {
   private dialogHandlerS = inject(DialogHandlerService);
 
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   loading = signal(true);
   sincronizando = signal(false);
@@ -109,7 +111,11 @@ export default class IncidenciasNomina {
       });
   }
 
-  onDelete(item: IncidenciaNominaDTO): void {
+  async onDelete(item: IncidenciaNominaDTO): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta incidencia?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Nomina.Incidencias.delete(item.id))
       .then((result) => {

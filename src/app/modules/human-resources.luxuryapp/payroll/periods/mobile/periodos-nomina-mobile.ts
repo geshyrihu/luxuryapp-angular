@@ -8,7 +8,6 @@ import {
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -25,7 +24,6 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     MobileListItem,
     LxTag,
     ButtonMobile,
-    WebButtonLabelDelete,
     DataViewMobile,
   ],
 })

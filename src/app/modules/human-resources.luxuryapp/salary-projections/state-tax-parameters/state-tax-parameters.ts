@@ -9,8 +9,9 @@ import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -34,7 +35,7 @@ const DASHBOARD_URL = "/hr/salary-projections";
     TableEmptyMessage,
     WebButtonLabel,
     WebButtonIcon,
-    WebButtonIconConfirm,
+    ButtonWeb,
     DecimalPipe,
   ],
 })
@@ -42,6 +43,7 @@ export class StateTaxParameters {
   private readonly api = inject(ApiResponseService);
   private readonly router = inject(Router);
   private readonly dialogHandler = inject(DialogHandlerService);
+  private readonly swalS = inject(SwalService);
 
   readonly rows = signal<IStateTaxParameter[]>([]);
   readonly loading = signal(true);
@@ -83,6 +85,15 @@ export class StateTaxParameters {
   async delete(row: IStateTaxParameter): Promise<void> {
     const key = this.key(row.state, row.year);
     if (this.deletingKey()) return;
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Estás seguro de que quieres eliminar este parámetro?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.deletingKey.set(key);
     try {
       if (

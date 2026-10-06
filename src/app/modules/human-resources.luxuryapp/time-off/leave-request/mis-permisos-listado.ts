@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LeaveRequestMyDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
 import { MisPermisosListadoDesktop } from "./desktop/mis-permisos-listado-desktop";
 import { MisPermisosListadoMobile } from "./mobile/mis-permisos-listado-mobile";
@@ -27,6 +28,7 @@ export class MisPermisosListado implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<LeaveRequestMyDTO[]>([]);
   loading = signal(true);
@@ -51,7 +53,11 @@ export class MisPermisosListado implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta solicitud?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.LeaveRequest.delete(id))
       .then(() => {
