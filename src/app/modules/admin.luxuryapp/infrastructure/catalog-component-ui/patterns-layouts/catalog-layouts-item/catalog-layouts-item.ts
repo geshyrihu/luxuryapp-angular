@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppDivider } from "@ui/web/divider/divider";
+import { ButtonWeb } from "@ui/buttons/web";
 
 const LAYOUTS_LABELS: Record<string, string> = {
   fullwidth: "Full Width",
@@ -18,7 +19,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [AppDivider],
+  imports: [AppDivider, ButtonWeb],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -31,7 +32,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
         </p>
         <lux-divider-web />
         <div class="d-flex gap-2">
-          <il-button
+          <lux-button-web
             label="Ver todos los Layouts"
             iconClass="icon.grid"
             (clicked)="

@@ -3,41 +3,57 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-
-
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 /**
- * Showcase de botones móviles — usa los COMPONENTES REALES `ili-*` / `ii-*`,
- * no mockups. Si algo se ve mal aquí, se ve mal en la app.
+ * Showcase de botones móviles — usa el COMPONENTE REAL `lux-button-mobile`
+ * (`ButtonMobile`), no mockups. Si algo se ve mal aquí, se ve mal en la app.
+ * Las acciones de negocio se expresan con `kind`, no con un selector por acción.
  */
 @Component({
   selector: "app-mobile-buttons",
-  imports: [MobileActionMenu],
+  imports: [MobileActionMenu, ButtonMobile],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Mobile Buttons · componentes reales</div>
       <div class="mobile-card-body">
         <div class="phone-frame">
           <div class="phone-frame__screen d-flex flex-column gap-4">
-            <!-- Variantes semánticas (ili-button variant="…") -->
+            <!-- Variantes semánticas (lux-button-mobile variant="…") -->
             <div>
               <div class="section-label">Variantes semánticas</div>
               <p class="section-desc">
-                <code>&lt;ili-button variant="…"&gt;</code> — primary,
+                <code>&lt;lux-button-mobile variant="…"&gt;</code> — primary,
                 secondary, outline, text, danger, ghost.
               </p>
               <div class="d-flex flex-column gap-2">
-                <ili-button variant="primary" label="Primary" expand="block" />
-                <ili-button
+                <lux-button-mobile
+                  variant="primary"
+                  label="Primary"
+                  expand="block"
+                />
+                <lux-button-mobile
                   variant="secondary"
                   label="Secondary"
                   expand="block"
                 />
-                <ili-button variant="outline" label="Outline" expand="block" />
-                <ili-button variant="text" label="Text" expand="block" />
-                <ili-button variant="danger" label="Danger" expand="block" />
-                <ili-button variant="soft" label="Ghost" expand="block" />
+                <lux-button-mobile
+                  variant="outline"
+                  label="Outline"
+                  expand="block"
+                />
+                <lux-button-mobile variant="text" label="Text" expand="block" />
+                <lux-button-mobile
+                  variant="danger"
+                  label="Danger"
+                  expand="block"
+                />
+                <lux-button-mobile
+                  variant="ghost"
+                  label="Ghost"
+                  expand="block"
+                />
               </div>
             </div>
 
@@ -46,33 +62,29 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
               <div class="section-label">Tamaños</div>
               <p class="section-desc">small · default · large.</p>
               <div class="d-flex align-items-center gap-2 flex-wrap">
-                <ili-button variant="primary" size="small" label="Small" />
-                <ili-button variant="primary" label="Default" />
-                <ili-button variant="primary" size="large" label="Large" />
+                <lux-button-mobile variant="primary" size="small" label="Small" />
+                <lux-button-mobile variant="primary" label="Default" />
+                <lux-button-mobile variant="primary" size="large" label="Large" />
               </div>
             </div>
 
-            <!-- Acciones de negocio (semánticas) -->
+            <!-- Acciones de negocio (kind semántico) -->
             <div>
               <div class="section-label">Acciones de negocio</div>
               <p class="section-desc">
                 Cada botón trae icono, label y variante por defecto (delete →
-                rojo).
+                rojo) vía <code>kind</code>.
               </p>
               <div class="d-flex flex-column gap-2">
-                <ili-button-add expand="block" />
-                <ili-button-edit expand="block" />
-                <ili-button-confirm expand="block" />
-                <ili-button-send-email expand="block" />
-                <ili-button-view-pdf
-                  url=""
-                  fileName="documento.pdf"
-                  expand="block"
-                />
-                <ili-button-delete expand="block" />
-                <ili-button-download expand="block" />
-                <ili-button-item expand="block" />
-                <ili-button-tracking [badgeCount]="5" [ticketId]="123" expand="block" />
+                <lux-button-mobile kind="add" expand="block" />
+                <lux-button-mobile kind="edit" expand="block" />
+                <lux-button-mobile kind="confirm" expand="block" />
+                <lux-button-mobile kind="send-email" expand="block" />
+                <lux-button-mobile kind="view-pdf" expand="block" />
+                <lux-button-mobile kind="delete" expand="block" />
+                <lux-button-mobile kind="download" expand="block" />
+                <lux-button-mobile kind="item" expand="block" />
+                <lux-button-mobile kind="tracking" expand="block" />
               </div>
             </div>
 
@@ -80,36 +92,34 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
             <div>
               <div class="section-label">Guardar y estado</div>
               <div class="d-flex flex-column gap-2">
-                <ili-button-save expand="block" />
-                <ili-button-save
+                <lux-button-mobile kind="save" expand="block" />
+                <lux-button-mobile
+                  kind="save"
                   label="Actualizando…"
-                  [submitting]="true"
+                  [loading]="true"
                   expand="block"
                 />
-                <ili-button-active-desactive
-                  [state]="true"
-                  activasLabel="Activos"
-                  inactivasLabel="Inactivos"
-                  expand="block"
-                />
+                <lux-button-mobile kind="active-desactive" expand="block" />
               </div>
             </div>
 
-            <!-- Iconos compactos -->
+            <!-- Iconos compactos (displayMode="icon") -->
             <div>
-              <div class="section-label">Iconos compactos (ii-*)</div>
+              <div class="section-label">
+                Iconos compactos (displayMode="icon")
+              </div>
               <div class="d-flex align-items-center gap-3 flex-wrap">
-                <ii-button />
-                <ii-button-add />
-                <ii-button-edit />
-                <ii-button-save />
-                <ii-button-delete />
-                <ii-button-confirm />
-                <ii-button-download />
-                <ii-button-send-email />
-                <ii-button-view-pdf url="" fileName="doc.pdf" />
-                <ii-button-active-desactive [state]="true" />
-                <ii-button-tracking [badgeCount]="3" [ticketId]="228" />
+                <lux-button-mobile displayMode="icon" />
+                <lux-button-mobile kind="add" displayMode="icon" />
+                <lux-button-mobile kind="edit" displayMode="icon" />
+                <lux-button-mobile kind="save" displayMode="icon" />
+                <lux-button-mobile kind="delete" displayMode="icon" />
+                <lux-button-mobile kind="confirm" displayMode="icon" />
+                <lux-button-mobile kind="download" displayMode="icon" />
+                <lux-button-mobile kind="send-email" displayMode="icon" />
+                <lux-button-mobile kind="view-pdf" displayMode="icon" />
+                <lux-button-mobile kind="active-desactive" displayMode="icon" />
+                <lux-button-mobile kind="tracking" displayMode="icon" />
               </div>
             </div>
 
@@ -125,13 +135,9 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
               >
                 <span class="text-sm">Registro de ejemplo</span>
                 <ili-action-menu title="Opciones">
-                  <ili-button-edit label="Editar" />
-                  <ili-button-view-pdf
-                    url=""
-                    fileName="doc.pdf"
-                    label="Ver PDF"
-                  />
-                  <ili-button-delete label="Eliminar" />
+                  <lux-button-mobile kind="edit" label="Editar" />
+                  <lux-button-mobile kind="view-pdf" label="Ver PDF" />
+                  <lux-button-mobile kind="delete" label="Eliminar" />
                 </ili-action-menu>
               </div>
             </div>
