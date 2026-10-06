@@ -20,24 +20,24 @@
     <div class="mm-head__main">
       <div class="mm-head__identity">
         <span class="mm-head__icon">
-          <app-icon [icon]="typeIcon" aria-hidden="true" />
+          <lux-icon [icon]="typeIcon" aria-hidden="true" />
         </span>
         <div>
           <h1 class="mm-head__type">{{ m.typeMeeting }}</h1>
           <div class="mm-head__when">
             @if (m.folio) {
             <span>
-              <app-icon icon="material-symbols-light:label" aria-hidden="true" />
+              <lux-icon icon="material-symbols-light:label" aria-hidden="true" />
               {{ m.folio }}
             </span>
             }
             <span>
-              <app-icon icon="material-symbols-light:event" aria-hidden="true" />
+              <lux-icon icon="material-symbols-light:event" aria-hidden="true" />
               {{ m.dateFormat }}
             </span>
             @if (m.timeFormat) {
             <span>
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:schedule"
                 aria-hidden="true"
               />
@@ -50,12 +50,12 @@
 
       <div class="mm-legend">
         <span class="mm-chip mm-chip--total">
-          <app-icon icon="material-symbols-light:bar-chart" aria-hidden="true" />
+          <lux-icon icon="material-symbols-light:bar-chart" aria-hidden="true" />
           Total
           <span class="mm-chip__value">{{ m.issues }}</span>
         </span>
         <span class="mm-chip mm-chip--done">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:check-circle"
             aria-hidden="true"
           />
@@ -63,12 +63,12 @@
           <span class="mm-chip__value">{{ m.terminados }}</span>
         </span>
         <span class="mm-chip mm-chip--pending">
-          <app-icon icon="material-symbols-light:schedule" aria-hidden="true" />
+          <lux-icon icon="material-symbols-light:schedule" aria-hidden="true" />
           Pendientes
           <span class="mm-chip__value">{{ m.pending }}</span>
         </span>
         <span class="mm-chip mm-chip--denied">
-          <app-icon icon="material-symbols-light:block" aria-hidden="true" />
+          <lux-icon icon="material-symbols-light:block" aria-hidden="true" />
           No autorizado
           <span class="mm-chip__value">{{ m.noAutorizado }}</span>
         </span>
@@ -79,7 +79,7 @@
   <section class="mm-dispatch">
     <header class="mm-dispatch__head">
       <span class="mm-dispatch__title">
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:mail-outline"
           class="mm-dispatch__icon"
           aria-hidden="true"
@@ -103,7 +103,7 @@
             [class.mm-chip--done]="d.success"
             [class.mm-chip--pending]="!d.success"
           >
-            <app-icon
+            <lux-icon
               [icon]="
                 d.success
                   ? 'material-symbols-light:check-circle'
@@ -114,15 +114,15 @@
             {{ d.success ? "Enviado" : "Falló" }}
           </span>
           <span class="mm-dispatch__meta">
-            <app-icon icon="material-symbols-light:event" aria-hidden="true" />
+            <lux-icon icon="material-symbols-light:event" aria-hidden="true" />
             {{ d.sentAt | apiDate: "short" }}
           </span>
           <span class="mm-dispatch__meta">
-            <app-icon icon="material-symbols-light:person" aria-hidden="true" />
+            <lux-icon icon="material-symbols-light:person" aria-hidden="true" />
             {{ d.sentByName || d.sentByUserId }}
           </span>
           <span class="mm-dispatch__meta">
-            <app-icon icon="material-symbols-light:group" aria-hidden="true" />
+            <lux-icon icon="material-symbols-light:group" aria-hidden="true" />
             {{ d.recipientsCount }} destinatarios
           </span>
         </div>
@@ -150,7 +150,7 @@
   </section>
 
   <div class="mm-areas">
-    <app-area-details-table
+    <lux-area-details-table-web
       title="Contable"
       icon="material-symbols-light:calculate"
       [meetingId]="m.id"
@@ -165,7 +165,7 @@
       (deleteSeguimiento)="onDeleteSeguimiento($event)"
     />
 
-    <app-area-details-table
+    <lux-area-details-table-web
       title="Operaciones"
       icon="material-symbols-light:handyman"
       [meetingId]="m.id"
@@ -180,7 +180,7 @@
       (deleteSeguimiento)="onDeleteSeguimiento($event)"
     />
 
-    <app-area-details-table
+    <lux-area-details-table-web
       title="Legal"
       icon="material-symbols-light:gavel"
       [meetingId]="m.id"
@@ -198,7 +198,7 @@
 </div>
 } @else {
 <div class="mm-loading">
-  <app-icon
+  <lux-icon
     icon="material-symbols-light:progress-activity"
     aria-hidden="true"
   />

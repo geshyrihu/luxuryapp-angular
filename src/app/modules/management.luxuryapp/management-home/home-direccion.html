@@ -13,23 +13,23 @@
           [style.height.rem]="2"
           [style.background-color]="area.color + '22'"
         >
-          <app-icon [icon]="area.iconPi" [style.color]="area.color" />
+          <lux-icon [icon]="area.iconPi" [style.color]="area.color" />
         </span>
         <h5 class="m-0 fw-bold text-body">{{ area.label }}</h5>
       </div>
 
       <!-- Contenido por area -->
       @if (area.key === 'juntas-comite') {
-      <app-agenda-semanal-card />
+      <lux-agenda-semanal-card-web />
       } @else if (area.key === 'reclutamiento') {
-      <app-reclutamiento-card />
+      <lux-reclutamiento-card-web />
       } @else if (area.key === 'recursos-humanos') {
-      <app-personal-ausente-card />
+      <lux-personal-ausente-card-web />
       } @else if (area.key === 'legal') {
       <div class="d-flex flex-column gap-4">
-        <app-tareas-legal-card />
+        <lux-tareas-legal-card-web />
         <div class="border-top-1 border pt-3">
-          <app-contratos-card />
+          <lux-contratos-card-web />
         </div>
       </div>
       } @else {
@@ -64,11 +64,11 @@
       <!-- Titulo del area -->
       <div class="col-12 pb-1 pt-3 px-3">
         <div class="d-flex align-items-center gap-2">
-          <app-icon
+          <lux-icon
             [icon]="area.iconPi"
             [style.color]="area.color"
             
-          ></app-icon>
+          ></lux-icon>
           <span class="fw-bold text-body text-base">
             {{ area.label }}
           </span>
@@ -78,22 +78,22 @@
       <!-- Contenido movil por area -->
       @if (area.key === 'juntas-comite') {
       <div class="col-12 p-2">
-        <app-agenda-semanal-card />
+        <lux-agenda-semanal-card-web />
       </div>
       } @else if (area.key === 'reclutamiento') {
       <div class="col-12 p-2">
-        <app-reclutamiento-card />
+        <lux-reclutamiento-card-web />
       </div>
       } @else if (area.key === 'recursos-humanos') {
       <div class="col-12 p-2">
-        <app-personal-ausente-card />
+        <lux-personal-ausente-card-web />
       </div>
       } @else if (area.key === 'legal') {
       <div class="col-12 p-2">
-        <app-tareas-legal-card />
+        <lux-tareas-legal-card-web />
       </div>
       <div class="col-12 p-2 border-top-1 border">
-        <app-contratos-card />
+        <lux-contratos-card-web />
       </div>
       } @else {
       <!-- Cards de metricas placeholder -->

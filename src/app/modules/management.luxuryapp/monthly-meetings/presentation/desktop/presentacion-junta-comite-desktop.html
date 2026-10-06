@@ -7,7 +7,7 @@
       <div
         class="p-3 rounded-circle bg-blue-50 text-blue-600 d-flex align-items-center justify-content-center"
       >
-        <app-icon icon="material-symbols-light:co-present" class="text-2xl" />
+        <lux-icon icon="material-symbols-light:co-present" class="text-2xl" />
       </div>
       <div>
         <h5 class="m-0 fw-bold text-body">Presentaciones de Junta</h5>
@@ -54,7 +54,7 @@
               >Fecha de Junta</span
             >
             <div class="d-flex align-items-center gap-2 text-body">
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:calendar-clock"
                 class="text-blue-500"
               />
@@ -75,7 +75,7 @@
                 class="text-xs"
               />
               @if (item.enviadoComite) {
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:check-circle"
                 class="text-green-500"
               />
@@ -89,7 +89,7 @@
           <div
             class="d-flex align-items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg fw-bold border-1 border-green-100"
           >
-            <app-icon icon="material-symbols-light:lock" />
+            <lux-icon icon="material-symbols-light:lock" />
             <span>VERSIÓN FINAL</span>
           </div>
           } @if (!item.archivoFinal && aspRoleS.anyOf([AspRole.Administrador,
@@ -121,7 +121,7 @@
           <div class="col-12 col-md-3 border-right-1 border">
             <div class="d-flex align-items-center gap-3">
               <div class="p-2 rounded bg-blue-50 text-blue-500">
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:filter-frames"
                   class="text-2xl"
                 />
@@ -179,7 +179,7 @@
           <div class="col-12 col-md-3 border-right-1 border px-4">
             <div class="d-flex align-items-center gap-3">
               <div class="p-2 rounded bg-cyan-50 text-cyan-500">
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:area-chart"
                   class="text-2xl"
                 />
@@ -238,7 +238,7 @@
           <div class="col-12 col-md-3 border-right-1 border px-4">
             <div class="d-flex align-items-center gap-3">
               <div class="p-2 rounded bg-orange-50 text-orange-500">
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:settings-overscan"
                   class="text-2xl"
                 />
@@ -370,7 +370,7 @@
     <div
       class="card p-5 shadow-sm rounded-xl bg-body d-flex flex-column align-items-center justify-content-center text-center gap-3"
     >
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:manage-search"
         class="text-6xl text-body-secondary"
       />

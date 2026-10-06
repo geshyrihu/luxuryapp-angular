@@ -7,7 +7,7 @@
       <div
         class="rounded-xl bg-primary shadow d-flex align-items-center justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:schedule'"
           class="text-white text-3xl"
         />
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <app-data-view-mobile [data]="data()" [showAdd]="false">
+  <lux-data-view-mobile-web [data]="data()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
@@ -32,5 +32,5 @@
         </p>
       </ili-list-item>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile-web>
 </div>

@@ -65,20 +65,20 @@
     <tr>
       <th appSortableColumn="areaResponsable">
         AREA
-        <app-sorticon field="areaResponsable" />
+        <lux-sorticon-web field="areaResponsable" />
       </th>
       <th appSortableColumn="fechaSolicitudFiltro">
         SOLICITUD
-        <app-sorticon field="fechaSolicitudFiltro" />
+        <lux-sorticon-web field="fechaSolicitudFiltro" />
       </th>
       <th appSortableColumn="pendiente" class="table-col-pendiente">
         PENDIENTE
-        <app-sorticon field="pendiente" />
+        <lux-sorticon-web field="pendiente" />
       </th>
       <th class="table-col-seguimiento">SEGUIMIENTO</th>
       <th class="text-center" appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -127,7 +127,7 @@
         />
       </td>
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu>
           <ng-container actions>
             <lux-button-web
               kind="item"
@@ -154,7 +154,7 @@
               (clicked)="edit.emit({ id: item.id, header: 'Editar Asunto' })"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu>
       </td>
     </tr>
   </ng-template>

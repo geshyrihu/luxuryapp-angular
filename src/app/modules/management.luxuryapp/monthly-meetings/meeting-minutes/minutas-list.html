@@ -56,26 +56,26 @@
   <div class="mm-legend">
     <span class="mm-legend__title">Indicadores</span>
     <span class="mm-chip mm-chip--total">
-      <app-icon icon="material-symbols-light:bar-chart" aria-hidden="true" />
+      <lux-icon icon="material-symbols-light:bar-chart" aria-hidden="true" />
       Total
     </span>
     <span class="mm-chip mm-chip--done">
-      <app-icon icon="material-symbols-light:check-circle" aria-hidden="true" />
+      <lux-icon icon="material-symbols-light:check-circle" aria-hidden="true" />
       Concluidos
     </span>
     <span class="mm-chip mm-chip--pending">
-      <app-icon icon="material-symbols-light:schedule" aria-hidden="true" />
+      <lux-icon icon="material-symbols-light:schedule" aria-hidden="true" />
       Pendientes
     </span>
     <span class="mm-chip mm-chip--denied">
-      <app-icon icon="material-symbols-light:block" aria-hidden="true" />
+      <lux-icon icon="material-symbols-light:block" aria-hidden="true" />
       No autorizado
     </span>
   </div>
 
   @if (dataSignal().length === 0) {
   <div class="mm-empty">
-    <app-icon
+    <lux-icon
       icon="material-symbols-light:note-alt"
       class="mm-empty__icon"
       aria-hidden="true"
@@ -93,7 +93,7 @@
     >
       <header class="mm-card__head">
         <span class="mm-card__type">
-          <app-icon
+          <lux-icon
             [icon]="tipoJuntaVisual.icon"
             class="mm-card__type-icon"
             aria-hidden="true"
@@ -104,17 +104,17 @@
         <div class="mm-card__when">
           @if (item.folio) {
           <span class="mm-card__folio">
-            <app-icon icon="material-symbols-light:label" aria-hidden="true" />
+            <lux-icon icon="material-symbols-light:label" aria-hidden="true" />
             {{ item.folio }}
           </span>
           }
           <span class="mm-card__date">
-            <app-icon icon="material-symbols-light:event" aria-hidden="true" />
+            <lux-icon icon="material-symbols-light:event" aria-hidden="true" />
             {{ item.dateFormat }}
           </span>
           @if (item.timeFormat) {
           <span class="mm-card__time">
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:schedule"
               aria-hidden="true"
             />
@@ -132,7 +132,7 @@
           [attr.aria-label]="item.issues + ' asuntos en total'"
           (click)="showModalAddOrEditMeetingDetails(item.id, 'Asuntos', 4)"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:bar-chart"
             aria-hidden="true"
           />
@@ -146,7 +146,7 @@
           [attr.aria-label]="item.terminados + ' asuntos concluidos'"
           (click)="showModalAddOrEditMeetingDetails(item.id, 'Concluidos', 1)"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:check-circle"
             aria-hidden="true"
           />
@@ -160,7 +160,7 @@
           [attr.aria-label]="item.pending + ' asuntos pendientes'"
           (click)="showModalAddOrEditMeetingDetails(item.id, 'Pendientes', 0)"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:schedule"
             aria-hidden="true"
           />
@@ -174,7 +174,7 @@
           [attr.aria-label]="item.noAutorizado + ' asuntos no autorizados'"
           (click)="showModalAddOrEditMeetingDetails(item.id, 'No autorizado', 2)"
         >
-          <app-icon icon="material-symbols-light:block" aria-hidden="true" />
+          <lux-icon icon="material-symbols-light:block" aria-hidden="true" />
           <span class="mm-chip__value">{{ item.noAutorizado }}</span>
         </button>
       </div>
@@ -189,7 +189,7 @@
           (clicked)="navigateToGestionMinuta(item.id)"
         />
 
-        <app-action-menu>
+        <lux-action-menu>
           <ng-container actions>
             <lux-button-web
               kind="item"
@@ -240,7 +240,7 @@
             />
             }
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu>
       </footer>
     </article>
     }

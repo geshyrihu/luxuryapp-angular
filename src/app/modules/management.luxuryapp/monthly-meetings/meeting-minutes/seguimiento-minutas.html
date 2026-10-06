@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-seguimiento-minutas-mobile
+<lux-seguimiento-minutas-mobile-web
   [data]="dataSignal()"
   [statusFiltro]="statusFiltro"
   (filtrar)="onFiltrarData($event)"
@@ -8,7 +8,7 @@
   (edit)="onModalFormMinutaDetalle($event)"
 />
 } @else {
-<app-seguimiento-minutas-desktop
+<lux-seguimiento-minutas-desktop-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   [statusFiltro]="statusFiltro"

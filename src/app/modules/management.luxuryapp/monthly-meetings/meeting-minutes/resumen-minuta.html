@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-resumen-minuta-mobile [data]="dataSignal()" />
+<lux-resumen-minuta-mobile-web [data]="dataSignal()" />
 } @else {
-<app-resumen-minuta-desktop [data]="dataSignal()" [loading]="loading()" />
+<lux-resumen-minuta-desktop-web [data]="dataSignal()" [loading]="loading()" />
 }
