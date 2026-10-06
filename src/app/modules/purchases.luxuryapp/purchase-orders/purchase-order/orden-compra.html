@@ -179,8 +179,15 @@
                 ariaLabel="Editar"
                 (clicked)="onModalEditarPresupuestoUtilizado(item.id)"
               />
-              <iw-button-delete
-                (confirmed)="onDeleteOrdenCompraPresupuesto(item.id)"
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Eliminar"
+                ariaLabel="Eliminar"
+                (clicked)="onDeleteOrdenCompraPresupuesto(item.id)"
               />
             </div>
           </td>
@@ -199,28 +206,37 @@
     <lux-card [padded]="false">
       <div class="d-flex flex-column">
         @if (solicitudCompraId() > 0) {
-        <il-button-item
-          iconClass="material-symbols-light:attach-money"
-          label="Cuadro Comparativo"
-          [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
+        <lux-button-web
+          kind="item"
+          displayMode="both"
+          severity="secondary"
           variant="text"
-          customClass="w-full justify-content-start"
+          icon="material-symbols-light:attach-money"
+          label="Cuadro Comparativo"
+          styleClass="w-full justify-content-start"
+          [routerLink]="['//purchases/cuadro-comparativo/', solicitudCompraId()]"
         />
         } @if (isAuthorized()) {
-        <il-button-item
-          iconClass="material-symbols-light:shopping-cart"
-          label="Orden de Compra"
-          (click)="onDownloadOrdenCompraPdf()"
+        <lux-button-web
+          kind="item"
+          displayMode="both"
+          severity="secondary"
           variant="text"
-          customClass="w-full justify-content-start"
+          icon="material-symbols-light:shopping-cart"
+          label="Orden de Compra"
+          styleClass="w-full justify-content-start"
+          (clicked)="onDownloadOrdenCompraPdf()"
         />
 
-        <il-button-item
-          iconClass="material-symbols-light:wallet"
-          label="Solicitud de Pago"
-          (click)="onDownloadSolicitudPagoPdf()"
+        <lux-button-web
+          kind="item"
+          displayMode="both"
+          severity="secondary"
           variant="text"
-          customClass="w-full justify-content-start"
+          icon="material-symbols-light:wallet"
+          label="Solicitud de Pago"
+          styleClass="w-full justify-content-start"
+          (clicked)="onDownloadSolicitudPagoPdf()"
         />
         }
       </div>
@@ -315,7 +331,16 @@
             ariaLabel="Editar"
             (clicked)="onModalEditarDetalle(item)"
           />
-          <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="onDeleteProduct(item.id)"
+          />
         </div>
         }
       </td>

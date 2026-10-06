@@ -224,11 +224,14 @@
       <td class="no-print oc-cell-actions text-center">
         <app-action-menu>
           <ng-container actions>
-            <il-button-item
-              iconClass="material-symbols-light:fullscreen"
+            <lux-button-web
+              kind="item"
+              displayMode="both"
+              severity="secondary"
+              variant="text"
+              icon="material-symbols-light:fullscreen"
               label="Editar en modal"
               (clicked)="ordenCompraModal.emit(item.id)"
-              variant="text"
             />
             <lux-button-web
               kind="edit"
@@ -238,23 +241,29 @@
             />
 
             @if (statusCompra() === 0) {
-            <il-button-item
-              iconClass="material-symbols-light:attach-money"
+            <lux-button-web
+              kind="item"
+              displayMode="both"
+              severity="secondary"
+              variant="text"
+              icon="material-symbols-light:attach-money"
               label="Solicitud de pago"
               (clicked)="downloadSolicitudPagoPdf.emit(item.id)"
-              variant="text"
             />
-            <il-button-item
-              iconClass="material-symbols-light:picture-as-pdf"
+            <lux-button-web
+              kind="item"
+              displayMode="both"
+              severity="secondary"
+              variant="text"
+              icon="material-symbols-light:picture-as-pdf"
               label="Orden de compra"
               (clicked)="downloadOrdenCompraPdf.emit(item.id)"
-              variant="text"
             />
             }
-            <il-button-delete
-              (confirmed)="delete.emit(item.id)"
+            <lux-button-web
+              kind="delete"
               variant="text"
-              label="Eliminar"
+              (clicked)="delete.emit(item.id)"
             />
           </ng-container>
         </app-action-menu>

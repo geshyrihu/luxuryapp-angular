@@ -12,7 +12,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { SolicitudCompraService } from "@purchases.luxuryapp/purchase-requests/requests/services/solicitud-compra.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -25,7 +25,6 @@ import { ProductoEdit } from "./producto-edit";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
   ],
@@ -34,6 +33,7 @@ export class SolicitudCompraDetalle {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   solicitudCompraService = inject(SolicitudCompraService);
+  confirmS = inject(ConfirmService);
   solicitudCompraDetalle = input<any[]>([], {
     alias: "SolicitudCompraDetalle",
   });
@@ -61,7 +61,11 @@ export class SolicitudCompraDetalle {
     this.updateData.emit();
   }
 
-  onDeleteProduct(id: any) {
+  async onDeleteProduct(id: any) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este producto de la solicitud?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PurchaseRequestDetails.delete(id))
       .then(() => {

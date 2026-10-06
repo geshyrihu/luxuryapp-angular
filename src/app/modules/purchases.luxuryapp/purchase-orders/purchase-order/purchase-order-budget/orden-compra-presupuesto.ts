@@ -15,7 +15,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { MessageService } from "@core/services/message.service";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
@@ -51,7 +51,7 @@ import {
   selector: "app-orden-compra-presupuesto",
   templateUrl: "./orden-compra-presupuesto.html",
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     CommonModule,

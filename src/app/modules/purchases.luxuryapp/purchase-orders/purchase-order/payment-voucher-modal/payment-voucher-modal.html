@@ -21,9 +21,16 @@
               [text]="true"
               (clicked)="viewFile(item.filePath, item.fileName)"
             />
-            <iw-button-delete
-              (confirmed)="onDelete(item.id)"
-            ></iw-button-delete>
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="onDelete(item.id)"
+            />
           </div>
         </td>
       </tr>

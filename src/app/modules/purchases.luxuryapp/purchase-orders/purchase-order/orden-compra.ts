@@ -10,8 +10,6 @@ import {
   WritableSignal,
 } from "@angular/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
@@ -35,6 +33,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
@@ -61,10 +60,8 @@ import {
   imports: [
     ButtonWeb,
     WebButtonLabel,
-    WebButtonIconDelete,
     TableEmptyMessage,
     CommonModule,
-    WebButtonLabelItem,
     // Nuevo componente importado
     OrdenCompraDatosAuthParcial,
     OrdenCompraDatosCotizacion,
@@ -93,6 +90,7 @@ export class OrdenCompra implements OnInit {
   router = inject(Router);
   public ordenCompraService = inject(OrdenCompraService); // Público para usar sus signals en el template
   public pdfGenerationService = inject(PdfGenerationService);
+  confirmS = inject(ConfirmService);
   //----------------------------------------------------------------
   // 2. SEÑALES DE ESTADO (STATE SIGNALS)
   //----------------------------------------------------------------
@@ -273,7 +271,11 @@ export class OrdenCompra implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDeleteProduct(id: string): void {
+  async onDeleteProduct(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este producto de la orden de compra?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PurchaseOrderDetails.delete(id))
       .then(() => this.onLoadData());
@@ -343,7 +345,11 @@ export class OrdenCompra implements OnInit {
       )
       .then(() => this.onLoadData());
   }
-  onDeleteOrdenCompraPresupuesto(id: string): void {
+  async onDeleteOrdenCompraPresupuesto(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta partida presupuestal?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PurchaseOrderBudgets.delete(id))
       .then(() => this.onLoadData());

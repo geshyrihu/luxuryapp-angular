@@ -382,7 +382,11 @@
         [style.width.%]="50 / cotizacionProveedorSignal().length"
       >
         @if (proveedor.filePath) {
-        <iw-button-view-pdf [url]="proveedor.filePath" pdf="Cotizacion" />
+        <lux-pdf-viewer-trigger
+          [url]="proveedor.filePath"
+          fileName="Cotizacion"
+          displayMode="icon"
+        />
         }
       </td>
       }

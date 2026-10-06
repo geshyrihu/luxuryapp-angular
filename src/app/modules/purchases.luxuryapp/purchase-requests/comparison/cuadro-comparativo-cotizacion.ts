@@ -24,7 +24,7 @@ import {
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { debounceTime } from "rxjs";
@@ -40,7 +40,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     CustomInputTextSignal,
     CustomInputNumberSignal,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
+    PdfViewerTrigger,
     LxCard,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

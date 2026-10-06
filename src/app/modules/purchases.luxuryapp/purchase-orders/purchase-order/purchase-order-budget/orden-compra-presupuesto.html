@@ -121,11 +121,15 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
       </td>
       <td class="text-center">
         @if (!submitting() && ordenCompraService.totalPorCubrir() > 0) {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          icon="material-symbols-light:save"
+          tooltip="Guardar"
+          ariaLabel="Guardar"
           (clicked)="onSubmit(item)"
-          iconClass="material-symbols-light:save"
-          lxTooltip="Guardar"
-          tooltipPosition="top"
         />
         } @if (submitting()) {
         <app-spinner [size]="32" [strokeWidth]="8" />

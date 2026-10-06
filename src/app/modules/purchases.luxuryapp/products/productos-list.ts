@@ -22,6 +22,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ProductosListDesktop } from "./desktop/productos-list-desktop";
 import { ProductosListMobile } from "./mobile/productos-list-mobile";
 import { ProductosForm } from "./productos-form";
@@ -39,6 +40,7 @@ export class ProductosList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   tableScrollHeightS = inject(TableScrollHeightService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   // Signals
   dataSignal = signal<any[]>([]);
   filteredDataSignal = signal<any[]>([]);
@@ -100,7 +102,11 @@ export class ProductosList implements OnInit {
   }
 
   // ... Eliminar registro
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este producto?",
+    );
+    if (!ok) return;
     return this.apiResponseS
       .onDelete(Endpoints.Products.delete(id))
       .then((result: boolean) => {

@@ -10,7 +10,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { TagSeverity } from "@ui/core/tag.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -42,7 +41,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
     LxTooltipDirective,
     WebButtonLabel,
     WebButtonIcon,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

@@ -32,10 +32,9 @@ import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-
-import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
+import { LxModal } from "@ui/adaptive/modal/modal";
 
 @Component({
   selector: "app-cuadro-comparativo-list",
@@ -43,7 +42,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    WebButtonIconViewPdf,
+    PdfViewerTrigger,
     CommonModule,
     ApiDatePipe,
     ReactiveFormsModule,

@@ -32,7 +32,16 @@
                 })
               "
           />
-          <iw-button-delete (confirmed)="onDeleteProduct(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="onDeleteProduct(item.id)"
+          />
         </div>
       </td>
     </tr>

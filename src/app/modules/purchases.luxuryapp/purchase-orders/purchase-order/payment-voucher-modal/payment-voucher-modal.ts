@@ -12,8 +12,9 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -26,7 +27,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-payment-voucher-modal",
   imports: [
     WebButtonIcon,
-    WebButtonIconDelete,
+    ButtonWeb,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
@@ -41,6 +42,7 @@ export class PaymentVoucherModal implements OnInit {
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
   dialogHandlerS = inject(DialogHandlerService);
+  confirmS = inject(ConfirmService);
   ordenCompraId: string = "";
   comprobantes = signal<any[]>([]);
   submitting = signal(false);
@@ -77,7 +79,11 @@ export class PaymentVoucherModal implements OnInit {
       .catch(() => this.submitting.set(false));
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este comprobante?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PurchaseOrderPaymentVouchers.delete(id))
       .then(() => {

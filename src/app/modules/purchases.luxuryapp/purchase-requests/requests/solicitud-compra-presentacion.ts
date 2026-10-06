@@ -15,7 +15,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { TagSeverity } from "@ui/core/tag.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppIcon as AppIconCatalog } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -36,7 +36,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     AppImage,
     AppTable,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
+    PdfViewerTrigger,
     LxTag,
     AppIcon,
   ],

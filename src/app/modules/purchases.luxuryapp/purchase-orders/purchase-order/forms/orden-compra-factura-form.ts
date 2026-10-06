@@ -33,7 +33,7 @@ export interface IOrdenCompraFacturaForm {
 }
 
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
@@ -43,7 +43,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
@@ -60,6 +59,7 @@ export class OrdenCompraFacturaForm implements OnInit {
   formB = inject(FormBuilder);
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
+  confirmS = inject(ConfirmService);
   submitting = signal(false);
   isEditing = signal(false);
   editingInvoiceId: string | null = null;
@@ -202,7 +202,11 @@ export class OrdenCompraFacturaForm implements OnInit {
       .catch(() => this.submitting.set(false));
   }
   // Funcion para eliminar un banco y refres
-  onDeleteInvoice(id: string) {
+  async onDeleteInvoice(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta factura?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.OrdenCompraStatus.deleteInvoice(id))
       .then((response: boolean) => {

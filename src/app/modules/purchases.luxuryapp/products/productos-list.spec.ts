@@ -6,6 +6,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { ProductosList } from "./productos-list";
 
@@ -17,6 +18,7 @@ describe("ProductosList", () => {
   let mockAuthS: any;
   let mockDialogHandlerS: any;
   let mockTableScrollHeightS: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -34,6 +36,7 @@ describe("ProductosList", () => {
       sizeLg: "1200px",
     };
     mockTableScrollHeightS = { scrollHeight: signal("600px") };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(ProductosList, {
@@ -48,6 +51,7 @@ describe("ProductosList", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: PlatformService, useValue: { isMobile: signal(false) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -90,6 +94,16 @@ describe("ProductosList", () => {
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");
     expect(component.filteredDataSignal().length).toBe(1);
+  });
+
+  it("onDelete should not remove item when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    component.dataSignal.set([{ id: "1" }, { id: "2" }]);
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().length).toBe(2);
   });
 });
 

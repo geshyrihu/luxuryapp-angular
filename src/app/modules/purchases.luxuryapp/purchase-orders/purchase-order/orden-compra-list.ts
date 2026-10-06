@@ -22,6 +22,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { PdfGenerationService } from "@purchases.luxuryapp/purchase-orders/generator-pdf/pdf-generation.service";
 import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purchase-link-manager/purchase-link-manager";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CreateOrdenCompra } from "./create-orden-compra";
 import { OrdenCompraListDesktop } from "./desktop/orden-compra-list-desktop";
@@ -68,6 +69,7 @@ export class OrdenCompraList {
   customerIdS = inject(CustomerIdService);
   pdfGenerationService = inject(PdfGenerationService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   data = signal<PurchaseOrderListItem[]>([]);
   loading = signal(true);
@@ -125,7 +127,11 @@ export class OrdenCompraList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta orden de compra?",
+    );
+    if (!ok) return;
     this.apiResponseS.onDelete(Endpoints.PurchaseOrders.delete(id)).then(() => {
       this.data.update((data) => data.filter((item) => item.id !== id));
     });

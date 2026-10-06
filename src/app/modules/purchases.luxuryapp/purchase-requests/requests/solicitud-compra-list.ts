@@ -22,6 +22,7 @@ import { PurchaseLinkManager } from "@purchases.luxuryapp/purchase-orders/purcha
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { TagSeverity } from "@ui/core/tag.base";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { addIcons } from "ionicons";
 import { cartOutline } from "ionicons/icons";
 import { Subscription } from "rxjs";
@@ -49,6 +50,7 @@ export class SolicitudCompraList {
   solicitudCompraService = inject(SolicitudCompraService);
   ordenCompraService = inject(OrdenCompraService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   public AspRole = ApplicationRole;
 
@@ -123,7 +125,11 @@ export class SolicitudCompraList {
     );
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta solicitud de compra?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PurchaseRequests.delete(id))
       .then((result: boolean) => {

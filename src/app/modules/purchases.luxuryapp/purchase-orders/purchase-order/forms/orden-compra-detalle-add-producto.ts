@@ -55,14 +55,14 @@ interface IOrdenCompraDetalleRowForm {
 }
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-orden-compra-detalle-add-producto",
   templateUrl: "./orden-compra-detalle-add-producto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     ReactiveFormsModule,
     AppTable,
 

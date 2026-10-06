@@ -138,8 +138,14 @@
         </td>
         <td>
           <div class="d-flex justify-content-center">
-            <iw-button-item
-              iconClass="material-symbols-light:add"
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              icon="material-symbols-light:add"
+              tooltip="Agregar"
+              ariaLabel="Agregar"
               (clicked)="onSubmit(row)"
             />
           </div>

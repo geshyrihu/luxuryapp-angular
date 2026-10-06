@@ -36,9 +36,8 @@
         />
 
         @if (cotizacionProveedor?.filePath) {
-        <il-button-view-pdf
+        <lux-pdf-viewer-trigger
           [url]="cotizacionProveedor.filePath"
-          pdf="Cotizacion"
           [fileName]="'Cotizacion'"
           label="Ver PDF"
         />
