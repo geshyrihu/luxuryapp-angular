@@ -26,8 +26,8 @@
       class="flex-grow-1 sm:flex-grow-0"
     />
     @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-    <lux-button-web-add
-      label="Agregar"
+    <lux-button-web
+      kind="add"
       (clicked)="onModalForm({ id: '', title: 'Nuevo Registro' })"
     />
     }
