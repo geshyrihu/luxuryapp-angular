@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import type { TagSeverity } from "@ui/core/tag.base";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
@@ -28,7 +28,7 @@ import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
   selector: "app-committee-cobranza-detail-modal",
   templateUrl: "./committee-cobranza-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, CurrencyPipe, LxTag, AppIcon, LxSpinner],
+  imports: [CommonModule, CurrencyPipe, LxTag, LxIcon, LxSpinner],
 })
 export class CommitteeCobranzaDetailModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -113,5 +113,4 @@ export class CommitteeCobranzaDetailModal implements OnInit {
     }
   }
 }
-
 
