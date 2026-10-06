@@ -39,7 +39,7 @@
       <td>{{ item.folio }}</td>
       <td>{{ item.name | uppercase }}</td>
       <td class="text-center">
-        <lux-button-web displayMode="icon"-view-pdf [url]="item.path" fileName="Formato" />
+        <lux-pdf-viewer-trigger displayMode="icon" [url]="item.path" fileName="Formato" />
       </td>
       <!-- Opciones -->
       @if (isSuperUsuario()) {

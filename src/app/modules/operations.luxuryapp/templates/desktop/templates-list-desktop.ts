@@ -10,6 +10,7 @@ import {
   NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -22,6 +23,7 @@ import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
+    PdfViewerTrigger,
     CommonModule,
     AppTable,
     AppSortableColumn,
