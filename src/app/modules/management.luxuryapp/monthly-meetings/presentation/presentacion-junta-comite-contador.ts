@@ -127,7 +127,11 @@ export class PresentacionJuntaComiteContador {
       });
   }
   // Eliminar registro completo
-  onDeleteItem(id: any) {
+  async onDeleteItem(id: any): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PresentacionJuntaComite.delete(id))
       .then((result: boolean) => {

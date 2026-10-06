@@ -10,14 +10,10 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 
 @Component({
   selector: "app-presentacion-junta-comite-mobile",
@@ -30,9 +26,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
     LxFieldset,
     DataViewMobile,
     ButtonWeb,
-    WebButtonLabelDelete,
-    WebButtonLabelConfirm,
-    WebButtonLabelViewPdf,
+    PdfViewerTrigger,
   ],
 })
 export class PresentacionJuntaComiteMobile {

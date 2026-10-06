@@ -30,7 +30,12 @@
               variant="soft"
               (clicked)="edit.emit(item.id)"
             />
-            <il-button-delete (confirmed)="deleteItem.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="deleteItem.emit(item.id)"
+            />
           </div>
           }
         </div>
@@ -62,7 +67,10 @@
             />
             } @else if (item.archivoPortada) {
             <div class="d-flex justify-content-between align-items-center">
-              <il-button-view-pdf [url]="item.archivoPortada" pdf="Portada" />
+              <lux-pdf-viewer-trigger
+                [url]="item.archivoPortada"
+                fileName="Portada"
+              />
               @if ( aspRoleS.anyOf([ AspRole.Administrador,
               AspRole.SuperUsuario ])() && !item.archivoFinal ) {
               <div class="d-flex gap-1">
@@ -72,8 +80,11 @@
                   variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Portada' })"
                 />
-                <il-button-delete
-                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Portada' })"
+                <lux-button-web
+                  kind="delete"
+                  severity="danger"
+                  variant="soft"
+                  (clicked)="deleteFile.emit({ id: item.id, area: 'Portada' })"
                 />
               </div>
               }
@@ -106,9 +117,9 @@
             />
             } @else if (item.archivoContable) {
             <div class="d-flex justify-content-between align-items-center">
-              <il-button-view-pdf
+              <lux-pdf-viewer-trigger
                 [url]="item.archivoContable"
-                pdf="Contabilidad"
+                fileName="Contabilidad"
               />
               @if ( aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()
               && !item.archivoFinal && !item.applicationUserSupervisorContable
@@ -120,8 +131,11 @@
                   variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
                 />
-                <il-button-delete
-                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
+                <lux-button-web
+                  kind="delete"
+                  severity="danger"
+                  variant="soft"
+                  (clicked)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
                 />
               </div>
               }
@@ -155,9 +169,9 @@
             />
             } @else if (item.archivoJunta) {
             <div class="d-flex justify-content-between align-items-center">
-              <il-button-view-pdf
+              <lux-pdf-viewer-trigger
                 [url]="item.archivoJunta"
-                pdf="Operaciones"
+                fileName="Operaciones"
               />
               @if ( aspRoleS.anyOf([ AspRole.Administrador,
               AspRole.SuperUsuario ])() && !item.archivoFinal ) {
@@ -168,8 +182,11 @@
                   variant="soft"
                   (clicked)="upload.emit({ id: item.id, titulo: 'Operaciones' })"
                 />
-                <il-button-delete
-                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
+                <lux-button-web
+                  kind="delete"
+                  severity="danger"
+                  variant="soft"
+                  (clicked)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
                 />
               </div>
               }
@@ -191,33 +208,34 @@
             item.archivoPortada && item.archivoContable && item.archivoJunta )
             {
             <div class="d-flex flex-column gap-2">
-              <il-button-confirm
-                icon="material-symbols-light:send"
+              <lux-button-web
+                kind="confirm"
+                severity="success"
+                variant="soft"
+                iconClass="material-symbols-light:send"
                 label="Validar y enviar a comite"
-                swalTitle="óEnviar presentación?"
-                swalText="La presentación seré enviada al Comité."
-                swalConfirmButtonText="Sí, enviar"
-                swalIcon="warning"
-                (confirmed)="validar.emit(item.id)"
-                customClass="w-100"
+                [fluid]="true"
+                (clicked)="validar.emit(item.id)"
               />
-              <il-button-confirm
-                icon="material-symbols-light:check-circle"
+              <lux-button-web
+                kind="confirm"
+                severity="secondary"
+                variant="soft"
+                iconClass="material-symbols-light:check-circle"
                 label="Solo validar"
-                swalTitle="óValidar presentación?"
-                swalText="Confirmo que la presentación es correcta y se crearé versión final."
-                swalConfirmButtonText="Sí, esté correcta, validar"
-                swalIcon="info"
-                (confirmed)="onlyValidate.emit(item.id)"
-                customClass="w-full btn-secondary"
+                [fluid]="true"
+                (clicked)="onlyValidate.emit(item.id)"
               />
             </div>
             } @else if (item.archivoFinal) {
             <div class="d-flex justify-content-between align-items-center">
-              <il-button-view-pdf [url]="item.archivoFinal" pdf="Final" />
+              <lux-pdf-viewer-trigger [url]="item.archivoFinal" fileName="Final" />
               @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
-              <il-button-delete
-                (confirmed)="deleteFile.emit({ id: item.id, area: 'Final' })"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="deleteFile.emit({ id: item.id, area: 'Final' })"
               />
               }
             </div>
