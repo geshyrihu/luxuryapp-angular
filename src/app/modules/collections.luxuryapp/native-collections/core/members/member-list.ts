@@ -16,10 +16,9 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -38,10 +37,8 @@ import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto"
     LxTooltipDirective,
     LxTag,
     ButtonWeb,
-    WebButtonIconDelete,
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     AppTable,
     LuxTableCaption,
@@ -59,6 +56,7 @@ export default class MemberList {
   private dateS = inject(DateService);
   private dialogHandlerS = inject(DialogHandlerService);
   private enumSelectS = inject(EnumSelectService);
+  private confirmS = inject(ConfirmService);
 
   tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
@@ -105,6 +103,11 @@ export default class MemberList {
   }
 
   async onDeleteMember(item: PropertyMemberResponseDTO) {
+    const confirmed = await this.confirmS.confirm(
+      `¿Eliminar permanentemente la relación de ${item.userName} con esta propiedad? Solo se permitirá si no existen referencias históricas.`,
+      "Eliminar relación",
+    );
+    if (!confirmed) return;
     const res = await this.apiResponseS.onDelete(
       Endpoints.CobranzaCore.PropertyMembers.delete(item.id),
     );
@@ -112,6 +115,11 @@ export default class MemberList {
   }
 
   async onEndMembership(item: PropertyMemberResponseDTO) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Confirma dar de baja a este miembro?",
+      "Dar de baja",
+    );
+    if (!confirmed) return;
     const today = this.dateS.getDateFormat(new Date());
     const res = await this.apiResponseS.onPost(
       Endpoints.CobranzaCore.PropertyMembers.endMembership(item.id),

@@ -85,9 +85,15 @@
               (clicked)="onModalForm(item.id)"
             />
             } @if (canVoid(item.status)) {
-            <iw-button-delete
-              (customClick)="onVoid(item)"
-              title="Anular multa"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Anular multa"
+              ariaLabel="Anular multa"
+              (clicked)="onVoid(item)"
             />
             }
           </div>
@@ -138,7 +144,11 @@
             (clicked)="onModalForm(item.id)"
           />
           } @if (canVoid(item.status)) {
-          <ili-button-delete (confirmed)="onVoid(item)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="onVoid(item)"
+          />
           }
         </ng-container>
       </ili-action-menu>

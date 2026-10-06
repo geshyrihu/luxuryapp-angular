@@ -30,11 +30,9 @@ import { PropertyFineForm } from "./property-fine-form";
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
@@ -43,10 +41,8 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppIcon,
     LxTag,
     ButtonWeb,
-    WebButtonIconDelete,
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelDelete,
     MobileListItem,
     TableEmptyMessage,
     AppTable,
@@ -62,6 +58,7 @@ export default class PropertyFineList {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private confirmS = inject(ConfirmService);
 
   tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
@@ -120,6 +117,10 @@ export default class PropertyFineList {
   }
 
   async onVoid(item: PropertyFineResponseDTO) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de anular esta multa?",
+    );
+    if (!confirmed) return;
     const reason = "Anulada por el administrador";
     this.apiResponseS
       .onDelete(Endpoints.CobranzaCore.PropertyFines.void(item.id, reason))

@@ -13,9 +13,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -36,10 +35,8 @@ import { ChargeTemplateForm } from "./charge-template-form";
   imports: [
     MobileListItem,
     ButtonWeb,
-    WebButtonIconDelete,
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelDelete,
     LxTag,
     AppIcon,
     CurrencyPipe,
@@ -57,6 +54,7 @@ export default class ChargeTemplateList {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private confirmS = inject(ConfirmService);
 
   tableRows = tableRows();
   rowsPerPageOptions = rowsPerPageOptions();
@@ -105,6 +103,10 @@ export default class ChargeTemplateList {
   }
 
   async onDelete(item: ChargeTemplateResponseDTO) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta plantilla de cargo?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CobranzaCore.Templates.delete(item.id))
       .then((res) => {

@@ -8,6 +8,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import MemberList from "./member-list";
 import { EMemberRole } from "../../interfaces/enums";
 
@@ -19,6 +20,7 @@ describe("MemberList", () => {
     onDelete: ReturnType<typeof vi.fn>;
     onPost: ReturnType<typeof vi.fn>;
   };
+  let mockConfirmS: { confirm: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
     apiResponseMock = {
@@ -26,6 +28,7 @@ describe("MemberList", () => {
       onDelete: vi.fn().mockResolvedValue(true),
       onPost: vi.fn().mockResolvedValue(true),
     };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     await TestBed.configureTestingModule({
       imports: [MemberList],
@@ -40,6 +43,7 @@ describe("MemberList", () => {
           },
         },
         { provide: ApiResponseService, useValue: apiResponseMock },
+        { provide: ConfirmService, useValue: mockConfirmS },
         {
           provide: CustomerIdService,
           useValue: {
@@ -160,6 +164,26 @@ describe("MemberList", () => {
       expect.objectContaining({ endDate: "2026-07-31" }),
     );
     expect(loadSpy).toHaveBeenCalledOnce();
+  });
+
+  it("should not delete member when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    const loadSpy = vi.spyOn(component, "onLoadData").mockImplementation(() => {});
+
+    await component.onDeleteMember({ id: "member-1", userName: "Ana" } as any);
+
+    expect(apiResponseMock.onDelete).not.toHaveBeenCalled();
+    expect(loadSpy).not.toHaveBeenCalled();
+  });
+
+  it("should not end membership when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    const loadSpy = vi.spyOn(component, "onLoadData").mockImplementation(() => {});
+
+    await component.onEndMembership({ id: "member-1", userName: "Ana" } as any);
+
+    expect(apiResponseMock.onPost).not.toHaveBeenCalled();
+    expect(loadSpy).not.toHaveBeenCalled();
   });
 
   it("should expose role and active state labels", () => {

@@ -108,21 +108,27 @@
               (clicked)="onModalForm(item.id, item.propertyId)"
             />
             @if (item.isActive) {
-            <iw-button-delete
-              title="Dar de baja"
-              confirmHeader="Dar de baja"
-              confirmMessage="Confirma dar de baja a este miembro?"
-              confirmAcceptLabel="Si, dar de baja"
-              (confirmed)="onEndMembership(item)"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Dar de baja"
+              ariaLabel="Dar de baja"
+              (clicked)="onEndMembership(item)"
             />
             } @if (!item.isActive) {
-            <iw-button-delete
-              iconClass="material-symbols-light:link-off"
-              title="Eliminar relación"
-              confirmHeader="Eliminar relación"
-              confirmMessage="Eliminar permanentemente la relación de {{ item.userName }} con esta propiedad? Solo se permitirá si no existen referencias históricas."
-              confirmAcceptLabel="Si, eliminar relación"
-              (confirmed)="onDeleteMember(item)"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              icon="material-symbols-light:link-off"
+              tooltip="Eliminar relación"
+              ariaLabel="Eliminar relación"
+              (clicked)="onDeleteMember(item)"
             />
             }
           </div>
@@ -168,14 +174,18 @@
             (clicked)="onModalForm(item.id, item.propertyId)"
           />
           @if (item.isActive) {
-          <ili-button-delete
-            (confirmed)="onEndMembership(item)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Dar de baja"
+            (clicked)="onEndMembership(item)"
           />
           } @if (!item.isActive) {
-          <ili-button-delete
-            (confirmed)="onDeleteMember(item)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Eliminar relación"
+            (clicked)="onDeleteMember(item)"
           />
           }
         </ng-container>
