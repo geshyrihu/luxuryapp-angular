@@ -87,7 +87,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     class="col-12 col-md-5 d-flex gap-2 justify-content-end align-items-end"
                   >
                     <lux-button-web
-                      variant="outlined"
+                      variant="outline"
                       label="Limpiar"
                       severity="secondary"
                     />
@@ -119,9 +119,11 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <td>{{ row.total }}</td>
                       <td><lux-status-badge-web [status]="EStatus.Aprobado" /></td>
                       <td class="text-end">
-                        <lux-button-web displayMode="icon"-icon
+                        <lux-button-web
+                          displayMode="icon"
                           icon="material-symbols-light:visibility"
                           variant="text"
+                          ariaLabel="Ver detalle"
                         />
                       </td>
                     </tr>

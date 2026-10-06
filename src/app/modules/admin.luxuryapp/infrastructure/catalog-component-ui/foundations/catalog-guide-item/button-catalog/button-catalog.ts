@@ -381,7 +381,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
-                      <lux-button-web-add
+                      <lux-button-web kind="add"
                         [severity]="$any(sev)"
                         [variant]="$any(variant)"
                         [size]="webSize()"
@@ -420,21 +420,21 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               <td>
                 @switch (r.id) {
                   @case ("il-add") {
-                    <lux-button-web-add
+                    <lux-button-web kind="add"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-edit") {
-                    <lux-button-web-edit
+                    <lux-button-web kind="edit"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-delete") {
-                    <lux-button-web-delete
+                    <lux-button-web kind="delete"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
@@ -452,58 +452,60 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                     />
                   }
                   @case ("il-download") {
-                    <lux-button-web-download
+                    <lux-button-web kind="download"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-confirm") {
-                    <lux-button-web-confirm
+                    <lux-button-web kind="confirm"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-send-email") {
-                    <lux-button-web-send-email
+                    <lux-button-web kind="send-email"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-view-pdf") {
-                    <lux-button-web-view-pdf
+                    <lux-button-web kind="view-pdf"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-tracking") {
-                    <lux-button-web-tracking
+                    <lux-button-web kind="tracking"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-item") {
-                    <lux-button-web-item
+                    <lux-button-web kind="item"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("il-active-t") {
-                    <lux-button-web-active-desactive
-                      [state]="true"
+                    <lux-button-web kind="active-desactive"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
+                    <small class="text-color-secondary d-block mt-1"
+                      >[state] retirado: kind="active-desactive" no distingue
+                      estado activo/inactivo.</small
+                    >
                   }
                   @case ("il-active-f") {
-                    <lux-button-web-active-desactive
-                      [state]="false"
+                    <lux-button-web kind="active-desactive"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
@@ -557,7 +559,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
-                      <lux-button-web displayMode="icon"-add
+                      <lux-button-web kind="add" displayMode="icon"
                         [severity]="$any(sev)"
                         [variant]="$any(variant)"
                         [size]="webSize()"
@@ -592,79 +594,81 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               <td>
                 @switch (r.id) {
                   @case ("iw-add") {
-                    <lux-button-web displayMode="icon"-add
+                    <lux-button-web kind="add" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-edit") {
-                    <lux-button-web displayMode="icon"-edit
+                    <lux-button-web kind="edit" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-delete") {
-                    <lux-button-web displayMode="icon"-delete
+                    <lux-button-web kind="delete" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-save") {
-                    <lux-button-web displayMode="icon"-save
+                    <lux-button-web kind="save" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-download") {
-                    <lux-button-web displayMode="icon"-download
+                    <lux-button-web kind="download" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-confirm") {
-                    <lux-button-web displayMode="icon"-confirm
+                    <lux-button-web kind="confirm" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-send-email") {
-                    <lux-button-web displayMode="icon"-send-email
+                    <lux-button-web kind="send-email" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-view-pdf") {
-                    <lux-button-web displayMode="icon"-view-pdf
+                    <lux-button-web kind="view-pdf" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-tracking") {
-                    <lux-button-web displayMode="icon"-tracking
+                    <lux-button-web kind="tracking" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("iw-active-t") {
-                    <lux-button-web displayMode="icon"-active-desactive
-                      [state]="true"
+                    <lux-button-web kind="active-desactive" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
+                    <small class="text-color-secondary d-block mt-1"
+                      >[state] retirado: kind="active-desactive" no distingue
+                      estado activo/inactivo.</small
+                    >
                   }
                   @case ("iw-active-f") {
-                    <lux-button-web displayMode="icon"-active-desactive
-                      [state]="false"
+                    <lux-button-web kind="active-desactive" displayMode="icon"
                       [size]="webSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
@@ -716,7 +720,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
-                      <lux-button-mobile displayMode="icon"-add
+                      <lux-button-mobile kind="add" displayMode="icon"
                         [color]="$any(sev)"
                         [fill]="$any(fill)"
                         [size]="ionicSize()"
@@ -750,79 +754,81 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               <td>
                 @switch (r.id) {
                   @case ("ii-add") {
-                    <lux-button-mobile displayMode="icon"-add
+                    <lux-button-mobile kind="add" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-edit") {
-                    <lux-button-mobile displayMode="icon"-edit
+                    <lux-button-mobile kind="edit" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-delete") {
-                    <lux-button-mobile displayMode="icon"-delete
+                    <lux-button-mobile kind="delete" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-save") {
-                    <lux-button-mobile displayMode="icon"-save
+                    <lux-button-mobile kind="save" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-download") {
-                    <lux-button-mobile displayMode="icon"-download
+                    <lux-button-mobile kind="download" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-confirm") {
-                    <lux-button-mobile displayMode="icon"-confirm
+                    <lux-button-mobile kind="confirm" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-send-email") {
-                    <lux-button-mobile displayMode="icon"-send-email
+                    <lux-button-mobile kind="send-email" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-view-pdf") {
-                    <lux-button-mobile displayMode="icon"-view-pdf
+                    <lux-button-mobile kind="view-pdf" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-tracking") {
-                    <lux-button-mobile displayMode="icon"-tracking
+                    <lux-button-mobile kind="tracking" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ii-active-t") {
-                    <lux-button-mobile displayMode="icon"-active-desactive
-                      [state]="true"
+                    <lux-button-mobile kind="active-desactive" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
+                    <small class="text-color-secondary d-block mt-1"
+                      >[state] retirado: kind="active-desactive" no distingue
+                      estado activo/inactivo.</small
+                    >
                   }
                   @case ("ii-active-f") {
-                    <lux-button-mobile displayMode="icon"-active-desactive
-                      [state]="false"
+                    <lux-button-mobile kind="active-desactive" displayMode="icon"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
@@ -865,7 +871,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                 <div class="d-flex gap-2 flex-wrap">
                   @for (sev of severities; track sev) {
                     <div class="catalog-color-cell">
-                      <lux-button-mobile-add
+                      <lux-button-mobile kind="add"
                         [color]="$any(sev)"
                         [fill]="$any(fill)"
                         [size]="ionicSize()"
@@ -899,86 +905,88 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               <td>
                 @switch (r.id) {
                   @case ("ili-add") {
-                    <lux-button-mobile-add
+                    <lux-button-mobile kind="add"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-edit") {
-                    <lux-button-mobile-edit
+                    <lux-button-mobile kind="edit"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-delete") {
-                    <lux-button-mobile-delete
+                    <lux-button-mobile kind="delete"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-save") {
-                    <lux-button-mobile-save
+                    <lux-button-mobile kind="save"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-download") {
-                    <lux-button-mobile-download
+                    <lux-button-mobile kind="download"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-confirm") {
-                    <lux-button-mobile-confirm
+                    <lux-button-mobile kind="confirm"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-send-email") {
-                    <lux-button-mobile-send-email
+                    <lux-button-mobile kind="send-email"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-view-pdf") {
-                    <lux-button-mobile-view-pdf
+                    <lux-button-mobile kind="view-pdf"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-tracking") {
-                    <lux-button-mobile-tracking
+                    <lux-button-mobile kind="tracking"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-item") {
-                    <lux-button-mobile-item
+                    <lux-button-mobile kind="item"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
                   @case ("ili-active-t") {
-                    <lux-button-mobile-active-desactive
-                      [state]="true"
+                    <lux-button-mobile kind="active-desactive"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
+                    <small class="text-color-secondary d-block mt-1"
+                      >[state] retirado: kind="active-desactive" no distingue
+                      estado activo/inactivo.</small
+                    >
                   }
                   @case ("ili-active-f") {
-                    <lux-button-mobile-active-desactive
-                      [state]="false"
+                    <lux-button-mobile kind="active-desactive"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
