@@ -28,8 +28,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class WarehouseListDesktop {
   data = input.required<any[]>();

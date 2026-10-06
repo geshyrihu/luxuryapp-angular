@@ -25,8 +25,7 @@ describe('InspeccionPdfService', () => {
       providers: [
         InspeccionPdfService,
         { provide: HtmlPrintService, useValue: mockHtmlPrintService },
-        { provide: CustomToastService, useValue: mockToastService },
-      ],
+        { provide: CustomToastService, useValue: mockToastService }],
     });
 
     service = TestBed.inject(InspeccionPdfService);

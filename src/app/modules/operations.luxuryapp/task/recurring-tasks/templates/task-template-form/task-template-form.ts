@@ -43,8 +43,7 @@ interface ITaskTemplateForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    CustomInputMultiselectSignal,
-  ],
+    CustomInputMultiselectSignal],
 })
 export class TaskTemplateForm implements OnInit {
   private formBuilder = inject(FormBuilder);

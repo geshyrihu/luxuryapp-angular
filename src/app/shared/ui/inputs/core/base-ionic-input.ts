@@ -65,8 +65,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
         margin-top: 4px;
         margin-left: 12px;
       }
-    `,
-  ],
+    `],
 })
 export class BaseIonicInput extends BaseInputSignal {
   /** lines: separador del ion-item */

@@ -30,8 +30,7 @@ import { WorkPositionDetailDTO } from "./WorkPositionDetailDTO";
     ReactiveFormsModule,
     ButtonWeb,
     CustomInputTextAreaSignal,
-    CurrencyPipe,
-  ],
+    CurrencyPipe],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -55,8 +54,7 @@ export class SolicitudVacanteForm implements OnInit {
     { label: "Jueves", value: 4 },
     { label: "Viernes", value: 5 },
     { label: "Sábado", value: 6 },
-    { label: "Domingo", value: 0 },
-  ] as const;
+    { label: "Domingo", value: 0 }] as const;
 
   form = this.formB.nonNullable.group({
     id: [this.config.data.workPositionId],

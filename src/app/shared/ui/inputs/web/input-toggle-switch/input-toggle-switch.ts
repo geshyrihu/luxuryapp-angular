@@ -48,8 +48,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputToggleSwitch),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputToggleSwitch
   extends BaseInputSignal

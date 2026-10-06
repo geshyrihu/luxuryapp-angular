@@ -68,8 +68,6 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
@@ -140,13 +138,10 @@ import { ButtonMobile } from "@ui/buttons/mobile";
           font-size: 0.85rem !important;
         }
       }
-    `,
-  ],
+    `],
   imports: [
     ButtonWeb,
     ButtonMobile,
-    WebButtonLabel,
-    WebButtonIcon,
     LxTooltipDirective,
     MobileActionMenu,
     TableEmptyMessage,
@@ -160,8 +155,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     LuxTableCaption,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class GoogleCalendar {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -183,14 +177,12 @@ export class GoogleCalendar {
     ApplicationRole.Asistente,
     ApplicationRole.GerenteOperaciones,
     ApplicationRole.GerenteAtencion,
-    ApplicationRole.SuperUsuario,
-  ]);
+    ApplicationRole.SuperUsuario]);
   readonly canViewAllDetails = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
-    ApplicationRole.SupervisionOperativa,
-  ]);
+    ApplicationRole.SupervisionOperativa]);
   readonly calendarEvents = computed<EventInput[]>(() =>
     this.dataSignal().map((item) => {
       const canViewDetails = this.canViewItemDetails(item);
@@ -429,8 +421,7 @@ export class GoogleCalendar {
       "SEP",
       "OCT",
       "NOV",
-      "DIC",
-    ];
+      "DIC"];
     return months[parsed.getMonth()];
   }
 
@@ -515,7 +506,7 @@ export class GoogleCalendar {
     );
 
     if (match) {
-      const [, year, month, day, hour, minute, second] = match;
+      const [ year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,

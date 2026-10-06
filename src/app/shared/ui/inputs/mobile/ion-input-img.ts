@@ -80,8 +80,7 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputImg),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputImg extends BaseIonicInput implements OnDestroy {
   private readonly imageProcessing = inject(ImageProcessingService);

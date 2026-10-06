@@ -38,8 +38,7 @@ export class WorkPositionHours implements OnInit {
     { n: "Jueves", dw: 4 },
     { n: "Viernes", dw: 5 },
     { n: "Sábado", dw: 6 },
-    { n: "Domingo", dw: 0 },
-  ];
+    { n: "Domingo", dw: 0 }];
 
   semanas = signal<number[]>([1]);
 

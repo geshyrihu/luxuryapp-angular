@@ -19,8 +19,7 @@ import { WebInputTime } from "../../web/input-time/input-time";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTime),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

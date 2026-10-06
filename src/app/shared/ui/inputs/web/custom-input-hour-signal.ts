@@ -15,8 +15,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    FlatpickrDirective,
-  ],
+    FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -54,8 +53,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputHour),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputHour extends BaseInputSignal {
   // <--- Inputs Específicos --->

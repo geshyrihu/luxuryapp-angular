@@ -28,8 +28,7 @@ export const CORPORATE_ROLES: string[] = [
   ApplicationRole.GerenteMantenimiento,
   ApplicationRole.SistemasGeneral,
   ApplicationRole.Mensajeria,
-  ApplicationRole.SupervisionOperativa,
-];
+  ApplicationRole.SupervisionOperativa];
 
 export const STAFF_ROLES: string[] = [
   ApplicationRole.Administrador,
@@ -38,20 +37,17 @@ export const STAFF_ROLES: string[] = [
   ApplicationRole.Asistente,
   ApplicationRole.Contador,
   ApplicationRole.Cobranza,
-  ApplicationRole.JefeMantenimiento,
-];
+  ApplicationRole.JefeMantenimiento];
 
 /** SuperUsuario y Direccion: acceso provisional de revisión, se comportan como Corporate (alcance definitivo en Fase 4). */
 export const REVIEW_ROLES: string[] = [
   ApplicationRole.SuperUsuario,
-  ApplicationRole.Direccion,
-];
+  ApplicationRole.Direccion];
 
 export const ALL_DASHBOARD_ROLES: string[] = [
   ...REVIEW_ROLES,
   ...CORPORATE_ROLES,
-  ...STAFF_ROLES,
-];
+  ...STAFF_ROLES];
 
 export const KPI_GRUPOS: KpiGrupo[] = ["Operativo", "Soporte-SLA", "Financiero", "Ejecutivo"];
 
@@ -202,5 +198,4 @@ export const KPI_CATALOG: KpiConfig[] = [
     decimales: 1,
     valorMuestra: 22.5,
     roles: [],
-  },
-];
+  }];

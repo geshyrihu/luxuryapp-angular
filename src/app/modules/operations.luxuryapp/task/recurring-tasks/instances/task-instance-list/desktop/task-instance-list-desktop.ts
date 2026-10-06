@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
@@ -22,14 +21,12 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIcon,
     ApiDatePipe,
     StatusBadge,
     AppTable,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class TaskInstanceListDesktop {
   data = input.required<TaskInstance[]>();

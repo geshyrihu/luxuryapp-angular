@@ -33,8 +33,7 @@ import { ModalBase } from "@ui/core/modal.base";
       :host {
         display: contents;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

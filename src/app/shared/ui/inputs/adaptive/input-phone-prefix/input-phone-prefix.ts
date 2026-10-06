@@ -20,8 +20,7 @@ import { WebInputPhonePrefix } from "../../web/input-phone-prefix/input-phone-pr
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPhonePrefix),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

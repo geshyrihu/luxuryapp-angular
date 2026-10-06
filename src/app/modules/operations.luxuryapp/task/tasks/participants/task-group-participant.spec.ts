@@ -38,8 +38,7 @@ describe("TaskGroupParticipant", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

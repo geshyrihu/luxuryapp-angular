@@ -7,7 +7,7 @@ import { ButtonWeb } from "@ui/buttons/web";
   selector: "app-task-date-range-selector",
   templateUrl: "./task-date-range-selector.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ ButtonWeb, ReactiveFormsModule, CustomInputDateSignal, ],
+  imports: [ ButtonWeb, ReactiveFormsModule, CustomInputDateSignal],
 })
 export class TaskDateRangeSelector implements OnInit {
   constructor(private dateRangeStorageService: DateRangeStorageService) {}

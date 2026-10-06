@@ -54,8 +54,7 @@ describe("UnifiedPendingDashboardMobile", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: Router, useValue: mockRouter },
         { provide: AiService, useValue: mockAiService },
-        { provide: SwalService, useValue: mockSwalService },
-      ],
+        { provide: SwalService, useValue: mockSwalService }],
     });
 
     fixture = TestBed.createComponent(UnifiedPendingDashboardMobile);
@@ -84,8 +83,7 @@ describe("UnifiedPendingDashboardMobile", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 1,
-      },
-    ];
+      }];
     mockApiResponseS.onGetList.mockResolvedValue(mockItems);
     mockCustomerIdS.customerId.set("cust-456");
     fixture.detectChanges();
@@ -119,8 +117,7 @@ describe("UnifiedPendingDashboardMobile", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 2,
-      },
-    ];
+      }];
     fixture.componentRef.setInput("visibleModules", ["Tickets"]);
     component.filterData();
     expect(component.data().length).toBe(1);
@@ -199,8 +196,7 @@ describe("UnifiedPendingDashboardMobile", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 3,
-      },
-    ];
+      }];
     component.filterData();
     const grouped = component.groupedData;
     expect(Object.keys(grouped).length).toBe(2);
@@ -279,8 +275,7 @@ describe("UnifiedPendingDashboardMobile", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 1,
-      },
-    ];
+      }];
     component.filterData();
     mockAiService.analyzeDashboard.mockResolvedValue("<p>Report</p>");
 

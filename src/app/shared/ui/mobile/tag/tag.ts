@@ -51,8 +51,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: 0.85rem;
         line-height: 1;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

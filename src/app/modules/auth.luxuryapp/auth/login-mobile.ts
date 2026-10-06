@@ -38,8 +38,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     MobilePage,
     IonInputText,
     IonInputPassword,
-    ButtonMobile,
-  ],
+    ButtonMobile],
   template: `
     <ili-page background="var(--ds-primary)">
         <!-- Fondo Premium -->
@@ -271,8 +270,7 @@ import { ROUTES } from "src/app/routing/route-paths";
         cursor: pointer;
         text-decoration: underline;
       }
-    `,
-  ],
+    `],
 })
 export class LoginMobile implements OnInit {
   private formBuilder = inject(FormBuilder);

@@ -38,8 +38,7 @@ describe("ReporteTicketPendientesProveedor", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: ReportService, useValue: mockReportService },
         { provide: Router, useValue: mockRouter },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-      ],
+        { provide: ActivatedRoute, useValue: mockActivatedRoute }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

@@ -33,8 +33,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class InventarioEstacionManualDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

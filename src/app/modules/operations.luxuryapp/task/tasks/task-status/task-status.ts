@@ -7,7 +7,6 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { IonSegment, IonSegmentButton, IonLabel } from "@ui/mobile/ionic-segment/ionic-segment";
 import { addIcons } from "ionicons";
 import {
@@ -23,7 +22,7 @@ import { TaskGroupService } from "../task.service";
   selector: "app-task-status",
   templateUrl: "./task-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, WebButtonLabel, IonSegment, IonSegmentButton, IonLabel],
+  imports: [FormsModule, IonSegment, IonSegmentButton, IonLabel],
   host: {
     class: "w-full block",
   },
@@ -60,8 +59,7 @@ export class TaskStatus implements OnInit {
       { value: "NotStarted", label: "Abierto", icon: "material-symbols-light:folder-open" },
       { value: "InProgress", label: "En Proceso", icon: "material-symbols-light:sync" },
       { value: "Completed", label: "Completado", icon: "material-symbols-light:check-circle" },
-      { value: "Reopened", label: "Reabierto", icon: "material-symbols-light:refresh" },
-    ];
+      { value: "Reopened", label: "Reabierto", icon: "material-symbols-light:refresh" }];
   }
 
   onStatusChange(value: any) {

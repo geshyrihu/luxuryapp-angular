@@ -37,8 +37,7 @@ import { AppIconIonicon } from "@ui/primitives/app-icon/app-icon.catalog-ionicon
         width: 1em;
         height: 1em;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppIconMobile {

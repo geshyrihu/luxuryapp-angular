@@ -11,7 +11,6 @@ import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.int
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -25,10 +24,8 @@ import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
     ApiDatePipe,
     ReactiveFormsModule,
     CustomInputDateSignal,
-    WebButtonLabel,
     AppTable,
-    StatusBadge,
-  ],
+    StatusBadge],
 })
 export class DailyTaskList implements OnInit {
   private apiResponseS = inject(ApiResponseService);

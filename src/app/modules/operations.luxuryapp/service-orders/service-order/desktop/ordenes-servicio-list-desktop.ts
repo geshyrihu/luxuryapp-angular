@@ -9,8 +9,6 @@ import { FormControl } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -32,16 +30,13 @@ import {
     CommonModule,
     RouterModule,
     CustomInputTextSignal,
-    WebButtonIcon,
-    WebButtonLabel,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
 })
 export class OrdenesServicioListDesktop {
   data = input.required<any[]>();

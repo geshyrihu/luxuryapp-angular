@@ -31,8 +31,7 @@ export const SUPERVISION_MODULES: SupervisionModuleGroup[] = [
         icon: "material-symbols-light:co-present",
         color: "#7c3aed",
         bgColor: "#f5f3ff",
-      },
-    ],
+      }],
   },
   // -------------------------------------------------------------
   // RESULTADOS Y REPORTES
@@ -88,7 +87,5 @@ export const SUPERVISION_MODULES: SupervisionModuleGroup[] = [
         icon: "material-symbols-light:fact-check",
         color: "#b45309",
         bgColor: "#fef9c3",
-      },
-    ],
-  },
-];
+      }],
+  }];

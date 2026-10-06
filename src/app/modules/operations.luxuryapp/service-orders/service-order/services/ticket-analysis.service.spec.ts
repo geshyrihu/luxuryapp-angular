@@ -9,8 +9,7 @@ describe('TicketAnalysisService', () => {
     TestBed.configureTestingModule({
       providers: [
         TicketAnalysisService,
-        { provide: ApiResponseService, useValue: {} },
-      ],
+        { provide: ApiResponseService, useValue: {} }],
     });
     service = TestBed.inject(TicketAnalysisService);
   });

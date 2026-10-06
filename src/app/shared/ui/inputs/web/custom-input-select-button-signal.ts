@@ -45,8 +45,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputSelectButton),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputSelectButton
   extends BaseInputSignal

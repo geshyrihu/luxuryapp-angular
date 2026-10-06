@@ -51,8 +51,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputMultiselect),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputMultiselect extends BaseIonicInput {
   selectionChange = output<any>();

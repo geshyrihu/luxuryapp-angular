@@ -10,8 +10,7 @@ describe('LxLoader', () => {
       imports: [LxLoader],
       providers: [
         { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-        { provide: LoaderService, useValue: { loading$: vi.fn(() => false) } },
-      ],
+        { provide: LoaderService, useValue: { loading$: vi.fn(() => false) } }],
     });
     const fixture = TestBed.createComponent(LxLoader);
     fixture.detectChanges();

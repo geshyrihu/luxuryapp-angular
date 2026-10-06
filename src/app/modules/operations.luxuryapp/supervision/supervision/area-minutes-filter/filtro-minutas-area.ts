@@ -42,8 +42,7 @@ import {
     LuxTableCaption,
     TableFooter,
     EAreaMinutasDetallesPipe,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class FiltroMinutasArea implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -30,8 +30,7 @@ import {
     AppReorderableRowHandle,
     LuxTableCaption,
     TableFooter,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class SpecialDocumentListDesktop {
   data = input.required<any[]>();

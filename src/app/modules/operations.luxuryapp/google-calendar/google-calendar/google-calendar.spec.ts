@@ -124,8 +124,7 @@ describe("GoogleCalendar", () => {
           useValue: {
             scrollHeight: signal("500px"),
           },
-        },
-      ],
+        }],
     });
 
     TestBed.overrideComponent(GoogleCalendar, {

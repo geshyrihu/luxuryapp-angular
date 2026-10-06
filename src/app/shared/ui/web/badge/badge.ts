@@ -54,8 +54,7 @@ import { BadgeBase } from "@ui/core/badge.base";
         font-size: 0.875rem;
         padding: 0.35em 0.65em;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

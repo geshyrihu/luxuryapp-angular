@@ -26,7 +26,6 @@ import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-des
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { type AppIconName } from "@ui/primitives/app-icon/app-icon";
 import {
@@ -73,10 +72,8 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     LxAvatar,
     LxTag,
     LuxTableCaption,
-    WebButtonLabel,
     LxIcon,
-    SegmentedControl,
-  ],
+    SegmentedControl],
 })
 export class StaffBoardList {
   readonly apiS = inject(ApiResponseService);
@@ -162,8 +159,7 @@ export class StaffBoardList {
     ...this.uniqueDepartments().map((dept) => ({
       value: dept,
       label: this.getDepartamentLabel(dept),
-    })),
-  ]);
+    }))]);
 
   filteredPositions = computed(() => {
     const selected = this.selectedDepartment();
@@ -490,8 +486,7 @@ export class StaffBoardList {
       { header: "Folio Vacante", key: "workPositionFolio", width: 15 },
       { header: "Nombre Vacante", key: "workPositionName", width: 35 },
       { header: "Colaborador", key: "fullName", width: 45 },
-      { header: "Sueldo Base", key: "sueldoBase", width: 15 },
-    ];
+      { header: "Sueldo Base", key: "sueldoBase", width: 15 }];
 
     const data = [...this.positions()]
       .sort((a, b) => {

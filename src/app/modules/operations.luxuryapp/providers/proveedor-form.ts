@@ -85,8 +85,7 @@ interface IProveedorForm {
     InputAutocomplete,
     CustomInputFile,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProveedorForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -190,8 +189,7 @@ export class ProveedorForm implements OnInit {
       ),
       this.apiResponseS.onGetEnumSelectItem(
         Endpoints.EnumSelectItems.serviceType,
-      ),
-    ]);
+      )]);
 
     this.cb_category.set(categories as SelectItemDto[]);
     this.cb_bancos.set(banks as SelectItemDto[]);

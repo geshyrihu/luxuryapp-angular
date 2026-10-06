@@ -41,8 +41,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       .offline-icon {
         font-size: 1rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class OfflineIndicator extends OfflineIndicatorBase {}

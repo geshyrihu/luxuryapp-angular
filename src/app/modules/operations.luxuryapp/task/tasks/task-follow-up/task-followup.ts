@@ -17,7 +17,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
@@ -57,9 +56,7 @@ interface ITicketMessageFollowupForm {
     ButtonWeb,
     AppSpinner,
     CustomInputTextAreaSignal,
-    LxFileUpload,
-    WebButtonIcon,
-  ],
+    LxFileUpload],
 })
 export class TaskFollowup implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -98,8 +95,7 @@ export class TaskFollowup implements OnInit, OnDestroy {
       validators: [
         Validators.required,
         Validators.maxLength(200),
-        Validators.minLength(10),
-      ],
+        Validators.minLength(10)],
     }),
   });
 

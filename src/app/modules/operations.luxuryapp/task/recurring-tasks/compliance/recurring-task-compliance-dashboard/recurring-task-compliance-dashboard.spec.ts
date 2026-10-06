@@ -31,8 +31,7 @@ describe("RecurringTaskComplianceDashboard", () => {
         {
           provide: TableScrollHeightService,
           useValue: { scrollHeight: "400px" },
-        },
-      ],
+        }],
     }).overrideComponent(RecurringTaskComplianceDashboard, {
       set: { template: "" },
     });
@@ -53,8 +52,7 @@ describe("RecurringTaskComplianceDashboard", () => {
           carriedOverCount: 1,
           criticalClosedTotal: 2,
           criticalClosedWithAttachmentCount: 1,
-        },
-      ],
+        }],
     } satisfies ComplianceDashboardDTO);
 
     const fixture = TestBed.createComponent(RecurringTaskComplianceDashboard);
@@ -122,8 +120,7 @@ describe("RecurringTaskComplianceDashboard", () => {
         {
           provide: TableScrollHeightService,
           useValue: { scrollHeight: "400px" },
-        },
-      ],
+        }],
     }).overrideComponent(RecurringTaskComplianceDashboard, {
       set: { template: "" },
     });

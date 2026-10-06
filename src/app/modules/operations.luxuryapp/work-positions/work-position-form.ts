@@ -83,8 +83,7 @@ const scheduleValidator: ValidatorFn = (control: AbstractControl): ValidationErr
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    LxMessage,
-  ],
+    LxMessage],
 })
 export class WorkPositionForm implements OnInit {
   // --- INYECCIÓN DE DEPENDENCIAS ---
@@ -111,8 +110,7 @@ export class WorkPositionForm implements OnInit {
 
   readonly days = [
     { label: "LUNES", dw: 1 }, { label: "MARTES", dw: 2 }, { label: "MIÉRCOLES", dw: 3 },
-    { label: "JUEVES", dw: 4 }, { label: "VIERNES", dw: 5 }, { label: "SÁBADO", dw: 6 }, { label: "DOMINGO", dw: 0 },
-  ] as const;
+    { label: "JUEVES", dw: 4 }, { label: "VIERNES", dw: 5 }, { label: "SÁBADO", dw: 6 }, { label: "DOMINGO", dw: 0 }] as const;
 
   readonly timeOptions: SelectItemDto[] = Array.from({ length: 48 }, (_, index) => {
     const hour = Math.floor(index / 2);
@@ -206,8 +204,7 @@ export class WorkPositionForm implements OnInit {
         this.apiS.onGetSelectItem<SelectItemDto[]>(
           Endpoints.SelectItems.applicationRolesToAdministrator,
         ),
-        this.apiS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.employeesByCustomer(customerId)),
-      ]);
+        this.apiS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.employeesByCustomer(customerId))]);
 
     this.cb_state.set(state);
     this.cb_applicationRole.set(applicationRoles ?? []);

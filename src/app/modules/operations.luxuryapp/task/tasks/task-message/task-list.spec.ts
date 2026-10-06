@@ -81,8 +81,7 @@ describe("TaskList", () => {
         { provide: PrintService, useValue: mockPrintS },
         { provide: TaskGroupService, useValue: mockTaskGroupS },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -190,15 +189,13 @@ describe("TaskList", () => {
     component.onPreviewWeeklyReport();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/tickets",
-      "weekly-report-preview",
-    ]);
+      "weekly-report-preview"]);
   });
 
   it("onResponsibleChange should keep the assignee id and filter by label", () => {
     component.cb_assignee = [
       { value: "", label: "--Mostrar Todos--" },
-      { value: "u1", label: "Juan Perez" },
-    ];
+      { value: "u1", label: "Juan Perez" }];
     vi.spyOn(component, "onLoadDataOffLoading").mockImplementation(() => {});
 
     component.onResponsibleChange("u1");

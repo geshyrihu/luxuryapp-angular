@@ -24,8 +24,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     DataViewMobile,
     StatusBadge,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskInstanceListMobile {
   data = input.required<TaskInstance[]>();

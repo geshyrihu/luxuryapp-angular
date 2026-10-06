@@ -28,8 +28,7 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     IonLabel,
     IonCheckbox,
     SegmentedControl,
-    IonInputText,
-  ],
+    IonInputText],
   templateUrl: "./send-operation-report-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
 })
@@ -41,8 +40,7 @@ export class SendOperationReportMobile {
     { value: "desmarcar", label: "Ninguno", icon: "material-symbols-light:cancel" },
     { value: "PARA", label: "PARA", icon: "material-symbols-light:mail-outline" },
     { value: "CC", label: "CC", icon: "material-symbols-light:mail-outline" },
-    { value: "CCO", label: "CCO", icon: "material-symbols-light:mail-off-outline" },
-  ];
+    { value: "CCO", label: "CCO", icon: "material-symbols-light:mail-off-outline" }];
 
   onSegmentChange(value: string): void {
     if (value === "seleccionar") {

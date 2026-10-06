@@ -49,8 +49,7 @@ import { Tabs } from "@ui/web/tabs/tabs";
         display: block;
         min-width: 0;
       }
-    `,
-  ],
+    `],
 })
 export class LxTabs extends TabsBase {
   protected platform = inject(PlatformService);

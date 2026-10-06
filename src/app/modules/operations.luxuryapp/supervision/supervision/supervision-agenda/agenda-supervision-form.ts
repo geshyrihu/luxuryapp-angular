@@ -45,8 +45,7 @@ interface IAgendaSupervisionForm {
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class AgendaSupervisionForm implements OnInit {
   private authS = inject(AuthService);
@@ -66,12 +65,10 @@ export class AgendaSupervisionForm implements OnInit {
     id: [""],
     fechaSolicitud: [
       this.dateS.getDateNow() as Date | string | null,
-      Validators.required,
-    ],
+      Validators.required],
     customerId: [
       this.authS.userToken.infoUserAuthDTO.customerId,
-      Validators.required,
-    ],
+      Validators.required],
     problema: ["", Validators.required],
     solucion: [""],
     fechaConclusion: [null],

@@ -71,8 +71,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: 0.9rem;
         flex-shrink: 0;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileBreadcrumbs extends BreadcrumbsBase {}

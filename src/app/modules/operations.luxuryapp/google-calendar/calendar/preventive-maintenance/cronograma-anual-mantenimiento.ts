@@ -25,7 +25,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -54,11 +53,9 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     AppSortableColumn,
     AppSorticon,
     FormsModule,
-    WebButtonLabel,
     CommonModule,
     LuxTableCaption,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CronogramaAnualMantenimiento {
   TooltipPlacement = TooltipPlacement;
@@ -106,8 +103,7 @@ export class CronogramaAnualMantenimiento {
       emoji: "material-symbols-light:carpenter",
       id: 11,
       nombre: "Carpinteria",
-    },
-  ];
+    }];
 
   // Nombres de los meses
   meses: string[] = [
@@ -122,8 +118,7 @@ export class CronogramaAnualMantenimiento {
     "SEP",
     "OCT",
     "NOV",
-    "DIC",
-  ];
+    "DIC"];
 
   messageEvent = output<string>();
 

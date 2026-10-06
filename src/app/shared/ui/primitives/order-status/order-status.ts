@@ -157,8 +157,7 @@ export interface OrderStatusStep {
         font-size: var(--ds-font-size-micro);
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

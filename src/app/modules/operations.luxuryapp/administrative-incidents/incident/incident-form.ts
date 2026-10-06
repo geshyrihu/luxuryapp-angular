@@ -64,8 +64,7 @@ interface IIncidentForm {
     ButtonWeb,
     IncidentAttachmentsComponent,
     IncidentWitnessesComponent,
-    SuspensionDaysManager,
-  ],
+    SuspensionDaysManager],
 })
 export class IncidentFormComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -82,8 +81,7 @@ export class IncidentFormComponent implements OnInit {
     { id: "datos", label: "📋 Datos" },
     { id: "adjuntos", label: "📎 Adjuntos", disabled: !this.id() },
     { id: "testigos", label: "👤 Testigos", disabled: !this.id() },
-    { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() },
-  ]);
+    { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() }]);
   incidentTypes = signal<SelectItemDto[]>([]);
   sanctionTypes = signal<SelectItemDto[]>([]);
   cb_severity = signal<SelectItemDto[]>([]);
@@ -105,8 +103,7 @@ export class IncidentFormComponent implements OnInit {
       description: this.fb.control("", [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(2000),
-      ]),
+        Validators.maxLength(2000)]),
       incidentDateTime: this.fb.control("", [Validators.required]),
       severityLevel: this.fb.control<number>(0, [Validators.required]),
       sanctionTypeId: this.fb.control(""),

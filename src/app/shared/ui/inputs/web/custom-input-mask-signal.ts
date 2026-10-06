@@ -10,8 +10,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    NgxMaskDirective,
-  ],
+    NgxMaskDirective],
   template: `
     <!-- 🏗️ ESTRUCTURA BASE -->
     <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposición. -->
@@ -51,8 +50,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputMaskSignal),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputMaskSignal extends BaseInputSignal {
   // 🎨 PROPIEDADES ADICIONALES

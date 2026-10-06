@@ -47,8 +47,7 @@ interface IInventarioHidranteForm {
     InputMask,
     CustomInputSelectSignal,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioHidranteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

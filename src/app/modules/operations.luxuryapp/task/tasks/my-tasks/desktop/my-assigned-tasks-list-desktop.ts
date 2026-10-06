@@ -12,7 +12,6 @@ import {
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -30,7 +29,6 @@ import { TaskStatus } from "../../task-status/task-status";
   imports: [
     ButtonWeb,
     TableEmptyMessage,
-    WebButtonLabel,
     TaskStatus,
     AppTable,
     ActionMenu,
@@ -39,8 +37,7 @@ import { TaskStatus } from "../../task-status/task-status";
     AppAvatar,
     LuxTableCaption,
     InitialsAbbrPipe,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MyAssignedTasksListDesktop {
   data = input.required<any[]>();

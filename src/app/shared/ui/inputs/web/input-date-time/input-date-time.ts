@@ -34,8 +34,7 @@ import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputDateTime),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputDateTime extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);

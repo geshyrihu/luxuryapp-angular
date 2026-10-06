@@ -11,8 +11,7 @@ describe("LxAccordion (render)", () => {
     const fixture = TestBed.createComponent(LxAccordion);
     fixture.componentRef.setInput("items", [
       { id: "a", title: "Sección A", icon: "material-symbols-light:home" },
-      { id: "b", title: "Sección B" },
-    ]);
+      { id: "b", title: "Sección B" }]);
     expect(fixture.componentInstance).toBeTruthy();
   });
 });

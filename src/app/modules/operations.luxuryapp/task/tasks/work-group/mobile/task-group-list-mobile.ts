@@ -21,8 +21,7 @@ import { WorkGroupDTO } from "../task-group-list";
     MobileActionMenu,
     StatusBadge,
     DataViewMobile,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskGroupListMobile {
   data = input.required<WorkGroupDTO[]>();

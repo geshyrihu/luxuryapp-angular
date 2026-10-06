@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
-import { WebButtonLabel } from "../web-label/button";
 
 export interface ButtonGroupOption<T = string> {
   label: string;
@@ -15,7 +14,7 @@ export interface ButtonGroupOption<T = string> {
  */
 @Component({
   selector: "il-button-group",
-  imports: [WebButtonLabel],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="d-flex flex-wrap gap-2" role="group">

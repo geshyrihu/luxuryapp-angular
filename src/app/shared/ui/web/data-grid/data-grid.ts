@@ -7,8 +7,6 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   AppSorticon,
@@ -40,10 +38,7 @@ export interface DataGridColumn {
     AppTableCheckbox,
     AppTableHeaderCheckbox,
     FormsModule,
-    AppIcon,
-    WebButtonLabel,
-    WebButtonIcon,
-  ],
+    AppIcon],
   template: `
     <div class="data-grid-root">
       @if (title() || globalFilter()) {
@@ -246,8 +241,7 @@ export interface DataGridColumn {
         font-size: var(--ds-font-size-section-title);
         color: var(--ds-text-primary);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

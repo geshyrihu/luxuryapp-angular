@@ -101,8 +101,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
       .app-toast-warn .toast-header strong { color: var(--ds-warning-text); }
       .app-toast-error app-icon,
       .app-toast-error .toast-header strong { color: var(--ds-danger); }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppToast {

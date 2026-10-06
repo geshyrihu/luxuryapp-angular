@@ -67,8 +67,7 @@ const DS_PALETTE_TOKENS = [
   "--ds-cat-5",
   "--ds-cat-6",
   "--ds-cat-7",
-  "--ds-cat-8",
-];
+  "--ds-cat-8"];
 
 function cssVar(name: string, fallback: string): string {
   // Registra la dependencia de tema: al cambiar, los computed/plantillas que

@@ -108,8 +108,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         overflow-y: auto;
         padding: 1rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileSidebar extends SidebarBase {

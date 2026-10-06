@@ -58,8 +58,7 @@ import { TooltipBase } from "@ui/core/tooltip.base";
         top: 50%;
         transform: translateY(-50%);
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTooltip extends TooltipBase {

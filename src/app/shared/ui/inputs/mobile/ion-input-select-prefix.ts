@@ -41,8 +41,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputSelectPrefix), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputSelectPrefix), multi: true }],
 })
 export class IonInputSelectPrefix extends BaseIonicInput {
   prefixOptions = input<{ value: string; label: string }[]>([]);

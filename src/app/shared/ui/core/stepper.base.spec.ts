@@ -8,8 +8,7 @@ class TestStepper extends StepperBase {}
 const steps: StepperStep[] = [
   { value: 1, label: "Uno" },
   { value: 2, label: "Dos" },
-  { value: 3, label: "Tres" },
-];
+  { value: 3, label: "Tres" }];
 
 describe("StepperBase", () => {
   function make() {

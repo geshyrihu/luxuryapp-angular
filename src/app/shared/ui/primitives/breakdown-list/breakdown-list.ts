@@ -200,8 +200,7 @@ export interface BreakdownItem {
           transition: none;
         }
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

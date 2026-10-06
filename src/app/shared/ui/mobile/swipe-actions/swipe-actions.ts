@@ -73,8 +73,7 @@ export type { SwipeAction } from "@ui/core/swipe-actions.base";
         background: var(--ds-bg-surface);
         transition: transform 0.2s ease;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileSwipeActions extends SwipeActionsBase {}

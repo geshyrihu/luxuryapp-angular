@@ -13,7 +13,6 @@ import { SwalService } from "@core/services/swal.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -34,9 +33,7 @@ const MAX_FILES_PER_INCIDENT = 10;
     FileUploadModule,
     AppTable,
     ApiDatePipe,
-    WebButtonLabel,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-attachments.html",
 })
@@ -55,8 +52,7 @@ export class IncidentAttachmentsComponent {
   uploading = signal(false);
 
   filesControl = new FormControl<File[] | null>(null, [
-    FileUploadValidators.filesLimit(MAX_FILES_PER_INCIDENT),
-  ]);
+    FileUploadValidators.filesLimit(MAX_FILES_PER_INCIDENT)]);
 
   get selectedFiles(): File[] {
     return this.filesControl.value ?? [];

@@ -378,8 +378,7 @@ export interface AppTableLazyEvent {
       .lux-table-thead .lux-table-frozen-column {
         z-index: 3;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -684,8 +683,7 @@ export class AppTable {
     const byKey = new Map(
       Array.from(row.children).map((el) => [
         (el as HTMLElement).dataset["appTableCol"],
-        el,
-      ]),
+        el]),
     );
     for (const key of order) {
       const el = byKey.get(key);
@@ -787,8 +785,7 @@ export class AppTable {
       const currentIds = new Set(current.map((row) => this.identity(row)));
       this.selection.set([
         ...current,
-        ...rows.filter((row) => !currentIds.has(this.identity(row))),
-      ]);
+        ...rows.filter((row) => !currentIds.has(this.identity(row)))]);
     }
   }
 

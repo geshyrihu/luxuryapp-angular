@@ -23,8 +23,7 @@ const CORPORATE_DRAWIO_CONFIG = {
     "Segoe UI",
     "Roboto",
     "Arial",
-    "Helvetica",
-  ],
+    "Helvetica"],
   fontCss:
     '@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");',
   defaultEdgeStyle: "orthogonalEdgeStyle",
@@ -43,9 +42,7 @@ const CORPORATE_DRAWIO_CONFIG = {
       { fill: "#C9A84C", stroke: "#A0802E", font: "#1A1A1A" },
       { fill: "#065F46", stroke: "#054D38", font: "#FFFFFF" },
       { fill: "#991B1B", stroke: "#7F1616", font: "#FFFFFF" },
-      { fill: "#F3F4F6", stroke: "#D1D5DB", font: "#1A1A1A" },
-    ],
-  ],
+      { fill: "#F3F4F6", stroke: "#D1D5DB", font: "#1A1A1A" }]],
 };
 
 // XML base con estilo corporativo cuando el diagrama esta vacio

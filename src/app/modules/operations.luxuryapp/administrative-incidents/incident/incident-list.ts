@@ -49,8 +49,7 @@ export class IncidentList implements OnInit {
     "category",
     "severityLevel",
     "investigationStatus",
-    "description",
-  ]);
+    "description"]);
 
   ngOnInit(): void {
     this.onLoadData();

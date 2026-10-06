@@ -10,7 +10,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CronogramaAnualPdfStatusService } from "@core/services/cronograma-anual-pdf-status.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
@@ -31,9 +31,7 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
     AppSortableColumn,
 
     AppSorticon,
-    LuxTableCaption,
-    WebButtonLabel,
-  ],
+    LuxTableCaption],
   providers: [CronogramaAnualPdfStatusService, HtmlPrintService],
 })
 export class CronogramaCompletoStatusDialog {
@@ -49,8 +47,7 @@ export class CronogramaCompletoStatusDialog {
     this.selectedYear - 3,
     this.selectedYear - 2,
     this.selectedYear - 1,
-    this.selectedYear,
-  ];
+    this.selectedYear];
   meses: string[] = [
     "ENE",
     "FEB",
@@ -63,8 +60,7 @@ export class CronogramaCompletoStatusDialog {
     "SEP",
     "OCT",
     "NOV",
-    "DIC",
-  ];
+    "DIC"];
 
   constructor() {
     this.loadData();

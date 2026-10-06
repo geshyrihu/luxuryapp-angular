@@ -73,12 +73,10 @@ export class ListProvider implements OnInit {
     { label: "Todos", value: null },
     { label: "Servicio Fijo", value: "ServicioFijo" },
     { label: "Servicios Variables", value: "ServiciosVariables" },
-    { label: "Devoluciones", value: "Devoluciones" },
-  ];
+    { label: "Devoluciones", value: "Devoluciones" }];
   nivelAccesos = [
     { label: "Póblico", value: 0 },
-    { label: "Privado", value: 1 },
-  ];
+    { label: "Privado", value: 1 }];
   selectedServiceTypeControl = new FormControl<string | null>(null);
   // selectedNivelAcceso: number = 0;
 
@@ -91,8 +89,7 @@ export class ListProvider implements OnInit {
       ApplicationRole.JefeMantenimiento,
       ApplicationRole.Administrador,
       ApplicationRole.SuperUsuario,
-      ApplicationRole.Legal,
-    ]);
+      ApplicationRole.Legal]);
   }
 
   // Validación de roles para mostrar/ocultar acciones

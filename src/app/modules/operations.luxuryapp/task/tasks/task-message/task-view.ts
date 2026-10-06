@@ -16,7 +16,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { addIcons } from "ionicons";
@@ -54,11 +53,9 @@ import { TaskJustificationPanel } from "./task-justification-panel/task-justific
   imports: [
     LxTag,
     AppAvatar,
-    WebButtonLabel,
     LxIcon,
     TaskChecklistPanel,
-    TaskJustificationPanel,
-  ],
+    TaskJustificationPanel],
 })
 export class TaskView implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -142,8 +139,7 @@ export class TaskView implements OnInit {
       ),
       this.apiResponseS.onGetList<TaskFollowUpItem[]>(
         Endpoints.TaskFollowUps.listByTicketMessage(this.id),
-      ),
-    ]);
+      )]);
 
     this.responsibles.set(responsibles ?? []);
     this.additionalImages.set(additionalImages ?? []);

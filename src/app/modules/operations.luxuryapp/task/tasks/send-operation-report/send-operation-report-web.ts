@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -28,9 +27,7 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     CustomInputTextSignal,
     LxTag,
     CustomInputCheckSignal,
-    WebButtonLabel,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
   templateUrl: "./send-operation-report-web.html",
   changeDetection: ChangeDetectionStrategy.Eager,
 })

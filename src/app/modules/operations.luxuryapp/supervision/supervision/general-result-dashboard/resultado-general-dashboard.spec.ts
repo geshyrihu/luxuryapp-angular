@@ -42,8 +42,7 @@ describe("ResultadoGeneralDashboard", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DateService, useValue: mockDateS },
         { provide: PeriodMonthService, useValue: mockPeriodMonthS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

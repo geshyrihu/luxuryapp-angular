@@ -17,7 +17,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppMessage } from "@ui/web/message/message";
@@ -33,9 +32,7 @@ import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
     AppMessage,
     CustomInputTextAreaSignal,
     ReactiveFormsModule,
-    WebButtonLabel,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",
 })

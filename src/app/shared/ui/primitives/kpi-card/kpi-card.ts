@@ -122,8 +122,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
         font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

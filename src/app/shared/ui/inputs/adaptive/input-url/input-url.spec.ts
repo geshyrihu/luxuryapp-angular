@@ -7,8 +7,7 @@ describe('InputUrl', () => {
     TestBed.configureTestingModule({
       imports: [InputUrl],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: () => false } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: () => false } }],
     });
     const fixture = TestBed.createComponent(InputUrl);
     fixture.detectChanges();

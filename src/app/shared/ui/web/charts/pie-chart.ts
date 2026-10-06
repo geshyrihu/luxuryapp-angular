@@ -26,8 +26,7 @@ export class PieChart {
 
   dataGrafico = input<NgxChartsDatum[]>([
     { name: "Germany", value: 8940000 },
-    { name: "USA", value: 5000000 },
-  ]);
+    { name: "USA", value: 5000000 }]);
 
   colorScheme = input<{ domain?: string[] }>({
     domain: ["--ds-cat-7", "--ds-cat-4"],

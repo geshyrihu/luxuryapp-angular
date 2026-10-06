@@ -31,8 +31,7 @@ interface ICompleteTaskForm {
     ReactiveFormsModule,
     CustomInputTextAreaSignal,
     LxFileUpload,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CompleteTaskForm implements OnInit {
   private formBuilder = inject(FormBuilder);

@@ -20,8 +20,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class InventarioLlavesListMobile {
   data = input.required<InventarioLlave[]>();

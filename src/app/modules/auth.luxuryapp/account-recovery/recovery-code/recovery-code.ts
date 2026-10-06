@@ -46,8 +46,7 @@ interface ICodeForm {
     CustomInputTextSignal,
     ButtonWeb,
     RouterModule,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class RecoveryCode {
   readonly ROUTES = ROUTES;

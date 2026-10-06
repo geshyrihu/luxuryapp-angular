@@ -17,8 +17,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     ButtonMobile,
     DataViewMobile,
     MobileListItem,
-    MobileActionMenu,
-  ],
+    MobileActionMenu],
 })
 export class EntregaRecepcionClienteListaMobile {
   data = input.required<any[]>();

@@ -54,8 +54,7 @@ export class EntregaRecepcionClienteLista {
   cb_departamento = [
     { value: "JURIDICO" },
     { value: "ADMINISTRACIÓN Y FINANZAS" },
-    { value: "OPERACIONES Y MANTENIMIENTO" },
-  ];
+    { value: "OPERACIONES Y MANTENIMIENTO" }];
   ref: DynamicDialogRef;
 
   constructor() {

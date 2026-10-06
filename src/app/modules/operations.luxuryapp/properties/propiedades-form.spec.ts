@@ -40,8 +40,7 @@ describe("PropiedadesForm", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: CustomerIdService, useValue: mockCustomerIdS },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

@@ -35,8 +35,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputMask), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputMask), multi: true }],
 })
 export class IonInputMask extends BaseIonicInput {
   customMask = input.required<string>();

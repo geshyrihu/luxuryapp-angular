@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -20,11 +19,9 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ButtonMobile,
     LxTag,
     MobileActionMenu,
-    MobileButtonLabelViewPdf,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class PolicyContractListMobile {
   groupedData = input.required<any>();

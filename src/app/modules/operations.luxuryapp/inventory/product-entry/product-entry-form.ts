@@ -55,8 +55,7 @@ interface IProductEntryForm {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProductEntryForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -82,8 +81,7 @@ export class ProductEntryForm implements OnInit {
     id: new FormControl("", { nonNullable: true }),
     providerId: new FormControl(null, [Validators.required]),
     customerId: new FormControl(this.customerIdS.customerId(), [
-      Validators.required,
-    ]),
+      Validators.required]),
     fechaEntrada: new FormControl(this.dateS.getDateNow(), {
       nonNullable: true,
       validators: [Validators.required],
@@ -91,8 +89,7 @@ export class ProductEntryForm implements OnInit {
     productoId: new FormControl(0, [Validators.required]),
     nombreProducto: new FormControl({ value: "", disabled: true }),
     almacenId: new FormControl(this.config.data.almacenId, [
-      Validators.required,
-    ]),
+      Validators.required]),
     cantidad: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
@@ -104,8 +101,7 @@ export class ProductEntryForm implements OnInit {
     }),
     providerName: new FormControl(null),
     applicationUserId: new FormControl(this.authS.applicationUserId, [
-      Validators.required,
-    ]),
+      Validators.required]),
   });
 
   public saveProviderId(item: SelectItemDto): void {
@@ -132,8 +128,7 @@ export class ProductEntryForm implements OnInit {
       this.loadMeasurementUnits(),
       this.loadProviders(),
       this.loadAlmacenes(),
-      this.loadProducts(),
-    ]);
+      this.loadProducts()]);
 
     // Cargar datos del formulario despuós de tener los providers
     if (this.id()) {

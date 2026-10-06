@@ -5,8 +5,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AiService } from "@core/services/ai.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
@@ -21,11 +19,8 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
-    WebButtonIcon,
     CustomInputTextAreaSignal,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class ImageGenerationDialog {
   private ref = inject(DynamicDialogRef);
@@ -62,8 +57,7 @@ export class ImageGenerationDialog {
       label: "Minimalista",
       value: "minimalist, clean lines, flat colors, modern",
       icon: "material-symbols-light:do-not-disturb-on",
-    },
-  ];
+    }];
 
   moods = [
     {
@@ -81,8 +75,7 @@ export class ImageGenerationDialog {
       value: "corporate, clean, white background, office",
       emoji: "🏢",
     },
-    { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" },
-  ];
+    { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" }];
 
   elements: { label: string; value: string; icon: AppIconName }[] = [
     {
@@ -104,8 +97,7 @@ export class ImageGenerationDialog {
       label: "Abstracto",
       value: "abstract shapes, branding colors",
       icon: "material-symbols-light:palette",
-    },
-  ];
+    }];
 
   constructor() {
     this.initSpeechRecognition();

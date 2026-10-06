@@ -8,7 +8,6 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -24,9 +23,7 @@ import {
     ReactiveFormsModule,
     ChartWrapper,
     AppTable,
-    CustomInputDateSignal,
-    WebButtonLabel,
-  ],
+    CustomInputDateSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-dashboard.html",
 })
@@ -128,8 +125,7 @@ export class IncidentDashboardComponent implements OnInit {
             data: data.byMonth.map((m) => m.count),
             backgroundColor: "rgba(59, 130, 246, 0.8)",
             borderRadius: 8,
-          },
-        ],
+          }],
       });
     }
 
@@ -145,18 +141,15 @@ export class IncidentDashboardComponent implements OnInit {
               "#F59E0B",
               "#EF4444",
               "#8B5CF6",
-              "#EC4899",
-            ],
+              "#EC4899"],
             hoverBackgroundColor: [
               "#2563EB",
               "#059669",
               "#D97706",
               "#DC2626",
               "#7C3AED",
-              "#DB2777",
-            ],
-          },
-        ],
+              "#DB2777"],
+          }],
       });
     }
   }

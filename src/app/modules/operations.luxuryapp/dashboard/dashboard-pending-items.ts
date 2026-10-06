@@ -33,8 +33,7 @@ export class DashboardPendingItems {
     ApplicationRole.Administrador,
     ApplicationRole.GerenteOperaciones,
     ApplicationRole.GerenteAtencion,
-    ApplicationRole.Asistente,
-  ]);
+    ApplicationRole.Asistente]);
 
   showTickets = computed(() => true);
 
@@ -43,31 +42,26 @@ export class DashboardPendingItems {
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
     ApplicationRole.JefeMantenimiento,
-    ApplicationRole.Administrador,
-  ]);
+    ApplicationRole.Administrador]);
 
   showLegal = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
-    ApplicationRole.Legal,
-  ]);
+    ApplicationRole.Legal]);
 
   showRecruitment = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
-    ApplicationRole.Reclutamiento,
-  ]);
+    ApplicationRole.Reclutamiento]);
 
   showLegalStatus = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Administrador,
     ApplicationRole.GerenteOperaciones,
     ApplicationRole.GerenteAtencion,
-    ApplicationRole.Asistente,
-  ]);
+    ApplicationRole.Asistente]);
 
   showPolicies = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
-    ApplicationRole.Legal,
-  ]);
+    ApplicationRole.Legal]);
 
   // Computed signal to pass allowed modules to the unified dashboard
   visibleModules = computed(() => {

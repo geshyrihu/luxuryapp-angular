@@ -8,8 +8,7 @@ describe('LxCard', () => {
     TestBed.configureTestingModule({
       imports: [LxCard],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } }],
     });
     const fixture = TestBed.createComponent(LxCard);
     fixture.detectChanges();

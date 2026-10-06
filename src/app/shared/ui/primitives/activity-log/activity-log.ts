@@ -231,8 +231,7 @@ const ACTIVITY_COLORS: Record<string, string> = {
         align-items: center;
         gap: 0.5rem;
       }
-    `,
-  ],
+    `],
 })
 export class ActivityLog {
   title = input<string>("");

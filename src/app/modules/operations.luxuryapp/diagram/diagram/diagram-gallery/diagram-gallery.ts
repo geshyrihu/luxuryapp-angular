@@ -10,7 +10,6 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -19,7 +18,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [ApiDatePipe, WebButtonLabel, LxIcon, CustomInputTextSignal],
+  imports: [ApiDatePipe, LxIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">

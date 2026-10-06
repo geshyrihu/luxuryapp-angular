@@ -48,8 +48,7 @@ describe("AgendaSupervisionForm", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

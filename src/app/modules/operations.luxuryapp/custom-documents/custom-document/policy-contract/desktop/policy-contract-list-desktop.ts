@@ -30,8 +30,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class PolicyContractListDesktop {
   data = input.required<any[]>();

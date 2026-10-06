@@ -44,8 +44,7 @@ interface ITaskGroupForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TaskGroupForm implements OnInit {
   private readonly authS = inject(AuthService);
@@ -68,14 +67,12 @@ export class TaskGroupForm implements OnInit {
     id: new FormControl({ value: this.id(), disabled: true }),
     customerId: [
       this.customerIdS.customerId(),
-      { validators: [Validators.required] },
-    ],
+      { validators: [Validators.required] }],
     visibility: [0, { validators: [Validators.required] }],
     TaskGroupCategoryId: ["", { validators: [Validators.required] }],
     userCreateId: [
       this.authS.applicationUserId,
-      { validators: [Validators.required] },
-    ],
+      { validators: [Validators.required] }],
   });
 
   ngOnInit() {

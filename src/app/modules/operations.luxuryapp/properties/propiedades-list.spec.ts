@@ -49,8 +49,7 @@ describe("PropiedadesList", () => {
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -79,8 +78,7 @@ describe("PropiedadesList", () => {
   it("onDelete should remove item from dataSignal", async () => {
     component.dataSignal.set([
       { id: "1", fullName: "Prop A" },
-      { id: "2", fullName: "Prop B" },
-    ]);
+      { id: "2", fullName: "Prop B" }]);
 
     await component.onDelete("1");
 

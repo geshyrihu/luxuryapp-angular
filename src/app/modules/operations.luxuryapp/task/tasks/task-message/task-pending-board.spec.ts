@@ -50,8 +50,7 @@ describe("TaskPendingBoard", () => {
         { provide: HtmlPrintService, useValue: mockHtmlPrintS },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: Router, useValue: mockRouter },
-        { provide: HttpClient, useValue: mockHttp },
-      ],
+        { provide: HttpClient, useValue: mockHttp }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -86,8 +85,7 @@ describe("TaskPendingBoard", () => {
   it("onBack should navigate back", () => {
     component.onBack();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets", "messages",      "group-1",
-    ]);
+      "/tickets", "messages",      "group-1"]);
   });
 
   it("formatIndex should pad numbers", () => {

@@ -34,8 +34,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppTable,
     ApiDatePipe,
     CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./suspension-days-manager.html",
 })

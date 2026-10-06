@@ -12,8 +12,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
       :host {
         display: contents;
       }
-    `,
-  ],
+    `],
   template: `
     <tr>
       <td [attr.colspan]="colspan()" style="text-align: center">

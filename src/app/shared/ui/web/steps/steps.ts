@@ -65,8 +65,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       .app-steps-label { font-size: var(--ds-font-size-body); color: var(--ds-text-primary); white-space: nowrap; }
       .app-steps-connector { flex: 1 1 auto; height: 2px; background: var(--ds-border-strong); margin: 0 0.5rem; }
       .app-steps-item-done .app-steps-connector { background: var(--ds-primary); }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -49,7 +49,6 @@ export const initialImplementationRoutes: Routes = [
       title: "Pólizas Vigentes",
       breadcrumb: "Pólizas Vigentes",
     },
-  },
-];
+  }];
 
 

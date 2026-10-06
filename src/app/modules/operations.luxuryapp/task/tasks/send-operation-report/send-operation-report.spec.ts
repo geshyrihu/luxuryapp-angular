@@ -43,8 +43,7 @@ describe("SendOperationReport", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: PlatformService, useValue: mockPlatformS },
-      ],
+        { provide: PlatformService, useValue: mockPlatformS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

@@ -35,8 +35,7 @@ import { Editor, NgxEditorModule } from "ngx-editor";
         min-height: 150px;
         font-size: inherit;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -44,8 +43,7 @@ import { Editor, NgxEditorModule } from "ngx-editor";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AppEditor),
       multi: true,
-    },
-  ],
+    }],
 })
 export class AppEditor extends EditorBase implements OnInit, OnDestroy {
   editor!: Editor;

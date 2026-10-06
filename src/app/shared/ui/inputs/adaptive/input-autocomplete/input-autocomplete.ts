@@ -23,8 +23,7 @@ import { WebInputAutocomplete } from "../../web/input-autocomplete/input-autocom
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputAutocomplete),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

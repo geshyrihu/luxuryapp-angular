@@ -6,7 +6,6 @@ import {
   output,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonIconDelete } from "../../../buttons/web-icon/button-delete";
 import { BaseInputSignal } from "../../core/base-input-signal";
 
 @Component({
@@ -14,9 +13,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
 
   imports: [
     BaseInputSignal,
-    ReactiveFormsModule,
-    WebButtonIconDelete,
-  ],
+    ReactiveFormsModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -80,16 +77,14 @@ import { BaseInputSignal } from "../../core/base-input-signal";
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputFile),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputFile extends BaseInputSignal {
   accept = input<string>("");

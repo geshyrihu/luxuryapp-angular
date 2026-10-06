@@ -46,8 +46,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .ili-avatar-icon {
         font-size: 1.1rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileAvatar extends AvatarBase {}

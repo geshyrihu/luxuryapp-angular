@@ -33,8 +33,7 @@ import { CustomInputUrl } from "../custom-input-url-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputUrl),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputUrl extends BaseInputSignal {
   customClass = input<string>("");

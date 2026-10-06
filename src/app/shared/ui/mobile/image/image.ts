@@ -107,8 +107,7 @@ import { ImageBase } from "@ui/core/image.base";
         outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileImage extends ImageBase {

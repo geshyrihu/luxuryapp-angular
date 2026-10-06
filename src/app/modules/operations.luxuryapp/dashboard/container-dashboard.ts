@@ -24,8 +24,7 @@ export class ContainerDashboard {
     if (
       this.aspRoleS.hasAny([
         ApplicationRole.Condomino,
-        ApplicationRole.Comite,
-      ])
+        ApplicationRole.Comite])
     ) {
       return MiEdificio;
     }

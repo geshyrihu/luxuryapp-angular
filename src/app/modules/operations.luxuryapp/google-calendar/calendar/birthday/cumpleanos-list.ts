@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -22,7 +21,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-cumpleanos",
   templateUrl: "./cumpleanos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel, AppAvatar, LxTag, LxIcon],
+  imports: [ AppAvatar, LxTag, LxIcon],
 })
 export class Cumpleanos implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -42,8 +41,7 @@ export class Cumpleanos implements OnInit {
     "Septiembre",
     "Octubre",
     "Noviembre",
-    "Diciembre",
-  ];
+    "Diciembre"];
   dataSignal = signal<any[]>([]);
 
   /**

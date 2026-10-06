@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -24,7 +24,7 @@ const TASK_JUSTIFICATION_STATE = {
 @Component({
   selector: "app-task-justification-panel",
   templateUrl: "./task-justification-panel.html",
-  imports: [FormsModule, WebButtonLabel],
+  imports: [FormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -44,8 +44,7 @@ const TASK_JUSTIFICATION_STATE = {
         outline: 2px solid var(--primary-500);
         outline-offset: 2px;
       }
-    `,
-  ],
+    `],
 })
 export class TaskJustificationPanel implements OnInit {
   tasksId = input.required<string>();
@@ -87,16 +86,14 @@ export class TaskJustificationPanel implements OnInit {
         ),
         this.apiResponseS.onGetEnumSelectItem<SelectItemDto<number>[]>(
           Endpoints.SelectItems.taskJustificationState,
-        ),
-      ]);
+        )]);
 
       this.justifications.set(justifications ?? []);
       this.stateLabels.set(
         new Map(
           (stateOptions ?? []).map((item) => [
             item.value,
-            String(item.label ?? item.value),
-          ]),
+            String(item.label ?? item.value)]),
         ),
       );
     } finally {

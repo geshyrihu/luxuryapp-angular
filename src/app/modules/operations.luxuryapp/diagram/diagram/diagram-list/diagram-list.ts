@@ -16,7 +16,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -32,7 +31,6 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -46,7 +44,6 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     ButtonMobile,
     LxIcon,
     MobileListItem,
-    WebButtonIcon,
     LxTooltipDirective,
     MobileActionMenu,
     TableEmptyMessage,
@@ -54,11 +51,9 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     NgbTooltipModule,
 
-    DataViewMobile,
-  ],
+    DataViewMobile],
   providers: [DialogService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-list.html",

@@ -24,8 +24,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class SanctionListMobile {
   data = input.required<SanctionListDTO[]>();

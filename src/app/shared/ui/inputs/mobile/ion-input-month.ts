@@ -33,8 +33,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputMonth), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputMonth), multi: true }],
 })
 export class IonInputMonth extends BaseIonicInput {
   override registerOnChange(fn: any): void { this.onChange = fn; }

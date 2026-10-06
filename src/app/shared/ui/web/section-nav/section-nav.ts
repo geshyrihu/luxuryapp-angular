@@ -120,8 +120,7 @@ export interface LxSectionNavItem {
           width: 100%;
         }
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LxSectionNav {

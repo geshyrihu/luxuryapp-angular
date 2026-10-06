@@ -23,8 +23,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     CustomInputDateSignal,
     DataViewMobile,
     ReactiveFormsModule,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MisInspeccionesListaMobile {
   data = input.required<any[]>();

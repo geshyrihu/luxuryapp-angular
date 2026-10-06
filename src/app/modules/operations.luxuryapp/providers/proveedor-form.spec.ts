@@ -41,8 +41,7 @@ describe("ProveedorForm", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -78,11 +77,9 @@ describe("ProveedorForm", () => {
     const mockItem = { nameProvider: "Test", pathPhoto: "logo.png" };
     mockConfig.data = { id: "prov-001" };
     mockApiResponseS.onGetSelectItem.mockResolvedValue([
-      { value: 1, label: "Cat1" },
-    ]);
+      { value: 1, label: "Cat1" }]);
     mockApiResponseS.onGetEnumSelectItem.mockResolvedValue([
-      { value: 1, label: "Type1" },
-    ]);
+      { value: 1, label: "Type1" }]);
     mockApiResponseS.onGetItem.mockResolvedValue(mockItem);
 
     fixture = TestBed.createComponent(ProveedorForm);

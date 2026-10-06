@@ -45,12 +45,10 @@ import { SolicitudBajaUpdateStatus } from "@shared/integration/reclutamiento/rec
 import { ModificacionSalarioForm } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-unified-pending-dashboard",
   imports: [
-    WebButtonIcon,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
@@ -63,8 +61,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LuxTableCaption,
     ImageAnalysisDialogComponent,
     ActionIconsGroupComponent,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./unified-pending-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -78,8 +75,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
         font-weight: 700;
         letter-spacing: 0.5px;
       }
-    `,
-  ],
+    `],
 })
 export class UnifiedPendingDashboard {
   visionDialog = viewChild.required(ImageAnalysisDialogComponent);

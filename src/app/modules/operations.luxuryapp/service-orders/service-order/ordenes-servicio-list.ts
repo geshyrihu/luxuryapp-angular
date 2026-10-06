@@ -89,8 +89,7 @@ export class OrdenesServicio {
     { icon: "material-symbols-light:settings", id: 1, nombre: "equipos" },
     { icon: "material-symbols-light:bolt", id: 5, nombre: "gimnasio" },
     { icon: "material-symbols-light:videocam", id: 6, nombre: "sistemas" },
-    { icon: "material-symbols-light:palette", id: 10, nombre: "pintura" },
-  ];
+    { icon: "material-symbols-light:palette", id: 10, nombre: "pintura" }];
 
   onSegmentFilterChange(event: any) {
     const nombre = event.detail.value;
@@ -117,8 +116,7 @@ export class OrdenesServicio {
     this.mm = date.getMonth() + 1;
     const initialFecha = [
       date.getFullYear(),
-      (this.mm > 9 ? "" : "0") + this.mm,
-    ].join("-");
+      (this.mm > 9 ? "" : "0") + this.mm].join("-");
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);

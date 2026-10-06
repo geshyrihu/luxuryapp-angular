@@ -9,7 +9,6 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import saveAs from "file-saver";
@@ -40,9 +39,7 @@ interface IReportFilterForm {
     LxIcon,
     ReactiveFormsModule,
     CustomInputDateSignal,
-    CustomInputSelectSignal,
-    WebButtonLabel,
-  ],
+    CustomInputSelectSignal],
 })
 export class IncidentReport {
   apiS = inject(ApiResponseService);
@@ -63,16 +60,14 @@ export class IncidentReport {
     { value: "Desempeno", label: "Desempeño" },
     { value: "Seguridad", label: "Seguridad" },
     { value: "Asistencia", label: "Asistencia" },
-    { value: "Etica", label: "ótica" },
-  ];
+    { value: "Etica", label: "ótica" }];
 
   cb_severity: SelectItemDto[] = [
     { value: "", label: "Todas las severidades" },
     { value: "Low", label: "Leve" },
     { value: "Moderate", label: "Moderado" },
     { value: "Medium", label: "Grave" },
-    { value: "High", label: "Muy Grave" },
-  ];
+    { value: "High", label: "Muy Grave" }];
 
   ngOnInit(): void {
     this.form = this.fb.group<IReportFilterForm>({

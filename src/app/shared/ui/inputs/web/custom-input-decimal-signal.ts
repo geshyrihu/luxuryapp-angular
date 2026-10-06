@@ -42,8 +42,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputDecimal),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputDecimal extends BaseInputSignal {
   // <--- Inputs Específicos --->

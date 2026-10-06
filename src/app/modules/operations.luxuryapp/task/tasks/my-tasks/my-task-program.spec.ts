@@ -44,8 +44,7 @@ describe("MyTaskProgram", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DateService, useValue: mockDateS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

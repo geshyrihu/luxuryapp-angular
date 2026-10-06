@@ -20,8 +20,7 @@ import { WebInputMask } from "../../web/input-mask/input-mask";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMask),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

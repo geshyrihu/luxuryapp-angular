@@ -29,8 +29,7 @@ import { FieldsetBase } from "@ui/core/fieldset.base";
         padding: 0 0.5rem;
         color: var(--ds-text-primary);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

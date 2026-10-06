@@ -44,8 +44,7 @@ interface SelectItem {
     ReactiveFormsModule,
     CustomInputTextSignal,
     ButtonWeb,
-    LxListbox,
-  ],
+    LxListbox],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-form.html",
 })
@@ -93,8 +92,7 @@ export class DiagramForm implements OnInit {
         ),
         this.apiResponseS.onGetSelectItem<SelectItem[]>(
           Endpoints.SelectItems.customersActiveShortName,
-        ),
-      ]);
+        )]);
 
       this.allRoles.set(roles || []);
       this.allCustomers.set(this.filterCustomers(customers || []));
@@ -109,16 +107,14 @@ export class DiagramForm implements OnInit {
 
     const adminRoles = [
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente,
-    ];
+      ApplicationRole.Asistente];
     const universalRoles = [
       ApplicationRole.Reclutamiento,
       ApplicationRole.Legal,
       ApplicationRole.SupervisionOperativa,
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
-      ApplicationRole.RecursosHumanos,
-    ];
+      ApplicationRole.RecursosHumanos];
 
     if (adminRoles.includes(userRole as ApplicationRole)) {
       return customers.filter((c) => c.value === userCustomerId);

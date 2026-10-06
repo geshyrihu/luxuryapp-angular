@@ -189,8 +189,7 @@ export interface PivotValue {
       .pivot-row-expanded {
         background: color-mix(in srgb, var(--ds-primary) 5%, transparent);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -293,8 +292,7 @@ export class PivotTable {
           cells,
           rowTotal,
           children: [],
-        },
-      ];
+        }];
     }
 
     const dim = rowDims[level];

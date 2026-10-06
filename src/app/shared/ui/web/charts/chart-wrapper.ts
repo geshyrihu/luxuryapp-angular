@@ -59,8 +59,7 @@ export type ChartType =
         color: var(--ds-text-primary);
         margin-bottom: 0.75rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -12,8 +12,7 @@ export const AVATAR_PALETTE: readonly string[] = [
   'var(--ds-cat-3)',
   'var(--ds-cat-4)',
   'var(--ds-cat-5)',
-  'var(--ds-cat-6)',
-];
+  'var(--ds-cat-6)'];
 
 export function avatarBackground(seed: string): string {
   let h = 0;

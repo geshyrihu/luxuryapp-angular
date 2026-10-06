@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { TaskAttachmentInterface } from "@core/interfaces/tasks/task-attachment.interface";
 import { TaskChecklistItemInterface } from "@core/interfaces/tasks/task-checklist-item.interface";
@@ -106,8 +105,7 @@ describe("TaskChecklistPanel", () => {
         {
           provide: ConfirmService,
           useValue: { confirm: vi.fn().mockResolvedValue(true) },
-        },
-      ],
+        }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TaskChecklistPanel);

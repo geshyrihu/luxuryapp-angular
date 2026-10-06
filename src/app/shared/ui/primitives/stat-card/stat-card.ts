@@ -206,8 +206,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
         color: var(--ds-text-muted);
         margin-top: 0.125rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

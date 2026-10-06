@@ -17,8 +17,7 @@ describe('SendOperationReportBaseService', () => {
         { provide: ApiResponseService, useValue: { onGetSelectItem: vi.fn().mockResolvedValue([]), onPost: vi.fn().mockResolvedValue(true) } },
         { provide: FormBuilder, useValue: new FormBuilder() },
         { provide: CustomerIdService, useValue: { customerId: vi.fn().mockReturnValue('1') } },
-        { provide: TableScrollHeightService, useValue: { scrollHeight: '400px' } },
-      ],
+        { provide: TableScrollHeightService, useValue: { scrollHeight: '400px' } }],
     });
     service = TestBed.inject(SendOperationReportBaseService);
   });

@@ -34,8 +34,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class RecurringTaskComplianceDashboard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -36,8 +36,7 @@ export const INSPECTION_MODULES: InspectionModuleGroup[] = [
         icon: "material-symbols-light:location-on",
         color: "#92400e",
         bgColor: "#fef3c7",
-      },
-    ],
+      }],
   },
   {
     label: "Mis Recorridos",
@@ -58,9 +57,7 @@ export const INSPECTION_MODULES: InspectionModuleGroup[] = [
         icon: "material-symbols-light:fact-check",
          color: "var(--ds-ai)",
          bgColor: "var(--ds-ai-light)",
-      },
-    ],
-  },
-];
+      }],
+  }];
 
 // details/:id, result/:id y qr/:code requieren parámetros; se accede a ellos desde sus flujos.

@@ -41,8 +41,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputSelectBool),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputSelectBool extends BaseInputSignal {
   activeLabel = input<string>("Activo");
@@ -52,8 +51,7 @@ export class WebInputSelectBool extends BaseInputSignal {
 
   boolOptions = computed(() => [
     { value: true, label: this.activeLabel() },
-    { value: false, label: this.inactiveLabel() },
-  ]);
+    { value: false, label: this.inactiveLabel() }]);
 
   getInputStyleClass = computed(() => {
     if (this.size() === "small") return "form-control-sm";

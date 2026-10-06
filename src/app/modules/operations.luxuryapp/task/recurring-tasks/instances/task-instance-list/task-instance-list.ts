@@ -26,8 +26,7 @@ import { TaskInstanceListMobile } from "./mobile/task-instance-list-mobile";
     LxToolbar,
     CustomInputDateSignal,
     TaskInstanceListDesktop,
-    TaskInstanceListMobile,
-  ],
+    TaskInstanceListMobile],
 })
 export class TaskInstanceList implements OnInit {
   private apiResponseS = inject(ApiResponseService);

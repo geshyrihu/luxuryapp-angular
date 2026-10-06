@@ -26,8 +26,7 @@ import { InfiniteScrollBase } from "@ui/core/infinite-scroll.base";
       :host {
         display: contents;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileInfiniteScroll extends InfiniteScrollBase {

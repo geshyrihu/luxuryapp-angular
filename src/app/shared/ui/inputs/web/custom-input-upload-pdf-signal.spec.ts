@@ -34,8 +34,7 @@ describe('SubirPdf', () => {
       providers: [
         { provide: DynamicDialogRef, useValue: {} },
         { provide: DynamicDialogConfig, useValue: mockDialogConfig },
-        { provide: ApiResponseService, useValue: mockApiResponse },
-      ],
+        { provide: ApiResponseService, useValue: mockApiResponse }],
     });
 
     fixture = TestBed.createComponent(SubirPdf);

@@ -4,14 +4,13 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-recovery-guide-modal",
 
-  imports: [LxIcon, WebButtonLabel],
+  imports: [LxIcon],
   templateUrl: "./recovery-guide-modal.html",
   styleUrl: "./recovery-guide-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

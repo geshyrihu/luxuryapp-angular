@@ -19,8 +19,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
     AppAvatar,
     MobileActionMenu,
     MobileListItem,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class WarehouseStockListMobile {
   data = input.required<any[]>();

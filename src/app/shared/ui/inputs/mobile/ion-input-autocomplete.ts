@@ -22,8 +22,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
     IonInput,
     IonList,
     IonItem,
-    IonLabel,
-  ],
+    IonLabel],
   template: `
     <base-ionic-input
       [control]="control()"
@@ -72,8 +71,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputAutocomplete),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputAutocomplete extends BaseIonicInput {
   suggestions = input<any[]>([]);

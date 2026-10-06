@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
@@ -20,7 +19,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface NewInspectionImage {
@@ -32,12 +30,9 @@ interface NewInspectionImage {
 @Component({
   selector: "app-mis-inspecciones-agregar-imagenes",
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
-    WebButtonLabel,
     NgbTooltipModule,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",
 })

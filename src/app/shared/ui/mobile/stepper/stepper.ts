@@ -131,8 +131,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       :host ::ng-deep [step] {
         display: none;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileStepper extends StepperBase {}

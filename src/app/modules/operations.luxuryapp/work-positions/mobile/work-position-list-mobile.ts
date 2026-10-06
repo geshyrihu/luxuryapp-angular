@@ -22,8 +22,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     DataViewMobile,
     LxTag,
     MobileListItem,
-    AppAvatar,
-  ],
+    AppAvatar],
 })
 export class WorkPositionListMobile {
   data = input.required<IWorkPosition[]>();

@@ -23,8 +23,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     CustomInputDateSignal,
     ReactiveFormsModule,
     AppTable,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MisInspeccionesListaDesktop {
   data = input.required<any[]>();

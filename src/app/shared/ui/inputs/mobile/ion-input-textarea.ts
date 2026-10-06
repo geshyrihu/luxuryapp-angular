@@ -45,8 +45,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputTextarea),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputTextarea extends BaseIonicInput {
   rows = input<number>(3);

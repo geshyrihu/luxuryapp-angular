@@ -106,8 +106,7 @@ export class InventarioEstacionManual {
           ubicacion: "Escalera Piso 2",
           codigo: "EST-01",
           tipo: "Conventional",
-        },
-      ],
+        }],
       [
         { header: "Ubicacion *", key: "ubicacion", width: 30 },
         { header: "Codigo (opcional)", key: "codigo", width: 20 },
@@ -115,8 +114,7 @@ export class InventarioEstacionManual {
           header: "Tipo * (Conventional | AnalogAddressable | GlassBreak)",
           key: "tipo",
           width: 50,
-        },
-      ],
+        }],
       "Estaciones Manuales",
       "plantilla-estaciones-manuales",
     );

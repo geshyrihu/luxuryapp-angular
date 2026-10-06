@@ -31,8 +31,7 @@ import {
     AppTable,
     AppReorderableRow,
     AppReorderableRowHandle,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskTemplateItemsDesktop {
   items = input.required<TaskTemplateItem[]>();
@@ -167,8 +166,7 @@ export class TaskTemplateItemsDesktop {
       "Septiembre",
       "Octubre",
       "Noviembre",
-      "Diciembre",
-    ];
+      "Diciembre"];
     return monthNames[month - 1] || month.toString();
   }
 }

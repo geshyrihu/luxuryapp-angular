@@ -38,8 +38,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputPassword),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputPassword extends BaseInputSignal {
   customClass = input<string>("");

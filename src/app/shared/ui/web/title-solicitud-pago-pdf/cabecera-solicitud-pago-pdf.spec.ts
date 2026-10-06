@@ -32,8 +32,7 @@ describe('CabeceraSolicitudPagoPdf', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: CustomerIdService, useValue: customerIdServiceMock },
-        { provide: ApiResponseService, useValue: apiResponseServiceMock },
-      ],
+        { provide: ApiResponseService, useValue: apiResponseServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CabeceraSolicitudPagoPdf);

@@ -28,8 +28,7 @@ describe("GeneralAnualMantenimiento", () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseSMock },
-        { provide: CustomerIdService, useValue: customerIdSMock },
-      ],
+        { provide: CustomerIdService, useValue: customerIdSMock }],
     });
 
     fixture = TestBed.createComponent(GeneralAnualMantenimiento);
@@ -47,8 +46,7 @@ describe("GeneralAnualMantenimiento", () => {
 
   it("should have empty cb_providers initially", () => {
     expect(component.cb_providers()).toEqual([
-      { label: "Todos", value: "" },
-    ]);
+      { label: "Todos", value: "" }]);
   });
 
   it("should have providerIdControl as empty string", () => {
@@ -57,8 +55,7 @@ describe("GeneralAnualMantenimiento", () => {
 
   it("onLoadProveedores should fetch and set providers", async () => {
     apiResponseSMock.onGetList.mockResolvedValue([
-      { value: 1, label: "Prov1" },
-    ]);
+      { value: 1, label: "Prov1" }]);
     component.onLoadProveedores();
     await new Promise((resolve) => setTimeout(resolve));
     expect(apiResponseSMock.onGetList).toHaveBeenCalledWith(
@@ -66,8 +63,7 @@ describe("GeneralAnualMantenimiento", () => {
     );
     expect(component.cb_providers()).toEqual([
       { label: "Todos", value: "" },
-      { value: 1, label: "Prov1" },
-    ]);
+      { value: 1, label: "Prov1" }]);
   });
 
   it("onLoadData should clear dataSignal, fetch and set data", async () => {

@@ -21,8 +21,7 @@ describe("TaskPhotosViewer", () => {
       imports: [TaskPhotosViewer],
       providers: [
         { provide: ApiResponseService, useValue: mockApiS },
-        { provide: DynamicDialogConfig, useValue: { data } },
-      ],
+        { provide: DynamicDialogConfig, useValue: { data } }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -33,8 +32,7 @@ describe("TaskPhotosViewer", () => {
   it("should load additional images in additional mode", async () => {
     setup({ taskId: "t1", mode: "additional" });
     mockApiS.onGetList.mockResolvedValue([
-      { id: "i1", path: "p1", fileName: "f1" },
-    ]);
+      { id: "i1", path: "p1", fileName: "f1" }]);
 
     await component.ngOnInit();
 

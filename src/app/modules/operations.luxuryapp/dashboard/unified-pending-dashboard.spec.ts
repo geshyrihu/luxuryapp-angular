@@ -65,8 +65,7 @@ describe("UnifiedPendingDashboard", () => {
         { provide: SwalService, useValue: mockSwalService },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } }],
     });
     await TestBed.compileComponents();
 
@@ -95,8 +94,7 @@ describe("UnifiedPendingDashboard", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 1,
-      },
-    ];
+      }];
     mockApiResponseS.onGetList.mockResolvedValue(mockItems);
 
     mockCustomerIdS.customerId.set("cust-456");
@@ -131,8 +129,7 @@ describe("UnifiedPendingDashboard", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 2,
-      },
-    ];
+      }];
     component.selectedModule.set("Tickets");
     component.filterData();
     expect(component.data().length).toBe(1);
@@ -227,8 +224,7 @@ describe("UnifiedPendingDashboard", () => {
         responsible: "User",
         urlRoute: "/test",
         priority: 1,
-      },
-    ];
+      }];
     component.onModuleFilterChange("Tickets");
     expect(component.selectedModule()).toBe("Tickets");
   });

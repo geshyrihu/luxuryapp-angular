@@ -14,8 +14,7 @@ describe('BitacoraFiltroFechaForm', () => {
       providers: [
         { provide: DialogService, useValue: { getInstance: vi.fn() } },
         { provide: DynamicDialogConfig, useValue: { data: {} } },
-        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-      ],
+        { provide: DynamicDialogRef, useValue: { close: vi.fn() } }],
     });
     TestBed.overrideComponent(BitacoraFiltroFechaForm, { set: { template: '<div></div>', imports: [] } });
     await TestBed.compileComponents();

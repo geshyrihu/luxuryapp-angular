@@ -62,8 +62,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
           text-align: center;
         }
       }
-    `,
-  ],
+    `],
 })
 export class HeaderCustomer {
   private apiResponseS = inject(ApiResponseService);

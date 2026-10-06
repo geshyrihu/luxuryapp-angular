@@ -32,8 +32,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     CustomInputTextSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class WarehouseStockEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

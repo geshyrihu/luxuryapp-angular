@@ -76,8 +76,7 @@ interface SolicitudModificacionSalarioFormValue {
     CustomInputSelectSignal,
     ButtonWeb,
     CustomInputTextAreaSignal,
-    InputAutocomplete,
-  ],
+    InputAutocomplete],
 })
 export class SolicitudModificacionSalarioForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -162,8 +161,7 @@ private config = inject(DynamicDialogConfig);
       ),
       this.apiResponseS.onGetList<SelectItemDto[]>(
         OperationRecruitmentEndpoints.selectItems.vacancies(customerId),
-      ),
-    ]);
+      )]);
 
     this.cb_si_no.set(siNo);
     this.cb_applicationRole.set(applicationRoles as SelectItemDto[]);

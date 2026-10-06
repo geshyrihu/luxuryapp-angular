@@ -168,8 +168,7 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
         font-size: 0.875rem;
         text-align: center;
       }
-    `,
-  ],
+    `],
 })
 export class CustomInputImg implements OnChanges {
   private readonly imageProcessing = inject(ImageProcessingService);

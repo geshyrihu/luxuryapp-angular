@@ -25,8 +25,7 @@ import { LoginMobile } from "./login-mobile";
         height: 100vh;
         width: 100vw;
       }
-    `,
-  ],
+    `],
 })
 export class LoginWrapper {
   protected readonly platform = inject(PlatformService);

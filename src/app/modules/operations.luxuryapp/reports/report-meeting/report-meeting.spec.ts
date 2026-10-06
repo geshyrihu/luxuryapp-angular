@@ -31,8 +31,7 @@ describe("ReportMeeting", () => {
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: ActivatedRoute, useValue: { params: paramsSubject } },
-      ],
+        { provide: ActivatedRoute, useValue: { params: paramsSubject } }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(ReportMeeting);

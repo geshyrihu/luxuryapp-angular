@@ -104,8 +104,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .ili-tab-panels {
         padding-top: 0.75rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTabs extends TabsBase {

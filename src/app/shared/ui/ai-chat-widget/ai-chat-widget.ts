@@ -133,8 +133,7 @@ import { AppTag } from "@ui/web/tag/tag";
           transform: scale(1);
         }
       }
-    `,
-  ],
+    `],
 })
 export class AiChatWidget {
   chatS = inject(AiChatService);

@@ -66,8 +66,7 @@ interface RecurringTaskCatalogFormGroup {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    RecurrenceInput,
-  ],
+    RecurrenceInput],
 })
 export class RecurringTaskCatalogForm implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -113,8 +112,7 @@ export class RecurringTaskCatalogForm implements OnInit {
         validators: [
           Validators.required,
           Validators.min(0),
-          Validators.max(30),
-        ],
+          Validators.max(30)],
       }),
       backupUserId: new FormControl<string | null>(null),
     },

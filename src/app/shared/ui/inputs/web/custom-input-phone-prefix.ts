@@ -56,8 +56,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputPhonePrefix),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputPhonePrefix extends BaseInputSignal {
   readonly prefixes: PhonePrefix[] = PHONE_PREFIXES;

@@ -48,8 +48,7 @@ describe("TaskReportWorkPlan", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: TaskGroupService, useValue: mockTaskGroupService },
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -70,8 +69,7 @@ describe("TaskReportWorkPlan", () => {
   it("onLoadData should call api and set signals", async () => {
     const mockData = [
       { id: "1", assigneeId: "u1", assignee: "User 1" },
-      { id: "2", assigneeId: "u2", assignee: "User 2" },
-    ];
+      { id: "2", assigneeId: "u2", assignee: "User 2" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onLoadData();
@@ -86,8 +84,7 @@ describe("TaskReportWorkPlan", () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/tickets",
 
-      "work-plan-preview",
-    ]);
+      "work-plan-preview"]);
   });
 });
 

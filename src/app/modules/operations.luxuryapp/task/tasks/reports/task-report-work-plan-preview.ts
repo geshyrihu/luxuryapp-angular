@@ -38,8 +38,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     ReactiveFormsModule,
 
     CustomInputTextSignal,
-    AppImage,
-  ],
+    AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./task-report-work-plan-preview.html",
 })

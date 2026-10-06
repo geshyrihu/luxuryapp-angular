@@ -67,8 +67,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class ListadoAnualMantenimiento {
   apiResponseS = inject(ApiResponseService);

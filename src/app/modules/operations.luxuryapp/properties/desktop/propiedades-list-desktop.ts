@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -31,9 +30,7 @@ import {
     LxTooltipDirective,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-    WebButtonLabel,
-  ],
+    TableFooter],
 })
 export class PropiedadesListDesktop {
   data = input.required<any[]>();

@@ -42,8 +42,7 @@ export type { ConfirmType } from "@ui/core/confirm-dialog.base";
       :host {
         display: contents;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

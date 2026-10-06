@@ -63,8 +63,7 @@ let nextGalleryId = 0;
         outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -78,8 +77,7 @@ export class AppImage extends ImageBase {
       new ImageItem({
         src: this.src(),
         alt: this.alt(),
-      }),
-    ]);
+      })]);
     this.lightbox.open(0, this.galleryId, {
       role: "dialog",
       ariaLabel: this.alt() || "Vista previa de imagen",

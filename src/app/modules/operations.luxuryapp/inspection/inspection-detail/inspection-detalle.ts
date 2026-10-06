@@ -14,7 +14,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -36,9 +35,7 @@ import { InspectionEdit } from "../models/inspection.model";
     LxSkeleton,
     AppTag,
     LxIcon,
-    WebButtonLabel,
-    ActionMenu,
-  ],
+    ActionMenu],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-4">
@@ -468,8 +465,7 @@ export class InspectionDetailComponent implements OnInit {
     "Miércoles",
     "Jueves",
     "Viernes",
-    "Sábado",
-  ];
+    "Sábado"];
 
   ngOnInit(): void {
     this.route.params

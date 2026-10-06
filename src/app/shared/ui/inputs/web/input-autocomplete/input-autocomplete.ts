@@ -57,8 +57,7 @@ import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputAutocomplete),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputAutocomplete extends BaseInputSignal {
   data = input<any[]>([]);

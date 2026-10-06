@@ -17,8 +17,7 @@ describe("AppImage", () => {
       imports: [AppImage],
       providers: [
         { provide: Gallery, useValue: gallery },
-        { provide: Lightbox, useValue: lightbox },
-      ],
+        { provide: Lightbox, useValue: lightbox }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppImage);

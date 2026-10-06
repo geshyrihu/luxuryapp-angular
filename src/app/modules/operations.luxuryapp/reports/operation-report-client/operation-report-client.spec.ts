@@ -29,8 +29,7 @@ describe("OperationReportClient", () => {
       imports: [OperationReportClient],
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-      ],
+        { provide: ActivatedRoute, useValue: mockActivatedRoute }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(OperationReportClient);

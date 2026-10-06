@@ -270,8 +270,7 @@ export interface RankedListItem {
         font-size: var(--ds-font-size-body);
         text-align: center;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

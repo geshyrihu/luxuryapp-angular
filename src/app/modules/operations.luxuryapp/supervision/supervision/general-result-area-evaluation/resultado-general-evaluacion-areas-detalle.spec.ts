@@ -35,8 +35,7 @@ describe("ResultadoGeneralEvaluacionAreasDetalle", () => {
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

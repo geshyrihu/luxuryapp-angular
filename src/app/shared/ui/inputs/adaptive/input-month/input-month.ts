@@ -19,8 +19,7 @@ import { WebInputMonth } from "../../web/input-month/input-month";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMonth),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

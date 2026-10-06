@@ -48,8 +48,7 @@ interface ITaskTemplateItemForm {
     CustomInputTextAreaSignal,
     RecurrenceInput,
     InputDatepicker,
-    CustomInputCheckSignal,
-  ],
+    CustomInputCheckSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],
 })

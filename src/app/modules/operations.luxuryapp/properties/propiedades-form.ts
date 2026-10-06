@@ -53,8 +53,7 @@ interface IPropiedadesForm {
     CustomInputTextSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class PropiedadesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

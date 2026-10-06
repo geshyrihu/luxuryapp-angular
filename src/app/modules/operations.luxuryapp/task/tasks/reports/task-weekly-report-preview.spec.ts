@@ -49,8 +49,7 @@ describe("TaskWeeklyReportPreview", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DateRangeStorageService, useValue: mockDateRangeStorageS },
         { provide: TaskGroupService, useValue: mockTaskGroupService },
-        { provide: HtmlPrintService, useValue: mockHtmlPrintS },
-      ],
+        { provide: HtmlPrintService, useValue: mockHtmlPrintS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(TaskWeeklyReportPreview);
@@ -86,8 +85,7 @@ describe("TaskWeeklyReportPreview", () => {
           description: "DESCRIPCIÓN 1",
           beforeWork: "http://before.png",
           afterWork: null,
-        },
-      ],
+        }],
     };
     component.data.set(mockData);
     await component.exportPdf();

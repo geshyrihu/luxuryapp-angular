@@ -28,8 +28,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CatalogoDescripcionForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -43,14 +42,12 @@ export class CatalogoDescripcionForm implements OnInit {
     { value: "CONTABLE", label: "CONTABLE" },
     { value: "OPERACIONES", label: " OPERACIONES" },
     { value: "JURIDICO", label: "JURIDICO" },
-    { value: "MANTENIMIENTO", label: "MANTENIMIENTO" },
-  ]);
+    { value: "MANTENIMIENTO", label: "MANTENIMIENTO" }]);
 
   cb_grupo = signal<SelectItemDto[]>([]);
   cb_state = signal<SelectItemDto[]>([
     { value: 1, label: "Activo" },
-    { value: 0, label: "Inactivo" },
-  ]);
+    { value: 0, label: "Inactivo" }]);
 
   // Definición estricta del formulario
   form = new FormGroup({

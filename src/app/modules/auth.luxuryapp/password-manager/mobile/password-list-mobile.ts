@@ -20,8 +20,7 @@ import { CredentialDetailDto } from "../interfaces/credential-detail.dto";
     DataViewMobile,
     MobileActionMenu,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class PasswordListMobile {
   data = input.required<CredentialDetailDto[]>();

@@ -91,8 +91,7 @@ import { ListboxBase } from "@ui/core/listbox.base";
       .app-listbox-item:hover { background: var(--ds-bg-sunken); }
       .app-listbox-item-selected { background: var(--ds-primary-light); }
       .app-listbox-empty { padding: 0.75rem; color: var(--ds-text-muted); font-size: 0.875rem; text-align: center; }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

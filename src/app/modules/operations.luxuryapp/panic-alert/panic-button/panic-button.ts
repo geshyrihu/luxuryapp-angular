@@ -54,8 +54,7 @@ const EMITTER_ROLES: ApplicationRole[] = [
   ApplicationRole.Paqueteria,
   ApplicationRole.Chofer,
   ApplicationRole.BellBoy,
-  ApplicationRole.SnackBar,
-];
+  ApplicationRole.SnackBar];
 
 const HOLD_DURATION_MS = 1500;
 const COUNTDOWN_SECONDS = 5;

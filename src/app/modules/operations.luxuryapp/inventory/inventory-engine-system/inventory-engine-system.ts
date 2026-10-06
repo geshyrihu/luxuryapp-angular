@@ -23,14 +23,13 @@ import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/ac
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-inventory-engine-system",
   templateUrl: "./inventory-engine-system.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonIcon, CustomInputSelectSignal, LxTooltipDirective],
+  imports: [ CustomInputSelectSignal, LxTooltipDirective],
 })
 export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);

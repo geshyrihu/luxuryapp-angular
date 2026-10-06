@@ -37,8 +37,7 @@ interface IResetPasswordForm {
     CustomInputPassword,
     ButtonWeb,
     RouterModule,
-    LxIcon,
-  ],
+    LxIcon],
   template: `
     <!-- Página de restablecer contraseña — dos paneles claros -->
     <div class="auth-two-panel">
@@ -196,8 +195,7 @@ export class ResetPassword implements OnInit, OnDestroy {
           Validators.required,
           // RN-CRED-032: mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número.
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/),
-        ],
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)],
       }),
       confirmPassword: new FormControl("", {
         nonNullable: true,

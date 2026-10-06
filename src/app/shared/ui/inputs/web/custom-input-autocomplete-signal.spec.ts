@@ -53,20 +53,17 @@ describe('CustomInputAutoComplete', () => {
       fixture.componentRef.setInput('data', [
         { label: 'Mexico', value: 'MX' },
         { label: 'United States', value: 'US' },
-        { label: 'Canada', value: 'CA' },
-      ]);
+        { label: 'Canada', value: 'CA' }]);
       fixture.detectChanges();
 
       component.onComplete({ term: 'exi' });
       expect(component.resolvedSuggestions()).toEqual([
-        { label: 'Mexico', value: 'MX' },
-      ]);
+        { label: 'Mexico', value: 'MX' }]);
     });
 
     it('should return empty array when no match found', () => {
       fixture.componentRef.setInput('data', [
-        { label: 'Mexico', value: 'MX' },
-      ]);
+        { label: 'Mexico', value: 'MX' }]);
       fixture.detectChanges();
 
       component.onComplete({ term: 'xyz' });
@@ -75,14 +72,12 @@ describe('CustomInputAutoComplete', () => {
 
     it('should be case insensitive', () => {
       fixture.componentRef.setInput('data', [
-        { label: 'Mexico', value: 'MX' },
-      ]);
+        { label: 'Mexico', value: 'MX' }]);
       fixture.detectChanges();
 
       component.onComplete({ term: 'MEX' });
       expect(component.resolvedSuggestions()).toEqual([
-        { label: 'Mexico', value: 'MX' },
-      ]);
+        { label: 'Mexico', value: 'MX' }]);
     });
   });
 

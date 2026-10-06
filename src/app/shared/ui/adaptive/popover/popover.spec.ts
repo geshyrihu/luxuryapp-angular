@@ -8,8 +8,7 @@ describe("LxPopover", () => {
     TestBed.configureTestingModule({
       imports: [LxPopover],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } }],
     });
     const fixture = TestBed.createComponent(LxPopover);
     fixture.detectChanges();

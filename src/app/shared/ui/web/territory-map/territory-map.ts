@@ -285,8 +285,7 @@ export interface Territory {
         border-radius: 2px;
         transition: width 0.4s ease;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTerritoryMap {
@@ -325,8 +324,7 @@ export class AppTerritoryMap {
       "var(--ds-cat-7)",
       "var(--ds-cat-5)",
       "var(--ds-cat-2)",
-      "var(--ds-cat-4)",
-    ];
+      "var(--ds-cat-4)"];
     let h = 0;
     for (const c of t.owner) h = c.charCodeAt(0) + ((h << 5) - h);
     return colors[Math.abs(h) % colors.length];

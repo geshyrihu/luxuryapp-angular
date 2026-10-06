@@ -33,8 +33,7 @@ import { AppEditor } from "@ui/web/editor/editor";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LxEditor),
       multi: true,
-    },
-  ],
+    }],
 })
 export class LxEditor extends EditorBase {
   protected platform = inject(PlatformService);

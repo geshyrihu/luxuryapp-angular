@@ -143,8 +143,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         margin-left: 0.75rem;
         padding-left: 0.5rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTree extends TreeBase {

@@ -121,8 +121,7 @@ describe("CustomerConfig", () => {
     component.selectedItems.set(
       new Map([
         ["item-1", true],
-        ["item-2", false],
-      ]),
+        ["item-2", false]]),
     );
 
     await component.onSave();

@@ -27,8 +27,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-    AppImage,
-  ],
+    AppImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-informe-inspeccion.html",
 })

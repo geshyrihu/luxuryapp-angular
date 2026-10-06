@@ -73,8 +73,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         color: var(--ds-text-secondary);
         line-height: 1.5;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

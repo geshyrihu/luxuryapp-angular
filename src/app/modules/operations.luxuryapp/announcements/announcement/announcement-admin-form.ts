@@ -31,7 +31,6 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -64,9 +63,7 @@ import { ImageGenerationDialog } from "./image-generation-dialog/image-generatio
     LxDivider,
     LxEditor,
     LxListbox,
-    WebButtonLabel,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class AnnouncementAdminForm implements OnInit {
   private fb = inject(FormBuilder);
@@ -101,12 +98,10 @@ export class AnnouncementAdminForm implements OnInit {
     sendByEmail: [false],
     targetedCustomerIds: [
       [] as number[],
-      [Validators.required, Validators.minLength(1)],
-    ],
+      [Validators.required, Validators.minLength(1)]],
     recipientRoleIds: [
       [] as string[],
-      [Validators.required, Validators.minLength(1)],
-    ],
+      [Validators.required, Validators.minLength(1)]],
     mainImageControl: [[] as File[]],
     attachmentsControl: [[] as File[]],
   });
@@ -133,8 +128,7 @@ export class AnnouncementAdminForm implements OnInit {
         ),
         this.apiResponseS.onGetSelectItem<Customer[]>(
           Endpoints.SelectItems.customersActiveShortName,
-        ),
-      ]);
+        )]);
 
       this.allRoles.set(filteredRoles || []);
       const filteredCustomers = this.filterCustomersForCreation(
@@ -321,16 +315,14 @@ export class AnnouncementAdminForm implements OnInit {
   ): Customer[] {
     const adminRoles = [
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente,
-    ];
+      ApplicationRole.Asistente];
     const universalRoles = [
       ApplicationRole.Reclutamiento,
       ApplicationRole.Legal,
       ApplicationRole.SupervisionOperativa,
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
-      ApplicationRole.RecursosHumanos,
-    ];
+      ApplicationRole.RecursosHumanos];
 
     if (adminRoles.includes(userRole as ApplicationRole)) {
       return customers.filter((c) => c.value === userCustomerId);

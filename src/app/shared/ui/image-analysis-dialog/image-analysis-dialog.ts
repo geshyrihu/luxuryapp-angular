@@ -146,8 +146,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         position: relative;
         z-index: 1055;
       }
-    `,
-  ],
+    `],
 })
 export class ImageAnalysisDialogComponent implements OnDestroy {
   resultAccepted = output<string>();

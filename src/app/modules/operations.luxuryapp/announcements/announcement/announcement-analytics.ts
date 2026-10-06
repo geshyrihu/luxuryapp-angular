@@ -24,8 +24,7 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     DataGrid,
     DataViewMobile,
     LxIcon,
-    MobileListItem,
-  ],
+    MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-analytics.html",
 })
@@ -71,8 +70,7 @@ export default class AnnouncementAnalytics implements OnInit {
           d.toLocaleTimeString("es-MX", { hour: "numeric", minute: "2-digit" })
         );
       },
-    },
-  ];
+    }];
 
   ngOnInit(): void {
     this.announcementId = this.route.snapshot.paramMap.get("id");

@@ -48,8 +48,7 @@ type Opcion = "none" | "vacante" | "alta";
     CustomInputSelectSignal,
     InputImg,
     ButtonWeb,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
 })
 export class EmployeeProviderForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -100,8 +99,7 @@ export class EmployeeProviderForm implements OnInit {
     email: new FormControl<string>("", [
       Validators.required,
       Validators.email,
-      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
-    ]),
+      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]),
   });
 
   altaForm = new FormGroup({
@@ -242,8 +240,7 @@ export class EmployeeProviderForm implements OnInit {
         EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),
       ),
       firstValueFrom(this.enumSelectS.typeContractRegister()),
-      this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`),
-    ]);
+      this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`)]);
 
     this.cb_vacantes.set(vacantes ?? []);
     this.cb_typeContractRegister.set((tiposContrato as SelectItemDto[]) ?? []);

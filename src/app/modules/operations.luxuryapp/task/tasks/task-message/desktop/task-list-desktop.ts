@@ -13,8 +13,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -73,8 +71,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
         border-radius: 0.375rem;
         border: 1px solid var(--ds-border, #dee2e6);
       }
-    `,
-  ],
+    `],
   imports: [
     ButtonWeb,
     TableEmptyMessage,
@@ -87,8 +84,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     CustomInputTextSignal,
     TaskStatus,
     CustomInputSelectSignal,
-    WebButtonLabel,
-    WebButtonIcon,
     AppAvatar,
     CustomInputToggleSwitch,
     FormsModule,
@@ -97,8 +92,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     LxPopover,
     LxImage,
     InitialsAbbrPipe,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskListDesktop {
   data = input.required<ITaskMessageDTO[]>();

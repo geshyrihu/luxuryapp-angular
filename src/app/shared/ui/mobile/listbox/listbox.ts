@@ -32,8 +32,7 @@ import { ListboxBase } from "@ui/core/listbox.base";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MobileListbox),
       multi: true,
-    },
-  ],
+    }],
 })
 export class MobileListbox extends ListboxBase {
   selectOption(option: any) {

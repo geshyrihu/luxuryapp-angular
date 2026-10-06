@@ -36,8 +36,7 @@ interface ISuspensionForm {
     ReactiveFormsModule,
     ButtonWeb,
     CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
 })
 export class SuspensionOrdenServicio implements OnInit {
   private apiResponseS = inject(ApiResponseService);

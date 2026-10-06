@@ -11,8 +11,7 @@ describe('TicketFilterService', () => {
       providers: [
         TicketFilterService,
         { provide: AuthService, useValue: {} },
-        { provide: CustomerIdService, useValue: { customerId: vi.fn() } },
-      ],
+        { provide: CustomerIdService, useValue: { customerId: vi.fn() } }],
     });
     service = TestBed.inject(TicketFilterService);
   });

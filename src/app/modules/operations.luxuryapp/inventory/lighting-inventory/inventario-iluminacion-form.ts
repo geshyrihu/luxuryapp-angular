@@ -43,8 +43,7 @@ interface IInventarioIluminacionForm {
     CustomInputTextSignal,
     InputAutocomplete,
     CustomInputNumberSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioIluminacionForm implements OnInit {
   formB = inject(FormBuilder);
@@ -98,8 +97,7 @@ export class InventarioIluminacionForm implements OnInit {
       this.apiResponseS.onGetList(
         Endpoints.Machineries.getAutocompleteInv(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
-    ]);
+      this.apiResponseS.onGetList(Endpoints.Products.autoComplete)]);
 
     this.cb_machinery.set(machinery as SelectItemDto[]);
     this.cb_producto.set(productos as SelectItemDto[]);

@@ -67,8 +67,7 @@ export class AccordionPanel {
       :host {
         display: block;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

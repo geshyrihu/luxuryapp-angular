@@ -15,8 +15,7 @@ describe('OrdenesServicioListPdfService', () => {
         { provide: CustomToastService, useValue: { showWarn: vi.fn(), showInfo: vi.fn() } },
         { provide: HtmlPrintService, useValue: { getLogoDataUrl: vi.fn().mockResolvedValue(''), esc: vi.fn().mockReturnValue(''), getStandardCss: vi.fn().mockReturnValue(''), buildStandardHeader: vi.fn().mockReturnValue(''), buildStandardFooter: vi.fn().mockReturnValue(''), printHtml: vi.fn() } },
         { provide: ApiResponseService, useValue: { onGetItem: vi.fn().mockResolvedValue({}), onPost: vi.fn().mockResolvedValue([]) } },
-        { provide: CustomerIdService, useValue: { customerId: vi.fn().mockReturnValue('1') } },
-      ],
+        { provide: CustomerIdService, useValue: { customerId: vi.fn().mockReturnValue('1') } }],
     });
     service = TestBed.inject(OrdenesServicioListPdfService);
   });

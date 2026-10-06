@@ -8,8 +8,7 @@ describe('LxTag', () => {
     TestBed.configureTestingModule({
       imports: [LxTag],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } }],
     });
     const fixture = TestBed.createComponent(LxTag);
     fixture.detectChanges();

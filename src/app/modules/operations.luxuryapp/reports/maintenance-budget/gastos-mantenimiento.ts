@@ -60,8 +60,7 @@ export class GastosMantenimiento {
 
     Promise.all([
       this.apiResponseS.onGetList(urlApi),
-      this.apiResponseS.onGetList(urlApi2),
-    ])
+      this.apiResponseS.onGetList(urlApi2)])
       .then(([result1, result2]: [any, any]) => {
         this.data.set(result1?.items ?? []);
         this.globalFilterFields = globalFilterFields(this.data());

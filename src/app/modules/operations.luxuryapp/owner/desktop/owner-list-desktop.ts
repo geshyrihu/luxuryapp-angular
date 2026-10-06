@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -28,11 +27,9 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     LuxTableCaption,
     TableFooter,
-    ActionMenu,
-  ],
+    ActionMenu],
 })
 export class OwnerListDesktop {
   data = input.required<any[]>();

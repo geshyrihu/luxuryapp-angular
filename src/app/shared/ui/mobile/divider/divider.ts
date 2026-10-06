@@ -57,8 +57,7 @@ import { DividerBase } from "@ui/core/divider.base";
         flex: 1;
         background: var(--ds-border);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

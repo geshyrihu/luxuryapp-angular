@@ -8,7 +8,6 @@ import { FormsModule } from "@angular/forms";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { MobileButtonLabel } from "@ui/buttons";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { InspectionListItem } from "../../models/inspection.model";
@@ -23,9 +22,7 @@ import { InspectionListItem } from "../../models/inspection.model";
     FormsModule,
     CustomInputSelectSignal,
     DataViewMobile,
-    MobileActionMenu,
-    MobileButtonLabel,
-  ],
+    MobileActionMenu],
 })
 export class ListaInspeccionesMobile {
   groupedData = input<Record<string, InspectionListItem["inspecciones"]>>({});

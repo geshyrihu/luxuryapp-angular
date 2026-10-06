@@ -92,8 +92,7 @@ describe("TaskForm", () => {
         { provide: ClientErrorLoggerService, useValue: mockClientErrorLogger },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: TaskGroupService, useValue: mockTaskGroupService },
-      ],
+        { provide: TaskGroupService, useValue: mockTaskGroupService }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

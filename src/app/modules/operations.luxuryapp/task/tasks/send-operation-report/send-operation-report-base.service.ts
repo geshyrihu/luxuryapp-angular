@@ -42,9 +42,7 @@ export class SendOperationReportBaseService {
       "",
       [
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
-        Validators.required,
-      ],
-    ],
+        Validators.required]],
   });
 
   initialize(year: number, numeroSemana: number): void {

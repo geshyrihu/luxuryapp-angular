@@ -43,8 +43,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputPassword,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class LoginComponent implements OnInit {
   readonly ROUTES = ROUTES;

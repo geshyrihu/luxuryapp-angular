@@ -60,8 +60,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         border-radius: inherit;
         border: 1px solid var(--ds-border);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

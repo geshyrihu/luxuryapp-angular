@@ -62,8 +62,7 @@ interface IMantenimientoPreventivoForm {
     CustomInputTextAreaSignal,
     CustomInputSwitch,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class MantenimientoPreventivoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -145,8 +144,7 @@ export class MantenimientoPreventivoForm implements OnInit {
       this.loadAccountingCatalogs(),
       this.loadRecurrence(),
       this.loadTypeMaintance(),
-      this.loadMonths(),
-    ]);
+      this.loadMonths()]);
 
     switch (this.config.data.task) {
       case "create":

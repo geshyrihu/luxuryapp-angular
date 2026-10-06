@@ -39,8 +39,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputToggle),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputToggle extends BaseIonicInput {
   size = input<"small" | "default">("default");

@@ -57,8 +57,7 @@ describe("CronogramaAnualMantenimiento", () => {
           provide: CronogramaMantenimientoService,
           useValue: cronogramaMantenimientoServiceMock,
         },
-        { provide: HtmlPrintService, useValue: htmlPrintSMock },
-      ],
+        { provide: HtmlPrintService, useValue: htmlPrintSMock }],
     });
 
     fixture = TestBed.createComponent(CronogramaAnualMantenimiento);
@@ -94,8 +93,7 @@ describe("CronogramaAnualMantenimiento", () => {
         sistema: "Alpha",
         nameMachinery: "M1",
         maintenanceCalendars: [],
-      },
-    ];
+      }];
     apiResponseSMock.onGetItem.mockResolvedValue(items);
     component.onLoadData();
     await new Promise((resolve) => setTimeout(resolve));
@@ -140,8 +138,7 @@ describe("CronogramaAnualMantenimiento", () => {
     const item: any = {
       maintenanceCalendars: [
         { id: 1, month: 1 },
-        { id: 2, month: 3 },
-      ],
+        { id: 2, month: 3 }],
     };
     expect(component.hasService(item, "ENE")).toBe(true);
     expect(component.hasService(item, "FEB")).toBe(false);
@@ -157,8 +154,7 @@ describe("CronogramaAnualMantenimiento", () => {
     const item: any = {
       maintenanceCalendars: [
         { id: "calendar-10", month: 1 },
-        { id: "calendar-20", month: 2 },
-      ],
+        { id: "calendar-20", month: 2 }],
     };
     expect(component.getServiceIdForMonth(item, "ENE")).toBe("calendar-10");
     expect(component.getServiceIdForMonth(item, "FEB")).toBe("calendar-20");

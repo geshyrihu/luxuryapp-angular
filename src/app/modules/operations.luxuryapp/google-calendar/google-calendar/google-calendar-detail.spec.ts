@@ -21,8 +21,7 @@ describe("GoogleCalendarDetail", () => {
           useValue: {
             close: vi.fn(),
           },
-        },
-      ],
+        }],
     });
 
     TestBed.overrideComponent(GoogleCalendarDetail, {

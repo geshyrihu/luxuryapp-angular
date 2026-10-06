@@ -14,7 +14,6 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -45,11 +44,9 @@ interface DeptGroup {
     ButtonWeb,
     CommonModule,
     CustomSearchInput,
-    WebButtonLabel,
     DataViewMobile,
     LxIcon,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class ManualsAndProcessesList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -65,8 +62,7 @@ export class ManualsAndProcessesList implements OnInit {
       ApplicationRole.SuperUsuario,
       ApplicationRole.Legal,
       ApplicationRole.RecursosHumanos,
-      ApplicationRole.Reclutamiento,
-    ];
+      ApplicationRole.Reclutamiento];
     return roles.some((role) => this.aspRoleS.roleSignal(role)());
   });
 

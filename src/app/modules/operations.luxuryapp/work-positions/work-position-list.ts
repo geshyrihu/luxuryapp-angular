@@ -85,8 +85,7 @@ export class WorkPositionList {
     ...this.uniqueDepartments().map((dept) => ({
       value: dept,
       label: this.getDepartamentLabel(dept),
-    })),
-  ]);
+    }))]);
 
   readonly filteredData = computed<IWorkPosition[]>(() => {
     const selected = this.selectedDepartment();

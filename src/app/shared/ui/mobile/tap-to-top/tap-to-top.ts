@@ -41,8 +41,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .tap-top:hover {
         transform: scale(1.1);
       }
-    `,
-  ],
+    `],
 })
 export class MobileTapToTop extends TapToTopBase {}
 

@@ -57,8 +57,7 @@ interface IPolicyContractForm {
     CustomInputSelectSignal,
     CustomInputTextSignal,
     FileUploadModule,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule],
 })
 export class PolicyContractForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -75,8 +74,7 @@ export class PolicyContractForm implements OnInit {
   cb_type_of_contract = signal<SelectItemDto[]>([]);
   cb_isCurrent = signal<SelectItemDto[]>([
     { label: "Activo", value: true },
-    { label: "Inactivo", value: false },
-  ]);
+    { label: "Inactivo", value: false }]);
 
   file: File | null = null;
 

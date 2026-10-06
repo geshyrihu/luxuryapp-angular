@@ -21,8 +21,7 @@ describe("CustomInputImg", () => {
       imports: [CustomInputImg],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: CustomToastService, useValue: { showError: vi.fn() } },
-      ],
+        { provide: CustomToastService, useValue: { showError: vi.fn() } }],
     });
 
     fixture = TestBed.createComponent(CustomInputImg);

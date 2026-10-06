@@ -56,7 +56,6 @@ export const authRoutes: Routes = [
       title: "Actualizar Perfil",
       breadcrumb: "Actualizar Perfil",
     },
-  },
-];
+  }];
 
 

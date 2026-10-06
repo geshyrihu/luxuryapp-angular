@@ -9,7 +9,6 @@ import {
   NgbDropdownModule,
   NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -36,9 +35,7 @@ import {
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
-    ActionMenu,
-    WebButtonIconViewPdf,
-  ],
+    ActionMenu],
 })
 export class TemplatesListDesktop {
   data = input.required<any[]>();

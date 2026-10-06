@@ -114,8 +114,7 @@ import { LoaderBase } from "../../core/loader.base";
           transform: scale(1.02);
         }
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AppLoader extends LoaderBase {}

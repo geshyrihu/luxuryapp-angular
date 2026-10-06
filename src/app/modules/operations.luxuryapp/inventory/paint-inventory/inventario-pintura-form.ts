@@ -40,8 +40,7 @@ interface IInventarioPinturaForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioPinturaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -91,8 +90,7 @@ export class InventarioPinturaForm implements OnInit {
       this.apiResponseS.onGetList(
         Endpoints.Machineries.getAutocompleteInv(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
-    ]);
+      this.apiResponseS.onGetList(Endpoints.Products.autoComplete)]);
 
     this.cb_machinery.set(machinery as SelectItemDto[]);
     this.cb_producto.set(productos as SelectItemDto[]);

@@ -39,8 +39,7 @@ interface IRecoverPasswordForm {
     CustomInputTextSignal,
     ButtonWeb,
     RouterModule,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class RecoverPassword implements OnInit, OnDestroy {
   readonly ROUTES = ROUTES;

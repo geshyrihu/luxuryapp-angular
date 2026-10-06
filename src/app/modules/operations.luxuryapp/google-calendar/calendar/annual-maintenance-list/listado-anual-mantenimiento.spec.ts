@@ -45,8 +45,7 @@ describe("ListadoAnualMantenimiento", () => {
         { provide: AspRoleService, useValue: aspRoleSMock },
         { provide: CustomerIdService, useValue: customerIdSMock },
         { provide: DialogHandlerService, useValue: dialogHandlerSMock },
-        { provide: ConfirmService, useValue: confirmSMock },
-      ],
+        { provide: ConfirmService, useValue: confirmSMock }],
     });
 
     fixture = TestBed.createComponent(ListadoAnualMantenimiento);
@@ -83,8 +82,7 @@ describe("ListadoAnualMantenimiento", () => {
     component.dataSignal.set([
       { inventoryCategory: "A" },
       { inventoryCategory: "B" },
-      { inventoryCategory: "A" },
-    ]);
+      { inventoryCategory: "A" }]);
     expect(component.calculateCustomerTotal("A")).toBe(2);
     expect(component.calculateCustomerTotal("B")).toBe(1);
     expect(component.calculateCustomerTotal("C")).toBe(0);
@@ -145,16 +143,14 @@ describe("ListadoAnualMantenimiento", () => {
     );
     expect(component.months()).toEqual([
       { label: "Todos", value: "" },
-      ...months,
-    ]);
+      ...months]);
   });
 
   it("groupedData should group items by inventoryCategory", () => {
     component.dataSignal.set([
       { inventoryCategory: "CatA", name: "Item1" },
       { inventoryCategory: "CatB", name: "Item2" },
-      { inventoryCategory: "CatA", name: "Item3" },
-    ]);
+      { inventoryCategory: "CatA", name: "Item3" }]);
     const grouped = component.groupedData();
     expect(grouped["CatA"]).toHaveLength(2);
     expect(grouped["CatB"]).toHaveLength(1);

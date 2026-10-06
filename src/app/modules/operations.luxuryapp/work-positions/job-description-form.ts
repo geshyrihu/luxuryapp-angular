@@ -13,7 +13,7 @@ import {
 } from "@angular/forms";
 
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -33,10 +33,8 @@ import { AiService } from "@core/services/ai.service";
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    WebButtonLabel,
     ButtonWeb,
-    LxModal,
-  ],
+    LxModal],
 })
 export class JobDescriptionForm implements OnInit {
   private fb = inject(FormBuilder);

@@ -18,7 +18,6 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -95,9 +94,7 @@ interface SolicitudBajaFormValue {
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-    WebButtonLabel,
-  ],
+    ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -151,8 +148,7 @@ interface SolicitudBajaFormValue {
           text-align: center !important;
         }
       }
-    `,
-  ],
+    `],
 })
 export class SolicitudBajaForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -194,9 +190,7 @@ export class SolicitudBajaForm implements OnInit {
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(250),
-      ],
-    ],
+        Validators.maxLength(250)]],
     discountDescriptions: this.formBuilder.array([]),
     lawyerAssistance: [false],
     employeeInformed: [false],
@@ -211,10 +205,7 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png",
-        ]),
-      ],
-    ],
+          ".png"])]],
   });
 
   get discountDescriptions() {
@@ -277,9 +268,7 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png",
-        ]),
-      ]);
+          ".png"])]);
       if (newValue == 0)
         this.mensajeRenuncia = "Adjunta la renuncia firmada (PDF/DOCX/IMG).";
       else if (newValue == 2)
@@ -297,9 +286,7 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png",
-        ]),
-      ]);
+          ".png"])]);
 
       if (newValue == 3) {
         this.mensajeRenuncia =

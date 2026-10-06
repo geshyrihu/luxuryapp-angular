@@ -54,8 +54,7 @@ interface IOwnerForm {
     CustomInputNumberSignal,
     InputMask,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class OwnerForm implements OnInit {
   enumSelectS = inject(EnumSelectService);
@@ -81,8 +80,7 @@ export class OwnerForm implements OnInit {
     {
       label: "No",
       value: false,
-    },
-  ];
+    }];
 
   form: FormGroup<IOwnerForm> = this.formB.group({
     id: new FormControl({ value: "", disabled: true }),
@@ -128,8 +126,7 @@ export class OwnerForm implements OnInit {
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.properties(this.customerIdS.customerId()),
       ),
-      firstValueFrom(this.enumSelectS.typeHabitant()),
-    ]);
+      firstValueFrom(this.enumSelectS.typeHabitant())]);
 
     this.cb_properties.set(properties as SelectItemDto[]);
     this.cb_Habitant.set(habitants);

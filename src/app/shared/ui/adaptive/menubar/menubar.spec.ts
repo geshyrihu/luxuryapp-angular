@@ -11,8 +11,7 @@ describe("LxMenubar (render)", () => {
     const fixture = TestBed.createComponent(LxMenubar);
     fixture.componentRef.setInput("items", [
       { label: "Archivo", icon: "material-symbols-light:description", items: [{ label: "Nuevo" }] },
-      { label: "Editar", icon: "material-symbols-light:edit" },
-    ]);
+      { label: "Editar", icon: "material-symbols-light:edit" }]);
     expect(fixture.componentInstance).toBeTruthy();
   });
 });

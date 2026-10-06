@@ -23,8 +23,7 @@ import { TaskStatus } from "../../task-status/task-status";
     TaskStatus,
     AppImage,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MyRequestsTaskMobile {
   data = input.required<any[]>();

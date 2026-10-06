@@ -12,7 +12,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
@@ -29,9 +28,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     LxTooltipDirective,
     ApiDatePipe,
     AppTable,
-    LxTag,
-    WebButtonLabel,
-  ],
+    LxTag],
 })
 export class JuntasMensualesBackfill {
   private readonly apiResponseS = inject(ApiResponseService);

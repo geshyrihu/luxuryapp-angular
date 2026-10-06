@@ -201,8 +201,7 @@ export interface FileUploadEvent {
       .file-item:hover {
         background-color: var(--ds-bg-sunken);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

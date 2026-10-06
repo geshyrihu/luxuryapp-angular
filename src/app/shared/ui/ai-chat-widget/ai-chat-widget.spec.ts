@@ -33,8 +33,7 @@ describe("AiChatWidget", () => {
       imports: [AiChatWidget, NoopAnimationsModule],
       providers: [
         { provide: AiChatService, useValue: chatS },
-        { provide: AuthService, useValue: authS },
-      ],
+        { provide: AuthService, useValue: authS }],
     });
     fixture = TestBed.createComponent(AiChatWidget);
     component = fixture.componentInstance;

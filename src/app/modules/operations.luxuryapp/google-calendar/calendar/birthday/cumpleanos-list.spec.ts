@@ -43,8 +43,7 @@ describe("Cumpleanos", () => {
         { provide: ApiResponseService, useValue: apiResponseSMock },
         { provide: AuthService, useValue: authServiceMock },
         { provide: CustomerIdService, useValue: customerIdSMock },
-        { provide: DialogHandlerService, useValue: dialogHandlerSMock },
-      ],
+        { provide: DialogHandlerService, useValue: dialogHandlerSMock }],
     });
 
     fixture = TestBed.createComponent(Cumpleanos);

@@ -27,8 +27,7 @@ const OPEN_ITEMS = [
     createdAtFilter: "2026-09-12T12:00:00",
     lastFollowUp: "avance",
     lastFollowUpDate: "15-sep-26",
-  },
-];
+  }];
 
 const COMPLETED_ITEMS = [
   {
@@ -40,8 +39,7 @@ const COMPLETED_ITEMS = [
     createdAtFilter: "2026-09-05T12:00:00",
     lastFollowUp: null,
     lastFollowUpDate: null,
-  },
-];
+  }];
 
 describe("TaskSummaryReport", () => {
   let component: TaskSummaryReport;
@@ -85,8 +83,7 @@ describe("TaskSummaryReport", () => {
         {
           provide: DynamicDialogConfig,
           useValue: { data: { ticketGroupId: "g1", groupName: "Grupo" } },
-        },
-      ],
+        }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -102,8 +99,7 @@ describe("TaskSummaryReport", () => {
     expect(groups.map((g) => g.key)).toEqual([
       "pending",
       "inProgress",
-      "completed",
-    ]);
+      "completed"]);
     expect(component.total()).toBe(3);
   });
 

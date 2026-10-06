@@ -46,8 +46,7 @@ interface IInventarioDetectorHumoForm {
     InputMask,
     CustomInputSelectSignal,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioDetectorHumoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

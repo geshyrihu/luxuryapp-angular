@@ -123,8 +123,7 @@ export interface ComparisonItem {
       .comparison-table tbody tr:hover {
         background: var(--ds-bg-hover);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -24,8 +24,7 @@ import { WebInputCheck } from "../../web/input-check/input-check";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputCheck),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

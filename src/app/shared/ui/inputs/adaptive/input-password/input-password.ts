@@ -20,8 +20,7 @@ import { WebInputPassword } from "../../web/input-password/input-password";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPassword),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

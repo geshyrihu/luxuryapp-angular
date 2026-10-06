@@ -36,8 +36,7 @@ describe("TaskMessageReportResumen", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: TaskGroupService, useValue: mockTaskGroupService },
-      ],
+        { provide: TaskGroupService, useValue: mockTaskGroupService }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(TaskMessageReportResumen);

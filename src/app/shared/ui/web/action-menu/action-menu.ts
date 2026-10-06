@@ -65,8 +65,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           padding: 0.25rem;
         }
       }
-    `,
-  ],
+    `],
 })
 export class ActionMenu {
   private overlay = inject(Overlay);
@@ -120,8 +119,7 @@ export class ActionMenu {
           overlayX: "start",
           overlayY: "top",
           offsetY: 4,
-        },
-      ]);
+        }]);
 
     this.overlayRef = this.overlay.create({
       positionStrategy,

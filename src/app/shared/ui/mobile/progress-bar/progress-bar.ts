@@ -40,8 +40,7 @@ import { ProgressBarBase } from "@ui/core/progress-bar.base";
         min-width: 2.5rem;
         text-align: right;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileProgressBar extends ProgressBarBase {

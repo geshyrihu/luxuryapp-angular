@@ -33,8 +33,7 @@ import {
     LxTag,
     LuxTableCaption,
     CommonModule,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

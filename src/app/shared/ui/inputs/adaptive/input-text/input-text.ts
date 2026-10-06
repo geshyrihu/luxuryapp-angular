@@ -31,8 +31,7 @@ import { WebInputText } from "../../web/input-text/input-text";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputText),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

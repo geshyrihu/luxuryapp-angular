@@ -61,19 +61,16 @@ describe('CustomInputAutoMultiple', () => {
       fixture.componentRef.setInput('data', [
         { label: 'Apple', value: 1 },
         { label: 'Banana', value: 2 },
-        { label: 'Apricot', value: 3 },
-      ]);
+        { label: 'Apricot', value: 3 }]);
       component.search({ term: 'ap' });
       expect(component.filteredData).toEqual([
         { label: 'Apple', value: 1 },
-        { label: 'Apricot', value: 3 },
-      ]);
+        { label: 'Apricot', value: 3 }]);
     });
 
     it('should return empty array when no match', () => {
       fixture.componentRef.setInput('data', [
-        { label: 'Apple', value: 1 },
-      ]);
+        { label: 'Apple', value: 1 }]);
       component.search({ term: 'xyz' });
       expect(component.filteredData).toEqual([]);
     });

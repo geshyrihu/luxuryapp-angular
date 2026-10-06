@@ -40,8 +40,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputSwitch),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputSwitch extends BaseInputSignal {
   // 📤 EVENTO DE SALIDA

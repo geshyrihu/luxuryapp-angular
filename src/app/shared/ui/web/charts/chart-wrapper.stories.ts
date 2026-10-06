@@ -120,8 +120,7 @@ const sampleData: ChartJsData = {
       data: [90, 140, 110, 60, 130],
       backgroundColor: "--ds-cat-4",
       borderColor: "--ds-cat-4",
-    },
-  ],
+    }],
 };
 
 const meta: Meta<ChartWrapper> = {

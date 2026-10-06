@@ -167,8 +167,7 @@ export interface ApprovalNode {
         color: var(--ds-text-secondary);
         font-style: italic;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

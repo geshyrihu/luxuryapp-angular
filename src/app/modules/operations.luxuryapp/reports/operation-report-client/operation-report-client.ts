@@ -22,8 +22,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
         overflow-y: auto;
         overflow-x: hidden;
       }
-    `,
-  ],
+    `],
 })
 export class OperationReportClient implements OnInit {
   apiResponseS = inject(ApiResponseService);

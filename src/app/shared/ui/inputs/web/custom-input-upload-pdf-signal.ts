@@ -2,7 +2,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Component, inject, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 /**
  * 📤 SUBIR PDF (MODAL)
  * -------------------------------------------------------------------------
@@ -11,7 +11,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
  */
 @Component({
   selector: "lux-subir-pdf",
-  imports: [FileUpload, WebButtonLabel],
+  imports: [FileUpload],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="p-3">

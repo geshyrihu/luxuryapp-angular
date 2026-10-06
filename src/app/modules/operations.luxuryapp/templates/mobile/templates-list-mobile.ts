@@ -21,8 +21,7 @@ import { CommonModule } from "@angular/common";
     MobileActionMenu,
     MobileListItem,
     LxIcon,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class TemplatesListMobile {
   data = input.required<any[]>();

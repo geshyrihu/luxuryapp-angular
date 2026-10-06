@@ -9,7 +9,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -27,7 +26,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIcon,
     LxTooltipDirective,
     TableEmptyMessage,
     ApiDatePipe,
@@ -37,8 +35,7 @@ import {
     TableFooter,
     CustomInputTextSignal,
     ReactiveFormsModule,
-    InputDatepicker,
-  ],
+    InputDatepicker],
 })
 export class ProductOutputListDesktop {
   data = input.required<any[]>();

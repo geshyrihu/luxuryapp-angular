@@ -46,8 +46,7 @@ interface IInventarioEstacionManualForm {
     InputMask,
     CustomInputSelectSignal,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioEstacionManualForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

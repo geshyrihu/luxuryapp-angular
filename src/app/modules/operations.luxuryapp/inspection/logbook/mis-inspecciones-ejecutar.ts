@@ -21,7 +21,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { MisInspeccionesAgregarImagenes } from "@operations.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -31,24 +31,21 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+
 
 @Component({
   selector: "app-mis-inspecciones-ejecutar",
   imports: [
-    WebButtonIcon,
     ReactiveFormsModule,
     CustomInputToggleSwitch,
     CustomInputTextAreaSignal,
     AppImage,
-    WebButtonLabel,
     LxTooltipDirective,
     AppTable,
 
     DataViewMobile,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-ejecutar.html",
 })
@@ -104,8 +101,7 @@ export class MisInspeccionesEjecutar implements OnInit {
 
   globalFilterFields = computed(() => [
     "inspectionDescription",
-    "condominiumAssetName",
-  ]);
+    "condominiumAssetName"]);
 
   constructor() {
     effect(() => {

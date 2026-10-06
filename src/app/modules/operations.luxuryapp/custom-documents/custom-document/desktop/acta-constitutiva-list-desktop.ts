@@ -21,8 +21,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ActaConstitutivaListDesktop {
   data = input.required<any[]>();

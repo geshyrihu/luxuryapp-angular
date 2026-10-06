@@ -34,8 +34,7 @@ describe('DataViewMobile', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Router, useValue: routerMock },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-      ],
+        { provide: ActivatedRoute, useValue: activatedRouteMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataViewMobile);
@@ -76,8 +75,7 @@ describe('DataViewMobile', () => {
   it('should filter data based on filterValue', () => {
     const data = [
       { nombre: 'Juan', email: 'juan@test.com' },
-      { nombre: 'Pedro', email: 'pedro@test.com' },
-    ];
+      { nombre: 'Pedro', email: 'pedro@test.com' }];
     fixture.componentRef.setInput('data', data);
     fixture.componentRef.setInput('globalFilterFields', ['nombre']);
     fixture.detectChanges();

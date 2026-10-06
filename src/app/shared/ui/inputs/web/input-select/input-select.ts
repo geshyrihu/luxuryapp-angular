@@ -28,8 +28,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
     NgTemplateOutlet,
     BaseInputSignal,
     ReactiveFormsModule,
-    NgSelectModule,
-  ],
+    NgSelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -93,8 +92,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputSelect),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputSelect
   extends BaseInputSignal

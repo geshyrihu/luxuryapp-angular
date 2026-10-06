@@ -14,8 +14,7 @@ describe('MobileTapToTop', () => {
         {
           provide: ViewportScroller,
           useValue: { scrollToPosition: vi.fn() },
-        },
-      ],
+        }],
     });
     fixture = TestBed.createComponent(MobileTapToTop);
     component = fixture.componentInstance;

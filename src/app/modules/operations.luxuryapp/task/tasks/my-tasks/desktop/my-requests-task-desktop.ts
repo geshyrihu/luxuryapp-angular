@@ -35,8 +35,7 @@ import { TaskStatus } from "../../task-status/task-status";
     ActionMenu,
     TaskStatus,
     AppImage,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MyRequestsTaskDesktop {
   data = input.required<any[]>();

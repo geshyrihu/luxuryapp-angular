@@ -30,8 +30,6 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -93,11 +91,8 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    WebButtonLabel,
     CustomInputCheckSignal,
-    LxIcon,
-    WebButtonIcon,
-  ],
+    LxIcon],
 })
 export class TaskForm implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -320,8 +315,7 @@ export class TaskForm implements OnInit, OnDestroy {
           true,
           this.authS.applicationUserId,
         ),
-      ),
-    ]);
+      )]);
 
     this.cb_priority.set(priority);
     this.cb_ticket_group.set(
@@ -342,8 +336,7 @@ export class TaskForm implements OnInit, OnDestroy {
           ticketGroupId,
           this.id || undefined,
         ),
-      ),
-    ]);
+      )]);
     this.cb_application_user.set(users as SelectItemDto[]);
     this.cb_predecessors.set(predecessors as SelectItemDto[]);
   }
@@ -503,8 +496,7 @@ export class TaskForm implements OnInit, OnDestroy {
       `Tipo: ${file.type || "sin MIME"}`,
       `Tamaño: ${this.formatFileSize(file.size)}`,
       `PWA: ${this.isStandaloneMode() ? "sí" : "no"}`,
-      `Error: ${errorMessage}`,
-    ];
+      `Error: ${errorMessage}`];
 
     this.imageProcessingDiagnostic.set(details.join("\n"));
     this.clientErrorLogger.logError(
@@ -531,8 +523,7 @@ export class TaskForm implements OnInit, OnDestroy {
       `Service Worker: ${this.getServiceWorkerState()}`,
       `Antes: ${this.describeSelectedFile(this.form.controls.beforeWork.value)}`,
       `Después: ${this.describeSelectedFile(this.form.controls.afterWork.value)}`,
-      `URL: ${httpError.url || "sin URL"}`,
-    ];
+      `URL: ${httpError.url || "sin URL"}`];
 
     this.imageProcessingDiagnostic.set(details.join("\n"));
     this.clientErrorLogger.logError(

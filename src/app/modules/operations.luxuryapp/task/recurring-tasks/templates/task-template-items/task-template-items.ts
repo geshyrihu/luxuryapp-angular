@@ -223,8 +223,7 @@ export class TaskTemplateItems implements OnInit {
       "Septiembre",
       "Octubre",
       "Noviembre",
-      "Diciembre",
-    ];
+      "Diciembre"];
     return monthNames[month - 1] || month.toString();
   }
 }

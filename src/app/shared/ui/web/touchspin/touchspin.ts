@@ -64,8 +64,7 @@ import { ButtonWeb } from "@ui/buttons/web";
       input[type="number"] {
         -moz-appearance: textfield;
       }
-    `,
-  ],
+    `],
 })
 export class Touchspin {
   // <--- Inputs --->

@@ -27,7 +27,6 @@ import { IonTextarea } from "@ionic/angular";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MobileEditor),
       multi: true,
-    },
-  ],
+    }],
 })
 export class MobileEditor extends EditorBase {}

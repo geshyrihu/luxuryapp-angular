@@ -27,8 +27,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppTable,
     LuxTableCaption,
     TableEmptyMessage,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class SanctionListDesktop {
   data = input.required<SanctionListDTO[]>();

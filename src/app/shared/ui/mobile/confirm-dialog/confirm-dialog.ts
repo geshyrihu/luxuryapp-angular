@@ -89,8 +89,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         flex-direction: column;
         gap: 0.25rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileConfirmDialog extends ConfirmDialogBase {}

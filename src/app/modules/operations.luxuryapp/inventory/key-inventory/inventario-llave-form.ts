@@ -43,8 +43,7 @@ interface IFormInventarioLlave {
     CustomInputTextSignal,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioLlaveForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

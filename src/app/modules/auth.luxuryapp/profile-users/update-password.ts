@@ -29,8 +29,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     LxCard,
     ButtonWeb,
-    CustomInputPassword,
-  ],
+    CustomInputPassword],
 })
 export class UpdatePasswordComponent implements OnInit {
   formB = inject(FormBuilder);
@@ -55,8 +54,7 @@ export class UpdatePasswordComponent implements OnInit {
           "",
           {
             validators: [Validators.required, passwordValidation()],
-          },
-        ],
+          }],
         confirm: ["", Validators.required],
       },
       {

@@ -183,8 +183,7 @@ export interface TourStep {
           0 0 0 4px var(--ds-primary),
           0 0 0 9999px rgba(0, 0, 0, 0.45);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -58,8 +58,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     AppSorticon,
     LuxTableCaption,
     TableFooter,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class WarehouseList implements OnInit {
   authS = inject(AuthService);
@@ -80,8 +79,7 @@ export class WarehouseList implements OnInit {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   isAdmin = this.aspRoleService.hasAny([
     ApplicationRole.Administrador,
-    ApplicationRole.SuperUsuario,
-  ]);
+    ApplicationRole.SuperUsuario]);
   // El computed se mantiene, es genórico y funcionaré perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

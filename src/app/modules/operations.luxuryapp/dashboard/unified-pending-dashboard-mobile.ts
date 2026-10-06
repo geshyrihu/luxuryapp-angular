@@ -46,8 +46,7 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
       .ai-summary-popup {
         font-size: 0.9rem !important;
       }
-    `,
-  ],
+    `],
 })
 export class UnifiedPendingDashboardMobile {
   private apiResponseS = inject(ApiResponseService);

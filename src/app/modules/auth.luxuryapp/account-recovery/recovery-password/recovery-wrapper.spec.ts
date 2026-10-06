@@ -18,8 +18,7 @@ describe('RecoveryWrapper', () => {
       imports: [RecoveryWrapper],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: signal(isMobile) } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: signal(isMobile) } }],
     });
 
     const fixture = TestBed.createComponent(RecoveryWrapper);

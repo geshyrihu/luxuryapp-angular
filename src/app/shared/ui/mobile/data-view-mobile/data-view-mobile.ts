@@ -75,8 +75,7 @@ export interface IMobileBreadcrumbItem {
     IonTitle,
     IonButtons,
     AppIcon,
-    MobileEmptyState,
-  ],
+    MobileEmptyState],
 })
 export class DataViewMobile implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
@@ -177,8 +176,7 @@ export class DataViewMobile implements OnInit {
       {
         icon: "material-symbols-light:home",
         routerLink: "/dashboard/default",
-      },
-    ];
+      }];
 
     if (childBreadcrumb) {
       items.push({ label: childBreadcrumb });
@@ -240,8 +238,7 @@ export class DataViewMobile implements OnInit {
       "applicationUserId",
       "userId",
       "uuid",
-      "_id",
-    ];
+      "_id"];
     for (const p of commonIdProps) {
       if (
         item &&

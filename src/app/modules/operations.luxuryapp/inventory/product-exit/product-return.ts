@@ -35,8 +35,7 @@ interface IProductReturnForm {
     ReactiveFormsModule,
     CustomInputNumberSignal,
     CustomInputTextSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProductReturn implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -73,8 +72,7 @@ export class ProductReturn implements OnInit {
     this.form.controls.cantidadADevolver.setValidators([
       Validators.required,
       Validators.min(1),
-      Validators.max(max),
-    ]);
+      Validators.max(max)]);
     this.form.controls.cantidadADevolver.updateValueAndValidity();
   }
 

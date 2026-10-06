@@ -58,8 +58,7 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
         object-fit: contain;
         border-radius: 0.5rem;
       }
-    `,
-  ],
+    `],
 })
 export class PageTitleReport {
   private customerIdS = inject(CustomerIdService);

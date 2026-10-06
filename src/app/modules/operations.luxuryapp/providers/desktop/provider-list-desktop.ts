@@ -11,7 +11,6 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
@@ -31,12 +30,10 @@ import { AppPaginator } from "@ui/web/paginator/paginator";
     LxRating,
     LxTag,
     LxTooltipDirective,
-    WebButtonLabel,
     CustomSearchInput,
     SegmentedControl,
     LxIcon,
-    AppPaginator,
-  ],
+    AppPaginator],
 })
 export class ProviderListDesktop {
   data = input.required<any[]>();

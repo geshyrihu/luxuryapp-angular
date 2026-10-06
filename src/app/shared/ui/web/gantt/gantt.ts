@@ -331,8 +331,7 @@ export interface GanttTask {
         z-index: 1;
         flex-shrink: 0;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

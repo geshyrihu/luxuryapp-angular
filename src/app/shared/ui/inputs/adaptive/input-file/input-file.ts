@@ -21,8 +21,7 @@ import { WebInputFile } from "../../web/input-file/input-file";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputFile),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

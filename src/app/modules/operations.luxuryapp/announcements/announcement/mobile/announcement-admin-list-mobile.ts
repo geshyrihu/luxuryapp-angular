@@ -28,8 +28,7 @@ import { IAnnouncementAdminList } from "../announcement.model";
     CustomInputSelectSignal,
     DataViewMobile,
     LxIcon,
-    MobileListItem,
-  ],
+    MobileListItem],
 })
 export class AnnouncementAdminListMobile {
   data = input.required<IAnnouncementAdminList[]>();

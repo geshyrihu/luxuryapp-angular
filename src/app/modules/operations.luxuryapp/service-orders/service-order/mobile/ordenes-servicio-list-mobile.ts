@@ -41,8 +41,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     LxTag,
     MobileActionMenu,
     DataViewMobile,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class OrdenesServicioListMobile {
   data = input.required<any[]>();

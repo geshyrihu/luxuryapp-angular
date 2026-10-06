@@ -7,5 +7,4 @@ export const operationsRoutes: Routes = [
       import("src/app/routing/operations.routing").then(
         (m) => m.operationsRoutes,
       ),
-  },
-];
+  }];

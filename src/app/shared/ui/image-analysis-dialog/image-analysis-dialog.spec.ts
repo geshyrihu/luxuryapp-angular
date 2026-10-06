@@ -42,8 +42,7 @@ describe("ImageAnalysisDialogComponent", () => {
       providers: [
         { provide: TicketAnalysisService, useValue: ticketAnalysisS },
         { provide: MessageService, useValue: mockMessageService },
-        { provide: ImageProcessingService, useValue: mockImageProcessing },
-      ],
+        { provide: ImageProcessingService, useValue: mockImageProcessing }],
     });
     fixture = TestBed.createComponent(ImageAnalysisDialogComponent);
     component = fixture.componentInstance;

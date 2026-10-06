@@ -13,8 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -144,16 +142,13 @@ interface IGoogleCalendarEventForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
-    WebButtonIcon,
     ButtonWeb,
     CustomInputDateSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
-    SegmentedControl,
-  ],
+    SegmentedControl],
 })
 export class GoogleCalendarForm implements OnInit {
   private static readonly MeetingDurationMinutes = 90;
@@ -182,14 +177,12 @@ export class GoogleCalendarForm implements OnInit {
     {
       label: "Mismo martes/tercer martes del mes",
       value: GoogleCalendarRecurrenceMode.OrdinalWeekday,
-    },
-  ]);
+    }]);
   readonly meetingDurationMinutes = signal(
     GoogleCalendarForm.MeetingDurationMinutes,
   );
   readonly canOverrideScheduleConflicts = this.aspRoleS.anyOf([
-    ApplicationRole.SuperUsuario,
-  ]);
+    ApplicationRole.SuperUsuario]);
   readonly isEditMode = computed(() => !!this.id());
   readonly subjectType = signal<number | null>(null);
   readonly modality = signal<number | null>(null);
@@ -226,8 +219,7 @@ export class GoogleCalendarForm implements OnInit {
       label: "JINT",
       value: 3,
       description: "Junta con proveedores y otros asuntos",
-    },
-  ]);
+    }]);
   readonly modalityOptions = signal<IOptionShortcut[]>([
     {
       label: "VIR",
@@ -238,8 +230,7 @@ export class GoogleCalendarForm implements OnInit {
       label: "PRE",
       value: 1,
       description: "Presencial",
-    },
-  ]);
+    }]);
   readonly timeSlotOptions = signal(this.buildTimeSlotOptions());
   readonly dateEvents = signal<IGoogleCalendarEventListItem[]>([]);
   readonly selectedDate = signal<Date | null>(null);
@@ -657,8 +648,7 @@ export class GoogleCalendarForm implements OnInit {
         if (requiresPaddles) {
           paddlesControl.setValidators([
             Validators.required,
-            Validators.min(1),
-          ]);
+            Validators.min(1)]);
         } else {
           paddlesControl.clearValidators();
           paddlesControl.setValue(null, { emitEvent: false });
@@ -1311,7 +1301,7 @@ export class GoogleCalendarForm implements OnInit {
     );
 
     if (match) {
-      const [, year, month, day, hour, minute, second] = match;
+      const [ year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,
@@ -1370,8 +1360,7 @@ export class GoogleCalendarForm implements OnInit {
               id: g.id || null,
               name: g.nameEmployee,
               email: g.email,
-            })),
-          ],
+            }))],
       assembly: isAssembly
         ? {
             copyLegal: true,
@@ -1444,8 +1433,7 @@ export class GoogleCalendarForm implements OnInit {
       "miercoles",
       "jueves",
       "viernes",
-      "sabado",
-    ][date.getDay()];
+      "sabado"][date.getDay()];
 
     return `${ordinal} ${weekday}`;
   }

@@ -27,8 +27,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   imports: [
     ButtonWeb,
     TableEmptyMessage,
-    AppTable,
-  ],
+    AppTable],
 })
 export class OrdenesServicioReporteProveedor {
   config = inject(DynamicDialogConfig);

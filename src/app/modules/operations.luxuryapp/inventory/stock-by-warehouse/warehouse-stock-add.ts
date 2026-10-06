@@ -67,8 +67,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     TableFooter,
     CustomInputNumberSignal,
     ReactiveFormsModule,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class WarehouseStockAdd implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -87,8 +86,7 @@ export class WarehouseStockAdd implements OnInit {
     "value.nombreProducto",
     "value.existencia",
     "value.stockMax",
-    "value.stockMin",
-  ]);
+    "value.stockMin"]);
 
   loading = signal(true);
   totalRecords: number = 0;

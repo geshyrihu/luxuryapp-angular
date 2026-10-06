@@ -152,8 +152,7 @@ export interface HeatmapCell {
         background: linear-gradient(to right, color-mix(in srgb, var(--ds-cat-1), white 85%), var(--ds-cat-1));
         max-width: 180px;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

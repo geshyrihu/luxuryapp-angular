@@ -95,8 +95,7 @@ export interface SegmentItem {
       .seg__icon {
         font-size: 1.05rem;
       }
-    `,
-  ],
+    `],
 })
 export class SegmentedControl {
   /** Opciones a mostrar. */

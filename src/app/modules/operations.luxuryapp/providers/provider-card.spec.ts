@@ -28,8 +28,7 @@ describe("TarjetaProveedor", () => {
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: CustomerIdService, useValue: mockCustomerIdS },
-      ],
+        { provide: CustomerIdService, useValue: mockCustomerIdS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

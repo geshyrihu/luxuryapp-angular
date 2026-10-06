@@ -72,8 +72,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         white-space: nowrap;
         font-size: 0.95rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

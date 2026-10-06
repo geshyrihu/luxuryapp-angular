@@ -47,8 +47,7 @@ import { PopoverBase } from "@ui/core/popover.base";
         position: static !important;
         margin: 0 !important;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

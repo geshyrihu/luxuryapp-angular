@@ -21,8 +21,7 @@ import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker"
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputDatepicker),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

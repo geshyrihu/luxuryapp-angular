@@ -41,8 +41,7 @@ interface PasswordTablePageEvent {
     ApiDatePipe,
     LxIcon,
     ButtonWeb,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
 })
 export class PasswordListDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

@@ -34,8 +34,7 @@ import { PanelBase } from "@ui/core/panel.base";
       .ili-panel-content {
         padding: 1rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -71,8 +71,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
         height: 100%;
         overflow: hidden;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TaskListDesktop, TaskListMobile],
 })

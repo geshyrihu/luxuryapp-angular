@@ -24,8 +24,7 @@ describe("ProviderUse", () => {
       imports: [ProviderUse],
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
-        { provide: DynamicDialogConfig, useValue: mockConfig },
-      ],
+        { provide: DynamicDialogConfig, useValue: mockConfig }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

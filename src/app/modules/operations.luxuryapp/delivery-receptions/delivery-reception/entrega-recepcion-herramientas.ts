@@ -32,8 +32,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     FormsModule,
-    CustomInputCheckSignal,
-  ],
+    CustomInputCheckSignal],
 })
 export class EntregaRecepcionHerramientas {
   apiResponseS = inject(ApiResponseService);

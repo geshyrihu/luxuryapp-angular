@@ -101,8 +101,7 @@ const DEFAULTS: Record<
         font-size: 0.6rem;
         line-height: 1rem;
       }
-    `,
-  ],
+    `],
 })
 export class ButtonWeb extends BaseButton {
   kind = input<WebButtonKind>("custom");

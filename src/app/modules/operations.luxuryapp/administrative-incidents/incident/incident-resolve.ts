@@ -38,8 +38,7 @@ interface IIncidentResolveForm {
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class IncidentResolveComponent {
   apiS = inject(ApiResponseService);

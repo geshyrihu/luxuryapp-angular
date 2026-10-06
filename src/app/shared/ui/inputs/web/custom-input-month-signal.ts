@@ -43,8 +43,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputMonth),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputMonth extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);

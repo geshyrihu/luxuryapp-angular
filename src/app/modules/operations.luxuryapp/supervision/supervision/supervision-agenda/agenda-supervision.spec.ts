@@ -65,8 +65,7 @@ describe("agenda-supervision", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: FiltroCalendarService, useValue: mockRangoCalendarioS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -105,8 +104,7 @@ describe("agenda-supervision", () => {
     await new Promise((resolve) => setTimeout(resolve));
     component.dataSignal.set([
       { id: "1", name: "A" },
-      { id: "2", name: "B" },
-    ]);
+      { id: "2", name: "B" }]);
 
     await component.onDelete("1");
     await new Promise((resolve) => setTimeout(resolve));

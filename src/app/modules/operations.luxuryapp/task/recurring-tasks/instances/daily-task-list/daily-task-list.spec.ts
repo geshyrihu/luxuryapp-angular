@@ -42,8 +42,7 @@ describe("DailyTaskList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: DateService, useValue: mockDateS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

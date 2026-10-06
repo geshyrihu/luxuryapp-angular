@@ -66,8 +66,7 @@ describe("MantenimientoPreventivoForm", () => {
         { provide: CustomerIdService, useValue: customerIdSMock },
         { provide: DynamicDialogConfig, useValue: configMock },
         { provide: DynamicDialogRef, useValue: refMock },
-        { provide: EnumSelectService, useValue: enumSelectSMock },
-      ],
+        { provide: EnumSelectService, useValue: enumSelectSMock }],
     });
 
     fixture = TestBed.createComponent(MantenimientoPreventivoForm);

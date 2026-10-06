@@ -62,8 +62,7 @@ import {
       owl-carousel-o .owl-item {
         flex: 0 0 auto;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

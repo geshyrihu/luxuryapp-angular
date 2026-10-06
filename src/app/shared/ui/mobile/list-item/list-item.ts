@@ -105,8 +105,7 @@ import {
       .ili-list-item.ili-list-item-align-top .ili-list-item__end {
         align-items: flex-start;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

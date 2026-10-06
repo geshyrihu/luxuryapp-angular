@@ -12,7 +12,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppSpinner } from "@ui/web/spinner/spinner";
@@ -45,10 +44,8 @@ const MAX_PAGES = 10;
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,
-    WebButtonLabel,
     LxIcon,
-    AppSpinner,
-  ],
+    AppSpinner],
   styles: [
     `
       .summary-screen-table {
@@ -60,8 +57,7 @@ const MAX_PAGES = 10;
       .summary-screen-table td .cell-sub {
         font-size: 0.85rem;
       }
-    `,
-  ],
+    `],
 })
 export class TaskSummaryReport implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -121,8 +117,7 @@ export class TaskSummaryReport implements OnInit {
         rows: this.toRows(
           inRange.filter((item) => item.status === "Completed"),
         ),
-      },
-    ];
+      }];
 
     return candidates.filter((group) => group.rows.length > 0);
   });
@@ -140,8 +135,7 @@ export class TaskSummaryReport implements OnInit {
     try {
       const [open, completed] = await Promise.all([
         this.fetchAll("NotStarted"),
-        this.fetchAll("Completed"),
-      ]);
+        this.fetchAll("Completed")]);
       this.items.set([...open, ...completed]);
     } finally {
       this.loading.set(false);

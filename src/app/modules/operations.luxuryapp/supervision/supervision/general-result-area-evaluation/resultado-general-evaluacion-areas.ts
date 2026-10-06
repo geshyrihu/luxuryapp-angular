@@ -35,8 +35,7 @@ import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-eval
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {
   apiResponseS = inject(ApiResponseService);

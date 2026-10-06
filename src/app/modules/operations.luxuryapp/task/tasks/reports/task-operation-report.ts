@@ -70,8 +70,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     LuxTableCaption,
     AppImage,
     CustomInputSwitch,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule],
 })
 export class TaskMessageOperationReport {
   onProgram(arg0: any) {

@@ -25,8 +25,7 @@ export abstract class RatingBase {
     "Malo",
     "Regular",
     "Bueno",
-    "Excelente",
-  ];
+    "Excelente"];
 
   /** [1..stars] para renderizar estrellas en la versión mobile. */
   starRange = computed(() => {

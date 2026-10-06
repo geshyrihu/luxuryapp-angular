@@ -151,8 +151,7 @@ export type TriState = true | false | null;
         font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

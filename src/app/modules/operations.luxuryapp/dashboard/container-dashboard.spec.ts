@@ -36,8 +36,7 @@ describe("ContainerDashboard", () => {
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: ToastController, useValue: {} },
         { provide: DialogService, useValue: {} },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } }],
     });
     await TestBed.compileComponents();
 

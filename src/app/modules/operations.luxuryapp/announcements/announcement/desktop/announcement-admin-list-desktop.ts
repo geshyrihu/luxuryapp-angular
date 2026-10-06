@@ -10,7 +10,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,13 +33,11 @@ import { IAnnouncementAdminList } from "../announcement.model";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     LxTag,
     LxTooltipDirective,
     LuxTableCaption,
     TableFooter,
-    CustomInputSelectSignal,
-  ],
+    CustomInputSelectSignal],
 })
 export class AnnouncementAdminListDesktop {
   data = input.required<IAnnouncementAdminList[]>();

@@ -22,8 +22,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     MobileListItem,
     MobileActionMenu,
     ApiDatePipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class IncidentListMobile {
   data = input.required<IncidentListDTO[]>();

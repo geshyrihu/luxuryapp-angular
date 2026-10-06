@@ -76,8 +76,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         position: static !important;
         margin: 0 !important;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -127,8 +126,7 @@ export class AppMenu extends MenuBase {
           overlayX: "start",
           overlayY: "bottom",
           offsetY: -4,
-        },
-      ]);
+        }]);
 
     this.overlayRef = this.overlay.create({
       positionStrategy,

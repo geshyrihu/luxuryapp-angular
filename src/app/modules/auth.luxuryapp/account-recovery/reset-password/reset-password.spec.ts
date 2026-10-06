@@ -42,8 +42,7 @@ describe("ResetPassword", () => {
               },
             },
           },
-        },
-      ],
+        }],
     });
 
     fixture = TestBed.createComponent(ResetPassword);

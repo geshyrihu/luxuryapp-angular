@@ -32,8 +32,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         height: 100%;
         border: none;
       }
-    `,
-  ],
+    `],
 })
 export class DiagramEditor implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);

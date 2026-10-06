@@ -30,8 +30,7 @@ import { ToggleSwitchBase } from "@ui/core/toggle-switch.base";
       :host {
         display: inline-block;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

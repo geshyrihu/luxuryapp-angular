@@ -32,8 +32,7 @@ describe("TaskTemplateForm", () => {
       providers: [
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: DynamicDialogConfig, useValue: mockConfig },
-      ],
+        { provide: DynamicDialogConfig, useValue: mockConfig }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

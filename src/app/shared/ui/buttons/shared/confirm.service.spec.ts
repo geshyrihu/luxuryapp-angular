@@ -11,8 +11,7 @@ describe('ConfirmService', () => {
       providers: [
         ConfirmService,
         { provide: PlatformService, useValue: { isMobile: vi.fn().mockReturnValue(false) } },
-        { provide: AlertController, useValue: { create: vi.fn().mockResolvedValue({ present: vi.fn() }) } },
-      ],
+        { provide: AlertController, useValue: { create: vi.fn().mockResolvedValue({ present: vi.fn() }) } }],
     });
     service = TestBed.inject(ConfirmService);
   });

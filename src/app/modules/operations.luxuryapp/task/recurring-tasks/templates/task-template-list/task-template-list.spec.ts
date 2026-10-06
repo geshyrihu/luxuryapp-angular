@@ -54,8 +54,7 @@ describe("TaskTemplateList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: Router, useValue: mockRouter },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -119,8 +118,7 @@ describe("TaskTemplateList", () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/recurring-tasks",
       "tmpl-1",
-      "items",
-    ]);
+      "items"]);
   });
 
   it("should delete and reload on success", async () => {

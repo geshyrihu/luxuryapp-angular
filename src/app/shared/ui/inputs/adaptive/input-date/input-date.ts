@@ -20,8 +20,7 @@ import { WebInputDate } from "../../web/input-date/input-date";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputDate),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

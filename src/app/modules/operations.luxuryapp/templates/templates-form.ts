@@ -27,8 +27,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputFile,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TemplatesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

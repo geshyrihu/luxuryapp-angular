@@ -225,8 +225,7 @@ export type StockStatus = "critical" | "low" | "medium" | "high" | "overstock";
         color: var(--ds-text-muted);
         text-transform: uppercase;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -243,8 +242,7 @@ export class AppInventoryLevel {
     { pct: 15, label: "Crítico" },
     { pct: 30, label: "Bajo" },
     { pct: 70, label: "Óptimo" },
-    { pct: 90, label: "Máximo" },
-  ];
+    { pct: 90, label: "Máximo" }];
 
   clampedPct = computed(() =>
     Math.min(100, Math.max(0, (this.current() / this.max()) * 100)),

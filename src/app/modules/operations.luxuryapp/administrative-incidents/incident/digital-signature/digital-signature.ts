@@ -7,12 +7,11 @@ import {
   viewChild,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-digital-signature",
-  imports: [LxIcon, FormsModule, WebButtonLabel],
+  imports: [LxIcon, FormsModule],
   templateUrl: "./digital-signature.html",
 })
 export class DigitalSignatureComponent {

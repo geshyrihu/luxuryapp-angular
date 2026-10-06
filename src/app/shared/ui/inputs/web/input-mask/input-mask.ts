@@ -37,8 +37,7 @@ import { CustomInputMaskSignal } from "../custom-input-mask-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputMask),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputMask extends BaseInputSignal {
   customMask = input.required<string>();

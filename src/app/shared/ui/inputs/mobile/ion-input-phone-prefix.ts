@@ -48,16 +48,14 @@ export interface PhonePrefixOption {
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputPhonePrefix), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputPhonePrefix), multi: true }],
 })
 export class IonInputPhonePrefix extends BaseIonicInput {
   prefixes = input<PhonePrefixOption[]>([
     { code: "+52", label: "🇲🇽 +52", mask: "(000) 000-0000" },
     { code: "+1", label: "🇺🇸 +1", mask: "(000) 000-0000" },
     { code: "+34", label: "🇪🇸 +34", mask: "000 000 000" },
-    { code: "+57", label: "🇨🇴 +57", mask: "000 000 0000" },
-  ]);
+    { code: "+57", label: "🇨🇴 +57", mask: "000 000 0000" }]);
   selectedPrefix = input("+52");
 
   onPrefixChange(code: string): void {

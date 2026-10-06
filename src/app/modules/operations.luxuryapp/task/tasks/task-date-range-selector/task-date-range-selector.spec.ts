@@ -22,8 +22,7 @@ describe('TaskDateRangeSelector', () => {
     TestBed.configureTestingModule({
       imports: [TaskDateRangeSelector],
       providers: [
-        { provide: DateRangeStorageService, useValue: mockDateRangeStorageS },
-      ],
+        { provide: DateRangeStorageService, useValue: mockDateRangeStorageS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

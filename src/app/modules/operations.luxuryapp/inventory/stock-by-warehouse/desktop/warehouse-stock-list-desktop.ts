@@ -28,8 +28,7 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LxTooltipDirective,
-  ],
+    LxTooltipDirective],
 })
 export class WarehouseStockListDesktop {
   data = input.required<any[]>();

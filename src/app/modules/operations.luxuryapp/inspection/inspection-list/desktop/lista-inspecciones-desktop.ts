@@ -11,7 +11,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -43,9 +42,7 @@ type InspectionTableRow = InspectionSummary & {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
-    TableEmptyMessage,
-  ],
+    TableEmptyMessage],
 })
 export class ListaInspeccionesDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);

@@ -16,8 +16,7 @@ describe('MobileLoader', () => {
       imports: [MobileLoader],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: LoaderService, useValue: { loading$: vi.fn(() => false) } },
-      ],
+        { provide: LoaderService, useValue: { loading$: vi.fn(() => false) } }],
     });
     fixture = TestBed.createComponent(MobileLoader);
     component = fixture.componentInstance;

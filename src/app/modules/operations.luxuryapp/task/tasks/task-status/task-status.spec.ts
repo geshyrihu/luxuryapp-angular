@@ -36,8 +36,7 @@ describe("TaskStatus", () => {
         { provide: TaskGroupService, useValue: mockTaskGroupService },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: EnumSelectService, useValue: mockEnumSelectS },
-        { provide: BreakpointObserver, useValue: mockBreakpointObserver },
-      ],
+        { provide: BreakpointObserver, useValue: mockBreakpointObserver }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

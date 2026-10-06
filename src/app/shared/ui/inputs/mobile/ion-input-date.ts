@@ -45,8 +45,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputDate),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputDate extends BaseIonicInput {
   minDate = input<Date | string | null>(null);

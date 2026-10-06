@@ -97,8 +97,7 @@ import { CardBase } from "@ui/core/card.base";
         justify-content: flex-end;
         gap: 0.75rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

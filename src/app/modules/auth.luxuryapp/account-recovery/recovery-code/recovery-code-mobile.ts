@@ -41,8 +41,7 @@ interface ICodeForm {
     ReactiveFormsModule,
     MobilePage,
     ButtonMobile,
-    IonInputText,
-  ],
+    IonInputText],
   template: `
     <ili-page background="var(--ds-primary)">
       <div class="lm-bg">
@@ -251,8 +250,7 @@ interface ICodeForm {
         cursor: pointer;
         text-decoration: none;
       }
-    `,
-  ],
+    `],
 })
 export class RecoveryCodeMobile implements OnDestroy {
   private fb = inject(FormBuilder);

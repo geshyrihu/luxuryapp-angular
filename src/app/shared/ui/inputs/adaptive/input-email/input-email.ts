@@ -19,8 +19,7 @@ import { WebInputEmail } from "../../web/input-email/input-email";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputEmail),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

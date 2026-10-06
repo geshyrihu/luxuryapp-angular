@@ -25,8 +25,7 @@ import { WebInputNumber } from "../../web/input-number/input-number";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputNumber),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

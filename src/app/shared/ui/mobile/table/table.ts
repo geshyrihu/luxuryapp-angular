@@ -20,8 +20,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
     IonCardTitle,
     IonProgressBar,
     AppIconMobile,
-    MobileEmptyState,
-  ],
+    MobileEmptyState],
   template: `
     <div class="ili-table-root">
       @if (loading()) {
@@ -122,8 +121,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-weight: 500;
         text-align: right;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTable extends TableBase {

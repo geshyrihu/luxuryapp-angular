@@ -48,8 +48,7 @@ import {
     DataViewMobile,
     CustomInputTextSignal,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class PresentacionesJuntasComite implements OnInit {
   apiResponseS = inject(ApiResponseService);

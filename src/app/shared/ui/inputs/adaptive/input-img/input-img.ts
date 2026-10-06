@@ -19,8 +19,7 @@ import { WebInputImg } from "../../web/input-img/input-img";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputImg),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

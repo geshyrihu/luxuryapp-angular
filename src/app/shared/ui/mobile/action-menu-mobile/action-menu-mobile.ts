@@ -141,8 +141,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         flex-direction: column;
         gap: 0.5rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -62,8 +62,7 @@ describe("EmployeeProviderForm", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: DateService, useValue: mockDateS },
         { provide: EnumSelectService, useValue: mockEnumSelectS },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -100,8 +99,7 @@ describe("EmployeeProviderForm", () => {
   it("should pre-select application role when preselectedApplicationRoleId is set", async () => {
     mockConfig.data = { typePerson: 0, applicationRoleId: "2" };
     mockEmployeeS.getApplicationRoles.mockResolvedValue([
-      { value: 2, label: "Role 2" },
-    ]);
+      { value: 2, label: "Role 2" }]);
 
     fixture = TestBed.createComponent(EmployeeProviderForm);
     component = fixture.componentInstance;

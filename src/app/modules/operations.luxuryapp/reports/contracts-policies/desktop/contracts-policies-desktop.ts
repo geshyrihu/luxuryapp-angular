@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -13,13 +12,11 @@ import {
   templateUrl: "./contracts-policies-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconViewPdf,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ContractsPoliciesDesktop {
   data = input.required<any[]>();

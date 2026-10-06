@@ -35,8 +35,7 @@ interface IReviewForm {
     ReactiveFormsModule,
     InputAutocomplete,
     CustomInputTextSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InspeccionActivoCondominioEditar implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -57,15 +56,12 @@ export class InspeccionActivoCondominioEditar implements OnInit {
       nonNullable: true,
     }),
     condominiumAssetId: new FormControl<string | null>(null, [
-      Validators.required,
-    ]),
+      Validators.required]),
     condominiumAssetName: new FormControl<string | null>(null, [
-      Validators.required,
-    ]),
+      Validators.required]),
     position: new FormControl<number>(1, [
       Validators.required,
-      Validators.min(1),
-    ]),
+      Validators.min(1)]),
     reviewSelection: new FormControl<SelectItemDto | null>(null),
     inspectionReviews: new FormArray<FormGroup<IReviewForm>>([]),
   });
@@ -221,8 +217,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
         {
           value: removedReview.value,
           label: removedReview.label,
-        },
-      ];
+        }];
 
       updatedCatalog.sort((a, b) => a.label.localeCompare(b.label));
       this.cb_inspection_reviews_catalog.set(updatedCatalog);

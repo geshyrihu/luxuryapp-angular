@@ -57,8 +57,7 @@ import { AppListbox } from "@ui/web/listbox/listbox";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => LxListbox),
       multi: true,
-    },
-  ],
+    }],
 })
 export class LxListbox extends ListboxBase {
   protected platform = inject(PlatformService);

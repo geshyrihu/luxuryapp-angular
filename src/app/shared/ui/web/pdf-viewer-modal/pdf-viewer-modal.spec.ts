@@ -38,8 +38,7 @@ describe('PdfViewerModal', () => {
         { provide: DynamicDialogConfig, useValue: dialogConfigMock },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
-        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } },
-      ],
+        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PdfViewerModal);
@@ -79,8 +78,7 @@ describe('PdfViewerModal', () => {
         { provide: DynamicDialogConfig, useValue: emptyConfigMock },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
-        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } },
-      ],
+        { provide: DialogService, useValue: { getInstance: vi.fn().mockReturnValue(undefined) } }],
     });
     const emptyFixture = TestBed.createComponent(PdfViewerModal);
     emptyFixture.detectChanges();

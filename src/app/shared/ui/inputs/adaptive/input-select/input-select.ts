@@ -28,8 +28,7 @@ import { WebInputSelect } from "../../web/input-select/input-select";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputSelect),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

@@ -98,8 +98,7 @@ export interface SegmentItem {
       .seg__icon {
         font-size: 1.05rem;
       }
-    `,
-  ],
+    `],
 })
 export class MultipleSegmentedControl {
   /** Opciones a mostrar. */

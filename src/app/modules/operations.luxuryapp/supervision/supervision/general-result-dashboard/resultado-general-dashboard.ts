@@ -21,7 +21,7 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Mesanio } from "@ui/web/mesanio/mesanio";
 import {
@@ -38,12 +38,10 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     CustomInputTextSignal,
     LxTag,
     LxProgressBar,
-    Mesanio,
-  ],
+    Mesanio],
 })
 export class ResultadoGeneralDashboard implements OnInit {
   apiResponseS = inject(ApiResponseService);

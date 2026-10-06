@@ -24,8 +24,7 @@ describe('Mesanio', () => {
       imports: [Mesanio],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: FiltroCalendarService, useValue: filtroCalendarMock },
-      ],
+        { provide: FiltroCalendarService, useValue: filtroCalendarMock }],
     });
     fixture = TestBed.createComponent(Mesanio);
     component = fixture.componentInstance;

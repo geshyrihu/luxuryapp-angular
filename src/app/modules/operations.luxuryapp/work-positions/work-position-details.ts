@@ -8,7 +8,7 @@ import {
 
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
@@ -20,7 +20,7 @@ import { IWorkPositionHours } from "./interfaces/work-position.model";
   selector: "app-work-position-details",
   templateUrl: "./work-position-details.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, LxTag, WebButtonLabel],
+  imports: [LxCard, LxTag],
 })
 export class WorkPositionDetails implements OnInit {
   private config = inject(DynamicDialogConfig);
@@ -44,8 +44,7 @@ export class WorkPositionDetails implements OnInit {
     { n: "Jueves", dw: 4 },
     { n: "Viernes", dw: 5 },
     { n: "Sábado", dw: 6 },
-    { n: "Domingo", dw: 0 },
-  ];
+    { n: "Domingo", dw: 0 }];
 
   ngOnInit(): void {
     const data = this.config.data ?? {};
@@ -65,8 +64,7 @@ export class WorkPositionDetails implements OnInit {
       this.apiS.onGetItem<any>(`work-positions/for-edit/${id}`),
       this.apiS
         .onGetItem<IWorkPositionHours>(`work-positions/hours/${id}`)
-        .catch(() => null),
-    ]);
+        .catch(() => null)]);
     this.general.set(general);
     this.hours.set(hours);
 

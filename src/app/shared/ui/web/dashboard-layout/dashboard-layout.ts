@@ -67,8 +67,7 @@ export interface DashboardWidget {
         padding: 1rem;
         overflow: auto;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

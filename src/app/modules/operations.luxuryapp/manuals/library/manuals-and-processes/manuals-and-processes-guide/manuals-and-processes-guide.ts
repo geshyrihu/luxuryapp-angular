@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
@@ -15,14 +13,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonLabel,
-    WebButtonIcon,
     RouterLink,
     LxPanel,
     LxTag,
     LxFieldset,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class ManualsAndProcessesGuide {
   private router = inject(Router);

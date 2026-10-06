@@ -33,9 +33,7 @@ export const operationsRoutes: Routes = [
           ApplicationRole.GerenteAtencion,
           ApplicationRole.Asistente,
           ApplicationRole.GerenteMantenimiento,
-          ApplicationRole.SupervisionOperativa,
-        ]),
-    ],
+          ApplicationRole.SupervisionOperativa])],
     data: {
       title: "Incidencias Disciplinarias",
       breadcrumb: "Incidencias",
@@ -58,9 +56,7 @@ export const operationsRoutes: Routes = [
           ApplicationRole.GerenteAtencion,
           ApplicationRole.Asistente,
           ApplicationRole.GerenteMantenimiento,
-          ApplicationRole.SupervisionOperativa,
-        ]),
-    ],
+          ApplicationRole.SupervisionOperativa])],
     data: {
       title: "Dashboard de Incidencias",
       breadcrumb: "Dashboard",
@@ -82,9 +78,7 @@ export const operationsRoutes: Routes = [
           ApplicationRole.GerenteAtencion,
           ApplicationRole.Asistente,
           ApplicationRole.GerenteMantenimiento,
-          ApplicationRole.SupervisionOperativa,
-        ]),
-    ],
+          ApplicationRole.SupervisionOperativa])],
     data: {
       title: "Reportes de Incidencias",
       breadcrumb: "Reportes de Incidencias",
@@ -106,9 +100,7 @@ export const operationsRoutes: Routes = [
           ApplicationRole.GerenteAtencion,
           ApplicationRole.Asistente,
           ApplicationRole.GerenteMantenimiento,
-          ApplicationRole.SupervisionOperativa,
-        ]),
-    ],
+          ApplicationRole.SupervisionOperativa])],
     data: {
       title: "Sanciones",
       breadcrumb: "Sanciones",
@@ -224,8 +216,7 @@ export const operationsRoutes: Routes = [
           title: "Análisis de vistas",
           breadcrumb: "Análisis de vistas",
         },
-      },
-    ],
+      }],
   },
   {
     path: "diagrams",
@@ -257,8 +248,7 @@ export const operationsRoutes: Routes = [
           import("@operations.luxuryapp/diagram/diagram/diagram-view/diagram-view").then(
             (m) => m.DiagramView,
           ),
-      },
-    ],
+      }],
   },
   {
     path: "recurring-tasks",
@@ -322,8 +312,7 @@ export const operationsRoutes: Routes = [
           title: "Mis Tareas Diarias",
           breadcrumb: "Mis Tareas",
         },
-      },
-    ],
+      }],
   },
   {
     path: "reports",
@@ -399,8 +388,7 @@ export const operationsRoutes: Routes = [
           title: "Reporte de Estados Financieros",
           breadcrumb: "Reporte de Estados Financieros",
         },
-      },
-    ],
+      }],
   },
   {
     path: "supervision",
@@ -524,8 +512,7 @@ export const operationsRoutes: Routes = [
           title: "Presentaciones de Juntas de Comité",
           breadcrumb: "Presentaciones de Juntas de Comité",
         },
-      },
-    ],
+      }],
   },
   {
     path: "utilities/calculate-vat",
@@ -586,5 +573,4 @@ export const operationsRoutes: Routes = [
       title: "Pólizas Vigentes",
       breadcrumb: "Pólizas Vigentes",
     },
-  },
-];
+  }];

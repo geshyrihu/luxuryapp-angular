@@ -7,7 +7,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -26,7 +25,6 @@ import {
   templateUrl: "./reglamentos-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
     PdfViewerTrigger,
     TableEmptyMessage,
@@ -38,8 +36,7 @@ import {
     NgbTooltipModule,
     LuxTableCaption,
     TableFooter,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class ReglamentosListDesktop {
   data = input.required<any[]>();

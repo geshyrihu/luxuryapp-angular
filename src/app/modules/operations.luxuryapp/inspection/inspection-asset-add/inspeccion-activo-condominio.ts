@@ -46,8 +46,7 @@ interface IReviewForm {
     InputAutocomplete,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InspeccionActivoCondominio implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -70,8 +69,7 @@ export class InspeccionActivoCondominio implements OnInit {
     condominiumAssetName: new FormControl<string | null>(null),
     position: new FormControl<number>(0, [
       Validators.required,
-      Validators.min(1),
-    ]),
+      Validators.min(1)]),
     inspectionReviews: new FormArray<FormGroup<IReviewForm>>([]),
   });
 
@@ -179,8 +177,7 @@ export class InspeccionActivoCondominio implements OnInit {
         {
           value: removedValue,
           label: removedReview.label || removedReview.catalogDescription || "",
-        },
-      ];
+        }];
 
       updatedCatalog.sort((a, b) => a.label.localeCompare(b.label));
       this.cb_inspection_reviews_catalog.set(updatedCatalog);

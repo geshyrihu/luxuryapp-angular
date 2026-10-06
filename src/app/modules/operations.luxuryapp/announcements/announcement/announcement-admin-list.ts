@@ -50,15 +50,13 @@ export class AnnouncementAdminList implements OnInit {
     { label: "Todos los estados", value: "" },
     { label: "Borrador", value: "Draft" },
     { label: "Publicado", value: "Published" },
-    { label: "Archivado", value: "Archived" },
-  ]);
+    { label: "Archivado", value: "Archived" }]);
 
   typeOptions = signal<SelectItemDto[]>([
     { label: "Todos los tipos", value: "" },
     { label: "General", value: "General" },
     { label: "Urgente", value: "Urgente" },
-    { label: "Informativo", value: "Informativo" },
-  ]);
+    { label: "Informativo", value: "Informativo" }]);
 
   onFilterChange() {
     // To do: Implement local filtering logic or pipe to the table

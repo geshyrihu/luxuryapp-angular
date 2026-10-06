@@ -53,8 +53,7 @@ interface ServiceOrderFollowUpItem {
     ReactiveFormsModule,
     ButtonWeb,
     AppSpinner,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
 })
 export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -81,8 +80,7 @@ export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
       validators: [
         Validators.required,
         Validators.maxLength(200),
-        Validators.minLength(10),
-      ],
+        Validators.minLength(10)],
     }),
   });
 

@@ -102,8 +102,7 @@ import { BarRatingModule } from "ngx-bar-rating";
         font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -9,14 +9,14 @@ import {
   viewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-view",
-  imports: [WebButtonLabel],
+  imports: [],
   template: `
     <div class="card p-4">
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -62,8 +62,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
         display: block;
         margin: 0 auto;
       }
-    `,
-  ],
+    `],
 })
 export class DiagramView implements OnInit, AfterViewInit {
   private apiResponseS = inject(ApiResponseService);

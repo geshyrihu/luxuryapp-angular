@@ -55,8 +55,7 @@ describe("ListProvider", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -108,8 +107,7 @@ describe("ListProvider", () => {
   it("should delete a provider and update dataSignal", async () => {
     component.dataSignal.set([
       { providerId: "1", nameProvider: "A" },
-      { providerId: "2", nameProvider: "B" },
-    ]);
+      { providerId: "2", nameProvider: "B" }]);
     await component.onDelete("1");
     expect(mockApiResponseS.onDelete).toHaveBeenCalledWith("providers/1");
     expect(component.dataSignal().length).toBe(1);

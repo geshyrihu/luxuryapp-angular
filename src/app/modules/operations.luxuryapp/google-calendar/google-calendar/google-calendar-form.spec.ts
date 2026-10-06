@@ -73,8 +73,7 @@ describe("GoogleCalendarForm", () => {
             getModalityGoogleCalendarEnum: vi.fn().mockReturnValue(of([])),
             recurrence: vi.fn().mockReturnValue(of([])),
           },
-        },
-      ],
+        }],
     });
 
     TestBed.overrideComponent(GoogleCalendarForm, {

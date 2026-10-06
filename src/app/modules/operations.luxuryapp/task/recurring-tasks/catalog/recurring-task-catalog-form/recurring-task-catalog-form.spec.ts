@@ -26,8 +26,7 @@ describe("RecurringTaskCatalogForm", () => {
     apiResponseS.onGetEnumSelectItem.mockResolvedValue([
       { label: "Alta", value: 0 },
       { label: "Baja", value: 1 },
-      { label: "Crítica", value: 2 },
-    ]);
+      { label: "Crítica", value: 2 }]);
     apiResponseS.onGetList.mockResolvedValue([]);
     apiResponseS.onGetItem.mockResolvedValue(null);
 
@@ -41,8 +40,7 @@ describe("RecurringTaskCatalogForm", () => {
         },
         { provide: AuthService, useValue: { applicationUserId: "user-1" } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-        { provide: DynamicDialogConfig, useValue: { data: {} } },
-      ],
+        { provide: DynamicDialogConfig, useValue: { data: {} } }],
     }).overrideComponent(RecurringTaskCatalogForm, {
       set: { template: "" },
     });
@@ -51,8 +49,7 @@ describe("RecurringTaskCatalogForm", () => {
   it("filters public work groups from the selector", async () => {
     apiResponseS.onGetList.mockResolvedValueOnce([
       { id: "private-1", nameGroup: "Mantenimiento", visibility: "Privado" },
-      { id: "public-1", nameGroup: "Comunidad", visibility: "Público" },
-    ]);
+      { id: "public-1", nameGroup: "Comunidad", visibility: "Público" }]);
 
     const fixture = TestBed.createComponent(RecurringTaskCatalogForm);
     const component = fixture.componentInstance;
@@ -63,8 +60,7 @@ describe("RecurringTaskCatalogForm", () => {
       Endpoints.TaskGroups.list("customer-1", true, "user-1"),
     );
     expect(component.workGroups()).toEqual([
-      { label: "Mantenimiento", value: "private-1" },
-    ]);
+      { label: "Mantenimiento", value: "private-1" }]);
   });
 
   it("loads criticalities from the enum select endpoint", async () => {
@@ -79,8 +75,7 @@ describe("RecurringTaskCatalogForm", () => {
     expect(component.criticalities()).toEqual([
       { label: "Alta", value: 0 },
       { label: "Baja", value: 1 },
-      { label: "Crítica", value: 2 },
-    ]);
+      { label: "Crítica", value: 2 }]);
   });
 
   it("requires backup user only when criticality is critical", () => {

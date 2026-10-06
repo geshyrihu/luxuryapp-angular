@@ -57,8 +57,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputText),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputText
   extends BaseInputSignal

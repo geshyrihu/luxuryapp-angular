@@ -85,8 +85,7 @@ import { CarouselBase } from "@ui/core/carousel.base";
       .ili-carousel-dot-inner {
         display: block;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileCarousel extends CarouselBase {

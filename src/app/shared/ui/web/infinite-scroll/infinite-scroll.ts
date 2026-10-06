@@ -48,8 +48,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
           transform: rotate(360deg);
         }
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

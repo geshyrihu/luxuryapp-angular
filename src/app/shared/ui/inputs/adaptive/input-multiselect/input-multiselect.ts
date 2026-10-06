@@ -22,8 +22,7 @@ import { WebInputMultiselect } from "../../web/input-multiselect/input-multisele
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMultiselect),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

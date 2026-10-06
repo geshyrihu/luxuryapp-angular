@@ -15,8 +15,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    FlatpickrDirective,
-  ],
+    FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -61,8 +60,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputDate),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputDate extends BaseInputSignal {
   disable = input<Date[]>([]);

@@ -52,8 +52,7 @@ interface IInspeccionsForm {
     CustomInputCheckSignal,
     CustomInputNumberSignal,
     ButtonWeb,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./inspecciones-form.html",
 })
@@ -73,12 +72,10 @@ export class InspeccionesForm implements OnInit {
   recurrenceUnitOptions = [
     { label: "Días", value: 1 },
     { label: "Semanas", value: 2 },
-    { label: "Meses", value: 3 },
-  ];
+    { label: "Meses", value: 3 }];
   activeStatusOptions = [
     { label: "Activa", value: true },
-    { label: "Inactiva", value: false },
-  ];
+    { label: "Inactiva", value: false }];
 
   id: string = "";
 
@@ -118,8 +115,7 @@ export class InspeccionesForm implements OnInit {
     { label: "Jueves", value: 4, key: "day_4" },
     { label: "Viernes", value: 5, key: "day_5" },
     { label: "Sábado", value: 6, key: "day_6" },
-    { label: "Domingo", value: 0, key: "day_0" },
-  ];
+    { label: "Domingo", value: 0, key: "day_0" }];
 
   ngOnInit(): void {
     // Initialize daysForm

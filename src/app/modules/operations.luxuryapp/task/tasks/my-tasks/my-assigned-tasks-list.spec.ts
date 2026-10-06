@@ -58,8 +58,7 @@ describe("MyAssignedTasksList", () => {
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: PrintService, useValue: mockPrintS },
         { provide: TaskGroupService, useValue: mockTaskGroupService },
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-      ],
+        { provide: ActivatedRoute, useValue: mockActivatedRoute }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

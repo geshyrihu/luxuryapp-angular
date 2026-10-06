@@ -36,8 +36,7 @@ describe('RangoCalendarioyyyymmdd', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: DateService, useValue: dateServiceMock },
-        { provide: FiltroCalendarService, useValue: filtroCalendarMock },
-      ],
+        { provide: FiltroCalendarService, useValue: filtroCalendarMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RangoCalendarioyyyymmdd);

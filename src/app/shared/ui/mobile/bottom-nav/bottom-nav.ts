@@ -102,8 +102,7 @@ export type { BottomNavItem } from "@ui/core/bottom-nav.base";
       .bottom-nav-active .bottom-nav-label {
         font-weight: 600;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileBottomNav extends BottomNavBase {}

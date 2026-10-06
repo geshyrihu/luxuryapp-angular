@@ -23,8 +23,7 @@ describe("FileUpload", () => {
           useValue: { isMobile: () => false },
         },
         { provide: ImageProcessingService, useValue: imageProcessing },
-        { provide: CustomToastService, useValue: { showError: vi.fn() } },
-      ],
+        { provide: CustomToastService, useValue: { showError: vi.fn() } }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FileUpload);

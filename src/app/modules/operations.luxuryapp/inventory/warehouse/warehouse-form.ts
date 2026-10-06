@@ -40,28 +40,22 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { FormHelper } from "@core/helpers/form-helper";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-warehouse-form",
   templateUrl: "./warehouse-form.html",
   imports: [
-    WebButtonIcon,
     CustomInputTextSignal,
     ButtonWeb,
 
     DragDropModule,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger("dropAnimation", [
       transition(":enter", [
         style({ transform: "scale(0.9)", opacity: 0 }),
-        animate("200ms ease-out", style({ transform: "scale(1)", opacity: 1 })),
-      ]),
-    ]),
-  ],
+        animate("200ms ease-out", style({ transform: "scale(1)", opacity: 1 }))])])],
 })
 export class WarehouseForm implements OnInit {
   // Inyección de servicios mediante inject()
@@ -81,8 +75,7 @@ export class WarehouseForm implements OnInit {
   cb_users = signal<any[]>([]);
   isAdmin = this.aspRoleS.anyOf([
     ApplicationRole.Administrador,
-    ApplicationRole.SuperUsuario,
-  ]);
+    ApplicationRole.SuperUsuario]);
 
   // Listas de usuarios disponibles y asignados
   availableUsers: any[] = [];
@@ -114,8 +107,7 @@ export class WarehouseForm implements OnInit {
     if (
       this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
-        ApplicationRole.SuperUsuario,
-      ])()
+        ApplicationRole.SuperUsuario])()
     ) {
       await this.loadUsers(); // Carga todos los usuarios disponibles
     }
@@ -125,8 +117,7 @@ export class WarehouseForm implements OnInit {
     } else if (
       this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
-        ApplicationRole.SuperUsuario,
-      ])()
+        ApplicationRole.SuperUsuario])()
     ) {
       this.availableUsers = [...this.allUsers]; // Todos los usuarios estón disponibles para nuevo almacón
     }

@@ -44,8 +44,7 @@ describe("TaskFollowup", () => {
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: AuthService, useValue: mockAuthS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -73,8 +72,7 @@ describe("TaskFollowup", () => {
 
   it("onCargaListaseguimientos should call api and set description", async () => {
     const mockData = [
-      { id: "1", description: "Follow-up 1", createdAt: "2024-01-15 10:00" },
-    ];
+      { id: "1", description: "Follow-up 1", createdAt: "2024-01-15 10:00" }];
     mockApiResponseS.onGetList.mockResolvedValue(mockData);
 
     component.onCargaListaseguimientos();
@@ -142,8 +140,7 @@ describe("TaskFollowup", () => {
           sortOrder: 2,
           createdAt: "2026-01-01",
           createdByName: "User",
-        } satisfies TaskFollowUpEvidenceImage,
-      ],
+        } satisfies TaskFollowUpEvidenceImage],
     });
 
     await component.moveEvidence("followup-1", 1, -1);
@@ -156,8 +153,7 @@ describe("TaskFollowup", () => {
 
   it("ngOnDestroy should close ref with data", () => {
     component.description.set([
-      { id: "1", description: "Last", createdAt: "2024-01-15 10:00" },
-    ]);
+      { id: "1", description: "Last", createdAt: "2024-01-15 10:00" }]);
     component.ngOnDestroy();
     expect(mockRef.close).toHaveBeenCalledWith({
       count: 1,

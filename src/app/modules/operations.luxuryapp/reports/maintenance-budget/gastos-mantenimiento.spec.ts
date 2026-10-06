@@ -37,8 +37,7 @@ describe("GastosMantenimiento", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(GastosMantenimiento);

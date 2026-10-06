@@ -34,8 +34,7 @@ describe("MultiAxisChart", () => {
       labels: ["A", "B"],
       datasets: [
         { label: "Ingresos", data: [10, 20] },
-        { label: "Cantidad", data: [1, 2], yAxisID: "y1" },
-      ],
+        { label: "Cantidad", data: [1, 2], yAxisID: "y1" }],
     };
     fixture.componentRef.setInput("data", testData);
     fixture.detectChanges();

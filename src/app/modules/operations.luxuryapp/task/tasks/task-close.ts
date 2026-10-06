@@ -47,8 +47,7 @@ interface IITaskMessageDTOCloseForm {
     CustomInputDateSignal,
     CustomInputTextSignal,
     ButtonWeb,
-    InputImg,
-  ],
+    InputImg],
 })
 export class TaskClose implements OnInit {
   private apiResponseS = inject(ApiResponseService);

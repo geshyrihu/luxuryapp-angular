@@ -44,8 +44,7 @@ type ReasonMode = "return" | "reopen" | null;
     LxIcon,
     AppTable,
     TableEmptyMessage,
-    MobileListItem,
-  ],
+    MobileListItem],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./revision-actas-inspeccion.html",
   styleUrl: "./revision-actas-inspeccion.scss",
@@ -158,8 +157,7 @@ export class RevisionActasInspeccion {
       ),
       this.apiS.onGetList<InspectionExecutionSnapshot[]>(
         Endpoints.InspectionBaseline.coverage(executionId),
-      ),
-    ]);
+      )]);
     this.approval.set(approval);
     this.coverage.set(coverage ?? []);
   }

@@ -26,8 +26,7 @@ describe('InspeccionesForm', () => {
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
         { provide: DynamicDialogRef, useValue: dialogRefMock },
         { provide: DynamicDialogConfig, useValue: { data: { id: '', title: 'Test' } } },
-        { provide: CustomerIdService, useValue: customerIdServiceMock },
-      ]
+        { provide: CustomerIdService, useValue: customerIdServiceMock }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(InspeccionesForm);

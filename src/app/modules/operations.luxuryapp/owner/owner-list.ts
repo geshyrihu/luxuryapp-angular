@@ -51,8 +51,7 @@ export class OwnerList {
     this.aspRoleS.hasAny([
       ApplicationRole.Asistente,
       ApplicationRole.Administrador,
-      ApplicationRole.SuperUsuario,
-    ]),
+      ApplicationRole.SuperUsuario]),
   );
 
   constructor() {

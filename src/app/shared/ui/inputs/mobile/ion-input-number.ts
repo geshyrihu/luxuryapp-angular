@@ -50,8 +50,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputNumber),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputNumber extends BaseIonicInput {
   min = input<number | undefined>(undefined);

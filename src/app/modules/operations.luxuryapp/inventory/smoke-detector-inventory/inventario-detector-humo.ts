@@ -106,8 +106,7 @@ export class InventarioDetectorHumo {
           ubicacion: "Pasillo Piso 3",
           codigo: "DET-01",
           tipo: "Photoelectric",
-        },
-      ],
+        }],
       [
         { header: "Ubicacion *", key: "ubicacion", width: 30 },
         { header: "Codigo (opcional)", key: "codigo", width: 20 },
@@ -116,8 +115,7 @@ export class InventarioDetectorHumo {
             "Tipo * (Ionization | Photoelectric | Thermal | DualIonizationPhotoelectric)",
           key: "tipo",
           width: 65,
-        },
-      ],
+        }],
       "Detectores de Humo",
       "plantilla-detectores-humo",
     );

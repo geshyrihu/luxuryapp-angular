@@ -26,8 +26,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    NgSelectModule,
-  ],
+    NgSelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -69,8 +68,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputAutoMultiple),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputAutoMultiple extends BaseInputSignal {
   // <--- Inputs Específicos --->

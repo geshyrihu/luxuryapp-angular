@@ -84,8 +84,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputMultiselect),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputMultiselect extends BaseInputSignal {
   options = input<SelectItemDto[]>([]);

@@ -21,8 +21,7 @@ import { TaskStatus } from "../../task-status/task-status";
     MobileListItem,
     MobileActionMenu,
     TaskStatus,
-    AppAvatar,
-  ],
+    AppAvatar],
 })
 export class MyAssignedTasksListMobile {
   data = input.required<any[]>();

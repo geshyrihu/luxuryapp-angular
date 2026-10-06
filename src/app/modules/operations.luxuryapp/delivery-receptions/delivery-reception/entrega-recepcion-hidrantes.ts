@@ -32,8 +32,7 @@ import {
     AppSorticon,
     ReportHeader,
     FormsModule,
-    CustomInputCheckSignal,
-  ],
+    CustomInputCheckSignal],
 })
 export class EntregaRecepcionHidrantes {
   apiResponseS = inject(ApiResponseService);

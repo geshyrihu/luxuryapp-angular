@@ -43,8 +43,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputCurrency),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputCurrency extends BaseInputSignal {
   showButtons = input<boolean>(false);

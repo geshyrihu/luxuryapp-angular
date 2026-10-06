@@ -40,8 +40,7 @@ import { CustomInputImg } from "../custom-input-img-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputImg),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputImg extends BaseInputSignal {
   urlImgCurrent = input<string>("");

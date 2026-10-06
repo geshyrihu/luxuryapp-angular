@@ -43,8 +43,7 @@ import { CredentialFormGroup } from "./interfaces/password-form.interface";
     CustomInputPassword,
     CustomInputDateSignal,
     ButtonWeb,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class PasswordForm implements OnInit {
   apiS = inject(ApiResponseService);
@@ -126,7 +125,7 @@ export class PasswordForm implements OnInit {
       if (isoMatch) return isoMatch[0];
       const locMatch = value.match(/(\d{2})\/(\d{2})\/(\d{4})/);
       if (locMatch) {
-        const [, day, month, year] = locMatch;
+        const [ day, month, year] = locMatch;
         return `${year}-${month}-${day}`;
       }
     }

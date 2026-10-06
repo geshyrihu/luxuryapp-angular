@@ -41,8 +41,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     ButtonWeb,
     MobileListItem,
     MobileActionMenu,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskGroupParticipant implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -61,8 +60,7 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
 
   cb_eLuxury_group_rol: SelectItemDto[] = [
     { label: "Participante", value: false },
-    { label: "Administrador", value: true },
-  ];
+    { label: "Administrador", value: true }];
 
   form = this.formB.group({
     id: this.formB.control({ value: "", disabled: true }),
@@ -83,8 +81,7 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     await Promise.all([
       this.onLoadAppUsers(),
-      this.onLoadExistingParticipants(),
-    ]);
+      this.onLoadExistingParticipants()]);
   }
 
   async onLoadAppUsers(): Promise<void> {

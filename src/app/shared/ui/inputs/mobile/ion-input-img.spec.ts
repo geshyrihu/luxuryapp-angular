@@ -49,8 +49,7 @@ describe('IonInputImg', () => {
       imports: [IonInputImg],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: CustomToastService, useValue: { showError: vi.fn() } },
-      ],
+        { provide: CustomToastService, useValue: { showError: vi.fn() } }],
     });
     fixture = TestBed.createComponent(IonInputImg);
     component = fixture.componentInstance;

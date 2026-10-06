@@ -33,8 +33,7 @@ import { CustomInputEmail } from "../custom-input-email-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputEmail),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputEmail extends BaseInputSignal {
   customClass = input<string>("");

@@ -22,8 +22,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
   imports: [
     BaseInputSignal,
     ReactiveFormsModule,
-    FlatpickrDirective,
-  ],
+    FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -63,8 +62,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputDateTimeSignal),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputDateTimeSignal extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);

@@ -27,8 +27,7 @@ import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
         width: 1em;
         height: 1em;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppIcon {

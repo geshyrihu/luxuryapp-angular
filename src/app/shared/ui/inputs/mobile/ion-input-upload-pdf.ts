@@ -40,8 +40,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputUploadPdf), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputUploadPdf), multi: true }],
 })
 export class IonInputUploadPdf extends BaseIonicInput {
   fileValue: File | null = null;

@@ -43,8 +43,7 @@ describe("ReporteTickets", () => {
         { provide: DateService, useValue: mockDateS },
         { provide: PeriodMonthService, useValue: mockPeriodMonthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -82,8 +81,7 @@ describe("ReporteTickets", () => {
   it("onSumaTotales should sum values correctly", () => {
     const data = [
       { solicitudes: 10, atendidas: 7, pendientes: 3 },
-      { solicitudes: 5, atendidas: 3, pendientes: 2 },
-    ];
+      { solicitudes: 5, atendidas: 3, pendientes: 2 }];
 
     const result = component.onSumaTotales(data);
 

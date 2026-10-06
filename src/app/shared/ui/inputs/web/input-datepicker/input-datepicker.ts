@@ -45,8 +45,7 @@ import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputDatepicker),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputDatepicker extends BaseInputSignal {
   dateSelect = output<any>();

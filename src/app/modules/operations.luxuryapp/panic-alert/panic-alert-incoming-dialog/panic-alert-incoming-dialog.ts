@@ -20,8 +20,7 @@ const RECIPIENT_ROLES: ApplicationRole[] = [
   ApplicationRole.Administrador,
   ApplicationRole.GerenteOperaciones,
   ApplicationRole.GerenteAtencion,
-  ApplicationRole.Asistente,
-];
+  ApplicationRole.Asistente];
 
 @Component({
   selector: "app-panic-alert-incoming-dialog",

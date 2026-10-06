@@ -18,8 +18,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ButtonMobile,
     LxIcon,
     MobileActionMenu,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class InventarioExtintorMobile {
   data = input.required<InventarioExtintorDto[]>();

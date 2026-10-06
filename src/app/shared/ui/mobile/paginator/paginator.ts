@@ -115,8 +115,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: 0.8125rem;
         min-width: 4rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobilePaginator extends PaginatorBase {}

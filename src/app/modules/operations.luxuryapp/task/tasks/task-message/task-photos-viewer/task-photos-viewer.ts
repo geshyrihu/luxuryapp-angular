@@ -77,8 +77,7 @@ export type TaskPhotosViewerMode = "before-after" | "additional";
         font-size: 1.75rem;
         margin-bottom: 0.5rem;
       }
-    `,
-  ],
+    `],
 })
 export class TaskPhotosViewer implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

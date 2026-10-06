@@ -7,8 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -21,10 +20,7 @@ import { TaskChecklistItemInterface } from "@core/interfaces/tasks/task-checklis
   templateUrl: "./task-checklist-panel.html",
   imports: [
     ButtonWeb,
-    FormsModule,
-    WebButtonIconViewPdf,
-    WebButtonLabel,
-  ],
+    FormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -53,8 +49,7 @@ import { TaskChecklistItemInterface } from "@core/interfaces/tasks/task-checklis
       .file-input-hidden {
         display: none;
       }
-    `,
-  ],
+    `],
 })
 export class TaskChecklistPanel implements OnInit {
   tasksId = input.required<string>();
@@ -82,8 +77,7 @@ export class TaskChecklistPanel implements OnInit {
         ),
         this.apiResponseS.onGetList<TaskAttachmentInterface[]>(
           Endpoints.TaskAttachments.byTask(this.tasksId()),
-        ),
-      ]);
+        )]);
 
       this.checklistItems.set(checklistItems ?? []);
       this.attachments.set(attachments ?? []);

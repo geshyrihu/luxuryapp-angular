@@ -43,8 +43,7 @@ describe("PresentacionesJuntasComite", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DateService, useValue: mockDateS },
         { provide: FiltroCalendarService, useValue: mockRangoCalendarioS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

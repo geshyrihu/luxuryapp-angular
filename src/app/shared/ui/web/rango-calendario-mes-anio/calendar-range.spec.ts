@@ -21,8 +21,7 @@ describe('CalendarRange', () => {
               return [date.getFullYear(), (mm > 9 ? '' : '0') + mm].join('-');
             }),
           },
-        },
-      ],
+        }],
     });
     fixture = TestBed.createComponent(CalendarRange);
     component = fixture.componentInstance;

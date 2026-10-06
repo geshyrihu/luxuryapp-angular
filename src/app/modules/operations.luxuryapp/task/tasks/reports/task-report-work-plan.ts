@@ -22,7 +22,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -47,15 +46,13 @@ import { TaskForm } from "../task-message/task-form";
     MobileListItem,
     LuxTableCaption,
     LxIcon,
-    WebButtonLabel,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     AppImage,
     AppAvatar,
     CustomInputSelectSignal,
-    ReactiveFormsModule,
-  ],
+    ReactiveFormsModule],
 })
 export class TaskReportWorkPlan implements OnInit {
   onUpdatePriority(taskId: string): void {

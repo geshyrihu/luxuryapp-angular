@@ -454,8 +454,7 @@ export interface Customer360Data {
         color: var(--ds-primary);
         white-space: nowrap;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -469,8 +468,7 @@ export class AppCustomer360 {
       "var(--ds-cat-8)",
       "var(--ds-cat-7)",
       "var(--ds-cat-5)",
-      "var(--ds-cat-2)",
-    ];
+      "var(--ds-cat-2)"];
     let h = 0;
     for (const c of this.data().name) h = c.charCodeAt(0) + ((h << 5) - h);
     return colors[Math.abs(h) % colors.length];

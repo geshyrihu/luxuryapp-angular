@@ -24,8 +24,7 @@ import { BadgeBase } from "@ui/core/badge.base";
         font-size: 0.95rem;
         padding: 5px 9px;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileBadge extends BadgeBase {}

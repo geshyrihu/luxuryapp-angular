@@ -106,8 +106,7 @@ export { type TimelineEvent } from "@ui/core/timeline.base";
         color: var(--ds-text-primary);
         font-weight: 500;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

@@ -33,8 +33,7 @@ import { IonItem, IonSelect, IonSelectOption } from "@ionic/angular";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MobileMultiSelect),
       multi: true,
-    },
-  ],
+    }],
 })
 export class MobileMultiSelect extends MultiSelectBase {
   onModelChange(val: any) {

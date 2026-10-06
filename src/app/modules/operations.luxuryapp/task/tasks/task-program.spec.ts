@@ -47,8 +47,7 @@ describe("TaskProgram", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DateService, useValue: mockDateS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

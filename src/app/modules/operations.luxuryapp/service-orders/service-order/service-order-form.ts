@@ -15,7 +15,6 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
@@ -62,14 +61,12 @@ interface IServiceOrderForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    WebButtonLabel,
     InputAutocomplete,
     CustomInputCurrencySignal,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
     CustomInputSwitch,
-    CustomInputTextSignal,
-  ],
+    CustomInputTextSignal],
 })
 export class ServiceOrderForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -175,8 +172,7 @@ export class ServiceOrderForm implements OnInit {
       this.loadProviders(),
       this.loadApplicationUsers(),
       this.loadStatus(),
-      this.loadTypeMaintance(),
-    ]);
+      this.loadTypeMaintance()]);
 
     if (this.id() !== 0) {
       await this.onLoadData();

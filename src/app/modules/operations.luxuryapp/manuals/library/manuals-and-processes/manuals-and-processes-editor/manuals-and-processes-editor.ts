@@ -27,7 +27,6 @@ import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -75,7 +74,6 @@ interface IVersionForm {
 }
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-manuals-and-processes-editor",
@@ -83,7 +81,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
     ApiDatePipe,
     ReactiveFormsModule,
@@ -92,14 +89,12 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSelectButton,
     CustomInputSwitch,
     LxFileUpload,
-    WebButtonLabel,
     ButtonWeb,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputMultiselectSignal,
     DiagramPreviewComponent,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class ManualsAndProcessesEditor implements OnInit {
   private apiS = inject(ApiResponseService);
@@ -141,8 +136,7 @@ export class ManualsAndProcessesEditor implements OnInit {
     { label: "Normal", value: 0 },
     { label: "Nota", value: 1 },
     { label: "Advertencia", value: 2 },
-    { label: "Buenas Practicas", value: 3 },
-  ];
+    { label: "Buenas Practicas", value: 3 }];
 
   pasoForm: FormGroup<IPasoForm> = this.fb.group({
     titulo: new FormControl("", {

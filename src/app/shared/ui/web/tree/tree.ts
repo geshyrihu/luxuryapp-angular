@@ -102,8 +102,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       .app-tree-node-content { display: flex; align-items: center; gap: 0.375rem; flex: 1 1 auto; min-width: 0; padding: 0.15rem 0.4rem; border-radius: 6px; cursor: pointer; }
       .app-tree-node-content:hover { background: var(--ds-bg-sunken); }
       .app-tree-node-selected { background: var(--ds-primary-light); }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

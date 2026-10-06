@@ -38,8 +38,7 @@ describe("TaskTemplateItemForm", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: EnumSelectService, useValue: mockEnumSelectS },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: DynamicDialogConfig, useValue: mockConfig },
-      ],
+        { provide: DynamicDialogConfig, useValue: mockConfig }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

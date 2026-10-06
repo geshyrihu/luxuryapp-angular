@@ -50,8 +50,7 @@ describe("TaskGroupForm", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: EnumSelectService, useValue: mockEnumS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
-        { provide: DynamicDialogRef, useValue: mockRef },
-      ],
+        { provide: DynamicDialogRef, useValue: mockRef }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

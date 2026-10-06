@@ -19,8 +19,7 @@ describe('AppLoader', () => {
         {
           provide: LoaderService,
           useValue: { loading$: vi.fn(() => false) },
-        },
-      ],
+        }],
     });
     fixture = TestBed.createComponent(AppLoader);
     component = fixture.componentInstance;

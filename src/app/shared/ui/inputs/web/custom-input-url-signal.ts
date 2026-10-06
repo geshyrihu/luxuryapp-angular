@@ -42,8 +42,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputUrl),
       multi: true,
-    },
-  ],
+    }],
 })
 export class CustomInputUrl extends BaseInputSignal {
   customClass = input<string>("");

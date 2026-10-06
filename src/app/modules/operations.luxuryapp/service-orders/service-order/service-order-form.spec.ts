@@ -30,8 +30,7 @@ describe("ServiceOrderForm", () => {
         { provide: DateService, useValue: { getDateFormat: (value: string) => value } },
         { provide: CustomerIdService, useValue: { customerId: signal("customer-1") } },
         { provide: DynamicDialogConfig, useValue: { data: { id: 0 } } },
-        { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
-      ],
+        { provide: DynamicDialogRef, useValue: { close: vi.fn() } }],
     });
 
     fixture = TestBed.createComponent(ServiceOrderForm);

@@ -61,8 +61,7 @@ describe("TaskMessageOperationReport", () => {
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: TaskGroupService, useValue: mockTaskGroupService },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -95,8 +94,7 @@ describe("TaskMessageOperationReport", () => {
   it("onPreviewClicked should navigate to preview", () => {
     component.onPreviewClicked();
     expect(mockRouter.navigate).toHaveBeenCalledWith([
-      "/tickets", "weekly-report-preview",
-    ]);
+      "/tickets", "weekly-report-preview"]);
   });
 
   it("onChangeStatus should update status and load data", () => {

@@ -20,8 +20,7 @@ import { WebInputUploadPdf } from "../../web/input-upload-pdf/input-upload-pdf";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputUploadPdf),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

@@ -53,16 +53,14 @@ import { BaseInputSignal } from "../../core/base-input-signal";
         cursor: pointer;
         margin: 0;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputCheck),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputCheck
   extends BaseInputSignal

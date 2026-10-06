@@ -105,8 +105,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         background: var(--ds-bg-muted);
         color: var(--ds-text-secondary);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

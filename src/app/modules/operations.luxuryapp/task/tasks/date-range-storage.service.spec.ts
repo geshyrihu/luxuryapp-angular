@@ -9,8 +9,7 @@ describe('DateRangeStorageService', () => {
     TestBed.configureTestingModule({
       providers: [
         DateRangeStorageService,
-        { provide: StorageService, useValue: { store: vi.fn(), retrieve: vi.fn(), remove: vi.fn() } },
-      ],
+        { provide: StorageService, useValue: { store: vi.fn(), retrieve: vi.fn(), remove: vi.fn() } }],
     });
     service = TestBed.inject(DateRangeStorageService);
   });

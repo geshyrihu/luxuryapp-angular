@@ -5,7 +5,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -15,12 +14,9 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-informe-financiero",
   imports: [
-    WebButtonLabelViewPdf,
     DataViewMobile,
-    WebButtonLabelViewPdf,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",
 })

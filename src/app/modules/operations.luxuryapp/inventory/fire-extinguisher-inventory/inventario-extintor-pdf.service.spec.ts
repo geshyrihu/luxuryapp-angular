@@ -11,8 +11,7 @@ describe('InventarioExtintorPdfService', () => {
       providers: [
         InventarioExtintorPdfService,
         { provide: CustomToastService, useValue: { showInfo: vi.fn() } },
-        { provide: HtmlPrintService, useValue: { getLogoDataUrl: vi.fn().mockResolvedValue(''), esc: vi.fn().mockReturnValue(''), getStandardCss: vi.fn().mockReturnValue(''), buildStandardHeader: vi.fn().mockReturnValue(''), buildStandardFooter: vi.fn().mockReturnValue(''), printHtml: vi.fn() } },
-      ],
+        { provide: HtmlPrintService, useValue: { getLogoDataUrl: vi.fn().mockResolvedValue(''), esc: vi.fn().mockReturnValue(''), getStandardCss: vi.fn().mockReturnValue(''), buildStandardHeader: vi.fn().mockReturnValue(''), buildStandardFooter: vi.fn().mockReturnValue(''), printHtml: vi.fn() } }],
     });
     service = TestBed.inject(InventarioExtintorPdfService);
   });

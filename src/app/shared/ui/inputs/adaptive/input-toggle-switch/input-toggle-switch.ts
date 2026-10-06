@@ -22,8 +22,7 @@ import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputToggleSwitch),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

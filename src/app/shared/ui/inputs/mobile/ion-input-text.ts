@@ -47,8 +47,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IonInputText),
       multi: true,
-    },
-  ],
+    }],
 })
 export class IonInputText extends BaseIonicInput {
   type = input<string>("text");

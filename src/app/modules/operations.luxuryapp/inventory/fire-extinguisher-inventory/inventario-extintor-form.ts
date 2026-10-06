@@ -49,8 +49,7 @@ interface IInventarioExtintorForm {
     CustomInputSelectSignal,
     InputImg,
     CustomInputDateSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class InventarioExtintorForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

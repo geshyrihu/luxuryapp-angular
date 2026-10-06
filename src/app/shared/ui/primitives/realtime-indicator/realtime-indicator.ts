@@ -117,8 +117,7 @@ export type RealtimeStatus = "live" | "paused" | "error" | "connecting";
         padding-left: 0.25rem;
         border-left: 1px solid var(--ds-border);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

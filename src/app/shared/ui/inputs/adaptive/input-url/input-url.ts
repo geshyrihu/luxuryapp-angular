@@ -19,8 +19,7 @@ import { WebInputUrl } from "../../web/input-url/input-url";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputUrl),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

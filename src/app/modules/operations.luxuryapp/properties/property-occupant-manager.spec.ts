@@ -37,8 +37,7 @@ describe("PropertyOccupantManager", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
-        { provide: ConfirmService, useValue: mockConfirmS },
-      ],
+        { provide: ConfirmService, useValue: mockConfirmS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

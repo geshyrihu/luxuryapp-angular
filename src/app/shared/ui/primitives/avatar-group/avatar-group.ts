@@ -78,8 +78,7 @@ export interface AvatarItem {
       .avatar-overflow .avatar-initials {
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

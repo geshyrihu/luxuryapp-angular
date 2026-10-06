@@ -32,8 +32,7 @@ import {
     AppReorderableRowHandle,
     LuxTableCaption,
     TableFooter,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class AsambleasListDesktop {
   data = input.required<any[]>();

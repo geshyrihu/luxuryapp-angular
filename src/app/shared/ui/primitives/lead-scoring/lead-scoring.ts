@@ -114,8 +114,7 @@ export interface LeadScoreCategory {
         border-radius: var(--ds-radius-full);
         transition: width 0.4s ease;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

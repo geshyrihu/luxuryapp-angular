@@ -20,8 +20,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     MobileActionMenu,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class RecurringTaskCatalogListMobile {
   data = input.required<RecurringTaskTemplateCatalog[]>();

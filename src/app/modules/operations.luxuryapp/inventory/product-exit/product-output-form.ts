@@ -55,8 +55,7 @@ interface IProductOutputForm {
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class ProductOutputForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

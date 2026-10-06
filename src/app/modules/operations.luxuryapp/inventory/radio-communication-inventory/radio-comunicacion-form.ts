@@ -52,8 +52,7 @@ interface IRadioComunicacionFormGroup {
     CustomInputSelectSignal,
     InputAutocomplete,
     InputImg,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class RadioComunicacionForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -124,8 +123,7 @@ export class RadioComunicacionForm implements OnInit {
       ),
       this.apiResponseS.onGetEnumSelectItem(
         Endpoints.EnumSelectItems.departament,
-      ),
-    ]);
+      )]);
 
     this.cb_application_user.set(applicationUsers as SelectItemDto[]);
     this.cb_departament.set(departaments as SelectItemDto[]);

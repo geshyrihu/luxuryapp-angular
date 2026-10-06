@@ -1,6 +1,6 @@
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { DateService } from "@core/services/date.service";
 
 interface IGoogleCalendarEventListItem {
@@ -27,7 +27,7 @@ interface IGoogleCalendarEventListItem {
   selector: "app-google-calendar-detail",
   templateUrl: "./google-calendar-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel],
+  imports: [],
 })
 export class GoogleCalendarDetail {
   private readonly config = inject(DynamicDialogConfig);
@@ -88,7 +88,7 @@ export class GoogleCalendarDetail {
     );
 
     if (match) {
-      const [, year, month, day, hour, minute, second] = match;
+      const [ year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,

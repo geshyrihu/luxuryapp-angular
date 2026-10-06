@@ -9,7 +9,7 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -53,9 +53,7 @@ interface ISanctionChangeStatusForm {
     CustomInputDateSignal,
     CustomInputSwitch,
     CustomInputTextAreaSignal,
-    ButtonWeb,
-    WebButtonLabel,
-  ],
+    ButtonWeb],
 })
 export class SanctionFormComponent {
   apiResponseS = inject(ApiResponseService);
@@ -78,8 +76,7 @@ export class SanctionFormComponent {
     { value: "Apelada", label: "Apelada" },
     { value: "Suspendida", label: "Suspendida" },
     { value: "Cumplida", label: "Cumplida" },
-    { value: "Revocada", label: "Revocada" },
-  ];
+    { value: "Revocada", label: "Revocada" }];
 
   ngOnInit(): void {
     const changeStatus = this.config.data?.changeStatus as boolean;

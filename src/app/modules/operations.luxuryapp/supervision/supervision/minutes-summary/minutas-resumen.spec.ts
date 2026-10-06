@@ -49,8 +49,7 @@ describe("MinutasResumen", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PeriodMonthService, useValue: mockPeriodMonthS },
         { provide: DateService, useValue: mockDateS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

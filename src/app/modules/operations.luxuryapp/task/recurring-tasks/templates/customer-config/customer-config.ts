@@ -26,8 +26,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     CustomInputSelectSignal,
     LxFieldset,
     CustomInputCheckSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class CustomerConfig implements OnInit {
   private apiResponseS = inject(ApiResponseService);

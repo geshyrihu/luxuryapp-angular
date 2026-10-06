@@ -112,8 +112,7 @@ export interface TabBarItem {
         text-align: center;
         line-height: 1.4;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppTabBar {

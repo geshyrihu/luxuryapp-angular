@@ -111,8 +111,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         gap: 0.5rem;
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

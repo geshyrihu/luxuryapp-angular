@@ -88,8 +88,7 @@ export class InventarioHidrante {
           codigo: "HID-01",
           tipo: "IndoorCabinet",
           gabinete: "GAB-01-A",
-        },
-      ],
+        }],
       [
         { header: "Ubicacion *", key: "ubicacion", width: 30 },
         { header: "Codigo (opcional)", key: "codigo", width: 20 },
@@ -98,8 +97,7 @@ export class InventarioHidrante {
           key: "tipo",
           width: 55,
         },
-        { header: "Numero Gabinete (opcional)", key: "gabinete", width: 25 },
-      ],
+        { header: "Numero Gabinete (opcional)", key: "gabinete", width: 25 }],
       "Hidrantes",
       "plantilla-hidrantes",
     );

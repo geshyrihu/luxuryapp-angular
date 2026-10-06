@@ -34,8 +34,7 @@ describe("DashboardPendingItems", () => {
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: ToastController, useValue: {} },
         { provide: DialogService, useValue: {} },
-        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } },
-      ],
+        { provide: ActivatedRoute, useValue: { snapshot: { params: {} } } }],
     });
     TestBed.compileComponents();
 
@@ -72,8 +71,7 @@ describe("DashboardPendingItems", () => {
         ApplicationRole.Administrador,
         ApplicationRole.GerenteOperaciones,
         ApplicationRole.GerenteAtencion,
-        ApplicationRole.Asistente,
-      ];
+        ApplicationRole.Asistente];
       return roles.some((r) => minutaRoles.includes(r));
     });
     expect(component.visibleModules()).toContain("Minutas");

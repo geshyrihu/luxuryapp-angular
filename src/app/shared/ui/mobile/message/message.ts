@@ -72,8 +72,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         cursor: pointer;
         padding: 0;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

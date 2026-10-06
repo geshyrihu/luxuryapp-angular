@@ -50,8 +50,7 @@ describe("PageTitleReport", () => {
           provide: PeriodMonthService,
           useValue: { getPeriodoInicio: new Date() },
         },
-        { provide: DateService, useValue: dateServiceMock },
-      ],
+        { provide: DateService, useValue: dateServiceMock }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 

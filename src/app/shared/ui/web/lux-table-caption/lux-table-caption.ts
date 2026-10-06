@@ -22,8 +22,7 @@ import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
       :host {
         display: block;
       }
-    `,
-  ],
+    `],
 })
 export class LuxTableCaption {
   private globalFilter = inject(GlobalTableFilterService);

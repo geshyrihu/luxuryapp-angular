@@ -48,8 +48,7 @@ describe("LoginComponent", () => {
         {
           provide: ActivatedRoute,
           useValue: { snapshot: { queryParams: {} } },
-        },
-      ],
+        }],
     });
 
     fixture = TestBed.createComponent(LoginComponent);

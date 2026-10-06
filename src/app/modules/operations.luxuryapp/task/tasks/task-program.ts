@@ -43,8 +43,7 @@ interface IITaskMessageDTOProgramForm {
     ReactiveFormsModule,
     CustomInputDateSignal,
     InputAutocomplete,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class TaskProgram implements OnInit {
   private apiResponseS = inject(ApiResponseService);

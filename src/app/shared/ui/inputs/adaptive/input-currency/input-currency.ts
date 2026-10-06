@@ -20,8 +20,7 @@ import { WebInputCurrency } from "../../web/input-currency/input-currency";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputCurrency),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

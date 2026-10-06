@@ -34,8 +34,7 @@ import {
     AppImage,
     LuxTableCaption,
     TableFooter,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class RadioComunicacionListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

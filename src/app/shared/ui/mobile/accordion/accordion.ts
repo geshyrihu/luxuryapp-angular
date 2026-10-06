@@ -92,8 +92,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileAccordion extends AccordionBase {

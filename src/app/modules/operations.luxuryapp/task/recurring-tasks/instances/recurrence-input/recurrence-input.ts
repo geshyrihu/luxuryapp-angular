@@ -52,8 +52,7 @@ interface IRecurrenceForm {
     LxCheckbox,
     LxRadioButton,
     CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
-  ],
+    CustomInputMultiselectSignal],
   templateUrl: "./recurrence-input.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
@@ -61,8 +60,7 @@ interface IRecurrenceForm {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RecurrenceInput),
       multi: true,
-    },
-  ],
+    }],
 })
 export class RecurrenceInput implements OnInit, ControlValueAccessor {
   label = input<string>("Regla de Recurrencia");
@@ -77,8 +75,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     { label: "Diaria", value: "DAILY" },
     { label: "Semanal", value: "WEEKLY" },
     { label: "Mensual", value: "MONTHLY" },
-    { label: "Anual", value: "YEARLY" },
-  ];
+    { label: "Anual", value: "YEARLY" }];
 
   frequencyLabels: { [key: string]: string } = {
     DAILY: "día(s)",
@@ -94,22 +91,19 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     { label: "Jue", value: "TH" },
     { label: "Vie", value: "FR" },
     { label: "Sáb", value: "SA" },
-    { label: "Dom", value: "SU" },
-  ];
+    { label: "Dom", value: "SU" }];
 
   monthlyTypes = [
     { label: "Día del mes", value: "dayOfMonth" },
     { label: "Último día del mes", value: "lastDayOfMonth" },
-    { label: "Día de la semana", value: "dayOfWeek" },
-  ];
+    { label: "Día de la semana", value: "dayOfWeek" }];
 
   positions = [
     { label: "Primer", value: "1" },
     { label: "Segundo", value: "2" },
     { label: "Tercer", value: "3" },
     { label: "Cuarto", value: "4" },
-    { label: "Último", value: "-1" },
-  ];
+    { label: "Último", value: "-1" }];
 
   monthNumbers = Array.from({ length: 31 }, (_, i) => ({
     label: `${i + 1}`,
@@ -128,8 +122,7 @@ export class RecurrenceInput implements OnInit, ControlValueAccessor {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 },
-  ];
+    { label: "Diciembre", value: 12 }];
 
   onChange: any = () => {};
   onTouch: any = () => {};

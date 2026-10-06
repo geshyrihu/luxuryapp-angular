@@ -22,8 +22,7 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
     DataViewMobile,
     StatusBadge,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class TaskTemplateItemsMobile {
   items = input.required<TaskTemplateItem[]>();
@@ -153,8 +152,7 @@ export class TaskTemplateItemsMobile {
       "Septiembre",
       "Octubre",
       "Noviembre",
-      "Diciembre",
-    ];
+      "Diciembre"];
     return monthNames[month - 1] || month.toString();
   }
 }

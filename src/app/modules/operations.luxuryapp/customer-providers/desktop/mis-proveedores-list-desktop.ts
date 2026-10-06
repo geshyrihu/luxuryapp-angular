@@ -27,8 +27,7 @@ import {
     AppSorticon,
     AppAvatar,
     LuxTableCaption,
-    ActionMenu,
-  ],
+    ActionMenu],
 })
 export class MisProveedoresDesktop {
   data = input.required<any[]>();

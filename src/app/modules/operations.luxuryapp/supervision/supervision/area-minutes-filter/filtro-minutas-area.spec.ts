@@ -41,8 +41,7 @@ describe("FiltroMinutasArea", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: EnumSelectService, useValue: mockEnumSelectS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

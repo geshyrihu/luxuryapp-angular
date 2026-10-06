@@ -28,8 +28,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
     ReactiveFormsModule,
     MobilePage,
     ButtonMobile,
-    IonInputText,
-  ],
+    IonInputText],
   template: `
     <ili-page background="var(--ds-primary)">
         <!-- Fondo Premium -->
@@ -260,8 +259,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
         cursor: pointer;
         text-decoration: none;
       }
-    `,
-  ],
+    `],
 })
 export class RecoveryMobile implements OnInit {
   private fb = inject(FormBuilder);

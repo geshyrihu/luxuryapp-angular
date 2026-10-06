@@ -85,8 +85,7 @@ import { CardBase } from "@ui/core/card.base";
       .ili-card-footer-tpl {
         margin-top: var(--ds-space-lg);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

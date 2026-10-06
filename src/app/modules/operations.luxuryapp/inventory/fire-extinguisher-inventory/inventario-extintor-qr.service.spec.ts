@@ -9,8 +9,7 @@ describe('InventarioExtintorQrService', () => {
     TestBed.configureTestingModule({
       providers: [
         InventarioExtintorQrService,
-        { provide: HtmlPrintService, useValue: { esc: vi.fn().mockReturnValue(''), printHtml: vi.fn() } },
-      ],
+        { provide: HtmlPrintService, useValue: { esc: vi.fn().mockReturnValue(''), printHtml: vi.fn() } }],
     });
     service = TestBed.inject(InventarioExtintorQrService);
   });

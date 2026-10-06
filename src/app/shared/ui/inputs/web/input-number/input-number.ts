@@ -52,8 +52,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputNumber),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputNumber extends BaseInputSignal {
   min = input<number | undefined>(undefined);

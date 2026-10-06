@@ -41,8 +41,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .offline-icon {
         font-size: 1rem;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileOfflineIndicator extends OfflineIndicatorBase {}

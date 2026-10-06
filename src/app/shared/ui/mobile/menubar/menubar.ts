@@ -117,8 +117,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         border: none;
         border-top: 1px solid var(--ds-border);
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileMenubar extends MenubarBase {

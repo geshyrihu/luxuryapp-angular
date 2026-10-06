@@ -39,8 +39,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     LuxTableCaption,
     LxTag,
     LxIcon,
-    SegmentedControl,
-  ],
+    SegmentedControl],
 })
 export class WorkPositionListDesktop {
   data = input.required<IWorkPosition[]>();

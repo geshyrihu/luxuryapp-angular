@@ -43,8 +43,7 @@ describe("TaskView", () => {
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -82,8 +81,7 @@ describe("TaskView", () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/tickets",
       "messages",
-      "group-1",
-    ]);
+      "group-1"]);
   });
 });
 

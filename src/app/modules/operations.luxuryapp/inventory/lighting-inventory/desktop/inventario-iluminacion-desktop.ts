@@ -24,8 +24,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     AppTable,
     AppImage,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class InventarioIluminacionDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

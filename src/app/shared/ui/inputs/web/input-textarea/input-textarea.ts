@@ -50,16 +50,14 @@ import { BaseInputSignal } from "../../core/base-input-signal";
         display: block;
         width: 100%;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputTextarea),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputTextarea extends BaseInputSignal {
   rows = input<number>(5);

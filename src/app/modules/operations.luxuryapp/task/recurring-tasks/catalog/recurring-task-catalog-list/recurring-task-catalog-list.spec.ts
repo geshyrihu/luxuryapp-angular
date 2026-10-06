@@ -38,8 +38,7 @@ describe("RecurringTaskCatalogList", () => {
         {
           provide: TableScrollHeightService,
           useValue: { scrollHeight: "400px" },
-        },
-      ],
+        }],
     }).overrideComponent(RecurringTaskCatalogList, {
       set: { template: "" },
     });
@@ -63,8 +62,7 @@ describe("RecurringTaskCatalogList", () => {
         expectedDeliverableName: "",
         requiresAttachment: false,
         status: "Active",
-      },
-    ]);
+      }]);
 
     const fixture = TestBed.createComponent(RecurringTaskCatalogList);
     const component = fixture.componentInstance;

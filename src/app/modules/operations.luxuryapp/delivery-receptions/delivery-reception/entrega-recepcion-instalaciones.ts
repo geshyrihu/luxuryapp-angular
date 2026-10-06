@@ -34,8 +34,7 @@ import {
     ReportHeader,
     StripTagsPipe,
     FormsModule,
-    CustomInputCheckSignal,
-  ],
+    CustomInputCheckSignal],
 })
 export class EntregaRecepcionInstalaciones {
   apiResponseS = inject(ApiResponseService);

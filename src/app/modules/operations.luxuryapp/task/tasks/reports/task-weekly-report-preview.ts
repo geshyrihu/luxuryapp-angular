@@ -5,7 +5,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DateRangeStorageService } from "@operations.luxuryapp/task/tasks/date-range-storage.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -17,7 +16,7 @@ import { HtmlPrintService } from "@core/services/html-print.service";
   selector: "app-task-weekly-report-preview",
   templateUrl: "./task-weekly-report-preview.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel],
+  imports: [],
 })
 export class TaskWeeklyReportPreview implements OnInit {
   apiResponseS = inject(ApiResponseService);

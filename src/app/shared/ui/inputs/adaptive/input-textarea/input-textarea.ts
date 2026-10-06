@@ -24,8 +24,7 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextarea),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -33,8 +32,7 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
         display: block;
         width: 100%;
       }
-    `,
-  ],
+    `],
   template: `
     @if (platform.isMobile()) {
       <ion-input-textarea

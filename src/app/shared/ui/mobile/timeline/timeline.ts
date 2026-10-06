@@ -118,8 +118,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         color: var(--ds-text-primary);
         font-weight: 500;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTimeline extends TimelineBase {}

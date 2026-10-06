@@ -60,8 +60,7 @@ describe("TaskGroupList", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
         { provide: TaskGroupService, useValue: mockTaskGroupService },
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -127,8 +126,7 @@ describe("TaskGroupList", () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith([
       "/tickets",
       "messages",
-      "group-1",
-    ]);
+      "group-1"]);
   });
 });
 

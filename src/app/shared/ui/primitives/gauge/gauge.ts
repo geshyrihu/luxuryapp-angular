@@ -74,8 +74,7 @@ import {
         font-size: var(--ds-font-size-help);
         color: var(--ds-text-muted);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

@@ -65,8 +65,7 @@ describe("TaskTemplateItems", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: ActivatedRoute, useValue: mockRoute },
         { provide: Router, useValue: mockRouter },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -188,8 +187,7 @@ describe("TaskTemplateItems", () => {
     component.templateId = "tmpl-1";
     component.items.set([
       { id: "a", title: "A" } as any,
-      { id: "b", title: "B" } as any,
-    ]);
+      { id: "b", title: "B" } as any]);
 
     component.onRowReorder({ dragIndex: 0, dropIndex: 1 });
     await new Promise((resolve) => setTimeout(resolve));

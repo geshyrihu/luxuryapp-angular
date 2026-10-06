@@ -16,8 +16,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
   imports: [
     ReactiveFormsModule,
     CustomInputDateSignal,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class BitacoraFiltroFechaForm {
   ref = inject(DynamicDialogRef);

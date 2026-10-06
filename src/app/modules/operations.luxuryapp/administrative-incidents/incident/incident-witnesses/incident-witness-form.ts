@@ -38,8 +38,7 @@ interface IWitnessForm {
     InputMask,
     ButtonWeb,
     CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-witness-form.html",
 })
@@ -62,8 +61,7 @@ export class IncidentWitnessFormComponent implements OnInit {
     this.form = this.fb.group<IWitnessForm>({
       fullName: this.fb.control("", [
         Validators.required,
-        Validators.maxLength(200),
-      ]),
+        Validators.maxLength(200)]),
       position: this.fb.control("", [Validators.maxLength(150)]),
       phone: this.fb.control(""),
       statement: this.fb.control("", [Validators.maxLength(2000)]),

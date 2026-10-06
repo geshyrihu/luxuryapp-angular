@@ -45,8 +45,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         line-height: 1;
         display: inline-flex;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileStatusBadge extends StatusBadgeBase {}

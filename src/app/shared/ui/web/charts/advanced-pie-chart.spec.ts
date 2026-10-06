@@ -36,8 +36,7 @@ describe("AdvancedPieChart", () => {
   it("should build Chart.js pie data from ngx-charts data", () => {
     const testData = [
       { name: "A", value: 10 },
-      { name: "B", value: 20 },
-    ];
+      { name: "B", value: 20 }];
     fixture.componentRef.setInput("dataGrafico", testData);
     fixture.detectChanges();
     const data = component.chartData() as any;

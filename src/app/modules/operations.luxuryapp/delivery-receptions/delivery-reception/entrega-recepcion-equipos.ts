@@ -35,8 +35,7 @@ import { ReportHeader } from "@ui/web/report-header/report-header";
     ReportHeader,
     FormsModule,
     CustomInputCheckSignal,
-    StripTagsPipe,
-  ],
+    StripTagsPipe],
 })
 export class EntregaRecepcionEquipos {
   apiResponseS = inject(ApiResponseService);

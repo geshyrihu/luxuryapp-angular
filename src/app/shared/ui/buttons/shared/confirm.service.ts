@@ -46,8 +46,7 @@ export class ConfirmService {
               text: "Si, eliminar",
               role: "destructive",
               handler: () => resolve(true),
-            },
-          ],
+            }],
         })
         .then((alert) => alert.present());
     });

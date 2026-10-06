@@ -27,7 +27,6 @@ import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -52,7 +51,6 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     ButtonWeb,
     ButtonMobile,
     ActionMenu,
-    WebButtonIcon,
     LxTooltipDirective,
     TableEmptyMessage,
     ApiDatePipe,
@@ -62,8 +60,7 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     LuxTableCaption,
     TableFooter,
     DataViewMobile,
-    RangoCalendarioyyyymmdd,
-  ],
+    RangoCalendarioyyyymmdd],
 })
 export class AgendaSupervision implements OnInit {
   dateS = inject(DateService);

@@ -28,8 +28,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputNgSelect), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputNgSelect), multi: true }],
 })
 export class IonInputNgSelect extends BaseIonicInput {
   options = input<{ value: any; label: string }[]>([]);

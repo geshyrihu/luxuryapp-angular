@@ -42,8 +42,7 @@ describe("HeaderCustomer", () => {
       providers: [
         { provide: ApiResponseService, useValue: apiResponseServiceMock },
         { provide: CustomerIdService, useValue: customerIdServiceMock },
-        { provide: TicketFilterService, useValue: {} },
-      ],
+        { provide: TicketFilterService, useValue: {} }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 

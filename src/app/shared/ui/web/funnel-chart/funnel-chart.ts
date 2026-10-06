@@ -41,8 +41,7 @@ import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
         color: var(--ds-text-primary);
         margin-bottom: 0.75rem;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
@@ -55,8 +54,7 @@ export class FunnelChart {
     "rgba(0,61,155,0.7)",
     "rgba(0,61,155,0.55)",
     "rgba(0,61,155,0.4)",
-    "rgba(0,61,155,0.25)",
-  ]);
+    "rgba(0,61,155,0.25)"]);
 
   chartData = computed(() => ({
     labels: this.labels(),
@@ -65,8 +63,7 @@ export class FunnelChart {
         data: this.values(),
         backgroundColor: this.colors().slice(0, this.labels().length),
         borderRadius: 4,
-      },
-    ],
+      }],
   }));
 
   chartOptions = computed(() => ({

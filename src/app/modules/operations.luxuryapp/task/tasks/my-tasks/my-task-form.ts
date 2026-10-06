@@ -21,7 +21,6 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -40,12 +39,10 @@ import { TaskGroupService } from "../task.service";
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabel,
     ButtonWeb,
     ImageAnalysisDialogComponent,
     LxFileUpload,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MyTaskForm implements OnInit, OnDestroy {
   visionDialog = viewChild.required(ImageAnalysisDialogComponent);
@@ -103,8 +100,7 @@ export class MyTaskForm implements OnInit, OnDestroy {
       firstValueFrom(this.enumSelectS.priorityLevel()),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.Tasks.groupListByCustomer(this.customerIdS.customerId()),
-      ),
-    ]);
+      )]);
 
     this.cb_priority.set(priority);
     this.cb_ticket_group.set(ticketGroups ?? []);

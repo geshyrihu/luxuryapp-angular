@@ -46,8 +46,7 @@ describe("ResultadoGeneralEvaluacionAreas", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: DateService, useValue: mockDateS },
         { provide: FiltroCalendarService, useValue: mockRangoCalendarioS },
-        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
-      ],
+        { provide: TableScrollHeightService, useValue: mockTableScrollHeightS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

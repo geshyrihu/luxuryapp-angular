@@ -5,5 +5,4 @@ export const PASSWORD_MANAGER_ROUTES: Routes = [
     path: "",
     loadComponent: () =>
       import("./password-list").then((m) => m.PasswordList),
-  },
-];
+  }];

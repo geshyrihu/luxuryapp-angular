@@ -66,8 +66,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .ptr-content {
         transition: transform 0.2s;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobilePullToRefresh extends PullToRefreshBase {}

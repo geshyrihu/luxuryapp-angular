@@ -25,8 +25,7 @@ export class SanctionList {
   globalFilterFields = globalFilterFields([
     "employeeName",
     "sanctionTypeName",
-    "sanctionStatus",
-  ]);
+    "sanctionStatus"]);
 
   ngOnInit(): void {
     this.onLoadData();

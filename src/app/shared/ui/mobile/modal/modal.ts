@@ -22,8 +22,7 @@ import { ModalBase } from "@ui/core/modal.base";
     IonButtons,
     IonButton,
     IonContent,
-    IonIcon,
-  ],
+    IonIcon],
   template: `
     <ion-modal
       [isOpen]="visible()"

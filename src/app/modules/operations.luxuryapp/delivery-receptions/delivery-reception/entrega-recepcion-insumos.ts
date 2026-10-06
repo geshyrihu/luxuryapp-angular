@@ -33,8 +33,7 @@ import {
     AppSorticon,
     ReportHeader,
     FormsModule,
-    CustomInputCheckSignal,
-  ],
+    CustomInputCheckSignal],
 })
 export class EntregaRecepcionInsumos {
   apiResponseS = inject(ApiResponseService);

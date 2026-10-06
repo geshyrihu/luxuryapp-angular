@@ -23,8 +23,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CustomInputSelectSignal,
     LxTooltipDirective,
     LxIcon,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class GeneralAnualMantenimiento {
   apiResponseS = inject(ApiResponseService);
@@ -50,8 +49,7 @@ export class GeneralAnualMantenimiento {
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.cb_providers.set([
         { label: "Todos", value: "" } as any,
-        ...(result || []),
-      ]);
+        ...(result || [])]);
     });
   }
 

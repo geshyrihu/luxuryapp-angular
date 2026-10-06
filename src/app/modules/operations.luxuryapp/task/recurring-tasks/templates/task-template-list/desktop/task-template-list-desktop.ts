@@ -22,8 +22,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxTooltipDirective,
     TableEmptyMessage,
     LuxTableCaption,
-    AppTable,
-  ],
+    AppTable],
 })
 export class TaskTemplateListDesktop {
   data = input.required<TaskTemplate[]>();

@@ -76,8 +76,7 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
       .breadcrumb-item a:hover {
         text-decoration: underline;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

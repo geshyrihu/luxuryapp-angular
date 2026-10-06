@@ -8,8 +8,7 @@ describe('LxModal', () => {
     TestBed.configureTestingModule({
       imports: [LxModal],
       providers: [
-        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } },
-      ],
+        { provide: PlatformService, useValue: { isMobile: vi.fn(() => false) } }],
     });
     const fixture = TestBed.createComponent(LxModal);
     fixture.detectChanges();

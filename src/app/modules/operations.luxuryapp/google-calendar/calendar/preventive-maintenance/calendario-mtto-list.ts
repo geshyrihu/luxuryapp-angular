@@ -11,8 +11,7 @@ import { CronogramaAnualMantenimiento } from "./cronograma-anual-mantenimiento";
     LxTabs,
     ListadoAnualMantenimiento,
     CronogramaAnualMantenimiento,
-    GeneralAnualMantenimiento,
-  ],
+    GeneralAnualMantenimiento],
 })
 export class CalendarioMttoList {
   tipoCalendario = signal("preventivo de equipos");
@@ -20,8 +19,7 @@ export class CalendarioMttoList {
   tabs = [
     { id: "tab1", label: "Cronograma" },
     { id: "tab2", label: "Listado" },
-    { id: "tab3", label: "General" },
-  ];
+    { id: "tab3", label: "General" }];
   message(message: string) {
     this.tipoCalendario.set(message);
   }

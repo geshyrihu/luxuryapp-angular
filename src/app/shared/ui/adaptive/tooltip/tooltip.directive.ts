@@ -17,10 +17,8 @@ import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
         "animation",
         "container",
         "openDelay",
-        "closeDelay",
-      ],
-    },
-  ],
+        "closeDelay"],
+    }],
 })
 export class LxTooltipDirective {
   constructor(private readonly tooltip: NgbTooltip) {

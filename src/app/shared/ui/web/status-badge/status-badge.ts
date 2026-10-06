@@ -58,8 +58,7 @@ export {
         line-height: 1;
         display: inline-flex;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

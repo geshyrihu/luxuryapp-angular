@@ -38,8 +38,7 @@ import { SidebarBase } from "@ui/core/sidebar.base";
       :host {
         display: contents;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Sidebar extends SidebarBase {}

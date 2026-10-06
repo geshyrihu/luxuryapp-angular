@@ -20,8 +20,7 @@ import { WebInputSelectBool } from "../../web/input-select-bool/input-select-boo
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputSelectBool),
       multi: true,
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

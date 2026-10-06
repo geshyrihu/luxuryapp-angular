@@ -23,8 +23,7 @@ describe('PasswordForm', () => {
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: FlatpickrDefaults, useValue: {} },
-        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
-      ],
+        { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PasswordForm);

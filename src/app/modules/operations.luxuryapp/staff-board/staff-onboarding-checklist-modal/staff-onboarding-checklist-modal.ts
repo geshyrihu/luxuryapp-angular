@@ -8,7 +8,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -36,9 +35,7 @@ interface StaffOnboardingChecklistViewModel extends EmployeeOnboardingChecklistI
     LxCard,
     LxTag,
     LxIcon,
-    WebButtonLabel,
-    AppCheckbox,
-  ],
+    AppCheckbox],
 })
 export class StaffOnboardingChecklistModal {
   private readonly apiResponseS = inject(ApiResponseService);

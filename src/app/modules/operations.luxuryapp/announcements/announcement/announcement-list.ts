@@ -21,8 +21,7 @@ import { IAnnouncementList } from "./announcement.model";
     ApiDatePipe,
     RouterModule,
     LxTooltipDirective,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-list.html",
 })

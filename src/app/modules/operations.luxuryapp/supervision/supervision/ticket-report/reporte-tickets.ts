@@ -40,8 +40,7 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
     AppAvatar,
     LxTag,
     CustomInputTextSignal,
-    Mesanio,
-  ],
+    Mesanio],
 })
 export class ReporteTickets {
   apiResponseS = inject(ApiResponseService);

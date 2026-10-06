@@ -69,8 +69,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
       .ptr-content {
         transition: transform 0.2s;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class PullToRefresh extends PullToRefreshBase {

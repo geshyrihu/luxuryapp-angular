@@ -222,14 +222,12 @@ const CALLOUT_GAP = 22;
         .google-pie-chart4__body { grid-template-columns: 1fr; }
         .google-pie-chart4__legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
-    `,
-  ],
+    `],
   providers: [
     {
       provide: "googleChartsSettings",
       useValue: { packages: ["corechart"], googleChartsVersion: "50" },
-    },
-  ],
+    }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GooglePieChart4 {
@@ -275,8 +273,7 @@ export class GooglePieChart4 {
       chartType: GoogleChartType.PieChart,
       dataTable: [
         ["Estado", "Monto"],
-        ...labels.map((label, index) => [String(label), Number(values[index] ?? 0)]),
-      ],
+        ...labels.map((label, index) => [String(label), Number(values[index] ?? 0)])],
       options: {
         is3D: true,
         width: "100%",

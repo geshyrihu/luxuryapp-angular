@@ -34,8 +34,7 @@ import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputPhonePrefix),
       multi: true,
-    },
-  ],
+    }],
 })
 export class WebInputPhonePrefix extends BaseInputSignal {
   prefixList = input<PhonePrefix[]>([]);

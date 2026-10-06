@@ -69,8 +69,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       .ili-chip-remove:hover {
         opacity: 1;
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileChip extends ChipBase {

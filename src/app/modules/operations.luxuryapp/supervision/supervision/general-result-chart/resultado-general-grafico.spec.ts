@@ -41,8 +41,7 @@ describe('ResultadoGeneralGrafico', () => {
       concepto: { label: 'Minuta-Legal' },
       solicitudesPendientes: 2,
       solicitudesAtendidas: 18,
-    },
-  ];
+    }];
 
   beforeEach(() => {
     mockResultadoGeneralS = {
@@ -60,8 +59,7 @@ describe('ResultadoGeneralGrafico', () => {
       imports: [ResultadoGeneralGrafico],
       providers: [
         { provide: ResultadoGeneralService, useValue: mockResultadoGeneralS },
-        { provide: FiltroCalendarService, useValue: mockRangoCalendarioS },
-      ],
+        { provide: FiltroCalendarService, useValue: mockRangoCalendarioS }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
@@ -116,8 +114,7 @@ describe('ResultadoGeneralGrafico', () => {
   it('onFilter should aggregate data correctly', () => {
     const data = [
       { solicitudesPendientes: 2, solicitudesAtendidas: 8 },
-      { solicitudesPendientes: 3, solicitudesAtendidas: 7 },
-    ];
+      { solicitudesPendientes: 3, solicitudesAtendidas: 7 }];
 
     const result = component.onFilter(data);
 

@@ -45,8 +45,7 @@ import { LoaderBase } from "../../core/loader.base";
         font-weight: 500;
         backdrop-filter: blur(4px);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class MobileLoader extends LoaderBase {}

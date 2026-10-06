@@ -14,20 +14,15 @@ import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calend
 import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 
 @Component({
   selector: "app-service-order",
   templateUrl: "./service-order.html",
   imports: [
-    WebButtonIcon,
     CommonModule,
     ReactiveFormsModule,
     LxEditor,
-    LxTooltipDirective,
-    WebButtonLabel,
-  ],
+    LxTooltipDirective],
 })
 export class ServiceOrder implements OnInit {
   apiResponseS = inject(ApiResponseService);

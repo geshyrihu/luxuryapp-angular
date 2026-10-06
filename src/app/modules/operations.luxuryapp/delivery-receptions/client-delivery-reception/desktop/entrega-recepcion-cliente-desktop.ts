@@ -5,8 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -21,13 +19,10 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   imports: [
     ButtonWeb,
     LxIcon,
-    WebButtonIconViewPdf,
     TableEmptyMessage,
     AppTable,
-    WebButtonLabel,
     ActionMenu,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class EntregaRecepcionClienteListaDesktop {
   data = input.required<any[]>();

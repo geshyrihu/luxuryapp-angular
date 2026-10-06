@@ -36,8 +36,7 @@ import { BaseIonicInput } from "../core/base-ionic-input";
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputEmail), multi: true },
-  ],
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => IonInputEmail), multi: true }],
 })
 export class IonInputEmail extends BaseIonicInput {
   override registerOnChange(fn: any): void { this.onChange = fn; }

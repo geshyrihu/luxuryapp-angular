@@ -28,8 +28,7 @@ describe("RecoverPassword", () => {
         {
           provide: LoginSliderService,
           useValue: { getVisibleImages$: () => of([]) },
-        },
-      ],
+        }],
     });
 
     fixture = TestBed.createComponent(RecoverPassword);

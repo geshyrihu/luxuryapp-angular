@@ -19,8 +19,7 @@ describe('SupervisionAccountingHub', () => {
     TestBed.configureTestingModule({
       imports: [SupervisionAccountingHub],
       providers: [
-        { provide: Router, useValue: mockRouter },
-      ],
+        { provide: Router, useValue: mockRouter }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

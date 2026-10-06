@@ -30,8 +30,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     ReactiveFormsModule,
     MobilePage,
     ButtonMobile,
-    IonInputPassword,
-  ],
+    IonInputPassword],
   template: `
     <ili-page background="var(--ds-primary)">
         <!-- Fondo Premium -->
@@ -230,8 +229,7 @@ import { ROUTES } from "src/app/routing/route-paths";
         cursor: pointer;
         text-decoration: underline;
       }
-    `,
-  ],
+    `],
 })
 export class ResetPasswordMobile implements OnInit {
   private fb = inject(FormBuilder);
@@ -264,9 +262,7 @@ export class ResetPasswordMobile implements OnInit {
             Validators.required,
             // RN-CRED-032: mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número.
             Validators.minLength(8),
-            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/),
-          ],
-        ],
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)]],
         confirmPassword: ["", [Validators.required]],
       },
       { validators: this.passwordMatchValidator },

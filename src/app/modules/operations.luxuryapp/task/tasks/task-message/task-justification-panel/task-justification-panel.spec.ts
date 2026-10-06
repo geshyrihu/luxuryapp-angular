@@ -7,7 +7,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TaskJustificationInterface } from "@core/interfaces/tasks/task-justification.interface";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { TaskJustificationPanel } from "./task-justification-panel";
 
 describe("TaskJustificationPanel", () => {
@@ -38,8 +37,7 @@ describe("TaskJustificationPanel", () => {
   const stateOptions: SelectItemDto<number>[] = [
     { value: 0, label: "Solicitada" },
     { value: 1, label: "Aprobada" },
-    { value: 2, label: "Rechazada" },
-  ];
+    { value: 2, label: "Rechazada" }];
 
   const apiResponseS = {
     onGetList: vi.fn(),
@@ -71,8 +69,7 @@ describe("TaskJustificationPanel", () => {
       imports: [NoopAnimationsModule, TaskJustificationPanel],
       providers: [
         { provide: ApiResponseService, useValue: apiResponseS },
-        { provide: AuthService, useValue: authS },
-      ],
+        { provide: AuthService, useValue: authS }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TaskJustificationPanel);
