@@ -9,22 +9,23 @@ import {
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { BackfillSelectionState } from "./interfaces/backfill-selection-state.interface";
 import { JuntaMensualSessionBackfillCandidate } from "./interfaces/junta-mensual-session-backfill-candidate.interface";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 @Component({
   selector: "app-juntas-mensuales-backfill",
   templateUrl: "./juntas-mensuales-backfill.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconConfirm,
+    ButtonWeb,
     LxTooltipDirective,
     ApiDatePipe,
     AppTable,
@@ -35,6 +36,7 @@ import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 export class JuntasMensualesBackfill {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly customerIdS = inject(CustomerIdService);
+  private readonly swalS = inject(SwalService);
 
   readonly loading = signal(false);
   readonly items = signal<JuntaMensualSessionBackfillCandidate[]>([]);
@@ -111,7 +113,16 @@ export class JuntasMensualesBackfill {
     }));
   }
 
-  onApply(item: JuntaMensualSessionBackfillCandidate) {
+  async onApply(item: JuntaMensualSessionBackfillCandidate) {
+    const confirmed = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Se vincularán los registros seleccionados a la sesión mensual. Esta acción no elimina histórico existente.",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     const state = this.resolveSelectionState(item.juntaMensualSessionId);
     const dto = {
       juntaMensualSessionId: item.juntaMensualSessionId,

@@ -183,16 +183,17 @@
                   <span>Vincular minuta</span>
                 </label>
 
-                <iw-button-confirm
-                  lxTooltip="Aplicar sugerencias"
+                <lux-button-web
+                  kind="confirm"
+                  displayMode="icon"
+                  severity="success"
+                  variant="soft"
+                  tooltip="Aplicar sugerencias"
                   tooltipPosition="top"
                   icon="material-symbols-light:link"
                   [disabled]="!hasSomethingToApply(item) || isApplying(item.juntaMensualSessionId)"
                   swalTitle="Aplicar conciliacion"
-                  swalText="Se vincularán los registros seleccionados a la sesión mensual. Esta acción no elimina histórico existente."
-                  swalConfirmButtonText="Si, aplicar"
-                  swalCancelButtonText="Cancelar"
-                  (confirmed)="onApply(item)"
+                  (clicked)="onApply(item)"
                 />
               </div>
             </td>
