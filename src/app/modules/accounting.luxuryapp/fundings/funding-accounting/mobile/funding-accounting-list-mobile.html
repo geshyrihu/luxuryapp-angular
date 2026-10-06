@@ -1,4 +1,4 @@
-<app-data-view-mobile
+<lux-data-view-mobile-web
   [data]="data()"
   [globalFilterFields]="globalFilterFields()"
   [showAdd]="false"
@@ -6,7 +6,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item class="ion-no-padding" (click)="details.emit(item.id)">
       <div start>
-        <app-icon icon="material-symbols-light:calculate" />
+        <lux-icon icon="material-symbols-light:calculate" />
       </div>
       <div class="flex-fill min-w-0">
         <h3>{{ item.period }}</h3>
@@ -15,4 +15,4 @@
       </div>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile-web>

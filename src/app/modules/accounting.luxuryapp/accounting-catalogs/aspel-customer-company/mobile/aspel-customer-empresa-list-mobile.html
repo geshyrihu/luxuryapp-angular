@@ -1,4 +1,4 @@
-<app-data-view-mobile
+<lux-data-view-mobile-web
   [data]="data()"
   (add)="modalForm.emit({ id: '', title: 'Nueva Configuración' })"
   [globalFilterFields]="globalFilterFields()"
@@ -10,7 +10,7 @@
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         class="w-3rem h-3rem bg-primary-50"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:domain"
           class="text-xl text-primary"
         />
@@ -18,7 +18,7 @@
       <div class="flex-fill min-w-0">
         <h2>{{ item.customerName }}</h2>
         <div class="d-flex align-items-center gap-2 mt-1">
-          <app-status-badge
+          <lux-status-badge-web
             [status]="item.empresa"
             [isEmpresa]="true"
             [clickable]="false"
@@ -43,4 +43,4 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile-web>

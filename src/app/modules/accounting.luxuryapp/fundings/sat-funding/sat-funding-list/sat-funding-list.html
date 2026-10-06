@@ -1,7 +1,7 @@
 @if (platformS.isMobile()) {
-  <app-sat-funding-list-mobile [data]="data()" />
+  <lux-sat-funding-list-mobile-web [data]="data()" />
 } @else {
-  <app-sat-funding-list-desktop
+  <lux-sat-funding-list-desktop-web
     [data]="data()"
     (details)="goToDetail($event)"
   />

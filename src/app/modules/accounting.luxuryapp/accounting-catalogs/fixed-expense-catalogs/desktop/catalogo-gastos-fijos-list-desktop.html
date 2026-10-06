@@ -129,7 +129,7 @@
       class="d-flex align-items-center flex-wrap px-3 py-2 mt-1 rounded bg-body-tertiary border-start border-3 border-warning mb-2 shadow-sm"
     >
       <div class="d-flex align-items-center text-body">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:info'"
           class="text-orange-500 fw-bold"
         />
@@ -144,7 +144,7 @@
         <span class="text-sm fw-medium">Marcar registros en la tabla</span>
       </div>
 
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:chevron-right'"
         class="text-body-secondary text-xs d-none d-md-block"
       />
@@ -157,7 +157,7 @@
         <span class="text-sm fw-medium">Seleccionar Año y Mes de Fondeo</span>
       </div>
 
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:chevron-right'"
         class="text-body-secondary text-xs d-none d-md-block"
       />
@@ -183,28 +183,28 @@
       </th>
       <th class="table-col-7" appSortableColumn="idFondeo">
         Id Fondeo
-        <app-sorticon field="idFondeo" />
+        <lux-sorticon-web field="idFondeo" />
       </th>
       <th class="table-col-10" appSortableColumn="quincenaText">
         Quincena
-        <app-sorticon field="quincenaText" />
+        <lux-sorticon-web field="quincenaText" />
       </th>
       <th appSortableColumn="equipoOInstalacion" class="table-col-20">
         DESCRIPCIÓN
-        <app-sorticon field="equipoOInstalacion" />
+        <lux-sorticon-web field="equipoOInstalacion" />
       </th>
       <th appSortableColumn="provider" class="table-col-20">
         PROVEEDOR
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
 
       <th appSortableColumn="largeName" class="table-col-20">
         Producto o Servicio
-        <app-sorticon field="largeName" />
+        <lux-sorticon-web field="largeName" />
       </th>
       <th appSortableColumn="largeName" class="table-col-20">
         Partida Presupuestal
-        <app-sorticon field="largeName" />
+        <lux-sorticon-web field="largeName" />
       </th>
       <th class="table-col-5"></th>
     </tr>

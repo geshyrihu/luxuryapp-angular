@@ -80,7 +80,7 @@
   </ng-template>
 </lux-table>
 
-<app-data-view-mobile
+<lux-data-view-mobile-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm({ id: '', title: 'Nueva Regla' })"
@@ -91,7 +91,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:analytics"
           class="text-blue-600 text-xl"
         />
@@ -114,4 +114,4 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile-web>

@@ -18,27 +18,27 @@
       <th></th>
       <th appSortableColumn="creationAt">
         Fecha
-        <app-sorticon field="creationAt" />
+        <lux-sorticon-web field="creationAt" />
       </th>
       <th appSortableColumn="description">
         DESCRIPCIÓN
-        <app-sorticon field="description" />
+        <lux-sorticon-web field="description" />
       </th>
       <th appSortableColumn="provider">
         Proveedor
-        <app-sorticon field="provider" />
+        <lux-sorticon-web field="provider" />
       </th>
       <th appSortableColumn="accountNumber">
         Cuenta
-        <app-sorticon field="accountNumber" />
+        <lux-sorticon-web field="accountNumber" />
       </th>
       <th appSortableColumn="tipoGasto">
         Tipo Gasto
-        <app-sorticon field="tipoGasto" />
+        <lux-sorticon-web field="tipoGasto" />
       </th>
       <th appSortableColumn="amount" class="text-end">
         Monto
-        <app-sorticon field="amount" />
+        <lux-sorticon-web field="amount" />
       </th>
       <th>Factura</th>
     </tr>
@@ -50,7 +50,7 @@
         class="text-center pointer"
         (click)="showDetails.emit(item.ordenCompraId)"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:edit'"
           class="text-body-secondary"
         />

@@ -82,7 +82,7 @@
                 (clicked)="onBulkUpdate(bulkTipoGasto())"
               />
               <span class="p-input-icon-left ms-auto">
-                <app-icon [icon]="'material-symbols-light:search'" />
+                <lux-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
@@ -109,16 +109,16 @@
             <!-- Reorder Handle -->
             <th class="table-col-4rem">Sel.</th>
             <th appSortableColumn="fechaEmision">
-              Fecha <app-sorticon field="fechaEmision" />
+              Fecha <lux-sorticon-web field="fechaEmision" />
             </th>
             <th appSortableColumn="emisorNombre">
-              Emisor <app-sorticon field="emisorNombre" />
+              Emisor <lux-sorticon-web field="emisorNombre" />
             </th>
             <th appSortableColumn="total">
-              Total <app-sorticon field="total" />
+              Total <lux-sorticon-web field="total" />
             </th>
             <th appSortableColumn="bankShortName">
-              Banco <app-sorticon field="bankShortName" />
+              Banco <lux-sorticon-web field="bankShortName" />
             </th>
             <th>Acciones</th>
           </tr>
@@ -137,7 +137,7 @@
                 class="d-flex align-items-center justify-content-center"
                 pReorderableRowHandle
               >
-                <app-icon [icon]="'material-symbols-light:menu'" />
+                <lux-icon [icon]="'material-symbols-light:menu'" />
               </div>
             </td>
             <td>

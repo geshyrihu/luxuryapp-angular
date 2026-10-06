@@ -1,11 +1,11 @@
 @if (platformS.isMobile()) {
-  <app-purchase-history-mobile
+  <lux-purchase-history-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (viewPdf)="viewPdf($event.url, $event.fileName)"
   />
 } @else {
-  <app-purchase-history-desktop
+  <lux-purchase-history-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (showDetails)="onShowPurchaseDetails($event)"

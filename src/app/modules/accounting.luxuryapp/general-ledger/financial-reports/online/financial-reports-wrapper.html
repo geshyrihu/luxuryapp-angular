@@ -142,63 +142,63 @@
         (tabChange)="onTabChange($event)"
       >
         <div tab="0" class="p-3 pt-4">
-          <app-estado-posicion-financiera />
+          <lux-estado-posicion-financiera-web />
         </div>
 
         <div tab="1" class="p-3 pt-4">
-          <app-estado-resultados />
+          <lux-estado-resultados-web />
         </div>
 
         <div tab="2" class="p-3 pt-4">
-          <app-estado-resultados-v2 />
+          <lux-estado-resultados-v2-web />
         </div>
         <div tab="3" class="p-3 pt-4">
-          <app-cedula-extraordinaria />
+          <lux-cedula-extraordinaria-web />
         </div>
         <div tab="4" class="p-3 pt-4">
-          <app-cedula-presupuestal />
+          <lux-cedula-presupuestal-web />
         </div>
         <div tab="5" class="p-3 pt-4">
-          <app-reporte-financiero />
+          <lux-reporte-financiero-web />
         </div>
         <div tab="6" class="p-3 pt-4">
-          <app-flujo-efectivo />
+          <lux-flujo-efectivo-web />
         </div>
         <div tab="7" class="p-3 pt-4">
-          <app-analisis-cobranza />
+          <lux-analisis-cobranza-web />
         </div>
 
         <div tab="8" class="p-3 pt-4">
-          <app-presupuesto-contabilidad />
+          <lux-presupuesto-contabilidad-web />
         </div>
         <div tab="9" class="p-3 pt-4">
-          <app-bancos-inversiones />
+          <lux-bancos-inversiones-web />
         </div>
         <div tab="10" class="p-3 pt-4">
-          <app-fondo-reserva />
+          <lux-fondo-reserva-web />
         </div>
 
         <div tab="11" class="p-3 pt-4">
-          <app-proyectos-aprobados />
+          <lux-proyectos-aprobados-web />
         </div>
 
         <div tab="12" class="p-3 pt-4">
-          <app-resultados-extraordinarios />
+          <lux-resultados-extraordinarios-web />
         </div>
       </lux-tabs>
     </div>
 
-    <app-ai-agent-contable
+    <lux-ai-agent-contable-web
       #aiAgent
       [autoReadResponses]="true"
       class="print-hide-on-print"
     />
-    <app-ai-agent-contabilidad
+    <lux-ai-agent-contabilidad-web
       #aiAgentContabilidadOnline
       [autoReadResponses]="true"
       class="print-hide-on-print"
     />
-    <app-ai-agent-explicador
+    <lux-ai-agent-explicador-web
       #aiAgentExplicador
       [autoReadResponses]="true"
       class="print-hide-on-print"

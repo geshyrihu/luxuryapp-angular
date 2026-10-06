@@ -21,13 +21,13 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="customerName">
-        Cliente <app-sorticon field="customerName" />
+        Cliente <lux-sorticon-web field="customerName" />
       </th>
       <th appSortableColumn="empresa">
-        Empresa <app-sorticon field="empresa" />
+        Empresa <lux-sorticon-web field="empresa" />
       </th>
       <th appSortableColumn="customerIdAspelId">
-        ID Aspel <app-sorticon field="customerIdAspelId" />
+        ID Aspel <lux-sorticon-web field="customerIdAspelId" />
       </th>
       <th class="table-col-10">Opciones</th>
     </tr>
@@ -36,7 +36,7 @@
     <tr>
       <td>{{ item.customerName }}</td>
       <td>
-        <app-status-badge
+        <lux-status-badge-web
           [status]="item.empresa"
           [isEmpresa]="true"
           [clickable]="false"

@@ -49,7 +49,7 @@
         @if (selectedYear < currentYear || (selectedYear === currentYear &&
         mes.mes <= currentMonth)) { @if (mes.estatus == 'Enviado') {
         <div class="d-flex flex-column align-items-center">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:check-circle"
             [lxTooltip]="mes.fecha"
             tooltipPosition="top"
@@ -58,7 +58,7 @@
           <span class="text-success mt-1"> {{ mes.fecha }} </span>
         </div>
         } @else {
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:cancel"
           lxTooltip="No Enviado"
           tooltipPosition="top"

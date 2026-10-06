@@ -30,7 +30,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
     <div class="d-flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">
         <span class="p-inputgroup-addon"
-          ><app-icon [icon]="'material-symbols-light:search'"
+          ><lux-icon [icon]="'material-symbols-light:search'"
         /></span>
         <custom-input-text-signal
           placeholder="Filtrar catálogo..."
@@ -45,7 +45,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
         <div
           class="d-flex flex-column align-items-center justify-content-center p-4 gap-2"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:progress-activity'"
             class="text-2xl text-primary-500"
           />
@@ -81,7 +81,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
                   *cdkDragPreview
                   class="bg-primary-50 border-1 border-primary-200 rounded p-2 shadow-sm d-flex align-items-center gap-2 opacity-90 z-5"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-primary-500"
                   />

@@ -1,12 +1,12 @@
 @if (platformS.isMobile()) {
-  <app-projected-expenses-list-mobile
+  <lux-projected-expenses-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (modal)="onModal($event)"
     (delete)="onDelete($event)"
   />
 } @else {
-  <app-projected-expenses-list-desktop
+  <lux-projected-expenses-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [loading]="loading()"

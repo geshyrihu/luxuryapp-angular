@@ -10,7 +10,7 @@
       optionValue="value"
     >
       <ng-template let-item #item>
-        <app-icon [icon]="item.icon" />
+        <lux-icon [icon]="item.icon" />
       </ng-template>
     </custom-input-select-button-signal>
 
@@ -52,12 +52,12 @@
           >
             <div class="mb-3">
               @if (file.type === "pdf") {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:picture-as-pdf'"
                 class="text-red-500 text-6xl"
               />
               } @else {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:code'"
                 class="text-blue-500 text-6xl"
               />
@@ -112,12 +112,12 @@
           </td>
           <td>
             @if (file.type === "pdf") {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:picture-as-pdf'"
               class="text-red-500 text-xl"
             />
             } @else {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:code'"
               class="text-blue-500 text-xl"
             />
@@ -154,7 +154,7 @@
     </lux-table>
     } @if (selectedGroupFiles().length === 0) {
     <div class="text-center p-5">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:folder-open'"
         class="text-6xl text-body-secondary mb-3"
       />

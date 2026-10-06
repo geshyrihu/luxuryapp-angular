@@ -6,7 +6,7 @@
   </div>
   } @else if (!rows().length) {
   <div class="bg-body p-5 rounded shadow-sm text-center">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:search'"
       class="text-4xl text-body-secondary mb-3"
     />
@@ -108,7 +108,7 @@
   </lux-table>
 
   <!-- Vista Móvil Sincronizada -->
-  <app-data-view-mobile
+  <lux-data-view-mobile-web
     class="d-md-none"
     [data]="rows()"
     [loading]="loading()"
@@ -187,6 +187,6 @@
       </div>
       }
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile-web>
   }
 </div>

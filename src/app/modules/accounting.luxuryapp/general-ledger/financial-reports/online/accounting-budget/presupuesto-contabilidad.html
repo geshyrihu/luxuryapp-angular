@@ -1,7 +1,7 @@
 <div class="rf-shell">
   @if (loading()) {
   <div class="d-flex align-items-center text-body-secondary mb-4 gap-2">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" />
     <span>Consultando datos en Aspel...</span>
   </div>
   } @if (!loading() && !data()) {
@@ -144,7 +144,7 @@
     </div>
   </div>
 
-  <app-data-view-mobile
+  <lux-data-view-mobile-web
     class="d-md-none"
     [data]="reporte.filas"
     [loading]="loading()"
@@ -196,6 +196,6 @@
       </div>
       }
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile-web>
   }
 </div>

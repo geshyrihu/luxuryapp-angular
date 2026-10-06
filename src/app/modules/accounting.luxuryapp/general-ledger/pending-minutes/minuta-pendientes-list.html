@@ -1,11 +1,11 @@
 @if (platformS.isMobile()) {
-  <app-minuta-pendientes-list-mobile
+  <lux-minuta-pendientes-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (verDetalle)="onModalFormMinutaDetalle($event)"
   />
 } @else {
-  <app-minuta-pendientes-list-desktop
+  <lux-minuta-pendientes-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [statusFiltroControl]="statusFiltroControl"
