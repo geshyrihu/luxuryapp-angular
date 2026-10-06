@@ -10,7 +10,6 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
@@ -21,13 +20,11 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     UpperCasePipe,
-    WebButtonLabel,
     LxTag,
     LxFieldset,
     DataViewMobile,
     ButtonWeb,
-    PdfViewerTrigger,
-  ],
+    PdfViewerTrigger],
 })
 export class PresentacionJuntaComiteContadorMobile {
   aspRoleS = inject(AspRoleService);

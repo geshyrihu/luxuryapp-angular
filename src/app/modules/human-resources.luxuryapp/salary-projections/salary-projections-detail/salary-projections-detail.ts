@@ -15,8 +15,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { WorkPositionHours } from "@operations.luxuryapp/work-positions/work-position-hours";
 import { CardEmployee } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/card-employee";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Subject, debounceTime } from "rxjs";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -38,12 +36,9 @@ const LIST_URL = "/hr/salary-projections";
     AppTable,
     TableEmptyMessage,
     LxTag,
-    WebButtonLabel,
-    WebButtonIcon,
     FormsModule,
     DatePipe,
-    DecimalPipe,
-  ],
+    DecimalPipe],
 })
 export class SalaryProjectionsDetail {
   private readonly api = inject(ApiResponseService);

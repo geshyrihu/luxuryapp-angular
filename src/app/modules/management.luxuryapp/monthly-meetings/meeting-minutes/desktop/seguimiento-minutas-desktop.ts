@@ -11,7 +11,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -30,7 +29,6 @@ import {
     TitleCasePipe,
     SanitizeHtmlPipe,
     LxTag,
-    WebButtonLabel,
     ButtonWeb,
     ActionMenu,
     LuxTableCaption,
@@ -38,8 +36,7 @@ import {
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class SeguimientoMinutasDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

@@ -9,8 +9,8 @@ import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
+
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -37,12 +37,9 @@ const LIST_URL = "/hr/salary-projections";
     AppSortableColumn,
     AppSorticon,
     TableEmptyMessage,
-    WebButtonLabel,
-    WebButtonIcon,
     CustomInputTextSignal,
     FormsModule,
-    DecimalPipe,
-  ],
+    DecimalPipe],
   styles: [
     `
       .app-sidepanel-backdrop {
@@ -86,8 +83,7 @@ const LIST_URL = "/hr/salary-projections";
         overflow-y: auto;
         flex: 1;
       }
-    `,
-  ],
+    `],
 })
 export class PayrollParameterConfig {
   private readonly api = inject(ApiResponseService);
@@ -121,8 +117,7 @@ export class PayrollParameterConfig {
         ),
         this.api.onGetList<IStateTaxParameter[]>(
           Endpoints.SalaryProjections.stateTaxParameters,
-        ),
-      ]);
+        )]);
 
       if (federal) {
         this.federalParameters.set(federal);

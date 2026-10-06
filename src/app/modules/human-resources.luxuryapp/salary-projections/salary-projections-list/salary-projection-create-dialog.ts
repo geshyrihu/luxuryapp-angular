@@ -9,7 +9,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 /**
@@ -18,7 +18,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-salary-projection-create-dialog",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, WebButtonLabel, CustomInputTextSignal],
+  imports: [FormsModule, CustomInputTextSignal],
   template: `
     <div class="d-flex flex-column gap-3 p-3">
       <custom-input-text-signal

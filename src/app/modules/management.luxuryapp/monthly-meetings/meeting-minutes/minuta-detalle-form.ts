@@ -24,7 +24,6 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -55,8 +54,7 @@ interface IMinutaDetalleForm {
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
      ButtonWeb,
-    WebButtonLabel,
-  ],
+    ],
 })
 export class MinutaDetalleForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -76,8 +74,7 @@ export class MinutaDetalleForm implements OnInit {
   cb_estatus = signal<any[]>([
     { value: 0, label: "Pendiente" },
     { value: 1, label: "Concluido" },
-    { value: 2, label: "No Autorizado" },
-  ]);
+    { value: 2, label: "No Autorizado" }]);
   cb_area = signal<SelectItemDto[]>([]);
 
   form: FormGroup<IMinutaDetalleForm> = new FormGroup({
@@ -97,8 +94,7 @@ export class MinutaDetalleForm implements OnInit {
       nonNullable: true,
     }),
     meetingId: new FormControl(this.config.data.meetingId ?? null, [
-      Validators.required,
-    ]),
+      Validators.required]),
     applicationUserId: new FormControl(this.authS.applicationUserId, {
       nonNullable: true,
     }),

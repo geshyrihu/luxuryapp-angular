@@ -11,7 +11,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -28,7 +27,6 @@ import {
   templateUrl: "./solicitudes-historial-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIcon,
     ButtonWeb,
     LxTag,
     CustomInputDateSignal,
@@ -39,8 +37,7 @@ import {
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableEmptyMessage,
-  ],
+    TableEmptyMessage],
 })
 export class SolicitudesHistorialDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

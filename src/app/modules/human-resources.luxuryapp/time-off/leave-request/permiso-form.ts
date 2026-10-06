@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
@@ -40,14 +40,12 @@ interface LeaveRequestEditDTO {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputDateSignal,
     CustomInputTime,
     CustomInputTextAreaSignal,
     CustomInputFile,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class PermisoForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

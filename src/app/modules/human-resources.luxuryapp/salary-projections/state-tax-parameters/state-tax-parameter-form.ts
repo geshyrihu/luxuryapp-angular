@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/cor
 import { FormsModule, FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IStateTaxParameter, MEXICAN_STATES } from "../interfaces/salary-projections.models";
@@ -13,7 +13,7 @@ import { Endpoints } from '@core/constants/endpoints/endpoints';
   selector: "app-state-tax-parameter-form",
   templateUrl: "./state-tax-parameter-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, ReactiveFormsModule, CustomInputSelectSignal, CustomInputTextSignal, WebButtonLabel],
+  imports: [FormsModule, ReactiveFormsModule, CustomInputSelectSignal, CustomInputTextSignal],
 })
 export class StateTaxParameterForm {
   private readonly api = inject(ApiResponseService);

@@ -15,8 +15,8 @@ import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
+
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
@@ -42,11 +42,8 @@ const DETAIL_URL = "/hr/salary-projections";
     AppSorticon,
     TableEmptyMessage,
     LxTag,
-    WebButtonLabel,
-    WebButtonIcon,
     ButtonWeb,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
 })
 export class SalaryProjectionsList {
   private readonly api = inject(ApiResponseService);
@@ -151,8 +148,7 @@ export class SalaryProjectionsList {
               name: "Escenario Base",
               description: "Escenario base de la proyeccin",
               items: [],
-            },
-          ],
+            }],
         },
       );
 

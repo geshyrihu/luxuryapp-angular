@@ -18,10 +18,8 @@ import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { SwalService } from "@core/services/swal.service";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MeetingDetailForm } from "./meeting-detail-form";
@@ -39,13 +37,10 @@ interface JuntaVisual {
   styleUrl: "./minutas-list.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIcon,
-    WebButtonLabel,
     ButtonWeb,
     ActionMenu,
     LxTooltipDirective,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MinutasList {
   // --- Inyección de Dependencias ---

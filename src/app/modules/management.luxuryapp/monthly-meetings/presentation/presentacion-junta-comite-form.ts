@@ -27,7 +27,6 @@ interface IPresentacionJuntaComiteForm {
   area: FormControl<string | null>;
 }
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
@@ -36,11 +35,9 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LxIcon,
-    WebButtonIcon,
     ReactiveFormsModule,
     InputFile,
-    ButtonWeb,
-  ],
+    ButtonWeb],
 })
 export class PresentacionJuntaComiteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);

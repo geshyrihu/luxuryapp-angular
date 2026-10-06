@@ -11,7 +11,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -30,13 +29,11 @@ import { IncidenciaNominaDTO } from "../../interfaces/incidencia-nomina.interfac
     ApiDatePipe,
     LxTag,
     ButtonWeb,
-    WebButtonLabel,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class IncidenciasNominaDesktop {
   private tableScrollHeightS = inject(TableScrollHeightService);

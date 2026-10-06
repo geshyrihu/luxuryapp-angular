@@ -11,8 +11,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
+
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
@@ -33,11 +33,8 @@ const DASHBOARD_URL = "/hr/salary-projections";
     AppSortableColumn,
     AppSorticon,
     TableEmptyMessage,
-    WebButtonLabel,
-    WebButtonIcon,
     ButtonWeb,
-    DecimalPipe,
-  ],
+    DecimalPipe],
 })
 export class StateTaxParameters {
   private readonly api = inject(ApiResponseService);

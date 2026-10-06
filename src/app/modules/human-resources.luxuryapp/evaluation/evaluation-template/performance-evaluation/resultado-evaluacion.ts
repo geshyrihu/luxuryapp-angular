@@ -21,7 +21,6 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 import { RadarChart } from "@ui/web/charts/radar-chart";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -39,8 +38,7 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
     LxTag,
     LxMessage,
     RadarChart,
-    WebButtonLabel,
-  ],
+    ],
 })
 export class ResultadoEvaluacion {
   // Inyección de servicios
@@ -125,8 +123,7 @@ export class ResultadoEvaluacion {
           backgroundColor: "rgba(54, 162, 235, 0.2)",
           borderColor: "rgb(54, 162, 235)",
           pointBackgroundColor: "rgb(54, 162, 235)",
-        },
-      ],
+        }],
     });
   }
 

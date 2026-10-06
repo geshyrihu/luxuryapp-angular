@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -51,7 +51,7 @@ interface VacationApprovalDetailDTO {
   selector: "app-approval-detail-modal",
   templateUrl: "./modal-approval-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxSpinner, LxTag, WebButtonLabel],
+  imports: [LxSpinner, LxTag],
 })
 export class ApprovalDetailModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

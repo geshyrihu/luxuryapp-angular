@@ -7,7 +7,6 @@ import {
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -24,9 +23,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
     MobileListItem,
     LxIcon,
     LxTag,
-    WebButtonLabel,
-    SanitizeHtmlPipe,
-  ],
+    SanitizeHtmlPipe],
 })
 export class SeguimientoMinutasMobile {
   data = input.required<any[]>();

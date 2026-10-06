@@ -4,7 +4,6 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
 import type { TagSeverity } from "@ui/core/tag.base";
 import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
@@ -30,12 +29,10 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     CurrencyPipe,
     LuxTableCaption,
     TableEmptyMessage,
-    WebButtonIcon,
     LxTooltipDirective,
     AppStatCard,
     AppProgressBar,
-    LxTag,
-  ],
+    LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-web.html",
 })

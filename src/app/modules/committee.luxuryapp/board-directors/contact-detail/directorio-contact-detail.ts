@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { LxCard } from "@ui/adaptive/card/card";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { AppRealtimeIndicator } from "@ui/primitives/realtime-indicator/realtime-indicator";
 import { AppImageFallback } from "@ui/web/image-fallback/image-fallback";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
@@ -11,11 +10,9 @@ import { CommitteeDirectorioDTO } from "../../interfaces/committee-directorio.dt
   selector: "app-directorio-contact-detail",
   imports: [
     LxCard,
-    MobileButtonLabel,
     AppImageFallback,
     AppIcon,
-    AppRealtimeIndicator,
-  ],
+    AppRealtimeIndicator],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./directorio-contact-detail.html",
 })
@@ -42,4 +39,3 @@ export class DirectorioContactDetail {
       window.location.href = "mailto:" + this.person.email;
   }
 }
-

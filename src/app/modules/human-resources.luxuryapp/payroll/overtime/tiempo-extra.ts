@@ -12,7 +12,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import { TiempoExtraDTO } from "../interfaces/tiempo-extra.interface";
@@ -22,7 +21,7 @@ import { TiempoExtraMobile } from "./mobile/tiempo-extra-mobile";
 
 @Component({
   selector: "app-tiempo-extra",
-  imports: [WebButtonLabel, TiempoExtraDesktop, TiempoExtraMobile],
+  imports: [TiempoExtraDesktop, TiempoExtraMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./tiempo-extra.html",
 })

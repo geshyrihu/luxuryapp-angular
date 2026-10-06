@@ -26,7 +26,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -56,7 +55,6 @@ interface CategoryForm {
   imports: [
     LxTooltipDirective,
     LxFieldset,
-    WebButtonLabel,
      ButtonWeb,
     CustomInputCheckSignal,
     CustomInputTextSignal,
@@ -64,8 +62,7 @@ interface CategoryForm {
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
   // Inyección de dependencias

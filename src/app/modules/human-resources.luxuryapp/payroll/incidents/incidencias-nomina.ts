@@ -12,7 +12,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   IncidenciaNominaDTO,
@@ -26,10 +25,8 @@ import { IncidenciasNominaMobile } from "./mobile/incidencias-nomina-mobile";
 @Component({
   selector: "app-incidencias-nomina",
   imports: [
-    WebButtonLabel,
     IncidenciasNominaDesktop,
-    IncidenciasNominaMobile,
-  ],
+    IncidenciasNominaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incidencias-nomina.html",
 })

@@ -5,7 +5,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
@@ -66,8 +65,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Editar frecuencia y dias de pago (1a y 2a quincena)" },
           { label: "Ajustar tolerancia de retardos y retardos por falta" },
           { label: "Actualizar porcentajes IMSS empleado (2026)" },
-          { label: "Configurar factor de prima vacacional (minimo 0.25 LFT)" },
-        ],
+          { label: "Configurar factor de prima vacacional (minimo 0.25 LFT)" }],
         endpoints: [
           {
             method: "GET",
@@ -78,8 +76,7 @@ const GROUPS: NominaGroup[] = [
             method: "PUT",
             path: "/hr/nomina/configuracion/{customerId}",
             description: "Crear o actualizar configuracion (upsert)",
-          },
-        ],
+          }],
       },
       {
         title: "Periodos de Nomina",
@@ -92,8 +89,7 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Administrador",
           "RecursosHumanos",
-          "Direccion",
-        ],
+          "Direccion"],
         actions: [
           { label: "Listar periodos del cliente por anio" },
           { label: "Crear nueva quincena con fechas y dias habiles" },
@@ -101,8 +97,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Cerrar periodo al finalizar el ciclo" },
           { label: "Agregar dias no habiles (festivos LFT o propios)" },
           { label: "Eliminar dias no habiles del periodo" },
-          { label: "Eliminar periodo (solo si sin nominas)" },
-        ],
+          { label: "Eliminar periodo (solo si sin nominas)" }],
         endpoints: [
           {
             method: "GET",
@@ -143,11 +138,9 @@ const GROUPS: NominaGroup[] = [
             method: "DELETE",
             path: "/hr/nomina/periodos/dias-no-habiles/{id}",
             description: "Eliminar dia no habil",
-          },
-        ],
+          }],
         states: ["Abierto", "Cerrado"],
-      },
-    ],
+      }],
   },
   {
     label: "Nomina Principal",
@@ -166,8 +159,7 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Direccion",
           "Administrador",
-          "RecursosHumanos",
-        ],
+          "RecursosHumanos"],
         actions: [
           { label: "Listar nominas por cliente y periodo" },
           {
@@ -179,8 +171,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Cerrar nomina (inmutable, aplica pagos de prestamos)" },
           { label: "Exportar nomina a Excel (mismo formato del original)" },
           { label: "Ver resumen ejecutivo del periodo" },
-          { label: "Eliminar nomina (solo en estado Borrador)" },
-        ],
+          { label: "Eliminar nomina (solo en estado Borrador)" }],
         endpoints: [
           { method: "GET", path: "/hr/nomina", description: "Listar nominas" },
           {
@@ -227,8 +218,7 @@ const GROUPS: NominaGroup[] = [
             method: "DELETE",
             path: "/hr/nomina/{id}",
             description: "Eliminar (solo Borrador)",
-          },
-        ],
+          }],
         states: ["Borrador", "EnRevision", "Aprobada", "Pagada", "Cerrada"],
       },
       {
@@ -242,14 +232,12 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Direccion",
           "Administrador",
-          "RecursosHumanos",
-        ],
+          "RecursosHumanos"],
         actions: [
           { label: "Ver tabla de empleados con percepciones y deducciones" },
           { label: "Editar linea de un empleado (Borrador o EnRevision)" },
           { label: "Generar recibo de nomina PDF individual" },
-          { label: "Ver cuenta bancaria (snapshot del momento de generacion)" },
-        ],
+          { label: "Ver cuenta bancaria (snapshot del momento de generacion)" }],
         endpoints: [
           {
             method: "GET",
@@ -270,12 +258,10 @@ const GROUPS: NominaGroup[] = [
             method: "GET",
             path: "/hr/nomina/{nominaId}/detalles/{id}/recibo",
             description: "Recibo PDF individual",
-          },
-        ],
+          }],
         notes:
           "Se accede desde la pagina de Nominas al hacer clic en Ver detalle de una nomina.",
-      },
-    ],
+      }],
   },
   {
     label: "Incidencias",
@@ -294,8 +280,7 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Administrador",
           "RecursosHumanos",
-          "Direccion",
-        ],
+          "Direccion"],
         actions: [
           { label: "Listar incidencias por periodo y empleado" },
           { label: "Registrar falta injustificada con descuento automatico" },
@@ -308,8 +293,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Registrar permiso sin goce de sueldo" },
           { label: "Sincronizar vacaciones aprobadas del periodo" },
           { label: "Sincronizar permisos aprobados del periodo" },
-          { label: "Eliminar incidencia manual (no las sincronizadas)" },
-        ],
+          { label: "Eliminar incidencia manual (no las sincronizadas)" }],
         endpoints: [
           {
             method: "GET",
@@ -345,8 +329,7 @@ const GROUPS: NominaGroup[] = [
             method: "POST",
             path: "/hr/nomina/incidencias/sincronizar-permisos",
             description: "Importar permisos aprobados",
-          },
-        ],
+          }],
         states: [
           "FaltaInjustificada",
           "RetardoMenor",
@@ -356,10 +339,8 @@ const GROUPS: NominaGroup[] = [
           "PermisoConGoce",
           "PermisoSinGoce",
           "DiaEconomico",
-          "Otro",
-        ],
-      },
-    ],
+          "Otro"],
+      }],
   },
   {
     label: "Tiempo Extra",
@@ -378,8 +359,7 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Administrador",
           "RecursosHumanos",
-          "Direccion",
-        ],
+          "Direccion"],
         actions: [
           { label: "Listar tiempo extra por periodo y empleado" },
           { label: "Registrar horas simples (pago doble, primeras 9h/semana)" },
@@ -388,8 +368,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Aprobar tiempo extra para incluirlo en nomina" },
           { label: "Rechazar tiempo extra con motivo" },
           { label: "Subir evidencia fotografica (foto del registro firmado)" },
-          { label: "Eliminar registro (solo si no aprobado)" },
-        ],
+          { label: "Eliminar registro (solo si no aprobado)" }],
         endpoints: [
           {
             method: "GET",
@@ -430,11 +409,9 @@ const GROUPS: NominaGroup[] = [
             method: "POST",
             path: "/hr/nomina/tiempo-extra/{id}/evidencias",
             description: "Subir evidencia fotografica",
-          },
-        ],
+          }],
         states: ["PendienteAprobacion", "Aprobado", "Rechazado"],
-      },
-    ],
+      }],
   },
   {
     label: "Prestamos",
@@ -453,8 +430,7 @@ const GROUPS: NominaGroup[] = [
           "SuperUsuario",
           "Direccion",
           "Administrador",
-          "RecursosHumanos",
-        ],
+          "RecursosHumanos"],
         actions: [
           { label: "Listar prestamos (filtrar por estado o empleado)" },
           { label: "Solicitar nuevo prestamo indicando monto y quincenas" },
@@ -462,8 +438,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Ver tabla de amortizacion completa" },
           { label: "Ver historial de pagos realizados por nomina" },
           { label: "Cancelar prestamo activo" },
-          { label: "Eliminar solicitud (solo En Revision)" },
-        ],
+          { label: "Eliminar solicitud (solo En Revision)" }],
         endpoints: [
           {
             method: "GET",
@@ -504,11 +479,9 @@ const GROUPS: NominaGroup[] = [
             method: "GET",
             path: "/hr/nomina/prestamos/{id}/historial-pagos",
             description: "Historial de amortizaciones",
-          },
-        ],
+          }],
         states: ["EnRevision", "Activo", "Completado", "Cancelado"],
-      },
-    ],
+      }],
   },
   {
     label: "Evidencias y Reportes",
@@ -531,8 +504,7 @@ const GROUPS: NominaGroup[] = [
           { label: "Subir comprobante de asistencia (hoja 5 del Excel)" },
           { label: "Subir certificado de incapacidad IMSS" },
           { label: "Ver o descargar archivo de evidencia" },
-          { label: "Eliminar evidencia" },
-        ],
+          { label: "Eliminar evidencia" }],
         endpoints: [
           {
             method: "GET",
@@ -548,19 +520,15 @@ const GROUPS: NominaGroup[] = [
             method: "DELETE",
             path: "/hr/nomina/evidencias/{id}",
             description: "Eliminar evidencia",
-          },
-        ],
+          }],
         states: [
           "NominaFirmada",
           "TiempoExtra",
           "Asistencia",
           "Incapacidad",
-          "Otro",
-        ],
-      },
-    ],
-  },
-];
+          "Otro"],
+      }],
+  }];
 
 type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
@@ -574,11 +542,10 @@ interface HeroMetric {
 }
 
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [WebButtonIcon, WebButtonLabel, LxTag, LxIcon],
+  imports: [LxTag, LxIcon],
   templateUrl: "./nomina-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],
@@ -615,8 +582,7 @@ export default class NominaDashboard {
       detail: "Rutas del API implementadas",
       icon: "material-symbols-light:dns",
       tone: "success",
-    },
-  ];
+    }];
 
   navigateTo(route: string) {
     if (route) this.router.navigateByUrl(route);
@@ -641,4 +607,3 @@ export default class NominaDashboard {
     return map[role];
   }
 }
-

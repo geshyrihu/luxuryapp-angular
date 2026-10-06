@@ -13,7 +13,6 @@ import { MeetingEmailDispatch } from "@core/interfaces/meeting-email-dispatch.in
 import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   AreaDetailsTable,
@@ -26,12 +25,10 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
 @Component({
   selector: "app-meeting-management",
   imports: [
-    WebButtonLabel,
     LxIcon,
     RouterModule,
     AreaDetailsTable,
-    ApiDatePipe,
-  ],
+    ApiDatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-management.html",
   styleUrl: "./meeting-management.scss",

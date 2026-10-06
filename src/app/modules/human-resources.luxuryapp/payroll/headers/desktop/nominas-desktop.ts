@@ -10,7 +10,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -27,14 +26,12 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
   imports: [
     CommonModule,
     LxTag,
-    WebButtonIcon,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class NominasDesktop {
   private tableScrollHeightS = inject(TableScrollHeightService);

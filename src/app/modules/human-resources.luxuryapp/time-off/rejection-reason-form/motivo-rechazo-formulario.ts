@@ -1,11 +1,11 @@
 import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 @Component({
   selector: "app-rejection-reason-prompt",
-  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, WebButtonLabel],
+  imports: [ReactiveFormsModule, CustomInputTextAreaSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./motivo-rechazo-formulario.html",
 })

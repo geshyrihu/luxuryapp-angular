@@ -5,7 +5,6 @@ import {
   OnInit,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
@@ -15,7 +14,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [LxIcon, LxTag, WebButtonLabel],
+  imports: [LxIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })
@@ -54,5 +53,4 @@ export class MiPermisoDetalle implements OnInit {
     }
   }
 }
-
 

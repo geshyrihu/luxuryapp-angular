@@ -15,7 +15,6 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
 import { LxIcon } from '@ui/adaptive/icon/icon';
@@ -34,13 +33,11 @@ import { ApprovalInfoService } from "./approval-info.service";
     ApiDatePipe,
     ReactiveFormsModule,
     LxSpinner,
-    WebButtonLabel,
     LxDivider,
     LxMessage,
     LxTag,
     CustomInputToggleSwitch,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {
@@ -244,8 +241,7 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          ),
-        ]);
+          )]);
 
         this.leaveHistory = historyResult;
         this.overlappingLeaveRequests = overlappingResult ?? [];
@@ -257,8 +253,7 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          ),
-        ]);
+          )]);
 
         this.vacationBalance = balanceResult;
         this.overlappingVacationRequests = overlappingResult ?? [];

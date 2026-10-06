@@ -10,8 +10,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -27,16 +25,13 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    WebButtonIcon,
     ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class NominaDetalleDesktop {
   private tableScrollHeightS = inject(TableScrollHeightService);

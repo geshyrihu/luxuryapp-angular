@@ -11,7 +11,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 import ModalPeriodoAdd from "./add-period-modal/modal-periodo-add";
@@ -21,7 +20,7 @@ import ModalDiasNoHabiles from "./non-working-days-modal/modal-dias-no-habiles";
 
 @Component({
   selector: "app-periodos-nomina",
-  imports: [WebButtonLabel, PeriodosNominaDesktop, PeriodosNominaMobile],
+  imports: [PeriodosNominaDesktop, PeriodosNominaMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./periodos-nomina.html",
 })

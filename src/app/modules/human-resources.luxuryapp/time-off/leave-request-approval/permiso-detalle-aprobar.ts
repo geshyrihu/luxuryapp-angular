@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
@@ -31,7 +31,7 @@ interface LeaveApprovalDetailDTO {
   selector: "app-leave-request-detail-for-aproved",
   templateUrl: "./permiso-detalle-aprobar.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag, WebButtonLabel],
+  imports: [LxTag],
 })
 export class PermisoDetalleAprobar implements OnInit {
   apiResponseS = inject(ApiResponseService);

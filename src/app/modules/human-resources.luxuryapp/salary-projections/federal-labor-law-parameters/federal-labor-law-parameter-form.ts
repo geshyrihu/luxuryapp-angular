@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IFederalLaborLawParameter } from "../interfaces/salary-projections.models";
 import { ApiResponseService } from '@core/http/services/api-response.service';
@@ -11,7 +11,7 @@ import { Endpoints } from '@core/constants/endpoints/endpoints';
   selector: "app-federal-labor-law-parameter-form",
   templateUrl: "./federal-labor-law-parameter-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, CustomInputTextSignal, WebButtonLabel],
+  imports: [FormsModule, CustomInputTextSignal],
 })
 export class FederalLaborLawParameterForm {
   private readonly api = inject(ApiResponseService);

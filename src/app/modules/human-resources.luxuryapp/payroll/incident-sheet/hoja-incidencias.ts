@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -27,7 +26,7 @@ import {
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [LxIcon, LxTooltipDirective, LxPopover, WebButtonLabel],
+  imports: [LxIcon, LxTooltipDirective, LxPopover],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })
@@ -223,4 +222,3 @@ export default class HojaIncidencias {
     return `${employeeId}|${fecha.substring(0, 10)}`;
   }
 }
-

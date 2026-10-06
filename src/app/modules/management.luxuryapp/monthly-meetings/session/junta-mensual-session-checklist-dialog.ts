@@ -14,7 +14,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -55,22 +55,19 @@ interface IJuntaMensualSessionDetail {
 }
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+
 
 @Component({
   selector: "app-junta-mensual-session-checklist-dialog",
   templateUrl: "./junta-mensual-session-checklist-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
     ApiDatePipe,
     FormsModule,
     AppTable,
     CustomInputSelectSignal,
-    WebButtonLabel,
-    LxTag,
-  ],
+    LxTag],
 })
 export class JuntaMensualSessionChecklistDialog {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -107,8 +104,7 @@ export class JuntaMensualSessionChecklistDialog {
     { label: "En progreso", value: 1 },
     { label: "Completado", value: 2 },
     { label: "Cancelado", value: 3 },
-    { label: "No aplica", value: 4 },
-  ];
+    { label: "No aplica", value: 4 }];
 
   constructor() {
     this.onLoadData();

@@ -10,8 +10,6 @@ import {
 } from "@core/helpers/table-options";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { FormsModule } from "@angular/forms";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,14 +32,11 @@ import { IRegistroChecador } from "../interfaces/chekador-empleados.models";
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    WebButtonLabel,
-    WebButtonIcon,
     LxImage,
     CustomInputCheckSignal,
     FormsModule,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class ChekadorListDesktop {
   data = input.required<IRegistroChecador[]>();

@@ -8,7 +8,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -24,21 +23,17 @@ import {
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 @Component({
   selector: "app-evidencias-nomina",
   imports: [
     LxIcon,
-    WebButtonIcon,
     LxTooltipDirective,
     ApiDatePipe,
     ReactiveFormsModule,
-    WebButtonLabel,
     ButtonWeb,
     CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-  ],
+    CustomInputTextAreaSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./evidencias-nomina.html",
 })

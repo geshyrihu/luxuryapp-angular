@@ -10,7 +10,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxConfirmDialog } from "@ui/adaptive/confirm-dialog/confirm-dialog";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -31,12 +30,10 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     LxTag,
     LuxTableCaption,
     ButtonWeb,
-    TableEmptyMessage,
-  ],
+    TableEmptyMessage],
 })
 export class AdminVacacionesBalanceDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

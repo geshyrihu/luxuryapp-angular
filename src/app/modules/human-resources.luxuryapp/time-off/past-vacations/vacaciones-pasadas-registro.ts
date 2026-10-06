@@ -33,7 +33,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -54,12 +54,10 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
     LxMessage,
     LxSkeleton,
     CustomInputTextAreaSignal,
-    WebButtonLabel,
      ButtonWeb,
     AppTable,
 
-    LxTag,
-  ],
+    LxTag],
 })
 export class VacacionesPasadasRegistro implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -91,8 +89,7 @@ export class VacacionesPasadasRegistro implements OnInit {
       employeeId: [null as number | null, [Validators.required]],
       dateRange: [
         { value: null as Date[] | null, disabled: true },
-        [Validators.required],
-      ],
+        [Validators.required]],
       comments: ["", [Validators.maxLength(500)]],
     },
     { validators: this.dateRangeValidator.bind(this) },

@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
@@ -32,7 +32,7 @@ interface VacationApprovalDetailDTO {
   selector: "app-vacacion-solicitud-detalle",
   templateUrl: "./vacacion-solicitud-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxTag, WebButtonLabel],
+  imports: [LxTag],
 })
 export class VacacionSolicitudDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -8,7 +8,6 @@ import {
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LxIcon } from '@ui/adaptive/icon/icon';
@@ -17,7 +16,7 @@ import { LxIcon } from '@ui/adaptive/icon/icon';
   selector: "app-presentacion-junta-comite-desktop",
   templateUrl: "./presentacion-junta-comite-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WebButtonLabel, LxTag, ButtonWeb, PdfViewerTrigger, LxIcon],
+  imports: [LxTag, ButtonWeb, PdfViewerTrigger, LxIcon],
 })
 export class PresentacionJuntaComiteDesktop {
   aspRoleS = inject(AspRoleService);

@@ -6,7 +6,6 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from '@ui/adaptive/icon/icon';
@@ -20,10 +19,8 @@ import { PrestamoEmpleadoDTO } from "../../interfaces/prestamo-empleado.interfac
     CommonModule,
     LxIcon,
     MobileListItem,
-    WebButtonIcon,
     LxTag,
-    DataViewMobile,
-  ],
+    DataViewMobile],
 })
 export class PrestamosEmpleadoMobile {
   data = input.required<PrestamoEmpleadoDTO[]>();

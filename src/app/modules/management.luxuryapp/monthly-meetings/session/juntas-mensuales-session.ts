@@ -20,7 +20,6 @@ import { SignalRService } from "@core/services/signalr.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -123,9 +122,7 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
     ApiDatePipe,
     RouterModule,
     AppTable,
-    LxTag,
-    WebButtonLabel,
-  ],
+    LxTag],
 })
 export class JuntasMensualesSession {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -147,8 +144,7 @@ export class JuntasMensualesSession {
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
-    ApplicationRole.SupervisionOperativa,
-  ]);
+    ApplicationRole.SupervisionOperativa]);
   readonly selectedSummary = computed(
     () => this.items().find((item) => item.id === this.selectedId()) ?? null,
   );
@@ -228,8 +224,7 @@ export class JuntasMensualesSession {
         ApplicationRole.Administrador,
         ApplicationRole.GerenteOperaciones,
         ApplicationRole.GerenteAtencion,
-        ApplicationRole.Asistente,
-      ])
+        ApplicationRole.Asistente])
     ) {
       this.router.navigate(ROUTES.JUNTAS_COMITE.PRESENTACIONES_CONTADOR);
     } else {
@@ -242,8 +237,7 @@ export class JuntasMensualesSession {
     if (detail?.meeting?.id) {
       this.router.navigate([
         "/committee-meetings/gestion-minuta",
-        detail.meeting.id,
-      ]);
+        detail.meeting.id]);
       return;
     }
 
@@ -265,8 +259,7 @@ export class JuntasMensualesSession {
         if (result.meetingId) {
           this.router.navigate([
             "/committee-meetings/gestion-minuta",
-            result.meetingId,
-          ]);
+            result.meetingId]);
         }
       });
   }
@@ -382,7 +375,7 @@ export class JuntasMensualesSession {
     );
 
     if (match) {
-      const [, year, month, day, hour, minute, second] = match;
+      const [ year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,
