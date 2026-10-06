@@ -27,7 +27,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { MobileButtonIconDelete } from "@ui/buttons/mobile-icon";
 @Component({
   selector: "app-notifications-list-mobile",
   templateUrl: "./notifications-list-mobile.html",
@@ -69,7 +68,7 @@ import { MobileButtonIconDelete } from "@ui/buttons/mobile-icon";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel, MobileButtonIconDelete],
+  imports: [LxIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -140,4 +139,3 @@ export class NotificationsListMobile implements OnInit {
     });
   }
 }
-

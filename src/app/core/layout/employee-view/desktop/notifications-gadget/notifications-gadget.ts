@@ -9,7 +9,6 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
@@ -25,7 +24,6 @@ import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
     LxIcon,
     AppBadge,
     LxTooltipDirective,
-    WebButtonIconDelete,
     NgbDropdownModule,
   ],
   templateUrl: "./notifications-gadget.html",
@@ -99,4 +97,3 @@ export class NotificationsGadget implements OnInit {
     this.router.navigate(ROUTES.NOTIFICATIONS);
   }
 }
-
