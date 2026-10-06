@@ -29,10 +29,14 @@
                 @if (item.emergencia) {
                 <p class="m-0 text-red-500 fw-bold">Emergencia</p>
                 } @if (isJefeMantenimiento()) {
-                <iw-button-confirm
+                <lux-button-web
+                  kind="confirm"
+                  displayMode="icon"
                   icon="trash"
-                  ngbTooltip="Eliminar"
-                  (confirmed)="delete.emit(item)"
+                  severity="success"
+                  variant="soft"
+                  tooltip="Eliminar"
+                  (clicked)="delete.emit(item)"
                 />
                 }
               </div>

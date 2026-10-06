@@ -19,7 +19,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { Workbook } from "exceljs";
 import FileSaver from "file-saver";
@@ -51,7 +50,6 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabelDownload,
     LuxTableCaption,
     TableFooter,
   ],

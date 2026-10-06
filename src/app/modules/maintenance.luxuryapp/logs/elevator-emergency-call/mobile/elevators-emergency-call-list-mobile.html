@@ -1,9 +1,11 @@
 <div class="d-flex d-md-none justify-content-end mb-2">
-  <iw-button-download
+  <lux-button-web
+    kind="download"
+    displayMode="icon"
+    severity="secondary"
+    variant="soft"
+    tooltip="Descargar PDF"
     (clicked)="downloadPdf.emit()"
-    lxTooltip="Descargar PDF"
-    tooltipPosition="top"
-    tooltip="Descargar listado de llamadas de emergencia"
   />
 </div>
 
@@ -63,7 +65,11 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

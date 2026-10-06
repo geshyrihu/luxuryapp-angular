@@ -151,49 +151,55 @@
       }
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-item
-            (clicked)="documentos.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:picture-as-pdf"
-            lxTooltip="Documentos"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Documentos"
+            (clicked)="documentos.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="serviceHistory.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:description"
-            lxTooltip="Histórico de servicios"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Histórico de servicios"
+            (clicked)="serviceHistory.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="bitacora.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:book"
-            lxTooltip="Bitácora"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Bitácora"
+            (clicked)="bitacora.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="fichaTecnica.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:article"
-            lxTooltip="Ficha técnica"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Ficha técnica"
+            (clicked)="fichaTecnica.emit(item.id)"
           />
           @if (showContents()) {
-          <iw-button-item
-            (clicked)="equipmentContents.emit(item)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:inventory-2"
-            lxTooltip="Contenidos"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Contenidos"
+            (clicked)="equipmentContents.emit(item)"
           />
           } @if (!mostrarPreventivos()) {
-          <iw-button-item
-            (clicked)="openMaintenances.emit(item)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:build"
-            lxTooltip="Mantenimientos"
-            tooltipPosition="top"
             variant="text"
+            tooltip="Mantenimientos"
+            (clicked)="openMaintenances.emit(item)"
           />
           } @if (canManage()) {
           <lux-button-web
@@ -206,7 +212,15 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar registro ' + item.id })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
           }
         </div>
       </td>

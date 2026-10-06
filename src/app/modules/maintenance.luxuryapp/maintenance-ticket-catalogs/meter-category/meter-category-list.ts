@@ -19,6 +19,8 @@ import { MeterCategoryListDesktop } from "./desktop/meter-category-list-desktop"
 import { MeterCategoryForm } from "./meter-category-form";
 import { MeterCategoryListMobile } from "./mobile/meter-category-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-meter-category-list",
   templateUrl: "./meter-category-list.html",
@@ -27,6 +29,7 @@ import { MeterCategoryListMobile } from "./mobile/meter-category-list-mobile";
 })
 export class MeterCategoryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
 
@@ -53,7 +56,11 @@ export class MeterCategoryList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.MeterCategories.delete(id))
       .then((result: boolean) => {

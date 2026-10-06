@@ -28,22 +28,23 @@
                 kind="edit"
                 (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
               />
-              <ili-button-delete
-                (confirmed)="delete.emit(item.id)"
-                label="Eliminar"
+              <lux-button-mobile
+                kind="delete"
+                color="danger"
+                (clicked)="delete.emit(item.id)"
               />
-              <ili-button-item
-                iconName="save-outline"
+              <lux-button-mobile
+                kind="item"
                 label="Lecturas"
                 (clicked)="goToLecturas.emit(item.id)"
               />
-              <ili-button-item
-                iconName="trending-up-outline"
+              <lux-button-mobile
+                kind="item"
                 label="Gráfica"
                 (clicked)="goToGrafico.emit(item.id)"
               />
-              <ili-button-item
-                iconName="bar-chart-outline"
+              <lux-button-mobile
+                kind="item"
                 label="Exportar Excel"
                 (clicked)="exportExcel.emit(item.id)"
               />

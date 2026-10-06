@@ -4,6 +4,7 @@ import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
@@ -13,8 +14,6 @@ import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calend
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -44,9 +43,7 @@ interface Equipo {
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     WebButtonLabel,
-    WebButtonIconDelete,
     ButtonWeb,
-    WebButtonIconItem,
   ],
   template: `
     @if (equipo) {
@@ -111,11 +108,12 @@ interface Equipo {
               ) {
                 <td>
                   <div class="d-flex">
-                    <iw-button-item
+                    <lux-button-web
+                      kind="item"
+                      displayMode="icon"
                       iconClass="material-symbols-light:content-copy"
-                      lxTooltip="Duplicar"
-                      tooltipPosition="top"
                       variant="text"
+                      tooltip="Duplicar"
                       (clicked)="onCopyMantenimiento(order)"
                     />
                     <lux-button-web
@@ -128,9 +126,15 @@ interface Equipo {
                       ariaLabel="Editar"
                       (clicked)="onEditMantenimiento(order)"
                     />
-                    <iw-button-delete
-                      (confirmed)="onDeleteMantenimiento(order.id)"
-                      [isLinked]="order.hasServiceOrder"
+                    <lux-button-web
+                      kind="delete"
+                      displayMode="icon"
+                      severity="danger"
+                      variant="soft"
+                      size="sm"
+                      tooltip="Eliminar"
+                      ariaLabel="Eliminar"
+                      (clicked)="onDeleteMantenimiento(order.id)"
                     />
                   </div>
                 </td>
@@ -154,6 +158,7 @@ export class MantenimientosDialog {
   ref = inject(DynamicDialogRef);
   aspRoleS = inject(AspRoleService);
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private dialogHandlerS = inject(DialogHandlerService);
 
   public AspRole = ApplicationRole;
@@ -208,7 +213,11 @@ export class MantenimientosDialog {
       });
   }
 
-  onDeleteMantenimiento(orderId: any) {
+  async onDeleteMantenimiento(orderId: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.MaintenanceCalendars.delete(orderId))
       .then(() => {

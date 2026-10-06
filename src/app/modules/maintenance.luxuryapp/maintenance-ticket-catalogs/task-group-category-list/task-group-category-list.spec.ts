@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { TaskGroupCategoryList } from "./task-group-category-list";
 
@@ -34,6 +35,7 @@ describe("TaskGroupCategoryList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });

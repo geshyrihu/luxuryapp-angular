@@ -18,6 +18,8 @@ import { CalendarioMaestroEquipoForm } from "./calendario-maestro-equipo-form";
 import { CalendarioMaestroEquipoDesktop } from "./desktop/calendario-maestro-equipo-desktop";
 import { CalendarioMaestroEquipoMobile } from "./mobile/calendario-maestro-equipo-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-calendario-maestro-equipo",
   templateUrl: "./calendario-maestro-equipo.html",
@@ -26,6 +28,7 @@ import { CalendarioMaestroEquipoMobile } from "./mobile/calendario-maestro-equip
 })
 export class CalendarioMaestroEquipo implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
@@ -47,7 +50,11 @@ export class CalendarioMaestroEquipo implements OnInit {
         this.dataSignal.set(result);
       });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CalendarioMaestroEquipo.delete(id))
       .then((result: boolean) => {

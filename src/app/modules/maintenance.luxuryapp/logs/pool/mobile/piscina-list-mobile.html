@@ -33,9 +33,10 @@
               kind="edit"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
-            <ili-button-delete
-              (confirmed)="delete.emit(item.id)"
-              label="Eliminar"
+            <lux-button-mobile
+              kind="delete"
+              color="danger"
+              (clicked)="delete.emit(item.id)"
             />
             <ili-button-item
               iconName="book-outline"

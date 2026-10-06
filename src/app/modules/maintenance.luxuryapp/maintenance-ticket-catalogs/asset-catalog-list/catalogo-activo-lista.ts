@@ -17,6 +17,8 @@ import { CatalogoActivoForm } from "./catalogo-activo-form";
 import { CatalogoActivoListaDesktop } from "./desktop/catalogo-activo-lista-desktop";
 import { CatalogoActivoListaMobile } from "./mobile/catalogo-activo-lista-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-catalogo-activo-lista",
   imports: [CatalogoActivoListaDesktop, CatalogoActivoListaMobile],
@@ -25,6 +27,7 @@ import { CatalogoActivoListaMobile } from "./mobile/catalogo-activo-lista-mobile
 })
 export class CatalogoActivoLista {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   // Declaracion e inicializacion de variables
@@ -53,7 +56,11 @@ export class CatalogoActivoLista {
   }
 
   // Funcion para eliminar un banco y refres
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS.onDelete(Endpoints.CatalogAssets.delete(id)).then(() => {
       // Actualizamos el signal para eliminar el elemento de la lista
       this.dataSignal.set(

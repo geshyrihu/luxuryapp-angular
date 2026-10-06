@@ -28,6 +28,8 @@ interface PiscinaDto {
   pathImage?: string;
   typePiscina: string | number;
 }
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-piscina-list",
   templateUrl: "./piscina-list.html",
@@ -36,6 +38,7 @@ interface PiscinaDto {
 })
 export class PiscinaList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -73,7 +76,11 @@ export class PiscinaList {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Piscina.delete(id))
       .then((result: boolean) => {

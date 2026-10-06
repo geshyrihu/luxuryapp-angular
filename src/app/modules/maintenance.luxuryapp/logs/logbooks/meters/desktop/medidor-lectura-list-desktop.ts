@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -24,7 +23,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ActionMenu,
-    WebButtonLabelDelete,
     ButtonWeb,
     ApiDatePipe,
     AppTable,

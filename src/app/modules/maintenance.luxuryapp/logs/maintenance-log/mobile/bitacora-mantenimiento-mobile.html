@@ -22,7 +22,11 @@
       <ili-action-menu end>
         <ng-container actions>
           @if (isJefeMantenimiento()) {
-          <ili-button-delete label="Eliminar" (confirmed)="delete.emit(item)" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item)"
+          />
           }
         </ng-container>
       </ili-action-menu>

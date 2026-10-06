@@ -18,6 +18,8 @@ import { RecepcionPipasAguaListMobile } from "./mobile/recepcion-pipas-agua-list
 import { RecepcionPipasAguaForm } from "./recepcion-pipas-agua-form";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-recepcion-pipas-agua-list",
   templateUrl: "./recepcion-pipas-agua-list.html",
@@ -26,6 +28,7 @@ import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 })
 export class RecepcionPipasAguaList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   htmlPrintS = inject(HtmlPrintService);
@@ -51,7 +54,11 @@ export class RecepcionPipasAguaList {
     });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RecepcionPipasAgua.getById(id))
       .then((result: boolean) => {

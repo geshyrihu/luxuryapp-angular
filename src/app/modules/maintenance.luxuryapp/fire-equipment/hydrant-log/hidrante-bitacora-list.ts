@@ -18,6 +18,8 @@ import { HidranteBitacoraListDesktop } from "./desktop/hidrante-bitacora-list-de
 import { HidranteBitacoraPdfService } from "./hidrante-bitacora-pdf.service";
 import { HidranteBitacoraListMobile } from "./mobile/hidrante-bitacora-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-hidrante-bitacora-list",
   templateUrl: "./hidrante-bitacora-list.html",
@@ -26,6 +28,7 @@ import { HidranteBitacoraListMobile } from "./mobile/hidrante-bitacora-list-mobi
 })
 export class HidranteBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   pdfS = inject(HidranteBitacoraPdfService);
   platformS = inject(PlatformService);
@@ -53,7 +56,11 @@ export class HidranteBitacoraList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.FireEquipmentLogs.hidrante.getById(id))
       .then((result: boolean) => {

@@ -18,6 +18,8 @@ import { CatalogoDescripcionForm } from "src/app/modules/operations.luxuryapp/de
 import { CatalogoDescripcionListDesktop } from "./desktop/catalogo-descripcion-list-desktop";
 import { CatalogoDescripcionListMobile } from "./mobile/catalogo-descripcion-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-catalogo-descripcion-list",
   templateUrl: "./catalogo-descripcion-list.html",
@@ -26,6 +28,7 @@ import { CatalogoDescripcionListMobile } from "./mobile/catalogo-descripcion-lis
 })
 export class CatalogoDescripcionList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
@@ -61,7 +64,11 @@ export class CatalogoDescripcionList implements OnInit {
         if (result) this.onLoadData();
       });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.EntregaRecepcion.delete(id))
       .then((result: boolean) => {

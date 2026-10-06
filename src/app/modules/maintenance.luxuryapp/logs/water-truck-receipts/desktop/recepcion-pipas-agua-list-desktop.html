@@ -136,7 +136,9 @@
 
       <td>
         <div class="d-flex">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:picture-as-pdf"
             tooltip="Descargar soporte PDF"
             (clicked)="downloadPdf.emit(item)"
@@ -151,7 +153,15 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Recepcion' })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

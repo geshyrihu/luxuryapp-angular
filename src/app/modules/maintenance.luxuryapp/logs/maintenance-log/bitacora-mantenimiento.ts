@@ -20,6 +20,8 @@ import { BitacoraMantenimientoForm } from "./bitacora-mantenimiento-form";
 import { BitacoraMantenimientoDesktop } from "./desktop/bitacora-mantenimiento-desktop";
 import { BitacoraMantenimientoMobile } from "./mobile/bitacora-mantenimiento-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-bitacora-mantenimiento",
   templateUrl: "./bitacora-mantenimiento.html",
@@ -27,6 +29,7 @@ import { BitacoraMantenimientoMobile } from "./mobile/bitacora-mantenimiento-mob
 })
 export class BitacoraMantenimiento {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   dateS = inject(DateService);
   authService = inject(AuthService);
@@ -100,7 +103,11 @@ export class BitacoraMantenimiento {
     this.onLoadData();
   }
 
-  onDelete(item: any) {
+  async onDelete(item: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.BitacoraMantenimiento.delete(item.id))
       .then(() => {

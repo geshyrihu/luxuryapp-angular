@@ -6,8 +6,6 @@ import {
 } from "@angular/core";
 import { Medidor } from "@core/interfaces/medidor.interface";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -19,8 +17,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
     DataViewMobile,
     AppIcon,
   ],

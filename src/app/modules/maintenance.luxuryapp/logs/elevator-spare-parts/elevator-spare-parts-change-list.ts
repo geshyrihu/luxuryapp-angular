@@ -20,6 +20,8 @@ import { ElevatorSparePartsChangeListDesktop } from "./desktop/elevator-spare-pa
 import { ElevatorSparePartsChangeForm } from "./elevator-spare-parts-change-form";
 import { ElevatorSparePartsChangeListMobile } from "./mobile/elevator-spare-parts-change-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-elevator-spare-parts-change-list",
   templateUrl: "./elevator-spare-parts-change-list.html",
@@ -31,6 +33,7 @@ import { ElevatorSparePartsChangeListMobile } from "./mobile/elevator-spare-part
 })
 export class ElevatorSparePartsChangeList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   pdfS = inject(ElevatorLogsPdfService);
@@ -62,7 +65,11 @@ export class ElevatorSparePartsChangeList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(
         Endpoints.RefactorMantenimiento.elevatorSparePartsChangeById(id),

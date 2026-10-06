@@ -26,6 +26,8 @@ import { MedidorLecturaListMobile } from "./mobile/medidor-lectura-list-mobile";
 
 import { AuthService } from "../../../../../core/auth/services/auth.service";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-medidor-lectura-list",
   templateUrl: "./medidor-lectura-list.html",
@@ -35,6 +37,7 @@ import { AuthService } from "../../../../../core/auth/services/auth.service";
 })
 export class MedidorLecturaList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   route = inject(ActivatedRoute);
@@ -102,7 +105,11 @@ export class MedidorLecturaList implements OnInit {
     });
     FileSaver.saveAs(data, fileName + EXCEL_EXTENSION);
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.MeterReadings.delete(id))
       .then((result: boolean) => {

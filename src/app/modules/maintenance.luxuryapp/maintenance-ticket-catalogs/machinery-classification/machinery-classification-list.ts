@@ -17,6 +17,8 @@ import { PlatformService } from "@core/services/platform.service";
 import { MachineryClassificationListDesktop } from "./desktop/machinery-classification-list-desktop";
 import { MachineryClassificationForm } from "./machinery-classification-form";
 import { MachineryClassificationListMobile } from "./mobile/machinery-classification-list-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-machinery-classification-list",
   templateUrl: "./machinery-classification-list.html",
@@ -28,6 +30,7 @@ import { MachineryClassificationListMobile } from "./mobile/machinery-classifica
 })
 export class MachineryClassificationList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
+  confirmS = inject(ConfirmService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
   data = signal<any[]>([]);
@@ -49,7 +52,11 @@ export class MachineryClassificationList implements OnInit {
         this.data.set(result);
       });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.MachineryClassification.delete(id))
       .then((result: boolean) => {

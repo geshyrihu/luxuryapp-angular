@@ -26,6 +26,8 @@ import { CalendarioMaestroListaDesktop } from "./desktop/calendario-maestro-list
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
 import { CalendarioMaestroListaMobile } from "./mobile/calendario-maestro-lista-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-calendario-maestro-lista",
   templateUrl: "./calendario-maestro-lista.html",
@@ -38,6 +40,7 @@ import { CalendarioMaestroListaMobile } from "./mobile/calendario-maestro-lista-
 })
 export class CalendarioMaestroLista implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
   platformS = inject(PlatformService);
@@ -119,7 +122,11 @@ export class CalendarioMaestroLista implements OnInit {
     );
   }
 
-  onDelete(id: any): void {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RefactorMantenimiento.calendariomaestroById(id))
       .then((result: boolean) => {

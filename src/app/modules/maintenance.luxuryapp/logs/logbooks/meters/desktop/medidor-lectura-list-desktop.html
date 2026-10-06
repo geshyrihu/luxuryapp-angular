@@ -60,9 +60,11 @@
               variant="soft"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
-            <il-button-delete
-              (confirmed)="delete.emit(item.id)"
-              label="Eliminar"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="delete.emit(item.id)"
             />
           </ng-container>
         </app-action-menu>

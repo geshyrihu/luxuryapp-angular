@@ -84,15 +84,19 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-download
+          <lux-button-mobile
+            kind="download"
             (clicked)="downloadPdf.emit(item)"
-            label="Descargar"
           />
           <lux-button-mobile
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Recepcion' })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

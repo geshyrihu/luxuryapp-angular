@@ -14,6 +14,7 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SwalService } from "@core/services/swal.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
@@ -21,17 +22,18 @@ import {
 } from "@core/services/dialog-handler.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-activos-documentos",
   templateUrl: "./activos-documentos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, NgbTooltipModule, WebButtonLabelConfirm, WebButtonLabel],
+  imports: [ButtonWeb, AppIcon, NgbTooltipModule, WebButtonLabel],
 })
 export class ActivosDocumentos implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  swalS = inject(SwalService);
   dialogHandlerS = inject(DialogHandlerService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
@@ -57,7 +59,16 @@ export class ActivosDocumentos implements OnInit {
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar este documento?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.Machineries.deleteDocument(id))
       .then((result: boolean) => {

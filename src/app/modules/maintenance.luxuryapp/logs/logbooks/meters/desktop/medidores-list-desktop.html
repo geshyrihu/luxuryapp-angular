@@ -1,7 +1,10 @@
 <div class="row g-4">
   <div class="col-9"></div>
   <div class="col-3">
-    <il-button-add
+    <lux-button-web
+      kind="add"
+      severity="info"
+      variant="soft"
       label="Agregar Medidor"
       (clicked)="add.emit({ id: 0, title: 'Agregar Registro' })"
     />
@@ -56,23 +59,31 @@
               variant="soft"
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
-            <il-button-delete
-              label="Eliminar"
-              (confirmed)="delete.emit(item.id)"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="delete.emit(item.id)"
             />
-            <il-button-item
-              iconClass="material-symbols-light:save"
+            <lux-button-web
+              kind="item"
+              displayMode="both"
               label="Lecturas"
+              iconClass="material-symbols-light:save"
               (clicked)="goToLecturas.emit(item.id)"
             />
-            <il-button-item
-              iconClass="material-symbols-light:monitoring"
+            <lux-button-web
+              kind="item"
+              displayMode="both"
               label="Gráfica"
+              iconClass="material-symbols-light:monitoring"
               (clicked)="goToGrafico.emit(item.id)"
             />
-            <il-button-download
+            <lux-button-web
+              kind="download"
               label="Exportar a Excel"
               severity="success"
+              variant="soft"
               (clicked)="exportExcel.emit(item.id)"
             />
           </app-action-menu>

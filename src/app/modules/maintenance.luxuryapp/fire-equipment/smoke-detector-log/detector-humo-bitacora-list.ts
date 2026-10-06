@@ -18,6 +18,8 @@ import { DetectorHumoBitacoraListDesktop } from "./desktop/detector-humo-bitacor
 import { DetectorHumoBitacoraPdfService } from "./detector-humo-bitacora-pdf.service";
 import { DetectorHumoBitacoraListMobile } from "./mobile/detector-humo-bitacora-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-detector-humo-bitacora-list",
   templateUrl: "./detector-humo-bitacora-list.html",
@@ -26,6 +28,7 @@ import { DetectorHumoBitacoraListMobile } from "./mobile/detector-humo-bitacora-
 })
 export class DetectorHumoBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   pdfS = inject(DetectorHumoBitacoraPdfService);
   platformS = inject(PlatformService);
@@ -55,7 +58,11 @@ export class DetectorHumoBitacoraList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.FireEquipmentLogs.detectorHumo.getById(id))
       .then((result: boolean) => {

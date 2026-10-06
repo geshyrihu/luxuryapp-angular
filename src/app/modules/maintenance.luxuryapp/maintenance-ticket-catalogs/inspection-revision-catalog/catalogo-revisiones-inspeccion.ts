@@ -18,6 +18,8 @@ import { CatalogoRevisionesInspeccionForm } from "./catalogo-revisiones-inspecci
 import { CatalogoRevisionesInspeccionDesktop } from "./desktop/catalogo-revisiones-inspeccion-desktop";
 import { CatalogoRevisionesInspeccionMobile } from "./mobile/catalogo-revisiones-inspeccion-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-catalogo-revisiones-inspeccion",
   imports: [
@@ -29,6 +31,7 @@ import { CatalogoRevisionesInspeccionMobile } from "./mobile/catalogo-revisiones
 })
 export class CatalogoRevisionesInspeccion {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   // Declaración e inicialización de variables
@@ -73,7 +76,11 @@ export class CatalogoRevisionesInspeccion {
   }
 
   // Funcion para eliminar un banco y refres
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InspectionReviewCatalog.delete(id))
       .then(() => {

@@ -38,6 +38,8 @@ interface PiscinaBitacoraDto {
   cenefas: boolean;
 }
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-piscina-bitacora-list",
   templateUrl: "./piscina-bitacora-list.html",
@@ -46,6 +48,7 @@ interface PiscinaBitacoraDto {
 })
 export class PiscinaBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   excelS = inject(ExcelExportService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
@@ -76,7 +79,11 @@ export class PiscinaBitacoraList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RefactorMantenimiento.piscinabitacoraById(id))
       .then((result: boolean) => {

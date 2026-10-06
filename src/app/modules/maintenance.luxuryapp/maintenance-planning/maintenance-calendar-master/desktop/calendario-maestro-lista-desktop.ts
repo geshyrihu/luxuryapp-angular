@@ -8,20 +8,18 @@ import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { LxMenu } from "@ui/adaptive/menu/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-calendario-maestro-lista-desktop",
   templateUrl: "./calendario-maestro-lista-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     LxMenu,
     LxTag,
     LxTooltipDirective,
-    WebButtonLabelAdd,
-    WebButtonLabelItem,
     AppIcon,
   ],
 })

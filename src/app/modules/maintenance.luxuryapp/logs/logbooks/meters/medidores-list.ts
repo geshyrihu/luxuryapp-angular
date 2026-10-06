@@ -39,6 +39,8 @@ import { MedidorForm } from "./medidor-form";
 import { MedidorLecturaForm } from "./medidor-lectura-form";
 import { MedidoresListMobile } from "./mobile/medidores-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-medidores-list",
   templateUrl: "./medidores-list.html",
@@ -47,6 +49,7 @@ import { MedidoresListMobile } from "./mobile/medidores-list-mobile";
 })
 export class MedidoresList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -83,7 +86,11 @@ export class MedidoresList {
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Meters.delete(id))
       .then((result: boolean) => {

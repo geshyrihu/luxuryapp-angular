@@ -20,6 +20,8 @@ import { ElevatorsEmergencyCallListDesktop } from "./desktop/elevators-emergency
 import { ElevatorsEmergencyCallForm } from "./elevators-emergency-call-form";
 import { ElevatorsEmergencyCallListMobile } from "./mobile/elevators-emergency-call-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-elevators-emergency-call-list",
   templateUrl: "./elevators-emergency-call-list.html",
@@ -28,6 +30,7 @@ import { ElevatorsEmergencyCallListMobile } from "./mobile/elevators-emergency-c
 })
 export class ElevatorsEmergencyCallList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   pdfS = inject(ElevatorLogsPdfService);
@@ -59,7 +62,11 @@ export class ElevatorsEmergencyCallList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RefactorMantenimiento.elevatorsEmergencyCallById(id))
       .then((result: boolean) => {

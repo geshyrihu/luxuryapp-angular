@@ -10,10 +10,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -33,9 +30,7 @@ import {
     WebButtonLabel,
     AppIcon,
     WebButtonIconActiveDesactive,
-    WebButtonIconItem,
     ButtonWeb,
-    WebButtonIconDelete,
     AppTable,
     AppSortableColumn,
     AppSorticon,

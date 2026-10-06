@@ -22,6 +22,8 @@ import { PrestamoHerramientasControlDesktop } from "./desktop/prestamo-herramien
 import { PrestamoHerramientasControlMobile } from "./mobile/prestamo-herramientas-control-mobile";
 import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-control";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-prestamo-herramientas-control",
   templateUrl: "./prestamo-herramientas-control.html",
@@ -33,6 +35,7 @@ import { PrestamoHerramientaFormControl } from "./prestamo-herramienta-form-cont
 })
 export class PrestamoHerramientasControl {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -110,7 +113,11 @@ export class PrestamoHerramientasControl {
     });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ToolLoans.delete(id))
       .then((result: boolean) => {

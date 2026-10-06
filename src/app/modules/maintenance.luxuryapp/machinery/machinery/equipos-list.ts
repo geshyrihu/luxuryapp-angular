@@ -77,6 +77,8 @@ interface Equipo {
 
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-equipos-list",
   templateUrl: "./equipos-list.html",
@@ -90,6 +92,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 })
 export class EquiposList {
   public authS = inject(AuthService);
+  confirmS = inject(ConfirmService);
   public aspRoleS = inject(AspRoleService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
@@ -455,6 +458,10 @@ ${this.htmlPrintS.getStandardCss()}
   }
 
   async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     await this.apiResponseS.onDelete(Endpoints.Machineries.delete(id));
     // Forzamos la recarga para asegurar consistencia con la BD.
     this.onLoadData(

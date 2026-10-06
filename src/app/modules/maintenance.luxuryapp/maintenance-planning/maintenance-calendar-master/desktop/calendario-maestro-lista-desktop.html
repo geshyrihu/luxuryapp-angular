@@ -15,7 +15,12 @@
         }
       </div>
       @if (canManage()) {
-      <il-button-add (clicked)="add.emit({ id: 0, mes: item.eMonth })" />
+      <lux-button-web
+        kind="add"
+        severity="info"
+        variant="soft"
+        (clicked)="add.emit({ id: 0, mes: item.eMonth })"
+      />
       }
     </div>
 
@@ -28,7 +33,9 @@
           @if (canManage()) {
           <div class="flex-shrink-0">
             <lux-menu #menu [model]="menuItems()" [popup]="true"></lux-menu>
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="both"
               iconClass="material-symbols-light:menu"
               (clicked)="selectItem.emit({ item: evento, menu: menu })"
             />

@@ -68,7 +68,13 @@
           [dateStyle]="{ minWidth: '195px' }"
         />
       </div>
-      <il-button-download class="ms-auto" (clicked)="onDownloadPdf()" />
+      <lux-button-web
+        kind="download"
+        severity="secondary"
+        variant="soft"
+        styleClass="ms-auto"
+        (clicked)="onDownloadPdf()"
+      />
     </div>
   </div>
   <div class="bg-yellow-500" style="height: 0.2rem"></div>

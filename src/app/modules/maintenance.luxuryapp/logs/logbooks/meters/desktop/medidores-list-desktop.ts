@@ -6,10 +6,6 @@ import {
 } from "@angular/core";
 import { Medidor } from "@core/interfaces/medidor.interface";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelDownload } from "@ui/buttons/web-label/button-download";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 
@@ -19,11 +15,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ActionMenu,
-    WebButtonLabelAdd,
     ButtonWeb,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
-    WebButtonLabelDownload,
     AppIcon,
   ],
 })

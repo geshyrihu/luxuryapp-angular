@@ -18,6 +18,8 @@ import { PlatformService } from "@core/services/platform.service";
 import { ProductCategoryListDesktop } from "./desktop/product-category-list-desktop";
 import { ProductCategoryListMobile } from "./mobile/product-category-list-mobile";
 import { ProductCategoryForm } from "./product-category-form";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-product-category-list",
   templateUrl: "./product-category-list.html",
@@ -26,6 +28,7 @@ import { ProductCategoryForm } from "./product-category-form";
 })
 export class ProductCategoryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   data = signal<Category[]>([]);
@@ -49,7 +52,11 @@ export class ProductCategoryList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ProductCategories.delete(id))
       .then((result: boolean) => {

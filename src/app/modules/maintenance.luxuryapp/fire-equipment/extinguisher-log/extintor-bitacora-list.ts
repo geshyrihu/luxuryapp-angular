@@ -18,6 +18,8 @@ import { ExtintorBitacoraListDesktop } from "./desktop/extintor-bitacora-list-de
 import { ExtintorBitacoraPdfService } from "./extintor-bitacora-pdf.service";
 import { ExtintorBitacoraListMobile } from "./mobile/extintor-bitacora-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-extintor-bitacora-list",
   templateUrl: "./extintor-bitacora-list.html",
@@ -26,6 +28,7 @@ import { ExtintorBitacoraListMobile } from "./mobile/extintor-bitacora-list-mobi
 })
 export class ExtintorBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   pdfS = inject(ExtintorBitacoraPdfService);
   platformS = inject(PlatformService);
@@ -55,7 +58,11 @@ export class ExtintorBitacoraList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.FireEquipmentLogs.extintor.getById(id))
       .then((result: boolean) => {

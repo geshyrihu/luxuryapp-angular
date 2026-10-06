@@ -18,6 +18,8 @@ import { EstacionManualBitacoraListDesktop } from "./desktop/estacion-manual-bit
 import { EstacionManualBitacoraPdfService } from "./estacion-manual-bitacora-pdf.service";
 import { EstacionManualBitacoraListMobile } from "./mobile/estacion-manual-bitacora-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-estacion-manual-bitacora-list",
   templateUrl: "./estacion-manual-bitacora-list.html",
@@ -26,6 +28,7 @@ import { EstacionManualBitacoraListMobile } from "./mobile/estacion-manual-bitac
 })
 export class EstacionManualBitacoraList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   pdfS = inject(EstacionManualBitacoraPdfService);
   platformS = inject(PlatformService);
@@ -55,7 +58,11 @@ export class EstacionManualBitacoraList implements OnInit {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.FireEquipmentLogs.estacionManual.getById(id))
       .then((result: boolean) => {

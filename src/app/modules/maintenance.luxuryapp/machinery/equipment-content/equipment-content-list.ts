@@ -21,6 +21,8 @@ import { EquipmentContentDto } from "./interfaces/equipment-content.dto";
 import { EquipmentContentsDialogData } from "./interfaces/equipment-content.interface";
 import { EquipmentContentListMobile } from "./mobile/equipment-content-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-equipment-content-list",
   templateUrl: "./equipment-content-list.html",
@@ -29,6 +31,7 @@ import { EquipmentContentListMobile } from "./mobile/equipment-content-list-mobi
 })
 export class EquipmentContentsList implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly config = inject(DynamicDialogConfig);
   readonly aspRoleS = inject(AspRoleService);
@@ -91,7 +94,11 @@ export class EquipmentContentsList implements OnInit {
     if (result) await this.loadData();
   }
 
-  async onDelete(id: string): Promise<void> {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     const deleted = await this.apiResponseS.onDelete(
       EndpointsMantenimiento.EquipmentContents.delete(id),
     );

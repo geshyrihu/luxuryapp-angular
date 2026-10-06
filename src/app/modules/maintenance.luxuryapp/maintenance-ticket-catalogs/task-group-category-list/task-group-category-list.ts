@@ -18,6 +18,8 @@ import { TaskGroupCategoryListDesktop } from "./desktop/task-group-category-list
 import { TaskGroupCategoryListMobile } from "./mobile/task-group-category-list-mobile";
 import { TaskGroupCategoryForm } from "./task-group-category-form";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-task-group-category-list",
   templateUrl: "./task-group-category-list.html",
@@ -26,6 +28,7 @@ import { TaskGroupCategoryForm } from "./task-group-category-form";
 })
 export class TaskGroupCategoryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   dataSignal = signal<any[]>([]);
@@ -50,7 +53,11 @@ export class TaskGroupCategoryList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.TaskGroupCategories.delete(id))
       .then((wasDeleted: boolean) => {

@@ -20,6 +20,8 @@ import { ToolListDesktop } from "./desktop/tool-list-desktop";
 import { ToolListMobile } from "./mobile/tool-list-mobile";
 import { ToolForm } from "./tool-form";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-tool-list",
   templateUrl: "./tool-list.html",
@@ -28,6 +30,7 @@ import { ToolForm } from "./tool-form";
 })
 export class ToolList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
@@ -68,7 +71,11 @@ export class ToolList {
     });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Tools.delete(id))
       .then((result: boolean) => {

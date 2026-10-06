@@ -29,10 +29,13 @@
           </span>
         </a>
         <div class="mt-2">
-          <il-button-confirm
+          <lux-button-web
+            kind="confirm"
             icon="trash"
-            ngbTooltip="Eliminar"
-            (confirmed)="onDelete(item.id)"
+            severity="success"
+            variant="soft"
+            tooltip="Eliminar"
+            (clicked)="onDelete(item.id)"
           />
         </div>
       </div>
