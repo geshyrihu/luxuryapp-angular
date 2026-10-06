@@ -177,6 +177,17 @@ describe("TaskChecklistPanel", () => {
     expect(component.attachments()).toEqual([]);
   });
 
+  it("should not delete when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    apiResponseS.onDelete.mockClear();
+    component.checklistItems.set([checklistItem]);
+
+    await component.onDeleteChecklistItem("check-1");
+
+    expect(apiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.checklistItems()).toEqual([checklistItem]);
+  });
+
   it("uploads attachments as multipart using backend DTO property names", async () => {
     const file = new File(["pdf"], "nuevo.pdf", { type: "application/pdf" });
     const input = document.createElement("input");

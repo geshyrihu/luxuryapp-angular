@@ -10,7 +10,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -29,7 +28,6 @@ import {
   imports: [
     ButtonWeb,
     WebButtonIcon,
-    WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,
     ApiDatePipe,

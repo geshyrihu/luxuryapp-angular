@@ -20,9 +20,17 @@
         [noMargin]="true"
       />
       <div class="flex-shrink-0">
-        <iw-button-active-desactive
-          [state]="activeOnly()"
-          (stateChange)="changeState.emit($event)"
+        <lux-button-web
+          kind="active-desactive"
+          variant="outline"
+          severity="secondary"
+          [icon]="
+            activeOnly()
+              ? 'material-symbols-light:visibility-off'
+              : 'material-symbols-light:visibility'
+          "
+          [label]="activeOnly() ? 'Inactivos' : 'Activos'"
+          (clicked)="changeState.emit(!activeOnly())"
         />
       </div>
     </div>
@@ -54,11 +62,19 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(template)"
           />
-          <iw-button-active-desactive
-            [state]="isActive(template)"
-            lxTooltip="Activar/Pausar"
+          <lux-button-web
+            kind="active-desactive"
+            variant="outline"
+            severity="secondary"
+            [icon]="
+              isActive(template)
+                ? 'material-symbols-light:visibility-off'
+                : 'material-symbols-light:visibility'
+            "
+            [label]="isActive(template) ? 'Pausar' : 'Activar'"
+            tooltip="Activar/Pausar"
             tooltipPosition="top"
-            (stateChange)="toggleStatus.emit(template.id)"
+            (clicked)="toggleStatus.emit(template.id)"
           />
         </div>
       </td>

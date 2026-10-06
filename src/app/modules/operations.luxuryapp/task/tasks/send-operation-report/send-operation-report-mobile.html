@@ -28,12 +28,13 @@
       />
     </div>
     <div class="col-2">
-      <ili-button-add
+      <lux-button-mobile
+        kind="add"
         [type]="service.ButtonTypeSubmit"
         label="Agregar Correo"
+        [color]="service.form.invalid ? 'danger' : 'success'"
         [disabled]="service.form.invalid"
         [iconClass]="service.form.invalid ? 'material-symbols-light:close' : 'material-symbols-light:check'"
-        customClass=""
       />
     </div>
   </div>

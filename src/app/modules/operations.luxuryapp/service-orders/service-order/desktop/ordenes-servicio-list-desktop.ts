@@ -10,7 +10,6 @@ import { RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -34,7 +33,6 @@ import {
     RouterModule,
     CustomInputTextSignal,
     WebButtonIcon,
-    WebButtonIconItem,
     WebButtonLabel,
     LuxTableCaption,
     TableEmptyMessage,

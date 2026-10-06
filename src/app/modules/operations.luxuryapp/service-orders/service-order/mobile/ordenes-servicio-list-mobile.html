@@ -137,8 +137,10 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            iconName="print-outline"
+          <lux-button-mobile
+            kind="item"
+            color="secondary"
+            iconClass="material-symbols-light:print"
             label="Imprimir soporte"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
           />

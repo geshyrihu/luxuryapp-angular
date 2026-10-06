@@ -10,6 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskAttachmentInterface } from "@core/interfaces/tasks/task-attachment.interface";
@@ -66,6 +67,7 @@ export class TaskChecklistPanel implements OnInit {
   readonly newDescription = signal("");
 
   private readonly apiResponseS = inject(ApiResponseService);
+  private readonly confirmS = inject(ConfirmService);
 
   async ngOnInit() {
     await this.loadPanelData();
@@ -127,6 +129,10 @@ export class TaskChecklistPanel implements OnInit {
   }
 
   async onDeleteChecklistItem(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este item?",
+    );
+    if (!confirmed) return;
     const deleted = await this.apiResponseS.onDelete(
       Endpoints.TaskChecklistItems.delete(id),
     );
@@ -167,6 +173,10 @@ export class TaskChecklistPanel implements OnInit {
   }
 
   async onDeleteAttachment(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este adjunto?",
+    );
+    if (!confirmed) return;
     const deleted = await this.apiResponseS.onDelete(
       Endpoints.TaskAttachments.delete(id),
     );

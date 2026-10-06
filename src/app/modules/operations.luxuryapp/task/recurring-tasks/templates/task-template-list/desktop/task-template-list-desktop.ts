@@ -8,7 +8,6 @@ import {
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -20,7 +19,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconActiveDesactive,
     LxTooltipDirective,
     TableEmptyMessage,
     LuxTableCaption,

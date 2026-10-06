@@ -86,4 +86,13 @@ describe("TaskReportWorkPlanPreview", () => {
     await component.onSendWorkPlan();
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
   });
+
+  it("onSendWorkPlan should not call api when confirmation is cancelled", async () => {
+    (TestBed.inject(SwalService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onPost.mockClear();
+
+    await component.onSendWorkPlan();
+
+    expect(mockApiResponseS.onPost).not.toHaveBeenCalled();
+  });
 });

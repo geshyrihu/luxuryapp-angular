@@ -155,6 +155,15 @@ describe("TaskTemplateList", () => {
     await new Promise((resolve) => setTimeout(resolve));
   });
 
+  it("should not call api on delete when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onDelete.mockClear();
+
+    await component.onDelete("tmpl-1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+  });
+
   it("should change state and reload", () => {
     mockApiResponseS.onGetList.mockResolvedValue([]);
 

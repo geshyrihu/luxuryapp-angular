@@ -238,3 +238,23 @@ Patrón (referencia: `shared.luxuryapp/catalogs/banks`):
 | 208 | `catalogs/payment-type` | shared | ✅ | · | · |  |
 | 209 | `catalogs/recruitment-sources` | shared | ✅ | · | · |  |
 | 210 | `catalogs/units-of-measurement` | shared | ✅ | · | · |  |
+
+---
+
+## Fase 4 - Limpieza de botones legacy: `operations.luxuryapp` (2026-10-05)
+
+Migracion estructural de residuales de botones legacy en `operations` (Agente A, Fase 4). Contrato: consumidor inyecta `ConfirmService`/`SwalService`; `ButtonWeb`/`ButtonMobile` solo emiten `(clicked)`.
+
+- **`active-desactive` (9)**: `iw/ili-button-active-desactive` -> `lux-button-web`/`lux-button-mobile kind="active-desactive"`, con `[icon]`/`[label]` dinamicos segun estado (`material-symbols-light:visibility`/`visibility-off`) y `(clicked)` emitiendo el estado alternado (`!state`) o el id en toggles de fila.
+  - `custom-documents/custom-document/policy-contract/desktop`
+  - `task/recurring-tasks/catalog/recurring-task-catalog-list/{desktop,mobile}`
+  - `task/recurring-tasks/templates/task-template-list/{desktop,mobile}`
+  - `task/tasks/work-group/{desktop,mobile}`
+- **Residuales `[routerLink]` (2)**: `service-orders/service-order/ordenes-servicio-list-{desktop,mobile}` -> `lux-button-web`/`lux-button-mobile kind="item" variant="outline" [routerLink]` (ruteo preservado via `RouterModule`).
+- **Residuales sin evento (4)**: `inventory/product-exit/{desktop,mobile}` (`iw/ili-button-item` con `(clicked)` no capturado antes por un `>=` en `[disabled]`) y `task/tasks/send-operation-report/{web,mobile}` (`il/ili-button-add` de submit).
+- **Codigo muerto**: sin hallazgos en `operations` (no habia botones legacy comentados).
+- **Specs de cancelacion**: mocks + pruebas de la rama `if (!await confirm) return;` en specs de `task` (template-items, template-list, group-participant, followup, checklist-panel, task-list, group-list, instance-list, work-plan-preview) y en `properties`, `providers`, `supervision`, `google-calendar`.
+- **Gap cerrado**: `task-template-items.onDeleteItem` y `task-checklist-panel.onDeleteChecklistItem/onDeleteAttachment` recibieron el gate de `ConfirmService`.
+- **Pendiente (fuera de alcance)**: `view-pdf` (9) -> Agente 3 / `lux-pdf-viewer-trigger`.
+
+Estado: 0 botones legacy no-`view-pdf` en `operations`. `npm run audit:ui` y `npm run build` en verde.

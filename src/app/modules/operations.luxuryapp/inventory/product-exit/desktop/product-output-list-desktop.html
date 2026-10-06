@@ -127,12 +127,15 @@
                   "
             />
             }
-            <iw-button-item
-              (clicked)="returnProduct.emit(item)"
-              emogi="??"
-              lxTooltip="Devolver"
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              tooltip="Devolver"
               tooltipPosition="top"
               [disabled]="item.cantidadDevuelta >= item.cantidad"
+              (clicked)="returnProduct.emit(item)"
             />
 
             <lux-button-web

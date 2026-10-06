@@ -153,5 +153,14 @@ describe("TaskInstanceList", () => {
 
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();
   });
+
+  it("should not call api on reopen when confirmation is cancelled", async () => {
+    (TestBed.inject(SwalService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onPost.mockClear();
+
+    await component.onReopenTask("task-1");
+
+    expect(mockApiResponseS.onPost).not.toHaveBeenCalled();
+  });
 });
 

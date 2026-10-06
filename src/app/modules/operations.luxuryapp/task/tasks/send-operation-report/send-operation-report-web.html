@@ -63,16 +63,13 @@
       />
     </div>
     <div class="col-2 col-md-2">
-      <il-button-add
+      <lux-button-web
+        kind="add"
         [type]="service.ButtonTypeSubmit"
         label="Agregar Correo"
+        [severity]="service.form.invalid ? 'danger' : 'success'"
         [disabled]="service.form.invalid"
         [iconClass]="service.form.invalid ? 'material-symbols-light:close' : 'material-symbols-light:check'"
-        [customNgClass]="{
-          'btn-danger': service.form.invalid,
-          'btn-success': !service.form.invalid,
-        }"
-        customClass=""
       />
     </div>
   </div>

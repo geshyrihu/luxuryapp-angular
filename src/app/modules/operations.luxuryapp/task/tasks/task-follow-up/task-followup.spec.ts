@@ -98,6 +98,15 @@ describe("TaskFollowup", () => {
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();
   });
 
+  it("onDelete should not call api when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onDelete.mockClear();
+
+    await component.onDelete("followup-1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+  });
+
   it("uploads evidence against follow-up id using File form field", async () => {
     const file = new File(["image"], "evidence.jpg", { type: "image/jpeg" });
 

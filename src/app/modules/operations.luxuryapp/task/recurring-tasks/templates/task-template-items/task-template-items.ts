@@ -12,6 +12,7 @@ import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { TaskTemplateItemForm } from "../task-template-item-form/task-template-item-form";
 import { TaskTemplateItemsDesktop } from "./desktop/task-template-items-desktop";
 import { TaskTemplateItemsMobile } from "./mobile/task-template-items-mobile";
@@ -28,6 +29,7 @@ export class TaskTemplateItems implements OnInit {
   private router = inject(Router);
   public dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   templateInfo = signal<TaskTemplate | null>(null);
   items = signal<TaskTemplateItem[]>([]);
   templateId: string = "";
@@ -56,7 +58,11 @@ export class TaskTemplateItems implements OnInit {
       .then((response) => this.items.set(response || []));
   }
 
-  onDeleteItem(itemId: string) {
+  async onDeleteItem(itemId: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este item?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RecurringTasks.Templates.itemById(itemId))
       .then((result: boolean) => {

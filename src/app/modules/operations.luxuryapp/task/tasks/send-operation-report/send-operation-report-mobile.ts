@@ -7,7 +7,6 @@ import {
   IonList,
 } from "@ionic/angular";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelAdd } from "@ui/buttons/mobile-label/button-add";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import {
@@ -29,7 +28,6 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     IonLabel,
     IonCheckbox,
     SegmentedControl,
-    MobileButtonLabelAdd,
     IonInputText,
   ],
   templateUrl: "./send-operation-report-mobile.html",

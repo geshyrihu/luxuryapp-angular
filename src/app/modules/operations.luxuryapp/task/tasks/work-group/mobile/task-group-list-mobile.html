@@ -6,9 +6,17 @@
 >
   <ng-container customFilters>
     <div class="px-3 pb-3">
-      <ili-button-active-desactive
-        [state]="value()"
-        (stateChange)="change.emit($event)"
+      <lux-button-mobile
+        kind="active-desactive"
+        fill="outline"
+        color="secondary"
+        [icon]="
+          value()
+            ? 'material-symbols-light:visibility-off'
+            : 'material-symbols-light:visibility'
+        "
+        [label]="value() ? 'Inactivos' : 'Activos'"
+        (clicked)="change.emit(!value())"
       />
     </div>
   </ng-container>

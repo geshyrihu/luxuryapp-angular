@@ -17,9 +17,17 @@
         />
       </div>
       <div class="col-2">
-        <iw-button-active-desactive
-          [state]="isCurrent()"
-          (stateChange)="selectActive.emit($event)"
+        <lux-button-web
+          kind="active-desactive"
+          variant="outline"
+          severity="secondary"
+          [icon]="
+            isCurrent()
+              ? 'material-symbols-light:visibility-off'
+              : 'material-symbols-light:visibility'
+          "
+          [label]="isCurrent() ? 'Inactivos' : 'Activos'"
+          (clicked)="selectActive.emit(!isCurrent())"
         />
       </div>
     </div>

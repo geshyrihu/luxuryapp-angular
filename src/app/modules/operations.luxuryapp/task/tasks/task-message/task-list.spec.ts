@@ -149,6 +149,22 @@ describe("TaskList", () => {
     expect(component.dataSignal().items[0].id).toBe("2");
   });
 
+  it("onDelete should not call api when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiS.onDelete.mockClear();
+    component.dataSignal.set({
+      nameGroup: "",
+      assignee: null,
+      totalRecords: 1,
+      items: [{ id: "1" }],
+    });
+
+    await component.onDelete("1");
+
+    expect(mockApiS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().items.length).toBe(1);
+  });
+
   it("onUpdatePriority should toggle priority", async () => {
     await new Promise((resolve) => setTimeout(resolve));
     component.dataSignal.set({

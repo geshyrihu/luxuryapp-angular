@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -20,7 +19,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ButtonMobile,
     ApiDatePipe,
     MobileActionMenu,
-    MobileButtonLabelItem,
     DataViewMobile,
     MobileListItem,
     AppIcon,

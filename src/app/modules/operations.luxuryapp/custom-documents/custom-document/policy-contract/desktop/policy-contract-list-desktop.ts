@@ -7,7 +7,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -24,7 +23,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconActiveDesactive,
     PdfViewerTrigger,
     LxTooltipDirective,
     TableEmptyMessage,

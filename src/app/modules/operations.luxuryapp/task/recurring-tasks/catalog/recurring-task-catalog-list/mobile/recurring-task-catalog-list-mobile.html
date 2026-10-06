@@ -4,10 +4,17 @@
 >
   <div customFilters>
     <div class="px-4 py-2">
-      <ili-button-active-desactive
-        fluid
-        [state]="activeOnly()"
-        (stateChange)="changeState.emit($event)"
+      <lux-button-mobile
+        kind="active-desactive"
+        fill="outline"
+        color="secondary"
+        [icon]="
+          activeOnly()
+            ? 'material-symbols-light:visibility-off'
+            : 'material-symbols-light:visibility'
+        "
+        [label]="activeOnly() ? 'Inactivos' : 'Activos'"
+        (clicked)="changeState.emit(!activeOnly())"
       />
     </div>
   </div>
@@ -38,10 +45,17 @@
             label="Editar"
             (clicked)="edit.emit(template)"
           />
-          <ili-button-active-desactive
-            label="Activar/Pausar"
-            [state]="isActive(template)"
-            (stateChange)="toggleStatus.emit(template.id)"
+          <lux-button-mobile
+            kind="active-desactive"
+            fill="outline"
+            color="secondary"
+            [icon]="
+              isActive(template)
+                ? 'material-symbols-light:visibility-off'
+                : 'material-symbols-light:visibility'
+            "
+            [label]="isActive(template) ? 'Pausar' : 'Activar'"
+            (clicked)="toggleStatus.emit(template.id)"
           />
         </ng-container>
       </ili-action-menu>

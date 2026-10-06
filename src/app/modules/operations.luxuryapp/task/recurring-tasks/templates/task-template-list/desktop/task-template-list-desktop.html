@@ -20,9 +20,17 @@
         [noMargin]="true"
       />
       <div class="flex-shrink-0">
-        <iw-button-active-desactive
-          [state]="state()"
-          (stateChange)="changeState.emit($event)"
+        <lux-button-web
+          kind="active-desactive"
+          variant="outline"
+          severity="secondary"
+          [icon]="
+            state()
+              ? 'material-symbols-light:visibility-off'
+              : 'material-symbols-light:visibility'
+          "
+          [label]="state() ? 'Inactivos' : 'Activos'"
+          (clicked)="changeState.emit(!state())"
         />
       </div>
     </div>

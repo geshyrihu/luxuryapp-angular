@@ -109,6 +109,17 @@ describe("TaskGroupList", () => {
     expect(component.dataSignal()[0].id).toBe("2");
   });
 
+  it("onDelete should not call api when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onDelete.mockClear();
+    component.dataSignal.set([{ id: "1" }]);
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().length).toBe(1);
+  });
+
   it("onNavigateMessage should navigate and set status", () => {
     component.onNavigateMessage("group-1", 0 as any);
     expect(mockTaskGroupService.taskGroupMessageStatus).toBe(0);

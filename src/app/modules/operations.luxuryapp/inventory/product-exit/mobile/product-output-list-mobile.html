@@ -40,10 +40,12 @@
               "
           />
           }
-          <ili-button-item
-            (clicked)="returnProduct.emit(item)"
-            label="?? Devolver"
+          <lux-button-mobile
+            kind="item"
+            color="secondary"
+            label="Devolver"
             [disabled]="item.cantidadDevuelta >= item.cantidad"
+            (clicked)="returnProduct.emit(item)"
           />
 
           <lux-button-mobile

@@ -137,6 +137,15 @@ describe("TaskTemplateItems", () => {
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();
   });
 
+  it("should not call api on delete when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onDelete.mockClear();
+
+    await component.onDeleteItem("item-1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+  });
+
   it("should open item form dialog for new item", async () => {
     component.templateId = "tmpl-1";
     component.showItemForm();

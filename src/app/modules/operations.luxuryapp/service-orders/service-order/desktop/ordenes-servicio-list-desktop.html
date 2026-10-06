@@ -186,12 +186,15 @@
       </td>
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="outline"
             iconClass="material-symbols-light:print"
-            lxTooltip="Imprimir soporte"
+            tooltip="Imprimir soporte"
             tooltipPosition="top"
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
-            variant="outline"
           />
 
           <lux-button-web

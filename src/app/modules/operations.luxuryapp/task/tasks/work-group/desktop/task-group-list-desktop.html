@@ -25,9 +25,17 @@
         (clicked)="add.emit()"
       />
       }
-      <iw-button-active-desactive
-        [state]="value()"
-        (stateChange)="change.emit($event)"
+      <lux-button-web
+        kind="active-desactive"
+        variant="outline"
+        severity="secondary"
+        [icon]="
+          value()
+            ? 'material-symbols-light:visibility-off'
+            : 'material-symbols-light:visibility'
+        "
+        [label]="value() ? 'Inactivos' : 'Activos'"
+        (clicked)="change.emit(!value())"
       />
     </div>
   </div>

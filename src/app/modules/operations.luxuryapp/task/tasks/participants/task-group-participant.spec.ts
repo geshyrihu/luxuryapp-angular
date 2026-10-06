@@ -92,5 +92,14 @@ describe("TaskGroupParticipant", () => {
     expect(component.cb_existing_Participant().length).toBe(1);
     expect(component.cb_existing_Participant()[0].id).toBe("2");
   });
+
+  it("onDelete should not call api when confirmation is cancelled", async () => {
+    (TestBed.inject(ConfirmService) as any).confirm.mockResolvedValueOnce(false);
+    mockApiResponseS.onDelete.mockClear();
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+  });
 });
 
