@@ -19,9 +19,13 @@
         />
       </div>
       <div class="col-2">
-        <iw-button-active-desactive
-          [state]="state()"
-          (stateChange)="stateChange.emit($event)"
+        <lux-button-web
+          kind="active-desactive"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+          (clicked)="stateChange.emit(!state())"
         />
       </div>
     </div>
