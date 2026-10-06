@@ -15,6 +15,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PolicyContractListDesktop } from "./desktop/policy-contract-list-desktop";
 import { PolicyContractListMobile } from "./mobile/policy-contract-list-mobile";
 import { PolicyContractForm } from "./policy-contract-form";
@@ -30,6 +31,7 @@ export class PolicyContractList {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
   groupedData: any = {};
 
@@ -76,7 +78,11 @@ export class PolicyContractList {
     });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta póliza/contrato?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.PolicyContracts.delete(id))
       .then((result: boolean) => {
@@ -99,7 +105,11 @@ export class PolicyContractList {
         if (result) this.onLoadData(this.isCurrent);
       });
   }
-  onDeleteDocument(id: any) {
+  async onDeleteDocument(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este documento?",
+    );
+    if (!confirmed) return;
     const urlApi = Endpoints.PolicyContracts.deleteDocument(id);
     this.apiResponseS.onGetItem(urlApi).then(() => {
       this.onLoadData();

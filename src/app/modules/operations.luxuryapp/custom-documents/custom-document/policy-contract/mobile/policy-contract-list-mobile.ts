@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -22,7 +21,6 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxTag,
     MobileActionMenu,
     MobileButtonLabelViewPdf,
-    MobileButtonLabelDelete,
     DataViewMobile,
     MobileListItem,
     AppIcon,

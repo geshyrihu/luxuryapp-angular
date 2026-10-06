@@ -45,12 +45,18 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
           @if (item.document) {
-          <ili-button-delete
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Eliminar documento"
             ngbTooltip="Eliminar documento"
-            (confirmed)="deleteDocument.emit(item.id)"
+            (clicked)="deleteDocument.emit(item.id)"
           />
           }
         </ng-container>
