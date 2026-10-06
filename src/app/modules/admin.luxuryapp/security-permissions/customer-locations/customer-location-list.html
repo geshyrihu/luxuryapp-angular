@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <app-customer-location-list-mobile
+  <lux-customer-location-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onNew()"
@@ -7,7 +7,7 @@
     (delete)="onDelete($event)"
   />
 } @else {
-  <app-customer-location-list-desktop
+  <lux-customer-location-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onNew()"

@@ -6,7 +6,7 @@ import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
 
   imports: [CustomBarChart],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ` <app-custom-bar-chart [data]="data()"></app-custom-bar-chart> `,
+  template: ` <lux-custom-bar-chart-web [data]="data()"></lux-custom-bar-chart-web> `,
 })
 export class ChartBar {
   data = input<any>(null);

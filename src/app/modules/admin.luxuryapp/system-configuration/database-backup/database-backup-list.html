@@ -1,6 +1,6 @@
 @if (isSuperUsuario()) {
   @if (platformS.isMobile()) {
-  <app-database-backup-list-mobile
+  <lux-database-backup-list-mobile-web
     [data]="dataSignal()"
     [loading]="loading()"
     [globalFilterFields]="globalFilterFields()"
@@ -11,7 +11,7 @@
     (testConnection)="onTestConnection($event)"
   />
   } @else {
-  <app-database-backup-list-desktop
+  <lux-database-backup-list-desktop-web
     [data]="dataSignal()"
     [loading]="loading()"
     [globalFilterFields]="globalFilterFields()"

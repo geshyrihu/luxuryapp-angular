@@ -44,7 +44,7 @@
     <tr class="bg-body-tertiary">
       <td colspan="6" class="py-2">
         <div class="d-flex align-items-center">
-          <app-icon
+          <lux-icon
             [icon]="
               groupingOption() === 'numeroCliente'
                 ? 'material-symbols-light:apartment'
@@ -64,17 +64,17 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="customer">
-        CLIENTE <app-sorticon field="customer" />
+        CLIENTE <lux-sorticon-web field="customer" />
       </th>
       <th appSortableColumn="applicationRoleName">
-        ROL <app-sorticon field="applicationRoleName" />
+        ROL <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th appSortableColumn="applicationUser">
-        USUARIO <app-sorticon field="applicationUser" />
+        USUARIO <lux-sorticon-web field="applicationUser" />
       </th>
-      <th appSortableColumn="email">EMAIL <app-sorticon field="email" /></th>
+      <th appSortableColumn="email">EMAIL <lux-sorticon-web field="email" /></th>
       <th appSortableColumn="phoneNumber">
-        TELÉFONO <app-sorticon field="phoneNumber" />
+        TELÉFONO <lux-sorticon-web field="phoneNumber" />
       </th>
       <th></th>
     </tr>

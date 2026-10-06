@@ -41,7 +41,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
                   <div class="p-3 d-flex flex-column gap-2 flex-grow-1">
                     <div class="d-flex align-items-center gap-2">
                       <strong class="text-sm">{{ layout.titulo }}</strong>
-                      <app-tag
+                      <lux-tag
                         [value]="layout.tag"
                         [severity]="layout.tagSeverity"
                         [rounded]="true"
@@ -393,7 +393,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
                 <div
                   class="d-flex align-items-start gap-3 p-3 surface-ground border-round h-full"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="r.icon"
                     [style.color]="r.color"
                     class="text-2xl flex-shrink-0 mt-1"

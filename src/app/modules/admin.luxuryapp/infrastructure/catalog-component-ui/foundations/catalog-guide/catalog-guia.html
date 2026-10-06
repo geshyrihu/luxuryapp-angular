@@ -12,7 +12,7 @@
     <div class="col-12 col-md-4">
       <div class="card" class="h-full">
         <div class="d-flex align-items-center gap-3">
-          <app-icon [icon]="m.icon" class="text-primary text-3xl" />
+          <lux-icon [icon]="m.icon" class="text-primary text-3xl" />
           <div>
             <div class="text-2xl fw-bold">{{ m.value }}</div>
             <div class="fw-semibold">{{ m.label }}</div>
@@ -30,7 +30,7 @@
     <div class="col-12 col-lg-4">
       <div class="card" class="h-full border-top-3 border-primary bg-body">
         <div class="d-flex align-items-center gap-3 mb-3">
-          <app-icon [icon]="s.icon" class="text-primary text-2xl" />
+          <lux-icon [icon]="s.icon" class="text-primary text-2xl" />
           <strong class="text-xl">{{ s.title }}</strong>
         </div>
         <p class="text-body-secondary line-height-3 mb-3">
@@ -45,7 +45,7 @@
   </div>
 
   <h3 class="text-xl fw-bold mb-3">Identidad LuxuryApp ERP</h3>
-  <app-message
+  <lux-message
     severity="success"
     text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
     class="mb-4 d-block"
@@ -55,11 +55,11 @@
     <div class="col-12 col-lg-4">
       <div class="card" class="h-full border-left-3 border-primary bg-body shadow-1">
         <div class="d-flex align-items-start gap-3">
-          <app-icon [icon]="p.icon" class="text-primary text-2xl" />
+          <lux-icon [icon]="p.icon" class="text-primary text-2xl" />
           <div>
             <div class="d-flex align-items-center gap-2 mb-2">
               <strong>{{ p.title }}</strong>
-              <app-tag [value]="p.severity" [severity]="p.severity" />
+              <lux-tag [value]="p.severity" [severity]="p.severity" />
             </div>
             <p class="m-0 line-height-3 text-body-secondary">
               {{ p.summary }}
@@ -74,7 +74,7 @@
     }
   </div>
 
-  <app-message
+  <lux-message
     severity="info"
     class="mb-5 d-block"
     text="Tipografía y paleta de color están centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allí para la referencia completa con tokens CSS copiables."
@@ -94,7 +94,7 @@
         <tr>
           <td><strong>{{ item.role }}</strong></td>
           <td><code>{{ item.current }}</code></td>
-          <td><app-tag [value]="item.verdict" [severity]="item.severity" /></td>
+          <td><lux-tag [value]="item.verdict" [severity]="item.severity" /></td>
           <td>{{ item.recommendation }}</td>
         </tr>
       </ng-template>
@@ -102,7 +102,7 @@
   </div>
 
   <h3 class="text-xl fw-bold mb-3">Catálogo de Componentes Core</h3>
-  <app-message
+  <lux-message
     severity="info"
     text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
     class="mb-3 d-block"
@@ -136,7 +136,7 @@
           <td>{{ item.preferredFor }}</td>
           <td>{{ item.avoidWhen }}</td>
           <td>
-            <app-tag
+            <lux-tag
               [value]="item.status"
               [severity]="getCatalogSeverity(item.status)"
             />
@@ -152,11 +152,11 @@
     <div class="col-12 col-md-6 col-xl-3">
       <div class="card" [class]="r.cardClass">
         <div class="d-flex align-items-start gap-3">
-          <app-icon [icon]="r.iconClass" />
+          <lux-icon [icon]="r.iconClass" />
           <div>
             <div class="d-flex align-items-center gap-2 mb-2">
               <strong>{{ r.variant }}</strong>
-              <app-tag [value]="r.variant" [severity]="r.severity" />
+              <lux-tag [value]="r.variant" [severity]="r.severity" />
             </div>
             <p class="m-0 text-body-secondary line-height-3">{{ r.usage }}</p>
             <small class="d-block mt-2 text-body-secondary">{{ r.avoid }}</small>
@@ -263,21 +263,21 @@
         />
       </div>
       <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
-        <app-checkbox [(checked)]="accepted" inputId="accepted" />
+        <lux-checkbox [(checked)]="accepted" inputId="accepted" />
         <label for="accepted" class="font-normal">Confirmacion requerida</label>
       </div>
       <div class="field col-12 col-md-4 d-flex align-items-center gap-3">
         <label>Prioridad</label>
         <div class="d-flex gap-3">
           <div class="d-flex align-items-center gap-1">
-            <app-radio-button
+            <lux-radio-button
               value="baja"
               [control]="priorityControl"
               inputId="pbaja"
             /><label for="pbaja" class="font-normal">Baja</label>
           </div>
           <div class="d-flex align-items-center gap-1">
-            <app-radio-button
+            <lux-radio-button
               value="media"
               [control]="priorityControl"
               inputId="pmedia"
@@ -296,7 +296,7 @@
       />
     </div>
   </div>
-  <app-message
+  <lux-message
     severity="warn"
     text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
     class="mb-5 d-block"
@@ -343,7 +343,7 @@
             {{ row.amount | currency:'MXN':'symbol':'1.0-0' }}
           </td>
           <td>
-            <app-tag
+            <lux-tag
               [value]="row.status"
               [severity]="getStatusSeverity(row.status)"
             />
@@ -364,7 +364,7 @@
   <div class="row mb-5 g-4">
     <div class="col-12 col-md-6 col-xl-3">
       <div class="bg-body p-3 rounded text-center">
-        <app-spinner strokeWidth="4" /><strong class="d-block mt-2"
+        <lux-spinner strokeWidth="4" /><strong class="d-block mt-2"
           >Loading</strong
         ><span class="text-xs text-body-secondary"
           >Spinner en acciones cortas, skeleton en carga estructural.</span
@@ -373,7 +373,7 @@
     </div>
     <div class="col-12 col-md-6 col-xl-3">
       <div class="bg-body p-3 rounded d-flex flex-column gap-2">
-        <app-skeleton width="100%" height="1.25rem" /><app-skeleton
+        <lux-skeleton width="100%" height="1.25rem" /><lux-skeleton
           width="70%"
           height="1.25rem"
         /><strong>Skeleton</strong
@@ -384,15 +384,15 @@
     </div>
     <div class="col-12 col-md-6 col-xl-3">
       <div class="d-flex flex-column gap-2">
-        <app-message
+        <lux-message
           severity="success"
           text="Registro guardado correctamente."
-        /><app-message severity="warn" text="Faltan documentos por validar." />
+        /><lux-message severity="warn" text="Faltan documentos por validar." />
       </div>
     </div>
     <div class="col-12 col-md-6 col-xl-3">
       <div class="d-flex flex-column gap-2">
-        <app-message
+        <lux-message
           severity="danger"
           text="Sin permisos para aprobar este proceso."
         /><il-button
@@ -430,7 +430,7 @@
       <il-button label="Nuevo" iconClass="icon.plus" />
     </div>
   </ng-template>
-  <app-toolbar
+  <lux-toolbar-web
     class="mb-5"
     [leftTemplate]="toolbarLeft"
     [rightTemplate]="toolbarRight"

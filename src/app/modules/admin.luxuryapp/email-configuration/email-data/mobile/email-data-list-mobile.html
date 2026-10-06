@@ -1,11 +1,11 @@
-<app-data-view-mobile
+<lux-data-view-mobile-web
   [data]="data()"
   (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
-      <app-icon
+      <lux-icon
         slot="start"
         icon="material-symbols-light:mail-outline"
         class="text-xl text-primary"
@@ -32,4 +32,4 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile-web>

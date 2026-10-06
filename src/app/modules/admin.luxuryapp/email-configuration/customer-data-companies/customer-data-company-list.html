@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-customer-data-company-list-mobile
+<lux-customer-data-company-list-mobile-web
   [data]="data()"
   [sortedData]="sortedData()"
   [globalFilterFields]="globalFilterFields()"
@@ -12,7 +12,7 @@
   (groupingChange)="groupingOption.set($event)"
 />
 } @else {
-<app-customer-data-company-list-desktop
+<lux-customer-data-company-list-desktop-web
   [data]="data()"
   [sortedData]="sortedData()"
   [globalFilterFields]="globalFilterFields()"

@@ -136,7 +136,7 @@
   <div class="conventions-grid">
     @if (filteredConventions().length > 0) {
       @for (convention of filteredConventions(); track convention.id) {
-        <app-convention-card [convention]="convention" />
+        <lux-convention-card-web [convention]="convention" />
       }
     } @else {
       <div class="empty-state">

@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <app-module-app-list-mobile
+  <lux-module-app-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"
@@ -7,7 +7,7 @@
     (delete)="onDelete($event)"
   />
 } @else {
-  <app-module-app-list-desktop
+  <lux-module-app-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onModalForm({ id: '', title: 'Nuevo Registro' })"

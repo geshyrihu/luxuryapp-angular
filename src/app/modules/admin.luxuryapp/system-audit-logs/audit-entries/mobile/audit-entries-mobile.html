@@ -1,6 +1,6 @@
 <lux-card>
   <div class="mt-3">
-    <app-data-view-mobile
+    <lux-data-view-mobile-web
       [data]="groupedData()"
       [globalFilterFields]="globalFilterFields()"
       (search)="search.emit($event)"
@@ -18,7 +18,7 @@
                 <h2 class="fw-bold m-0 text-base">{{ item.entityName }}</h2>
               </div>
               <p class="text-medium text-body-secondary m-0 text-sm">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="me-1 text-xs"
                 />
@@ -26,7 +26,7 @@
               </p>
             </div>
             <p class="text-sm text-body-secondary m-0 mb-1">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:person'"
                 class="me-1 text-xs"
               />
@@ -69,7 +69,7 @@
           </ion-label>
         </ili-list-item>
       </ng-template>
-    </app-data-view-mobile>
+    </lux-data-view-mobile-web>
 
     @if (data().length < totalRecords()) {
     <il-button

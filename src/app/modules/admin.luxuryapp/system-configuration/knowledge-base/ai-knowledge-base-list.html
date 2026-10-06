@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-ai-knowledge-base-list-mobile
+<lux-ai-knowledge-base-list-mobile-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"
@@ -8,7 +8,7 @@
   (delete)="onDelete($event)"
 />
 } @else {
-<app-ai-knowledge-base-list-desktop
+<lux-ai-knowledge-base-list-desktop-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   [loading]="loading()"

@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-log-api-report-mobile
+<lux-log-api-report-mobile-web
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"
@@ -8,7 +8,7 @@
   (loadMore)="loadMore()"
 />
 } @else {
-<app-log-api-report-desktop
+<lux-log-api-report-desktop-web
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"

@@ -9,49 +9,49 @@
   <!-- Bar (custom-bar-chart, tipo bar) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Bar Chart — app-custom-bar-chart">
-      <app-custom-bar-chart [data]="barChartData()" chartType="bar" />
+      <lux-custom-bar-chart-web [data]="barChartData()" chartType="bar" />
     </div>
   </div>
 
   <!-- Line (chart-wrapper, tipo line) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Line Chart — app-chart-wrapper">
-      <app-chart-wrapper type="line" [data]="lineChartData()" height="300px" />
+      <lux-chart-wrapper-web type="line" [data]="lineChartData()" height="300px" />
     </div>
   </div>
 
   <!-- Pie (pie-chart, formato ngx-charts) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Pie Chart — app-pie-chart">
-      <app-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
+      <lux-pie-chart-web [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
     </div>
   </div>
 
   <!-- Doughnut (chart-wrapper, tipo doughnut) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Doughnut — app-chart-wrapper">
-      <app-chart-wrapper type="doughnut" [data]="doughnutChartData()" height="300px" />
+      <lux-chart-wrapper-web type="doughnut" [data]="doughnutChartData()" height="300px" />
     </div>
   </div>
 
   <!-- Radar chart -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Radar Chart — app-radar-chart">
-      <app-radar-chart [chartData]="radarChartData()" />
+      <lux-radar-chart-web [chartData]="radarChartData()" />
     </div>
   </div>
 
   <!-- Multi-axis (multi-axis-chart, doble eje Y) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Multi-Axis — app-multi-axis-chart">
-      <app-multi-axis-chart [data]="multiAxisData()" />
+      <lux-multi-axis-chart-web [data]="multiAxisData()" />
     </div>
   </div>
 
   <!-- Advanced Pie (advanced-pie-chart) -->
   <div class="col-12 col-lg-6">
     <div class="card" header="Advanced Pie — app-advanced-pie-chart">
-      <app-advanced-pie-chart [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
+      <lux-advanced-pie-chart-web [dataGrafico]="pieChartData()" [colorScheme]="pieScheme" />
     </div>
   </div>
 </div>

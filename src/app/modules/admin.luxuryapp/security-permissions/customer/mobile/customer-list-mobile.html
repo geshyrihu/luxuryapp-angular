@@ -1,4 +1,4 @@
-<app-data-view-mobile
+<lux-data-view-mobile-web
   [data]="data()"
   (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
   [globalFilterFields]="globalFilterFields()"
@@ -28,7 +28,7 @@
           class="customer-logo-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:domain" class="text-xl" />
+        <lux-icon icon="material-symbols-light:domain" class="text-xl" />
         }
       </ion-avatar>
 
@@ -75,7 +75,7 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile-web>
 
 <style>
   .customer-logo-slot {

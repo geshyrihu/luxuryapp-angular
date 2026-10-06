@@ -1,19 +1,19 @@
 @if (applicationUserId) {
 <div class="row p-1 g-4">
   <div class="col-12">
-    <app-update-password-account [applicationUserId]="applicationUserId" />
+    <lux-update-password-account-web [applicationUserId]="applicationUserId" />
   </div>
 
   @if (this.aspRoleS.hasRole(AspRole.SuperUsuario)) {
   <div class="col-12 col-lg-6">
-    <app-update-role
+    <lux-update-role-web
       [applicationUserId]="applicationUserId"
       [roleType]="null"
     />
   </div>
 
   <div class="col-12 col-lg-6">
-    <app-access-customer [applicationUserId]="applicationUserId" />
+    <lux-access-customer-web [applicationUserId]="applicationUserId" />
   </div>
   }
 </div>

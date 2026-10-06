@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <app-customer-list-mobile
+  <lux-customer-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [state]="state"
@@ -13,7 +13,7 @@
     (sortChange)="onSortChange($event)"
   />
 } @else {
-  <app-customer-list-desktop
+  <lux-customer-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [state]="state"

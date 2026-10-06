@@ -1,5 +1,5 @@
 @if (filteredDataSignal()) { @if (platform.isMobile()) {
-<app-user-account-list-mobile
+<lux-user-account-list-mobile-web
   [data]="filteredDataSignal()"
   [customers]="selectCustomerSignal()"
   [typePeople]="cbTypePersonSignal()"
@@ -92,19 +92,19 @@
       <tr>
         <th class="table-col-30" appSortableColumn="fullName">
           NOMBRE
-          <app-sorticon field="fullName" />
+          <lux-sorticon-web field="fullName" />
         </th>
         <th class="table-col-25" appSortableColumn="customer">
           CLIENTE
-          <app-sorticon field="customer" />
+          <lux-sorticon-web field="customer" />
         </th>
         <th class="table-col-25" appSortableColumn="userName">
           USUARIO / PUESTO DE TRABAJO
-          <app-sorticon field="userName" />
+          <lux-sorticon-web field="userName" />
         </th>
         <th class="table-col-25" appSortableColumn="email">
           CORREO
-          <app-sorticon field="email" />
+          <lux-sorticon-web field="email" />
         </th>
         <th class="table-col-15">Télefono</th>
         <th class="table-col-5"></th>

@@ -15,10 +15,10 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
       </div>
       <div class="row">
         <div class="col-12">
-          <app-tokens-colors />
+          <lux-tokens-colors-web />
         </div>
         <div class="col-12 mt-4">
-          <app-tokens-typography />
+          <lux-tokens-typography-web />
         </div>
       </div>
     </section>

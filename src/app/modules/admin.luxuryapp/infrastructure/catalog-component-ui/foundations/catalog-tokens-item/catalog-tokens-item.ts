@@ -19,10 +19,10 @@ import { TokensTypography } from "../../shared/tokens-typography/tokens-typograp
       </div>
       @switch (item()) {
         @case ("colors") {
-          <app-tokens-colors />
+          <lux-tokens-colors-web />
         }
         @case ("typography") {
-          <app-tokens-typography />
+          <lux-tokens-typography-web />
         }
       }
     </section>

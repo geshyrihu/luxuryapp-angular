@@ -22,22 +22,22 @@ const LABELS: Record<string, string> = {
       @switch (item()) {
         @case ("datagrid") {
           <div class="card"><div class="card-body">
-            <app-data-grid [data]="gridData" [columns]="gridColumns" dataKey="id" [paginator]="true" [rows]="5" />
+            <lux-data-grid-web [data]="gridData" [columns]="gridColumns" dataKey="id" [paginator]="true" [rows]="5" />
           </div></div>
         }
         @case ("emptystate") {
           <div class="card"><div class="card-body">
-            <app-empty-state icon="material-symbols-light:inbox" title="Sin resultados" message="No se encontraron registros." actionLabel="Nuevo registro" />
+            <lux-empty-state icon="material-symbols-light:inbox" title="Sin resultados" message="No se encontraron registros." actionLabel="Nuevo registro" />
           </div></div>
         }
         @case ("fileupload") {
-          <div class="card"><div class="card-body"><app-file-upload chooseLabel="Subir archivos" accept="image/*,.pdf" [maxFileSize]="5000000" [multiple]="true" /></div></div>
+          <div class="card"><div class="card-body"><lux-file-upload chooseLabel="Subir archivos" accept="image/*,.pdf" [maxFileSize]="5000000" [multiple]="true" /></div></div>
         }
         @case ("funnelchart") {
-          <div class="card"><div class="card-body"><app-funnel-chart title="Embudo de ventas" [labels]="['Leads', 'Contactados', 'Propuesta', 'Cerrados']" [values]="[1200, 820, 430, 95]" /></div></div>
+          <div class="card"><div class="card-body"><lux-funnel-chart-web title="Embudo de ventas" [labels]="['Leads', 'Contactados', 'Propuesta', 'Cerrados']" [values]="[1200, 820, 430, 95]" /></div></div>
         }
         @default {
-          <div class="card"><div class="card-body d-flex align-items-center gap-2"><app-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div>
+          <div class="card"><div class="card-body d-flex align-items-center gap-2"><lux-icon icon="material-symbols-light:info" /> Demo no disponible.</div></div>
         }
       }
     </section>

@@ -16,11 +16,11 @@
     <tr>
       <th colspan="2" appSortableColumn="nameComercial">
         Proveedor
-        <app-sorticon field="nameComercial" />
+        <lux-sorticon-web field="nameComercial" />
       </th>
       <th appSortableColumn="service">
         Servicio
-        <app-sorticon field="service" />
+        <lux-sorticon-web field="service" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -43,7 +43,7 @@
       <td>{{ item.service }}</td>
       <!-- Opciones -->
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu>
           <ng-container actions>
             <lux-button-web
               kind="edit"
@@ -58,7 +58,7 @@
               (clicked)="delete.emit(item.id)"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu>
       </td>
       <!-- Opciones -->
     </tr>

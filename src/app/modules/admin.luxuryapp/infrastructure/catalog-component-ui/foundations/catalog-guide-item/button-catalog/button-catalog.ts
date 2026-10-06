@@ -417,7 +417,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Web)</label
             >
-            <app-select-button
+            <lux-select-button-web
               [options]="webSizeCtrl"
               [value]="webSize()"
               (valueChange)="webSize.set($event)"
@@ -428,14 +428,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               class="text-xs font-semibold text-color-secondary d-block mb-2"
               >Size (Ionic)</label
             >
-            <app-select-button
+            <lux-select-button-web
               [options]="ionicSizeCtrl"
               [value]="ionicSize()"
               (valueChange)="ionicSize.set($event)"
             />
           </div>
           <div class="d-flex align-items-center gap-2">
-            <app-toggle-switch
+            <lux-toggle-switch-web
               [checked]="isDisabled()"
               (checkedChange)="isDisabled.set($event)"
               inputId="btn-dis"
@@ -443,7 +443,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <label for="btn-dis" class="font-semibold text-sm">Disabled</label>
           </div>
           <div class="d-flex align-items-center gap-2">
-            <app-toggle-switch
+            <lux-toggle-switch-web
               [checked]="isLoading()"
               (checkedChange)="isLoading.set($event)"
               inputId="btn-load"

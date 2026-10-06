@@ -21,16 +21,16 @@
   </ng-template>
   <ng-template #header>
     <tr>
-      <th appSortableColumn="topic">Tema <app-sorticon field="topic" /></th>
+      <th appSortableColumn="topic">Tema <lux-sorticon-web field="topic" /></th>
       <th appSortableColumn="moduleAppName">
-        Acceso <app-sorticon field="moduleAppName" />
+        Acceso <lux-sorticon-web field="moduleAppName" />
       </th>
       <th appSortableColumn="keywords">
-        Palabras Clave <app-sorticon field="keywords" />
+        Palabras Clave <lux-sorticon-web field="keywords" />
       </th>
-      <th appSortableColumn="route">Ruta <app-sorticon field="route" /></th>
+      <th appSortableColumn="route">Ruta <lux-sorticon-web field="route" /></th>
       <th appSortableColumn="isActive">
-        Activo <app-sorticon field="isActive" />
+        Activo <lux-sorticon-web field="isActive" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -39,15 +39,15 @@
     <tr>
       <td>{{ item.topic }}</td>
       <td>
-        <app-tag
+        <lux-tag
           [value]="item.moduleAppName || 'General'"
           [severity]="item.moduleAppId ? 'warn' : 'success'"
         />
       </td>
-      <td><app-tag [value]="item.keywords" severity="info" /></td>
+      <td><lux-tag [value]="item.keywords" severity="info" /></td>
       <td><code>{{ item.route }}</code></td>
       <td>
-        <app-icon
+        <lux-icon
           [icon]="item.isActive ? 'material-symbols-light:cancel' : 'material-symbols-light:cancel'"
           [class]="item.isActive ? 'text-green-500' : 'text-red-500'"
         />

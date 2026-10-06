@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-user-activity-history-mobile
+<lux-user-activity-history-mobile-web
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"
@@ -8,7 +8,7 @@
   (loadMore)="loadMore()"
 />
 } @else {
-<app-user-activity-history-desktop
+<lux-user-activity-history-desktop-web
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"

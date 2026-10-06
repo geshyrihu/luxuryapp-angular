@@ -75,11 +75,11 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="email">
-        Destinatario <app-sorticon field="email" />
+        Destinatario <lux-sorticon-web field="email" />
       </th>
       <th>Asunto</th>
       <th>Estado</th>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <lux-sorticon-web field="date" /></th>
       <th>Remitente</th>
       <th>Plantilla</th>
     </tr>
@@ -137,7 +137,7 @@
   <ng-template #emptymessage>
     <tr>
       <td colspan="6" class="text-center py-5 text-body-secondary">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:move-to-inbox'"
           class="text-3xl mb-2 d-block"
         />

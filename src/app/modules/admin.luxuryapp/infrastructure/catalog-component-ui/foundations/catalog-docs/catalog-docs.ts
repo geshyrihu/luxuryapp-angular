@@ -47,7 +47,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     [style.background]="doc.colorToken"
                   >
                     <strong>{{ doc.codigo }}</strong>
-                    <app-tag
+                    <lux-tag
                       [value]="doc.confidencialidad"
                       [severity]="doc.severity"
                     ></p-tag>
@@ -129,31 +129,31 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   <tr>
                     <td class="text-xs font-bold">{{ row.documento }}</td>
                     <td>
-                      <app-tag
+                      <lux-tag
                         [value]="row.superUsuario"
                         [severity]="getColorAcceso(row.superUsuario)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag
                         [value]="row.direccion"
                         [severity]="getColorAcceso(row.direccion)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag
                         [value]="row.staff"
                         [severity]="getColorAcceso(row.staff)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag
                         [value]="row.condomino"
                         [severity]="getColorAcceso(row.condomino)"
                       />
                     </td>
                     <td>
-                      <app-tag
+                      <lux-tag
                         [value]="row.proveedor"
                         [severity]="getColorAcceso(row.proveedor)"
                       />

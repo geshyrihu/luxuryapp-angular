@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<app-asamblea-checklist-template-list-mobile
+<lux-asamblea-checklist-template-list-mobile-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields"
   (add)="onModalForm($event)"
@@ -7,7 +7,7 @@
   (delete)="onDelete($event)"
 />
 } @else {
-<app-asamblea-checklist-template-list-desktop
+<lux-asamblea-checklist-template-list-desktop-web
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields"
   (add)="onModalForm($event)"

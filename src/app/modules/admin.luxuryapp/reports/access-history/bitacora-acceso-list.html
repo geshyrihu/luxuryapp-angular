@@ -1,6 +1,6 @@
 <div class="row g-4">
   <div class="col-4">
-    <app-calendar-range></app-calendar-range>
+    <lux-calendar-range-web></lux-calendar-range-web>
   </div>
 </div>
 <!-- 📱 INICIO: Componente adaptado para versión móvil -->
@@ -22,7 +22,7 @@
         <th class="table-col-5rem"></th>
         <th colspan="2" appSortableColumn="fullName">
           COLABORADOR
-          <app-sorticon field="fullName" />
+          <lux-sorticon-web field="fullName" />
         </th>
       </tr>
     </ng-template>
@@ -139,7 +139,7 @@
   </div>
   } @else {
   <div class="text-center p-4">
-    <app-icon icon="material-symbols-light:search" />
+    <lux-icon icon="material-symbols-light:search" />
     <p class="mt-2 text-medium">No se encontraron registros.</p>
   </div>
   }

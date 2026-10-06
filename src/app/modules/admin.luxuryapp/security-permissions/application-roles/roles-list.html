@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <app-roles-list-mobile
+  <lux-roles-list-mobile-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
@@ -7,7 +7,7 @@
     (delete)="onDelete($event)"
   />
 } @else {
-  <app-roles-list-desktop
+  <lux-roles-list-desktop-web
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (add)="onModalForm({ id: '', title: 'Nuevo Rol' })"
