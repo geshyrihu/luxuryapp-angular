@@ -1,7 +1,7 @@
 <div class="card shadow-sm rounded p-4 bg-body">
   <!-- BARRA DE ESTADO VISUAL -->
   <div class="mb-4">
-    <app-progress-bar
+    <lux-progress-bar-web
       [value]="100"
       [showValue]="false"
       [class]="'p-progressbar-' + type"
@@ -142,15 +142,15 @@
   @if (id && id !== "" && id !== "0") {
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div class="d-flex align-items-center">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:shopping-cart'"
         class="text-xl text-primary me-2"
       />
       <h4 class="m-0 fw-bold text-body me-2">Productos Solicitados</h4>
-      <app-badge
+      <lux-badge-web
         [value]="SolicitudCompraDetalle.length.toString()"
         color="info"
-      ></app-badge>
+      ></lux-badge-web>
     </div>
   </div>
 
@@ -169,7 +169,7 @@
   <div
     class="bg-body-tertiary rounded p-3 text-body-secondary text-sm d-flex align-items-center gap-2"
   >
-    <app-icon [icon]="'material-symbols-light:info'" class="text-lg" />
+    <lux-icon [icon]="'material-symbols-light:info'" class="text-lg" />
     Guarda la solicitud para poder agregar productos.
   </div>
   }

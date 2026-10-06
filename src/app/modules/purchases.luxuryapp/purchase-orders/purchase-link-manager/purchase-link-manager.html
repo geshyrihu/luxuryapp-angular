@@ -7,7 +7,7 @@
   >
     <div class="d-flex align-items-center">
       <div class="bg-primary-100 p-2 rounded">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:link'"
           class="text-primary text-2xl"
         />
@@ -53,7 +53,7 @@
         <div class="p-3 bg-green-50 border-bottom-1 border flex-shrink-0">
           <div class="d-flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-green-700 fw-bold">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:description'"
                 class="me-2"
               />SOLICITUDES
@@ -109,7 +109,7 @@
                     <span
                       class="text-xs text-body-secondary fw-bold border-left-1 ps-2 border-300"
                     >
-                      <app-icon
+                      <lux-icon
                         [icon]="'material-symbols-light:event-busy'"
                         class="me-1"
                       />{{ sc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
@@ -123,7 +123,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-body-secondary"
                   />
@@ -147,12 +147,12 @@
                   [rounded]="true"
                   class="px-3 py-1 shadow-sm border-1 border-orange-200"
                   ><div class="d-flex align-items-center">
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:shopping-cart'"
                       class="text-xs"
                     />
                     <span class="text-xs fw-bold">{{ orden.folio }}</span>
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:cancel'"
                       class="cursor-pointer hover:text-red-500 scalein transition-all transition-duration-200"
                       (click)="onUnlink(orden.id)"
@@ -171,7 +171,7 @@
           <div
             class="text-center p-5 bg-body-tertiary rounded-xl text-body-secondary border-dashed border-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:search'"
               class="text-4xl mb-3 d-block"
             />
@@ -191,7 +191,7 @@
         <div class="p-3 bg-orange-50 border-bottom-1 border flex-shrink-0">
           <div class="d-flex align-items-center justify-content-between mb-3">
             <h3 class="m-0 text-orange-700 fw-bold">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:shopping-bag'"
                 class="me-2"
               />ÓRDENES
@@ -251,7 +251,7 @@
                     <span
                       class="text-xs text-body-secondary fw-bold border-left-1 ps-2 border-300"
                     >
-                      <app-icon
+                      <lux-icon
                         [icon]="'material-symbols-light:calendar-today'"
                         class="me-1"
                       />{{ oc.fechaSolicitud | apiDate:'dd-MMM-yy' }}
@@ -265,7 +265,7 @@
                   cdkDragHandle
                   class="cursor-grab active:cursor-grabbing p-2 bg-gray-100 rounded hover:bg-gray-200 transition-colors"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-body-secondary"
                   />
@@ -287,14 +287,14 @@
                   [rounded]="true"
                   class="px-3 py-1 shadow-sm border-1 border-green-200"
                   ><div class="d-flex align-items-center">
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:description'"
                       class="text-xs"
                     />
                     <span class="text-xs fw-bold text-uppercase"
                       >{{ oc.folioSolicitudCompra }}</span
                     >
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:cancel'"
                       class="cursor-pointer hover:text-red-500 transition-all"
                       (click)="onUnlink(oc.id)"
@@ -313,7 +313,7 @@
           <div
             class="text-center p-5 bg-body-tertiary rounded-xl text-body-secondary border-dashed border-2"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:shopping-bag'"
               class="text-4xl mb-3 d-block"
             />

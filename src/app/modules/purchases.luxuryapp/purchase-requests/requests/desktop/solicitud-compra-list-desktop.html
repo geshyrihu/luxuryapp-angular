@@ -82,15 +82,15 @@
       </th>
       <th class="table-col-10" appSortableColumn="folio">
         FOLIO
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th class="table-col-7" appSortableColumn="fechaSolicitud">
         FECHA
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th class="table-col-12" appSortableColumn="solicita">
         SOLICITA
-        <app-sorticon field="solicita" />
+        <lux-sorticon-web field="solicita" />
       </th>
       <th class="table-col-44">DESCRIPCIÓN</th>
       <th class="table-col-10">TIPO</th>
@@ -104,7 +104,7 @@
   <ng-template #body let-item let-rowIndex="rowIndex">
     <tr [pReorderableRow]="rowIndex">
       <td class="table-col-5 text-center pointer">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:menu'"
           class="cursor-move text-body-secondary"
           pReorderableRowHandle
@@ -180,7 +180,7 @@
             rounded
             customClass="no-print"
           />
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:close"
             class="cursor-pointer text-red-500 hover:text-red-700 ms-1"
             (click)="$event.stopPropagation(); unlinkPurchaseOrder.emit(orden.id)"

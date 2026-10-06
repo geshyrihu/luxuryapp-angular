@@ -41,7 +41,7 @@
       <th>Imagen</th>
       <th appSortableColumn="producto">
         DESCRIPCIÓN
-        <app-sorticon field="producto" />
+        <lux-sorticon-web field="producto" />
       </th>
       <th>Cantidad</th>
       <th>Unidad</th>
@@ -56,7 +56,7 @@
           class="table-col-10 pointer"
           (click)="onModalTarjetaProducto(rowItem.productoId)"
         >
-          <app-avatar
+          <lux-avatar-web
             [image]="rowItem.urlImagen"
             alt=""
             styleClass="mr-2"

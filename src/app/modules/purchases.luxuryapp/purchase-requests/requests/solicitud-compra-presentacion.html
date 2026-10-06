@@ -78,7 +78,7 @@
                   [class.summary-priority-icon-info]="priority.severity === 'info'"
                   [class.summary-priority-icon-secondary]="priority.severity === 'secondary'"
                 >
-                  <app-icon [icon]="getPrioridadIcon(priority.value)" />
+                  <lux-icon [icon]="getPrioridadIcon(priority.value)" />
                 </span>
                 {{ priority.label }}
               </span>
@@ -303,7 +303,7 @@
               @for (evidencia of solicitud.evidencias; track evidencia.id) {
               <div class="col-6 col-md-3 px-1">
                 <div class="evidence-frame p-1">
-                  <app-image
+                  <lux-image-web
                     [src]="evidencia.fileUrl"
                     [alt]="evidencia.fileName || 'Evidencia'"
                     styleClass="block w-full"

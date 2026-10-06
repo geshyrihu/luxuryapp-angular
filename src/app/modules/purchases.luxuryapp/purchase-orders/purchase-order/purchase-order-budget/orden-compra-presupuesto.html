@@ -51,14 +51,14 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
     <tr>
       <th class="table-col-20" appSortableColumn="accountNumber">
         Cuenta
-        <app-sorticon field="accountNumber" />
+        <lux-sorticon-web field="accountNumber" />
       </th>
       <th class="table-col-13">Pres. Mensual</th>
       <th class="table-col-13">Gastado</th>
       <th class="table-col-13">Provisionado</th>
       <th class="table-col-13" appSortableColumn="availableBudget">
         Disponible
-        <app-sorticon field="availableBudget" />
+        <lux-sorticon-web field="availableBudget" />
       </th>
       <th class="table-col-13">Gasto</th>
       <th class="table-col-15"></th>
@@ -132,7 +132,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
           (clicked)="onSubmit(item)"
         />
         } @if (submitting()) {
-        <app-spinner [size]="32" [strokeWidth]="8" />
+        <lux-spinner-web [size]="32" [strokeWidth]="8" />
         }
       </td>
     </tr>

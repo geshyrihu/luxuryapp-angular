@@ -32,7 +32,7 @@
         <td>{{ invoice.fechaFactura }}</td>
         <td>
           @if(invoice.pdfFile) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:picture-as-pdf'"
             class="text-red-500 text-xl"
           />
@@ -40,7 +40,7 @@
         </td>
         <td>
           @if(invoice.xmlFile) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:description'"
             class="text-blue-500 text-xl"
           />
@@ -102,7 +102,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 d-block mt-1"
-        ><app-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
+        ><lux-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
         actual conservado. Subir nuevo para reemplazar.</small
       >
       }
@@ -116,7 +116,7 @@
       />
       @if(isEditing()) {
       <small class="text-green-600 d-block mt-1"
-        ><app-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
+        ><lux-icon [icon]="'material-symbols-light:check-circle'" /> Archivo
         actual conservado. Subir nuevo para reemplazar.</small
       >
       }

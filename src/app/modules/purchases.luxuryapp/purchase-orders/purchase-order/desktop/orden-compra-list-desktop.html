@@ -124,37 +124,37 @@
     <tr>
       <th appSortableColumn="folio">
         IDENTIFICADORES
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th appSortableColumn="fechaSolicitud">
         SEGUIMIENTO
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th appSortableColumn="equipoOInstalacion">
         DESCRIPCIÓN
-        <app-sorticon field="equipoOInstalacion" />
+        <lux-sorticon-web field="equipoOInstalacion" />
       </th>
       <th appSortableColumn="justificacionGasto">
         PARTIDA PRESUPUESTAL
-        <app-sorticon field="justificacionGasto" />
+        <lux-sorticon-web field="justificacionGasto" />
       </th>
       <th appSortableColumn="proveedor">
         Proveedor
-        <app-sorticon field="proveedor" />
+        <lux-sorticon-web field="proveedor" />
       </th>
       <th appSortableColumn="total">
         Total
-        <app-sorticon field="total" />
+        <lux-sorticon-web field="total" />
       </th>
       @if (statusCompra() === 1) {
       <th appSortableColumn="observaciones">
         Observaciones
-        <app-sorticon field="observaciones" />
+        <lux-sorticon-web field="observaciones" />
       </th>
       } @if (statusCompra() === 0) {
       <th appSortableColumn="fullName">
         Autoriza
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       }
       <th class="text-center">ACCIONES</th>
@@ -177,7 +177,7 @@
         }
         <br />
         <span class="text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />
@@ -222,7 +222,7 @@
       </td>
       }
       <td class="no-print oc-cell-actions text-center">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <lux-button-web
               kind="item"
@@ -266,7 +266,7 @@
               (clicked)="delete.emit(item.id)"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
     </tr>
   </ng-template>
