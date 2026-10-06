@@ -36,9 +36,11 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-budget-support-dialog",
-  imports: [ButtonWeb, 
+  imports: [ButtonWeb,
+    PdfViewerTrigger,
     ReactiveFormsModule,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
@@ -265,5 +267,4 @@ export class BudgetSupportDialog implements OnInit {
     this.ref.close();
   }
 }
-
 

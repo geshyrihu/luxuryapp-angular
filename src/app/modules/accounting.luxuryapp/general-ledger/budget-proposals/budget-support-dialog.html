@@ -90,7 +90,7 @@
         <span class="text-sm fw-medium truncate">{{ file.fileName }}</span>
       </div>
       <div class="d-flex gap-2">
-        <lux-button-web-view-pdf [url]="file.fileUrl" [fileName]="file.fileName" />
+        <lux-pdf-viewer-trigger [url]="file.fileUrl" [fileName]="file.fileName" />
         <lux-button-web
           iconClass="material-symbols-light:delete"
           (clicked)="onDeleteFile(file.id)"
