@@ -11,6 +11,7 @@ import { PrintService } from "@core/services/print.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { TaskList } from "./task-list";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskList", () => {
   let component: TaskList;
@@ -70,6 +71,7 @@ describe("TaskList", () => {
     TestBed.configureTestingModule({
       imports: [TaskList],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiS },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: AuthService, useValue: mockAuthS },

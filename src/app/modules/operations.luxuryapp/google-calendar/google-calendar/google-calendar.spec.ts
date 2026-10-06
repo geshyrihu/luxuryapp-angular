@@ -12,6 +12,7 @@ import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { vi } from "vitest";
 import { GoogleCalendar } from "./google-calendar";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 vi.mock("@ui/web/pdf-viewer-modal/pdf-viewer-modal", () => ({
   PdfViewerModal: class PdfViewerModal {},
@@ -84,6 +85,7 @@ describe("GoogleCalendar", () => {
     TestBed.configureTestingModule({
       imports: [GoogleCalendar, NoopAnimationsModule],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: apiMock },
         {
           provide: CustomerIdService,

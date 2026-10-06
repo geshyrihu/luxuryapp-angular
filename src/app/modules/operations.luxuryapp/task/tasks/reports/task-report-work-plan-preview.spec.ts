@@ -82,7 +82,7 @@ describe("TaskReportWorkPlanPreview", () => {
     expect(component.dataSignal()).toEqual(mockData);
   });
 
-  it("onSendWorkPlan should call api", () => {
+  it("onSendWorkPlan should call api", async () => {
     await component.onSendWorkPlan();
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
   });

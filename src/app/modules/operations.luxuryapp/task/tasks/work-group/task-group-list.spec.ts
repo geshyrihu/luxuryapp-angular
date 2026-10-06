@@ -10,6 +10,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { TaskGroupList } from "./task-group-list";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskGroupList", () => {
   let component: TaskGroupList;
@@ -51,6 +52,7 @@ describe("TaskGroupList", () => {
     TestBed.configureTestingModule({
       imports: [TaskGroupList],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: AuthService, useValue: mockAuthS },
