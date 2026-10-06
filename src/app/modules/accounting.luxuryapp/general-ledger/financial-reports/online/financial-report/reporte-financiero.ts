@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   IReporteFinancieroDto,
   IReporteFinancieroFilaDto,
@@ -19,7 +19,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 
 @Component({
   selector: "app-reporte-financiero",
-  imports: [AppIcon, AccountingNumberPipe],
+  imports: [LxIcon, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reporte-financiero.html",
 })

@@ -8,7 +8,7 @@ import {
   signal,
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { IEpfDTO } from "../../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -16,7 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 
 @Component({
   selector: "app-epf-cliente",
-  imports: [AppIcon, LxSkeleton, AccountingNumberPipe],
+  imports: [LxIcon, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./epf-cliente.html",
 })

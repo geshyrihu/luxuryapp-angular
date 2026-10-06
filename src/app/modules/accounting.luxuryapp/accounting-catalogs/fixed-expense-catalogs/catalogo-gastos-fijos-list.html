@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <lux-catalogo-gastos-fijos-list-mobile-web
+  <app-catalogo-gastos-fijos-list-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [fundingYear]="fundingYear()"
@@ -21,7 +21,7 @@
     (delete)="onDelete($event)"
   />
 } @else {
-  <lux-catalogo-gastos-fijos-list-desktop-web
+  <app-catalogo-gastos-fijos-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [fundingYear]="fundingYear()"

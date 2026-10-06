@@ -17,7 +17,7 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -57,7 +57,7 @@ const GUIA_LABELS: Record<string, string> = {
     AppMessage,
     AppRadioButton,
     AppTag,
-    AppIcon,
+    LxIcon,
     ButtonCatalog,
   ],
   template: `
@@ -110,7 +110,7 @@ const GUIA_LABELS: Record<string, string> = {
           </div>
 
           <h3 class="text-xl font-bold mb-3">Identidad LuxuryApp ERP</h3>
-          <lux-message
+          <lux-message-web
             severity="success"
             text="Diagnostico: la paleta actual es consistente para ERP corporativo. El azul #00050e es la firma principal y el gold #c9a74d es el acento premium documental."
             class="mb-4 d-block"
@@ -127,7 +127,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
-                        <lux-tag [value]="p.severity" [severity]="p.severity" />
+                        <lux-tag-web [value]="p.severity" [severity]="p.severity" />
                       </div>
                       <p class="m-0 line-height-3 text-color-secondary">
                         {{ p.summary }}
@@ -144,7 +144,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("colorvalidation") {
-          <lux-message
+          <lux-message-web
             severity="info"
             class="mb-4 d-block"
             text="Tipografóa y paleta de color estén centralizados en la sección 'Tokens &amp; Identidad Visual'. Ve allé para la referencia completa con tokens CSS copiables."
@@ -168,7 +168,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <code>{{ item.current }}</code>
                   </td>
                   <td>
-                    <lux-tag
+                    <lux-tag-web
                       [value]="item.verdict"
                       [severity]="item.severity"
                     />
@@ -181,7 +181,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("componentcatalog") {
-          <lux-message
+          <lux-message-web
             severity="info"
             text="Regla: si el componente core ya resuelve el caso, usarlo antes de crear HTML nuevo. Inputs y botones son unificados (web+mobile auto-detect)."
             class="mb-3 d-block"
@@ -221,7 +221,7 @@ const GUIA_LABELS: Record<string, string> = {
                   <td>{{ item.preferredFor }}</td>
                   <td>{{ item.avoidWhen }}</td>
                   <td>
-                    <lux-tag
+                    <lux-tag-web
                       [value]="item.status"
                       [severity]="getCatalogSeverity(item.status)"
                     />
@@ -242,7 +242,7 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>
-                        <lux-tag [value]="r.variant" [severity]="r.severity" />
+                        <lux-tag-web [value]="r.variant" [severity]="r.severity" />
                       </div>
                       <p class="m-0 text-color-secondary line-height-3">
                         {{ r.usage }}
@@ -259,7 +259,7 @@ const GUIA_LABELS: Record<string, string> = {
         }
 
         @case ("buttoncatalog") {
-          <lux-button-catalog-web />
+          <app-button-catalog />
         }
 
         @case ("referenceform") {
@@ -358,7 +358,7 @@ const GUIA_LABELS: Record<string, string> = {
               <div
                 class="field col-12 col-md-4 d-flex align-items-center gap-3"
               >
-                <lux-checkbox [(checked)]="accepted" inputId="accepted" />
+                <lux-checkbox-web [(checked)]="accepted" inputId="accepted" />
                 <label for="accepted" class="font-normal"
                   >Confirmacion requerida</label
                 >
@@ -369,14 +369,14 @@ const GUIA_LABELS: Record<string, string> = {
                 <label>Prioridad</label>
                 <div class="d-flex gap-3">
                   <div class="d-flex align-items-center gap-1">
-                    <lux-radio-button
+                    <lux-radio-button-web
                       value="baja"
                       [control]="priorityControl"
                       inputId="pbaja"
                     /><label for="pbaja" class="font-normal">Baja</label>
                   </div>
                   <div class="d-flex align-items-center gap-1">
-                    <lux-radio-button
+                    <lux-radio-button-web
                       value="media"
                       [control]="priorityControl"
                       inputId="pmedia"
@@ -397,7 +397,7 @@ const GUIA_LABELS: Record<string, string> = {
               />
             </div>
           </div>
-          <lux-message
+          <lux-message-web
             severity="warn"
             text="Regla: en mobile los botones de cierre de formulario deben ocupar el ancho disponible y mantener orden Cancelar -> Guardar."
             class="d-block"

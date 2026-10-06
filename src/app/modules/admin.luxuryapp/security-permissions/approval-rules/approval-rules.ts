@@ -29,7 +29,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppFrozenColumn,
   AppTable,
@@ -50,7 +50,7 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     AppFrozenColumn,
     CustomInputSelectButton,
     LxSkeleton,
-    AppIcon,
+    LxIcon,
     ButtonWeb,
     ButtonMobile,
     IonButtons,

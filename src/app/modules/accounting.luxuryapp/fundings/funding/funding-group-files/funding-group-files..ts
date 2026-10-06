@@ -18,7 +18,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
@@ -31,7 +31,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxTooltipDirective,
     WebButtonLabel,
     ButtonWeb,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-group-files.html",

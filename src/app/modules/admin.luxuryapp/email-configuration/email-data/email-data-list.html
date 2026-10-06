@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<lux-email-data-list-mobile-web
+<app-email-data-list-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm($event)"
@@ -7,7 +7,7 @@
   (sendTestEmail)="onSendTestEmail($event)"
 />
 } @else {
-<lux-email-data-list-desktop-web
+<app-email-data-list-desktop
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="onModalForm($event)"

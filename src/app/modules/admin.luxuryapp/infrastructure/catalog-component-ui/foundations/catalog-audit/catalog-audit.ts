@@ -1,7 +1,7 @@
 import { Component, computed, signal, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { BloqueVisual } from "./interfaces/bloque-visual.interface";
@@ -12,7 +12,7 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
   imports: [
     FormsModule,
     AppCheckbox,
-    AppIcon,
+    LxIcon,
   ],
   template: `
     <section class="fadein">
@@ -101,10 +101,10 @@ import { ItemChecklist } from "./interfaces/item-checklist.interface";
                   [class.border-red-200]="!item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <lux-checkbox
+                  <lux-checkbox-web
                     [checked]="item.aprobado"
                     (checkedChange)="toggleChecklistItem(item.numero)"
-                  ></lux-checkbox>
+                  ></lux-checkbox-web>
                   <p class="m-0 text-sm line-height-2">
                     <strong>{{ item.numero }}.</strong> {{ item.descripcion }}
                   </p>

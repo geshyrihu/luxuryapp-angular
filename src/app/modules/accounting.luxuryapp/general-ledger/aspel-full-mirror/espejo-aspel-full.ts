@@ -14,7 +14,7 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ReportFilterService } from "./financial-report-filter.service";
 import {
@@ -34,7 +34,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxSpinner,
     WebButtonLabel,
     CustomSearchInput,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./espejo-aspel-full.html",

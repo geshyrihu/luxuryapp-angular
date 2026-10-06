@@ -15,7 +15,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,
@@ -54,7 +54,7 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
 @Component({
   selector: "app-estado-resultados",
   imports: [
-    AppIcon,
+    LxIcon,
     FormsModule,
     AppTable,
     LxSkeleton,

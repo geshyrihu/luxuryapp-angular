@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { ThemeService } from "@core/services/theme.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ChartBar } from "../catalog-charts/chart-bar/chart-bar";
 import { ChartPie } from "../catalog-charts/chart-pie/chart-pie";
 
@@ -23,7 +23,7 @@ const CHARTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-charts-item",
-  imports: [ChartWrapper, ChartBar, ChartPie, AppIcon],
+  imports: [ChartWrapper, ChartBar, ChartPie, LxIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -38,10 +38,10 @@ const CHARTS_LABELS: Record<string, string> = {
           <div class="card">
             @switch (item()) {
               @case ("bar") {
-                <lux-chart-bar-web [data]="barData" />
+                <app-chart-bar [data]="barData" />
               }
               @case ("pie") {
-                <lux-chart-pie-web [data]="pieData" />
+                <app-chart-pie [data]="pieData" />
               }
               @case ("line") {
                 <lux-chart-wrapper-web

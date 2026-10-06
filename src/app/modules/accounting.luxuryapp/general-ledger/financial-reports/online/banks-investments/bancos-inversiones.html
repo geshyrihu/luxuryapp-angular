@@ -111,7 +111,7 @@
     <div class="rf-mobile-section p-2 text-xs rounded-sm">
       SALDO EN BANCOS AL {{ data()?.fechaReporte | uppercase }}
     </div>
-    <lux-data-view-mobile-web [data]="data()?.bancos || []" [showAdd]="false">
+    <app-data-view-mobile [data]="data()?.bancos || []" [showAdd]="false">
       <ng-template #listItemTemplate let-banco>
         <div
           class="p-3 mb-2 rounded shadow-sm bg-body d-flex justify-content-between align-items-center gap-2"
@@ -122,7 +122,7 @@
           >
         </div>
       </ng-template>
-    </lux-data-view-mobile-web>
+    </app-data-view-mobile>
     <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
       <span class="fw-bold">(1) SUMA</span>
       <span class="rf-td-number--total"
@@ -133,7 +133,7 @@
     <div class="rf-mobile-section p-2 text-xs rounded-sm mt-2">
       SALDO EN INVERSIONES AL {{ data()?.fechaReporte | uppercase }}
     </div>
-    <lux-data-view-mobile-web
+    <app-data-view-mobile
       [data]="data()?.inversionesOrdinarias || []"
       [showAdd]="false"
     >
@@ -148,7 +148,7 @@
           </div>
         </div>
       </ng-template>
-    </lux-data-view-mobile-web>
+    </app-data-view-mobile>
     <div class="rf-mobile-total p-3 rounded d-flex justify-content-between">
       <span class="fw-bold">(2) SUBTOTAL</span>
       <span class="rf-td-number--total"

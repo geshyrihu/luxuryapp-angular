@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -25,7 +25,7 @@ import { PurchaseHistoryDTO } from "../presupuestos.interfaces";
   imports: [
     CommonModule,
     WebButtonIcon,
-    AppIcon,
+    LxIcon,
     AppTable,
     AppSortableColumn,
     AppSorticon,

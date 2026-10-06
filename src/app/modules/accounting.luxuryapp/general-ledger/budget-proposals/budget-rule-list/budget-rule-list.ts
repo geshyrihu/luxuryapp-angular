@@ -42,7 +42,7 @@ import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-budget-rule-list",
@@ -56,7 +56,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LuxTableCaption,
     DataViewMobile,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",

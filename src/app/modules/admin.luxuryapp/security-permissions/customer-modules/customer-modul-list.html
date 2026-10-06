@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <lux-customer-modul-list-mobile-web
+  <app-customer-modul-list-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [state]="state"
@@ -7,7 +7,7 @@
     (select)="onModalForm($event)"
   />
 } @else {
-  <lux-customer-modul-list-desktop-web
+  <app-customer-modul-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [state]="state"

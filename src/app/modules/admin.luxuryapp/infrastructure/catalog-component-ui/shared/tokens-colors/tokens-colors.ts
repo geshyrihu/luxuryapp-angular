@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { MessageService } from "@core/services/message.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { TokenColor } from "./interfaces/token-color.interface";
 import { TokenGroup } from "./interfaces/token-group.interface";
 
@@ -17,7 +17,7 @@ import { TokenGroup } from "./interfaces/token-group.interface";
   imports: [
     CommonModule,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
   ],
   template: `
 

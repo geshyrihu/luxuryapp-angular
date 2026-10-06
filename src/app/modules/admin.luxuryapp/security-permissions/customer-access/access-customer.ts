@@ -11,12 +11,12 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AddCustomerPermisoToUser } from "@core/interfaces/add-customer-permiso-to-user.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-access-customer",
   templateUrl: "./access-customer.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule, LxIcon],
 })
 export class AccessCustomer implements OnInit {
   customToastService = inject(CustomToastService);

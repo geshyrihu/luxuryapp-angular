@@ -9,7 +9,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IaTestService } from "./ia-test.service";
 import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 
@@ -22,7 +22,7 @@ import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
     LxCard,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./ia-test.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,

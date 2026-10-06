@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IFondoReservaDTO } from "../../interfaces/aspel-budget.interface";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -17,7 +17,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 @Component({
   selector: "app-fondo-reserva",
 
-  imports: [LxSkeleton, AppIcon, CommonModule],
+  imports: [LxSkeleton, LxIcon, CommonModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./fondo-reserva.html",
 })

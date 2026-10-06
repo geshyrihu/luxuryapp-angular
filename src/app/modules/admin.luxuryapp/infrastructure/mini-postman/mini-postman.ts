@@ -14,7 +14,7 @@ import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { lastValueFrom } from "rxjs";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { environment } from "src/environments/environment";
 import { HistoryEntry } from "./interfaces/history-entry.interface";
 import { KeyValuePair } from "./interfaces/key-value-pair.interface";
@@ -31,7 +31,7 @@ import { KeyValuePair } from "./interfaces/key-value-pair.interface";
     InputText,
     WebButtonLabel,
     WebButtonIcon,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MiniPostman {

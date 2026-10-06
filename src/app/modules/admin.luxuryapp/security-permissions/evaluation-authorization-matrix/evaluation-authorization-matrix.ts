@@ -11,7 +11,7 @@ import { EndpointsSelectItem } from "@core/constants/endpoints/select-item.endpo
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { ApplicationRoleDto } from "../application-roles/interfaces/application-role.dto";
 import {
@@ -39,7 +39,7 @@ const GLOBAL_ADMINISTRATORS = new Set([
   templateUrl: "./evaluation-authorization-matrix.html",
   styleUrls: ["./evaluation-authorization-matrix.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, LxCard, LxSkeleton, AppIcon, AppTag],
+  imports: [FormsModule, LxCard, LxSkeleton, LxIcon, AppTag],
 })
 export class EvaluationAuthorizationMatrix implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

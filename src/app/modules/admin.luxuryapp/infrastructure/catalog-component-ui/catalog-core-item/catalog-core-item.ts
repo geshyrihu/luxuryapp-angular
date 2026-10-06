@@ -4,7 +4,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import { FunnelChart } from "@ui/web/funnel-chart/funnel-chart";
 import { DataGrid, DataGridColumn } from "@ui/web/data-grid/data-grid";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 const LABELS: Record<string, string> = {
   datagrid: "Data Grid",
@@ -15,7 +15,7 @@ const LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-core-item",
-  imports: [EmptyState, FileUpload, FunnelChart, DataGrid, AppIcon],
+  imports: [EmptyState, FileUpload, FunnelChart, DataGrid, LxIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4"><h2 class="text-3xl fw-bold m-0">{{ label() }}</h2></div>
@@ -27,11 +27,11 @@ const LABELS: Record<string, string> = {
         }
         @case ("emptystate") {
           <div class="card"><div class="card-body">
-            <lux-empty-state icon="material-symbols-light:inbox" title="Sin resultados" message="No se encontraron registros." actionLabel="Nuevo registro" />
+            <lux-empty-state-web icon="material-symbols-light:inbox" title="Sin resultados" message="No se encontraron registros." actionLabel="Nuevo registro" />
           </div></div>
         }
         @case ("fileupload") {
-          <div class="card"><div class="card-body"><lux-file-upload chooseLabel="Subir archivos" accept="image/*,.pdf" [maxFileSize]="5000000" [multiple]="true" /></div></div>
+          <div class="card"><div class="card-body"><lux-file-upload-web chooseLabel="Subir archivos" accept="image/*,.pdf" [maxFileSize]="5000000" [multiple]="true" /></div></div>
         }
         @case ("funnelchart") {
           <div class="card"><div class="card-body"><lux-funnel-chart-web title="Embudo de ventas" [labels]="['Leads', 'Contactados', 'Propuesta', 'Cerrados']" [values]="[1200, 820, 430, 95]" /></div></div>

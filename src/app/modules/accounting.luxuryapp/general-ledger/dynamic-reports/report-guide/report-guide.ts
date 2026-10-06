@@ -4,7 +4,7 @@ import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AccordionItem } from "@ui/core/accordion.base";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface RouteEntry {
   path: string;
@@ -23,7 +23,7 @@ interface FrontendRoute {
 
 @Component({
   selector: "app-report-guide",
-  imports: [RouterModule, LxAccordion, WebButtonLabel, AppIcon, LxTag],
+  imports: [RouterModule, LxAccordion, WebButtonLabel, LxIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-guide.html",
 })

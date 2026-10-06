@@ -10,7 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IEpfDTO } from "../../interfaces/aspel-budget.interface";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
@@ -19,7 +19,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 
 @Component({
   selector: "app-estado-posicion-financiera",
-  imports: [AppIcon, FormsModule, LxSkeleton, AccountingNumberPipe],
+  imports: [LxIcon, FormsModule, LxSkeleton, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-posicion-financiera.html",
 })

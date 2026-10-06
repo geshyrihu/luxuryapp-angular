@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTag } from "@ui/web/tag/tag";
 import {
   AppSortableColumn,
@@ -19,7 +19,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
     AppSortableColumn,
     AppSorticon,
     AppTag,
-    AppIcon,
+    LxIcon,
   ],
   template: `
     <section class="fadein">
@@ -47,7 +47,7 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                     [style.background]="doc.colorToken"
                   >
                     <strong>{{ doc.codigo }}</strong>
-                    <lux-tag
+                    <lux-tag-web
                       [value]="doc.confidencialidad"
                       [severity]="doc.severity"
                     ></p-tag>
@@ -129,31 +129,31 @@ import { TipoDocumento } from "./interfaces/tipo-documento.interface";
                   <tr>
                     <td class="text-xs font-bold">{{ row.documento }}</td>
                     <td>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="row.superUsuario"
                         [severity]="getColorAcceso(row.superUsuario)"
                       />
                     </td>
                     <td>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="row.direccion"
                         [severity]="getColorAcceso(row.direccion)"
                       />
                     </td>
                     <td>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="row.staff"
                         [severity]="getColorAcceso(row.staff)"
                       />
                     </td>
                     <td>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="row.condomino"
                         [severity]="getColorAcceso(row.condomino)"
                       />
                     </td>
                     <td>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="row.proveedor"
                         [severity]="getColorAcceso(row.proveedor)"
                       />

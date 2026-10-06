@@ -23,7 +23,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 // Definición de un ótem de factura analizada extendido para el frontend
@@ -67,7 +67,7 @@ type ModalStatus =
     CustomInputSelectSignal,
     CustomInputTextSignal,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./funding-upload-invoices-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -63,7 +63,7 @@
   @if (advertencias().length > 0) {
   <div class="mb-3">
     @for (w of advertencias(); track w) {
-    <lux-message severity="warn" class="mb-1 text-sm">{{ w }}</lux-message>
+    <lux-message-web severity="warn" class="mb-1 text-sm">{{ w }}</lux-message-web>
     }
   </div>
   }
@@ -305,4 +305,4 @@
   }
 </div>
 
-<lux-ai-agent-contable-web #aiAgent />
+<app-ai-agent-contable #aiAgent />

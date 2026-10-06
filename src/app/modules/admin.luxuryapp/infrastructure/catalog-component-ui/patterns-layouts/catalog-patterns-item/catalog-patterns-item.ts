@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppDivider } from "@ui/web/divider/divider";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -40,7 +40,7 @@ const PATTERNS_LABELS: Record<string, string> = {
     CustomInputTextSignal,
     AppTable,
     Tabs,
-    AppIcon,
+    LxIcon,
     StatusBadge,
     AppCard,
     ChartWrapper,
@@ -70,7 +70,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               </ng-template>
             </lux-toolbar-web>
 
-            <lux-card>
+            <lux-card-web>
               <ng-template #content>
                 <div class="row g-3">
                   <div class="col-12 col-md-4">
@@ -100,9 +100,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                   </div>
                 </div>
               </ng-template>
-            </lux-card>
+            </lux-card-web>
 
-            <lux-card>
+            <lux-card-web>
               <ng-template #content>
                 <lux-table [value]="mockTableData" class="w-100">
                   <ng-template #header>
@@ -130,7 +130,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                   </ng-template>
                 </lux-table>
               </ng-template>
-            </lux-card>
+            </lux-card-web>
           </div>
         }
         @case ("kpichart") {
@@ -138,7 +138,7 @@ const PATTERNS_LABELS: Record<string, string> = {
           <div class="row g-4">
             <!-- KPIs -->
             <div class="col-12 col-md-4 d-flex flex-column gap-3">
-              <lux-card class="flex-grow-1" [elevated]="true">
+              <lux-card-web class="flex-grow-1" [elevated]="true">
                 <ng-template #content>
                   <div class="d-flex justify-content-between align-items-start">
                     <div>
@@ -156,8 +156,8 @@ const PATTERNS_LABELS: Record<string, string> = {
                     +14% respecto al mes anterior
                   </p>
                 </ng-template>
-              </lux-card>
-              <lux-card class="flex-grow-1" [elevated]="true">
+              </lux-card-web>
+              <lux-card-web class="flex-grow-1" [elevated]="true">
                 <ng-template #content>
                   <div class="d-flex justify-content-between align-items-start">
                     <div>
@@ -175,11 +175,11 @@ const PATTERNS_LABELS: Record<string, string> = {
                     5 requieren atención
                   </p>
                 </ng-template>
-              </lux-card>
+              </lux-card-web>
             </div>
             <!-- Gráfico -->
             <div class="col-12 col-md-8">
-              <lux-card class="h-100" [elevated]="true">
+              <lux-card-web class="h-100" [elevated]="true">
                 <ng-template #content>
                   <lux-chart-wrapper-web
                     type="bar"
@@ -188,7 +188,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     title="Ingresos Mensuales"
                   />
                 </ng-template>
-              </lux-card>
+              </lux-card-web>
             </div>
           </div>
         }
@@ -196,14 +196,14 @@ const PATTERNS_LABELS: Record<string, string> = {
           <!-- Receta: Detalle + Timeline -->
           <div class="row g-4">
             <div class="col-12 col-md-8">
-              <lux-card header="Detalles del Ticket #4502" [elevated]="true">
+              <lux-card-web header="Detalles del Ticket #4502" [elevated]="true">
                 <ng-template #content>
                   <p class="text-secondary">
                     El aire acondicionado de la sala de juntas principal no está
                     enfriando. Se requiere revisión urgente antes de la reunión
                     de consejo.
                   </p>
-                  <lux-divider />
+                  <lux-divider-web />
                   <div class="row">
                     <div class="col-6 mb-3">
                       <span class="text-sm text-secondary d-block"
@@ -219,10 +219,10 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </ng-template>
-              </lux-card>
+              </lux-card-web>
             </div>
             <div class="col-12 col-md-4">
-              <lux-card header="Historial" [elevated]="true">
+              <lux-card-web header="Historial" [elevated]="true">
                 <ng-template #content>
                   <div class="timeline-simple">
                     <div class="d-flex gap-3 mb-3">
@@ -263,7 +263,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                     </div>
                   </div>
                 </ng-template>
-              </lux-card>
+              </lux-card-web>
             </div>
           </div>
         }
@@ -378,7 +378,7 @@ const PATTERNS_LABELS: Record<string, string> = {
                 grupos de navegación en cards visuales uniformes para web y
                 lista agrupada para mobile.
               </p>
-              <lux-divider />
+              <lux-divider-web />
 
               <!-- 1. Modelo de datos requerido -->
               <h3 class="text-base font-bold mb-2">

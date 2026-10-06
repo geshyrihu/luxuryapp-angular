@@ -3,14 +3,14 @@ import { ChangeDetectionStrategy, Component, input, output } from "@angular/core
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SatCfdiRecibidoDto } from "../../interfaces/cfdi-download.interfaces";
 
 @Component({
   selector: "app-cfdi-list-mobile",
   templateUrl: "./cfdi-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, LxTag, AppIcon, DataViewMobile, MobileListItem],
+  imports: [CommonModule, LxTag, LxIcon, DataViewMobile, MobileListItem],
 })
 export class CfdiListMobile {
   data = input.required<SatCfdiRecibidoDto[]>();

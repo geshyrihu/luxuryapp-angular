@@ -8,7 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveToIconify } from "@shared/utils/icon-mapping";
 
@@ -19,7 +19,7 @@ const AUDIT_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-audit-item",
-  imports: [FormsModule, AppCheckbox, AppIcon],
+  imports: [FormsModule, AppCheckbox, LxIcon],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -52,7 +52,7 @@ const AUDIT_LABELS: Record<string, string> = {
                   [class.bg-green-50]="item.aprobado"
                   (click)="toggleChecklistItem(item.numero)"
                 >
-                  <lux-checkbox
+                  <lux-checkbox-web
                     [checked]="item.aprobado"
                     (checkedChange)="toggleChecklistItem(item.numero)"
                   />

@@ -8,7 +8,7 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -23,7 +23,7 @@ import { ModuleAppRolDto } from "../interfaces/module-app-rol.dto";
   templateUrl: "./module-app-rol-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     AppTable,
     AppSortableColumn,
     AppSorticon,

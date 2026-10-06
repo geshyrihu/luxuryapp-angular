@@ -39,12 +39,12 @@
     <tr>
       <td>{{ item.topic }}</td>
       <td>
-        <lux-tag
+        <lux-tag-web
           [value]="item.moduleAppName || 'General'"
           [severity]="item.moduleAppId ? 'warn' : 'success'"
         />
       </td>
-      <td><lux-tag [value]="item.keywords" severity="info" /></td>
+      <td><lux-tag-web [value]="item.keywords" severity="info" /></td>
       <td><code>{{ item.route }}</code></td>
       <td>
         <lux-icon

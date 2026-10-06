@@ -74,7 +74,7 @@
   <!-- Main List using DataViewMobile -->
   <div class="flex-grow-1 position-relative">
     <!-- absolute positioning can help force child to fill parent -->
-    <lux-data-view-mobile-web
+    <app-data-view-mobile
       [data]="data()"
       (add)="create.emit()"
       [globalFilterFields]="globalFilterFields()"
@@ -121,6 +121,6 @@
           }
         </ili-list-item>
       </ng-template>
-    </lux-data-view-mobile-web>
+    </app-data-view-mobile>
   </div>
 </div>

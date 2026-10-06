@@ -10,7 +10,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -28,7 +28,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     TableFooter,
     LuxTableCaption,
     ButtonWeb,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class CustomerModulListDesktop {

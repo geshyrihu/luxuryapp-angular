@@ -11,7 +11,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AuditEntry } from "../interfaces/audit-entry.interface";
 
 @Component({
@@ -25,7 +25,7 @@ import { AuditEntry } from "../interfaces/audit-entry.interface";
     WebButtonLabel,
     DataViewMobile,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class AuditEntriesMobile {

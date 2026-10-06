@@ -18,11 +18,11 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-presupuesto-contabilidad-cliente",
-  imports: [AppIcon, CommonModule, AccountingNumberPipe, DataViewMobile],
+  imports: [LxIcon, CommonModule, AccountingNumberPipe, DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad-cliente.html",
 })

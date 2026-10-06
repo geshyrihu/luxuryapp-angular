@@ -21,7 +21,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 @Component({
   selector: "app-reporte-envio-financieros",
@@ -29,7 +29,7 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
   styleUrls: ["./reporte-envio-financieros.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     TableEmptyMessage,
     AppTable,
     LxTooltipDirective,

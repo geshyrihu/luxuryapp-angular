@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<lux-audit-entries-mobile-web
+<app-audit-entries-mobile
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"
@@ -9,7 +9,7 @@
   (toggleExpand)="toggleExpand($event)"
 />
 } @else {
-<lux-audit-entries-desktop-web
+<app-audit-entries-desktop
   [data]="data()"
   [loading]="loading()"
   [totalRecords]="totalRecords()"

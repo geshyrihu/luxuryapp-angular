@@ -1,10 +1,10 @@
 @if (platformS.isMobile()) {
-  <lux-accounting-catalog-mobile-web
+  <app-accounting-catalog-mobile
     [data]="flattenedDataSignal()"
     [globalFilterFields]="globalFilterFields()"
   />
 } @else {
-  <lux-accounting-catalog-desktop-web
+  <app-accounting-catalog-desktop
     [data]="flattenedDataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (export)="exportData()"

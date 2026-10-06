@@ -38,7 +38,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
               </div>
             </div>
             <div class="d-flex flex-column align-items-end gap-1 flex-shrink-0">
-              <lux-tag [value]="h.size" severity="secondary" />
+              <lux-tag-web [value]="h.size" severity="secondary" />
               <code class="text-xs">{{ h.token }}</code>
             </div>
           </div>
@@ -73,7 +73,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
             <td>
               <code class="text-xs">{{ item.token }}</code>
             </td>
-            <td><lux-tag [value]="item.size" severity="secondary" /></td>
+            <td><lux-tag-web [value]="item.size" severity="secondary" /></td>
             <td>
               <span
                 [style.font-size]="item.size"

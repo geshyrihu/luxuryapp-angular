@@ -23,7 +23,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -70,7 +70,7 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     LxChip,
     AccountTreeSelect,
     CurrencyPipe,
-    AppIcon,
+    LxIcon,
     LxTag,
     LxModal,
   ],

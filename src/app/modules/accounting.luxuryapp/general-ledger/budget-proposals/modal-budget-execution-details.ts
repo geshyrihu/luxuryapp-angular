@@ -25,7 +25,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -35,7 +35,7 @@ import {
   selector: "app-budget-execution-details-modal",
   templateUrl: "./budget-execution-details-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, AppIcon],
+  imports: [CommonModule, AppTable, AppSortableColumn, AppSorticon, LxIcon],
 })
 export class BudgetExecutionDetailsModal implements OnInit {
   apiResponseS = inject(ApiResponseService);

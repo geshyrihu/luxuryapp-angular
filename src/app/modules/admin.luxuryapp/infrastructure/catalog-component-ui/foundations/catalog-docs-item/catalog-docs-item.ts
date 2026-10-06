@@ -42,7 +42,7 @@ const DOCS_LABELS: Record<string, string> = {
                 <td>{{ doc.tipo }}</td>
                 <td>{{ doc.codigo }}</td>
                 <td>
-                  <lux-tag
+                  <lux-tag-web
                     [value]="doc.confidencialidad"
                     [severity]="doc.severity"
                   />

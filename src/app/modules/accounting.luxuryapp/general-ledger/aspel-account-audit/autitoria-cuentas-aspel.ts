@@ -14,7 +14,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ReportFilterService } from "../aspel-full-mirror/financial-report-filter.service";
 import { AutitoriaCuentasAspelExportService } from "./autitoria-cuentas-aspel-export.service";
@@ -38,7 +38,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     WebButtonLabel,
     ButtonWeb,
     CustomSearchInput,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./autitoria-cuentas-aspel.html",

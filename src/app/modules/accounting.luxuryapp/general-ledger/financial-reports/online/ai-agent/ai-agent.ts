@@ -20,7 +20,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ElevenLabsService } from "@core/services/eleven-labs.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 interface AiMessage {
@@ -41,7 +41,7 @@ interface AiMessage {
     CustomInputTextSignal,
     LxSpinner,
     LxSidebar,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./ai-agent.html",
   changeDetection: ChangeDetectionStrategy.Eager,

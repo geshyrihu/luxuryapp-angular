@@ -31,7 +31,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {
@@ -44,7 +44,7 @@ interface ISearchForm {
     ReactiveFormsModule,
     CustomInputTextSignal,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     LxMessage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

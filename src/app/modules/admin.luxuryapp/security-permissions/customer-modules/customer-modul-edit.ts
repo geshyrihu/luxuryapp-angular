@@ -24,7 +24,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface";
 
 @Component({
@@ -37,7 +37,7 @@ import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface"
     FormsModule,
     MobileListItem,
     IonInputToggle,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./customer-modul-edit.html",

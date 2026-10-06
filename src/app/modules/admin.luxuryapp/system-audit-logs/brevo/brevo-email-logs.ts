@@ -13,7 +13,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -35,7 +35,7 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
     AppSortableColumn,
     AppSorticon,
     LxTag,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
     CustomInputDateSignal,
     CustomInputTextSignal,

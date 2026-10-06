@@ -24,13 +24,13 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CustomerProviderFormGroup } from "./interfaces/customer-provider-form.interface";
 
 @Component({
   selector: "app-customer-provider-form",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     InputAutocomplete,
     ButtonWeb,

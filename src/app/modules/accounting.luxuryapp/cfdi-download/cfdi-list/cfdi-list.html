@@ -1,11 +1,11 @@
 @if (platformS.isMobile()) {
-  <lux-cfdi-list-mobile-web
+  <app-cfdi-list-mobile
     [data]="data()"
     [globalFilterFields]="globalFilterFields()"
     (verPdf)="verPdf.emit($event)"
   />
 } @else {
-  <lux-cfdi-list-desktop-web
+  <app-cfdi-list-desktop
     [data]="data()"
     [globalFilterFields]="globalFilterFields()"
     (verPdf)="verPdf.emit($event)"

@@ -15,7 +15,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -44,7 +44,7 @@ import { LogEntry } from "../interfaces/log-entry.interface";
     CustomInputSelectSignal,
     WebButtonIcon,
     LuxTableCaption,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class LogApiReportDesktop {

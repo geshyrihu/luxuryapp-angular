@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
   selector: "app-catalog-layouts",
 
-  imports: [CommonModule,   AppTag, AppIcon],
+  imports: [CommonModule,   AppTag, LxIcon],
   template: `
     <div class="row">
       <!-- -- Layouts de Página --------------------------------------- -->
@@ -41,7 +41,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
                   <div class="p-3 d-flex flex-column gap-2 flex-grow-1">
                     <div class="d-flex align-items-center gap-2">
                       <strong class="text-sm">{{ layout.titulo }}</strong>
-                      <lux-tag
+                      <lux-tag-web
                         [value]="layout.tag"
                         [severity]="layout.tagSeverity"
                         [rounded]="true"

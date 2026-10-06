@@ -44,7 +44,7 @@ import { PaymentVoucherModal } from "@purchases.luxuryapp/purchase-orders/purcha
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-purchase-order-outside-funding/create-orden-compra-fuera-fondeo";
@@ -106,7 +106,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxTooltipDirective,
     UpperCasePipe,
     CustomInputCheckSignal,
-    AppIcon,
+    LxIcon,
     LxTag,
     LxModal,
     LxMessage,

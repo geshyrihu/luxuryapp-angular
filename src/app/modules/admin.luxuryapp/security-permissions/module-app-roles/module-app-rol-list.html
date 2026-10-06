@@ -1,11 +1,11 @@
 @if (platformS.isMobile()) {
-  <lux-module-app-rol-list-mobile-web
+  <app-module-app-rol-list-mobile
     [data]="dataSignal()"
     [groupedData]="groupedData()"
     (select)="onModalForm($event)"
   />
 } @else {
-  <lux-module-app-rol-list-desktop-web
+  <app-module-app-rol-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (select)="onModalForm($event)"

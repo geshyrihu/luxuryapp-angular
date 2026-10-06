@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-  <lux-estado-financiero-list-mobile-web
+  <app-estado-financiero-list-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [processingSend]="processingSend()"
@@ -10,7 +10,7 @@
     (viewPdf)="viewPdf($event.url, $event.fileName)"
   />
 } @else {
-  <lux-estado-financiero-list-desktop-web
+  <app-estado-financiero-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     [processingUpload]="processingUpload()"

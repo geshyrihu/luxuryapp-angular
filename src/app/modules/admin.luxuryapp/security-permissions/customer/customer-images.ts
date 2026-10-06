@@ -13,14 +13,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CustomerImageDto } from "./interfaces/customer-image.dto";
 
 @Component({
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxImage, AppIcon, WebButtonIcon],
+  imports: [LxImage, LxIcon, WebButtonIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

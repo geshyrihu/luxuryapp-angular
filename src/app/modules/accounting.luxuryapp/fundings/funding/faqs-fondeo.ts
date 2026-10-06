@@ -5,7 +5,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { HighlightPipe } from "@shared/pipes/highlight.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-faqs-fondeo",
   imports: [
@@ -14,7 +14,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CustomSearchInput,
     LxCard,
     LxMessage,
-    AppIcon,
+    LxIcon,
   ],
 
   changeDetection: ChangeDetectionStrategy.Eager,

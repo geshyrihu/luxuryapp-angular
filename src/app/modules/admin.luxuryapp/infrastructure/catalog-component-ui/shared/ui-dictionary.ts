@@ -1587,7 +1587,7 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
   },
   {
     selector: "app-icon",
-    className: "AppIcon",
+    className: "LxIcon",
     category: "primitives",
     path: "shared/ui/primitives/app-icon/app-icon.ts",
   },

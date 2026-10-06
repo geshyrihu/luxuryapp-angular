@@ -11,7 +11,7 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
@@ -53,7 +53,7 @@ type TagSeverity =
     AppSpinner,
     AppTag,
     AppToolbar,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./catalog-guia.html",
   styles: [

@@ -1,12 +1,12 @@
 @if (platformS.isMobile()) {
-  <lux-aspel-customer-empresa-list-mobile-web
+  <app-aspel-customer-empresa-list-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (modalForm)="onModalForm($event)"
     (delete)="onDelete($event)"
   />
 } @else {
-  <lux-aspel-customer-empresa-list-desktop-web
+  <app-aspel-customer-empresa-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (modalForm)="onModalForm($event)"

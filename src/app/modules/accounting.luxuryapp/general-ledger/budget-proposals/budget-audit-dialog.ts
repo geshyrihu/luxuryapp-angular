@@ -25,13 +25,13 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
 @Component({
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, WebButtonLabel],
+  imports: [LxIcon, WebButtonLabel],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);

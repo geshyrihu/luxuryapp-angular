@@ -81,7 +81,8 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
  */
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import {
   MultipleSegmentedControl,
   SegmentItem,
@@ -95,7 +96,7 @@ import {
 @Component({
   selector: "app-presupuesto-propuesta",
   imports: [
-    AppIcon,
+    LxIcon,
     CommonModule,
     CustomInputSelectSignal,
     CustomSearchInput,

@@ -20,7 +20,7 @@ import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface"
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-catalog-replica",
@@ -32,7 +32,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     WebButtonLabel,
     CustomInputTextSignal,
     LxTag,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",

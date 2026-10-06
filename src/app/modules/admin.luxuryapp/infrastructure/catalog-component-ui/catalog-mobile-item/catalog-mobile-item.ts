@@ -45,28 +45,28 @@ const MOBILE_LABELS: Record<string, string> = {
       </div>
       @switch (item()) {
         @case ("buttons") {
-          <lux-mobile-buttons-web />
+          <app-mobile-buttons />
         }
         @case ("inputs") {
-          <lux-mobile-inputs-web />
+          <app-mobile-inputs />
         }
         @case ("feedback") {
-          <lux-mobile-feedback-web />
+          <app-mobile-feedback />
         }
         @case ("navigation") {
-          <lux-mobile-navigation-web />
+          <app-mobile-navigation />
         }
         @case ("lists") {
-          <lux-mobile-lists-web />
+          <app-mobile-lists />
         }
         @case ("data") {
-          <lux-mobile-data-web />
+          <app-mobile-data />
         }
         @case ("forms") {
-          <lux-mobile-forms-web />
+          <app-mobile-forms />
         }
         @case ("overlays") {
-          <lux-mobile-overlays-web />
+          <app-mobile-overlays />
         }
       }
     </section>

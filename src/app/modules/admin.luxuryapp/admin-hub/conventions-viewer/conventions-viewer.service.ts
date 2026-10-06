@@ -391,9 +391,9 @@ import { TagModule } from 'Bootstrap/tag';`,
         angular: {
           code: `<!-- OK -->
 @if (isMobile()) {
-  <lux-bank-list-mobile-web />
+  <app-bank-list-mobile />
 } @else {
-  <lux-bank-list-desktop-web />
+  <app-bank-list-desktop />
 }
 
 <!-- NO -->

@@ -1,11 +1,11 @@
 @if (platformS.isMobile()) {
-  <lux-funding-list-mobile-web
+  <app-funding-list-mobile
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (details)="onDetails($event)"
   />
 } @else {
-  <lux-funding-list-desktop-web
+  <app-funding-list-desktop
     [data]="dataSignal()"
     [globalFilterFields]="globalFilterFields()"
     (details)="onDetails($event)"

@@ -17,7 +17,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AspelSyncService } from "./aspel-sync.service";
 
 interface IAspelSyncForm {
@@ -31,7 +31,7 @@ interface IAspelSyncForm {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
     CustomInputNumberSignal,
     LxCard,

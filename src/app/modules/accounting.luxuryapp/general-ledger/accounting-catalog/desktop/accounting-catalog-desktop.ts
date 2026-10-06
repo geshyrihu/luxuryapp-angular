@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -22,7 +22,7 @@ import { AccountingCatalogWithParent } from "../interfaces/AccountingCatalogWith
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     LuxTableCaption,
     TableFooter,
     AppSortableColumn,

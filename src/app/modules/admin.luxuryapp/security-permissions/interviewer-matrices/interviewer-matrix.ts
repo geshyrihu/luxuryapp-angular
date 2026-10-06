@@ -12,7 +12,7 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTag } from "@ui/web/tag/tag";
 import { InterviewerMatrixBoardDto } from "./interfaces/interviewer-matrix-board.dto";
 import { InterviewerMatrixItemDto } from "./interfaces/interviewer-matrix-item.dto";
@@ -25,7 +25,7 @@ type MatrixCellState = "active" | "inactive" | "empty";
   templateUrl: "./interviewer-matrix.html",
   styleUrls: ["./interviewer-matrix.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxCard, LxSkeleton, AppIcon, AppTag],
+  imports: [LxCard, LxSkeleton, LxIcon, AppTag],
 })
 export class InterviewerMatrix implements OnInit {
   private apiResponseS = inject(ApiResponseService);

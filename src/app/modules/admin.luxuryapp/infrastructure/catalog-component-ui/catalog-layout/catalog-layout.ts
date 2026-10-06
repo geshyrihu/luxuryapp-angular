@@ -9,7 +9,7 @@ import { RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppTag } from "@ui/web/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ThemeService } from "@core/services/theme.service";
 
 @Component({
@@ -18,7 +18,7 @@ import { ThemeService } from "@core/services/theme.service";
     RouterModule,
     AppTag,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
     ButtonWeb,
   ],
   templateUrl: "./catalog-layout.html",

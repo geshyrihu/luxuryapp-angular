@@ -8,7 +8,7 @@ import {
 import { FormsModule } from "@angular/forms";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ModuleQuote } from "./interfaces/module-quote.interface";
 
 @Component({
@@ -19,7 +19,7 @@ import { ModuleQuote } from "./interfaces/module-quote.interface";
     FormsModule,
     CustomInputCheckSignal,
     CustomInputNumberSignal,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./cotizador.component.html",
   styleUrls: ["./cotizador.component.scss"],

@@ -102,7 +102,7 @@
     </ng-template>
   </lux-table>
 
-  <lux-data-view-mobile-web
+  <app-data-view-mobile
     [data]="propios()"
     [globalFilterFields]="globalFilterFields"
     [dt]="table"
@@ -142,7 +142,7 @@
         </div>
       </div>
     </ng-template>
-  </lux-data-view-mobile-web>
+  </app-data-view-mobile>
   } @case ("1") {
   <lux-table
     [value]="plantillas()"
@@ -188,7 +188,7 @@
     </ng-template>
   </lux-table>
 
-  <lux-data-view-mobile-web
+  <app-data-view-mobile
     [data]="plantillas()"
     [globalFilterFields]="['name', 'description', 'visualizationType']"
     [showAdd]="false"
@@ -209,6 +209,6 @@
         </div>
       </div>
     </ng-template>
-  </lux-data-view-mobile-web>
+  </app-data-view-mobile>
   } }
 </div>

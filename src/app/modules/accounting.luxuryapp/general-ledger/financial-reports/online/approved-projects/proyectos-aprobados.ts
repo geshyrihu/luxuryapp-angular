@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IProyectosAprobadosDTO } from "../../interfaces/aspel-budget.interface";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
@@ -19,7 +19,7 @@ import { FinancialReportFilterStore } from "../state/financial-report-filter.sto
 @Component({
   selector: "app-proyectos-aprobados",
 
-  imports: [LxSkeleton, AppIcon, CommonModule, AppTable, AccountingNumberPipe],
+  imports: [LxSkeleton, LxIcon, CommonModule, AppTable, AccountingNumberPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./proyectos-aprobados.html",
 })

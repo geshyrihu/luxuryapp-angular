@@ -1,12 +1,12 @@
 @if (store.isLoading()) {
   <div class="d-flex flex-column gap-4 p-4">
-    <lux-skeleton width="100%" height="300px" borderRadius="12px" />
+    <lux-skeleton-web width="100%" height="300px" borderRadius="12px" />
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <lux-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
       <div class="col-12 col-md-6">
-        <lux-skeleton width="100%" height="400px" borderRadius="12px" />
+        <lux-skeleton-web width="100%" height="400px" borderRadius="12px" />
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="row g-4">
       @for (kpi of kpis(); track kpi.label) {
         <div class="col-12 col-md-4 col-xl-4">
-          <lux-stat-card-web
+          <lux-stat-card
             orientation="horizontal"
             [label]="kpi.label"
             [value]="kpi.value"
@@ -31,21 +31,21 @@
     </div>
 
     <!-- The red-box components from analysis -->
-    <lux-cobranza-online-analysis-web [showTopKpis]="false" [showFlujoReal]="false" />
+    <app-cobranza-online-analysis [showTopKpis]="false" [showFlujoReal]="false" />
     
     <!-- Morosidad and Towers from Resumen -->
     <div class="row mt-2 g-4">
       <div class="col-12 col-xl-6">
-        <lux-cobranza-online-morosidad-web />
+        <app-cobranza-online-morosidad />
       </div>
       <div class="col-12 col-xl-6">
-        <lux-cobranza-online-towers-web />
+        <app-cobranza-online-towers />
       </div>
     </div>
     
     <div class="row mt-2 g-4">
       <div class="col-12">
-        <lux-cobranza-online-advances-web />
+        <app-cobranza-online-advances />
       </div>
     </div>
   </div>

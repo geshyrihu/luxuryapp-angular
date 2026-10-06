@@ -18,7 +18,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
@@ -31,7 +31,7 @@ import {
   templateUrl: "./bitacora-acceso-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     MobileListItem,
     CommonModule,
     AppTable,

@@ -43,7 +43,7 @@
       <td>{{ item.service }}</td>
       <!-- Opciones -->
       <td class="no-print">
-        <lux-action-menu>
+        <app-action-menu>
           <ng-container actions>
             <lux-button-web
               kind="edit"
@@ -58,7 +58,7 @@
               (clicked)="delete.emit(item.id)"
             />
           </ng-container>
-        </lux-action-menu>
+        </app-action-menu>
       </td>
       <!-- Opciones -->
     </tr>

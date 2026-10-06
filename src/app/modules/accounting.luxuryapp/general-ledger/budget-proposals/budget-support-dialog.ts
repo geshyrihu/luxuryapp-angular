@@ -36,7 +36,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-budget-support-dialog",
   imports: [
@@ -49,7 +49,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxTag,
     LxCard,
     LxMessage,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",

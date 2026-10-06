@@ -8,7 +8,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -34,7 +34,7 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     TableFooter,
     TableEmptyMessage,
     CustomInputSelectSignal,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class CustomerDataCompanyListDesktop {

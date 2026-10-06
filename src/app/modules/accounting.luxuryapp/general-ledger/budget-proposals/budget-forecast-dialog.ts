@@ -27,7 +27,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -42,7 +42,7 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   templateUrl: "./budget-forecast-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     CommonModule,
     WebButtonLabel,
     AppTable,
