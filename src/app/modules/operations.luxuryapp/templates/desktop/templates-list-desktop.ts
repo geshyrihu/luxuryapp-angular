@@ -10,7 +10,6 @@ import {
   NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -38,7 +37,6 @@ import {
     TableEmptyMessage,
     TableFooter,
     ActionMenu,
-    WebButtonLabelDelete,
     WebButtonIconViewPdf,
   ],
 })

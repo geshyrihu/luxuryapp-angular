@@ -20,6 +20,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { TemplatesListDesktop } from "./desktop/templates-list-desktop";
 import { TemplatesListMobile } from "./mobile/templates-list-mobile";
@@ -39,6 +40,7 @@ export class TemplatesList implements OnInit {
   tableScrollHeightS = inject(TableScrollHeightService);
   public aspRoleS = inject(AspRoleService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   public AspRole = ApplicationRole;
 
   // Usar el servicio global para scrollHeight
@@ -82,7 +84,11 @@ export class TemplatesList implements OnInit {
       }
     });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta plantilla?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CustomDocuments.delete(id))
       .then((result: boolean) => {
