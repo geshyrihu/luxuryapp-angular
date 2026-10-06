@@ -12,7 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -20,6 +19,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-han
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SwalService } from "@core/services/swal.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 interface IReviewForm {
@@ -35,7 +35,6 @@ interface IReviewForm {
     ReactiveFormsModule,
     InputAutocomplete,
     CustomInputTextSignal,
-    WebButtonLabelConfirm,
     ButtonWeb,
   ],
 })
@@ -44,6 +43,7 @@ export class InspeccionActivoCondominioEditar implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   customerIdS = inject(CustomerIdService);
+  private swalS = inject(SwalService);
   submitting = signal(false);
 
   cb_activos = signal<SelectItemDto[]>([]);
@@ -198,7 +198,16 @@ export class InspeccionActivoCondominioEditar implements OnInit {
     this.form.patchValue({ reviewSelection: null });
   }
 
-  onRemoveReview(index: number): void {
+  async onRemoveReview(index: number): Promise<void> {
+    const confirmed = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de quitar esta revisión?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     const removedReview = this.reviewsControl.at(index).getRawValue();
     this.reviewsControl.removeAt(index);
 

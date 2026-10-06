@@ -120,15 +120,25 @@
                 [ariaLabel]="'Editar ' + item.name"
                 (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
               />
-              <iw-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
                 size="sm"
+                [ariaLabel]="'Ver detalles de ' + item.name"
                 class="btn--circle"
                 icon="search"
-                [attr.aria-label]="'Ver detalles de ' + item.name"
                 (clicked)="detalles.emit(item.id)"
               />
-              <iw-button-delete
-                [attr.aria-label]="'Eliminar ' + item.name"
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Eliminar"
+                [ariaLabel]="'Eliminar ' + item.name"
                 (clicked)="delete.emit(item.id)"
               />
             </div>

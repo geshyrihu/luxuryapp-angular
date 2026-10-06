@@ -14,6 +14,7 @@ import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { InspeccionesForm } from "../inspections-add-edit/inspecciones-form";
 import { InspectionListItem } from "../models/inspection.model";
@@ -34,6 +35,7 @@ export class ListaInspecciones {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   areasResponsablesSignal = signal<SelectItemDto[]>([]);
   inspeccionesOriginalesSignal = signal<InspectionListItem[]>([]);
@@ -121,7 +123,11 @@ export class ListaInspecciones {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta inspección?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Inspections.delete(id))
       .then((result) => {

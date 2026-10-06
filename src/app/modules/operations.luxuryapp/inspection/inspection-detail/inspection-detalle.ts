@@ -15,8 +15,8 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppTag } from "@ui/web/tag/tag";
@@ -37,7 +37,6 @@ import { InspectionEdit } from "../models/inspection.model";
     AppTag,
     AppIcon,
     WebButtonLabel,
-    WebButtonLabelDelete,
     ActionMenu,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -120,11 +119,13 @@ import { InspectionEdit } from "../models/inspection.model";
                   size="sm"
                   (clicked)="onEdit()"
                 />
-                <il-button-delete
-                  (confirmed)="onDelete()"
-                  label="Eliminar"
+                <lux-button-web
+                  kind="delete"
                   displayMode="icon"
+                  severity="danger"
+                  variant="soft"
                   size="sm"
+                  (clicked)="onDelete()"
                 />
               </div>
             </div>
@@ -178,10 +179,12 @@ import { InspectionEdit } from "../models/inspection.model";
                             size="sm"
                             (clicked)="onEditEquipment(item)"
                           />
-                          <il-button-delete
-                            label="Eliminar"
+                          <lux-button-web
+                            kind="delete"
+                            severity="danger"
+                            variant="soft"
                             size="sm"
-                            (confirmed)="
+                            (clicked)="
                               onDeleteArea(item.inspectionCondominiumAssetId)
                             "
                           />
@@ -205,11 +208,13 @@ import { InspectionEdit } from "../models/inspection.model";
                               {{ review.description }}
                             </p>
                           </div>
-                          <il-button-delete
-                            label="Eliminar"
+                          <lux-button-web
+                            kind="delete"
                             displayMode="icon"
+                            severity="danger"
+                            variant="soft"
                             size="sm"
-                            (confirmed)="
+                            (clicked)="
                               onDeleteReview(
                                 review.id,
                                 item.inspectionCondominiumAssetId
@@ -306,11 +311,13 @@ import { InspectionEdit } from "../models/inspection.model";
                   size="sm"
                   (clicked)="onEdit()"
                 />
-                <il-button-delete
-                  (confirmed)="onDelete()"
-                  label="Eliminar"
+                <lux-button-web
+                  kind="delete"
                   displayMode="icon"
+                  severity="danger"
+                  variant="soft"
                   size="sm"
+                  (clicked)="onDelete()"
                 />
               </div>
             </div>
@@ -364,9 +371,11 @@ import { InspectionEdit } from "../models/inspection.model";
                               variant="soft"
                               (clicked)="onEditEquipment(item)"
                             />
-                            <il-button-delete
-                              label="Eliminar"
-                              (confirmed)="
+                            <lux-button-web
+                              kind="delete"
+                              severity="danger"
+                              variant="soft"
+                              (clicked)="
                                 onDeleteArea(item.inspectionCondominiumAssetId)
                               "
                             />
@@ -391,11 +400,13 @@ import { InspectionEdit } from "../models/inspection.model";
                                 {{ review.description }}
                               </p>
                             </div>
-                            <il-button-delete
-                              label="Eliminar"
+                            <lux-button-web
+                              kind="delete"
                               displayMode="icon"
+                              severity="danger"
+                              variant="soft"
                               size="sm"
-                              (confirmed)="
+                              (clicked)="
                                 onDeleteReview(
                                   review.id,
                                   item.inspectionCondominiumAssetId
@@ -443,6 +454,7 @@ export class InspectionDetailComponent implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly confirmS = inject(ConfirmService);
 
   inspection = signal<InspectionEdit | null>(null);
   loading = signal(true);
@@ -521,16 +533,18 @@ export class InspectionDetailComponent implements OnInit {
       });
   }
 
-  onDelete(): void {
+  async onDelete(): Promise<void> {
     if (!this.inspection()) return;
 
-    if (confirm("¿Está seguro de que desea eliminar esta inspección?")) {
-      this.apiResponseS
-        .onDelete(Endpoints.Inspections.delete(this.inspection()!.id))
-        .then(() => {
-          window.history.back();
-        });
-    }
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de que desea eliminar esta inspección?",
+    );
+    if (!confirmed) return;
+    this.apiResponseS
+      .onDelete(Endpoints.Inspections.delete(this.inspection()!.id))
+      .then(() => {
+        window.history.back();
+      });
   }
 
   onAddEquipment(): void {
@@ -568,7 +582,11 @@ export class InspectionDetailComponent implements OnInit {
       });
   }
 
-  onDeleteArea(assetId: string): void {
+  async onDeleteArea(assetId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta área?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InspectionCondominiumAssets.deleteArea(assetId))
       .then((result) => {
@@ -582,7 +600,11 @@ export class InspectionDetailComponent implements OnInit {
       });
   }
 
-  onDeleteReview(reviewId: string, assetId: string): void {
+  async onDeleteReview(reviewId: string, assetId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta revisión?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InspectionCondominiumAssets.deleteReview(reviewId))
       .then((result) => {

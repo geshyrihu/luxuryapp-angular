@@ -40,9 +40,12 @@
           >
             <span>{{ review.value.label }}</span>
             <div class="ms-auto">
-              <il-button-confirm
-                (clicked)="onRemoveReview(i)"
+              <lux-button-web
+                kind="confirm"
+                severity="success"
+                variant="soft"
                 icon="trash"
+                (clicked)="onRemoveReview(i)"
               />
             </div>
           </div>

@@ -67,13 +67,15 @@
         <ili-action-menu slot="end">
           <ng-container actions>
             @if (item.isRealized) {
-            <ili-button-item
+            <lux-button-mobile
+              kind="item"
               label="Ver resultado"
               iconName="book-outline"
               (clicked)="resultado.emit(item.id)"
             />
             }
-            <ili-button-item
+            <lux-button-mobile
+              kind="item"
               label="Inspeccionar"
               iconName="chevron-forward-outline"
               (clicked)="inspeccionar.emit(item.id)"
