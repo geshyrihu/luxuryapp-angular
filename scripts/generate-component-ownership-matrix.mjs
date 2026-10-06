@@ -78,11 +78,44 @@ const outputSignalRe = /\b(\w+)\s*=\s*output(?:<[^>]*>)?\s*\(/g;
 const inputDecoratorRe = /@Input\(\)\s*(\w+)/g;
 const outputDecoratorRe = /@Output\(\)\s*(\w+)/g;
 const ariaRe = /aria-[a-z-]+|role\s*=/i;
-// @core/services/platform.service y dialog-handler.service son mecanismos de
-// adaptacion de plataforma sancionados explicitamente por el roadmap (§2);
-// no cuentan como violacion de frontera. Cualquier otro @core/* o un modulo
-// de negocio concreto (*.luxuryapp/) si cuenta.
-const coreImportRe = /from\s*["'](@core\/(?!services\/platform\.service|services\/dialog-handler\.service)[^"']+|[^"']*\.luxuryapp\/[^"']+)["']/;
+// Whitelist de @core/* confirmada por triage manual (20261006-gate0-violaciones-frontera-triage.md):
+// - services/platform.service, services/dialog-handler.service: mecanismos de
+//   adaptacion de plataforma sancionados por el roadmap (§2).
+// - interfaces/: imports type-only (contrato de datos, no comportamiento); no
+//   es el tipo de acoplamiento que el roadmap prohibe.
+// - services/{debug-console,message,date,filtro-calendar,global-table-filter,
+//   custom-toast,image-processing}.service: utilidades transversales sin
+//   logica de negocio (confirmado leyendo cada import, no solo el path).
+// NO whitelisteado a proposito (queda flaggeado): @core/auth/*, @core/http/*,
+// @core/constants/endpoints/*, @core/data/* (dato estatico mal ubicado,
+// ver triage) y cualquier *.luxuryapp/* (modulo de negocio concreto).
+const CORE_WHITELIST = [
+  "services/platform.service",
+  "services/dialog-handler.service",
+  "services/debug-console.service",
+  "services/message.service",
+  "services/date.service",
+  "services/filtro-calendar.service",
+  "services/global-table-filter.service",
+  "services/custom-toast.service",
+  "services/image-processing.service",
+];
+const coreWhitelistRe = new RegExp(`^(interfaces/|(${CORE_WHITELIST.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})$)`);
+
+function isCoreImportViolation(content) {
+  const re = /from\s*["'](@core\/([^"']+)|[^"']*\.luxuryapp\/[^"']+)["']/g;
+  let m;
+  while ((m = re.exec(content))) {
+    const isCore = m[1].startsWith("@core/");
+    if (isCore) {
+      const subPath = m[2];
+      if (coreWhitelistRe.test(subPath)) continue;
+      return true;
+    }
+    return true; // *.luxuryapp/ directo: siempre cuenta
+  }
+  return false;
+}
 
 const rows = [];
 for (const file of uiFiles) {
@@ -112,7 +145,7 @@ for (const file of uiFiles) {
   const specPath = file.replace(/\.ts$/, ".spec.ts");
   const hasSpec = fs.existsSync(specPath);
   const hasAria = ariaRe.test(content);
-  const coreImportViolation = coreImportRe.test(content);
+  const coreImportViolation = isCoreImportViolation(content);
 
   const consumerSet = consumersByClassName.get(className) || new Set();
   const consumerCount = consumerSet.size;
