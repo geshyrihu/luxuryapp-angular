@@ -9,7 +9,7 @@
   } @else if (data(); as d) { @if (showTopKpis()) {
   <div class="row mb-4 g-4">
     <div class="col-12 col-md-6 col-xl-3">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Condóminos"
         [value]="d.totalCondominios"
@@ -21,7 +21,7 @@
       />
     </div>
     <div class="col-12 col-md-6 col-xl-3">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Mantenimiento del mes"
         [value]="d.totalMaintenanceGross"
@@ -34,7 +34,7 @@
     </div>
     @if (d.totalExtraordinaryGross > 0) {
     <div class="col-12 col-md-6 col-xl-3">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Extraordinaria del mes"
         [value]="d.totalExtraordinaryGross"
@@ -47,7 +47,7 @@
     </div>
     } @if (d.totalRestaurantGross && d.totalRestaurantGross > 0) {
     <div class="col-12 col-md-6 col-xl-3">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Restaurante del mes"
         [value]="d.totalRestaurantGross"
@@ -60,7 +60,7 @@
     </div>
     }
     <div class="col-12 col-md-6 col-xl-3">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Cobranza perfecta"
         [value]="d.cobranzaPerfecta"
@@ -94,7 +94,7 @@
           {{ customerName() || "Cliente activo" }} · {{ d.periodo }}
         </div>
 
-        <app-breakdown-list
+        <lux-breakdown-list
           [items]="filasAnalisisMensual()"
           [total]="d.cobranzaPerfecta"
           format="number"
@@ -112,7 +112,7 @@
           <div class="text-lg fw-semibold mb-1">Cobranza del Mes</div>
           <div class="text-body-secondary mb-3">Flujo real del periodo</div>
 
-          <app-breakdown-list
+          <lux-breakdown-list
             [items]="filasCobranzaMes()"
             [total]="d.cobranzaPerfecta"
             format="number"
@@ -145,7 +145,7 @@
           Clasificación del saldo final por cuenta 104 al corte consultado.
         </div>
 
-        <app-breakdown-list
+        <lux-breakdown-list
           [items]="filasDeudaCondominos()"
           [total]="d.totalDeuda"
           format="number"
@@ -180,7 +180,7 @@
 
     <div class="col-12 col-xl-4">
       @if (chartData(); as googlePieData) {
-      <app-google-pie-chart4
+      <lux-google-pie-chart4-web
         class="h-full d-block"
         title="Composición de Cobranza"
         subtitle="Distribución de la cartera"

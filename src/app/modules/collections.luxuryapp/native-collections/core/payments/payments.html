@@ -1,7 +1,7 @@
 <div class="card p-4">
   <div class="cb-payments__header">
     <h1 class="cb-payments__title text-xl fw-bold">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:wallet'"
         class="me-2 text-primary"
       />
@@ -124,7 +124,7 @@
             </div>
             @if (totalSelectedToApply() > form.controls.amount.value) {
             <div class="cb-payments__warning text-xs d-flex align-items-center">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:warning'"
                 class="me-2 text-lg"
               />
@@ -179,7 +179,7 @@
             <div
               class="d-flex flex-column align-items-center justify-content-center p-12 text-body-secondary"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:check-circle'"
                 class="cb-payments__empty-icon text-5xl mb-4"
               />

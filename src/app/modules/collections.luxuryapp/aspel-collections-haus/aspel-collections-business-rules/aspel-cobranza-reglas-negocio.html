@@ -11,7 +11,7 @@
     </p>
   </div>
 
-  <app-accordion [items]="items" [multiple]="true">
+  <lux-accordion-web [items]="items" [multiple]="true">
     <!-- 1. Módulos y sus Propósitos -->
     <ng-template accordionPanel="0">
       <div class="line-height-3">
@@ -117,7 +117,7 @@
         <!-- Casos Atípicos y Errores Humanos -->
         <div class="bg-red-50 text-red-900 p-3 rounded border-1 border-red-200">
           <strong
-            ><app-icon
+            ><lux-icon
               icon="material-symbols-light:warning"
               class="me-2"
             />Consecuencia de Error Humano (Descuento Positivo)</strong
@@ -277,5 +277,5 @@
         </ul>
       </div>
     </ng-template>
-  </app-accordion>
+  </lux-accordion-web>
 </div>

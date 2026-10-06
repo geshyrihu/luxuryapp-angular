@@ -23,7 +23,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     <div class="d-flex flex-column gap-4">
       <div class="surface-50 rounded-lg p-3 border-1 border-200">
         <div class="d-flex align-items-start gap-3">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:error-outline"
             class="text-2xl text-orange-500 mt-1"
           />

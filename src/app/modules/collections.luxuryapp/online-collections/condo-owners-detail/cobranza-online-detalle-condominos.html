@@ -143,19 +143,19 @@
     <ng-template #header>
       <tr>
         <th class="table-col-160px" appSortableColumn="accountNumber">
-          Cuenta <app-sorticon field="accountNumber" />
+          Cuenta <lux-sorticon-web field="accountNumber" />
         </th>
         <th appSortableColumn="propertyFullName">
-          Condómino <app-sorticon field="propertyFullName" />
+          Condómino <lux-sorticon-web field="propertyFullName" />
         </th>
         <th
           class="table-col-180px text-center"
           appSortableColumn="classification"
         >
-          Clasificación <app-sorticon field="classification" />
+          Clasificación <lux-sorticon-web field="classification" />
         </th>
         <th class="text-end table-col-150px" appSortableColumn="balance">
-          Saldo Total <app-sorticon field="balance" />
+          Saldo Total <lux-sorticon-web field="balance" />
         </th>
       </tr>
     </ng-template>
@@ -211,7 +211,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
         >
-          <app-icon icon="material-symbols-light:person" />
+          <lux-icon icon="material-symbols-light:person" />
         </div>
         <div class="flex-fill min-w-0 ion-text-wrap p-2">
           <p class="fw-semibold m-0 text-body">{{ item.condomino }}</p>

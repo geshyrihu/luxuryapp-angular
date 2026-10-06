@@ -63,43 +63,43 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
                 appSortableColumn="accountNumber"
                 class="bg-surface-50 border-bottom-1 surface-border"
               >
-                Cuenta <app-sorticon field="accountNumber" />
+                Cuenta <lux-sorticon-web field="accountNumber" />
               </th>
               <th
                 appSortableColumn="propertyFullName"
                 class="bg-surface-50 border-bottom-1 surface-border"
               >
-                Condómino <app-sorticon field="propertyFullName" />
+                Condómino <lux-sorticon-web field="propertyFullName" />
               </th>
               <th
                 appSortableColumn="maintenanceBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Adeudo Mtto. <app-sorticon field="maintenanceBalance" />
+                Adeudo Mtto. <lux-sorticon-web field="maintenanceBalance" />
               </th>
               <th
                 appSortableColumn="extraordinaryBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Adeudo Ext. <app-sorticon field="extraordinaryBalance" />
+                Adeudo Ext. <lux-sorticon-web field="extraordinaryBalance" />
               </th>
               <th
                 appSortableColumn="finesBalance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Multas <app-sorticon field="finesBalance" />
+                Multas <lux-sorticon-web field="finesBalance" />
               </th>
               <th
                 appSortableColumn="currentMonthCharge"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Cargo Mes <app-sorticon field="currentMonthCharge" />
+                Cargo Mes <lux-sorticon-web field="currentMonthCharge" />
               </th>
               <th
                 appSortableColumn="balance"
                 class="bg-surface-50 border-bottom-1 surface-border text-right"
               >
-                Saldo Total <app-sorticon field="balance" />
+                Saldo Total <lux-sorticon-web field="balance" />
               </th>
             </tr>
           </ng-template>

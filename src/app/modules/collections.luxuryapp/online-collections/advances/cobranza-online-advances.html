@@ -13,7 +13,7 @@
   </div>
   <div class="row g-4">
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Total a favor"
         [value]="totalAFavor()"
@@ -25,7 +25,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="Anticipo promedio"
         [value]="promedio()"
@@ -37,7 +37,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <app-stat-card
+      <lux-stat-card
         orientation="horizontal"
         label="A favor en mantenimiento"
         [value]="totalMtto()"
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <app-ranked-list
+  <lux-ranked-list
             heading="Saldos a favor"
             [items]="items()"
             [total]="totalAFavor()"

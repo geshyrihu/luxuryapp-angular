@@ -35,7 +35,7 @@
         <td colspan="8" class="bg-body-tertiary py-2 px-3">
           <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:apartment'"
                 class="text-primary"
               />
@@ -66,7 +66,7 @@
         </td>
         <td class="text-center">
           @if (item.isFinancialResponsible) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:check-circle'"
             class="text-green-600 text-xl"
             title="Responsable financiero"
@@ -75,12 +75,12 @@
         </td>
         <td class="text-center">
           @if (item.receiveNotifications) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:notifications'"
             class="text-blue-500"
           />
           } @else {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:notifications-off'"
             class="text-body-secondary"
           />
@@ -153,7 +153,7 @@
         start
         class="w-2rem h-2rem rounded-lg bg-indigo-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:group-outline"
           class="text-indigo-600 text-xl"
         />
