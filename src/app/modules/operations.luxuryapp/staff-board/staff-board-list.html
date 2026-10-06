@@ -297,35 +297,49 @@
       <td>
         <div class="d-flex align-items-center justify-content-center gap-1">
           @if (item.canRequestVacancy && shouldShowVacancyRequest(item)) {
-          <iw-button-item
-            iconClass="material-symbols-light:confirmation-number"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             severity="warning"
-            lxTooltip="Solicitar Vacante"
+            variant="soft"
+            tooltip="Solicitar Vacante"
             ariaLabel="Solicitar Vacante"
+            iconClass="material-symbols-light:confirmation-number"
             tooltipPosition="top"
             (clicked)="onModalSolicitudVacante(item.id)"
           />
           }
-          <iw-button-item
-            iconClass="material-symbols-light:tune"
-            lxTooltip="Ajustes Generales"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Ajustes Generales"
             ariaLabel="Ajustes Generales"
+            iconClass="material-symbols-light:tune"
             tooltipPosition="top"
             (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
           />
-          <iw-button-item
-            iconClass="material-symbols-light:description"
-            lxTooltip="Editar DESCRIPCIÓN"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Editar DESCRIPCIÓN"
             ariaLabel="Editar DESCRIPCIÓN"
+            iconClass="material-symbols-light:description"
             tooltipPosition="top"
             (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
           />
           @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-          <iw-button-item
-            iconClass="material-symbols-light:delete-outline"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             severity="danger"
-            lxTooltip="Eliminar"
+            variant="soft"
+            tooltip="Eliminar"
             ariaLabel="Eliminar"
+            iconClass="material-symbols-light:delete-outline"
             tooltipPosition="top"
             (clicked)="onRequestDelete(item)"
           />
@@ -384,49 +398,71 @@
               </div>
             </div>
             <div class="d-flex align-items-center gap-1">
-              <iw-button-item
-                iconClass="material-symbols-light:folder-open"
-                lxTooltip="Expediente"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                tooltip="Expediente"
                 ariaLabel="Expediente"
+                iconClass="material-symbols-light:folder-open"
                 tooltipPosition="top"
                 (clicked)="onGoToEmployeeFile(item)"
               />
-              <iw-button-item
-                iconClass="material-symbols-light:checklist"
-                lxTooltip="Checklist de onboarding"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                tooltip="Checklist de onboarding"
                 ariaLabel="Checklist de onboarding"
+                iconClass="material-symbols-light:checklist"
                 tooltipPosition="top"
                 (clicked)="onOpenOnboardingChecklist(item)"
               />
-              <iw-button-item
-                iconClass="material-symbols-light:gavel"
-                lxTooltip="Incidencias Administrativas"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                tooltip="Incidencias Administrativas"
                 ariaLabel="Incidencias Administrativas"
+                iconClass="material-symbols-light:gavel"
                 tooltipPosition="top"
                 (clicked)="onManageIncidents(item)"
               />
-              <iw-button-item
-                iconClass="material-symbols-light:help-outline"
-                lxTooltip="Recuperar Usuario y Contraseña"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
+                severity="secondary"
+                variant="soft"
+                tooltip="Recuperar Usuario y Contraseña"
                 ariaLabel="Recuperar Usuario y Contraseña"
+                iconClass="material-symbols-light:help-outline"
                 tooltipPosition="top"
                 (clicked)="onShowRecoveryGuide(item)"
               />
               @if (item.canRequestDismissal && !item.requestDismissal) {
-              <iw-button-item
-                iconClass="material-symbols-light:airplane-ticket"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
                 severity="danger"
-                lxTooltip="Solicitar Baja"
+                variant="soft"
+                tooltip="Solicitar Baja"
                 ariaLabel="Solicitar Baja"
+                iconClass="material-symbols-light:airplane-ticket"
                 tooltipPosition="top"
                 (clicked)="onRequestDismissal(item)"
               />
               } @if (item.canModifySalary && !item.requestSalaryModification) {
-              <iw-button-item
-                iconClass="material-symbols-light:local-activity"
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
                 severity="info"
-                lxTooltip="Solicitar Modif. Salario"
+                variant="soft"
+                tooltip="Solicitar Modif. Salario"
                 ariaLabel="Solicitar Modif. Salario"
+                iconClass="material-symbols-light:local-activity"
                 tooltipPosition="top"
                 (clicked)="onRequestSalaryMod(item)"
               />
@@ -448,10 +484,14 @@
               </div>
               <div class="d-flex gap-1">
                 @if (canConfirmIngress(item)) {
-                <iw-button-item
-                  iconClass="material-symbols-light:person-check"
-                  lxTooltip="Confirmar Ingreso"
+                <lux-button-web
+                  kind="item"
+                  displayMode="icon"
+                  severity="secondary"
+                  variant="soft"
+                  tooltip="Confirmar Ingreso"
                   ariaLabel="Confirmar Ingreso"
+                  iconClass="material-symbols-light:person-check"
                   (clicked)="openConfirmPresentationModal(item)"
                 />
                 }
