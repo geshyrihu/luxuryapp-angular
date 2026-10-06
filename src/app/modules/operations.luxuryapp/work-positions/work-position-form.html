@@ -210,7 +210,8 @@
         </div>
         @if (scheduleForm.hasError('incompleteWorkDay')) {
         <div class="alert alert-danger">
-          Cada día laborable debe tener entrada y salida, o marcarse como
+          Cada día laborable debe tener hora de entrada o de salida (la
+          contraparte puede quedar en el día contiguo), o marcarse como
           descanso.
         </div>
         }
@@ -276,7 +277,7 @@
                 </div>
                 @if (dayHasError(dayControl)) {
                 <small class="text-danger d-block"
-                  >Captura ambas horas o marca descanso.</small
+                  >Captura entrada o salida, o marca descanso.</small
                 >
                 } @if (day.dw !== 1) {
                 <button

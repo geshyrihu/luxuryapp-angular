@@ -48,8 +48,8 @@ const workDayValidator: ValidatorFn = (control: AbstractControl): ValidationErro
   if (control.get("esDescanso")?.value) return null;
   const entry = control.get("horaEntrada")?.value as string | null;
   const exit = control.get("horaSalida")?.value as string | null;
-  if (!entry || !exit) return { missingBothHours: true };
-  if (entry === exit) return { invalidTimeOrder: true };
+  if (!entry && !exit) return { missingHours: true };
+  if (entry && exit && entry === exit) return { invalidTimeOrder: true };
   return null;
 };
 
@@ -143,17 +143,30 @@ export class WorkPositionForm implements OnInit {
     for (const week of [1, 2, 3, 4]) {
       let minutes = 0;
       for (const day of this.workDays.controls.filter((item) => item.controls.numeroSemanaCiclo.value === week)) {
-        if (day.controls.esDescanso.value || !day.controls.horaEntrada.value || !day.controls.horaSalida.value) continue;
-        const [eh, em] = day.controls.horaEntrada.value.split(":").map(Number);
-        const [sh, sm] = day.controls.horaSalida.value.split(":").map(Number);
-        let difference = sh * 60 + sm - (eh * 60 + em);
-        if (difference < 0) difference += 24 * 60;
-        minutes += difference;
+        minutes += this.dayWorkedMinutes(day);
       }
       result[week] = Number((minutes / 60).toFixed(2));
     }
     return result;
   });
+
+  private dayWorkedMinutes(day: WorkDayGroup): number {
+    if (day.controls.esDescanso.value) return 0;
+    const entry = day.controls.horaEntrada.value;
+    const exit = day.controls.horaSalida.value;
+    const toMinutes = (value: string): number => {
+      const [hours, minutes] = value.split(":").map(Number);
+      return hours * 60 + minutes;
+    };
+    if (entry && exit) {
+      const difference = toMinutes(exit) - toMinutes(entry);
+      return difference < 0 ? difference + 24 * 60 : difference;
+    }
+    // Un solo extremo capturado: la contraparte vive en la fila del día contiguo.
+    if (entry) return 24 * 60 - toMinutes(entry);
+    if (exit) return toMinutes(exit);
+    return 0;
+  }
 
   // --- FORMULARIO REACTIVO ---
   // Se define sin el genórico explicito en .group para que FormBuilder
