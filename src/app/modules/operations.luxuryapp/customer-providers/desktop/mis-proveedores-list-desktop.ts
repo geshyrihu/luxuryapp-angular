@@ -4,7 +4,6 @@ import {
   input,
   output,
 } from "@angular/core";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
@@ -29,7 +28,6 @@ import {
     AppAvatar,
     LuxTableCaption,
     ActionMenu,
-    WebButtonLabelDelete,
   ],
 })
 export class MisProveedoresDesktop {
