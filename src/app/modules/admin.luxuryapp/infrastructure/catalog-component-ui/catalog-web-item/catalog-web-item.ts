@@ -23,6 +23,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -162,6 +163,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     FullCalendarModule,
     LxIcon,
     ButtonWeb,
+    PdfViewerTrigger,
     MobileButtons,
     MobileInputs,
     MobileFeedback,
@@ -254,26 +256,26 @@ const WEB_ITEM_LABELS: Record<string, string> = {
             @case ("button") {
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Button - p-button</h3>
+                  <h3 class="card-title">Button - lux-button-web</h3>
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-wrap gap-2">
-                    <il-button label="Primary" />
-                    <il-button label="Secondary" severity="secondary" />
-                    <il-button label="Success" severity="success" />
-                    <il-button label="Info" severity="info" />
-                    <il-button label="Warning" severity="warning" />
-                    <il-button label="Danger" severity="danger" />
-                    <il-button label="Help" severity="help" />
-                    <il-button label="Contrast" severity="contrast" />
+                    <lux-button-web label="Primary" />
+                    <lux-button-web label="Secondary" severity="secondary" />
+                    <lux-button-web label="Success" severity="success" />
+                    <lux-button-web label="Info" severity="info" />
+                    <lux-button-web label="Warning" severity="warning" />
+                    <lux-button-web label="Danger" severity="danger" />
+                    <lux-button-web label="Help" severity="help" />
+                    <lux-button-web label="Contrast" severity="contrast" />
                   </div>
                   <lux-divider-web />
                   <div class="d-flex flex-wrap gap-2">
-                    <il-button label="Small" size="sm" />
-                    <il-button label="Normal" />
-                    <il-button label="Large" size="lg" />
-                    <il-button label="Disabled" [disabled]="true" />
-                    <il-button label="Loading" [loading]="true" />
+                    <lux-button-web label="Small" size="sm" />
+                    <lux-button-web label="Normal" />
+                    <lux-button-web label="Large" size="lg" />
+                    <lux-button-web label="Disabled" [disabled]="true" />
+                    <lux-button-web label="Loading" [loading]="true" />
                   </div>
                 </div>
               </div>
@@ -281,51 +283,82 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">
-                      Action Buttons - il-button-* / iw-button-*
+                      Action Buttons - lux-button-web (kind + displayMode)
                     </h3>
                   </div>
                   <div class="card-body">
                     <p class="text-sm text-secondary m-0 mb-3">
-                      Botones ERP: <code>il-*</code> con label,
-                      <code>iw-*</code> solo icono.
+                      Botones ERP con <code>kind</code> semántico; los ejemplos
+                      icon-only usan <code>displayMode="icon"</code>. Las clases
+                      legacy <code>&lt;il-button-*&gt;</code> /
+                      <code>&lt;iw-button-*&gt;</code> fueron retiradas.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
-                      <il-button label="Genórico" />
-                      <il-button-add label="Crear" />
-                      <il-button-edit label="Editar" />
-                       <lux-button-web
-                         kind="save"
-                         type="button"
-                         severity="info"
-                         variant="soft"
-                         displayMode="both"
-                         label="Guardar"
-                       />
-                      <il-button-delete label="Eliminar" />
-                      <il-button-confirm label="Aprobar" />
-                      <il-button-active-desactive
-                        [state]="true"
-                        activasLabel="Activos"
-                        inactivasLabel="Inactivos"
+                      <lux-button-web label="Genórico" />
+                      <lux-button-web kind="add" label="Crear" />
+                      <lux-button-web kind="edit" label="Editar" />
+                      <lux-button-web
+                        kind="save"
+                        type="button"
+                        severity="info"
+                        variant="soft"
+                        displayMode="both"
+                        label="Guardar"
                       />
-                      <il-button-download />
-                      <il-button-item />
-                      <il-button-send-email />
-                      <il-button-tracking [badgeCount]="5" [ticketId]="123" />
-                      <il-button-view-pdf url="" fileName="doc.pdf" />
+                      <lux-button-web kind="delete" label="Eliminar" />
+                      <lux-button-web kind="confirm" label="Aprobar" />
+                      <lux-button-web
+                        label="Desactivar"
+                        iconClass="material-symbols-light:toggle-on"
+                        severity="warning"
+                        variant="soft"
+                      />
+                      <lux-button-web kind="download" />
+                      <lux-button-web kind="item" />
+                      <lux-button-web kind="send-email" />
+                      <lux-button-web kind="tracking" [badgeCount]="5" />
+                      <lux-pdf-viewer-trigger
+                        label="Ver PDF"
+                        url=""
+                        fileName="doc.pdf"
+                      />
 
-                      <iw-button-active-desactive [state]="true" />
-                      <iw-button-add />
-                      <iw-button-confirm />
-                      <iw-button-delete />
-                      <iw-button-download />
-                      <iw-button-edit />
-                      <iw-button-item />
-                      <iw-button-save />
-                      <iw-button-send-email />
-                      <iw-button-tracking [badgeCount]="3" [ticketId]="228" />
-                      <iw-button-view-pdf url="" fileName="doc.pdf" />
+                      <lux-button-web
+                        label="Desactivar"
+                        iconClass="material-symbols-light:toggle-on"
+                        displayMode="icon"
+                      />
+                      <lux-button-web kind="add" displayMode="icon" />
+                      <lux-button-web kind="confirm" displayMode="icon" />
+                      <lux-button-web kind="delete" displayMode="icon" />
+                      <lux-button-web kind="download" displayMode="icon" />
+                      <lux-button-web kind="edit" displayMode="icon" />
+                      <lux-button-web kind="item" displayMode="icon" />
+                      <lux-button-web kind="save" displayMode="icon" />
+                      <lux-button-web kind="send-email" displayMode="icon" />
+                      <lux-button-web
+                        kind="tracking"
+                        displayMode="icon"
+                        [badgeCount]="3"
+                      />
+                      <lux-pdf-viewer-trigger
+                        label="Ver PDF"
+                        displayMode="icon"
+                        url=""
+                        fileName="doc.pdf"
+                      />
                     </div>
+                    <p class="text-sm text-secondary mt-3 mb-0">
+                      <code>ticketId</code> no es input de <code>ButtonWeb</code>:
+                      la lógica de tracking (abrir ticket, ruta, contador real)
+                      pertenece al consumidor; aquí <code>[badgeCount]</code> solo
+                      pinta un badge visual. <code>state</code> tampoco es input:
+                      el consumidor deriva <code>label</code>/<code>icon</code> del
+                      estado (ver <code>kind="active-desactive"</code> como
+                      alternativa semántica). Para abrir el visor PDF se usa el
+                      bridge <code>&lt;lux-pdf-viewer-trigger&gt;</code> sobre
+                      <code>lux-button-web kind="view-pdf"</code>.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -473,7 +506,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       header="Con Subheader" subheader="Subtitulo">
                       <p class="m-0">Card con subheader y footer opcional.</p>
                       <ng-template #footer
-                        ><il-button label="Accion"
+                        ><lux-button-web label="Accion"
                       /></ng-template>
                     </div>
                   </div>
@@ -520,7 +553,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Dialog - p-dialog</h3>
                 </div>
                 <div class="card-body">
-                  <il-button
+                  <lux-button-web
                     label="Abrir Dialog"
                     (clicked)="dialogVisible.set(true)"
                   />
@@ -553,7 +586,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           </p>
                         </div>
                         <div class="modal-footer">
-                          <il-button
+                          <lux-button-web
                             label="Cerrar"
                             (clicked)="dialogVisible.set(false)"
                           />
@@ -674,7 +707,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <lux-popover-web>
-                    <il-button appPopoverTrigger label="Abrir Popover" />
+                    <lux-button-web appPopoverTrigger label="Abrir Popover" />
                     <div class="p-3">
                       Contenido del popover. Ideal para menus contextuales
                       rapidos.
@@ -819,7 +852,11 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                           <lux-tag-web [value]="row.status" severity="info" />
                         </td>
                         <td>
-                          <il-button icon="material-symbols-light:visibility" />
+                          <lux-button-web
+                            label="Ver"
+                            iconClass="material-symbols-light:visibility"
+                            displayMode="icon"
+                          />
                         </td>
                       </tr>
                     </ng-template>
@@ -924,12 +961,12 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   >
                   <ng-template #toolbarRight>
                     <div class="d-flex gap-2">
-                      <il-button
+                      <lux-button-web
                         label="Nuevo"
                         size="sm"
                         icon="material-symbols-light:add"
                       />
-                      <il-button
+                      <lux-button-web
                         label="Exportar"
                         severity="secondary"
                         size="sm"
@@ -950,20 +987,20 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex gap-3">
-                    <il-button
+                    <lux-button-web
                       label="Hover me"
-                      lxTooltip="Tooltip arriba"
+                      tooltip="Tooltip arriba"
                       tooltipPosition="top"
                     />
-                    <il-button
+                    <lux-button-web
                       label="Hover me"
-                      lxTooltip="Tooltip derecha"
+                      tooltip="Tooltip derecha"
                       severity="secondary"
                       tooltipPosition="right"
                     />
-                    <il-button
+                    <lux-button-web
                       label="Hover me"
-                      lxTooltip="Tooltip abajo"
+                      tooltip="Tooltip abajo"
                       severity="info"
                       tooltipPosition="bottom"
                     />
@@ -1048,13 +1085,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     />
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                      <il-button
+                      <lux-button-web
                         label="Restablecer"
                         severity="secondary"
-                        variant="outlined"
+                        variant="outline"
                         (clicked)="customInputsForm.reset()"
                       />
-                      <il-button
+                      <lux-button-web
                         label="Simular Errores"
                         iconClass="material-symbols-light:error"
                         (clicked)="customInputsForm.markAllAsTouched()"
