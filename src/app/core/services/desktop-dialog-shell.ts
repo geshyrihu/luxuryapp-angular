@@ -26,7 +26,7 @@ import {
         aria-label="Cerrar"
         (click)="dismiss()"
       >
-        <app-icon icon="material-symbols-light:close" />
+        <lux-icon icon="material-symbols-light:close" />
       </button>
     </div>
     <div class="modal-body">

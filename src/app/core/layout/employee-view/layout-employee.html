@@ -1,10 +1,10 @@
 @if (isMobileView()) {
 <!-- Si es usuario de empleado y móvil, usar la vista móvil de empleado -->
-<app-view-employee-mobile />
+<lux-view-employee-mobile-web />
 } @else {
 <!-- Si es usuario de empleado y desktop, usar la vista de desktop de empleado -->
-<app-view-employee-desktop />
+<lux-view-employee-desktop-web />
 }
 
 <!-- Dialog global de alertas de pánico entrantes (siempre vivo mientras hay sesión) -->
-<app-panic-alert-incoming-dialog />
+<lux-panic-alert-incoming-dialog-web />

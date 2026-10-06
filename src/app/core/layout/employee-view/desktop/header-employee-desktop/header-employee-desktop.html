@@ -1,10 +1,10 @@
 <!-- Contenido visible solo en pantallas medianas y grandes (md en adelante) -->
 <div class="d-none d-md-block no-print">
-  <app-toolbar
+  <lux-toolbar-web
     styleClass="mobile-header-toolbar desktop-header-toolbar w-100 p-0 m-0"
     [leftTemplate]="left"
     [rightTemplate]="right"
-  ></app-toolbar>
+  ></lux-toolbar-web>
 
   <ng-template #left>
     <div class="d-flex align-items-center gap-2 px-3" style="min-width: 650px">
@@ -17,12 +17,12 @@
         tooltipPosition="bottom"
         aria-label="Abrir o cerrar el menú lateral"
       >
-        <app-icon icon="material-symbols-light:format-list-bulleted" />
+        <lux-icon icon="material-symbols-light:format-list-bulleted" />
       </button>
 
       <!-- Selector de Condominio -->
       @if (cb_customer().length > 1) {
-      <app-menu
+      <lux-menu-web
         #customerMenu
         [model]="customerMenuItems()"
         [itemTemplate]="customerMenuItemTpl"
@@ -36,12 +36,12 @@
             style="width: 24px; height: 24px; object-fit: contain"
           />
           <span class="customer-selector-label">{{ customerName() }}</span>
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:keyboard-arrow-down"
             class="text-sm"
           />
         </button>
-      </app-menu>
+      </lux-menu-web>
       <ng-template #customerMenuItemTpl let-item>
         <div
           class="customer-menu-item d-flex align-items-center gap-2 px-3 py-2 cursor-pointer"
@@ -73,7 +73,7 @@
       }
 
       <div class="flex-none" style="min-width: 300px">
-        <app-breadcrumbs
+        <lux-breadcrumbs-web
           [items]="breadcrumbItems()"
           styleClass="header-breadcrumb"
         />
@@ -84,7 +84,7 @@
   <ng-template #right>
     <div class="d-flex align-items-center gap-1">
       <!-- Búsqueda Global -->
-      <!-- <app-search /> -->
+      <!-- <lux-search-web /> -->
 
       <!-- Iconos de Navegación -->
       @for (navIcon of displayNavIcons; track navIcon.id) { @if
@@ -97,7 +97,7 @@
         [attr.aria-label]="navIcon.ngbTooltip || navIcon.label || navIcon.iconClass"
         tooltipPosition="bottom"
       >
-        <app-icon
+        <lux-icon
           [icon]="navIcon.iconClass"
           [class.pi-spin]="navIcon.iconExtraClass?.includes('pi-spin')"
         />
@@ -113,15 +113,15 @@
         tooltipPosition="bottom"
         aria-label="Cambiar tema claro u oscuro"
       >
-        <app-icon [icon]="getThemeIcon()" />
+        <lux-icon [icon]="getThemeIcon()" />
       </button>
 
       <!-- Componentes de la derecha -->
       @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
-       <app-notifications-gadget />
+       <lux-notifications-gadget-web />
       }
 
-      <app-profile-desktop />
+      <lux-profile-desktop-web />
     </div>
   </ng-template>
 </div>
@@ -143,10 +143,10 @@
       />
       <div>
         <span class="fw-bold text-xl d-block text-purple-700">
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:auto-awesome-motion"
             class="text-purple-500 me-2 text-xl"
-          ></app-icon
+          ></lux-icon
           >Asistente Ejecutivo IA
         </span>
         <span class="text-sm text-gray-500">{{ customerName() }}</span>
@@ -175,7 +175,7 @@
     <div
       class="d-flex flex-column align-items-center justify-content-center py-5 gap-3"
     >
-      <app-spinner [size]="48" [strokeWidth]="4" />
+      <lux-spinner-web [size]="48" [strokeWidth]="4" />
       <p class="text-gray-600 fw-medium text-center px-4">
         {{ currentMode() === 'poster' ? 'Diseñando póster visual...' :
         'Redactando comunicado empático con emojis...' }}
@@ -235,7 +235,7 @@
                 [style.background-color]="'var(' + documentColor() + ')'"
                 [style.color]="'white'"
               >
-                <app-icon [icon]="getPosterPointIcon(i)" class="text-xl" />
+                <lux-icon [icon]="getPosterPointIcon(i)" class="text-xl" />
               </div>
               <div class="flex-fill">
                 <p
@@ -390,7 +390,7 @@
           <span class="text-sm fw-semibold text-body-secondary"
             >Tema del Documento:</span
           >
-          <app-select-button
+          <lux-select-button-web
             [options]="colorOptions"
             [value]="documentColor()"
             (valueChange)="documentColor.set($event)"
@@ -460,7 +460,7 @@
         label="Póster Visual"
       >
         <ng-template #icon>
-          <app-icon icon="material-symbols-light:photo" />
+          <lux-icon icon="material-symbols-light:photo" />
         </ng-template>
       </p-button> -->
       }

@@ -1,13 +1,13 @@
-<app-toolbar
+<lux-toolbar-web
   styleClass="direccion-header-toolbar w-100 p-0 m-0"
   [leftTemplate]="left"
   [centerTemplate]="center"
   [rightTemplate]="right"
-></app-toolbar>
+></lux-toolbar-web>
 
 <ng-template #left>
   <div class="d-flex align-items-center gap-2 px-3">
-    <app-breadcrumbs [items]="breadcrumbItems" />
+    <lux-breadcrumbs-web [items]="breadcrumbItems" />
   </div>
 </ng-template>
 
@@ -75,6 +75,6 @@
       tooltipPosition="bottom"
       size="sm"
     />
-    <app-profile-desktop />
+    <lux-profile-desktop-web />
   </div>
 </ng-template>

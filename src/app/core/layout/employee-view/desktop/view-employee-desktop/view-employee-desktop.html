@@ -1,7 +1,7 @@
 <div id="pageWrapper" [class]="layoutClass">
   <!-- 1. HEADER (Arriba Derecha) -->
   <div class="layout-header z-50 d-flex align-items-center p-0">
-    <app-header-employee-desktop class="w-100" />
+    <lux-header-employee-desktop-web class="w-100" />
   </div>
 
   <!-- 2. SIDEBAR (Izquierda Completa) -->
@@ -10,7 +10,7 @@
     [style.width.px]="navService.collapseSidebar ? 0 : 252"
     [class.opacity-0]="navService.collapseSidebar"
   >
-    <app-sidebar />
+    <lux-sidebar-web />
   </div>
 
   <!-- 3. MAIN CONTENT (Abajo Derecha) -->

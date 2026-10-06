@@ -14,9 +14,9 @@ import { NotificationsListMobile } from "@core/layout/employee-view/movil/notifi
   selector: "app-notifications-wrapper",
   template: `
     @if (isMobile()) {
-      <app-notifications-list-mobile />
+      <lux-notifications-list-mobile-web />
     } @else {
-      <app-notifications-list-web />
+      <lux-notifications-list-web-web />
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
