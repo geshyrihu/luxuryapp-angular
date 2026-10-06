@@ -20,7 +20,8 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <lux-button-mobile-edit
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             label="Editar"
           />
