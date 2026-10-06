@@ -22,23 +22,23 @@ import { InterviewerActionRequestDto } from "@shared/integration/reclutamiento/c
 import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "@shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-employee-interview-response",
   templateUrl: "./employee-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
     FormsModule,
     AppTable,
     WebButtonLabel,
-    WebButtonIconViewPdf,
     CustomInputSelectSignal,
     CandidateStageBadge,
     MappedPTag,

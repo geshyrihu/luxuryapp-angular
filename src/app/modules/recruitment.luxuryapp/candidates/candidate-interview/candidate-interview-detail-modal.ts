@@ -9,7 +9,6 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AGENDA_STATUS_TAG_OPTIONS } from "../../recruitment-shared/agenda-status-tag-options";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
@@ -21,13 +20,14 @@ import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-
  * listado maestro de candidatos. No expone acciones de respuesta (aprobar/rechazar);
  * para eso existe la pantalla dedicada `/interviews/respond`.
  */
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-interview-detail-modal",
   templateUrl: "./candidate-interview-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonIconViewPdf,
     AppTable,
     CandidateStageBadge,
     MappedPTag,

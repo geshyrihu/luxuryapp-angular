@@ -55,7 +55,9 @@
             </p>
             }
           </div>
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:edit-note"
             [disabled]="busyTaskId() === task.id"
             (clicked)="onEditNotes(task)"

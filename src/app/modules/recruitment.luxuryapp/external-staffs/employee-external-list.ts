@@ -23,6 +23,8 @@ import { EmployeeExternalAppUser } from "./employee-external-app-user";
 import { EmployeeExternalForm } from "./employee-external-form";
 import { EmployeeExternalListMobile } from "./mobile/employee-external-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-employee-external-list",
   templateUrl: "./employee-external-list.html",
@@ -32,6 +34,7 @@ import { EmployeeExternalListMobile } from "./mobile/employee-external-list-mobi
 })
 export class EmployeeExternalList {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
@@ -90,7 +93,15 @@ export class EmployeeExternalList {
       });
   }
 
-  onRemoveFromCustomer(applicationUserId: string) {
+  async onRemoveFromCustomer(applicationUserId: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de quitar a este colaborador externo del cliente actual?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(
         Endpoints.EmployeeExternal.deleteAccessCustomer(

@@ -20,9 +20,7 @@ import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   AppReorderableRow,
@@ -47,17 +45,17 @@ export interface CandidateHiringDocumentListItemDto {
   sortOrder: number;
 }
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-employee-document-list",
 
   imports: [
+    PdfViewerTrigger,
     CommonModule,
     FormsModule,
     LxDivider,
     LxFieldset,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
-    WebButtonLabelConfirm,
     ButtonWeb,
     WebButtonIcon,
     LxTag,
@@ -73,6 +71,7 @@ export interface CandidateHiringDocumentListItemDto {
   ],
 })
 export class EmployeeDocumentList implements OnInit {
+  private readonly swalS = inject(SwalService);
   isReadOnly = input<boolean>(false);
   employeeId = input.required<string>();
 
@@ -294,6 +293,16 @@ export class EmployeeDocumentList implements OnInit {
 
   async onValidate(document: CandidateHiringDocumentListItemDto | null) {
     if (!document || this.validatingId()) return;
+
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Seguro que deseas validar este documento?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
 
     this.validatingId.set(document.id);
     try {

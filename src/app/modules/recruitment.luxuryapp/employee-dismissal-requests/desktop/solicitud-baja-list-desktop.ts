@@ -15,7 +15,6 @@ import {
 } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -35,7 +34,6 @@ import type { SolicitudBajaListItem } from "../solicitud-baja-list";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,

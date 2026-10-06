@@ -17,6 +17,8 @@ import { EmployeeClinicalDataListDesktop } from "./desktop/employee-clinical-dat
 import { IEmployeeClinicalData } from "./interfaces/employee-clinical-data.interface";
 import { EmployeeClinicalDataListMobile } from "./mobile/employee-clinical-data-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "employee-clinical-data-list",
   templateUrl: "./employee-clinical-data-list.html",
@@ -25,6 +27,7 @@ import { EmployeeClinicalDataListMobile } from "./mobile/employee-clinical-data-
 })
 export class EmployeeClinicalDataList {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   isReadOnly = input<boolean>(false);
   private readonly employeeInternalS = inject(EmployeeInternalService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
@@ -74,7 +77,15 @@ export class EmployeeClinicalDataList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar estos datos clínicos?",
+
+    );
+
+    if (!confirmed) return;
     this.employeeInternalS.deleteClinicalData(id).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((items) =>

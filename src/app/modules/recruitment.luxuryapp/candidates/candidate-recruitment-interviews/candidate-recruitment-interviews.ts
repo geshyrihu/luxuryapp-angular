@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { RecruitmentAgendaList } from "../../recruitment-agenda-list";
@@ -41,13 +40,14 @@ type BoardStatusFilter =
 
 type InterviewViewMode = "board" | "agenda";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-recruitment-interviews",
   templateUrl: "./candidate-recruitment-interviews.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonIconViewPdf,
     WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,

@@ -30,6 +30,8 @@ import {
 } from "./interfaces/candidate.dto";
 import { CandidateListMobile } from "./mobile/candidate-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-candidate-list",
   templateUrl: "./candidate-list.html",
@@ -39,6 +41,7 @@ import { CandidateListMobile } from "./mobile/candidate-list-mobile";
 })
 export class CandidateList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
   aspRoleS = inject(AspRoleService);
@@ -70,7 +73,15 @@ export class CandidateList implements OnInit {
       });
   }
 
-  onArchive(id: string) {
+  async onArchive(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de archivar este candidato?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onPatch(EndpointsReclutamiento.Candidates.archive(id), {})
       .then((response: boolean | false) => {

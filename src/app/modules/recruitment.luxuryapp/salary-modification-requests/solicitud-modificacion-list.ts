@@ -37,6 +37,8 @@ interface SolicitudModificacionListItem {
   status: string;
 }
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-solicitud-modificacion-list",
   templateUrl: "./solicitud-modificacion-list.html",
@@ -45,6 +47,7 @@ interface SolicitudModificacionListItem {
 })
 export class SolicitudModificacionList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   filterRequestsService = inject(FilterRequestsService);
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
@@ -85,7 +88,15 @@ export class SolicitudModificacionList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar esta solicitud?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {

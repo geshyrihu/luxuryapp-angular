@@ -72,25 +72,28 @@
       <td>{{ item.assignedInterviewerName }}</td>
       <td>
         @if (item.cvFileName) {
-        <iw-button-view-pdf
-          size="sm"
-          class="btn--circle"
+        <lux-pdf-viewer-trigger
           [url]="item.cvFileUrl"
           [fileName]="item.cvFileName"
-          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          displayMode="icon"
+          size="sm"
+          styleClass="btn--circle"
+          [ariaLabel]="'Ver CV de ' + item.candidateName"
         />
         }
       </td>
       <td class="no-print">
         <div class="d-flex align-items-center gap-2 justify-content-end">
           @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
-          <il-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="both"
             label="Marcar contratado"
             iconClass="material-symbols-light:check-circle"
             severity="success"
             variant="solid"
             size="sm"
-            [attr.aria-label]="'Marcar contratado a ' + item.candidateName"
+            [ariaLabel]="'Marcar contratado a ' + item.candidateName"
             (clicked)="completeHiring.emit(item.id)"
           />
           }

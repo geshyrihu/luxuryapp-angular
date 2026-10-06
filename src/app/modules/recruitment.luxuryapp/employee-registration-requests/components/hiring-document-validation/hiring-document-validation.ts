@@ -12,8 +12,6 @@ import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -38,15 +36,17 @@ export interface CandidateHiringDocumentListItemDto {
   sortOrder: number;
 }
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-hiring-document-validation",
 
   imports: [
+    ButtonWeb,
+    PdfViewerTrigger,
     LxDivider,
     LxFieldset,
     LxTag,
-    WebButtonLabelViewPdf,
-    WebButtonLabelConfirm,
     WebButtonIcon,
     WebButtonLabel,
   ],
@@ -85,6 +85,7 @@ export interface CandidateHiringDocumentListItemDto {
   ],
 })
 export class HiringDocumentValidation implements OnInit {
+  private readonly swalS = inject(SwalService);
   employeeId = input.required<string>();
 
   readonly documentTypes = signal<SelectItemDto[]>([]);
@@ -211,6 +212,16 @@ export class HiringDocumentValidation implements OnInit {
 
   async onValidate(document: CandidateHiringDocumentListItemDto | null) {
     if (!document || this.validatingId()) return;
+
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Seguro que deseas validar este documento?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
 
     this.validatingId.set(document.id);
     try {

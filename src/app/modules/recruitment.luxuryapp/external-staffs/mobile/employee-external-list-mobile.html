@@ -30,16 +30,16 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-item
-            iconName="person-outline"
+          <lux-button-mobile
+            kind="item"
             label="Usuario App"
             (clicked)="userApp.emit(item.applicationUserId)"
           />
-          <ili-button-delete
-            (confirmed)="removeFromCustomer.emit(item.applicationUserId)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Quitar del cliente"
-            confirmHeader="Quitar del cliente"
-            confirmMessage="Estas seguro de quitar a este colaborador externo del cliente actual? Dejara de tener acceso a este cliente. Si no tiene otros clientes, tambien se le bloqueara el acceso a la app."
+            (clicked)="removeFromCustomer.emit(item.applicationUserId)"
           />
         </ng-container>
       </ili-action-menu>

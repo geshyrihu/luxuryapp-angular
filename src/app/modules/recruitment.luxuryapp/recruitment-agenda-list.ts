@@ -19,8 +19,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SwalService } from "@core/services/swal.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -35,14 +33,16 @@ import { CandidateRecruitmentAgendaItem } from "./candidates/candidate-applicati
 import { CandidateStageBadge } from "./recruitment-shared/candidate-stage-badge";
 import { MappedPTag, MappedTagOption } from "./recruitment-shared/mapped-p-tag";
 
+import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-recruitment-agenda-list",
   templateUrl: "./recruitment-agenda-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
+    ButtonWeb,
     ApiDatePipe,
-    WebButtonIconItem,
-    WebButtonIconViewPdf,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

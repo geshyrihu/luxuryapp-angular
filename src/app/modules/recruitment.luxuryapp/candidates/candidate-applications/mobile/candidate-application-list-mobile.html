@@ -30,19 +30,20 @@
 
       <ili-action-menu slot="end">
         @if (item.cvFileName) {
-          <ili-button-view-pdf
+          <lux-pdf-viewer-trigger
             [url]="item.cvFileUrl"
             [fileName]="item.cvFileName"
             label="Ver CV"
-            [attr.aria-label]="'Ver CV de ' + item.candidateName"
+            [ariaLabel]="'Ver CV de ' + item.candidateName"
           />
         }
         @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             label="Marcar contratado"
             iconClass="material-symbols-light:check-circle"
             color="success"
-            [attr.aria-label]="'Marcar contratado a ' + item.candidateName"
+            [ariaLabel]="'Marcar contratado a ' + item.candidateName"
             (clicked)="completeHiring.emit(item.id)"
           />
         }

@@ -23,15 +23,15 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            (clicked)="edit.emit({ id: item.id, title: 'Editar Beneficiario' })"
+          <lux-button-mobile
+            kind="item"
             label="Editar"
-            iconName="create-outline"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar Beneficiario' })"
           />
-          <ili-button-item
-            (clicked)="delete.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             label="Eliminar"
-            iconName="delete-outline"
+            (clicked)="delete.emit(item.id)"
           />
         </ng-container>
       </ili-action-menu>

@@ -52,10 +52,13 @@
               lxTooltip="Editar" tooltipPosition="bottom"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
-            <il-button-confirm
+            <lux-button-web
+              kind="confirm"
               icon="trash"
-              ngbTooltip="Eliminar"
-              (confirmed)="onDelete(dataSignal().id)"
+              severity="success"
+              variant="soft"
+              tooltip="Eliminar"
+              (clicked)="onDelete(dataSignal().id)"
             />
           </div>
         </td>

@@ -44,10 +44,10 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            (clicked)="editEmpleado.emit({ applicationUserId: item.applicationUserId, employeeId: item.employeeId, fullName: item.fullName })"
+          <lux-button-mobile
+            kind="item"
             label="Editar"
-            iconName="create-outline"
+            (clicked)="editEmpleado.emit({ applicationUserId: item.applicationUserId, employeeId: item.employeeId, fullName: item.fullName })"
           />
         </ng-container>
       </ili-action-menu>

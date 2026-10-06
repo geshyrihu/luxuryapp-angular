@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { EmployeeInternalService } from "../employee/employee-internal.service";
 import { EmployeeClinicalDataList } from "./employee-clinical-data-list";
@@ -34,6 +35,7 @@ describe("EmployeeClinicalDataList", () => {
         { provide: EmployeeInternalService, useValue: mockEmployeeInternalS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
       ],
     });
 
@@ -69,9 +71,9 @@ describe("EmployeeClinicalDataList", () => {
     expect(mockDialogHandlerS.openDialog).toHaveBeenCalled();
   });
 
-  it("should remove item on onDelete when result is true", () => {
+  it("should remove item on onDelete when result is true", async () => {
     component.dataSignal.set([{ id: "1" } as any, { id: "2" } as any]);
-    component.onDelete("1");
+    await component.onDelete("1");
     expect(mockEmployeeInternalS.deleteClinicalData).toHaveBeenCalledWith("1");
   });
 });

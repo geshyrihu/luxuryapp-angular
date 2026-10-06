@@ -106,9 +106,9 @@
             }
           </div>
           @if (doc.fileUrl) {
-          <il-button-view-pdf
+          <lux-pdf-viewer-trigger
             [url]="doc.fileUrl"
-            [pdf]="doc.documentTypeName"
+            [fileName]="doc.documentTypeName"
           />
           }
         </td>
@@ -157,14 +157,14 @@
               [disabled]="uploadingType() === doc.documentCatalogId"
               (clicked)="updateInput.click()"
             />
-            <il-button-confirm
+            <lux-button-web
+              kind="confirm"
               label="Validar"
-              variant="solid"
               severity="success"
-              swalText="Seguro que deseas validar este documento?"
+              variant="solid"
               [disabled]="validatingId() !== null || rejectingId() !== null"
               [loading]="validatingId() === doc.id"
-              (confirmed)="onValidate(doc)"
+              (clicked)="onValidate(doc)"
             />
             <iw-button
               iconClass="material-symbols-light:cancel"

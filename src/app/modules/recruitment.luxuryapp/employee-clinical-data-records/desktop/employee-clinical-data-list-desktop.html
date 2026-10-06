@@ -36,10 +36,14 @@
             (clicked)="edit.emit({ id: item.id, title: 'Editar Registro Clinico' })"
           />
           } @if (!isReadOnly()) {
-          <iw-button-confirm
+          <lux-button-web
+            kind="confirm"
+            displayMode="icon"
             icon="trash"
-            ngbTooltip="Eliminar"
-            (confirmed)="delete.emit(item.id)"
+            severity="success"
+            variant="soft"
+            tooltip="Eliminar"
+            (clicked)="delete.emit(item.id)"
           />
           }
         </div>

@@ -13,7 +13,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
@@ -35,14 +34,15 @@ type VacancyView = CandidateRecruitmentInterviewBoard & {
   isFocused: boolean;
 };
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-work-position-candidates",
   templateUrl: "./candidate-work-position-candidates.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
     CurrencyPipe,
-    WebButtonIconViewPdf,
     WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,

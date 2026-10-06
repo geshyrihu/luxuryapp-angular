@@ -17,6 +17,8 @@ import { EmployeeBeneficiaryListDesktop } from "./desktop/employee-beneficiary-l
 import { IEmployeeBeneficiary } from "./interfaces/employee-beneficiary.interface";
 import { EmployeeBeneficiaryListMobile } from "./mobile/employee-beneficiary-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "employee-beneficiary-list",
   templateUrl: "./employee-beneficiary-list.html",
@@ -25,6 +27,7 @@ import { EmployeeBeneficiaryListMobile } from "./mobile/employee-beneficiary-lis
 })
 export class EmployeeBeneficiaryList {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   isReadOnly = input<boolean>(false);
   private readonly employeeInternalS = inject(EmployeeInternalService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
@@ -74,7 +77,15 @@ export class EmployeeBeneficiaryList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar este beneficiario?",
+
+    );
+
+    if (!confirmed) return;
     this.employeeInternalS.deleteBeneficiary(id).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((items) =>

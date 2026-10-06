@@ -7,8 +7,6 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -18,17 +16,17 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
 import { CandidateApplicationListItem } from "../interfaces/candidate-application";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-application-list-mobile",
   templateUrl: "./candidate-application-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ReactiveFormsModule,
     DataViewMobile,
     MobileActionMenu,
     ButtonMobile,
-    MobileButtonLabelItem,
-    MobileButtonLabelViewPdf,
     MobileListItem,
     CustomInputSelectSignal,
     CandidateStageBadge,

@@ -7,21 +7,21 @@ import {
 } from "@angular/core";
 import { DateService } from "@core/services/date.service";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
-import { MobileButtonLabelConfirm } from "@ui/buttons/mobile-label/button-confirm";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { SolicitudAltaListItem } from "../solicitud-alta-list";
 
+import { ButtonMobile } from "@ui/buttons/mobile";
 @Component({
   selector: "app-solicitud-alta-list-mobile",
   templateUrl: "./solicitud-alta-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     MobileActionMenu,
     MobileButtonLabel,
-    MobileButtonLabelConfirm,
     DataViewMobile,
     MobileListItem,
     AppIcon,

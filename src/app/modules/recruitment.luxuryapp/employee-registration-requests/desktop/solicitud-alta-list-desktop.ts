@@ -16,7 +16,6 @@ import { DateService } from "@core/services/date.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -30,11 +29,13 @@ import {
 } from "../../recruitment-shared/request-status-style";
 import type { SolicitudAltaListItem } from "../solicitud-alta-list";
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-solicitud-alta-list-desktop",
   templateUrl: "./solicitud-alta-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
@@ -42,7 +43,6 @@ import type { SolicitudAltaListItem } from "../solicitud-alta-list";
     TableFooter,
     LxTag,
     WebButtonLabel,
-    WebButtonLabelConfirm,
   ],
 })
 export class SolicitudAltaListDesktop {

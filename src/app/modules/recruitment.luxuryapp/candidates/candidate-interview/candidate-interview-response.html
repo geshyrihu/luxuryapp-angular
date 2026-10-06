@@ -85,11 +85,12 @@
   <div class="card p-3 mb-4">
     <div class="fw-semibold mb-3">CV del candidato</div>
     @if (interviewData()?.cvFileName) {
-    <iw-button-view-pdf
+    <lux-pdf-viewer-trigger
       [url]="interviewData()?.cvFileUrl"
       [fileName]="interviewData()?.cvFileName"
+      displayMode="icon"
       size="sm"
-      class="w-full md:w-auto"
+      styleClass="w-full md:w-auto"
     />
     } @else {
     <span class="text-body-secondary">Sin CV disponible</span>

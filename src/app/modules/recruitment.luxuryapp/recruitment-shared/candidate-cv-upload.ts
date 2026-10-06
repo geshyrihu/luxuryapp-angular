@@ -7,15 +7,15 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { PlatformService } from "@core/services/platform.service";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-cv-upload",
   templateUrl: "./candidate-cv-upload.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FileUpload, WebButtonIconViewPdf],
+  imports: [PdfViewerTrigger, CommonModule, FileUpload],
   styles: [
     `
       :host {

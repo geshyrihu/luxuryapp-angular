@@ -174,32 +174,43 @@
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
 
-              <il-button-item
-                iconClass="material-symbols-light:receipt"
+              <lux-button-web
+                kind="item"
+                displayMode="both"
                 label="Solicitar Vacante"
+                iconClass="material-symbols-light:receipt"
                 (clicked)="onModalSolicitudVacante(item.id)"
               />
               }
-              <il-button-item
-                iconClass="material-symbols-light:article"
+              <lux-button-web
+                kind="item"
+                displayMode="both"
                 label="DESCRIPCIÓN"
+                iconClass="material-symbols-light:article"
                 (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
               />
-              <il-button-item
-                iconClass="material-symbols-light:schedule"
+              <lux-button-web
+                kind="item"
+                displayMode="both"
                 label="Horarios"
+                iconClass="material-symbols-light:schedule"
                 (clicked)="onModalHoursWorkPosition(item.id)"
               />
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="both"
                 label="Editar"
                 iconClass="material-symbols-light:edit"
                 (clicked)="onModalForm({ id: item.id, title: 'Editar Puesto' })"
               />
 
               @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-              <il-button-delete
-                (confirmed)="onDelete(item.id)"
-                label="Eliminar"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                ariaLabel="Eliminar"
+                (clicked)="onDelete(item.id)"
               />
               }
             </ng-container>
@@ -261,26 +272,32 @@
             </div>
             <app-action-menu>
               <ng-container actions>
-                <il-button-item
-                  iconClass="material-symbols-light:manage-accounts"
+                <lux-button-web
+                  kind="item"
+                  displayMode="both"
                   label="Perfil"
-                  lxTooltip="Ir al perfil"
+                  iconClass="material-symbols-light:manage-accounts"
+                  tooltip="Ir al perfil"
                   (clicked)="onShowEditEmpleado(item)"
                 />
                 @if (aspRoleS.hasAny([ AspRole.SuperUsuario, AspRole.Legal,
                 AspRole.CoordinacionLegal, AspRole.RecursosHumanos,
                 AspRole.Reclutamiento ])) {
-                <il-button-item
-                  iconClass="material-symbols-light:folder-open"
+                <lux-button-web
+                  kind="item"
+                  displayMode="both"
                   label="Expediente"
-                  lxTooltip="Ver expediente completo"
+                  iconClass="material-symbols-light:folder-open"
+                  tooltip="Ver expediente completo"
                   (clicked)="onGoToEmployeeFile(item)"
                 />
                 } @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-                <il-button-item
-                  iconClass="material-symbols-light:logout"
+                <lux-button-web
+                  kind="item"
+                  displayMode="both"
                   label="Desvincular del puesto"
-                  lxTooltip="Desvincular del puesto"
+                  iconClass="material-symbols-light:logout"
+                  tooltip="Desvincular del puesto"
                   (clicked)="onUnassignEmployee(item.id)"
                 />
                 }
@@ -306,16 +323,20 @@
                 <span class="fw-bold">VACANTE</span>
               </div>
               <div class="d-flex gap-1">
-                <iw-button-item
+                <lux-button-web
+                  kind="item"
+                  displayMode="icon"
                   iconClass="material-symbols-light:link"
-                  lxTooltip="Vincular del pool"
+                  tooltip="Vincular del pool"
                   (clicked)="onOpenDrawer(item)"
                 />
                 @if (item.positionRequest && item.positionRequest.status === 3)
                 {
-                <iw-button-item
+                <lux-button-web
+                  kind="item"
+                  displayMode="icon"
                   iconClass="material-symbols-light:person-add"
-                  lxTooltip="Completar Expediente / Alta"
+                  tooltip="Completar Expediente / Alta"
                   (clicked)="showModalAddEmployeeFromPosition(item)"
                 />
                 }
@@ -434,9 +455,11 @@
         <span class="chip-name">{{ emp.fullName }}</span>
         <span class="chip-sub">{{ emp.userName }}</span>
       </div>
-      <il-button-item
-        iconClass="material-symbols-light:manage-accounts"
+      <lux-button-web
+        kind="item"
+        displayMode="both"
         label="Ver perfil"
+        iconClass="material-symbols-light:manage-accounts"
         (clicked)="onGoToProfile(emp)"
       />
 <span cdkDragHandle class="drag-handle">⠿</span>
@@ -563,10 +586,12 @@
           >{{ getDepartamentLabel(pos.departament) }} é {{ pos.turno }}</span
         >
       </div>
-      <il-button-item
-        iconClass="material-symbols-light:check"
+      <lux-button-web
+        kind="item"
+        displayMode="both"
         label="Activar"
-        lxTooltip="Activar puesto"
+        iconClass="material-symbols-light:check"
+        tooltip="Activar puesto"
         (clicked)="onActivatePosition(pos.id)"
       />
     </div>
@@ -599,16 +624,20 @@
         }
       </div>
       <div class="d-flex gap-1">
-        <il-button-item
-          iconClass="material-symbols-light:check"
+        <lux-button-web
+          kind="item"
+          displayMode="both"
           label="Activar"
-          lxTooltip="Activar colaborador"
+          iconClass="material-symbols-light:check"
+          tooltip="Activar colaborador"
           (clicked)="onActivateEmployee(emp.applicationUserId)"
         />
-        <il-button-item
-          iconClass="material-symbols-light:add"
+        <lux-button-web
+          kind="item"
+          displayMode="both"
           label="Activar y asignar"
-          lxTooltip="Activar y mover al pool para asignar puesto"
+          iconClass="material-symbols-light:add"
+          tooltip="Activar y mover al pool para asignar puesto"
           (clicked)="onActivateAndAssign(emp)"
         />
       </div>

@@ -47,12 +47,12 @@
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
           />
-          <ili-button-confirm
-            (confirmed)="concludeHiring.emit(item.id)"
-            swalText="¿Estás seguro de concluir el alta del empleado administrativamente?"
+          <lux-button-mobile
+            kind="confirm"
+            color="success"
             label="Concluir Alta"
             iconClass="material-symbols-light:check"
-            color="success"
+            (clicked)="concludeHiring.emit(item.id)"
           />
           <ili-button
             (clicked)="abortHiring.emit(item)"

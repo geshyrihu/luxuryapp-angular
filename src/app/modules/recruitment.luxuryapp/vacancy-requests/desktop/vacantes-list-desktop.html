@@ -63,10 +63,11 @@
       </td>
       <td class="text-center">
         @if (canManageCandidates()) {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
           iconClass="material-symbols-light:group-outline"
-          lxTooltip="Ver candidatos de la vacante"
-          tooltipPosition="top"
+          tooltip="Ver candidatos de la vacante"
           (clicked)="candidates.emit({ workPositionId: item.workPositionId, requestPositionId: item.id })"
         />
         }
@@ -83,26 +84,38 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id })"
           />
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:info"
-            lxTooltip="Detalle del puesto"
-            tooltipPosition="top"
+            tooltip="Detalle del puesto"
             (clicked)="detail.emit(item.workPositionId)"
           />
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:description"
-            lxTooltip="Descripción del puesto"
-            tooltipPosition="top"
+            tooltip="Descripción del puesto"
             (clicked)="jobDescription.emit(item.workPositionId)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
           @if (isSuperUser()) {
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
             severity="danger"
-            lxTooltip="Eliminar definitivamente"
-            tooltipPosition="top"
-            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+            tooltip="Eliminar definitivamente"
+            [ariaLabel]="'Eliminar definitivamente vacante ' + item.folio"
             (clicked)="deletePermanente.emit(item.id)"
           />
           }

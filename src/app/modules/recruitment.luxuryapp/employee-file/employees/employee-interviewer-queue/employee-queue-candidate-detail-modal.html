@@ -32,13 +32,13 @@
     </div>
 
     @if (detail()?.cvFileName) {
-    <il-button-view-pdf
+    <lux-pdf-viewer-trigger
       [url]="detail()?.cvFileUrl"
       [fileName]="detail()?.cvFileName"
       label="Ver CV"
       severity="danger"
       variant="outline"
-      class="flex-shrink-0"
+      styleClass="flex-shrink-0"
     />
     } @else {
     <span class="text-sm text-body-secondary flex-shrink-0"

@@ -12,7 +12,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { candidateDecisionLabel } from "../../recruitment-shared/candidate-decision-labels";
@@ -42,13 +41,14 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   showWithoutCandidates: boolean;
 };
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-interviewer-queue",
   templateUrl: "./candidate-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonIconViewPdf,
     WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,

@@ -110,13 +110,11 @@
           } @case ('Modificacion') {
           <div class="body-card">
             <!-- Contenido específico para otro caso -->
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
               iconClass="material-symbols-light:attach-money"
-              (clicked)="
-                          editModificacionSalario.emit({
-                          id: item.id,
-                          })
-                          "
+              (clicked)="editModificacionSalario.emit({ id: item.id, })"
             />
           </div>
           }

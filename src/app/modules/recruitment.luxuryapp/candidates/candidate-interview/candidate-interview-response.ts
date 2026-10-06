@@ -17,7 +17,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { firstValueFrom } from "rxjs";
@@ -30,14 +29,15 @@ import { CandidateInterviewFeedbackForm } from "./candidate-interview-feedback-f
 import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
 import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-request.dto";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-interview-response",
   templateUrl: "./candidate-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
     WebButtonLabel,
-    WebButtonIconViewPdf,
     AppTable,
     CandidateStageBadge,
     MappedPTag,

@@ -51,11 +51,14 @@
             "
           />
           } @if (!isReadOnly()) {
-          <iw-button-confirm
+          <lux-button-web
+            kind="confirm"
+            displayMode="icon"
             iconClass="trash"
             severity="danger"
-            ngbTooltip="Eliminar"
-            (confirmed)="delete.emit({ id: item.id, typeContact: 0 })"
+            variant="soft"
+            tooltip="Eliminar"
+            (clicked)="delete.emit({ id: item.id, typeContact: 0 })"
           />
           }
         </div>
@@ -125,11 +128,14 @@
             "
           />
           } @if (!isReadOnly()) {
-          <iw-button-confirm
+          <lux-button-web
+            kind="confirm"
+            displayMode="icon"
             iconClass="trash"
             severity="danger"
-            ngbTooltip="Eliminar"
-            (confirmed)="delete.emit({ id: item.id, typeContact: 1 })"
+            variant="soft"
+            tooltip="Eliminar"
+            (clicked)="delete.emit({ id: item.id, typeContact: 1 })"
           />
           }
         </div>

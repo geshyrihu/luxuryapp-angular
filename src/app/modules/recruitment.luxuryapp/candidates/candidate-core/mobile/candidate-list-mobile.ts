@@ -6,9 +6,6 @@ import {
   output,
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
-import { MobileButtonLabelViewPdf } from "@ui/buttons/mobile-label/button-view-pdf";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -20,18 +17,17 @@ import { MappedPTag } from "../../../recruitment-shared/mapped-p-tag";
 import { CANDIDATE_STATUS_TAG_OPTIONS } from "../candidate-status-tag-options";
 import { CandidateListItem } from "../interfaces/candidate.dto";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-list-mobile",
   templateUrl: "./candidate-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 
   imports: [
+    PdfViewerTrigger,
     DataViewMobile,
     MobileActionMenu,
-    MobileButtonLabelDelete,
     ButtonMobile,
-    MobileButtonLabelItem,
-    MobileButtonLabelViewPdf,
     MobileListItem,
     MappedPTag,
     AppIcon,

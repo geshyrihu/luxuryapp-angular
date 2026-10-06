@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { EmployeeEmergencyContactList } from "./employee-emergency-contact-list";
 
@@ -38,6 +39,7 @@ describe("EmployeeEmergencyContactList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
       ],
     });
 
@@ -75,8 +77,8 @@ describe("EmployeeEmergencyContactList", () => {
     expect(mockDialogHandlerS.openDialog).toHaveBeenCalled();
   });
 
-  it("should call onDelete with correct id", () => {
-    component.onDelete("1", 0);
+  it("should call onDelete with correct id", async () => {
+    await component.onDelete("1", 0);
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();
   });
 });

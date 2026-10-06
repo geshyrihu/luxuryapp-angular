@@ -15,6 +15,8 @@ import { ProviderSupportDesktop } from "./desktop/provider-support-desktop";
 import { ProviderSupportMobile } from "./mobile/provider-support-mobile";
 import { ProviderSupportForm } from "./provider-support-form";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-provider-support",
   templateUrl: "./provider-support.html",
@@ -22,6 +24,7 @@ import { ProviderSupportForm } from "./provider-support-form";
 })
 export class ProviderSupport implements OnInit {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -63,7 +66,15 @@ export class ProviderSupport implements OnInit {
       });
   }
   // Función para eliminar
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar este proveedor de soporte?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ProviderSupport.delete(id))
       .then((result: boolean) => {

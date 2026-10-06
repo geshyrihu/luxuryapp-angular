@@ -6,6 +6,7 @@ import { CandidateStatus } from "@core/enums/candidate-status";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CandidateList } from "./candidate-list";
 import { CandidateListItem } from "./interfaces/candidate.dto";
 
@@ -67,6 +68,7 @@ describe("CandidateList", () => {
         { provide: ApiResponseService, useValue: apiResponseService },
         { provide: DialogHandlerService, useValue: dialogHandlerService },
         { provide: PlatformService, useValue: platformService },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: "HttpClientWithoutInterceptors", useValue: (globalThis as any).__mockHttpClient },
       ],
     });
@@ -98,7 +100,7 @@ describe("CandidateList", () => {
 
   it("should archive candidate", async () => {
     await fixture.whenStable();
-    component.onArchive("1");
+    await component.onArchive("1");
     await fixture.whenStable();
 
     expect(apiResponseService.onPatch).toHaveBeenCalledWith(

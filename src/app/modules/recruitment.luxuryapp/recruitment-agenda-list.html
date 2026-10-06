@@ -156,12 +156,13 @@
       </td>
       <td>
         @if (item.cvFileName) {
-        <iw-button-view-pdf
-          size="sm"
-          class="btn--circle"
+        <lux-pdf-viewer-trigger
           [url]="item.cvFileUrl"
           [fileName]="item.cvFileName"
-          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          displayMode="icon"
+          size="sm"
+          styleClass="btn--circle"
+          [ariaLabel]="'Ver CV de ' + item.candidateName"
         />
         } @else {
         <span class="text-body-secondary">Sin CV</span>
@@ -170,12 +171,13 @@
       <td class="no-print">
         @if (canCancelInterview(item)) {
         <div (click)="$event.stopPropagation()">
-          <iw-button-item
-            size="sm"
-            class="btn--circle"
-            severity="danger"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:cancel"
-            [attr.aria-label]="'Cancelar entrevista de ' + item.candidateName"
+            severity="danger"
+            size="sm"
+            [ariaLabel]="'Cancelar entrevista de ' + item.candidateName"
             (clicked)="onCancelInterview(item)"
           />
         </div>

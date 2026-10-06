@@ -36,6 +36,8 @@ export interface SolicitudBajaListItem {
   status: string;
 }
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-solicitud-baja-list",
   templateUrl: "./solicitud-baja-list.html",
@@ -44,6 +46,7 @@ export interface SolicitudBajaListItem {
 })
 export class SolicitudBajaList implements OnInit {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   authS = inject(AuthService);
   apiResponseS = inject(ApiResponseService);
   filterRequestsService = inject(FilterRequestsService);
@@ -98,7 +101,15 @@ export class SolicitudBajaList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar esta solicitud de baja?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {

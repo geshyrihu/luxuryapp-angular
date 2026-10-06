@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } fro
 import { FormsModule } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -12,17 +11,18 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { SwalService } from "@core/services/swal.service";
 import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-employee-onboarding-checklist",
   templateUrl: "./employee-onboarding-checklist.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
     FormsModule,
     ApiDatePipe,
     LxCard,
     LxTag,
     AppIcon,
-    WebButtonIconItem,
     AppCheckbox,
   ],
 })

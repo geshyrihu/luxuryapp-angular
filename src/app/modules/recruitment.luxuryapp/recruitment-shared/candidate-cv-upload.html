@@ -6,12 +6,13 @@
       <div class="d-flex flex-column gap-1">
         <span class="text-sm fw-medium text-body">{{ currentFileLabel() }}</span>
         @if (fileUrl()) {
-          <iw-button-view-pdf
-            size="sm"
-            class="btn--circle"
+          <lux-pdf-viewer-trigger
             [url]="fileUrl()"
             [fileName]="fileName()"
-            [attr.aria-label]="viewAriaLabel()"
+            displayMode="icon"
+            size="sm"
+            styleClass="btn--circle"
+            [ariaLabel]="viewAriaLabel()"
           />
         } @else {
           <span class="text-sm text-blue-700">{{ fileName() }}</span>

@@ -17,6 +17,8 @@ import { EmployeeBeneficiaryFormComponent } from "./employee-beneficiary-form";
 import { EmployeeBeneficiaryDTO } from "./interfaces/employee-beneficiary.interfaces";
 import { EmployeeBeneficiaryListMobile } from "./mobile/employee-beneficiary-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-employee-beneficiary-list",
   templateUrl: "./employee-beneficiary-list.html",
@@ -26,6 +28,7 @@ import { EmployeeBeneficiaryListMobile } from "./mobile/employee-beneficiary-lis
 })
 export class EmployeeBeneficiaryList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
@@ -68,7 +71,15 @@ export class EmployeeBeneficiaryList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar este beneficiario?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.EmployeeBeneficiary.delete(id))
       .then((success) => {

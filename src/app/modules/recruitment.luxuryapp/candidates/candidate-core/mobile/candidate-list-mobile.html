@@ -28,7 +28,7 @@
         </p>
         @if (item.cvFileName) {
           <div>
-            <ili-button-view-pdf
+            <lux-pdf-viewer-trigger
               [url]="item.cvFileUrl"
               [fileName]="item.cvFileName"
               label="Ver CV"
@@ -42,10 +42,11 @@
       </div>
 
       <ili-action-menu slot="end">
-        <ili-button-item
-          (clicked)="detail.emit(item.id)"
+        <lux-button-mobile
+          kind="item"
           label="Ver detalle"
-          [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
+          [ariaLabel]="'Ver detalle candidato ' + item.fullName"
+          (clicked)="detail.emit(item.id)"
         />
         <lux-button-mobile
           kind="edit"
@@ -53,19 +54,22 @@
           (clicked)="edit.emit({ id: item.id, title: 'Editar Candidato' })"
         />
         @if (item.status === candidateStatus.Active) {
-          <ili-button-delete
-            (confirmed)="archive.emit(item.id)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Archivar"
-            [attr.aria-label]="'Archivar candidato ' + item.fullName"
+            [ariaLabel]="'Archivar candidato ' + item.fullName"
+            (clicked)="archive.emit(item.id)"
           />
         }
         @if (isSuperUser()) {
-          <ili-button-item
-            (clicked)="delete.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             label="Eliminar definitivamente"
-            color="danger"
             iconClass="material-symbols-light:delete"
-            [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
+            color="danger"
+            [ariaLabel]="'Eliminar definitivamente candidato ' + item.fullName"
+            (clicked)="delete.emit(item.id)"
           />
         }
       </ili-action-menu>

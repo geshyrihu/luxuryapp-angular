@@ -24,7 +24,6 @@ import {
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
@@ -33,17 +32,18 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
  * CV, experiencia laboral) con acceso directo a responder la entrevista.
  * No expone edicion: para eso existe `CandidateForm` en el modulo Candidates.
  */
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-employee-queue-candidate-detail-modal",
   templateUrl: "./employee-queue-candidate-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     ApiDatePipe,
 
     LxAvatar,
     MappedPTag,
     WebButtonLabel,
-    WebButtonLabelViewPdf,
   ],
 })
 export class EmployeeQueueCandidateDetailModal implements OnInit {

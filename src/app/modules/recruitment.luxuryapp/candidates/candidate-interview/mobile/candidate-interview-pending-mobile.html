@@ -18,11 +18,11 @@
 
       <ili-action-menu slot="end">
         @if (item.cvFileName) {
-          <ili-button-view-pdf
+          <lux-pdf-viewer-trigger
             [url]="item.cvFileUrl"
             [fileName]="item.cvFileName"
             label="Ver CV"
-            [attr.aria-label]="'Ver CV de ' + item.candidateName"
+            [ariaLabel]="'Ver CV de ' + item.candidateName"
           />
         }
         <lux-button-mobile

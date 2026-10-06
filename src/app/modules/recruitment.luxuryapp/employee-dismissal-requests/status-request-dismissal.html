@@ -39,10 +39,13 @@
               tooltipPosition="bottom"
               (clicked)="onModalForm({ id: dataSignal().id, title: 'Editar' })"
             />
-            <il-button-confirm
+            <lux-button-web
+              kind="confirm"
               icon="trash"
-              ngbTooltip="Eliminar"
-              (confirmed)="onDelete(dataSignal().id)"
+              severity="success"
+              variant="soft"
+              tooltip="Eliminar"
+              (clicked)="onDelete(dataSignal().id)"
             />
           </div>
         </td>
@@ -67,10 +70,13 @@
         @if(!dataSignal().isAuthorizedByLegal &&
         aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.Legal])) {
         <div class="mt-2">
-          <il-button-confirm
-            ngbTooltip="Autorizar Legal"
+          <lux-button-web
+            kind="confirm"
             iconClass="check"
-            (confirmed)="onAuthorize('Legal')"
+            severity="success"
+            variant="soft"
+            tooltip="Autorizar Legal"
+            (clicked)="onAuthorize('Legal')"
           />
         </div>
         }
@@ -90,10 +96,13 @@
         @if(!dataSignal().isAuthorizedByPayroll &&
         aspRoleS.hasAny([AspRole.SuperUsuario, AspRole.RecursosHumanos])) {
         <div class="mt-2">
-          <il-button-confirm
-            ngbTooltip="Autorizar Nóminas"
+          <lux-button-web
+            kind="confirm"
             iconClass="check"
-            (confirmed)="onAuthorize('Nominas')"
+            severity="success"
+            variant="soft"
+            tooltip="Autorizar Nóminas"
+            (clicked)="onAuthorize('Nominas')"
           />
         </div>
         }
@@ -129,9 +138,12 @@
                         })
                       "
               />
-              <il-button-confirm
+              <lux-button-web
+                kind="confirm"
                 icon="trash"
-                ngbTooltip="Eliminar"
+                severity="success"
+                variant="soft"
+                tooltip="Eliminar"
                 (clicked)="onDeleteDiscounts(item.id)"
               />
             </div>

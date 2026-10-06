@@ -57,6 +57,8 @@ interface RequestPositionDeleteImpact {
   relatedEntities: string[];
 }
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "app-vacantes-list",
   templateUrl: "./vacantes-list.html",
@@ -65,6 +67,7 @@ interface RequestPositionDeleteImpact {
 })
 export class VacantesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   filterRequestsService = inject(FilterRequestsService);
   authS = inject(AuthService);
   aspRoleS = inject(AspRoleService);
@@ -107,7 +110,15 @@ export class VacantesList implements OnInit {
       .then((result) => this.dataSignal.set(result));
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar esta vacante?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestPosition.delete(id))
       .then((result: boolean) => {

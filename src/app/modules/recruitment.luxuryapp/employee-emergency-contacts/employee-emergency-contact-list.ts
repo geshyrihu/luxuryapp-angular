@@ -19,6 +19,8 @@ import { EmployeeEmergencyContactForm } from "./employee-emergency-contact-form"
 import { EmployeeEmergencyContactListDesktop } from "./desktop/employee-emergency-contact-list-desktop";
 import { EmployeeEmergencyContactListMobile } from "./mobile/employee-emergency-contact-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "employee-emergency-contact-list",
   templateUrl: "./employee-emergency-contact-list.html",
@@ -30,6 +32,7 @@ import { EmployeeEmergencyContactListMobile } from "./mobile/employee-emergency-
 })
 export class EmployeeEmergencyContactList implements OnInit {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   isReadOnly = input<boolean>(false);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -105,7 +108,15 @@ export class EmployeeEmergencyContactList implements OnInit {
       });
   }
 
-  onDelete(id: string, typeContact: number) {
+  async onDelete(id: string, typeContact: number) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar este contacto?",
+
+    );
+
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.EmployeeEmergencyContact.delete(id))
       .then((result: any) => {

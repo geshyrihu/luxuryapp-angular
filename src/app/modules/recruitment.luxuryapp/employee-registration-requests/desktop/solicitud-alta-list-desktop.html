@@ -117,13 +117,13 @@
             variant="outline"
             (clicked)="goToEmployeeFile.emit(item)"
           />
-          <il-button-confirm
+          <lux-button-web
+            kind="confirm"
             label="Concluir Alta"
             iconClass="material-symbols-light:check"
             severity="success"
             variant="solid"
-            swalText="¿Estás seguro de concluir el alta del empleado administrativamente?"
-            (confirmed)="concludeHiring.emit(item.id)"
+            (clicked)="concludeHiring.emit(item.id)"
           />
           <il-button
             label="Abortar Alta"

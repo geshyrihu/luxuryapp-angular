@@ -103,12 +103,13 @@
       <td>{{ item.email }}</td>
       <td class="text-center">
         @if (item.cvFileName) {
-        <iw-button-view-pdf
-          size="sm"
-          class="btn--circle"
+        <lux-pdf-viewer-trigger
           [url]="item.cvFileUrl"
           [fileName]="item.cvFileName"
-          [attr.aria-label]="'Ver CV de ' + item.fullName"
+          displayMode="icon"
+          size="sm"
+          styleClass="btn--circle"
+          [ariaLabel]="'Ver CV de ' + item.fullName"
         />
         } @else {
         <span class="text-body-secondary">-</span>
@@ -139,33 +140,42 @@
             [ariaLabel]="'Editar candidato ' + item.fullName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar Candidato' })"
           />
-          <iw-button-item
-            size="sm"
-            class="btn--circle"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:info"
-            [attr.aria-label]="'Ver detalle candidato ' + item.fullName"
+            size="sm"
+            [ariaLabel]="'Ver detalle candidato ' + item.fullName"
             (clicked)="detail.emit(item.id)"
           />
           @if (item.currentCandidateProcessId) {
-          <iw-button-item
-            size="sm"
-            class="btn--circle"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:event-outline"
-            [attr.aria-label]="'Ver detalle de entrevista de ' + item.fullName"
+            size="sm"
+            [ariaLabel]="'Ver detalle de entrevista de ' + item.fullName"
             (clicked)="viewInterview.emit(item.currentCandidateProcessId)"
           />
           } @if (item.status === candidateStatus.Active) {
-          <iw-button-delete
-            [attr.aria-label]="'Archivar candidato ' + item.fullName"
-            (confirmed)="archive.emit(item.id)"
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            [ariaLabel]="'Archivar candidato ' + item.fullName"
+            (clicked)="archive.emit(item.id)"
           />
           } @if (isSuperUser()) {
-          <iw-button-item
-            size="sm"
-            class="btn--circle"
-            severity="danger"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
-            [attr.aria-label]="'Eliminar definitivamente candidato ' + item.fullName"
+            severity="danger"
+            size="sm"
+            [ariaLabel]="'Eliminar definitivamente candidato ' + item.fullName"
             (clicked)="delete.emit(item.id)"
           />
           }

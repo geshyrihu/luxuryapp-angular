@@ -14,8 +14,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -28,11 +26,13 @@ import {
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
 import { CandidateApplicationListItem } from "../interfaces/candidate-application";
 
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-candidate-application-list-desktop",
   templateUrl: "./candidate-application-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    PdfViewerTrigger,
     CommonModule,
     ReactiveFormsModule,
     CustomInputSelectSignal,
@@ -43,8 +43,6 @@ import { CandidateApplicationListItem } from "../interfaces/candidate-applicatio
     AppSortableColumn,
     AppSorticon,
     ButtonWeb,
-    WebButtonIconViewPdf,
-    WebButtonLabelItem,
     CandidateStageBadge,
   ],
 })

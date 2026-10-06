@@ -53,12 +53,13 @@
       <td>{{ item.assignedInterviewerName }}</td>
       <td>
         @if (item.cvFileName) {
-        <iw-button-view-pdf
-          size="sm"
-          class="btn--circle"
+        <lux-pdf-viewer-trigger
           [url]="item.cvFileUrl"
           [fileName]="item.cvFileName"
-          [attr.aria-label]="'Ver CV de ' + item.candidateName"
+          displayMode="icon"
+          size="sm"
+          styleClass="btn--circle"
+          [ariaLabel]="'Ver CV de ' + item.candidateName"
         />
         }
       </td>

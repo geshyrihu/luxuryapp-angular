@@ -9,7 +9,6 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -20,15 +19,16 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IEmployee } from "../interfaces/employee.interface";
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-employee-list-desktop",
   templateUrl: "./employee-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     LxTag,
     LxAvatar,
     WebButtonIconActiveDesactive,
-    WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

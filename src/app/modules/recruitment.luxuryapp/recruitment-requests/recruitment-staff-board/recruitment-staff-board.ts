@@ -32,10 +32,9 @@ import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-des
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -58,7 +57,6 @@ import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 // import { WorkPositionHours } from "../../../../shared/integration/reclutamiento/estructura-organizacional/work-position/work-position-hours/work-position-hours";
 
 @Component({
@@ -68,7 +66,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
@@ -87,8 +84,6 @@ import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
     LuxTableCaption,
     TableFooter,
     WebButtonLabel,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
     ActionMenu,
     AppIcon,
   ],
@@ -98,6 +93,7 @@ export class RecruitmentStaffBoard {
   readonly customerIdS = inject(CustomerIdService);
   readonly dialogHandlerS = inject(DialogHandlerService);
   readonly aspRoleS = inject(AspRoleService);
+  readonly confirmS = inject(ConfirmService);
   readonly router = inject(Router);
   private excelService = inject(ExcelExportService);
   private interviewerQueueS = inject(CandidateInterviewerQueueService);
@@ -374,6 +370,10 @@ export class RecruitmentStaffBoard {
   }
 
   async onDelete(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este puesto?",
+    );
+    if (!confirmed) return;
     const res = await this.apiS.onDelete(Endpoints.WorkPositions.delete(id));
     if (res) this.onLoadData();
   }

@@ -114,11 +114,11 @@
       <td class="no-print">
         <div class="d-flex justify-content-center">
           @if ( isAdmin() ) {
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:more-vert"
-            lxTooltip="Opciones"
-            tooltipPosition="top"
-            tooltipPosition="left"
+            tooltip="Opciones"
             (clicked)="editEmpleado.emit({ employeeId: item.employeeId, applicationUserId: item.applicationUserId })"
           />
           }

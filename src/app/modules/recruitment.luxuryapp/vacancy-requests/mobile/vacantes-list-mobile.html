@@ -25,24 +25,31 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
-          <ili-button-item
-            (clicked)="detail.emit(item.workPositionId)"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
+          <lux-button-mobile
+            kind="item"
             label="Detalle del puesto"
             iconClass="material-symbols-light:info"
+            (clicked)="detail.emit(item.workPositionId)"
           />
-          <ili-button-item
-            (clicked)="jobDescription.emit(item.workPositionId)"
+          <lux-button-mobile
+            kind="item"
             label="Descripción del puesto"
             iconClass="material-symbols-light:description"
+            (clicked)="jobDescription.emit(item.workPositionId)"
           />
           @if (isSuperUser()) {
-          <ili-button-item
-            (clicked)="deletePermanente.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             label="Eliminar definitivamente"
-            color="danger"
             iconClass="material-symbols-light:delete"
-            [attr.aria-label]="'Eliminar definitivamente vacante ' + item.folio"
+            color="danger"
+            [ariaLabel]="'Eliminar definitivamente vacante ' + item.folio"
+            (clicked)="deletePermanente.emit(item.id)"
           />
           }
         </ng-container>

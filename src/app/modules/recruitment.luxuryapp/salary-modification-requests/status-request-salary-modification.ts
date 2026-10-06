@@ -16,12 +16,12 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestSalaryModificationForm } from "./status-request-salary-modification-form";
 
@@ -30,20 +30,22 @@ interface RequestSalaryModificationStatusDetail {
   title?: string;
 }
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-status-request-salary-modification",
   templateUrl: "./status-request-salary-modification.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
     WebButtonIcon,
     LxTooltipDirective,
     NgbTooltipModule,
-    WebButtonLabelConfirm,
   ],
 })
 export class StatusRequestSalaryModification implements OnInit {
   private statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   apiResponseS = inject(ApiResponseService);
+  swalS = inject(SwalService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
   router = inject(Router);
@@ -104,7 +106,16 @@ export class StatusRequestSalaryModification implements OnInit {
   }
 
   //Eliminar solicitud de baja
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar esta solicitud?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestSalaryModification.delete(id))
       .then((result: boolean) => {

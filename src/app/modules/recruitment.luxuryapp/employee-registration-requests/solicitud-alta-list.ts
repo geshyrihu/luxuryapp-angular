@@ -63,6 +63,7 @@ export interface SolicitudAltaListItem {
 export class SolicitudAltaList implements OnInit {
   platformS = inject(PlatformService);
   apiResponseS = inject(ApiResponseService);
+  swalS = inject(SwalService);
   dialogHandlerS = inject(DialogHandlerService);
   dateS = inject(DateService);
   private filterRequestsService = inject(FilterRequestsService);
@@ -128,7 +129,16 @@ export class SolicitudAltaList implements OnInit {
       });
   }
 
-  onConcludeHiring(id: string) {
+  async onConcludeHiring(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Estás seguro de concluir el alta del empleado administrativamente?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onPatch<boolean>(
         EndpointsReclutamiento.RequestEmployeeRegister.conclude(id),

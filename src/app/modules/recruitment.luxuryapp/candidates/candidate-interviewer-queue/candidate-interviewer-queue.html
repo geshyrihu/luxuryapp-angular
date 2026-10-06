@@ -196,9 +196,10 @@
               </div>
 
               <div class="d-flex flex-wrap gap-2 justify-content-lg-end" (click)="$event.stopPropagation()">
-                <iw-button-view-pdf
+                <lux-pdf-viewer-trigger
                   [url]="candidate.cvFileUrl"
                   [fileName]="candidate.cvFileName"
+                  displayMode="icon"
                   severity="danger"
                   variant="outline"
                 />
@@ -283,9 +284,10 @@
       </div>
 
       <div class="d-flex flex-wrap gap-2">
-        <iw-button-view-pdf
+        <lux-pdf-viewer-trigger
           [url]="selectedCandidate()?.cvFileUrl ?? ''"
           [fileName]="selectedCandidate()?.cvFileName ?? ''"
+          displayMode="icon"
           severity="danger"
           variant="outline"
         />

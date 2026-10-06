@@ -79,17 +79,22 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ userId: item.applicationUserId, title: 'Editar' })"
           />
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
             iconClass="material-symbols-light:person"
-            lxTooltip="Usuario App"
-            tooltipPosition="top"
+            tooltip="Usuario App"
             (clicked)="userApp.emit(item.applicationUserId)"
           />
-          <iw-button-delete
-            (confirmed)="removeFromCustomer.emit(item.applicationUserId)"
-            confirmHeader="Quitar del cliente"
-            confirmMessage="Estas seguro de quitar a este colaborador externo del cliente actual? Dejara de tener acceso a este cliente. Si no tiene otros clientes, tambien se le bloqueara el acceso a la app."
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
             ariaLabel="Quitar del cliente"
+            (clicked)="removeFromCustomer.emit(item.applicationUserId)"
           />
         </div>
       </td>

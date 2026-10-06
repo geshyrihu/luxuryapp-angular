@@ -47,7 +47,7 @@
         <div class="document-card">
           <div class="document-card__row">
             <div class="d-flex align-items-center gap-2 document-card__pdf">
-              <il-button-view-pdf
+              <lux-pdf-viewer-trigger
                 [url]="row.document?.fileUrl"
                 [fileName]="row.option.label"
               />
@@ -70,14 +70,14 @@
 
           @if (!row.document?.isValidated) {
           <div class="d-flex gap-2 align-items-center">
-            <il-button-confirm
+            <lux-button-web
+              kind="confirm"
               label="Validar documento"
-              variant="solid"
               severity="success"
-              swalText="¿Seguro que deseas validar este documento?"
+              variant="solid"
               [disabled]="validatingId() !== null || rejectingId() !== null"
               [loading]="validatingId() === row.document?.id"
-              (confirmed)="onValidate(row.document)"
+              (clicked)="onValidate(row.document)"
             />
             <iw-button
               iconClass="material-symbols-light:cancel"

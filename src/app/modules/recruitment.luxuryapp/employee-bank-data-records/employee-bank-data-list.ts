@@ -17,6 +17,8 @@ import { EmployeeBankDataListDesktop } from "./desktop/employee-bank-data-list-d
 import { IEmployeeBankData } from "./interfaces/employee-bank-data.interface";
 import { EmployeeBankDataListMobile } from "./mobile/employee-bank-data-list-mobile";
 
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+
 @Component({
   selector: "employee-bank-data-list",
   templateUrl: "./employee-bank-data-list.html",
@@ -25,6 +27,7 @@ import { EmployeeBankDataListMobile } from "./mobile/employee-bank-data-list-mob
 })
 export class EmployeeBankDataList {
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   isReadOnly = input<boolean>(false);
   private readonly employeeInternalS = inject(EmployeeInternalService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
@@ -74,7 +77,15 @@ export class EmployeeBankDataList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+
+    const confirmed = await this.confirmS.confirm(
+
+      "¿Está seguro de eliminar estos datos bancarios?",
+
+    );
+
+    if (!confirmed) return;
     this.employeeInternalS.deleteBankData(id).then((result: boolean) => {
       if (result) {
         this.dataSignal.update((items) =>

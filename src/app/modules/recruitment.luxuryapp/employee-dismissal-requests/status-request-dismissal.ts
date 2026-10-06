@@ -16,13 +16,13 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/dismissal-requests/solicitud-baja-form";
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelConfirm } from "@ui/buttons/web-label/button-confirm";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestDismissalDiscountForm } from "../recruitment-requests/request-dismissal-discount/status-request-dismissal-discount-form";
 
@@ -31,19 +31,21 @@ interface RequestDismissalStatusDetail {
   title?: string;
 }
 
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-status-request-dismissal",
   templateUrl: "./status-request-dismissal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonWeb,
     WebButtonIcon,
     LxTooltipDirective,
     NgbTooltipModule,
-    WebButtonLabelConfirm,
   ],
 })
 export class StatusRequestDismissal implements OnInit {
   apiResponseS = inject(ApiResponseService);
+  swalS = inject(SwalService);
   dialogHandlerS = inject(DialogHandlerService);
   statusSolicitudVacanteService = inject(StatusSolicitudVacanteService);
   authS = inject(AuthService);
@@ -109,7 +111,16 @@ export class StatusRequestDismissal implements OnInit {
       });
   }
   //Eliminar solicitud de baja
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar esta solicitud de baja?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onDelete(EndpointsReclutamiento.RequestDismissal.delete(id))
       .then((result: boolean) => {
@@ -121,7 +132,16 @@ export class StatusRequestDismissal implements OnInit {
   }
 
   //Autorizar baja
-  onAuthorize(department: string) {
+  async onAuthorize(department: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de continuar?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     const urlApi = EndpointsReclutamiento.RequestDismissal.authorize(
       this.dataSignal().id,
       department,
@@ -146,7 +166,16 @@ export class StatusRequestDismissal implements OnInit {
       });
   }
   //Eliminar solicitud de baja
-  onDeleteDiscounts(id: string) {
+  async onDeleteDiscounts(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar este descuento?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     const urlApi = EndpointsReclutamiento.RequestDismissalDiscount.delete(id);
     this.apiResponseS.onDelete(urlApi).then(() => {
       this.onLoadData();
