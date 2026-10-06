@@ -41,7 +41,6 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import {
   PurchaseOrderBudgetAccount,
   PurchaseOrderBudgetAccountsResponse,
@@ -52,7 +51,6 @@ import {
   templateUrl: "./orden-compra-presupuesto.html",
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     TableEmptyMessage,
     CommonModule,
     ReactiveFormsModule,
