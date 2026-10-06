@@ -82,7 +82,7 @@
     pointer-events: none;
   }
 
-  app-icon {
+  lux-icon {
     transition:
       transform 0.3s ease,
       color 0.3s ease;
@@ -93,7 +93,7 @@
     box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.15);
     transform: translateY(-2px);
 
-    app-icon {
+    lux-icon {
       color: var(--ds-primary);
       transform: scale(1.1);
     }
@@ -115,7 +115,7 @@
     box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
     font-weight: 700;
 
-    app-icon {
+    lux-icon {
       color: var(--ds-primary);
       transform: scale(1.15);
     }
@@ -228,7 +228,7 @@
   }
 
   // ===== ICON ADJUSTMENTS =====
-  app-icon {
+  lux-icon {
     &.cobranza-icon-sm {
       font-size: 1.125rem; // 18px
     }

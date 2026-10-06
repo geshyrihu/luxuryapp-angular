@@ -97,8 +97,8 @@
   font-weight: 600;
 }
 
-.hero-chip app-icon,
-.hero-arrow app-icon {
+.hero-chip lux-icon,
+.hero-arrow lux-icon {
   font-size: 1.15rem;
 }
 
@@ -193,7 +193,7 @@
   justify-content: center;
 }
 
-.flow-card__icon app-icon {
+.flow-card__icon lux-icon {
   font-size: 1.3rem;
 }
 
@@ -306,7 +306,7 @@
   justify-content: center;
 }
 
-.decision-arrow app-icon {
+.decision-arrow lux-icon {
   font-size: 1.6rem;
   color: var(--flow-slate-2);
 }
