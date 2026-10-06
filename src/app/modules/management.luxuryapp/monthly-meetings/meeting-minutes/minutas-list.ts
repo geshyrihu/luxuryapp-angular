@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -44,7 +44,7 @@ interface JuntaVisual {
     ButtonWeb,
     ActionMenu,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MinutasList {

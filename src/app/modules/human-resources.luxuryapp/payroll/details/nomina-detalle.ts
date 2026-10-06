@@ -11,7 +11,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { NominaDetalleDTO } from "../interfaces/nomina-detalle.interface";
 import {
   NominaEncabezadoDTO,
@@ -23,7 +23,7 @@ import { NominaDetalleMobile } from "./mobile/nomina-detalle-mobile";
 
 @Component({
   selector: "app-nomina-detalle",
-  imports: [CommonModule, AppIcon, NominaDetalleDesktop, NominaDetalleMobile],
+  imports: [CommonModule, LxIcon, NominaDetalleDesktop, NominaDetalleMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./nomina-detalle.html",
 })

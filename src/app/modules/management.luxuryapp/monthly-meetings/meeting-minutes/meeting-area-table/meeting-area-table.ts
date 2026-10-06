@@ -10,7 +10,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 
 export interface DetailEvent {
@@ -27,7 +27,7 @@ export interface SeguimientoEvent {
 
 @Component({
   selector: "app-area-details-table",
-  imports: [AppIcon, ButtonWeb, LxTooltipDirective, ActionMenu, SanitizeHtmlPipe],
+  imports: [LxIcon, ButtonWeb, LxTooltipDirective, ActionMenu, SanitizeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-area-table.html",
   styleUrl: "./meeting-area-table.scss",

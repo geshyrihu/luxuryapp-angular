@@ -28,14 +28,14 @@ interface IPresentacionJuntaComiteForm {
 }
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-presentacion-junta-comite-form",
   templateUrl: "./presentacion-junta-comite-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     WebButtonIcon,
     ReactiveFormsModule,
     InputFile,

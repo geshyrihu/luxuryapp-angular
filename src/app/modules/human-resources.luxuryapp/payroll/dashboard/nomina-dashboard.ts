@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export type NominaRole =
@@ -578,7 +578,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-nomina-dashboard",
-  imports: [WebButtonIcon, WebButtonLabel, LxTag, AppIcon],
+  imports: [WebButtonIcon, WebButtonLabel, LxTag, LxIcon],
   templateUrl: "./nomina-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./nomina-dashboard.scss"],

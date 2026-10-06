@@ -18,7 +18,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -39,7 +39,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     LxMessage,
     LxTag,
     CustomInputToggleSwitch,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

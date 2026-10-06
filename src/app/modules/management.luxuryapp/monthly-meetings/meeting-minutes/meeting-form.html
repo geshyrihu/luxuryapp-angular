@@ -39,15 +39,15 @@
 <div class="row mt-3 g-4">
   <div class="col-12 col-md-4">
     <!-- Formulario comité -->
-    <lux-comite-form-web [meetingId]="id" [customerId]="customerId" />
+    <app-comite-form [meetingId]="id" [customerId]="customerId" />
   </div>
   <div class="col-12 col-md-4">
     <!-- Formulario Administración -->
-    <lux-administration-form-list-web [meetingId]="id" [customerId]="customerId" />
+    <app-administration-form-list [meetingId]="id" [customerId]="customerId" />
   </div>
   <div class="col-12 col-md-4">
     <!-- Formulario Invitados -->
-    <lux-invited-form-web [meetingId]="id" [customerId]="customerId" />
+    <app-invited-form [meetingId]="id" [customerId]="customerId" />
   </div>
 </div>
 }

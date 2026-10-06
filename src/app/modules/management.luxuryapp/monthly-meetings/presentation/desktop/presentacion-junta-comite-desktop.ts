@@ -11,13 +11,13 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-presentacion-junta-comite-desktop",
   templateUrl: "./presentacion-junta-comite-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WebButtonLabel, LxTag, ButtonWeb, PdfViewerTrigger, AppIcon],
+  imports: [WebButtonLabel, LxTag, ButtonWeb, PdfViewerTrigger, LxIcon],
 })
 export class PresentacionJuntaComiteDesktop {
   aspRoleS = inject(AspRoleService);

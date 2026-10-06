@@ -14,7 +14,7 @@ import { MeetingIndex } from "@core/interfaces/meeting-index.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   AreaDetailsTable,
   DetailEvent,
@@ -27,7 +27,7 @@ import { MinutaDetalleForm } from "./minuta-detalle-form";
   selector: "app-meeting-management",
   imports: [
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     RouterModule,
     AreaDetailsTable,
     ApiDatePipe,

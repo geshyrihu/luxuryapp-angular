@@ -1,5 +1,5 @@
 @if (platformS.isMobile()) {
-<lux-presentacion-junta-comite-contador-mobile-web
+<app-presentacion-junta-comite-contador-mobile
   [data]="dataSignal()"
   [globalFilterFields]="globalFilterFields()"
   (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
@@ -11,7 +11,7 @@
   (onlyValidate)="onOnlyValidate($event)"
 />
 } @else {
-<lux-presentacion-junta-comite-contador-desktop-web
+<app-presentacion-junta-comite-contador-desktop
   [data]="dataSignal()"
   (add)="showModalAdd({ id: 0, titulo: 'Nuevo Registro' })"
   (edit)="showModalAdd({ id: $event, title: 'Editar' })"

@@ -14,7 +14,7 @@ import { ContratosCard } from "@core/layout/direccion-view/components/contratos-
 import { PersonalAusenteCard } from "@core/layout/direccion-view/components/personal-ausente-card/personal-ausente-card";
 import { ReclutamientoCard } from "@core/layout/direccion-view/components/reclutamiento-card/reclutamiento-card";
 import { TareasLegalCard } from "@core/layout/direccion-view/components/tareas-legal-card/tareas-legal-card";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 export interface AreaDireccion {
@@ -28,7 +28,7 @@ export interface AreaDireccion {
 @Component({
   selector: "app-home-direccion",
   imports: [
-    AppIcon,
+    LxIcon,
     AgendaSemanalCard,
     ReclutamientoCard,
     PersonalAusenteCard,

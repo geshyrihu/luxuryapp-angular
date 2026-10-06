@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { LxWidgetCard } from "@ui/adaptive/widget-card/widget-card";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
@@ -58,7 +58,7 @@ const MODULE_OPTIONS: SalaryProjectionModuleOption[] = [
 
 @Component({
   selector: "app-salary-projections-hub",
-  imports: [AppIcon, LxWidgetCard, MobileListItem],
+  imports: [LxIcon, LxWidgetCard, MobileListItem],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./salary-projections-hub.html",
 })

@@ -11,11 +11,11 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { LeaveRequestDetailDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [AppIcon, LxTag, WebButtonLabel],
+  imports: [LxIcon, LxTag, WebButtonLabel],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })

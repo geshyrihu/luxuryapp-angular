@@ -9,7 +9,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { PrestamoEmpleadoDTO } from "../../interfaces/prestamo-empleado.interface";
 
 @Component({
@@ -18,7 +18,7 @@ import { PrestamoEmpleadoDTO } from "../../interfaces/prestamo-empleado.interfac
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    AppIcon,
+    LxIcon,
     MobileListItem,
     WebButtonIcon,
     LxTag,

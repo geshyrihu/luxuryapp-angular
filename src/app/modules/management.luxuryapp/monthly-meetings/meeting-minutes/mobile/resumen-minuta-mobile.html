@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <lux-data-view-mobile-web [data]="data()" [showAdd]="false">
+  <app-data-view-mobile [data]="data()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
       <ili-list-item>
         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
@@ -32,5 +32,5 @@
         </p>
       </ili-list-item>
     </ng-template>
-  </lux-data-view-mobile-web>
+  </app-data-view-mobile>
 </div>

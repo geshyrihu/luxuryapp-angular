@@ -2,7 +2,7 @@
   La presentacion ya no se crea directamente aqui. Primero registra la agenda
   de la junta para generar la sesión mensual y la presentación relacionada.
 </div>
-<lux-data-view-mobile-web
+<app-data-view-mobile
   [data]="data()"
   (add)="add.emit()"
   [globalFilterFields]="globalFilterFields()"
@@ -253,4 +253,4 @@
       </div>
     </div>
   </ng-template>
-</lux-data-view-mobile-web>
+</app-data-view-mobile>

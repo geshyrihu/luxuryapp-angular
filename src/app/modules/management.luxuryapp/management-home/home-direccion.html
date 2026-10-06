@@ -20,16 +20,16 @@
 
       <!-- Contenido por area -->
       @if (area.key === 'juntas-comite') {
-      <lux-agenda-semanal-card-web />
+      <app-agenda-semanal-card />
       } @else if (area.key === 'reclutamiento') {
-      <lux-reclutamiento-card-web />
+      <app-reclutamiento-card />
       } @else if (area.key === 'recursos-humanos') {
-      <lux-personal-ausente-card-web />
+      <app-personal-ausente-card />
       } @else if (area.key === 'legal') {
       <div class="d-flex flex-column gap-4">
-        <lux-tareas-legal-card-web />
+        <app-tareas-legal-card />
         <div class="border-top-1 border pt-3">
-          <lux-contratos-card-web />
+          <app-contratos-card />
         </div>
       </div>
       } @else {
@@ -78,22 +78,22 @@
       <!-- Contenido movil por area -->
       @if (area.key === 'juntas-comite') {
       <div class="col-12 p-2">
-        <lux-agenda-semanal-card-web />
+        <app-agenda-semanal-card />
       </div>
       } @else if (area.key === 'reclutamiento') {
       <div class="col-12 p-2">
-        <lux-reclutamiento-card-web />
+        <app-reclutamiento-card />
       </div>
       } @else if (area.key === 'recursos-humanos') {
       <div class="col-12 p-2">
-        <lux-personal-ausente-card-web />
+        <app-personal-ausente-card />
       </div>
       } @else if (area.key === 'legal') {
       <div class="col-12 p-2">
-        <lux-tareas-legal-card-web />
+        <app-tareas-legal-card />
       </div>
       <div class="col-12 p-2 border-top-1 border">
-        <lux-contratos-card-web />
+        <app-contratos-card />
       </div>
       } @else {
       <!-- Cards de metricas placeholder -->

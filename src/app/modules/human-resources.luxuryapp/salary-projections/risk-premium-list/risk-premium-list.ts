@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from "@angular/core";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from '@ui/adaptive/icon/icon';
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
 import { CustomerDto } from "../../../admin.luxuryapp/security-permissions/customer/interfaces/customer.dto";
@@ -8,7 +8,7 @@ import { NgClass } from "@angular/common";
 
 @Component({
   selector: "app-risk-premium-list",
-  imports: [AppIcon, FormsModule, NgClass],
+  imports: [LxIcon, FormsModule, NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./risk-premium-list.html",
 })
