@@ -13,6 +13,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ListProvider } from "./provider-list";
 
 describe("ListProvider", () => {
@@ -23,6 +24,7 @@ describe("ListProvider", () => {
   let mockAuthS: any;
   let mockCustomerIdS: any;
   let mockDialogHandlerS: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -39,6 +41,7 @@ describe("ListProvider", () => {
       sizeFull: "full",
       sizeSm: "sm",
     };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.overrideComponent(ListProvider, {
       set: { template: "<div>Mock</div>", imports: [] },
@@ -52,6 +55,7 @@ describe("ListProvider", () => {
         { provide: AuthService, useValue: mockAuthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -112,10 +116,18 @@ describe("ListProvider", () => {
     expect(component.dataSignal()[0].providerId).toBe("2");
   });
 
-  it("should not remove from dataSignal on delete when API returns false", () => {
+  it("should not remove from dataSignal on delete when API returns false", async () => {
     mockApiResponseS.onDelete.mockResolvedValue(false);
     component.dataSignal.set([{ providerId: "1", nameProvider: "A" }]);
-    component.onDelete("1");
+    await component.onDelete("1");
+    expect(component.dataSignal().length).toBe(1);
+  });
+
+  it("should not delete when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    component.dataSignal.set([{ providerId: "1", nameProvider: "A" }]);
+    await component.onDelete("1");
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
     expect(component.dataSignal().length).toBe(1);
   });
 

@@ -11,8 +11,6 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxRating } from "@ui/adaptive/rating/rating";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
@@ -33,8 +31,6 @@ import { AppPaginator } from "@ui/web/paginator/paginator";
     LxRating,
     LxTag,
     LxTooltipDirective,
-    WebButtonIconDelete,
-    WebButtonIconItem,
     WebButtonLabel,
     CustomSearchInput,
     SegmentedControl,

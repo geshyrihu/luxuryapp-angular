@@ -17,6 +17,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { BusquedaProveedor } from "@core/interfaces/busqueda-proveedor.interface";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CalificacionProveedor } from "@operations.luxuryapp/provider-qualifications/calificacion-proveedor";
 import { ProviderListDesktop } from "./desktop/provider-list-desktop";
 import { ProviderListMobile } from "./mobile/provider-list-mobile";
@@ -39,6 +40,7 @@ export class ListProvider implements OnInit {
   aspRoleS = inject(AspRoleService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   // Datos de la tabla
   dataSignal = signal<BusquedaProveedor[]>([]);
   totalRecords: number = 0; // Total de registros para paginador
@@ -162,7 +164,11 @@ export class ListProvider implements OnInit {
   }
 
   // Elimina un proveedor
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este proveedor?",
+    );
+    if (!confirmed) return;
     return this.apiResponseS
       .onDelete(Endpoints.Providers.delete(id))
       .then((result: boolean) => {

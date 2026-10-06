@@ -166,45 +166,73 @@
           (clicked)="edit.emit({ id: item.providerId, title: 'Editar' })"
         />
         } @if (item.activo) {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Calificar"
           iconClass="material-symbols-light:bar-chart"
-          lxTooltip="Calificar"
           (clicked)="calificar.emit({
               providerId: item.providerId,
               nameProvider: item.nameComercial
             })"
         />
         } @if (validateRole([roles.SuperUsuario])) {
-        <iw-button-delete (confirmed)="delete.emit(item.providerId)" />
+        <lux-button-web
+          kind="delete"
+          displayMode="icon"
+          severity="danger"
+          variant="soft"
+          size="sm"
+          tooltip="Eliminar"
+          ariaLabel="Eliminar"
+          (clicked)="delete.emit(item.providerId)"
+        />
         } @if (!item.activo && validateRole([roles.SuperUsuario])) {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Activar"
+          iconClass="material-symbols-light:check"
+          tooltipPosition="top"
           (clicked)="
             activate.emit({ providerId: item.providerId, state: !item.activo })
           "
-          iconClass="material-symbols-light:check"
-          lxTooltip="Activar"
-          tooltipPosition="top"
         />
         } @if (item.activo && validateRole([roles.SuperUsuario])) {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Inactivar"
+          iconClass="material-symbols-light:block"
+          tooltipPosition="top"
           (clicked)="
             activate.emit({ providerId: item.providerId, state: !item.activo })
           "
-          iconClass="material-symbols-light:block"
-          lxTooltip="Inactivar"
-          tooltipPosition="top"
         />
 
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Buscar Coincidencias"
+          iconClass="material-symbols-light:search"
           (clicked)="
             coincidencias.emit({ providerId: item.providerId, state: !item.activo })
           "
-          iconClass="material-symbols-light:search"
-          lxTooltip="Buscar Coincidencias"
         />
 
-        <iw-button-item
-          (clicked)="authorized.emit(item.providerId)"
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           [iconClass]="
             item.autorizado
               ? 'material-symbols-light:shield'
@@ -212,6 +240,7 @@
           "
           [lxTooltip]="item.autorizado ? 'Desautorizar' : 'Autorizar'"
           tooltipPosition="top"
+          (clicked)="authorized.emit(item.providerId)"
         />
         }
       </div>

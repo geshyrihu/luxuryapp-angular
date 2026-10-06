@@ -27,9 +27,10 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.providerId, title: 'Editar' })"
           />
-          <ili-button-delete
-            (confirmed)="delete.emit(item.providerId)"
-            label="Eliminar"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.providerId)"
           />
         </ng-container>
       </ili-action-menu>
