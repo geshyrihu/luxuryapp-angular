@@ -408,8 +408,8 @@ import { TagModule } from 'Bootstrap/tag';`,
       examples: {
         angular: {
           code: `<!-- OK -->
-<lux-button-web-primary (clicked)="save()">Guardar</il-button-primary>
-<lux-button-web displayMode="icon"-edit aria-label="Editar registro" />
+<lux-button-web kind="save" (clicked)="save()">Guardar</lux-button-web>
+<lux-button-web kind="edit" displayMode="icon" ariaLabel="Editar registro" />
 <custom-input-text-signal [control]="form.controls.name" />
 
 <!-- NO -->
