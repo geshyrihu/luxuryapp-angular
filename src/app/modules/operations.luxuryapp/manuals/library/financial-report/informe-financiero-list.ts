@@ -11,12 +11,14 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-informe-financiero",
   imports: [
     DataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+    PdfViewerTrigger],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",
 })
