@@ -54,10 +54,14 @@
           }
         </td>
         <td class="text-center">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             icon="material-symbols-light:sync"
             title="Cambiar estatus"
-            (click)="changeStatus.emit(item)"
+            (clicked)="changeStatus.emit(item)"
           />
         </td>
       </tr>

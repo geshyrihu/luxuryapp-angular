@@ -92,38 +92,54 @@
           <div class="d-flex align-items-center gap-2">
             @if (item.investigationStatus === 'Reportado' ||
             item.investigationStatus === 'EnInvestigacion') {
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              tooltip="Resolver"
               iconClass="material-symbols-light:check-circle"
-              lxTooltip="Resolver"
               tooltipPosition="top"
-              (click)="resolve.emit(item)"
+              (clicked)="resolve.emit(item)"
             />
             <lux-button-web
               kind="edit"
               displayMode="icon"
               (clicked)="edit.emit(item)"
             />
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              tooltip="Cancelar"
               iconClass="material-symbols-light:cancel"
-              lxTooltip="Cancelar"
               tooltipPosition="top"
-              (click)="cancel.emit(item)"
+              (clicked)="cancel.emit(item)"
             />
             }
 
             <!-- Generar y descargar acta para firma fósica -->
-            <iw-button-download
-              iconClass="material-symbols-light:note-alt"
+            <lux-button-web
+              kind="download"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
               size="small"
+              iconClass="material-symbols-light:note-alt"
               (clicked)="generateAct.emit(item)"
             />
 
             <!-- Subir acta firmada escaneada -->
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:upload"
               [lxTooltip]="item.isActGenerated ? 'Reemplazar Acta' : 'Subir Acta'"
               tooltipPosition="top"
-              (click)="uploadSignedAct.emit(item)"
+              (clicked)="uploadSignedAct.emit(item)"
             />
 
             <!-- Ver acta firmada en visor é solo si ya fue subida -->
@@ -137,7 +153,16 @@
             />
             }
 
-            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="delete.emit(item.id)"
+            />
           </div>
         </td>
       </tr>

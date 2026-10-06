@@ -112,7 +112,16 @@
           <td>{{ formatFileSize(attachment.fileSizeKB) }}</td>
           <td>{{ attachment.createdAt | apiDate : "dd/MM/yyyy" }}</td>
           <td>
-            <iw-button-delete (confirmed)="deleteAttachment(attachment)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="deleteAttachment(attachment)"
+            />
           </td>
         </tr>
       </ng-template>

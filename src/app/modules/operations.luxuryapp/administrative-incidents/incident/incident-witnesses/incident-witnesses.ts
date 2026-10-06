@@ -17,14 +17,12 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IncidentWitnessListDTO } from "../interfaces/incident.interfaces";
 import { IncidentWitnessFormComponent } from "./incident-witness-form";
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-incident-witnesses",
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     WebButtonLabel,

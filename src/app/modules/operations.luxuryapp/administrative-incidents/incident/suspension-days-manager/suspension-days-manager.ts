@@ -12,8 +12,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -22,20 +22,19 @@ import {
   SuspensionDayAddDTO,
   SuspensionDayDetailDTO,
 } from "../interfaces/incident.interfaces";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 @Component({
   selector: "app-suspension-days-manager",
   imports: [
-    WebButtonIconDelete,
+    ButtonWeb,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
     ApiDatePipe,
     CustomInputDateSignal,
     CustomInputTextAreaSignal,
-    WebButtonLabelAdd,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./suspension-days-manager.html",
@@ -45,6 +44,7 @@ export class SuspensionDaysManager implements OnInit {
   private toastS = inject(CustomToastService);
   private dateS = inject(DateService);
   private fb = inject(NonNullableFormBuilder);
+  private confirmS = inject(ConfirmService);
 
   incidentId = input.required<string>();
 
@@ -203,7 +203,11 @@ export class SuspensionDaysManager implements OnInit {
       .finally(() => this.saving.set(false));
   }
 
-  deleteDay(id: string): void {
+  async deleteDay(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este día de suspensión?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Incident.suspensionDays.delete(id))
       .then(() => this.loadDays());

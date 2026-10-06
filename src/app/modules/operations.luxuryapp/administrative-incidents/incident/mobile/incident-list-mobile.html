@@ -39,12 +39,14 @@
 
         <ili-action-menu slot="end">
           <ng-container actions>
-            <ili-button-item
+            <lux-button-mobile
+              kind="item"
               label="Editar"
               iconName="create-outline"
               (clicked)="edit.emit(item)"
             />
-            <ili-button-item
+            <lux-button-mobile
+              kind="item"
               label="Resolver"
               iconName="checkmark-circle-outline"
               (clicked)="resolve.emit(item)"

@@ -77,7 +77,16 @@
               ariaLabel="Editar"
               (clicked)="openEditDialog(witness)"
             />
-            <iw-button-delete (confirmed)="deleteWitness(witness)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="deleteWitness(witness)"
+            />
           </div>
         </td>
       </tr>

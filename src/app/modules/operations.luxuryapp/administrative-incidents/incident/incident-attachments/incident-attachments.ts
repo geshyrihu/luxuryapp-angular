@@ -10,9 +10,11 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -22,12 +24,11 @@ import { IncidentAttachmentListDTO } from "../interfaces/incident.interfaces";
 const MAX_FILE_SIZE_BYTES = 2 * 1024 * 1024;
 const MAX_FILES_PER_INCIDENT = 10;
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 @Component({
   selector: "app-incident-attachments",
   imports: [
-    WebButtonIconDelete,
+    ButtonWeb,
     TableEmptyMessage,
     ReactiveFormsModule,
     FileUploadModule,
@@ -47,6 +48,7 @@ export class IncidentAttachmentsComponent {
   private apiResponseS = inject(ApiResponseService);
   private imageProcessing = inject(ImageProcessingService);
   private swalS = inject(SwalService);
+  private confirmS = inject(ConfirmService);
 
   attachments = signal<IncidentAttachmentListDTO[]>([]);
   loading = signal(false);
@@ -155,7 +157,13 @@ export class IncidentAttachmentsComponent {
     }
   }
 
-  deleteAttachment(attachment: IncidentAttachmentListDTO): void {
+  async deleteAttachment(
+    attachment: IncidentAttachmentListDTO,
+  ): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este archivo?",
+    );
+    if (!confirmed) return;
     this.attachments.update((curr) =>
       curr.filter((a) => a.id !== attachment.id),
     );

@@ -13,6 +13,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { IncidentListDesktop } from "./desktop/incident-list-desktop";
 import { IncidentFormComponent } from "./incident-form";
 import { IncidentResolveComponent } from "./incident-resolve";
@@ -35,6 +36,7 @@ export class IncidentList implements OnInit {
   toastS = inject(CustomToastService);
   dialogHandlerS = inject(DialogHandlerService);
   swalS = inject(SwalService);
+  confirmS = inject(ConfirmService);
   customerIdService = inject(CustomerIdService);
   platformS = inject(PlatformService);
 
@@ -66,7 +68,11 @@ export class IncidentList implements OnInit {
     });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta incidencia?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.HR.Incident.delete(id))
       .then((response: boolean) => {
