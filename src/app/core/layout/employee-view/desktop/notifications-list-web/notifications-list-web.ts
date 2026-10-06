@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
@@ -37,6 +38,7 @@ export class NotificationsListWeb implements OnInit {
   private signalRService = inject(SignalRService);
   private destroyRef = inject(DestroyRef);
   private consoleLogger = inject(ConsoleLoggerService);
+  private confirmS = inject(ConfirmService);
 
   notifications = signal<any[]>([]);
   loading = signal(false);
@@ -132,5 +134,29 @@ export class NotificationsListWeb implements OnInit {
           this.onLoadNotification();
         }
       });
+  }
+
+  /**
+   * Confirma y elimina una notificación. Contrato Fase 3: la confirmación
+   * vive en el consumidor, no en el botón.
+   */
+  async onDeleteNotification(notificationId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta notificación?",
+    );
+    if (!confirmed) return;
+    this.deleteNotification(notificationId);
+  }
+
+  /**
+   * Confirma y elimina las notificaciones seleccionadas (contrato Fase 3).
+   */
+  async onDeleteSelected(): Promise<void> {
+    if (this.selectedIds().size === 0) return;
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar las notificaciones seleccionadas?",
+    );
+    if (!confirmed) return;
+    this.deleteSelected();
   }
 }
