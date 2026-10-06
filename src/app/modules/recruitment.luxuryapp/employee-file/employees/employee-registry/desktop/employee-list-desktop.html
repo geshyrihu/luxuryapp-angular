@@ -12,9 +12,12 @@
         [dt]="dt"
         [rolAuth]="isAdmin()"
       />
-      <iw-button-active-desactive
-        [state]="activo()"
-        (stateChange)="stateChange.emit($event)"
+      <lux-button-web
+        displayMode="icon"
+        severity="secondary"
+        variant="soft"
+        [icon]="activo() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+        (clicked)="stateChange.emit(!activo())"
       />
     </div>
   </ng-template>

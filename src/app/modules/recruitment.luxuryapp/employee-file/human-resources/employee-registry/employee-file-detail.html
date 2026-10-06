@@ -662,12 +662,13 @@
         }
         <div class="col-12 d-flex align-items-center justify-content-end gap-2">
           @if (c.pdfUrl) {
-          <iw-button-item
-            iconClass="material-symbols-light:download"
+          <lux-button-web
+            kind="item"
             label="Descargar contrato"
+            iconClass="material-symbols-light:download"
             severity="primary"
             variant="outline"
-            (click)="onDownloadContract(c.pdfUrl)"
+            (clicked)="onDownloadContract(c.pdfUrl)"
           />
           } @if (c.contractStatus === 'PendienteFirma') {
           <label class="m-0 cursor-pointer">
@@ -677,9 +678,10 @@
               class="d-none"
               (change)="onUploadSigned($event, c)"
             />
-            <iw-button-item
-              iconClass="material-symbols-light:upload"
+            <lux-button-web
+              kind="item"
               label="Subir contrato firmado"
+              iconClass="material-symbols-light:upload"
               severity="success"
             />
           </label>
@@ -736,13 +738,15 @@
           <td class="text-center">
             <div class="d-flex justify-content-center">
               @if (item.pdfUrl) {
-              <iw-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
                 iconClass="material-symbols-light:picture-as-pdf"
-                lxTooltip="Ver contrato"
-                [size]="'small'"
+                size="sm"
                 severity="danger"
                 variant="outline"
-                (click)="onDownloadContract(item.pdfUrl)"
+                tooltip="Ver contrato"
+                (clicked)="onDownloadContract(item.pdfUrl)"
               />
               }
             </div>
@@ -1307,14 +1311,15 @@
           <td class="text-center">
             <div class="d-flex justify-content-center">
               @if (item.isActGenerated) {
-              <iw-button-item
+              <lux-button-web
+                kind="item"
+                displayMode="icon"
                 iconClass="material-symbols-light:picture-as-pdf"
-                lxTooltip="Ver Acta"
-                [size]="'small'"
+                size="sm"
                 severity="danger"
                 variant="outline"
-                lxTooltip="Descargar Acta Administrativa"
-                (click)="onDownloadAct(item.administrativeActPdfUrl)"
+                tooltip="Descargar Acta Administrativa"
+                (clicked)="onDownloadAct(item.administrativeActPdfUrl)"
               />
               } @else {
               <span class="text-body-secondary text-xs italic"

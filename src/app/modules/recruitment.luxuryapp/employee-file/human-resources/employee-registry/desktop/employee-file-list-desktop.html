@@ -57,11 +57,12 @@
         </span>
       </td>
       <td class="text-center">
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
           iconClass="material-symbols-light:folder-open"
-          lxTooltip="Ver Expediente"
-          tooltipPosition="top"
-          (click)="viewFile.emit(item)"
+          tooltip="Ver Expediente"
+          (clicked)="viewFile.emit(item)"
         />
       </td>
     </tr>

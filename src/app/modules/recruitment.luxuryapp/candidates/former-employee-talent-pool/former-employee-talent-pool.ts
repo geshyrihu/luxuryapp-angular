@@ -22,7 +22,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabelActiveDesactive } from "@ui/buttons";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -80,7 +80,7 @@ interface FormerEmployeeCandidateResult {
 
     AppSorticon,
     WebButtonLabel,
-    WebButtonLabelActiveDesactive,
+    ButtonWeb,
   ],
 })
 export class FormerEmployeeTalentPool implements OnInit {

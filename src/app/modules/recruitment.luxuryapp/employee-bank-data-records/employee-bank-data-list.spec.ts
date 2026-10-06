@@ -4,12 +4,13 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
-import { EmployeeInternalService } from "../employee/employee-internal.service";
+import { EmployeeInternalService } from "../employees/employee-internal.service";
 import { EmployeeBankDataList } from "./employee-bank-data-list";
 
 describe("EmployeeBankDataList", () => {
   let fixture: ComponentFixture<EmployeeBankDataList>;
   let component: EmployeeBankDataList;
+  let mockConfirmS: any;
 
   const mockEmployeeInternalS = {
     getBankData: vi
@@ -20,10 +21,11 @@ describe("EmployeeBankDataList", () => {
 
   const mockDialogHandlerS = {
     openDialog: vi.fn().mockResolvedValue(true),
-    sizeMd: this.dialogHandlerS.sizeMd,
+    sizeMd: "600px",
   };
 
   beforeEach(() => {
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
     TestBed.overrideComponent(EmployeeBankDataList, {
       set: { template: "<div>Mock</div>", imports: [] },
     });
@@ -35,7 +37,7 @@ describe("EmployeeBankDataList", () => {
         { provide: EmployeeInternalService, useValue: mockEmployeeInternalS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PlatformService, useValue: { isMobile: () => false } },
-        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
     });
 
@@ -78,5 +80,14 @@ describe("EmployeeBankDataList", () => {
     component.dataSignal.set([{ id: "1" } as any, { id: "2" } as any]);
     await component.onDelete("1");
     expect(mockEmployeeInternalS.deleteBankData).toHaveBeenCalledWith("1");
+  });
+
+  it("should not delete on onDelete when confirmation is cancelled", async () => {
+    component.dataSignal.set([{ id: "1" } as any]);
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+
+    await component.onDelete("1");
+
+    expect(mockEmployeeInternalS.deleteBankData).not.toHaveBeenCalled();
   });
 });

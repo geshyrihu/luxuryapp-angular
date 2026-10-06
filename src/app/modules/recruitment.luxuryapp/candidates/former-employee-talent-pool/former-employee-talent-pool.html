@@ -39,9 +39,12 @@
           (selectionChange)="onCustomerChange()"
         />
         <div>
-          <il-button-active-desactive
-            [state]="employeeState()"
-            (stateChange)="onSelectActive($event)"
+          <lux-button-web
+            severity="secondary"
+            variant="outline"
+            iconClass="material-symbols-light:lock-open-outline"
+            [label]="employeeState() ? 'Inactivos' : 'Activos'"
+            (clicked)="onSelectActive(!employeeState())"
           />
         </div>
       </div>

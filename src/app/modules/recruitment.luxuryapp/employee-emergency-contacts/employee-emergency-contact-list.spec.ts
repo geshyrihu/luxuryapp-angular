@@ -16,6 +16,7 @@ vi.mock("ionicons/icons", () => ({
 describe("EmployeeEmergencyContactList", () => {
   let fixture: ComponentFixture<EmployeeEmergencyContactList>;
   let component: EmployeeEmergencyContactList;
+  let mockConfirmS: any;
 
   const mockApiResponseS = {
     onGetItem: vi.fn().mockResolvedValue([]),
@@ -24,10 +25,11 @@ describe("EmployeeEmergencyContactList", () => {
 
   const mockDialogHandlerS = {
     openDialog: vi.fn().mockResolvedValue(true),
-    sizeLg: this.dialogHandlerS.sizeXl,
+    sizeLg: "1200px",
   };
 
   beforeEach(() => {
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
     TestBed.overrideComponent(EmployeeEmergencyContactList, {
       set: { template: "<div>Mock</div>", imports: [] },
     });
@@ -39,7 +41,7 @@ describe("EmployeeEmergencyContactList", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PlatformService, useValue: { isMobile: () => false } },
-        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
     });
 
@@ -80,5 +82,13 @@ describe("EmployeeEmergencyContactList", () => {
   it("should call onDelete with correct id", async () => {
     await component.onDelete("1", 0);
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();
+  });
+
+  it("should not delete on onDelete when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+
+    await component.onDelete("1", 0);
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
   });
 });

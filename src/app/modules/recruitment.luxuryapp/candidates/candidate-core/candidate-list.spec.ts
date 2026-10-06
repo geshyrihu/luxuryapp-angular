@@ -37,6 +37,7 @@ describe("CandidateList", () => {
   let apiResponseService: ReturnType<typeof vi.fn>;
   let dialogHandlerService: ReturnType<typeof vi.fn>;
   let platformService: ReturnType<typeof vi.fn>;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     apiResponseService = {
@@ -54,6 +55,8 @@ describe("CandidateList", () => {
       isMobile: vi.fn().mockReturnValue(false),
     };
 
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
+
     TestBed.overrideComponent(CandidateList, {
       set: {
         template: "<div>Mock</div>",
@@ -68,7 +71,7 @@ describe("CandidateList", () => {
         { provide: ApiResponseService, useValue: apiResponseService },
         { provide: DialogHandlerService, useValue: dialogHandlerService },
         { provide: PlatformService, useValue: platformService },
-        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
         { provide: "HttpClientWithoutInterceptors", useValue: (globalThis as any).__mockHttpClient },
       ],
     });
@@ -109,6 +112,15 @@ describe("CandidateList", () => {
     );
     const archivedCandidate = component.dataSignal().find((c) => c.id === "1");
     expect(archivedCandidate?.status).toBe(CandidateStatus.Archived);
+  });
+
+  it("should not archive candidate when confirmation is cancelled", async () => {
+    await fixture.whenStable();
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+
+    await component.onArchive("1");
+
+    expect(apiResponseService.onPatch).not.toHaveBeenCalled();
   });
 
   it("should open form modal for edit", async () => {

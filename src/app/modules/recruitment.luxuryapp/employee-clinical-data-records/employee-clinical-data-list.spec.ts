@@ -4,12 +4,13 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
-import { EmployeeInternalService } from "../employee/employee-internal.service";
+import { EmployeeInternalService } from "../employees/employee-internal.service";
 import { EmployeeClinicalDataList } from "./employee-clinical-data-list";
 
 describe("EmployeeClinicalDataList", () => {
   let fixture: ComponentFixture<EmployeeClinicalDataList>;
   let component: EmployeeClinicalDataList;
+  let mockConfirmS: any;
 
   const mockEmployeeInternalS = {
     getClinicalData: vi
@@ -20,10 +21,11 @@ describe("EmployeeClinicalDataList", () => {
 
   const mockDialogHandlerS = {
     openDialog: vi.fn().mockResolvedValue(true),
-    sizeMd: this.dialogHandlerS.sizeMd,
+    sizeMd: "600px",
   };
 
   beforeEach(() => {
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
     TestBed.overrideComponent(EmployeeClinicalDataList, {
       set: { template: "<div>Mock</div>", imports: [] },
     });
@@ -35,7 +37,7 @@ describe("EmployeeClinicalDataList", () => {
         { provide: EmployeeInternalService, useValue: mockEmployeeInternalS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: PlatformService, useValue: { isMobile: () => false } },
-        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
     });
 
@@ -75,5 +77,14 @@ describe("EmployeeClinicalDataList", () => {
     component.dataSignal.set([{ id: "1" } as any, { id: "2" } as any]);
     await component.onDelete("1");
     expect(mockEmployeeInternalS.deleteClinicalData).toHaveBeenCalledWith("1");
+  });
+
+  it("should not delete on onDelete when confirmation is cancelled", async () => {
+    component.dataSignal.set([{ id: "1" } as any]);
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+
+    await component.onDelete("1");
+
+    expect(mockEmployeeInternalS.deleteClinicalData).not.toHaveBeenCalled();
   });
 });

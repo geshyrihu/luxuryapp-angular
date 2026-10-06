@@ -11,19 +11,20 @@ import {
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { EmployeeFileSummaryDTO } from "../interfaces/employee-file.interfaces";
 
+import { ButtonWeb } from "@ui/buttons/web";
+
 @Component({
   selector: "app-employee-file-list-desktop",
   templateUrl: "./employee-file-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
