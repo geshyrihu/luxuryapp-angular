@@ -22,7 +22,13 @@
             variant="text"
             (clicked)="onOpenGallery()"
           />
-          <iw-button-add (clicked)="onAddDiagram()" />
+          <lux-button-web
+            kind="add"
+            displayMode="icon"
+            severity="primary"
+            variant="soft"
+            (clicked)="onAddDiagram()"
+          />
         </div>
       </div>
     </ng-template>
@@ -72,7 +78,16 @@
               lxTooltip="Ver"
               tooltipPosition="top"
             />
-            <iw-button-delete (clicked)="onDeleteDiagram(diagram.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="onDeleteDiagram(diagram.id)"
+            />
           </div>
         </td>
       </tr>
@@ -133,9 +148,10 @@
             variant="text"
             severity="success"
           />
-          <ili-button-delete
-            (confirmed)="onDeleteDiagram(diagram.id)"
-            label="Eliminar"
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="onDeleteDiagram(diagram.id)"
           />
         </ng-container>
       </ili-action-menu>

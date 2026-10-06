@@ -15,6 +15,7 @@ import {
   DialogService,
 } from "@core/services/dialog-handler.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -27,15 +28,13 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { DiagramForm } from "../diagram-form/diagram-form";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
@@ -43,15 +42,13 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
 @Component({
   selector: "app-diagram-list",
   imports: [
+    ButtonWeb,
     ButtonMobile,
     AppIcon,
     MobileListItem,
     WebButtonIcon,
     LxTooltipDirective,
-    WebButtonIconAdd,
-    WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
@@ -71,6 +68,7 @@ export class DiagramList implements OnInit {
   private dialogHandlerS = inject(DialogHandlerService);
   private router = inject(Router);
   private customerIdService = inject(CustomerIdService);
+  private confirmS = inject(ConfirmService);
 
   loading = signal(true);
   diagrams = signal<IDiagramDraw[]>([]);
@@ -134,7 +132,11 @@ export class DiagramList implements OnInit {
     this.router.navigate(ROUTES.DIAGRAMAS.GALERIA);
   }
 
-  onDeleteDiagram(id: string) {
+  async onDeleteDiagram(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este diagrama?",
+    );
+    if (!confirmed) return;
     this.apiResponseS.onDelete(Endpoints.DiagramDraw.delete(id)).then(() => {
       this.onLoadData();
     });
