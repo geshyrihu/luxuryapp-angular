@@ -11,7 +11,7 @@
           <span class="text-break">{{ item.period }}</span>
         </div>
         @if (item.hasDocument) {
-        <lux-button-web-view-pdf
+        <lux-pdf-viewer-trigger
           [url]="item.nameFileEstadoFinanciero"
           fileName="Informe Financiero"
         />
@@ -55,10 +55,7 @@
 
         <div end class="d-flex align-items-center">
           @if (item.hasDocument) {
-          <lux-button-web-view-pdf
-            [url]="item.nameFileEstadoFinanciero"
-            pdf="informe"
-          />
+          <lux-pdf-viewer-trigger [url]="item.nameFileEstadoFinanciero" />
           } @else {
           <span class="text-sm text-body-secondary">Sin Informe</span>
           }
