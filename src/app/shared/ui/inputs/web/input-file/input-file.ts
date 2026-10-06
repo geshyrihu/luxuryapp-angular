@@ -44,7 +44,7 @@ import { BaseInputSignal } from "../../core/base-input-signal";
             }})
           </span>
 
-          <lux-button-web displayMode="icon"-delete
+          <lux-button-web kind="delete" displayMode="icon"
             [disabled]="disabled()"
             (confirmed)="removeFile()"
           />
