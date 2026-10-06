@@ -11,13 +11,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-funding-order-invoices",
-  imports: [WebButtonIconItem, LxTooltipDirective, AppTable],
+  imports: [ButtonWeb, LxTooltipDirective, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-order-invoices.html",
 })

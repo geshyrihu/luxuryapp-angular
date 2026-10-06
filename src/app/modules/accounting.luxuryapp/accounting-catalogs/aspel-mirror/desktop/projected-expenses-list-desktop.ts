@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { DecimalPipe } from "@angular/common";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -23,7 +22,6 @@ import {
   imports: [
     ButtonWeb,
     DecimalPipe,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,

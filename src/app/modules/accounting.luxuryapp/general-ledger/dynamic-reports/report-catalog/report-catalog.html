@@ -14,7 +14,13 @@
         tooltipPosition="bottom"
         routerLink="/contabilidad/reportes/guia"
       />
-      <il-button-add (clicked)="crear()" ngbTooltip="Crear nuevo reporte" />
+      <lux-button-web
+        kind="add"
+        variant="soft"
+        severity="info"
+        tooltip="Crear nuevo reporte"
+        (clicked)="crear()"
+      />
     </div>
   </div>
 
@@ -71,9 +77,15 @@
               ariaLabel="Editar"
               (clicked)="editar(r.id)"
             />
-            <iw-button-delete
-              [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'"
-              (confirmed)="eliminar(r.id)"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="eliminar(r.id)"
             />
           </div>
         </td>
@@ -121,9 +133,11 @@
             ariaLabel="Editar"
             (clicked)="editar(r.id)"
           />
-          <il-button-delete
-            [confirmMessage]="'Eliminar el reporte &quot;' + r.name + '&quot;?'"
-            (confirmed)="eliminar(r.id)"
+          <lux-button-web
+            kind="delete"
+            severity="danger"
+            variant="soft"
+            (clicked)="eliminar(r.id)"
           />
         </div>
       </div>

@@ -8,7 +8,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
@@ -30,7 +29,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     LxAccordion,
     LxTabs,
     MobileButtonLabel,
-    MobileButtonLabelDelete,
     IonInputCheckbox,
     IonInputSelect,
     MobileActionMenu,

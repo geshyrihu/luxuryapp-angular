@@ -496,12 +496,18 @@
                 [disabled]="!canEdit()"
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
-              <iw-button-delete
-                (confirmed)="onDeleteOrder(orden.ordenCompraId)"
-                [iconOnly]="true"
-                customClass="w-2rem h-2rem"
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Eliminar"
+                ariaLabel="Eliminar"
+                styleClass="w-2rem h-2rem"
                 *ngIf="canEdit()"
-              ></iw-button-delete>
+                (clicked)="onDeleteOrder(orden.ordenCompraId)"
+              />
             </div>
           </td>
         </tr>
@@ -584,11 +590,16 @@
                 (clicked)="onOrdenCompraModal(orden.ordenCompraId)"
               />
               @if (isRolAdministrador() || isRolSuperUsuario()) {
-              <iw-button-delete
-                (confirmed)="onRemoveFueraFondeo(orden.ordenCompraId)"
-                lxTooltip="Desvincular del fondeo"
-                [iconOnly]="true"
-                customClass="w-2rem h-2rem"
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Desvincular del fondeo"
+                ariaLabel="Eliminar"
+                styleClass="w-2rem h-2rem"
+                (clicked)="onRemoveFueraFondeo(orden.ordenCompraId)"
               />
               }
             </div>

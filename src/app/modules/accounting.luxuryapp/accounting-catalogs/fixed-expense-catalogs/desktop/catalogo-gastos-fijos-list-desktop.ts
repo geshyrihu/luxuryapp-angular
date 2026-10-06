@@ -12,7 +12,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -41,7 +40,6 @@ import {
     LxCheckbox,
     AppIcon,
     WebButtonIconEdit,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

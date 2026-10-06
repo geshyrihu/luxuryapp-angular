@@ -13,7 +13,8 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -40,7 +41,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    WebButtonIconDelete,
+    ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,
@@ -58,6 +59,7 @@ export class GastoFijoPresupuesto implements OnInit {
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
+  confirmS = inject(ConfirmService);
   submitting = signal(false);
 
   intYear: number = new Date().getFullYear();
@@ -124,7 +126,11 @@ export class GastoFijoPresupuesto implements OnInit {
     });
   }
 
-  deletePresupuestoAgregado(id: any) {
+  async deletePresupuestoAgregado(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CatalogoGastosFijosPresupuesto.delete(id))
       .then(() => {

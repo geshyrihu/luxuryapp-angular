@@ -13,6 +13,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { SwalService } from "@core/services/swal.service";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AddFileEstadoFinanciero } from "./add-file-estado-financiero";
 import { EstadoFinancieroListDesktop } from "./desktop/estado-financiero-list-desktop";
@@ -30,6 +31,7 @@ export class EstadoFinancieroList {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  swalS = inject(SwalService);
 
   dataSignal = signal<any[]>([]);
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -137,7 +139,19 @@ export class EstadoFinancieroList {
       });
   }
 
-  onSendEstadosFinancieros(data: any) {
+  async onSendEstadosFinancieros(data: any) {
+    const text = this.platformS.isMobile()
+      ? "El informe financiero será enviado."
+      : "El informe financiero (PDF) será enviado.";
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text,
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     if (this.isProcessingSend(data.id)) return;
 
     const currentSet = new Set(this.processingSend());

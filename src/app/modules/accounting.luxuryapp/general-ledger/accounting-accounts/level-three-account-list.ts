@@ -13,6 +13,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LevelThreeAccountListDesktop } from "./desktop/level-three-account-list-desktop";
 import { LevelThreeAccountForm } from "./level-three-account-form";
 import { LevelThreeAccountListMobile } from "./mobile/level-three-account-list-mobile";
@@ -28,6 +29,7 @@ export class LevelThreeAccountList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   aspRoleS = inject(AspRoleService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<any[]>([]);
   readonly globalFilterFields = computed(() => {
@@ -55,7 +57,11 @@ export class LevelThreeAccountList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.AccountingAccounts.delete(id))
       .then((result: boolean) => {

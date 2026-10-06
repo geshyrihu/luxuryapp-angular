@@ -16,6 +16,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ETypeEmpresa } from "@ui/web/status-badge/status-badge";
 import { AspelCustomerEmpresaForm } from "./aspel-customer-empresa-form";
 import { AspelCustomerEmpresaListDesktop } from "./desktop/aspel-customer-empresa-list-desktop";
@@ -32,6 +33,7 @@ export class AspelCustomerEmpresaList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdService = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<any[]>([]);
   customerId = this.customerIdService.customerId;
@@ -69,7 +71,11 @@ export class AspelCustomerEmpresaList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.AspelCustomerEmpresa.delete(id))
       .then((res: any) => {

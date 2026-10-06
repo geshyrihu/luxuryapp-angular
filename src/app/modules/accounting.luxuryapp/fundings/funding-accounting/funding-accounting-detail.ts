@@ -25,7 +25,7 @@ import { SignalRService } from "@core/services/signalr.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 @Component({
   selector: "app-funding-accounting-detail",
@@ -38,7 +38,7 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
     UpperCasePipe,
     DecimalPipe,
     WebButtonLabel,
-    WebButtonLabelItem,
+    ButtonWeb,
     LxTag,
     LxMessage,
   ],

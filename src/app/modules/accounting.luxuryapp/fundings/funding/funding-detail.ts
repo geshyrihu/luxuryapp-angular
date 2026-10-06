@@ -77,7 +77,8 @@ const tipoGastoEmojis: { [key: number]: string } = {
   [TipoGasto.Impuestos]: "\u{1F9FE}",
 };
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxModal } from "@ui/adaptive/modal/modal";
@@ -88,7 +89,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   selector: "app-funding-detail",
   imports: [
     WebButtonIcon,
-    WebButtonIconDelete,
+    ButtonWeb,
     LxBadge,
     WebButtonLabel,
     CommonModule,
@@ -127,6 +128,7 @@ export class FundingDetail {
   private customToastS = inject(CustomToastService);
   private destroyRef = inject(DestroyRef);
   private customToastService = inject(CustomToastService);
+  private confirmS = inject(ConfirmService);
 
   loading = signal(true);
 
@@ -443,7 +445,11 @@ export class FundingDetail {
       });
   }
 
-  onRemoveFueraFondeo(ordenCompraId: string): void {
+  async onRemoveFueraFondeo(ordenCompraId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(
         Endpoints.Funding.removeOutsideProcessPurchaseOrder(ordenCompraId),
@@ -605,7 +611,11 @@ export class FundingDetail {
       });
   }
 
-  onDeleteOrder(id: any) {
+  async onDeleteOrder(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS.onDelete(Endpoints.Funding.deleteDetail(id)).then(() => {
       this.onLoadData(this.customerIdS.customerId());
     });

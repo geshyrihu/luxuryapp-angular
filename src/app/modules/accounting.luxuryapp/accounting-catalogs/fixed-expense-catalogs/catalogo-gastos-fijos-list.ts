@@ -26,6 +26,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { firstValueFrom } from "rxjs";
 import { CatalogoGastosFijosListDesktop } from "./desktop/catalogo-gastos-fijos-list-desktop";
 import { CatalogoGastosFijosListMobile } from "./mobile/catalogo-gastos-fijos-list-mobile";
@@ -46,6 +47,7 @@ export class CatalogoGastosFijosList {
   customToastS = inject(CustomToastService);
   enumSelectS = inject(EnumSelectService); // Inject EnumSelectService
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<any[]>([]);
   public selectedItems = signal<any[]>([]);
@@ -356,7 +358,11 @@ export class CatalogoGastosFijosList {
     this.updateSelectedItems();
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CatalogoGastosFijos.delete(id))
       .then((result: boolean) => {

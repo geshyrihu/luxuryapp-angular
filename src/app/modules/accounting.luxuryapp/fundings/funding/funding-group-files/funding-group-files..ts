@@ -15,7 +15,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -30,7 +30,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     AppTable,
     LxTooltipDirective,
     WebButtonLabel,
-    WebButtonIconItem,
+    ButtonWeb,
     AppIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

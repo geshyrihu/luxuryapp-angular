@@ -75,8 +75,9 @@
         <ng-container actions>
           <!-- 1. Cargar Informe (Si no hay archivo) -->
           @if (!item.nameFileEstadoFinanciero) {
-          <ili-button-item
-            iconName="cloud-upload-outline"
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Cargar Informe"
             (clicked)="
               upload.emit({
@@ -90,8 +91,9 @@
           <!-- 2. Acciones si hay archivo -->
           @if (item.nameFileEstadoFinanciero) {
           <!-- Descargar -->
-          <ili-button-item
-            iconName="cloud-upload-outline"
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Descargar PDF"
             (clicked)="
                 viewPdf.emit({ url: item.nameFileEstadoFinanciero, fileName: 'Informe Financiero' })
@@ -99,8 +101,9 @@
           />
           <!-- Actualizar (Si no autorizado ni enviado) -->
           @if (!item.personWhoAuthorized && !item.personWhoSend) {
-          <ili-button-item
-            iconName="sync-outline"
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Actualizar Archivo"
             (clicked)="
                 upload.emit({
@@ -112,16 +115,18 @@
           }
           <!-- Autorizar (Si no autorizado) -->
           @if (!item.personWhoAuthorized) {
-          <ili-button-item
-            iconName="checkmark-outline"
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Autorizar"
             (clicked)="authorize.emit(item.id)"
           />
           }
           <!-- Deshacer Autorización (Si autorizado y no enviado) -->
           @if (item.personWhoAuthorized && !item.personWhoSend) {
-          <ili-button-item
-            iconName="arrow-back-outline"
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Deshacer Autorización"
             (clicked)="desauthorize.emit(item.id)"
           />
@@ -129,21 +134,17 @@
           <!-- Enviar (Si autorizado y no enviado) -->
           @if (item.nameFileEstadoFinanciero && item.personWhoAuthorized &&
           !item.personWhoSend) {
-          <ili-button-confirm
-            icon="material-symbols-light:send"
+          <lux-button-mobile
+            kind="confirm"
             label="ENVIAR"
-            customClass="btn-text-primary w-full text-start"
-            swalTitle="óEnviar estados financieros?"
-            swalText="El informe financiero sera enviado."
-            swalConfirmButtonText="Sí, enviar"
-            swalIcon="warning"
-            (confirmed)="
+            styleClass="btn-text-primary w-full text-start"
+            [disabled]="isProcessingSend(item.id)"
+            (clicked)="
                 send.emit({
                   id: item.id,
                   title: 'ENVIAR A CONDOMINOS'
                 })
               "
-            [disabled]="isProcessingSend(item.id)"
           />
           } }
         </ng-container>

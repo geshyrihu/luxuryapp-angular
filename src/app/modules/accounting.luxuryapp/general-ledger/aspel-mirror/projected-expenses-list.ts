@@ -16,6 +16,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ProjectedExpensesListDesktop } from "./desktop/projected-expenses-list-desktop";
 import { ProjectedExpensesListMobile } from "./mobile/projected-expenses-list-mobile";
 import { ProjectedExpensesForm } from "./projected-expenses-form";
@@ -32,6 +33,7 @@ export default class ProjectedExpensesList {
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
   ref: DynamicDialogRef;
   loading = signal(true);
@@ -65,7 +67,11 @@ export default class ProjectedExpensesList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(
         Endpoints.ProjectedExpenses.delete(this.customerIdS.customerId(), id),

@@ -13,19 +13,14 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import {
-  WebButtonLabelAdd,
-  WebButtonLabelDelete,
-} from "@ui/buttons/web-label";
 import type { TabItem } from "@ui/core/tabs.base";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
-
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
@@ -36,13 +31,10 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   imports: [
     LxTooltipDirective,
     WebButtonIcon,
-    WebButtonIconDelete,
     ApiDatePipe,
     RouterModule,
     AppTable,
     LxTabs,
-    WebButtonLabelAdd,
-    WebButtonLabelDelete,
     ButtonWeb,
     DataViewMobile,
     LxTag,
@@ -54,6 +46,7 @@ export class ReportCatalog implements OnInit {
   private api = inject(ApiResponseService);
   private router = inject(Router);
   private customerIdS = inject(CustomerIdService);
+  private confirmS = inject(ConfirmService);
 
   dt = viewChild<AppTable>("table");
 
@@ -113,6 +106,11 @@ export class ReportCatalog implements OnInit {
   }
 
   async eliminar(id: string) {
+    const report = this.propios().find((r) => r.id === id);
+    const confirmed = await this.confirmS.confirm(
+      `Eliminar el reporte "${report?.name ?? ""}"?`,
+    );
+    if (!confirmed) return;
     await this.api.onDelete(Endpoints.DynamicReports.delete(id));
     this.cargar();
   }

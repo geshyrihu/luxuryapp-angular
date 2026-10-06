@@ -17,7 +17,8 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -38,7 +39,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   templateUrl: "./gasto-fijo-presupuesto.html",
   imports: [
     WebButtonIcon,
-    WebButtonIconDelete,
+    ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,
@@ -60,6 +61,7 @@ export class GastoFijoPresupuesto implements OnInit {
   ref = inject(DynamicDialogRef);
   config = inject(DynamicDialogConfig);
   customerIdS = inject(CustomerIdService);
+  confirmS = inject(ConfirmService);
   submitting = signal(false);
 
   intYear: number = new Date().getFullYear();
@@ -125,7 +127,11 @@ export class GastoFijoPresupuesto implements OnInit {
     });
   }
 
-  deletePresupuestoAgregado(id: any) {
+  async deletePresupuestoAgregado(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CatalogoGastosFijosPresupuesto.delete(id))
       .then(() => {

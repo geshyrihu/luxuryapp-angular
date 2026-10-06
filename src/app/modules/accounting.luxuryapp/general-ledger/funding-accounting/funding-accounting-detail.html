@@ -34,7 +34,10 @@
   />
   } @if (isConfirmed() && isAuthorized() && inProgress()) {
 
-  <il-button-item
+  <lux-button-web
+    kind="item"
+    severity="secondary"
+    variant="soft"
     label="REABRIR FONDEO"
     iconClass="material-symbols-light:arrow-back"
     class="me-1"

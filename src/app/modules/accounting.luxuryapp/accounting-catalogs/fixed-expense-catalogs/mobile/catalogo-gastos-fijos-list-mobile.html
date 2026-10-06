@@ -111,9 +111,11 @@
                 kind="edit"
                 (clicked)="modal.emit({ id: item.id, title: 'Editar' })"
               />
-              <ili-button-delete
-                (confirmed)="delete.emit(item.id)"
-              ></ili-button-delete>
+              <lux-button-mobile
+                kind="delete"
+                color="danger"
+                (clicked)="delete.emit(item.id)"
+              />
             </ng-container>
           </ili-action-menu>
           }

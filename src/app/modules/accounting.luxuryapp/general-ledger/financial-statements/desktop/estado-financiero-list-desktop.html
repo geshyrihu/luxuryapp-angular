@@ -118,20 +118,19 @@
       <td class="no-print">
         @if ( item.nameFileEstadoFinanciero !== null && item.personWhoAuthorized
         !== "" ) { @if (item.personWhoSend === "") {
-        <iw-button-confirm
-          icon="material-symbols-light:send"
-          lxTooltip="ENVIAR PDF"
+        <lux-button-web
+          kind="confirm"
+          displayMode="icon"
+          severity="success"
+          variant="soft"
+          tooltip="ENVIAR PDF"
           tooltipPosition="top"
-          customClass="btn-primary w-full mb-2"
-          swalTitle="óEnviar estados financieros?"
-          swalText="El informe financiero (PDF) seré enviado."
-          swalConfirmButtonText="Sí, enviar"
-          swalIcon="warning"
-          (confirmed)="send.emit({
+          styleClass="btn-primary w-full mb-2"
+          [disabled]="isProcessingSend(item.id)"
+          (clicked)="send.emit({
                   id: item.id,
                   title: 'ENVIAR A CONDOMINOS',
                 })"
-          [disabled]="isProcessingSend(item.id)"
         />
 
         } @else {

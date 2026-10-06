@@ -23,8 +23,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
@@ -43,8 +43,7 @@ import {
   selector: "app-gasto-fijo-servicios",
   templateUrl: "./gasto-fijo-servicios.html",
   imports: [
-    WebButtonIconItem,
-    WebButtonIconDelete,
+    ButtonWeb,
     TableEmptyMessage,
     CommonModule,
     FormsModule,
@@ -68,6 +67,7 @@ export class GastoFijoServicios implements OnInit {
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   cdr = inject(ChangeDetectorRef); // Inject ChangeDetectorRef
+  confirmS = inject(ConfirmService);
   catalogoGastosFijosId: string = "";
 
   productos = signal<any[]>([]);
@@ -105,7 +105,11 @@ export class GastoFijoServicios implements OnInit {
     });
   }
 
-  deleteProductoAgregado(id: any) {
+  async deleteProductoAgregado(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CatalogoGastosFijosDetalles.delete(id))
       .then(() => {

@@ -71,12 +71,16 @@
                 customClass="mr-2 min-w-10rem"
                 [disabled]="!selection || selection.length === 0"
               />
-              <iw-button-confirm
-                lxTooltip="Aplicar"
+              <lux-button-web
+                kind="confirm"
+                displayMode="icon"
+                severity="success"
+                variant="soft"
+                tooltip="Aplicar"
                 tooltipPosition="top"
-                (clicked)="onBulkUpdate(bulkTipoGasto())"
                 [disabled]="!selection || selection.length === 0"
-              ></iw-button-confirm>
+                (clicked)="onBulkUpdate(bulkTipoGasto())"
+              />
               <span class="p-input-icon-left ms-auto">
                 <app-icon [icon]="'material-symbols-light:search'" />
                 <custom-input-text-signal

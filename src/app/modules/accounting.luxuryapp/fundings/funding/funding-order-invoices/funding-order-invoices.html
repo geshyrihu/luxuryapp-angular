@@ -11,9 +11,13 @@
       <td>{{ invoice.folioFiscal }}</td>
       <td>{{ invoice.factura }}</td>
       <td class="text-center">
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          severity="secondary"
+          variant="soft"
+          displayMode="icon"
           iconClass="material-symbols-light:picture-as-pdf"
-          lxTooltip="Ver PDF"
+          tooltip="Ver PDF"
           tooltipPosition="top"
           (clicked)="viewPdf(invoice.pdfFile, 'Factura')"
         />

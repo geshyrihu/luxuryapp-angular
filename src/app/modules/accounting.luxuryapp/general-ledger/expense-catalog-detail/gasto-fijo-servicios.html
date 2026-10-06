@@ -61,11 +61,24 @@
       <!-- Opciones -->
       <td>
         <div class="d-flex justify-content-center">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            severity="secondary"
+            variant="soft"
+            displayMode="icon"
             iconClass="material-symbols-light:save"
             (clicked)="onUpdateProductoAgregado(item)"
           />
-          <iw-button-delete (confirmed)="deleteProductoAgregado(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="deleteProductoAgregado(item.id)"
+          />
         </div>
       </td>
     </tr>
@@ -150,7 +163,11 @@
 
       <td>
         <div class="d-flex justify-content-center">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            severity="secondary"
+            variant="soft"
+            displayMode="icon"
             iconClass="material-symbols-light:save"
             (clicked)="onSubmit(item)"
           />

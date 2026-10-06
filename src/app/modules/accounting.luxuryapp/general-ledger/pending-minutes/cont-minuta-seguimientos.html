@@ -18,9 +18,12 @@
             ngbTooltip="Editar"
             (clicked)="onModalFormSeguimiento(seguimiento.id)"
           />
-          <iw-button-confirm
-            icon="trash"
-            ngbTooltip="Eliminar"
+          <lux-button-web
+            kind="confirm"
+            displayMode="icon"
+            severity="success"
+            variant="soft"
+            tooltip="Eliminar"
             (clicked)="onDeleteSeguimiento(seguimiento.id)"
           />
         </div>

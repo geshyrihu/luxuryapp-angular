@@ -8,7 +8,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -22,7 +22,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   imports: [
     LxTag,
     WebButtonIcon,
-    WebButtonIconConfirm,
+    ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

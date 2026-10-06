@@ -126,16 +126,23 @@
           <td>{{ file.displayName }}</td>
           <td>{{ file.folioOrden }}</td>
           <td class="text-center">
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
+              displayMode="icon"
               iconClass="material-symbols-light:visibility-outline"
-              lxTooltip="ver"
+              tooltip="ver"
               tooltipPosition="top"
               [rounded]="true"
               (clicked)="viewPdf(file.url, file.displayName)"
             />
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              variant="soft"
+              displayMode="icon"
               [iconClass]="'material-symbols-light:upload'"
-              lxTooltip="descargar"
+              tooltip="descargar"
               tooltipPosition="top"
               [rounded]="true"
               severity="success"

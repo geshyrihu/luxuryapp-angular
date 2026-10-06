@@ -14,7 +14,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { MeetingSeguimientoEdit } from "@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-seguimiento-edit";
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { ButtonWeb } from "@ui/buttons/web";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -26,7 +26,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     WebButtonIcon,
-    WebButtonIconConfirm,
+    ButtonWeb,
     TableEmptyMessage,
     CommonModule,
     AppTable,

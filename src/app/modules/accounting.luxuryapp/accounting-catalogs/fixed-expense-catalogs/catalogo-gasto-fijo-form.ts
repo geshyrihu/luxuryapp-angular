@@ -29,7 +29,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
@@ -69,7 +68,6 @@ interface ICatalogoGastoFijoForm {
     CustomInputSelectSignal,
     WebButtonLabel,
     ButtonWeb,
-    WebButtonIconItem,
     LxMessage,
   ],
 })

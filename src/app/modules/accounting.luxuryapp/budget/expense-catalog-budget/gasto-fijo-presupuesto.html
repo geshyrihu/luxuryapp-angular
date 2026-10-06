@@ -31,7 +31,16 @@
       <td>{{ item.amount | number: "1.0-0" }}</td>
       <td>
         <div class="d-flex justify-content-center">
-          <iw-button-delete (confirmed)="deletePresupuestoAgregado(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="deletePresupuestoAgregado(item.id)"
+          />
         </div>
       </td>
     </tr>
