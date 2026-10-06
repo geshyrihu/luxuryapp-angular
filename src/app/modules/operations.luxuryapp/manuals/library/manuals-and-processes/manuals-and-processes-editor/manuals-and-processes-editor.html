@@ -135,7 +135,12 @@
               (clicked)="onAbrirDiagrama(paso)"
             />
             }
-            <il-button-delete (confirmed)="onDeletePaso(paso)" />
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="onDeletePaso(paso)"
+            />
           </div>
         </div>
         }

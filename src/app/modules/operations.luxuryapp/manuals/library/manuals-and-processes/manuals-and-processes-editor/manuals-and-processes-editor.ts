@@ -25,9 +25,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import {
-  WebButtonLabelDelete,
-} from "@ui/buttons/web-label";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
@@ -95,7 +93,6 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     CustomInputSwitch,
     LxFileUpload,
     WebButtonLabel,
-    WebButtonLabelDelete,
     ButtonWeb,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
@@ -111,6 +108,7 @@ export class ManualsAndProcessesEditor implements OnInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
   private sanitizer = inject(DomSanitizer);
+  private confirmS = inject(ConfirmService);
 
   id = signal<string>("");
   manual = signal<IManualTemplateDetalleDTO | null>(null);
@@ -371,7 +369,11 @@ export class ManualsAndProcessesEditor implements OnInit {
     this.savingPaso.set(false);
   }
 
-  onDeletePaso(paso: IManualPasoDTO): void {
+  async onDeletePaso(paso: IManualPasoDTO): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este paso?",
+    );
+    if (!confirmed) return;
     this.apiS
       .onDelete(Endpoints.ManualsPasos.deletePaso(this.id(), paso.id))
       .then((ok) => {

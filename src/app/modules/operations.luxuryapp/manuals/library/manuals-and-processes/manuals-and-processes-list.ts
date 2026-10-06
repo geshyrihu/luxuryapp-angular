@@ -13,7 +13,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
@@ -46,7 +46,6 @@ interface DeptGroup {
     CommonModule,
     CustomSearchInput,
     WebButtonLabel,
-    WebButtonLabelDelete,
     DataViewMobile,
     AppIcon,
     MobileListItem,
@@ -57,6 +56,7 @@ export class ManualsAndProcessesList implements OnInit {
   private router = inject(Router);
   public aspRoleS = inject(AspRoleService);
   private dialogHandlerS = inject(DialogHandlerService);
+  private confirmS = inject(ConfirmService);
 
   readonly ApplicationRole = ApplicationRole;
 
@@ -238,7 +238,11 @@ export class ManualsAndProcessesList implements OnInit {
       });
   }
 
-  onDelete(data: any) {
+  async onDelete(data: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este manual?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ManualsPasos.delete(data.id))
       .then((res) => {

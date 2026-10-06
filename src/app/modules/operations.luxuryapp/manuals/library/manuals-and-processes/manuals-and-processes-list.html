@@ -182,7 +182,12 @@
                 [variant]="'text'"
                 (clicked)="onOpenEditor(manual.id)"
               />
-              <il-button-delete (confirmed)="onDelete(manual)" />
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="onDelete(manual)"
+              />
               }
               <il-button
                 iconClass="material-symbols-light:description"
@@ -253,7 +258,12 @@
             variant="soft"
             (clicked)="onModalForm({ id: item.id })"
           />
-          <il-button-delete (confirmed)="onDelete(item)" />
+          <lux-button-web
+            kind="delete"
+            severity="danger"
+            variant="soft"
+            (clicked)="onDelete(item)"
+          />
           }
         </div>
       </ili-list-item>
