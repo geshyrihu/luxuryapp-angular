@@ -12,14 +12,14 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [ApiDatePipe, WebButtonLabel, AppIcon, CustomInputTextSignal],
+  imports: [ApiDatePipe, WebButtonLabel, LxIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
@@ -59,7 +59,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
               <div
                 class="card-body d-flex flex-column align-items-center justify-content-center py-4 bg-gray-50 rounded mb-3 min-h-10rem"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:photo'"
                   class="text-6xl text-primary-400"
                 />

@@ -2,7 +2,7 @@
 <!-- Error View (Responsive) -->
 <div class="d-flex justify-content-center align-items-center h-full p-4">
   <div class="text-center">
-    <app-icon
+    <lux-icon
       icon="material-symbols-light:error-outline"
       class="text-yellow-500 text-6xl mb-3"
     />
@@ -39,7 +39,7 @@
             </div>
             <h2 class="text-2xl fw-bold text-body m-0">{{ t.title }}</h2>
             <div class="text-body-secondary mt-1 d-flex align-items-center">
-              <app-icon [icon]="'material-symbols-light:person'" class="me-2" />
+              <lux-icon [icon]="'material-symbols-light:person'" class="me-2" />
               {{ t.customer }}
             </div>
           </div>
@@ -320,7 +320,7 @@
       <p
         class="text-sm text-body-secondary m-0 d-flex align-items-center gap-1"
       >
-        <app-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
+        <lux-icon icon="material-symbols-light:schedule" /> {{ t.createDate }}
       </p>
     </div>
     <div class="border-1 border shadow-sm rounded-xl mt-3 overflow-hidden">
@@ -452,7 +452,7 @@
         <p class="text-dark fw-semibold">{{ t.status }}</p>
       </span>
       @if (t.status === 'Cerrado' || t.status === 'Completed') {
-      <app-icon
+      <lux-icon
         icon="material-symbols-light:check-circle-outline"
         slot="end"
         color="success"
@@ -464,14 +464,14 @@
   <div class="px-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h3 class="text-lg fw-bold m-0 d-flex align-items-center">
-        <app-icon icon="material-symbols-light:forum-outline" /> Seguimiento
+        <lux-icon icon="material-symbols-light:forum-outline" /> Seguimiento
       </h3>
       @if (t.seeEditingOptions) {
       <button
         class="btn btn-rounded btn-text-primary btn-sm"
         (click)="onFollowUp(t.id)"
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:add-circle-outline"
           slot="icon-only"
         />
@@ -540,14 +540,14 @@
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onModalForm(t)"
         >
-          <app-icon icon="material-symbols-light:edit-outline" slot="start" />
+          <lux-icon icon="material-symbols-light:edit-outline" slot="start" />
           Editar
         </button>
         <button
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onProgram(t.id)"
         >
-          <app-icon icon="material-symbols-light:event" slot="start" />
+          <lux-icon icon="material-symbols-light:event" slot="start" />
           Programar
         </button>
       </div>
@@ -558,14 +558,14 @@
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onProgress(t.id)"
         >
-          <app-icon icon="material-symbols-light:sync" slot="start" />
+          <lux-icon icon="material-symbols-light:sync" slot="start" />
           Proceso
         </button>
         <button
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="onClosed(t.id)"
         >
-          <app-icon icon="material-symbols-light:lock-outline" slot="start" />
+          <lux-icon icon="material-symbols-light:lock-outline" slot="start" />
           Cerrar
         </button>
         } @if (t.status === 'Cerrado' || t.status === 'Completed') {
@@ -573,7 +573,7 @@
           class="btn btn-rounded btn-text-danger btn-sm"
           (click)="onReopen(t.id)"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:lock-open-outline"
             slot="start"
           />
@@ -586,7 +586,7 @@
         class="btn btn-rounded btn-text-primary btn-sm"
         (click)="onFollowUp(t.id)"
       >
-        <app-icon icon="material-symbols-light:forum-outline" slot="start" />
+        <lux-icon icon="material-symbols-light:forum-outline" slot="start" />
         Seguimiento
       </button>
     </div>

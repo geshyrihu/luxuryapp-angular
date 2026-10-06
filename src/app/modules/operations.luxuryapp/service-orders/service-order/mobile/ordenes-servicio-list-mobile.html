@@ -40,7 +40,7 @@
               [fill]="filtroEquiposValue() === item.nombre ? 'solid' : 'outline'"
               (click)="reloadOrdenes.emit({ id: item.id, value: item.nombre })"
             >
-              <app-icon [icon]="item.icon" slot="start" class="me-1"></app-icon>
+              <lux-icon [icon]="item.icon" slot="start" class="me-1"></lux-icon>
               {{ item.nombre | titlecase }}
             </ion-button>
             }
@@ -86,10 +86,10 @@
           justify-content: center;
         "
       >
-        <app-icon
+        <lux-icon
           icon="material-symbols-light:build"
           class="text-xl text-yellow-500"
-        ></app-icon>
+        ></lux-icon>
       </ion-avatar>
       <ion-label>
         <h2 class="ion-text-wrap fw-bold m-0">

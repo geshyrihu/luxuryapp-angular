@@ -26,7 +26,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
 
 interface IManualTemplateForm {
@@ -60,7 +60,7 @@ interface IManualTemplateForm {
     CustomInputSelectSignal,
     ButtonWeb,
     CustomInputMultiselectSignal,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class ManualsAndProcessesForm implements OnInit {

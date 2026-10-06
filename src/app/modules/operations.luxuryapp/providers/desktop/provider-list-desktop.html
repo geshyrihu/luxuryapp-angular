@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:badge'"
           class="cursor-pointer text-primary text-xl"
           lxTooltip="Ver Ficha Técnica"
@@ -125,12 +125,12 @@
       <!-- Contacto -->
       <div class="d-flex flex-column gap-1 text-sm mt-2">
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneOne }}</span>
         </div>
         @if (item.phoneTwo) {
         <div class="d-flex align-items-center text-body-secondary">
-          <app-icon [icon]="'material-symbols-light:call'" class="me-2" />
+          <lux-icon [icon]="'material-symbols-light:call'" class="me-2" />
           <span>{{ item.phoneTwo }}</span>
         </div>
         }

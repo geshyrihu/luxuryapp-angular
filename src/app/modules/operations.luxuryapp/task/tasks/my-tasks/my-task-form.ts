@@ -26,7 +26,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { firstValueFrom } from "rxjs";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
 import { TaskGroupService } from "../task.service";
@@ -44,7 +44,7 @@ import { TaskGroupService } from "../task.service";
     ButtonWeb,
     ImageAnalysisDialogComponent,
     LxFileUpload,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MyTaskForm implements OnInit, OnDestroy {

@@ -19,7 +19,7 @@ import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.e
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppMessage } from "@ui/web/message/message";
 import { ReglamentosListDesktop } from "./desktop/reglamentos-list-desktop";
 import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
@@ -34,7 +34,7 @@ import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
     CustomInputTextAreaSignal,
     ReactiveFormsModule,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",

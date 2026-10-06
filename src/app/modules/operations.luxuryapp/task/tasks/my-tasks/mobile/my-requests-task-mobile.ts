@@ -8,7 +8,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppImage } from "@ui/web/image/image";
 import { TaskStatus } from "../../task-status/task-status";
 
@@ -23,7 +23,7 @@ import { TaskStatus } from "../../task-status/task-status";
     TaskStatus,
     AppImage,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MyRequestsTaskMobile {

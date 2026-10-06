@@ -44,7 +44,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-listado-anual-mantenimiento",
@@ -67,7 +67,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class ListadoAnualMantenimiento {

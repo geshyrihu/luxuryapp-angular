@@ -19,7 +19,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
@@ -97,7 +97,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     LxPopover,
     LxImage,
     InitialsAbbrPipe,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class TaskListDesktop {

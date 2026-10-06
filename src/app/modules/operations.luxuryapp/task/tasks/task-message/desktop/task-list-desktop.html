@@ -169,7 +169,7 @@
             <p
               class="m-0 mb-3 fw-semibold text-body text-sm border-bottom-1 border pb-2"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary me-1"
               />
@@ -182,7 +182,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-primary-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:menu'"
                     class="text-primary"
                   />
@@ -205,7 +205,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-purple-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:link'"
                     class="text-purple-600"
                   />
@@ -232,7 +232,7 @@
                 <span
                   class="flex-shrink-0 rounded-circle bg-orange-100 d-flex align-items-center justify-content-center"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:account-tree'"
                     class="text-orange-600"
                   />
@@ -243,12 +243,12 @@
                   </p>
                   <p class="m-0 text-xs text-body-secondary mt-1 line-height-3">
                     Las tareas con el icono
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:account-tree'"
                       class="text-primary"
                     />
                     tienen subtareas. Las tareas con
-                    <app-icon
+                    <lux-icon
                       [icon]="'material-symbols-light:keyboard-double-arrow-down'"
                       class="text-body-secondary"
                     />
@@ -304,14 +304,14 @@
     >
       <td class="text-center">
         <div class="d-flex align-items-center justify-content-center gap-1">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:menu'"
             class="cursor-move text-body-secondary"
             pReorderableRowHandle
             lxTooltip="Arrastra para reordenar la tarea"
             tooltipPosition="top"
           />
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:link'"
             class="text-body-secondary cursor-grab"
             draggable="true"
@@ -329,14 +329,14 @@
           [style.padding-left]="item.parentTaskId && !item.dependsOnTaskId ? '1.5rem' : (chainStepMap().get(item.id) ?? 1) > 1 ? ((Math.min(chainStepMap().get(item.id) - 1, 4) * 1.5) + 'rem') : '0'"
         >
           @if (item.parentTaskId) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:keyboard-double-arrow-down'"
             class="text-body-secondary flex-shrink-0 me-1"
             lxTooltip="Tarea hija"
             tooltipPosition="top"
           />
           } @if (item.hasSubTasks) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:account-tree'"
             class="text-primary flex-shrink-0 me-1"
             lxTooltip="Tiene subtareas"
@@ -371,7 +371,7 @@
                 (click)="clearDependency.emit(item.id)"
                 lxTooltip="Despues de: {{ item.dependsOnTaskFolio }} | Click para quitar"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:arrow-forward'"
                   class="text-xs"
                 />
@@ -383,20 +383,20 @@
               class="m-0 fw-semibold text-xs text-body d-flex align-items-center gap-1"
             >
               @if (item.daysDifference > 15 && !item.scheduledAt) {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:schedule'"
                 class="text-orange-600"
                 lxTooltip="Urgente: Más de 15 días sin programar"
               />
               } @if (item.priority === 'High') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:star-outline'"
                 class="text-primary cursor-pointer"
                 (click)="updatePriority.emit(item.id)"
                 lxTooltip="Alta prioridad - click para cambiar"
               />
               } @if (item.priority === 'Low') {
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:warning'"
                 class="text-red-500 cursor-pointer"
                 (click)="updatePriority.emit(item.id)"
@@ -429,14 +429,14 @@
 
       <td>
         <p class="m-0 text-xs text-body-secondary">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1"
           />{{ item.scheduledAt }}
         </p>
         @if (item.closedAtDate) {
         <p class="m-0 text-xs text-body-secondary mt-1">
-          <app-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
+          <lux-icon [icon]="'material-symbols-light:lock'" class="me-1" />{{
           item.closedAtDate }}
         </p>
         }
@@ -511,7 +511,7 @@
             class="cursor-pointer d-flex align-items-center gap-1 text-decoration-none"
             lxTooltip="Seguimientos"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:forum'"
               class="text-blue-500"
             />

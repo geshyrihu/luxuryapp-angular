@@ -24,7 +24,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { CredentialFormGroup } from "./interfaces/password-form.interface";
 
@@ -43,7 +43,7 @@ import { CredentialFormGroup } from "./interfaces/password-form.interface";
     CustomInputPassword,
     CustomInputDateSignal,
     ButtonWeb,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class PasswordForm implements OnInit {

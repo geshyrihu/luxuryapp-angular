@@ -11,11 +11,11 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAnnouncement } from "./announcement.model";
 @Component({
   selector: "app-announcement-detail",
-  imports: [ApiDatePipe, RouterModule, AppIcon, LxImage],
+  imports: [ApiDatePipe, RouterModule, LxIcon, LxImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./announcement-detail.html",
 })

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-ayuda-ordenes-servicio",
   templateUrl: "./ayuda-ordenes-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon],
+  imports: [LxIcon],
 })
 export class AyudaOrdenesServicio {}

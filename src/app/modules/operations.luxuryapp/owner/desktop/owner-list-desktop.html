@@ -73,12 +73,12 @@
       <td>{{ item.email }}</td>
       <td class="no-print">
         @if (item.enviarMails) {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:check'"
           class="text-success icon icon-"
         />
         } @if (!item.enviarMails) {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:close'"
           class="text-danger icon icon-"
         />

@@ -36,7 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -44,7 +44,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
   imports: [
     ButtonWeb,
     ButtonMobile,
-    AppIcon,
+    LxIcon,
     MobileListItem,
     WebButtonIcon,
     LxTooltipDirective,

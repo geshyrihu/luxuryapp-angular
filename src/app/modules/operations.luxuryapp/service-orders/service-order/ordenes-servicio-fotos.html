@@ -1,7 +1,7 @@
 <div class="row p-2 g-4">
   @if (loading()) {
   <div class="col-12 d-flex justify-content-center">
-    <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
+    <lux-icon [icon]="'material-symbols-light:progress-activity'" class="text-4xl" />
   </div>
   } @else { @for (item of data(); track item.id) {
   <div class="col-12 col-md-4 col-lg-3">

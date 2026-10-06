@@ -16,7 +16,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { GeolocationService } from "@core/services/geolocation.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PanicAlertCreateDto } from "../interfaces/panic-alert-create.dto";
 import { PanicAlertDto } from "../interfaces/panic-alert.dto";
 
@@ -62,7 +62,7 @@ const COUNTDOWN_SECONDS = 5;
 
 @Component({
   selector: "app-panic-button",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (visible()) {
@@ -82,7 +82,7 @@ const COUNTDOWN_SECONDS = 5;
         title="Mantón presionado para activar alerta de pónico"
       >
         <div class="panic-btn__ring" [style.--progress]="holdProgress() + '%'">
-          <app-icon icon="material-symbols-light:error" class="panic-btn__icon" />
+          <lux-icon icon="material-symbols-light:error" class="panic-btn__icon" />
         </div>
         @if (isSending()) {
           <span class="panic-btn__label">Enviando...</span>
@@ -99,7 +99,7 @@ const COUNTDOWN_SECONDS = 5;
           (cancel)="onCancelCountdown()"
         >
           <div class="panic-countdown">
-            <app-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
+            <lux-icon icon="material-symbols-light:error" class="panic-countdown__icon" />
             <p class="panic-countdown__title">Enviando alerta de pónico en</p>
             <p class="panic-countdown__seconds">{{ countdownSeconds() }}</p>
             <button

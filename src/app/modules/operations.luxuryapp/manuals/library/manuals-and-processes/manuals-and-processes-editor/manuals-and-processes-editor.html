@@ -67,7 +67,7 @@
     >
       @if (!pasos().length) {
       <div class="p-4 text-center text-body-secondary">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="text-3xl mb-2 d-block"
         />
@@ -86,7 +86,7 @@
           [class.bg-body-tertiary]="selectedPaso()?.id === paso.id"
           (click)="onSelectPaso(paso)"
         >
-          <app-icon
+          <lux-icon
             cdkDragHandle
             icon="material-symbols-light:menu"
             class="text-body-secondary cursor-grab flex-shrink-0 text-xs"
@@ -153,7 +153,7 @@
       <div
         class="d-flex flex-column align-items-center justify-content-center h-full text-center max-w-30rem mx-auto"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:book'"
           class="text-6xl text-primary mb-4"
         />
@@ -177,7 +177,7 @@
       <div class="w-full xl:w-8 mx-auto d-flex flex-column gap-4">
         <div class="bg-body-tertiary rounded-xl p-4 border-1 border">
           <div class="d-flex align-items-center gap-3 mb-2">
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:edit'"
               class="text-2xl text-primary"
             />
@@ -265,7 +265,7 @@
           @if (!selectedPaso()!.diagramaId) {
           <div class="bg-body-tertiary rounded p-3 border-1 border">
             <div class="d-flex align-items-center gap-2 mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:lightbulb-outline'"
                 class="text-yellow-500"
               />
@@ -281,7 +281,7 @@
           } @else {
           <div class="bg-body-tertiary rounded p-3 border-1 border mb-2">
             <div class="d-flex align-items-center gap-2 mb-2">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:check-circle-outline'"
                 class="text-green-500"
               />
@@ -325,7 +325,7 @@
           <div
             class="d-flex align-items-center gap-2 text-body-secondary text-sm"
           >
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:progress-activity'"
               class="ds-animate-spin"
             />
@@ -557,7 +557,7 @@
       </div>
       } @if (!versiones().length) {
       <div class="text-center text-body-secondary py-5">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:history'"
           class="text-4xl mb-3 d-block"
         />
@@ -638,7 +638,7 @@
             <span
               class="text-body-secondary text-sm d-flex align-items-center gap-1"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:progress-activity'"
                 class="ds-animate-spin"
               />
@@ -654,7 +654,7 @@
 
       @if (!adjuntos().length) {
       <div class="text-center text-body-secondary py-5">
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:attach-file'"
           class="text-4xl mb-3 d-block"
         />
@@ -666,7 +666,7 @@
         <div
           class="bg-body p-3 rounded-xl border-1 border-200 d-flex align-items-center gap-3"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:description'"
             class="text-2xl text-body-secondary flex-shrink-0"
           />

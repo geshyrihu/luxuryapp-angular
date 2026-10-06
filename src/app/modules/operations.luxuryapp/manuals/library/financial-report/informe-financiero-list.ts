@@ -11,7 +11,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-informe-financiero",
   imports: [
@@ -19,7 +19,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     DataViewMobile,
     WebButtonLabelViewPdf,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",

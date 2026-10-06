@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SupervisionModuleGroup } from "./supervision-module.model";
 import { SUPERVISION_MODULES } from "./supervision-modules";
 
 @Component({
   selector: "app-supervision-master-dashboard",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./supervision-hub.html",
 })

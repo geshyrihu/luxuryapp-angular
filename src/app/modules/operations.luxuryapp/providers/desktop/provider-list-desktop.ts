@@ -15,7 +15,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppPaginator } from "@ui/web/paginator/paginator";
 
 @Component({
@@ -34,7 +34,7 @@ import { AppPaginator } from "@ui/web/paginator/paginator";
     WebButtonLabel,
     CustomSearchInput,
     SegmentedControl,
-    AppIcon,
+    LxIcon,
     AppPaginator,
   ],
 })

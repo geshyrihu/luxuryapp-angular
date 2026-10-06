@@ -22,7 +22,7 @@ import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SwalService } from "@core/services/swal.service";
 
 interface IResetPasswordForm {
@@ -37,7 +37,7 @@ interface IResetPasswordForm {
     CustomInputPassword,
     ButtonWeb,
     RouterModule,
-    AppIcon,
+    LxIcon,
   ],
   template: `
     <!-- Página de restablecer contraseña — dos paneles claros -->
@@ -118,7 +118,7 @@ interface IResetPasswordForm {
                   <div
                     class="d-flex align-items-center p-3 rounded border-1 border-red-300 bg-red-50 text-red-800 shadow-sm"
                   >
-                    <app-icon
+                    <lux-icon
                       icon="material-symbols-light:error-outline"
                       class="text-xl me-3"
                     />

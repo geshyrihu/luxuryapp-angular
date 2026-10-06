@@ -15,7 +15,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ITaskMessageDTO, ITaskResultDTO } from "./interfaces/task-message.dto";
 
 interface ITaskAreaGroup {
@@ -27,7 +27,7 @@ interface ITaskAreaGroup {
   selector: "app-task-pending-board",
   templateUrl: "./task-pending-board.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel, WebButtonIcon, AppImage, LxTag, AppIcon],
+  imports: [WebButtonLabel, WebButtonIcon, AppImage, LxTag, LxIcon],
 })
 export class TaskPendingBoard implements OnInit {
   private readonly route = inject(ActivatedRoute);

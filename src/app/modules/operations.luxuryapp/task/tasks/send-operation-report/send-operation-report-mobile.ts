@@ -13,14 +13,14 @@ import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/primitives/segmented-control/segmented-control";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({
   selector: "app-send-operation-report-mobile",
   imports: [
     ButtonMobile,
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     LxTag,
     IonList,

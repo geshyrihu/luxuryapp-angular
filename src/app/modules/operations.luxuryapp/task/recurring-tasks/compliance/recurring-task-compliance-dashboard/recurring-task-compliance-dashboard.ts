@@ -17,7 +17,7 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -34,7 +34,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class RecurringTaskComplianceDashboard implements OnInit {

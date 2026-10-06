@@ -28,7 +28,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface IServiceOrderFollowUpForm {
   serviceOrderId: FormControl<string>;
@@ -49,7 +49,7 @@ interface ServiceOrderFollowUpItem {
   templateUrl: "./seguimiento-orden-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     ButtonWeb,
     AppSpinner,

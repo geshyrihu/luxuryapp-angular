@@ -11,14 +11,14 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-ordenes-servicio-fotos",
   templateUrl: "./ordenes-servicio-fotos.html",
 
-  imports: [ ButtonWeb, AppIcon, AppImage],
+  imports: [ ButtonWeb, LxIcon, AppImage],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OrdenesServicioFotos implements OnInit {

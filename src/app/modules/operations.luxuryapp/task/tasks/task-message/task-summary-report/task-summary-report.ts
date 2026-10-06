@@ -14,7 +14,7 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { ITaskMessageDTO, ITaskResultDTO } from "../interfaces/task-message.dto";
 
@@ -46,7 +46,7 @@ const MAX_PAGES = 10;
     ReactiveFormsModule,
     CustomInputDateSignal,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     AppSpinner,
   ],
   styles: [

@@ -11,7 +11,7 @@ import {
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -35,7 +35,7 @@ import { TaskStatus } from "../../task-status/task-status";
     ActionMenu,
     TaskStatus,
     AppImage,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MyRequestsTaskDesktop {

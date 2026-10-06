@@ -9,14 +9,14 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CaratulaDTO } from "./interfaces/caratula.dto";
 import { MiEdificioMobile } from "./mi-edificio-mobile";
 @Component({
   selector: "app-mi-edificio",
   templateUrl: "./mi-edificio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, LxAvatar, MiEdificioMobile],
+  imports: [LxIcon, LxAvatar, MiEdificioMobile],
 })
 export class MiEdificio {
   apiResponseS = inject(ApiResponseService);

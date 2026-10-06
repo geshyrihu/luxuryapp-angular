@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { AppIcon as AppIconComponent } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon as AppIconComponent } from "@ui/adaptive/icon/icon";
 import { AppIcon, AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { ContractsExpiringTypeItemDTO } from "../interfaces/contracts-expiring.dto";
 
@@ -12,7 +12,7 @@ import { ContractsExpiringTypeItemDTO } from "../interfaces/contracts-expiring.d
     <div class="card h-100" style="background-color: var(--ds-bg-surface); border: 1px solid var(--ds-border); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-sm);">
       <div class="card-body">
         <h5 class="card-title d-flex align-items-center mb-3" style="color: var(--ds-text-primary);">
-          <app-icon [icon]="getIconName()" class="me-2" [style.color]="getValueColor()"></app-icon>
+          <lux-icon [icon]="getIconName()" class="me-2" [style.color]="getValueColor()"></lux-icon>
           {{ item().typeName }}
         </h5>
         

@@ -27,7 +27,8 @@ import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-posi
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon, type AppIconName } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { type AppIconName } from "@ui/primitives/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
@@ -73,7 +74,7 @@ import { StaffOnboardingChecklistModal } from "./staff-onboarding-checklist-moda
     LxTag,
     LuxTableCaption,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     SegmentedControl,
   ],
 })

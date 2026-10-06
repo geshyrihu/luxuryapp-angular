@@ -15,7 +15,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PrintService } from "@core/services/print.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppImage } from "@ui/web/image/image";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -36,7 +36,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     AppImage,
     LxTag,
     DiagramPreviewComponent,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
   ],
 })

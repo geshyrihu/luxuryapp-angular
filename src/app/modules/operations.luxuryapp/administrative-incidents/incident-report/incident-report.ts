@@ -19,7 +19,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { DateService } from "@core/services/date.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   IncidentPendingDTO,
   IncidentStatsDTO,
@@ -37,7 +37,7 @@ interface IReportFilterForm {
   templateUrl: "./incident-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,

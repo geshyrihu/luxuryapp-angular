@@ -31,7 +31,7 @@ import { JuntaMensualSessionChecklistDialog } from "@management.luxuryapp/monthl
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -160,7 +160,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     LuxTableCaption,
     DataViewMobile,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class GoogleCalendar {

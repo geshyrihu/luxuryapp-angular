@@ -15,7 +15,7 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -41,7 +41,7 @@ type ReasonMode = "return" | "reopen" | null;
     NgbTooltipModule,
     ApiDatePipe,
     ButtonWeb,
-    AppIcon,
+    LxIcon,
     AppTable,
     TableEmptyMessage,
     MobileListItem,

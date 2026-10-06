@@ -2,7 +2,7 @@
   <!-- Header -->
   <div class="d-flex align-items-center justify-content-between mb-3">
     <div class="d-flex align-items-center">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:group'"
         class="text-xl text-primary me-2"
       />
@@ -26,7 +26,7 @@
   </div>
   } @else if (witnesses().length === 0) {
   <div class="text-center p-4 text-body-secondary bg-body-tertiary rounded">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:person'"
       class="text-3xl text-body-secondary"
     />
@@ -58,7 +58,7 @@
           <span
             class="text-green-600 d-flex align-items-center justify-content-center gap-1"
           >
-            <app-icon [icon]="'material-symbols-light:check-circle'" />
+            <lux-icon [icon]="'material-symbols-light:check-circle'" />
             <span>Firmado</span>
           </span>
           } @else {

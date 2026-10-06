@@ -30,7 +30,7 @@ import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { LoaderService } from "@core/services/loader.service";
 import { ROUTES } from "src/app/routing/route-paths";
 
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-login",
@@ -43,7 +43,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CustomInputCheckSignal,
     CustomInputTextSignal,
     CustomInputPassword,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class LoginComponent implements OnInit {

@@ -27,7 +27,7 @@ import { HtmlPrintService } from "@core/services/html-print.service";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { Workbook } from "exceljs";
 import * as FileSaver from "file-saver";
@@ -57,7 +57,7 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     WebButtonLabel,
     CommonModule,
     LuxTableCaption,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class CronogramaAnualMantenimiento {

@@ -9,7 +9,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-reglamentos-list-mobile",
@@ -21,7 +21,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     LxTooltipDirective,
     DataViewMobile,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class ReglamentosListMobile {

@@ -6,12 +6,12 @@ import {
 } from "@angular/core";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-recovery-guide-modal",
 
-  imports: [AppIcon, WebButtonLabel],
+  imports: [LxIcon, WebButtonLabel],
   templateUrl: "./recovery-guide-modal.html",
   styleUrl: "./recovery-guide-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -21,7 +21,7 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface NewInspectionImage {
   id: string;
@@ -36,7 +36,7 @@ interface NewInspectionImage {
     LxTooltipDirective,
     WebButtonLabel,
     NgbTooltipModule,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-agregar-imagenes.html",

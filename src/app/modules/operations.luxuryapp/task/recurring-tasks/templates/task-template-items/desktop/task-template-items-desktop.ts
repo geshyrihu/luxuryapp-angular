@@ -9,7 +9,7 @@ import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -31,7 +31,7 @@ import {
     AppTable,
     AppReorderableRow,
     AppReorderableRowHandle,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class TaskTemplateItemsDesktop {

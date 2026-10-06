@@ -18,14 +18,14 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { MantenimientoPreventivoForm } from "../../google-calendar/calendar/preventive-maintenance/mantenimiento-preventivo-form";
 @Component({
   selector: "app-gastos-mantenimiento",
   templateUrl: "./gastos-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, AppTable],
+  imports: [LxIcon, AppTable],
 })
 export class GastosMantenimiento {
   apiResponseS = inject(ApiResponseService);

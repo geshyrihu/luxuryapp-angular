@@ -8,7 +8,7 @@ import {
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 // Definimos una interfaz para la respuesta de la API.
@@ -21,7 +21,7 @@ interface PendingMinutesResponse {
 
 @Component({
   selector: "app-pending-minutes",
-  imports: [AppSpinner, AppIcon, AppTable],
+  imports: [AppSpinner, LxIcon, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./pending-minutes.html",
 })

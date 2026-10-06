@@ -19,7 +19,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
@@ -47,7 +47,7 @@ interface DeptGroup {
     CustomSearchInput,
     WebButtonLabel,
     DataViewMobile,
-    AppIcon,
+    LxIcon,
     MobileListItem,
   ],
 })

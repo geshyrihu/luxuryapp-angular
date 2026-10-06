@@ -24,7 +24,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
@@ -41,7 +41,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     ButtonWeb,
     MobileListItem,
     MobileActionMenu,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class TaskGroupParticipant implements OnInit, OnDestroy {

@@ -22,7 +22,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionIconsGroupComponent } from "@ui/primitives/action-icons-group/action-icons-group.component";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -63,7 +63,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LuxTableCaption,
     ImageAnalysisDialogComponent,
     ActionIconsGroupComponent,
-    AppIcon,
+    LxIcon,
   ],
   templateUrl: "./unified-pending-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -17,7 +17,7 @@ import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-swit
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TaskStatus } from "../../task-status/task-status";
 import { ITaskMessageDTO } from "../interfaces/task-message.dto";
@@ -40,7 +40,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     CustomInputToggleSwitch,
     FormsModule,
     InitialsAbbrPipe,
-    AppIcon,
+    LxIcon,
     DataViewMobile,
   ],
 })

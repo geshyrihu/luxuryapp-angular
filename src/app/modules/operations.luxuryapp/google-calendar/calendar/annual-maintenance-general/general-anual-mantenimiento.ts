@@ -13,7 +13,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-general-anual-mantenimiento",
   templateUrl: "./general-anual-mantenimiento.html",
@@ -22,7 +22,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ReactiveFormsModule,
     CustomInputSelectSignal,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
     SanitizeHtmlPipe,
   ],
 })

@@ -99,13 +99,13 @@
       </td>
       <td class="text-center">
         @if (item.priority === 'Alta') {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"
         />
         } @if (item.priority === 'Baja') {
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:star-outline'"
           class="text-md text-primary-500 cursor-pointer"
           (click)="onUpdatePriority(item.id)"

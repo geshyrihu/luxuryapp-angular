@@ -20,7 +20,7 @@ import { ServiceOrderForm } from "@operations.luxuryapp/service-orders/service-o
 import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-form";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { addIcons } from "ionicons";
 import {
@@ -38,7 +38,7 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [LxTag, AppIcon, DataViewMobile],
+  imports: [LxTag, LxIcon, DataViewMobile],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

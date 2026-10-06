@@ -1,7 +1,7 @@
 <div class="row g-4">
   <!-- Header -->
   <div class="col-12 d-flex align-items-center mb-2">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:attach-file'"
       class="text-xl text-primary me-2"
     />
@@ -57,7 +57,7 @@
   <!-- Lista de adjuntos -->
   @if (loading()) {
   <div class="col-12 d-flex justify-content-center p-4 text-body-secondary">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="me-2"
     />Cargando...
@@ -66,7 +66,7 @@
   <div
     class="col-12 text-center p-5 text-body-secondary bg-bluegray-50 rounded"
   >
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="text-4xl text-body-secondary"
     />
@@ -93,7 +93,7 @@
         <tr>
           <td>
             <span class="d-flex align-items-center gap-2">
-              <app-icon
+              <lux-icon
                 [icon]="getFileIcon(attachment.mimeType)"
                 [ngClass]="getFileIconClass(attachment.mimeType)"
               />

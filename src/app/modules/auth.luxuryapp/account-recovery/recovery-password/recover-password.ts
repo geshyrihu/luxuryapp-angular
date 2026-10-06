@@ -22,7 +22,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
 import { SwalService } from "@core/services/swal.service";
 
@@ -39,7 +39,7 @@ interface IRecoverPasswordForm {
     CustomInputTextSignal,
     ButtonWeb,
     RouterModule,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class RecoverPassword implements OnInit, OnDestroy {

@@ -38,7 +38,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface DiscountDescriptionFormValue {
   description: string;
@@ -87,7 +87,7 @@ interface SolicitudBajaFormValue {
   selector: "app-solicitud-baja",
   templateUrl: "./solicitud-baja-form.html",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     FileUploadModule,
     CustomInputTextSignal,

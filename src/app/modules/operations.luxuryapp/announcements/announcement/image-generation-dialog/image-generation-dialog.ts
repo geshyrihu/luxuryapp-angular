@@ -11,7 +11,7 @@ import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-
 import { AiService } from "@core/services/ai.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
@@ -24,7 +24,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     WebButtonLabel,
     WebButtonIcon,
     CustomInputTextAreaSignal,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class ImageGenerationDialog {

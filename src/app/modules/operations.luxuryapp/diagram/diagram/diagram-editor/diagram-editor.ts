@@ -12,12 +12,12 @@ import { MessageService } from "@core/services/message.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-editor",
-  imports: [AppIcon],
+  imports: [LxIcon],
   templateUrl: "./diagram-editor.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

@@ -9,7 +9,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { EmptyState } from "@ui/web/empty-state/empty-state";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { EITaskMessageDTOStatus } from "../../shared/enums/task-message-status.enum";
@@ -23,7 +23,7 @@ import { WorkGroupDTO } from "../task-group-list";
     ButtonWeb,
     LxTag,
     StatusBadge,
-    AppIcon,
+    LxIcon,
     WebButtonIcon,
     EmptyState,
     CustomSearchInput,

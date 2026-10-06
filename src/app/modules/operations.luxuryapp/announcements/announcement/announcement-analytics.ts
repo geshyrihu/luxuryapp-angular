@@ -14,7 +14,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({
   selector: "app-announcement-analytics",
@@ -23,7 +23,7 @@ import { IAnnouncementAnalyticsDTO } from "./announcement.model";
     RouterModule,
     DataGrid,
     DataViewMobile,
-    AppIcon,
+    LxIcon,
     MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

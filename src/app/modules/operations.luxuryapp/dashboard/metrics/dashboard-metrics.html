@@ -12,7 +12,7 @@
   @if (canViewMaintenance()) {
     @if (maintenanceLoading()) {
       <div class="d-flex justify-content-center align-items-center py-5" style="color: var(--ds-text-secondary)">
-        <app-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></app-icon>
+        <lux-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></lux-icon>
         <span>Cargando órdenes de mantenimiento...</span>
       </div>
     } @else if (maintenanceHasError()) {
@@ -39,7 +39,7 @@
   @if (canViewTickets()) {
     @if (ticketsLoading()) {
       <div class="d-flex justify-content-center align-items-center py-5" style="color: var(--ds-text-secondary)">
-        <app-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></app-icon>
+        <lux-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></lux-icon>
         <span>Cargando tickets por grupo...</span>
       </div>
     } @else if (ticketsHasError()) {
@@ -66,7 +66,7 @@
   @if (canViewContracts()) {
     @if (contractsLoading()) {
       <div class="d-flex justify-content-center align-items-center py-5" style="color: var(--ds-text-secondary)">
-        <app-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></app-icon>
+        <lux-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></lux-icon>
         <span>Cargando contratos y pólizas por vencer...</span>
       </div>
     } @else if (contractsHasError()) {
@@ -97,7 +97,7 @@
 
     @if (loading()) {
       <div class="d-flex justify-content-center align-items-center py-5" style="color: var(--ds-text-secondary)">
-        <app-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></app-icon>
+        <lux-icon class="fs-1 spinner-border spinner-border-sm me-2" [icon]="appIconDef.Loading"></lux-icon>
         <span>Cargando métricas...</span>
       </div>
     } @else if (hasError()) {

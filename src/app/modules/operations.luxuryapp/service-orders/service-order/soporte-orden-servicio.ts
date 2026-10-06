@@ -12,12 +12,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-soporte-orden-servicio",
   templateUrl: "./soporte-orden-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, ApiDatePipe, SanitizeHtmlPipe],
+  imports: [LxIcon, ApiDatePipe, SanitizeHtmlPipe],
 })
 export class SoporteOrdenServicio implements OnInit {
   apiResponseS = inject(ApiResponseService);

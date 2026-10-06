@@ -17,12 +17,12 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-cumpleanos",
   templateUrl: "./cumpleanos-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel, AppAvatar, LxTag, AppIcon],
+  imports: [WebButtonLabel, AppAvatar, LxTag, LxIcon],
 })
 export class Cumpleanos implements OnInit {
   apiResponseS = inject(ApiResponseService);

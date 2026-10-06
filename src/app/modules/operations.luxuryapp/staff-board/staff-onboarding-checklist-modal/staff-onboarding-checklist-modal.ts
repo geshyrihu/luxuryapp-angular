@@ -18,7 +18,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface StaffOnboardingChecklistViewModel extends EmployeeOnboardingChecklistItemDTO {
   draftNotes: string;
@@ -35,7 +35,7 @@ interface StaffOnboardingChecklistViewModel extends EmployeeOnboardingChecklistI
     ApiDatePipe,
     LxCard,
     LxTag,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
     AppCheckbox,
   ],

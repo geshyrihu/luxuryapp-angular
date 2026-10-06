@@ -46,10 +46,10 @@
           class="flex-shrink-0"
           (click)="pendingBoard.emit()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:grid-view-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Tablero
         </ion-button>
         <ion-button
@@ -58,10 +58,10 @@
           class="flex-shrink-0"
           (click)="previewWorkPlan.emit()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:article-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Plan
         </ion-button>
         <ion-button
@@ -70,10 +70,10 @@
           class="flex-shrink-0"
           (click)="previewWeeklyReport.emit()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:visibility-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Previa
         </ion-button>
         <ion-button
@@ -82,10 +82,10 @@
           class="flex-shrink-0"
           (click)="sendWeeklyReport.emit()"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:send-outline"
             slot="start"
-          ></app-icon>
+          ></lux-icon>
           Reporte
         </ion-button>
       </div>
@@ -196,7 +196,7 @@
             class="text-purple-500 text-xs cursor-pointer py-1"
             (click)="clearDependency.emit(item.id)"
           >
-            <app-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
+            <lux-icon [icon]="'material-symbols-light:arrow-forward'" /> {{
             item.dependsOnTaskFolio }}
           </span>
           }
@@ -205,7 +205,7 @@
         <!-- Cuerpo: Título, DESCRIPCIÓN, Imágenes -->
         <h6 class="text-sm fw-semibold m-0 text-wrap text-body">
           @if (item.daysDifference > 15 && !item.scheduledAt) {
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:schedule'"
             class="text-orange-600 me-1"
           />

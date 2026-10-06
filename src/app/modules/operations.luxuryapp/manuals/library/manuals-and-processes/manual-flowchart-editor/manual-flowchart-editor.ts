@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from "@core/services/message.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IManualDiagramSimpleDTO } from "../interfaces/manuals-and-processes.dto";
 
 // Draw.io requiere hexadecimales en el XML/config. Mantener estos valores
@@ -61,7 +61,7 @@ const CORPORATE_DEFAULT_XML = `<mxGraphModel>
 
 @Component({
   selector: "app-manual-flowchart-editor",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./manual-flowchart-editor.html",
 })

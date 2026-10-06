@@ -20,7 +20,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
@@ -41,7 +41,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     LxTag,
     MobileActionMenu,
     DataViewMobile,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class OrdenesServicioListMobile {

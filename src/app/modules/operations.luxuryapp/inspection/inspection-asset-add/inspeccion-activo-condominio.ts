@@ -25,7 +25,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface IReviewForm {
   id: FormControl<string | null>;
@@ -40,7 +40,7 @@ interface IReviewForm {
   templateUrl: "./inspeccion-activo-condominio.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     FormsModule,
     ReactiveFormsModule,
     InputAutocomplete,

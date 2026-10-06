@@ -7,12 +7,12 @@ import {
 import { FormsModule } from "@angular/forms";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { ResultadoGeneralService } from "@core/services/resultado-general.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-grafico-resultado-general",
   templateUrl: "./resultado-general-grafico.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [FormsModule, AppIcon],
+  imports: [FormsModule, LxIcon],
 })
 export class ResultadoGeneralGrafico implements OnInit {
   private resultadoGeneralService = inject(ResultadoGeneralService);

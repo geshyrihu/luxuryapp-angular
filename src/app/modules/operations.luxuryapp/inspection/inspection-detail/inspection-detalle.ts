@@ -17,7 +17,7 @@ import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppTag } from "@ui/web/tag/tag";
 import { InspeccionActivoCondominio } from "../inspection-asset-add/inspeccion-activo-condominio";
@@ -35,7 +35,7 @@ import { InspectionEdit } from "../models/inspection.model";
     LxCard,
     LxSkeleton,
     AppTag,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
     ActionMenu,
   ],
@@ -159,7 +159,7 @@ import { InspectionEdit } from "../models/inspection.model";
                       <div
                         class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2 flex-shrink-0"
                       >
-                        <app-icon icon="material-symbols-light:settings" />
+                        <lux-icon icon="material-symbols-light:settings" />
                       </div>
                       <h3 class="text-lg fw-bold m-0 text-truncate">
                         {{ item.name | uppercase }}
@@ -200,7 +200,7 @@ import { InspectionEdit } from "../models/inspection.model";
                           class="d-flex justify-content-between align-items-start gap-3"
                         >
                           <div class="d-flex align-items-start gap-2">
-                            <app-icon
+                            <lux-icon
                               icon="material-symbols-light:check-circle-outline"
                               class="text-success-600 flex-shrink-0"
                             />
@@ -235,7 +235,7 @@ import { InspectionEdit } from "../models/inspection.model";
               <div
                 class="d-flex flex-column align-items-center text-center gap-3 py-5"
               >
-                <app-icon
+                <lux-icon
                   icon="material-symbols-light:construction"
                   class="text-5xl text-body-secondary"
                 />
@@ -350,7 +350,7 @@ import { InspectionEdit } from "../models/inspection.model";
                         <div
                           class="d-flex align-items-center justify-content-center rounded-circle bg-primary-100 text-primary-700 p-2 flex-shrink-0"
                         >
-                          <app-icon icon="material-symbols-light:settings" />
+                          <lux-icon icon="material-symbols-light:settings" />
                         </div>
                         <h3 class="text-lg fw-bold m-0 text-break">
                           {{ item.name | uppercase }}
@@ -390,7 +390,7 @@ import { InspectionEdit } from "../models/inspection.model";
                             class="d-flex justify-content-between align-items-start gap-2"
                           >
                             <div class="d-flex align-items-start gap-2">
-                              <app-icon
+                              <lux-icon
                                 icon="material-symbols-light:check-circle-outline"
                                 class="text-success-600 flex-shrink-0"
                               />
@@ -427,7 +427,7 @@ import { InspectionEdit } from "../models/inspection.model";
                 <div
                   class="d-flex flex-column align-items-center text-center gap-3 py-5"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:construction"
                     class="text-5xl text-body-secondary"
                   />

@@ -17,7 +17,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface ICustomerProviderForm {
   id: FormControl<string | null>;
@@ -31,7 +31,7 @@ interface ICustomerProviderForm {
 @Component({
   selector: "app-customer-provider-form",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     InputAutocomplete,
     ButtonWeb,

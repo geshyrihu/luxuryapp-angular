@@ -17,7 +17,7 @@ import {
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { addIcons } from "ionicons";
 import {
@@ -55,7 +55,7 @@ import { TaskJustificationPanel } from "./task-justification-panel/task-justific
     LxTag,
     AppAvatar,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     TaskChecklistPanel,
     TaskJustificationPanel,
   ],

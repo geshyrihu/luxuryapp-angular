@@ -5,7 +5,7 @@
       class="d-flex align-items-center justify-content-center bg-primary-50 rounded-xl"
       
     >
-      <app-icon [icon]="'material-symbols-light:verified'" class="text-3xl text-primary-600" />
+      <lux-icon [icon]="'material-symbols-light:verified'" class="text-3xl text-primary-600" />
     </div>
     <div>
       <h1 class="text-3xl fw-bold text-body m-0">Supervision</h1>
@@ -21,7 +21,7 @@
 @for (group of getVisibleGroups(); track group.label) {
 <!-- Titulo del grupo -->
 <div class="d-flex align-items-center gap-2 mb-4 mt-5">
-  <app-icon [icon]="group.icon" class="text-xl text-primary-600" />
+  <lux-icon [icon]="group.icon" class="text-xl text-primary-600" />
   <h2 class="text-lg fw-bold text-body m-0 text-uppercase">{{ group.label }}</h2>
   <div class="flex-grow-1 border-bottom-1 border ms-3"></div>
 </div>
@@ -43,9 +43,9 @@
             
             [style.backgroundColor]="module.bgColor"
           >
-            <app-icon [icon]="module.icon" [style.color]="module.color" />
+            <lux-icon [icon]="module.icon" [style.color]="module.color" />
           </div>
-          <app-icon [icon]="'material-symbols-light:north-east'" class="text-body-secondary" />
+          <lux-icon [icon]="'material-symbols-light:north-east'" class="text-body-secondary" />
         </div>
 
         <!-- Titulo y descripcion -->

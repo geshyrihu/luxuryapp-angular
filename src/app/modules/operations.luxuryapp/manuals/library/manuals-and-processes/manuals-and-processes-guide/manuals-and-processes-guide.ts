@@ -3,7 +3,7 @@ import { Router, RouterLink } from "@angular/router";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxPanel } from "@ui/adaptive/panel/panel";
@@ -21,7 +21,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     LxPanel,
     LxTag,
     LxFieldset,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class ManualsAndProcessesGuide {

@@ -39,7 +39,7 @@
                   [class.bg-primary-50]="selectedModule() === null"
                   (click)="onModuleFilterChange(null)"
                 >
-                  <app-icon
+                  <lux-icon
                     [icon]="'material-symbols-light:grid-view'"
                     class="text-primary"
                   />
@@ -107,7 +107,7 @@
             <div
               class="d-flex align-items-center text-xs text-body-secondary px-1"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:info'"
                 class="text-primary"
               />
@@ -181,7 +181,7 @@
               >
               <span
                 class="text-body-secondary text-xs d-flex align-items-center gap-1"
-                ><app-icon
+                ><lux-icon
                   [icon]="'material-symbols-light:schedule'"
                   class="text-xs"
                 />
@@ -226,7 +226,7 @@
           <td class="vertical-align-middle">
             @if (item.lastFollowup && item.lastFollowup !== 'Sin seguimiento') {
             <div class="d-flex align-items-start p-2 bg-body-tertiary rounded">
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:comment'"
                 class="text-primary mt-1"
               />
@@ -282,7 +282,7 @@
               <div
                 class="rounded-circle bg-bg-body-tertiary p-4 d-flex align-items-center justify-content-center"
               >
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:check'"
                   class="text-4xl text-body-secondary"
                 />
@@ -316,7 +316,7 @@
           [class.bg-primary-50]="selectedModule() === null"
           (click)="onModuleFilterChange(null)"
         >
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:grid-view'"
             class="text-primary"
           />

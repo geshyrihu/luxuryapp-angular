@@ -36,9 +36,9 @@
       <tr>
         <td>
           @if (item.isRealized) {
-          <app-icon [icon]="'material-symbols-light:check'" />
+          <lux-icon [icon]="'material-symbols-light:check'" />
           Realizada } @else {
-          <app-icon [icon]="'material-symbols-light:close'" />
+          <lux-icon [icon]="'material-symbols-light:close'" />
           Pendiente }
         </td>
         <td>{{ item.nameInspection }}</td>
@@ -53,7 +53,7 @@
               ngbTooltip="Ver resultado"
               (click)="resultado.emit(item.id)"
             >
-              <app-icon [icon]="'material-symbols-light:book'"></app-icon>
+              <lux-icon [icon]="'material-symbols-light:book'"></lux-icon>
             </button>
             }
             <button
@@ -62,9 +62,9 @@
               ngbTooltip="Inspeccionar"
               (click)="inspeccionar.emit(item.id)"
             >
-              <app-icon
+              <lux-icon
                 [icon]="'material-symbols-light:chevron-right'"
-              ></app-icon>
+              ></lux-icon>
             </button>
           </div>
         </td>

@@ -31,7 +31,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   TaskFollowUpEvidenceImage,
   TaskFollowUpItem,
@@ -51,7 +51,7 @@ interface ITicketMessageFollowupForm {
   styleUrl: "./task-followup.scss",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     FormsModule,
     ButtonWeb,

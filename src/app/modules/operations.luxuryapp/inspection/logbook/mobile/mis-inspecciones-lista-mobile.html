@@ -33,7 +33,7 @@
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:manage-search"
             class="text-xl text-primary-700"
           />
@@ -42,12 +42,12 @@
         <div class="d-flex flex-column gap-2 flex-grow-1">
           <div class="d-flex align-items-center gap-2">
             @if (item.isRealized) {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:check-circle'"
               class="text-success-600"
             />
             } @else {
-            <app-icon
+            <lux-icon
               [icon]="'material-symbols-light:error-outline'"
               class="text-danger-600"
             />

@@ -19,13 +19,13 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { passwordValidation } from "@core/directives/password-validation.directive";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ChangePassword } from "@core/interfaces/change-password.interface";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     LxCard,
     ButtonWeb,

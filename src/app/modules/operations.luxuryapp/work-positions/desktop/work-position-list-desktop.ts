@@ -7,7 +7,7 @@ import {
 import { Department } from "@core/enums/department.enum";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   SegmentItem,
   SegmentedControl,
@@ -38,7 +38,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppAvatar,
     LuxTableCaption,
     LxTag,
-    AppIcon,
+    LxIcon,
     SegmentedControl,
   ],
 })
