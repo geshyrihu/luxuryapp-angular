@@ -18,23 +18,23 @@
     <tr>
       <th appSortableColumn="fechaSolicitud">
         FECHA DE SOLICITUD
-        <app-sorticon field="fechaSolicitud" />
+        <lux-sorticon-web field="fechaSolicitud" />
       </th>
       <th appSortableColumn="folio">
         FOLIO
-        <app-sorticon field="folio" />
+        <lux-sorticon-web field="folio" />
       </th>
       <th appSortableColumn="tipoSolicitud">
         SOLICITUD
-        <app-sorticon field="tipoSolicitud" />
+        <lux-sorticon-web field="tipoSolicitud" />
       </th>
       <th appSortableColumn="nombreEmpleado">
         NOMBRE
-        <app-sorticon field="nombreEmpleado" />
+        <lux-sorticon-web field="nombreEmpleado" />
       </th>
       <th appSortableColumn="status">
         ESTATUS
-        <app-sorticon field="status" />
+        <lux-sorticon-web field="status" />
       </th>
       <th></th>
     </tr>
@@ -58,7 +58,7 @@
         <div>
           @switch (item.tipoSolicitud) { @case ('Alta') {
           <div class="body-card">
-            <!-- Contenido específico para el caso 'pesificacion' -->
+            <!-- Contenido especÃ­fico para el caso 'pesificacion' -->
             <lux-button-web
               kind="edit"
               displayMode="icon"
@@ -74,7 +74,7 @@
           </div>
           } @case ('Vacante') {
           <div class="body-card">
-            <!-- Contenido específico para otro caso -->
+            <!-- Contenido especÃ­fico para otro caso -->
             <lux-button-web
               kind="edit"
               displayMode="icon"
@@ -90,7 +90,7 @@
           </div>
           } @case ('Baja') {
           <div class="body-card">
-            <!-- Contenido específico para otro caso -->
+            <!-- Contenido especÃ­fico para otro caso -->
 
             <lux-button-web
               kind="edit"
@@ -109,7 +109,7 @@
           </div>
           } @case ('Modificacion') {
           <div class="body-card">
-            <!-- Contenido específico para otro caso -->
+            <!-- Contenido especÃ­fico para otro caso -->
             <lux-button-web
               kind="item"
               displayMode="icon"
@@ -118,7 +118,7 @@
             />
           </div>
           }
-          <!-- Agrega más casos según tus necesidades -->
+          <!-- Agrega mÃ¡s casos segÃºn tus necesidades -->
           }
         </div>
       </td>

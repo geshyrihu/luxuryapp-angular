@@ -48,11 +48,11 @@
           <hr class="my-3" />
           <h6 class="mb-2 text-body-secondary">{{ item.numeroMedidor }}</h6>
           <p>{{ item.descripcion }}</p>
-          <p>Consumo Máx: {{ item.consumoDiarioMaximo }}</p>
+          <p>Consumo MÃ¡x: {{ item.consumoDiarioMaximo }}</p>
         </div>
 
         <div class="mt-3 pt-3 border-top-1 border d-flex justify-content-end">
-          <app-action-menu>
+          <lux-action-menu-web>
             <lux-button-web
               kind="edit"
               severity="info"
@@ -75,7 +75,7 @@
             <lux-button-web
               kind="item"
               displayMode="both"
-              label="Gráfica"
+              label="GrÃ¡fica"
               iconClass="material-symbols-light:monitoring"
               (clicked)="goToGrafico.emit(item.id)"
             />
@@ -86,7 +86,7 @@
               variant="soft"
               (clicked)="exportExcel.emit(item.id)"
             />
-          </app-action-menu>
+          </lux-action-menu-web>
         </div>
       </div>
     </div>

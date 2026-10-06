@@ -21,21 +21,21 @@
         />
       </div>
       <lux-table-caption
-        (add)="add.emit({ id: '', title: 'Nueva Inspección' })"
+        (add)="add.emit({ id: '', title: 'Nueva InspecciÃ³n' })"
         [dt]="dt"
       />
     </div>
   </ng-template>
   <ng-template #header>
     <tr>
-      <th appSortableColumn="date">Fecha <app-sorticon field="date" /></th>
+      <th appSortableColumn="date">Fecha <lux-sorticon-web field="date" /></th>
       <th class="table-col-10">Hora</th>
       <th class="table-col-10">Etiqueta</th>
       <th class="table-col-10">Cristal</th>
       <th class="table-col-10">Llave</th>
       <th class="table-col-10">Manguera</th>
-      <th class="table-col-10">Chiflón</th>
-      <th class="table-col-10">Vólvula</th>
+      <th class="table-col-10">ChiflÃ³n</th>
+      <th class="table-col-10">VÃ³lvula</th>
       <th class="table-col-10">Cerradura</th>
       <th>Estado Gabinete</th>
       <th></th>
@@ -112,7 +112,7 @@
             size="sm"
             tooltip="Editar"
             ariaLabel="Editar"
-            (clicked)="edit.emit({ id: item.id, title: 'Editar Inspección' })"
+            (clicked)="edit.emit({ id: item.id, title: 'Editar InspecciÃ³n' })"
           />
           <lux-button-web
             kind="delete"

@@ -69,7 +69,7 @@ type StatusSeverity =
           <lux-icon name="alert-circle" class="alert-icon" />
           <span>
             <strong>{{ pendingCount() }}</strong> renovaciones pendientes de
-            decisión
+            decisiÃ³n
           </span>
         </div>
       }
@@ -110,23 +110,23 @@ type StatusSeverity =
           <tr>
             <th appSortableColumn="employeeName">
               Empleado
-              <app-sorticon field="employeeName" />
+              <lux-sorticon-web field="employeeName" />
             </th>
             <th appSortableColumn="positionName">
               Puesto
-              <app-sorticon field="positionName" />
+              <lux-sorticon-web field="positionName" />
             </th>
             <th appSortableColumn="contractEndDate">
               Fecha Vencimiento
-              <app-sorticon field="contractEndDate" />
+              <lux-sorticon-web field="contractEndDate" />
             </th>
             <th appSortableColumn="status">
-              Estatus Evaluación
-              <app-sorticon field="status" />
+              Estatus EvaluaciÃ³n
+              <lux-sorticon-web field="status" />
             </th>
             <th appSortableColumn="decisionDate">
-              Fecha Decisión
-              <app-sorticon field="decisionDate" />
+              Fecha DecisiÃ³n
+              <lux-sorticon-web field="decisionDate" />
             </th>
             <th style="width: 8rem">Acciones</th>
           </tr>
@@ -364,8 +364,8 @@ export class ContractRenewalListComponent implements OnInit {
 
   protected getStatusLabel(status: ContractRenewalStatus): string {
     const labels: Record<string, string> = {
-      EnAnalisis: "En Análisis",
-      EvaluacionCompletada: "Evaluación Completada",
+      EnAnalisis: "En AnÃ¡lisis",
+      EvaluacionCompletada: "EvaluaciÃ³n Completada",
       Decidido: "Decidido",
       Cancelado: "Cancelado",
     };
@@ -393,7 +393,7 @@ export class ContractRenewalListComponent implements OnInit {
     const result = await this.dialogHandler.openDialog<{ action: string }>(
       ContractRenewalFormComponent,
       { renewal },
-      `Decisión de Renovación - ${renewal.contractNumber}`,
+      `DecisiÃ³n de RenovaciÃ³n - ${renewal.contractNumber}`,
       "lg" as DialogSize,
     );
 

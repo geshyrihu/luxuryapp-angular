@@ -1,7 +1,7 @@
 <!--
- ═══════════════════════════════════════════════════════════════════
+ â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
  TABLA DE PUESTOS DE TRABAJO
- ═══════════════════════════════════════════════════════════════════
+ â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
  -->
 <lux-table
   [globalFilterFields]="globalFilterFields()"
@@ -66,13 +66,13 @@
   </ng-template>
 
   <ng-template #header>
-    <!-- 🟢 Fila de Agrupación Visual -->
+    <!-- ðŸŸ¢ Fila de AgrupaciÃ³n Visual -->
     <tr>
       <th
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary fw-bold border-bottom-2 border-primary"
       >
-        <lux-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
+        <lux-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÃ“N
         DEL PUESTO DE TRABAJO
       </th>
       <th
@@ -86,13 +86,13 @@
       </th>
     </tr>
 
-    <!-- ⚪ Fila de Títulos de Columna -->
+    <!-- âšª Fila de TÃ­tulos de Columna -->
     <tr>
       <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
+        PUESTO <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th class="w-32" appSortableColumn="turno">
-        TURNO <app-sorticon field="turno" />
+        TURNO <lux-sorticon-web field="turno" />
       </th>
       @if (aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento,
       AspRole.Administrador, AspRole.SuperUsuario])) {
@@ -170,7 +170,7 @@
       <!-- ACCIONES PUESTO ------------------------------------------------ -->
       <td>
         <div class="d-flex align-items-center">
-          <app-action-menu>
+          <lux-action-menu-web>
             <ng-container actions>
               @if (shouldShowVacancyRequest(item)) {
 
@@ -185,7 +185,7 @@
               <lux-button-web
                 kind="item"
                 displayMode="both"
-                label="DESCRIPCIÓN"
+                label="DESCRIPCIÃ“N"
                 iconClass="material-symbols-light:article"
                 (clicked)="onModalJobDescription(item.id, item.jobDescriptionId!, item.applicationRoleName)"
               />
@@ -214,7 +214,7 @@
               />
               }
             </ng-container>
-          </app-action-menu>
+          </lux-action-menu-web>
         </div>
       </td>
 
@@ -270,7 +270,7 @@
                 }
               </div>
             </div>
-            <app-action-menu>
+            <lux-action-menu-web>
               <ng-container actions>
                 <lux-button-web
                   kind="item"
@@ -302,11 +302,11 @@
                 />
                 }
               </ng-container>
-            </app-action-menu>
+            </lux-action-menu-web>
           </div>
           } @else {
           <div class="vacant-row-inline g-4">
-            <!-- -- Puesto vacante é CDK drop zone -- -->
+            <!-- -- Puesto vacante Ã© CDK drop zone -- -->
             <div
               [id]="'drop-pos-' + item.id"
               cdkDropList
@@ -348,16 +348,16 @@
             {
             <span
               class="badge badge-warning vacant-inline-badge text-xs text-center d-block py-2"
-              lxTooltip="Vacante abierta é esperando alta de colaborador"
+              lxTooltip="Vacante abierta Ã© esperando alta de colaborador"
             >
-              ðŸŸ¡ VA-{{ item.positionRequest.folio }} | Vacante abierta
+              Ã°Å¸Å¸Â¡ VA-{{ item.positionRequest.folio }} | Vacante abierta
             </span>
             } @else {
             <span
               class="badge badge-info vacant-inline-badge text-xs text-center d-block py-2"
-              lxTooltip="Solicitud de alta enviada é en proceso de reclutamiento"
+              lxTooltip="Solicitud de alta enviada Ã© en proceso de reclutamiento"
             >
-              🔵 VA-{{ item.positionRequest.folio }} Alta en proceso
+              ðŸ”µ VA-{{ item.positionRequest.folio }} Alta en proceso
             </span>
             } } @if (hasQueueForPosition(item)) {
             <div
@@ -396,9 +396,9 @@
   </ng-template>
 </lux-table>
 
-<!-- ═══════════════════════════════════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      POOL DE COLABORADORES SIN PUESTO ASIGNADO
-     ═══════════════════════════════════════════════════════════════════ -->
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="card mt-3">
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
@@ -421,7 +421,7 @@
     />
   </div>
 
-  <!-- Guía rápida -->
+  <!-- GuÃ­a rÃ¡pida -->
   @if (poolExpanded()) {
   <p class="text-sm text-body-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
@@ -462,7 +462,7 @@
         iconClass="material-symbols-light:manage-accounts"
         (clicked)="onGoToProfile(emp)"
       />
-<span cdkDragHandle class="drag-handle">⠿</span>
+<span cdkDragHandle class="drag-handle">â ¿</span>
 
       <ng-template cdkDragPreview>
         <div class="chip-preview">
@@ -476,9 +476,9 @@
   }
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════
-     DRAWER é ASIGNACIÓN RÁPIDA (alternativa al DnD)
-     ═══════════════════════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     DRAWER Ã© ASIGNACIÃ“N RÃPIDA (alternativa al DnD)
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <lux-sidebar
   [visible]="drawerVisible()"
   (visibleChange)="drawerVisible.set($event)"
@@ -513,7 +513,7 @@
       No hay colaboradores disponibles sin puesto asignado.
     </p>
     } @else { @for (emp of unassignedEmployees(); track emp.applicationUserId) {
-    <!-- DS: menu-item (dropdown/_dropdowns.scss) é flex, hover bg, cursor pointer -->
+    <!-- DS: menu-item (dropdown/_dropdowns.scss) Ã© flex, hover bg, cursor pointer -->
     <div class="menu-item" (click)="onAssignFromDrawer(emp)">
       <lux-avatar [image]="emp.photoPath" shape="circle" size="large" />
       <div class="d-flex flex-column min-w-0 flex-grow-1">
@@ -529,15 +529,15 @@
   }
 </lux-sidebar>
 
-<!-- ═══════════════════════════════════════════════════════════════════
-     MODAL é INACTIVOS (Puestos y Colaboradores)
-     ═══════════════════════════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODAL Ã© INACTIVOS (Puestos y Colaboradores)
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <lux-modal
   [visible]="inactivosVisible()"
   (visibleChange)="inactivosVisible.set($event)"
   header="Inactivos"
 >
-  <!-- Tabs de selección -->
+  <!-- Tabs de selecciÃ³n -->
   <div class="d-flex mb-4">
     <il-button
       iconClass="material-symbols-light:apartment"
@@ -583,7 +583,7 @@
         <span class="text-label">{{ pos.folio }}</span>
         <span class="fw-semibold">{{ pos.applicationRoleName }}</span>
         <span class="text-sm text-body-secondary"
-          >{{ getDepartamentLabel(pos.departament) }} é {{ pos.turno }}</span
+          >{{ getDepartamentLabel(pos.departament) }} Ã© {{ pos.turno }}</span
         >
       </div>
       <lux-button-web

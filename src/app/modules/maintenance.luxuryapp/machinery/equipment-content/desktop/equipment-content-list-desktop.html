@@ -22,12 +22,12 @@
   <ng-template #header>
     <tr>
       <th>Imagen</th>
-      <th appSortableColumn="name">Nombre <app-sorticon field="name" /></th>
+      <th appSortableColumn="name">Nombre <lux-sorticon-web field="name" /></th>
       <th appSortableColumn="typeDisplayName">
-        Tipo <app-sorticon field="typeDisplayName" />
+        Tipo <lux-sorticon-web field="typeDisplayName" />
       </th>
       <th appSortableColumn="quantity">
-        Cantidad <app-sorticon field="quantity" />
+        Cantidad <lux-sorticon-web field="quantity" />
       </th>
       <th>Notas</th>
       <th class="no-print"></th>
@@ -37,7 +37,7 @@
     <tr>
       <td>
         @if (item.photoUrl) {
-        <app-image
+        <lux-image-web
           [src]="item.photoUrl"
           [alt]="item.name"
           width="64"

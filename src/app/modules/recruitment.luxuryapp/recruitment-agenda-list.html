@@ -74,7 +74,7 @@
         <span class="text-sm text-body-secondary align-self-center"
           >Filtrar por estado:</span
         >
-        <app-select-button
+        <lux-select-button-web
           [options]="filterOptions()"
           [value]="statusFilter()"
           (valueChange)="statusFilter.set($event || '')"
@@ -90,25 +90,25 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="candidateName">
-        Candidato <app-sorticon field="candidateName" />
+        Candidato <lux-sorticon-web field="candidateName" />
       </th>
       <th appSortableColumn="vacancyFolio">
-        Vacante <app-sorticon field="vacancyFolio" />
+        Vacante <lux-sorticon-web field="vacancyFolio" />
       </th>
       <th appSortableColumn="customerName">
-        Cliente <app-sorticon field="customerName" />
+        Cliente <lux-sorticon-web field="customerName" />
       </th>
       <th>Estatus agenda</th>
       <th appSortableColumn="scheduledInterviewAt">
-        Fecha entrevista <app-sorticon field="scheduledInterviewAt" />
+        Fecha entrevista <lux-sorticon-web field="scheduledInterviewAt" />
       </th>
       <th appSortableColumn="assignedInterviewerName">
-        Entrevistador <app-sorticon field="assignedInterviewerName" />
+        Entrevistador <lux-sorticon-web field="assignedInterviewerName" />
       </th>
       <th appSortableColumn="daysInStage">
-        DIAS EN ETAPA <app-sorticon field="daysInStage" />
+        DIAS EN ETAPA <lux-sorticon-web field="daysInStage" />
       </th>
-      <th>Próxima acción</th>
+      <th>PrÃ³xima acciÃ³n</th>
       <th>CV</th>
       <th class="no-print">Acciones</th>
     </tr>

@@ -24,7 +24,7 @@
         <small
           class="text-primary fw-bold text-uppercase"
           style="letter-spacing: 0.14em"
-          >LuxuryApp · Bitacora</small
+          >LuxuryApp Â· Bitacora</small
         >
         <h1 class="text-primary text-2xl line-height-2 m-0">
           Recepcion de Pipas de Agua
@@ -93,7 +93,7 @@
     <div
       class="bg-body rounded-xl border-1 border shadow-sm p-3 text-center flex-fill"
     >
-      <p class="text-body-secondary text-sm m-0 mb-1">Total m³ descargados</p>
+      <p class="text-body-secondary text-sm m-0 mb-1">Total mÂ³ descargados</p>
       <p class="text-4xl fw-bold text-blue-600 m-0">
         {{ totalM3() | number: '1.0-0' }}
       </p>
@@ -112,8 +112,8 @@
             Resumen de costos del periodo
           </p>
           <p class="text-body-secondary text-xs m-0">
-            El precio por m³ registrado incluye IVA — se desglosa para calcular
-            la retención.
+            El precio por mÂ³ registrado incluye IVA â€” se desglosa para calcular
+            la retenciÃ³n.
           </p>
         </div>
 
@@ -123,7 +123,7 @@
               class="d-flex justify-content-between align-items-center py-2 border-bottom-1 border"
             >
               <span class="text-sm fw-semibold"
-                >Importe total (precio con IVA × m³)</span
+                >Importe total (precio con IVA Ã— mÂ³)</span
               >
               <span class="text-sm fw-bold"
                 >${{ totalConIVA() | number: '1.2-2' }}</span
@@ -150,7 +150,7 @@
             <div
               class="d-flex justify-content-between align-items-center py-2 border-bottom-1 border"
             >
-              <span class="text-sm fw-semibold text-red-500">Retención 4%</span>
+              <span class="text-sm fw-semibold text-red-500">RetenciÃ³n 4%</span>
               <span class="text-sm fw-semibold text-red-500"
                 >(${{ retencion() | number: '1.2-2' }})</span
               >
@@ -202,20 +202,20 @@
   <ng-template #header>
     <tr>
       <th appSortableColumn="empresa" style="min-width: 120px">
-        Empresa <app-sorticon field="empresa" />
+        Empresa <lux-sorticon-web field="empresa" />
       </th>
       <th appSortableColumn="placasCamion" style="min-width: 110px">
-        Placas / Cap. <app-sorticon field="placasCamion" />
+        Placas / Cap. <lux-sorticon-web field="placasCamion" />
       </th>
       <th appSortableColumn="horaLlegada" style="min-width: 140px">
-        Llegada / Termino <app-sorticon field="horaLlegada" />
+        Llegada / Termino <lux-sorticon-web field="horaLlegada" />
       </th>
       <th class="text-center" style="min-width: 140px">
-        Cisterna (ant → des / dif)
+        Cisterna (ant â†’ des / dif)
       </th>
-      <th class="text-center" style="min-width: 160px">Medidor (ini → fin)</th>
-      <th class="text-end" style="min-width: 80px">m³</th>
-      <th class="text-end" style="min-width: 110px">Costo m³ / Importe</th>
+      <th class="text-center" style="min-width: 160px">Medidor (ini â†’ fin)</th>
+      <th class="text-end" style="min-width: 80px">mÂ³</th>
+      <th class="text-end" style="min-width: 110px">Costo mÂ³ / Importe</th>
       <th style="min-width: 150px">Personal</th>
     </tr>
   </ng-template>
@@ -237,7 +237,7 @@
         >
         @if (item.horaTermino) {
         <span class="text-body-secondary"
-          >→ {{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</span
+          >â†’ {{ item.horaTermino | apiDate: 'dd/MM/yy HH:mm' }}</span
         >
         } @else {
         <span class="badge badge-warning text-xs">En curso</span>
@@ -246,7 +246,7 @@
       <td class="text-center">
         <span class="d-block">
           {{ item.nivelCisternaAntes | number: '1.0-0' }}%
-          <span class="text-body-secondary"> → </span>
+          <span class="text-body-secondary"> â†’ </span>
           {{ item.nivelCisternaDespues | number: '1.0-0' }}%
         </span>
         <span
@@ -261,7 +261,7 @@
       <td class="text-center">
         <span>
           {{ item.lecturaMedidorInicial | number: '1.0-0' }}
-          <span class="text-body-secondary"> → </span>
+          <span class="text-body-secondary"> â†’ </span>
           {{ item.lecturaMedidorFinal | number: '1.0-0' }}
         </span>
       </td>

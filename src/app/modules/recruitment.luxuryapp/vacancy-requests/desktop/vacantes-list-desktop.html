@@ -13,18 +13,18 @@
 >
   <ng-template #header>
     <tr>
-      <th appSortableColumn="folio">FOLIO <app-sorticon field="folio" /></th>
+      <th appSortableColumn="folio">FOLIO <lux-sorticon-web field="folio" /></th>
       <th appSortableColumn="requestDateFilter">
-        SOLICITUD <app-sorticon field="requestDateFilter" />
+        SOLICITUD <lux-sorticon-web field="requestDateFilter" />
       </th>
       <th>CLIENTE</th>
       <th appSortableColumn="applicationRoleName">
-        PUESTO <app-sorticon field="applicationRoleName" />
+        PUESTO <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th>SUELDO</th>
-      <th>DÍAS</th>
+      <th>DÃAS</th>
       <th appSortableColumn="status">
-        ESTATUS <app-sorticon field="status" />
+        ESTATUS <lux-sorticon-web field="status" />
       </th>
       <th>CANDIDATO</th>
       <th></th>
@@ -95,7 +95,7 @@
             kind="item"
             displayMode="icon"
             iconClass="material-symbols-light:description"
-            tooltip="Descripción del puesto"
+            tooltip="DescripciÃ³n del puesto"
             (clicked)="jobDescription.emit(item.workPositionId)"
           />
           <lux-button-web

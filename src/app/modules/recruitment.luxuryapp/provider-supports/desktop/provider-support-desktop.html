@@ -18,21 +18,21 @@
     <tr>
       <th class="table-col-15" appSortableColumn="nameCustomer">
         Cliente
-        <app-sorticon field="nameCustomer" />
+        <lux-sorticon-web field="nameCustomer" />
       </th>
       <th colspan="2" class="table-col-30" appSortableColumn="nameComercial">
         Proveedor
-        <app-sorticon field="nameComercial" />
+        <lux-sorticon-web field="nameComercial" />
       </th>
 
       <th class="table-col-20" appSortableColumn="fullName">
         Nombre
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
 
       <th appSortableColumn="applicationRoleName">
         Puesto
-        <app-sorticon field="applicationRoleName" />
+        <lux-sorticon-web field="applicationRoleName" />
       </th>
       <th class="no-print"></th>
     </tr>
@@ -41,7 +41,7 @@
     <tr>
       <td>{{ item.nameCustomer }}</td>
       <td>
-        <app-avatar
+        <lux-avatar-web
           [image]="item.pathPhoto"
           alt="noImg"
           shape="square"

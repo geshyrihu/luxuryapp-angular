@@ -15,10 +15,10 @@
   sortField="equipoClasificacion"
   sortMode="single"
 >
-  <!-- Caption: selector de categorías + controles -->
+  <!-- Caption: selector de categorÃ­as + controles -->
   <ng-template #caption>
     <div class="d-flex flex-column gap-3 mb-2 mt-1">
-      <!-- Categorías -->
+      <!-- CategorÃ­as -->
       <div class="d-flex flex-wrap gap-2">
         @for (category of categories(); track category.id) {
         <div
@@ -36,7 +36,7 @@
         }
       </div>
 
-      <!-- Barra de herramientas (Búsqueda y Acciones) -->
+      <!-- Barra de herramientas (BÃºsqueda y Acciones) -->
       <div
         class="d-flex flex-column flex-md-row align-items-md-center justify-content-between p-2 gap-2 bg-body-tertiary rounded g-4"
       >
@@ -106,20 +106,20 @@
       <th class="table-col-5">IMG</th>
       <th class="table-col-20" appSortableColumn="nameMachinery">
         NOMBRE
-        <app-sorticon field="nameMachinery" />
+        <lux-sorticon-web field="nameMachinery" />
       </th>
       <th class="table-col-20" appSortableColumn="equipoClasificacion">
         SISTEMA
-        <app-sorticon field="equipoClasificacion" />
+        <lux-sorticon-web field="equipoClasificacion" />
       </th>
       <th class="table-col-20" appSortableColumn="ubication">
-        UBICACIÓN
-        <app-sorticon field="ubication" />
+        UBICACIÃ“N
+        <lux-sorticon-web field="ubication" />
       </th>
       @if (mostrarPreventivos()) {
       <th class="table-col-10" appSortableColumn="maintenanceCalendars">
         SERVICIOS
-        <app-sorticon field="maintenanceCalendars" />
+        <lux-sorticon-web field="maintenanceCalendars" />
       </th>
       }
       <th class="table-col-10 no-print"></th>
@@ -130,13 +130,13 @@
   <ng-template #body let-item>
     <tr class="animate__fadeIn">
       <td>
-        <app-image
+        <lux-image-web
           [src]="item.photoPath"
           alt="."
           width="70"
           styleClass="shadow"
           [preview]="true"
-        ></app-image>
+        ></lux-image-web>
       </td>
       <td>{{ item.nameMachinery }}</td>
       <td>{{ item.equipoClasificacion }}</td>
@@ -167,7 +167,7 @@
             displayMode="icon"
             iconClass="material-symbols-light:description"
             variant="text"
-            tooltip="Histórico de servicios"
+            tooltip="HistÃ³rico de servicios"
             (clicked)="serviceHistory.emit(item.id)"
           />
           <lux-button-web
@@ -175,7 +175,7 @@
             displayMode="icon"
             iconClass="material-symbols-light:book"
             variant="text"
-            tooltip="Bitácora"
+            tooltip="BitÃ¡cora"
             (clicked)="bitacora.emit(item.id)"
           />
           <lux-button-web
@@ -183,7 +183,7 @@
             displayMode="icon"
             iconClass="material-symbols-light:article"
             variant="text"
-            tooltip="Ficha técnica"
+            tooltip="Ficha tÃ©cnica"
             (clicked)="fichaTecnica.emit(item.id)"
           />
           @if (showContents()) {

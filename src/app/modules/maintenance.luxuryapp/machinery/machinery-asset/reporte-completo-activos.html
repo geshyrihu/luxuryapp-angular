@@ -1,7 +1,7 @@
 <!-- (MEJORA) Indicador de carga para una mejor experiencia de usuario -->
 @if (loading()) {
 <div class="text-center my-5">
-  <app-spinner [size]="48" [strokeWidth]="4" />
+  <lux-spinner-web [size]="48" [strokeWidth]="4" />
   <p class="mt-2">Cargando reporte de activos...</p>
 </div>
 }
@@ -9,18 +9,18 @@
 <!-- El contenido principal solo se muestra cuando la carga ha terminado -->
 @if (!loading()) {
 <div class="h3">{{ titulo }}</div>
-<!-- ¡CAMBIO! El @for principal ahora itera sobre el signal `data()` -->
+<!-- Â¡CAMBIO! El @for principal ahora itera sobre el signal `data()` -->
 @if (data().length > 0) {
 <table class="table table-bordered">
   <thead>
     <tr>
       <th class="table-col-20">Imagen</th>
-      <th class="table-col-20">DESCRIPCIÓN</th>
+      <th class="table-col-20">DESCRIPCIÃ“N</th>
       <th class="table-col-30">Especificaciones</th>
       <th class="table-col-30">Observaciones</th>
     </tr>
   </thead>
-  <!-- ¡CAMBIO! El @for ahora lee del signal data() -->
+  <!-- Â¡CAMBIO! El @for ahora lee del signal data() -->
   @for (item of data(); track item.ubication) {
   <tbody>
     <tr>

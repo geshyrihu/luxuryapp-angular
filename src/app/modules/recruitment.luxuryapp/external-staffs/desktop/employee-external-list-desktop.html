@@ -24,27 +24,27 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">N°</th>
+      <th class="table-col-5">NÂ°</th>
       <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <app-sorticon field="workPositionFolio" />
+        <lux-sorticon-web field="workPositionFolio" />
       </th>
       <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <app-sorticon field="userName" />
+        <lux-sorticon-web field="userName" />
       </th>
 
        <th class="table-col-30 no-print">
-         TELÉFONO
-         <app-sorticon field="personalCellPhone" />
+         TELÃ‰FONO
+         <lux-sorticon-web field="personalCellPhone" />
        </th>
       <th class="table-col-30" appSortableColumn="personalEmail">
         Email
-        <app-sorticon field="personalEmail" />
+        <lux-sorticon-web field="personalEmail" />
       </th>
 
       <th class="table-col-5"></th>
@@ -54,7 +54,7 @@
     <tr>
       <td class="no-print">{{ rowIndex + 1 }}</td>
       <td class="text-center">
-        <app-avatar
+        <lux-avatar-web
           [image]="item.photoPath"
           alt=""
           styleClass="mr-2"

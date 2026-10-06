@@ -27,7 +27,7 @@
         <div
           class="d-flex align-items-center gap-3 bg-body-tertiary rounded-lg border-1 border-100 p-3"
         >
-          <app-checkbox
+          <lux-checkbox-web
             [binary]="true"
             [checked]="task.isCompleted"
             (checkedChange)="onToggle(task, $event)"
@@ -47,7 +47,7 @@
             } @if (task.isCompleted) {
             <p class="m-0 text-xs text-body-secondary mt-1">
               Completado {{ task.completedAt | apiDate:'dd/MM/yyyy HH:mm' }} por
-              {{ task.completedByUserName || '—' }}
+              {{ task.completedByUserName || 'â€”' }}
             </p>
             } @if (task.notes) {
             <p class="m-0 text-sm text-body-secondary mt-1 italic">

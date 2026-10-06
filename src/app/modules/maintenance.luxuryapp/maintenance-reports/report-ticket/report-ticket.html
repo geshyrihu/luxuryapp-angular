@@ -9,7 +9,7 @@
 >
   <ng-template #caption>
     <lux-table-caption
-      title="TICKETS POR ÁREA"
+      title="TICKETS POR ÃREA"
       [showAdd]="false"
       [showSearch]="false"
     />
@@ -73,7 +73,7 @@
   </ng-template>
   <ng-template #caption>
     <lux-table-caption
-      title="ASIGNACIÓN DE TICKETS"
+      title="ASIGNACIÃ“N DE TICKETS"
       [showAdd]="false"
       [showSearch]="false"
     />
@@ -114,19 +114,19 @@
     <tr>
       <th appSortableColumn="empleado" class="table-col-20">
         COLABORADOR
-        <app-sorticon field="empleado" />
+        <lux-sorticon-web field="empleado" />
       </th>
       <th appSortableColumn="solicitudes" class="table-col-20">
         SOLICITUDES
-        <app-sorticon field="solicitudes" />
+        <lux-sorticon-web field="solicitudes" />
       </th>
       <th appSortableColumn="atendidas" class="table-col-20">
         ATENDIDAS
-        <app-sorticon field="atendidas" />
+        <lux-sorticon-web field="atendidas" />
       </th>
       <th appSortableColumn="pendientes" class="table-col-20">
         PENDIENTES
-        <app-sorticon field="pendientes" />
+        <lux-sorticon-web field="pendientes" />
       </th>
     </tr>
   </ng-template>
@@ -134,7 +134,7 @@
     <tr [hidden]="false">
       <td>
         <div>
-          <app-avatar
+          <lux-avatar-web
             [image]="item.image"
             alt=""
             shape="square"

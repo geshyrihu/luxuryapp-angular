@@ -24,18 +24,18 @@
 
   <ng-template #header>
     <tr>
-      <th class="table-col-5">N°</th>
+      <th class="table-col-5">NÂ°</th>
       <th colspan="2" class="table-col-30" appSortableColumn="fullName">
         COLABORADOR
-        <app-sorticon field="fullName" />
+        <lux-sorticon-web field="fullName" />
       </th>
       <th class="table-col-20" appSortableColumn="workPositionFolio">
         PUESTO DE TRABAJO
-        <app-sorticon field="workPositionFolio" />
+        <lux-sorticon-web field="workPositionFolio" />
       </th>
       <th class="table-col-10" appSortableColumn="userName" class="no-print">
         USUARIO APP
-        <app-sorticon field="userName" />
+        <lux-sorticon-web field="userName" />
       </th>
 
       <th
@@ -43,12 +43,12 @@
         appSortableColumn="celularPersonal"
         class="no-print"
        >
-        TELÉFONO
-        <app-sorticon field="celularPersonal" />
+        TELÃ‰FONO
+        <lux-sorticon-web field="celularPersonal" />
       </th>
       <th class="table-col-30" appSortableColumn="email">
         EMAIL
-        <app-sorticon field="email" />
+        <lux-sorticon-web field="email" />
       </th>
       @if ( isAdmin() ) {
       <th class="table-col-5"></th>

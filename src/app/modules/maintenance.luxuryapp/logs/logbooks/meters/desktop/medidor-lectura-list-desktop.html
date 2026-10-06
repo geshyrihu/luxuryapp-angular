@@ -30,11 +30,11 @@
     <tr>
       <th appSortableColumn="fechaRegistro">
         Fecha de Registro
-        <app-sorticon field="fechaRegistro" />
+        <lux-sorticon-web field="fechaRegistro" />
       </th>
       <th appSortableColumn="lectura">
         Lectura
-        <app-sorticon field="lectura" />
+        <lux-sorticon-web field="lectura" />
       </th>
 
       <th class="table-col-5"></th>
@@ -52,7 +52,7 @@
       <!-- Opciones -->
 
       <td class="no-print">
-        <app-action-menu>
+        <lux-action-menu-web>
           <ng-container actions>
             <lux-button-web
               kind="edit"
@@ -67,7 +67,7 @@
               (clicked)="delete.emit(item.id)"
             />
           </ng-container>
-        </app-action-menu>
+        </lux-action-menu-web>
       </td>
       <!-- Opciones -->
     </tr>
