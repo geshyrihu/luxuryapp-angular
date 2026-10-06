@@ -135,24 +135,44 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
-          <iw-button-download
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
+          <lux-button-web
+            kind="download"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
             iconClass="material-symbols-light:picture-as-pdf"
             ngbTooltip="Descargar PDF"
-            severity="danger"
             (clicked)="downloadPdf.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="viewPreview.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Vista previa"
             iconClass="material-symbols-light:book"
-            lxTooltip="Vista previa"
             tooltipPosition="top"
+            (clicked)="viewPreview.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="viewAnalytics.emit(item.id)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Analíticas"
             iconClass="material-symbols-light:bar-chart"
-            lxTooltip="Analíticas"
             tooltipPosition="top"
+            (clicked)="viewAnalytics.emit(item.id)"
           />
         </div>
       </td>

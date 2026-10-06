@@ -100,7 +100,12 @@
           />
           <div class="d-flex align-items-center">
             <span class="text-sm text-body-secondary">Imagen actual</span>
-            <il-button-delete (confirmed)="requestDeleteMainImage()" />
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="requestDeleteMainImage()"
+            />
           </div>
         </div>
         }
@@ -190,7 +195,12 @@
                   {{ item.fileName }}
                 </a>
 
-                <il-button-delete (confirmed)="requestDeleteAttachment(item)" />
+                <lux-button-web
+                  kind="delete"
+                  severity="danger"
+                  variant="soft"
+                  (clicked)="requestDeleteAttachment(item)"
+                />
               </div>
               }
             </div>

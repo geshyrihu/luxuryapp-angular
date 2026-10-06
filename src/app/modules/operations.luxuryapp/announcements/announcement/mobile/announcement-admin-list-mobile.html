@@ -89,24 +89,31 @@
             kind="edit"
             (clicked)="edit.emit(item)"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
 
-          <ili-button-item
-            (clicked)="downloadPdf.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             iconName="document-text-outline"
             label="Descargar PDF"
+            (clicked)="downloadPdf.emit(item.id)"
           />
 
-          <ili-button-item
-            (clicked)="viewPreview.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             iconName="book-outline"
             label="Vista previa"
+            (clicked)="viewPreview.emit(item.id)"
           />
 
-          <ili-button-item
-            (clicked)="viewAnalytics.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             iconName="bar-chart-outline"
             label="Analóticas"
+            (clicked)="viewAnalytics.emit(item.id)"
           />
         </ng-container>
       </ili-action-menu>

@@ -32,7 +32,6 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -60,7 +59,6 @@ import { ImageGenerationDialog } from "./image-generation-dialog/image-generatio
     CustomInputTextSignal,
     CustomInputSelectSignal,
     CustomInputDateSignal,
-    WebButtonLabelDelete,
     ButtonWeb,
     CustomInputToggleSwitch,
     LxDivider,
@@ -216,17 +214,35 @@ export class AnnouncementAdminForm implements OnInit {
 
   // --- Gestión de Archivos Existentes ---
 
-  requestDeleteMainImage(): void {
+  async requestDeleteMainImage(): Promise<void> {
     const currentData = this.data();
     if (!currentData) return;
+    const confirmed = await this.swalService.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar la imagen principal?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     this.mainImageToDelete.set(true);
     // Actualizar el signal para reflejar el cambio en la vista (optimista)
     this.data.set({ ...currentData, imagePath: null });
   }
 
-  requestDeleteAttachment(attachmentToRemove: IAttachment): void {
+  async requestDeleteAttachment(attachmentToRemove: IAttachment): Promise<void> {
     const currentData = this.data();
     if (!currentData?.attachments) return;
+    const confirmed = await this.swalService.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de eliminar este adjunto?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
 
     // Añadira lista de borrado
     this.attachmentsToDelete.update((ids) => [...ids, attachmentToRemove.id]);

@@ -14,6 +14,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AnnouncementAdminForm } from "./announcement-admin-form";
 import { IAnnouncementAdminList } from "./announcement.model";
@@ -31,6 +32,7 @@ export class AnnouncementAdminList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   private router = inject(Router);
 
   dataSignal = signal<IAnnouncementAdminList[]>([]);
@@ -76,6 +78,10 @@ export class AnnouncementAdminList implements OnInit {
   }
 
   async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este comunicado?",
+    );
+    if (!confirmed) return;
     const urlApi = Endpoints.Announcements.delete(id);
     const response = await this.apiResponseS.onDelete(urlApi);
     if (response) {
