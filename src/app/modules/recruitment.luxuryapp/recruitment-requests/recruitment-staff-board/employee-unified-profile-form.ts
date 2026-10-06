@@ -482,7 +482,7 @@ export class EmployeeUnifiedProfileForm implements OnInit {
 
   private getInvalidFieldLabels(): string[] {
     return Object.entries(this.form.controls)
-      .filter(([, control]) => control.invalid)
+      .filter(([key, control]) => control.invalid)
       .map(([key]) => this.fieldLabels[key as keyof EmployeeUnifiedProfileFormControls])
       .filter((label): label is string => Boolean(label));
   }

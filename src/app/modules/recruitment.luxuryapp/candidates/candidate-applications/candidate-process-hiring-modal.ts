@@ -424,7 +424,7 @@ export class CandidateProcessHiringModal implements OnInit {
   private showValidationFeedback(): void {
     const invalidFields = Object.entries(
       this.form.controls as unknown as Record<string, AbstractControl>,
-    ).filter(([, control]) => control.invalid);
+    ).filter(([key, control]) => control.invalid);
 
     this.validationErrors.set(
       invalidFields.map(
