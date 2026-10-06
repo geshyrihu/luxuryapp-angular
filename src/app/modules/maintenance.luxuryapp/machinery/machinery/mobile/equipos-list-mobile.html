@@ -5,7 +5,7 @@
     class="p-1 rounded bg-body-tertiary me-2 mb-2 d-inline-flex align-items-center"
   >
     <span class="d-flex align-items-center">
-      <app-icon [icon]="category.emoji" />
+      <lux-icon [icon]="category.emoji" />
       {{ category.name }}
     </span>
   </div>
@@ -52,7 +52,7 @@
           class="mobile-avatar-img"
         />
         } @else {
-        <app-icon icon="material-symbols-light:hvac" />
+        <lux-icon icon="material-symbols-light:hvac" />
         }
       </div>
       <span class="">
@@ -65,7 +65,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="documentos.emit(item.id)"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:description"
               slot="icon-only"
             />
@@ -74,7 +74,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="serviceHistory.emit(item.id)"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:schedule"
               slot="icon-only"
             />
@@ -83,7 +83,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="bitacora.emit(item.id)"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:menu-book-outline"
               slot="icon-only"
             />
@@ -92,7 +92,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="fichaTecnica.emit(item.id)"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:article-outline"
               slot="icon-only"
             />
@@ -103,7 +103,7 @@
             (click)="equipmentContents.emit(item)"
             aria-label="Administrar contenidos"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:inventory-2"
               slot="icon-only"
             />
@@ -113,7 +113,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="item.expanded = !item.expanded"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:handyman"
               slot="icon-only"
             />
@@ -132,7 +132,7 @@
               class="btn btn-rounded btn-text-primary btn-sm"
               (click)="maintenanceCalendar.emit({ id: 0, task: 'create', machineryId: item.id, header: 'Nuevo Servicio' })"
             >
-              <app-icon
+              <lux-icon
                 icon="material-symbols-light:add-circle-outline"
                 slot="start"
               />
@@ -181,7 +181,7 @@
                   class="btn btn-rounded btn-text-secondary btn-sm"
                   (click)="maintenanceCalendar.emit({ id: service.id, task: 'copy', machineryId: service.machineryId, header: 'Duplicar' })"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:content-copy"
                     slot="icon-only"
                   />
@@ -190,7 +190,7 @@
                   class="btn btn-rounded btn-text-primary btn-sm"
                   (click)="maintenanceCalendar.emit({ id: service.id, task: 'edit', machineryId: service.machineryId, header: 'Editar' })"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:edit-outline"
                     slot="icon-only"
                   />
@@ -199,7 +199,7 @@
                   class="btn btn-rounded btn-text-danger btn-sm"
                   (click)="deleteOrder.emit(service.id)"
                 >
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:delete-outline"
                     slot="icon-only"
                   />
@@ -226,7 +226,7 @@
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="edit.emit({ id: item.id, title: 'Editar' })"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:edit-outline"
             slot="icon-only"
           />
@@ -235,7 +235,7 @@
           class="btn btn-rounded btn-text-danger btn-sm"
           (click)="delete.emit(item.id)"
         >
-          <app-icon
+          <lux-icon
             icon="material-symbols-light:delete-outline"
             slot="icon-only"
           />

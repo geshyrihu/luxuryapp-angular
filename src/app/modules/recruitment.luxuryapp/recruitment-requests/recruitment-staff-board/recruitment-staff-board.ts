@@ -35,7 +35,7 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -85,7 +85,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     TableFooter,
     WebButtonLabel,
     ActionMenu,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class RecruitmentStaffBoard {

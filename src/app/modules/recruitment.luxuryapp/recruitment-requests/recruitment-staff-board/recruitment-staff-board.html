@@ -72,14 +72,14 @@
         [attr.colspan]="aspRoleS.hasAny([AspRole.Asistente, AspRole.Reclutamiento, AspRole.Administrador, AspRole.SuperUsuario]) ? 4 : 2"
         class="text-center bg-primary-reverse text-primary fw-bold border-bottom-2 border-primary"
       >
-        <app-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
+        <lux-icon [icon]="'material-symbols-light:work'" class="me-2" />GESTIÓN
         DEL PUESTO DE TRABAJO
       </th>
       <th
         colspan="1"
         class="text-center bg-bluegray-50 text-bluegray-700 fw-bold border-bottom-2 border-bluegray-200 border-left-2"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:person'"
           class="me-2"
         />COLABORADOR ASIGNADO
@@ -316,7 +316,7 @@
               class="drop-zone vacant-drop-zone d-flex align-items-center justify-content-between p-2"
             >
               <div class="d-flex align-items-center gap-2">
-                <app-icon
+                <lux-icon
                   [icon]="'material-symbols-light:group'"
                   class="text-body-secondary"
                 />
@@ -367,7 +367,7 @@
                 class="d-flex flex-wrap align-items-center justify-content-between gap-2"
               >
                 <div class="d-flex align-items-center gap-2">
-                  <app-icon
+                  <lux-icon
                     icon="material-symbols-light:manage-search"
                     class="text-primary"
                   />
@@ -403,20 +403,20 @@
   <!-- Header expandible -->
   <div class="pool-header" (click)="poolExpanded.set(!poolExpanded())">
     <div class="d-flex align-items-center">
-      <app-icon [icon]="'material-symbols-light:group'" class="text-lg" />
+      <lux-icon [icon]="'material-symbols-light:group'" class="text-lg" />
       <span class="fw-semibold">Sin puesto asignado</span>
       <!-- DS: badge + badge-primary -->
       <span class="badge badge-primary"
         >{{ unassignedEmployees().length }}</span
       >
       @if (assignLoading()) {
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-sm"
       />
       }
     </div>
-    <app-icon
+    <lux-icon
       [icon]="poolExpanded() ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'"
     />
   </div>
@@ -426,7 +426,7 @@
   <p class="text-sm text-body-secondary m-0 px-3 pt-2 pb-1">
     Arrastra un colaborador hacia un puesto vacante para asignarlo, o haz clic
     en
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:manage-accounts'"
       class="text-xs"
     />
@@ -490,7 +490,7 @@
     <!-- DS: drawer-position-card (border-left primario, no cubierto por .card--primary) -->
     <div class="drawer-position-card">
       <div class="d-flex align-items-center mb-1">
-        <app-icon [icon]="'material-symbols-light:work'" />
+        <lux-icon [icon]="'material-symbols-light:work'" />
         <span class="fw-bold">{{ pos.folio }}</span>
       </div>
       <p class="m-0 fw-semibold">{{ pos.applicationRoleName }}</p>
@@ -503,7 +503,7 @@
 
     @if (assignLoading()) {
     <div class="d-flex justify-content-center py-4">
-      <app-icon
+      <lux-icon
         [icon]="'material-symbols-light:progress-activity'"
         class="text-2xl"
       />
@@ -522,7 +522,7 @@
           >{{ emp.userName }}</span
         >
       </div>
-      <app-icon [icon]="'material-symbols-light:chevron-right'" />
+      <lux-icon [icon]="'material-symbols-light:chevron-right'" />
     </div>
     } }
   </div>
@@ -559,7 +559,7 @@
 
   @if (inactivosLoading()) {
   <div class="d-flex justify-content-center py-5">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:progress-activity'"
       class="text-3xl"
     />
@@ -569,7 +569,7 @@
   <!-- -- Tab: Puestos inactivos -- -->
   @if (inactivePositions().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />
@@ -601,7 +601,7 @@
   <!-- -- Tab: Colaboradores inactivos -- -->
   @if (inactiveEmployees().length === 0) {
   <div class="alert alert-neutral">
-    <app-icon
+    <lux-icon
       [icon]="'material-symbols-light:move-to-inbox'"
       class="alert__icon"
     />

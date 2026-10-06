@@ -10,14 +10,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
 
 @Component({
   selector: "app-calendario-maestro-readonly",
   templateUrl: "./calendario-maestro-readonly.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, LxTag, LxTooltipDirective],
+  imports: [LxIcon, LxTag, LxTooltipDirective],
 })
 export class CalendarioMaestroReadonly implements OnInit {
   private apiResponseS = inject(ApiResponseService);

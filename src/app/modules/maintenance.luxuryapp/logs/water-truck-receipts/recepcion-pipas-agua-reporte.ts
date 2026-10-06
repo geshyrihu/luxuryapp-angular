@@ -31,7 +31,7 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IRecepcionPipaAgua } from "./recepcion-pipas-agua.interfaces";
 
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
 @Component({
@@ -40,7 +40,7 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ApiDatePipe, DatePipe],
   imports: [
-    AppIcon,
+    LxIcon,
     ButtonWeb,
     TableEmptyMessage,
     CommonModule,

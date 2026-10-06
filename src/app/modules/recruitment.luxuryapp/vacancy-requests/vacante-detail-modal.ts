@@ -13,7 +13,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { IWorkPositionForm } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface IJobDescription {
   summary: string;
@@ -28,7 +28,7 @@ interface IJobDescription {
   selector: "app-vacante-detail-modal",
   templateUrl: "./vacante-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, LxTabs, LxTag, AppIcon],
+  imports: [CommonModule, LxTabs, LxTag, LxIcon],
   styles: [`
     :host { display: block; }
     :host ::ng-deep app-tabs > .nav.nav-tabs {

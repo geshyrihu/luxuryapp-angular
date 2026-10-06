@@ -45,7 +45,7 @@
       <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.accessibleAndVisible ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.accessibleAndVisible"
@@ -53,7 +53,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.housingOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.housingOk"
@@ -61,7 +61,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.leverOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.leverOk"
@@ -69,7 +69,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.glassIntact ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.glassIntact"
@@ -77,7 +77,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.mountingSecure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.mountingSecure"
@@ -85,7 +85,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.signageOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.signageOk"

@@ -21,7 +21,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,
@@ -62,7 +62,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
     AppTable,
     AppReorderableRow,
     AppReorderableRowHandle,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./employee-document-list.html",

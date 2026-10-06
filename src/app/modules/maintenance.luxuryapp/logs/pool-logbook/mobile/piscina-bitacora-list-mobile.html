@@ -9,12 +9,12 @@
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
       >
-        <app-icon icon="material-symbols-light:pool" />
+        <lux-icon icon="material-symbols-light:pool" />
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
         <h2 class="fw-bold m-0 text-base">
-          <app-icon
+          <lux-icon
             [icon]="'material-symbols-light:calendar-today'"
             class="me-1 text-primary"
           />
@@ -49,7 +49,7 @@
           class="d-flex align-items-center gap-1"
           [class.opacity-50]="!item.cepillado"
         >
-          <app-icon
+          <lux-icon
             [icon]="item.cepillado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
             [class]="item.cepillado ? 'text-green-600' : 'text-400'"
           />
@@ -59,7 +59,7 @@
           class="d-flex align-items-center gap-1 ms-3"
           [class.opacity-50]="!item.aspirado"
         >
-          <app-icon
+          <lux-icon
             [icon]="item.aspirado ? 'material-symbols-light:check' : 'material-symbols-light:close'"
             [class]="item.aspirado ? 'text-green-600' : 'text-400'"
           />

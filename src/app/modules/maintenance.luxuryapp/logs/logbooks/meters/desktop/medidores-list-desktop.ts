@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { Medidor } from "@core/interfaces/medidor.interface";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 
 @Component({
@@ -16,7 +16,7 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
   imports: [
     ActionMenu,
     ButtonWeb,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class MedidoresListDesktop {

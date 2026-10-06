@@ -22,7 +22,7 @@
                 'bg-purple-100 text-purple-600': card.severity === 'primary',
               }"
         >
-          <app-icon [icon]="card.icon" class="text-2xl" />
+          <lux-icon [icon]="card.icon" class="text-2xl" />
         </div>
         <div class="flex-fill min-w-0">
           <div class="text-3xl fw-bold text-body-primary">{{ card.value }}</div>
@@ -207,7 +207,7 @@
 <div class="card p-3 mb-4">
   <div class="fw-semibold mb-3">Pipeline por etapas</div>
   @if (pipelineChartData()) {
-  <app-chart-wrapper
+  <lux-chart-wrapper-web
     type="bar"
     [data]="pipelineChartData()"
     [height]="'350px'"
@@ -221,7 +221,7 @@
 <div class="card p-3 mb-4">
   <div class="fw-semibold mb-3">Estado de Entrevistas Operaciones</div>
   @if (interviewStatusChartData()) {
-  <app-chart-wrapper
+  <lux-chart-wrapper-web
     type="doughnut"
     [data]="interviewStatusChartData()"
     [height]="'350px'"
@@ -238,7 +238,7 @@
 <div class="card p-3 mb-4">
   <div class="fw-semibold mb-3">Tiempo Vacante → 1ª Postulación (Días)</div>
   @if (timeToFirstChartData()) {
-  <app-chart-wrapper
+  <lux-chart-wrapper-web
     type="bar"
     [data]="timeToFirstChartData()"
     [height]="'300px'"
@@ -262,7 +262,7 @@
     Fuente de Reclutamiento (Postulaciones + Conversión)
   </div>
   @if (sourceChartData()) {
-  <app-chart-wrapper
+  <lux-chart-wrapper-web
     type="bar"
     [data]="sourceChartData()"
     [height]="'350px'"
@@ -279,7 +279,7 @@
 <div class="card p-3 mb-4">
   <div class="fw-semibold mb-3">Actividad Reciente (7 vs 30 días)</div>
   @if (activityChartData()) {
-  <app-chart-wrapper
+  <lux-chart-wrapper-web
     type="bar"
     [data]="activityChartData()"
     [height]="'300px'"

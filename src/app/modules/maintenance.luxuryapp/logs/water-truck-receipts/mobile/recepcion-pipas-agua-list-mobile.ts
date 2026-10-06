@@ -11,7 +11,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IRecepcionPipaAgua } from "../recepcion-pipas-agua.interfaces";
 
 @Component({
@@ -25,7 +25,7 @@ import { IRecepcionPipaAgua } from "../recepcion-pipas-agua.interfaces";
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,
-    AppIcon,
+    LxIcon,
     MobileListItem,
   ],
 })

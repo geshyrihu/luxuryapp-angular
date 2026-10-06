@@ -10,7 +10,7 @@ import { RouterModule } from "@angular/router";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppImage } from "@ui/web/image/image";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -33,7 +33,7 @@ import { IRecepcionPipaAgua } from "../recepcion-pipas-agua.interfaces";
     ApiDatePipe,
     RouterModule,
     AppImage,
-    AppIcon,
+    LxIcon,
     AppTable,
     AppSortableColumn,
     AppSorticon,

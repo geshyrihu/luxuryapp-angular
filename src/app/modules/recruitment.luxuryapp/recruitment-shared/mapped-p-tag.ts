@@ -5,7 +5,7 @@ import {
   input,
 } from "@angular/core";
 import { TagSeverity } from "@ui/core/tag.base";
-import { AppTag } from "@ui/web/tag/tag";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 export interface MappedTagOption {
   value: string | number | boolean;
@@ -16,9 +16,9 @@ export interface MappedTagOption {
 @Component({
   selector: "app-mapped-p-tag",
 
-  imports: [AppTag],
+  imports: [LxTag],
   template: `
-    <app-tag
+    <lux-tag
       [value]="resolvedLabel()"
       [severity]="resolvedSeverity()"
       [rounded]="rounded()"

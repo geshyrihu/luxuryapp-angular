@@ -7,7 +7,7 @@ import {
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IEmployeeBankData } from "../interfaces/employee-bank-data.interface";
 
 @Component({
@@ -15,7 +15,7 @@ import { IEmployeeBankData } from "../interfaces/employee-bank-data.interface";
   templateUrl: "./employee-bank-data-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     MobileActionMenu,
     ButtonMobile,
     DataViewMobile,

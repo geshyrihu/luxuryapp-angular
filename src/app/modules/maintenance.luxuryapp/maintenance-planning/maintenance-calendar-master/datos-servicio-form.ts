@@ -10,13 +10,13 @@ import {
 } from "@core/services/dialog-handler.service";
 import { TarjetaProveedor } from "@operations.luxuryapp/providers/provider-card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-datos-servicio-addoredit",
   templateUrl: "./datos-servicio-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, LxTag],
+  imports: [LxIcon, LxTag],
 })
 export class DatosServicioAddOrEdit implements OnInit {
   config = inject(DynamicDialogConfig);

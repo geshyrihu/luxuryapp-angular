@@ -10,7 +10,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -27,7 +27,7 @@ import {
   imports: [
     CommonModule,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
     ButtonWeb,
     AppTable,
     AppSortableColumn,

@@ -1,7 +1,7 @@
 <!-- Selector de periodo -->
 <div class="card mb-3">
   <div class="card-body">
-    <app-rango-calendario-yyyymmdd (fechasChange)="onFechasChange($event)" />
+    <lux-rango-calendario-yyyymmdd-web (fechasChange)="onFechasChange($event)" />
   </div>
 </div>
 
@@ -48,13 +48,13 @@
   <div class="col-12 col-md-7">
     <div class="card p-3">
       <p class="fw-semibold text-sm mb-2">Litros recibidos por mes</p>
-       <app-chart-wrapper type="bar" [data]="chartLitros()" height="320px" [showLegend]="false" />
+       <lux-chart-wrapper-web type="bar" [data]="chartLitros()" height="320px" [showLegend]="false" />
     </div>
   </div>
   <div class="col-12 col-md-5">
     <div class="card p-3">
       <p class="fw-semibold text-sm mb-2">Diferencia promedio de cisterna</p>
-       <app-chart-wrapper type="area" [data]="chartCisterna()" height="320px" [showLegend]="false" />
+       <lux-chart-wrapper-web type="area" [data]="chartCisterna()" height="320px" [showLegend]="false" />
     </div>
   </div>
 </div>

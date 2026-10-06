@@ -12,7 +12,7 @@ import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ChartJsData } from "@ui/web/charts/chart-adapters";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -32,7 +32,7 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
     AppTable,
     MappedPTag,
     ChartWrapper,
-    AppIcon,
+    LxIcon,
     LxSpinner,
   ],
 })

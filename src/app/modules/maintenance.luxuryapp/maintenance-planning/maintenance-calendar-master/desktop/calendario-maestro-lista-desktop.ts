@@ -8,7 +8,7 @@ import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { LxMenu } from "@ui/adaptive/menu/menu";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 import { ButtonWeb } from "@ui/buttons/web";
 @Component({
@@ -20,7 +20,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     LxMenu,
     LxTag,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class CalendarioMaestroListaDesktop {

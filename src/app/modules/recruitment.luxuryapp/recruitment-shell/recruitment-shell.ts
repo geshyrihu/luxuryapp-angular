@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
-import { Menubar } from "@ui/web/menubar/menubar";
+import { LxMenubar } from "@ui/adaptive/menubar/menubar";
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { filter, map, startWith } from "rxjs/operators";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -50,7 +50,7 @@ const SEARCH_ONLY_FILTER_CONFIG: ShellFilterConfig = {
   templateUrl: "./recruitment-shell.html",
   styleUrl: "./recruitment-shell.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FilterRequests, Menubar, RouterModule],
+  imports: [FilterRequests, LxMenubar, RouterModule],
 })
 export class RecruitmentShellComponent {
   private readonly router = inject(Router);

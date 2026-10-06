@@ -22,7 +22,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   buildOrgChartGraph,
   flattenOrgChartNodes,
@@ -44,7 +44,7 @@ import {
   styleUrl: "./org-chart.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
+    LxIcon,
     CommonModule,
     GraphModule,
     LxAvatar,

@@ -17,7 +17,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { EmployeeDocumentList } from "@recruitment.luxuryapp/employee-documents/employee-document-list";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { TabItem } from "@ui/core/tabs.base";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -58,7 +58,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     ApiDatePipe,
     CurrencyPipe,
     AppTable,
-    AppIcon,
+    LxIcon,
     EmployeeOnboardingChecklist,
     EmployeeDocumentList,
   ],

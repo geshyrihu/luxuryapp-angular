@@ -28,10 +28,10 @@
     <div class="m-0 shadow-none bg-body border-1 border-bg-body-tertiary">
       <div class="border-1 border shadow-sm rounded-xl">
         <div class="text-center fw-bold mb-2">Seleccionar Rango Diario</div>
-        <app-rango-calendario-yyyymmdd
+        <lux-rango-calendario-yyyymmdd-web
           [mostrartextHasta]="false"
           [mostrartextDesde]="false"
-        ></app-rango-calendario-yyyymmdd>
+        ></lux-rango-calendario-yyyymmdd-web>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
 @if (data !== undefined) {
 <div class="mt-3">
   <div class="border-1 border shadow-sm rounded-xl">
-    <app-chart-wrapper
+    <lux-chart-wrapper-web
       type="bar"
       [data]="lineBarChart"
       [options]="chartOption()"

@@ -10,7 +10,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 interface VacancyTimelineDialogData {
@@ -42,7 +42,7 @@ interface VacancyCandidateTimeline {
   templateUrl: "./vacancy-candidates-timeline-modal.html",
   styleUrl: "./vacancy-candidates-timeline-modal.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, LxAvatar, LxTag, AppIcon],
+  imports: [ApiDatePipe, LxAvatar, LxTag, LxIcon],
 })
 export class VacancyCandidatesTimelineModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);

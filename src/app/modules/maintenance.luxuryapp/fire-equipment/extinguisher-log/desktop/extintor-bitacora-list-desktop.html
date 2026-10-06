@@ -43,7 +43,7 @@
       <td>{{ item.date | apiDate:'dd-MMM-yy' }}</td>
       <td class="text-center">{{ item.hour }}</td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.adequatePressure ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.adequatePressure"
@@ -51,7 +51,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.safetyPinOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.safetyPinOk"
@@ -59,7 +59,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.labelsOk ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.labelsOk"
@@ -67,7 +67,7 @@
         />
       </td>
       <td class="text-center">
-        <app-icon
+        <lux-icon
           [icon]="item.noPhysicalDamage ? 'material-symbols-light:check' : 'material-symbols-light:close'"
           class="font-size-18"
           [class.text-green-600]="item.noPhysicalDamage"

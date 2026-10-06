@@ -20,7 +20,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface IProviderSupportForm {
   id: FormControl<string | null>;
@@ -38,7 +38,7 @@ interface IProviderSupportForm {
   selector: "app-provider-support-form",
   templateUrl: "./provider-support-form.html",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     InputAutocomplete,
     ButtonWeb,

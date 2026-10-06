@@ -64,21 +64,21 @@
           <div class="d-flex align-items-center">
             @if (item.medidorCategoriaId ===
             '019c6c01-bbcf-76a2-a863-43569af55a55') {
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:sunny"
               color="warning"
               class="text-2xl me-2"
             />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbde-703d-85dd-a4e88651e0d3') {
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:filter-alt"
               color="primary"
               class="text-2xl me-2"
             />
             } @if (item.medidorCategoriaId ===
             '019c6c01-bbdd-7698-9f76-db06f3c6ef0c') {
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:flash-on"
               color="success"
               class="text-2xl me-2"
@@ -96,7 +96,7 @@
             class="btn btn-rounded btn-text-primary btn-sm"
             (click)="registerReading.emit(item)"
           >
-            <app-icon
+            <lux-icon
               icon="material-symbols-light:add-circle-outline"
               slot="start"
             />

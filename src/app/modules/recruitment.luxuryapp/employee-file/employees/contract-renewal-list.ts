@@ -13,8 +13,8 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppTag } from "@ui/web/tag/tag";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -38,9 +38,9 @@ type StatusSeverity =
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    AppTag,
+    LxTag,
     LxTooltipDirective,
-    AppIcon,
+    LxIcon,
     WebButtonLabel,
     WebButtonIcon,
   ],
@@ -49,7 +49,7 @@ type StatusSeverity =
     <div class="contract-renewal-list">
       <div class="list-header">
         <h2 class="list-title">
-          <app-icon name="file-clock" class="title-icon" />
+          <lux-icon name="file-clock" class="title-icon" />
           Bandeja de Renovaciones
         </h2>
         <div class="header-actions">
@@ -66,7 +66,7 @@ type StatusSeverity =
       <!-- Alert banner if there are pending renewals -->
       @if (pendingCount() > 0) {
         <div class="alert-banner">
-          <app-icon name="alert-circle" class="alert-icon" />
+          <lux-icon name="alert-circle" class="alert-icon" />
           <span>
             <strong>{{ pendingCount() }}</strong> renovaciones pendientes de
             decisión
@@ -136,13 +136,13 @@ type StatusSeverity =
           <tr>
             <td>
               <div class="employee-cell">
-                <app-icon name="user" class="cell-icon" />
+                <lux-icon name="user" class="cell-icon" />
                 <span>{{ renewal.employeeName }}</span>
               </div>
             </td>
             <td>
               <div class="position-cell">
-                <app-icon name="briefcase" class="cell-icon" />
+                <lux-icon name="briefcase" class="cell-icon" />
                 <span>{{ renewal.positionName }}</span>
               </div>
             </td>
@@ -152,7 +152,7 @@ type StatusSeverity =
               </span>
             </td>
             <td>
-              <app-tag
+              <lux-tag
                 [value]="getStatusLabel(renewal.status)"
                 [severity]="getStatusSeverity(renewal.status)"
               />
@@ -181,7 +181,7 @@ type StatusSeverity =
           <tr>
             <td colspan="6" class="text-center py-4">
               <div class="empty-state">
-                <app-icon name="file-check" class="empty-icon" />
+                <lux-icon name="file-check" class="empty-icon" />
                 <p>No hay renovaciones registradas</p>
               </div>
             </td>

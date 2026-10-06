@@ -15,12 +15,12 @@ import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/di
 import { SolicitudModificacionSalarioForm } from "@operations.luxuryapp/recruitment-requests/salary-modification-requests/solicitud-modificacion-salario-form";
 import { SolicitudAltaForm } from "@recruitment.luxuryapp/employee-registration-requests/solicitud-alta-form";
 import { LxCard } from "@ui/adaptive/card/card";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "employee-reclutamiento",
   templateUrl: "./employee-reclutamiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxCard, AppIcon],
+  imports: [LxCard, LxIcon],
 })
 export class EmployeeReclutamiento implements OnInit {
   apiResponseS = inject(ApiResponseService);

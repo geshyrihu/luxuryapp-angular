@@ -18,7 +18,7 @@
           height="72"
         />
         } @else {
-        <app-icon icon="material-symbols-light:inventory-2" />
+        <lux-icon icon="material-symbols-light:inventory-2" />
         }
         <div class="flex-grow-1">
           <h3 class="h6 mb-1">{{ item.name }}</h3>
@@ -37,14 +37,14 @@
           class="btn btn-rounded btn-text-primary btn-sm"
           (click)="edit.emit(item)"
         >
-          <app-icon icon="material-symbols-light:edit-outline" />
+          <lux-icon icon="material-symbols-light:edit-outline" />
         </button>
         <button
           type="button"
           class="btn btn-rounded btn-text-danger btn-sm"
           (click)="delete.emit(item.id)"
         >
-          <app-icon icon="material-symbols-light:delete-outline" />
+          <lux-icon icon="material-symbols-light:delete-outline" />
         </button>
       </div>
       }

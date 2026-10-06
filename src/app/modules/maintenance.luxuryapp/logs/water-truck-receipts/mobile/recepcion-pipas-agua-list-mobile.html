@@ -11,7 +11,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon
+        <lux-icon
           [icon]="'material-symbols-light:format-list-bulleted'"
           class="me-1"
         />
@@ -22,7 +22,7 @@
         routerLinkActive="btn-primary"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:table'" class="me-1" />
+        <lux-icon [icon]="'material-symbols-light:table'" class="me-1" />
         Reporte
       </a>
       <a
@@ -30,7 +30,7 @@
         routerLinkActive="btn-primary"
         class="btn btn-outline-secondary btn-sm no-underline flex-fill justify-content-center"
       >
-        <app-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
+        <lux-icon [icon]="'material-symbols-light:bar-chart'" class="me-1" />
         Analisis
       </a>
     </div>
@@ -38,7 +38,7 @@
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
       <div start>
-        <app-icon icon="material-symbols-light:water" />
+        <lux-icon icon="material-symbols-light:water" />
       </div>
 
       <h3 class="fw-bold">{{ item.placasCamion }}</h3>

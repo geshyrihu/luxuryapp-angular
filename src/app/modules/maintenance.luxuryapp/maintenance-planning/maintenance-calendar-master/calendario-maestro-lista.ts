@@ -20,7 +20,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMenu } from "@ui/adaptive/menu/menu";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CalendarioMaestroForm } from "./calendario-maestro-form";
 import { CalendarioMaestroListaDesktop } from "./desktop/calendario-maestro-lista-desktop";
 import { DatosServicioAddOrEdit } from "./datos-servicio-form";
@@ -106,7 +106,7 @@ export class CalendarioMaestroLista implements OnInit {
             command: () => this.onDelete(item.id),
           },
           MobileListItem,
-          AppIcon,
+          LxIcon,
         ],
       },
     ]);

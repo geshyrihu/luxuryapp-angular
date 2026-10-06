@@ -7,7 +7,7 @@ import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SwalService } from "@core/services/swal.service";
 import { EmployeeOnboardingChecklistItemDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
 
@@ -22,7 +22,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     ApiDatePipe,
     LxCard,
     LxTag,
-    AppIcon,
+    LxIcon,
     AppCheckbox,
   ],
 })

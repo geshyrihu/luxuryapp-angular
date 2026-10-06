@@ -26,8 +26,8 @@ import {
 import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/employees/services/contract-renewal.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { AppTag } from "@ui/web/tag/tag";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
 
 type StatusSeverity =
   "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -44,8 +44,8 @@ interface DecisionOption {
     CommonModule,
     ReactiveFormsModule,
     WebButtonLabel,
-    AppTag,
-    AppIcon,
+    LxTag,
+    LxIcon,
     CustomInputSelectSignal,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -73,7 +73,7 @@ interface DecisionOption {
         </div>
         <div class="info-row">
           <span class="label">Estatus Actual:</span>
-          <app-tag
+          <lux-tag
             [value]="getStatusLabel(data.renewal.status)"
             [severity]="getStatusSeverity(data.renewal.status)"
           />
@@ -82,7 +82,7 @@ interface DecisionOption {
         <!-- R1: Performance Evaluation Status Banner -->
         @if (data.renewal.performanceEvaluationId) {
           <div class="performance-evaluation-banner">
-            <app-icon name="clipboard-check" class="pe-banner-icon" />
+            <lux-icon name="clipboard-check" class="pe-banner-icon" />
             <div class="pe-banner-content">
               <strong>Evaluación de Desempeño vinculada:</strong>
               <span [class.completed]="isPerformanceCompleted()">
@@ -92,7 +92,7 @@ interface DecisionOption {
           </div>
         } @else {
           <div class="performance-evaluation-banner warning">
-            <app-icon name="alert-triangle" class="pe-banner-icon warning" />
+            <lux-icon name="alert-triangle" class="pe-banner-icon warning" />
             <div class="pe-banner-content">
               <strong>Sin Evaluación de Desempeño vinculada</strong>
               <span class="warning-text">
@@ -166,7 +166,7 @@ interface DecisionOption {
         <!-- R2: Special notice for NoRenovar decision -->
         @if (form.get("decision")?.value === "NoRenovar") {
           <div class="r2-notice">
-            <app-icon name="info-circle" class="r2-icon" />
+            <lux-icon name="info-circle" class="r2-icon" />
             <span>
               <strong>Regla R2:</strong> Al seleccionar "No Renovar", se
               agregará automáticamente el comentario:

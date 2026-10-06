@@ -4,7 +4,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 interface JobDescriptionView {
   summary: string | null;
@@ -17,7 +17,7 @@ interface JobDescriptionView {
 
 @Component({
   selector: "app-vacante-job-description-modal",
-  imports: [CommonModule, AppIcon, LxTag],
+  imports: [CommonModule, LxIcon, LxTag],
   templateUrl: "./vacante-job-description-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [`

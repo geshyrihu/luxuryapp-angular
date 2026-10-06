@@ -23,13 +23,13 @@ import {
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-activos-documentos",
   templateUrl: "./activos-documentos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, AppIcon, NgbTooltipModule, WebButtonLabel],
+  imports: [ButtonWeb, LxIcon, NgbTooltipModule, WebButtonLabel],
 })
 export class ActivosDocumentos implements OnInit {
   apiResponseS = inject(ApiResponseService);
