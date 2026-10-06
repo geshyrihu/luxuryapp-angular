@@ -8,12 +8,12 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-ticket-legal-seguimiento-solicitud-detalle",
   templateUrl: "./ticket-legal-seguimiento-solicitud-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon],
+  imports: [LxIcon],
 })
 export class TicketLegalSeguimientoSolicitudDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

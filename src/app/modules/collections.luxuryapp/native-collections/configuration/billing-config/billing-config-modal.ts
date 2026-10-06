@@ -22,7 +22,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   BillingConfigResponseDTO,
   UpsertBillingConfigDTO,
@@ -36,7 +36,7 @@ import {
 @Component({
   selector: "app-billing-config-modal",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputNumberSignal,

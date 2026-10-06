@@ -31,7 +31,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { AspelCobranzaHausDebtDetailModal } from "./aspel-cobranza-haus-debt-detail-modal";
@@ -68,7 +68,7 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-busines
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    AppIcon,
+    LxIcon,
     ButtonWeb,
     LuxTableCaption,
     TableFooter,

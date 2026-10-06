@@ -13,7 +13,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppFrozenColumn,
@@ -46,7 +46,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AccountingNumberPipe,
     CommonModule,
     RouterModule,
-    AppIcon,
+    LxIcon,
     AppTable,
     AppSortableColumn,
     AppSorticon,

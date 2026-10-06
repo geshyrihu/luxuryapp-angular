@@ -18,7 +18,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import {
   PurchaseOrderInvoice,
@@ -33,7 +33,7 @@ import {
     AppTable,
     WebButtonLabel,
     LxMessage,
-    AppIcon,
+    LxIcon,
     LxTag,
     LxSkeleton,
   ],

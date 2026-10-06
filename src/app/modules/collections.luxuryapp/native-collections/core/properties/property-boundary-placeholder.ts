@@ -3,11 +3,11 @@ import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-property-boundary-placeholder",
-  imports: [LxCard, LxTag, WebButtonLabel, AppIcon],
+  imports: [LxCard, LxTag, WebButtonLabel, LxIcon],
   templateUrl: "./property-boundary-placeholder.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

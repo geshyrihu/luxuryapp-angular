@@ -14,7 +14,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import BillingConfigModal from "../../configuration/billing-config/billing-config-modal";
 import {
   CobranzaCard,
@@ -27,7 +27,7 @@ import { COBRANZA_GROUPS } from "./cobranza-nativa-groups.const";
 
 @Component({
   selector: "app-cobranza-nativa-dashboard",
-  imports: [WebButtonLabel, AppIcon, LxTag, LxCard, LxTabs, MobileListItem],
+  imports: [WebButtonLabel, LxIcon, LxTag, LxCard, LxTabs, MobileListItem],
   templateUrl: "./cobranza-nativa-wrapper.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ["./cobranza-nativa-wrapper.scss"],

@@ -17,7 +17,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { TagSeverity } from "@ui/core/tag.base";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppIcon as AppIconCatalog } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -38,7 +38,7 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
     WebButtonLabel,
     PdfViewerTrigger,
     LxTag,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

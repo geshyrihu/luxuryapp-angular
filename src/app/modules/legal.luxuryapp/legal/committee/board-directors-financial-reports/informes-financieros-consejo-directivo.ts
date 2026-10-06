@@ -9,13 +9,13 @@ import {
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
-  imports: [AppIcon],
+  imports: [LxIcon],
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })
 export class InformesFinancierosConsejoDirectivo implements OnInit {

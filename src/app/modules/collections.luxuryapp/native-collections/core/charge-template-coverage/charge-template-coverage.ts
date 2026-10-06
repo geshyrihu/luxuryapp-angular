@@ -12,7 +12,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppFrozenColumn,
@@ -24,7 +24,7 @@ import { TemplateCoverageDTO } from "../../interfaces/template-coverage.dto";
 @Component({
   selector: "app-charge-template-coverage",
   imports: [
-    AppIcon,
+    LxIcon,
     LxTag,
     AppTable,
     AppFrozenColumn,

@@ -16,7 +16,7 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { EFinancialApprovalOperationType } from "../../interfaces/enums";
 import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approval.dto";
@@ -24,7 +24,7 @@ import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approva
 @Component({
   selector: "app-approval-detail-modal",
   imports: [
-    AppIcon,
+    LxIcon,
     LxCard,
     ReactiveFormsModule,
     WebButtonLabel,

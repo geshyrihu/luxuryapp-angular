@@ -15,7 +15,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
@@ -28,7 +28,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [WebButtonLabel, CustomInputFile, LxMessage, AppIcon],
+  imports: [WebButtonLabel, CustomInputFile, LxMessage, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })

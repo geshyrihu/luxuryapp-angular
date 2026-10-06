@@ -18,7 +18,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { EPaymentMethod } from "../../interfaces/enums";
 
 interface ICreditNoteForm {
@@ -42,7 +42,7 @@ interface CreditNoteRequestDTO {
 @Component({
   selector: "app-credit-note-modal",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     CustomInputSelectSignal,
     CustomInputCurrencySignal,

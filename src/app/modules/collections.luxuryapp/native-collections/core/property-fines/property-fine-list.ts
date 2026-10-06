@@ -15,7 +15,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -38,7 +38,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-property-fine-list",
   imports: [
-    AppIcon,
+    LxIcon,
     LxTag,
     ButtonWeb,
     MobileActionMenu,

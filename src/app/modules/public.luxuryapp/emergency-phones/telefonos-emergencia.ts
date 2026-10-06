@@ -16,7 +16,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
 
@@ -25,7 +25,7 @@ import { TelefonosEmergenciaForm } from "./telefonos-emergencia-form";
   templateUrl: "./telefonos-emergencia.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     AppAvatar,
     WebButtonLabelAdd,
     ButtonWeb,

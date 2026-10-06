@@ -19,7 +19,7 @@ import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -41,7 +41,7 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
     ApiDatePipe,
     ReactiveFormsModule,
     CustomInputSelectSignal,
-    AppIcon,
+    LxIcon,
     MobileListItem,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

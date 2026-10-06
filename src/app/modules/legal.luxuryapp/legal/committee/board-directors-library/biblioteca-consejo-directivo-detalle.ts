@@ -13,12 +13,12 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",
 })

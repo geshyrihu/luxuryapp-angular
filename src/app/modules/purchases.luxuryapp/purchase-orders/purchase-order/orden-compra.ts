@@ -35,7 +35,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { OrdenCompraDatosPago } from "./forms/orden-compra-datos-pago";
 import { OrdenCompraDenegada } from "./forms/orden-compra-denegada";
 import { OrdenCompraDetalleAddProducto } from "./forms/orden-compra-detalle-add-producto";
@@ -74,7 +74,7 @@ import {
     AppSpinner,
     LxCard,
     LxMessage,
-    AppIcon,
+    LxIcon,
     LxTag,
   ],
 })

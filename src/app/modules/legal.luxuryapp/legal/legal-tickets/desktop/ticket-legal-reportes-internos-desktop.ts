@@ -8,7 +8,7 @@ import {
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -20,7 +20,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     CommonModule,
     ApiDatePipe,
     AppTable,
-    AppIcon,
+    LxIcon,
     LxEmptyState,
     LuxTableCaption,
   ],

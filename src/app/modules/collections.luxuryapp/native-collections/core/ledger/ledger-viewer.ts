@@ -21,7 +21,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -45,7 +45,7 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
     CustomInputSelectSignal,
     CustomInputDateSignal,
     MobileListItem,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./ledger-viewer.html",

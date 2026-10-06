@@ -11,7 +11,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -38,7 +38,7 @@ import { ChargeForm } from "../charges/charge-form";
     LxCard,
     LxTag,
     MobileListItem,
-    AppIcon,
+    LxIcon,
     TableEmptyMessage,
     WebButtonIcon,
     LxTooltipDirective,

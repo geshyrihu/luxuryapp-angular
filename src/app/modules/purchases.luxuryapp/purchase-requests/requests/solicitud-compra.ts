@@ -44,7 +44,7 @@ import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { firstValueFrom } from "rxjs";
 
 export interface ISolicitudCompraForm {
@@ -78,7 +78,7 @@ export interface ISolicitudCompraForm {
     WebButtonLabel,
     AppBadge,
     LxDivider,
-    AppIcon,
+    LxIcon,
     LxTag,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -19,7 +19,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -29,7 +29,7 @@ import { RegulationArticleForm } from "./regulation-article-form";
 @Component({
   selector: "app-regulation-article-list",
   imports: [
-    AppIcon,
+    LxIcon,
     LxTag,
     ButtonWeb,
     MobileActionMenu,

@@ -18,7 +18,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 export interface CobranzaMetricasResponseDTO {
   totalFacturado: number;
@@ -57,7 +57,7 @@ export interface TendenciaMensualDTO {
     WebButtonLabel,
     LxCard,
     LxProgressBar,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cobranza-dashboard.html",

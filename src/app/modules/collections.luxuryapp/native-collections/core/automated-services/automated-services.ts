@@ -15,7 +15,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 interface JobResult {
@@ -35,7 +35,7 @@ interface JobResult {
     ReactiveFormsModule,
     ApiDatePipe,
     LxCard,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./automated-services.html",

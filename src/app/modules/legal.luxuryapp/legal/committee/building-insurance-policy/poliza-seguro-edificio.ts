@@ -3,7 +3,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import {
   businessOutline,
@@ -16,7 +16,7 @@ import {
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [ApiDatePipe, PdfViewerTrigger, AppIcon],
+  imports: [ApiDatePipe, PdfViewerTrigger, LxIcon],
   templateUrl: "./poliza-seguro-edificio.html",
 })
 export class PolizaSeguroEdificio {

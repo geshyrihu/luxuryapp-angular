@@ -27,14 +27,14 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-ticket-legal-seguimiento",
   templateUrl: "./ticket-legal-seguimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    AppIcon,
+    LxIcon,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,

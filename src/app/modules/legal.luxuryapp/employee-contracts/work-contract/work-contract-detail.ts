@@ -10,7 +10,7 @@ import { CurrencyPipe } from "@angular/common";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { EmployeeWorkContractDetailDTO } from "./interfaces/work-contract.dto";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 
@@ -18,7 +18,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   selector: "app-work-contract-detail",
   templateUrl: "./work-contract-detail.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppIcon, ApiDatePipe, CurrencyPipe, PdfViewerTrigger],
+  imports: [LxIcon, ApiDatePipe, CurrencyPipe, PdfViewerTrigger],
 })
 export class WorkContractDetailComponent implements OnInit {
   apiS = inject(ApiResponseService);

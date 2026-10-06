@@ -35,7 +35,7 @@ import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -75,7 +75,7 @@ interface IPaymentForm {
     CustomInputTextAreaSignal,
     ButtonWeb,
     WebButtonLabel,
-    AppIcon,
+    LxIcon,
   ],
   providers: [DatePipe],
   changeDetection: ChangeDetectionStrategy.Eager,

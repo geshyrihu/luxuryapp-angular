@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -24,7 +24,7 @@ import {
     AppTable,
     LxAvatar,
     LxTag,
-    AppIcon,
+    LxIcon,
     ButtonWeb,
     TableEmptyMessage,
   ],

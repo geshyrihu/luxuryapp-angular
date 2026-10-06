@@ -11,7 +11,7 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { EndpointsCobranza } from "@core/constants/endpoints/cobranza.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AspelCobranzaDetalleResponse } from "../../aspel-collections-haus/aspel-cobranza-haus.models";
 import { CobranzaOnlineDashboardDepartment } from "../interfaces/cobranza-online-dashboard.model";
 
@@ -20,7 +20,7 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
   selector: "app-cobranza-online-morosidad-detail-modal",
 
   imports: [
-    AccountingNumberPipe,CommonModule, LxTag, NgClass, LxSpinner, AppIcon],
+    AccountingNumberPipe,CommonModule, LxTag, NgClass, LxSpinner, LxIcon],
   templateUrl: "./cobranza-online-morosidad-detail-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

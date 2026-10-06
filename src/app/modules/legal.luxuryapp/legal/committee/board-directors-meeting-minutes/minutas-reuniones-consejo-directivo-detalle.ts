@@ -11,11 +11,11 @@ import {
 } from "ionicons/icons";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo-detalle",
-  imports: [AppIcon, LxTag],
+  imports: [LxIcon, LxTag],
   templateUrl: "./minutas-reuniones-consejo-directivo-detalle.html",
 })
 export class MinutasReunionesConsejoDirectivoDetalle implements OnInit {

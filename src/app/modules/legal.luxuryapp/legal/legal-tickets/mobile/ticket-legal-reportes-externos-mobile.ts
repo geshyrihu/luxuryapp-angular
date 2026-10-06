@@ -9,7 +9,7 @@ import { LxEmptyState } from "@ui/adaptive/empty-state/empty-state";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-ticket-legal-reportes-externos-mobile",
@@ -18,7 +18,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     CommonModule,
     ApiDatePipe,
-    AppIcon,
+    LxIcon,
     DataViewMobile,
     LxEmptyState,
     MobileListItem,

@@ -35,7 +35,7 @@ export interface IOrdenCompraFacturaForm {
 import { LxCard } from "@ui/adaptive/card/card";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-orden-compra-factura-form",
@@ -51,7 +51,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     CustomInputSelectSignal,
     LxTooltipDirective,
     LxCard,
-    AppIcon,
+    LxIcon,
   ],
 })
 export class OrdenCompraFacturaForm implements OnInit {

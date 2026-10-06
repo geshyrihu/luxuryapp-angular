@@ -29,7 +29,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { EMemberRole } from "../../interfaces/enums";
 import {
   CreatePropertyMemberWithAccountDTO,
@@ -59,7 +59,7 @@ interface IMemberForm {
 @Component({
   selector: "app-member-form",
   imports: [
-    AppIcon,
+    LxIcon,
     ReactiveFormsModule,
     WebButtonLabel,
     CustomInputTextSignal,

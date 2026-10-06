@@ -11,10 +11,10 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-minutas-reuniones-consejo-directivo",
-  imports: [RouterModule, AppIcon],
+  imports: [RouterModule, LxIcon],
   templateUrl: "./minutas-reuniones-consejo-directivo.html",
 })
 export class MinutasReunionesConsejoDirectivo implements OnInit {

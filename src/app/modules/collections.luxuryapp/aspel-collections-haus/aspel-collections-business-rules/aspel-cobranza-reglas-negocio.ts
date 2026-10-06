@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import type { AccordionItem } from "@ui/core/accordion.base";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -9,7 +9,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   selector: "app-aspel-cobranza-reglas-negocio",
   templateUrl: "./aspel-cobranza-reglas-negocio.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, Accordion, AccordionPanel, AppTable, AppIcon],
+  imports: [CommonModule, Accordion, AccordionPanel, AppTable, LxIcon],
 })
 export class AspelCobranzaReglasNegocioComponent {
   readonly items: AccordionItem[] = [

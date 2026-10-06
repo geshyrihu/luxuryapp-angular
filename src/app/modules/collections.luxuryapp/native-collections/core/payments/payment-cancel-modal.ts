@@ -7,7 +7,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-payment-cancel-modal",
@@ -16,7 +16,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     WebButtonLabel,
     ButtonWeb,
     CustomInputTextAreaSignal,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
