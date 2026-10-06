@@ -52,20 +52,19 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            iconName="book-outline"
+          <lux-button-mobile
+            kind="item"
             label="Ver detalles"
-            (clicked)="viewDetail.emit({ id: item.id })"
+            icon="material-symbols-light:menu-book"
             [disabled]="!item.description || item.description.length === 0"
-            []="true"
+            (clicked)="viewDetail.emit({ id: item.id })"
           />
-          <ili-button-item
-            iconName="ellipsis-horizontal-outline"
+          <lux-button-mobile
+            kind="item"
             label="Seguimiento"
+            icon="material-symbols-light:more-horiz"
             (clicked)="seguimientoCliente.emit({ ticketId: item.id, title: 'Seguimiento' })"
-          >
-            <lux-badge [value]="item.tracking" color="danger" />
-          </ili-button-item>
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

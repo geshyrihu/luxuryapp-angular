@@ -13,6 +13,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { AsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/asunto-legal-form";
 import { CategoriaAsuntoLegalForm } from "@legal.luxuryapp/legal/legal-matter/categoria-asunto-legal-form";
 import { addIcons } from "ionicons";
@@ -30,6 +31,7 @@ export class AsuntoLegalLista {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   ref: DynamicDialogRef; // Referencia a un cuadro de diálogo modal
   // Declaración e inicialización de variables
   dataSignal = signal<any[]>([]);
@@ -56,7 +58,11 @@ export class AsuntoLegalLista {
   }
 
   // Funcion para eliminar un banco y refres
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este asunto legal?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.LegalMatters.delete(id))
       .then((result: boolean) => {
@@ -87,7 +93,11 @@ export class AsuntoLegalLista {
         if (result) this.onLoadData();
       });
   }
-  onDeleteCategorie(id: string) {
+  async onDeleteCategorie(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta categoría?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.LegalMatters.deleteCategory(id))
       .then(() => {

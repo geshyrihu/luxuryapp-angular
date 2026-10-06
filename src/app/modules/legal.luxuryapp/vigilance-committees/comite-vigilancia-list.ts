@@ -17,6 +17,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ComiteVigilanciaForm } from "./comite-vigilancia-form";
 import { ComiteVigilanciaListDesktop } from "./desktop/comite-vigilancia-list-desktop";
 import { ComiteVigilanciaListMobile } from "./mobile/comite-vigilancia-list-mobile";
@@ -31,6 +33,8 @@ export class ComiteVigilanciaList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
+  swalS = inject(SwalService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dataSignal = signal<ComiteVigilancia[]>([]);
@@ -61,7 +65,16 @@ export class ComiteVigilanciaList {
       });
   }
 
-  onSendCredential(id: string) {
+  async onSendCredential(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Enviar usuario y contrasena de acceso.",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onPost(Endpoints.CommitteeVigilance.sendCredentials(id))
       .then((result: boolean) => {
@@ -69,7 +82,11 @@ export class ComiteVigilanciaList {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este miembro del comité?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.CommitteeVigilance.delete(id))
       .then((result: boolean) => {

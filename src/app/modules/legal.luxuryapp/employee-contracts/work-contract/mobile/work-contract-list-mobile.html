@@ -31,16 +31,16 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             label="Ver"
-            iconName="eye-outline"
+            icon="material-symbols-light:visibility-outline"
             (clicked)="viewDetail.emit(item)"
           />
           @if (item.status === 'Borrador' || item.status === 'Activo' ||
           item.status === 'PendienteFirma') {
-          <ili-button-item
-            label="Editar"
-            iconName="create-outline"
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit(item)"
           />
           }

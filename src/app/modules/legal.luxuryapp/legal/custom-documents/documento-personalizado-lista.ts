@@ -21,6 +21,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { DocumentoPersonalizadoForm } from "./documento-personalizado-form";
 import { DocumentoPersonalizadoListaDesktop } from "./desktop/documento-personalizado-lista-desktop";
@@ -42,6 +43,7 @@ export class DocumentoPersonalizadoLista implements OnInit {
   route = inject(ActivatedRoute);
   tableScrollHeightS = inject(TableScrollHeightService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -96,7 +98,11 @@ export class DocumentoPersonalizadoLista implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este documento?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.CustomDocuments.delete(id))
       .then((result: boolean) => {

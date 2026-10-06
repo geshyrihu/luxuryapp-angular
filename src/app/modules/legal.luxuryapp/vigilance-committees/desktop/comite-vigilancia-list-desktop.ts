@@ -5,9 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -30,8 +28,6 @@ export interface ComiteVigilanciaFormData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
-    WebButtonIconSendEmail,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,

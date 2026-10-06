@@ -68,17 +68,27 @@
             [ariaLabel]="'Editar comité ' + item.nameProperty"
             (clicked)="edit.emit({ id: item.id, title: 'Editar', nameProperty: item.nameProperty })"
           />
-          <iw-button-delete
-            [attr.aria-label]="'Eliminar comité ' + item.nameProperty"
-            (confirmed)="delete.emit(item.id)"
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            [tooltip]="'Eliminar comité ' + item.nameProperty"
+            [ariaLabel]="'Eliminar comité ' + item.nameProperty"
+            (clicked)="delete.emit(item.id)"
           />
 
-          <iw-button-send-email
+          <lux-button-web
+            kind="send-email"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
             size="sm"
-            class="btn--circle"
-            [attr.aria-label]="'Enviar credenciales a ' + item.nameProperty"
-            confirmMessage="Enviar usuario y contrasena de acceso."
-            (confirmed)="sendCredential.emit(item.id)"
+            styleClass="btn--circle"
+            [tooltip]="'Enviar credenciales a ' + item.nameProperty"
+            [ariaLabel]="'Enviar credenciales a ' + item.nameProperty"
+            (clicked)="sendCredential.emit(item.id)"
           />
         </div>
       </td>

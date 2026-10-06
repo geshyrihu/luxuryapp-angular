@@ -68,17 +68,16 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            iconName="document-text-outline"
-            (clicked)="viewAll.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             label="Ver todos los seguimientos"
-            iconName="list-outline"
-            []="true"
+            icon="material-symbols-light:format-list-bulleted"
+            (clicked)="viewAll.emit(item.id)"
           />
-          <ili-button-add
+          <lux-button-mobile
+            kind="add"
             label="Agregar Seguimiento"
             (clicked)="addTracking.emit(item.id)"
-            []="true"
           />
           <lux-button-mobile
             kind="edit"

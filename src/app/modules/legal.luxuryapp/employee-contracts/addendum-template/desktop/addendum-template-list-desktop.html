@@ -39,7 +39,11 @@
         }
       </td>
       <td class="text-center">
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           [icon]="item.isActive ? 'material-symbols-light:toggle-on' : 'material-symbols-light:toggle-off'"
           (clicked)="toggleActive.emit(item)"
         />
@@ -53,7 +57,16 @@
           ariaLabel="Editar"
           (clicked)="edit.emit(item)"
         />
-        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        <lux-button-web
+          kind="delete"
+          displayMode="icon"
+          severity="danger"
+          variant="soft"
+          size="sm"
+          tooltip="Eliminar"
+          ariaLabel="Eliminar"
+          (clicked)="delete.emit(item.id)"
+        />
       </td>
     </tr>
   </ng-template>

@@ -58,7 +58,16 @@
             ariaLabel="Editar"
             (clicked)="categoryForm.emit({ id: category.id, title: 'Editar' })"
           />
-          <iw-button-delete (confirmed)="categoryDelete.emit(category.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="categoryDelete.emit(category.id)"
+          />
         </div>
       </td>
     </tr>
@@ -82,10 +91,11 @@
               variant="soft"
               (clicked)="edit.emit({ id: legalMatter.id, title: 'Editar' })"
             />
-            <il-button-delete
-              (confirmed)="delete.emit(legalMatter.id)"
-              label="Eliminar"
-              []="true"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="delete.emit(legalMatter.id)"
             />
           </ng-container>
         </app-action-menu>

@@ -39,24 +39,24 @@
 
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-item
+          <lux-button-mobile
             *ngIf="canChangeCustomer()"
-            iconName="sync-outline"
+            kind="item"
             label="Corregir Cliente"
+            icon="material-symbols-light:sync"
             (clicked)="reasignarCliente.emit(item)"
-            []="true"
           />
-          <ili-button-item
-            iconName="clipboard-outline"
+          <lux-button-mobile
+            kind="item"
             label="Seguimiento"
+            icon="material-symbols-light:article"
             (clicked)="seguimiento.emit({ ticketId: item.id, title: 'Seguimiento' })"
-            []="true"
           />
-          <ili-button-item
-            iconName="refresh-outline"
+          <lux-button-mobile
+            kind="item"
             label="Status"
+            icon="material-symbols-light:refresh"
             (clicked)="updateStatus.emit({ id: item.id })"
-            []="true"
           />
         </ng-container>
       </ili-action-menu>

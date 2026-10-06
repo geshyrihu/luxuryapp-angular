@@ -5,9 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -20,12 +18,10 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     NgbTooltipModule,
     WebButtonLabel,
-    WebButtonLabelDelete,
     ActionMenu,
     LuxTableCaption,
   ],

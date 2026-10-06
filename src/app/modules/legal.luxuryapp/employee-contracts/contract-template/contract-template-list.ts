@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ContractTemplateFormComponent } from "./contract-template-form";
 import { ContractTemplateListDesktop } from "./desktop/contract-template-list-desktop";
 import { ContractTemplateListDTO } from "./interfaces/contract-template.dto";
@@ -26,6 +27,7 @@ export class ContractTemplateList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   items = signal<ContractTemplateListDTO[]>([]);
   globalFilter = signal<string>("");
@@ -73,7 +75,11 @@ export class ContractTemplateList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este machote de contrato?",
+    );
+    if (!ok) return;
     this.apiS
       .onDelete(Endpoints.HR.ContractTemplate.delete(id))
       .then(() => this.onLoadData());

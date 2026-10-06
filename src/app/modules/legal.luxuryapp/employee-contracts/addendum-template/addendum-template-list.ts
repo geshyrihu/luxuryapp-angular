@@ -10,6 +10,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { AddendumTemplateFormComponent } from "./addendum-template-form";
 import { AddendumTemplateListDesktop } from "./desktop/addendum-template-list-desktop";
 import { AddendumTemplateListDTO } from "./interfaces/addendum-template.dto";
@@ -25,6 +26,7 @@ export class AddendumTemplateList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   items = signal<AddendumTemplateListDTO[]>([]);
   globalFilter = signal<string>("");
@@ -72,7 +74,11 @@ export class AddendumTemplateList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este machote de adenda?",
+    );
+    if (!ok) return;
     this.apiS
       .onDelete(Endpoints.HR.AddendumTemplate.delete(id))
       .then(() => this.onLoadData());

@@ -11,6 +11,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ContractAddendumFormComponent } from "./contract-addendum-form";
 import { ContractAddendumListDesktop } from "./desktop/contract-addendum-list-desktop";
 import { ContractAddendumListDTO } from "./interfaces/contract-addendum.dto";
@@ -26,6 +27,7 @@ export class ContractAddendumList implements OnInit {
   apiS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   private route = inject(ActivatedRoute);
   employeeId = signal<string | null>(null);
 
@@ -86,7 +88,11 @@ export class ContractAddendumList implements OnInit {
       .then(() => this.onLoadData());
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta adenda de contrato?",
+    );
+    if (!ok) return;
     this.apiS
       .onDelete(Endpoints.HR.ContractAddendum.delete(id))
       .then(() => this.onLoadData());

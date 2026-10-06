@@ -92,17 +92,20 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <il-button-item
-              iconClass="material-symbols-light:picture-as-pdf"
-              (clicked)="viewAll.emit(item.id)"
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
+              icon="material-symbols-light:format-list-bulleted"
               label="Ver todos los seguimientos"
-              iconClass="material-symbols-light:format-list-bulleted"
-              []="true"
+              (clicked)="viewAll.emit(item.id)"
             />
-            <il-button-add
-              (clicked)="addTracking.emit(item.id)"
+            <lux-button-web
+              kind="add"
+              severity="info"
+              variant="soft"
               label="Agregar Seguimiento"
-              []="true"
+              (clicked)="addTracking.emit(item.id)"
             />
             <lux-button-web
               kind="edit"

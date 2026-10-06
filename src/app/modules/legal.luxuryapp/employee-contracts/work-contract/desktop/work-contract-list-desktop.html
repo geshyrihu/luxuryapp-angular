@@ -53,8 +53,14 @@
         >
       </td>
       <td class="text-center">
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           icon="material-symbols-light:visibility-outline"
+          tooltip="Ver detalle"
+          ariaLabel="Ver detalle"
           (clicked)="viewDetail.emit(item)"
         />
         @if (item.status === 'Borrador' || item.status === 'Activo' ||
@@ -73,12 +79,26 @@
         <lux-pdf-viewer-trigger [url]="item.pdfUrl" fileName="Contrato" displayMode="icon" />
         } @if (item.status === 'Borrador' || item.status === 'Activo' ||
         item.status === 'PendienteFirma') {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           icon="material-symbols-light:cancel"
-          lxTooltip="Terminar"
+          tooltip="Terminar"
+          ariaLabel="Terminar"
           (clicked)="terminate.emit(item)"
         />
-        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        <lux-button-web
+          kind="delete"
+          displayMode="icon"
+          severity="danger"
+          variant="soft"
+          size="sm"
+          tooltip="Eliminar"
+          ariaLabel="Eliminar"
+          (clicked)="delete.emit(item.id)"
+        />
         }
       </td>
     </tr>

@@ -29,14 +29,14 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            label="Editar"
-            iconName="create-outline"
+          <lux-button-mobile
+            kind="edit"
             (clicked)="edit.emit(item)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             [label]="item.isActive ? 'Desactivar' : 'Activar'"
-            iconName="toggle-outline"
+            [icon]="item.isActive ? 'material-symbols-light:toggle-on' : 'material-symbols-light:toggle-off'"
             (clicked)="toggleActive.emit(item)"
           />
         </ng-container>

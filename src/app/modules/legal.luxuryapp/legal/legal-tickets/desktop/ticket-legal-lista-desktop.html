@@ -17,12 +17,15 @@
         (add)="add.emit({ id: '', title: 'AGREGAR TICKET LEGAL' })"
         [dt]="dt"
       />
-      <iw-button-download
-        lxTooltip="Excel"
-        tooltipPosition="top"
+      <lux-button-web
+        kind="download"
+        displayMode="icon"
+        severity="secondary"
+        variant="soft"
+        size="sm"
+        tooltip="Descargar Excel para PowerPoint"
+        ariaLabel="Descargar Excel para PowerPoint"
         (clicked)="exportExcel.emit()"
-        lxTooltip="Descargar Excel para PowerPoint"
-        tooltipPosition="bottom"
       />
       <div class="d-flex align-items-center gap-3 mb-3">
         <label class="fw-semibold text-sm text-body-secondary text-nowrap"

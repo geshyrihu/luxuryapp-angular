@@ -82,25 +82,34 @@
 
         <td>
           <div class="d-flex align-items-center justify-content-center gap-1">
-            <iw-button-item
-              iconClass="material-symbols-light:folder-open"
-              lxTooltip="Ver Expediente"
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              icon="material-symbols-light:folder-open"
+              tooltip="Ver Expediente"
               ariaLabel="Ver Expediente"
-              tooltipPosition="top"
               (clicked)="onViewFile(item)"
             />
-            <iw-button-item
-              iconClass="material-symbols-light:gavel"
-              lxTooltip="Gestionar Contrato"
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              icon="material-symbols-light:gavel"
+              tooltip="Gestionar Contrato"
               ariaLabel="Gestionar Contrato"
-              tooltipPosition="top"
               (clicked)="onManageContract(item)"
             />
-            <iw-button-item
-              iconClass="material-symbols-light:description"
-              lxTooltip="Administrar Adéndums"
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              icon="material-symbols-light:description"
+              tooltip="Administrar Adéndums"
               ariaLabel="Administrar Adéndums"
-              tooltipPosition="top"
               (clicked)="onManageAddendums(item)"
             />
           </div>

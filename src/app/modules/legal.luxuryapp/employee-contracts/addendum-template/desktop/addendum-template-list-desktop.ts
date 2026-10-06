@@ -8,9 +8,7 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -22,9 +20,7 @@ import { AddendumTemplateListDTO } from "../interfaces/addendum-template.dto";
   templateUrl: "./addendum-template-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconItem,
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,

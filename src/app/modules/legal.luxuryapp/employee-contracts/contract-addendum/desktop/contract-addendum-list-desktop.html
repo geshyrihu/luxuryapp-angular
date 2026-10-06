@@ -48,9 +48,14 @@
       <td class="text-center">
         @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
         'Pendiente') {
-        <iw-button-item
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           icon="material-symbols-light:login"
-          title="Firmar"
+          tooltip="Firmar"
+          ariaLabel="Firmar"
           (clicked)="sign.emit(item)"
         />
         <lux-button-web
@@ -65,14 +70,27 @@
         />
         } @if (item.addendumStatus === 'Borrador' || item.addendumStatus ===
         'Pendiente') {
-        <iw-button-item
-          icon="material-symbols-light:cancel"
-          title="Cancelar"
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
           severity="danger"
+          variant="soft"
+          icon="material-symbols-light:cancel"
+          tooltip="Cancelar"
+          ariaLabel="Cancelar"
           (clicked)="cancel.emit(item)"
         />
         }
-        <iw-button-delete (confirmed)="delete.emit(item.id)" />
+        <lux-button-web
+          kind="delete"
+          displayMode="icon"
+          severity="danger"
+          variant="soft"
+          size="sm"
+          tooltip="Eliminar"
+          ariaLabel="Eliminar"
+          (clicked)="delete.emit(item.id)"
+        />
       </td>
     </tr>
   </ng-template>

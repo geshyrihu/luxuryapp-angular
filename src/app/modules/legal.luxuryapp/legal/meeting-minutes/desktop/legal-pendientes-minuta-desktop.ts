@@ -10,9 +10,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelItem } from "@ui/buttons/web-label";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -31,7 +29,6 @@ import {
     CommonModule,
     TableEmptyMessage,
     ButtonWeb,
-    WebButtonLabelAdd,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -40,7 +37,6 @@ import {
     TableFooter,
     ActionMenu,
     SanitizeHtmlPipe,
-    WebButtonLabelItem,
   ],
 })
 export class LegalPendientesMinutaDesktop {

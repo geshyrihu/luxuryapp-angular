@@ -31,8 +31,10 @@
               kind="edit"
               (clicked)="categoryForm.emit({ id: category.id, title: 'Editar' })"
             />
-            <ili-button-delete
-              (confirmed)="categoryDelete.emit(category.id)"
+            <lux-button-mobile
+              kind="delete"
+              color="danger"
+              (clicked)="categoryDelete.emit(category.id)"
             />
           </div>
         </div>
@@ -51,10 +53,11 @@
               kind="edit"
               (clicked)="edit.emit({ id: legalMatter.id, title: 'Editar' })"
             />
-            <ili-button-delete
-              (confirmed)="delete.emit(legalMatter.id)"
+            <lux-button-mobile
+              kind="delete"
+              color="danger"
               label="Eliminar"
-              []="true"
+              (clicked)="delete.emit(legalMatter.id)"
             />
           </ng-container>
         </ili-action-menu>

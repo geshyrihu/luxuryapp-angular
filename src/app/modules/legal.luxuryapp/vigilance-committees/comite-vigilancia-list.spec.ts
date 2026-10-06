@@ -7,11 +7,16 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ComiteVigilanciaList } from "./comite-vigilancia-list";
 
 describe("ComiteVigilanciaList", () => {
   let component: ComiteVigilanciaList;
   let fixture: ComponentFixture<ComiteVigilanciaList>;
+
+  const confirmStub = { confirm: vi.fn().mockResolvedValue(true) };
+  const swalStub = { confirm: vi.fn().mockResolvedValue(true) };
 
   const apiResponseStub = {
     onGetList: vi.fn().mockResolvedValue([
@@ -48,6 +53,8 @@ describe("ComiteVigilanciaList", () => {
         { provide: DialogHandlerService, useValue: dialogHandlerStub },
         { provide: AuthService, useValue: {} },
         { provide: CustomerIdService, useValue: { customerId: vi.fn(() => "customer-1") } },
+        { provide: ConfirmService, useValue: confirmStub },
+        { provide: SwalService, useValue: swalStub },
       ],
     });
     TestBed.overrideComponent(ComiteVigilanciaList, { set: { template: '<div></div>', imports: [] } });
@@ -101,6 +108,39 @@ describe("ComiteVigilanciaList", () => {
     expect(component.dataSignal()).toEqual([
       expect.objectContaining({ id: "committee-2" }),
     ]);
+  });
+
+  it("should not delete when confirmation is cancelled", async () => {
+    confirmStub.confirm.mockResolvedValueOnce(false);
+    component.dataSignal.set([
+      {
+        id: "committee-1",
+        customerId: "customer-1",
+        propertyMemberId: "member-1",
+        nameProperty: "Juan Perez",
+        departamento: "Torre 1 - 101",
+        celular: "5555555555",
+        email: "juan@example.com",
+        posicionComite: "Presidente",
+      },
+    ]);
+
+    await component.onDelete("committee-1");
+
+    expect(apiResponseStub.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal()).toHaveLength(1);
+  });
+
+  it("should not send credentials when confirmation is cancelled", async () => {
+    swalStub.confirm.mockResolvedValueOnce(false);
+    const onLoadDataSpy = vi
+      .spyOn(component, "onLoadData")
+      .mockImplementation(() => undefined);
+
+    await component.onSendCredential("committee-1");
+
+    expect(apiResponseStub.onPost).not.toHaveBeenCalled();
+    expect(onLoadDataSpy).not.toHaveBeenCalled();
   });
 
   it("should reload data after sending credentials", async () => {

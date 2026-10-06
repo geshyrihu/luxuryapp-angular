@@ -13,7 +13,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -32,7 +31,6 @@ import {
   imports: [
     CommonModule,
     CustomInputSelectSignal,
-    WebButtonIconDownload,
     TableEmptyMessage,
     FormsModule,
     AppTable,
