@@ -109,9 +109,13 @@
       </td>
       <td class="no-print">
         <div class="d-flex gap-1">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Ocupantes"
             iconClass="material-symbols-light:group"
-            lxTooltip="Ocupantes"
             tooltipPosition="top"
             (clicked)="showOccupants.emit(item)"
           />

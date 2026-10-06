@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { PropertyOccupantManager } from "./property-occupant-manager";
 
@@ -11,6 +12,7 @@ describe("PropertyOccupantManager", () => {
   let mockApiResponseS: any;
   let mockConfig: any;
   let mockRef: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockApiResponseS = {
@@ -23,6 +25,7 @@ describe("PropertyOccupantManager", () => {
       data: { propertyId: "prop-1", propertyName: "Test Property" },
     };
     mockRef = { close: vi.fn() };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(PropertyOccupantManager, {
@@ -34,6 +37,7 @@ describe("PropertyOccupantManager", () => {
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DynamicDialogConfig, useValue: mockConfig },
         { provide: DynamicDialogRef, useValue: mockRef },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });

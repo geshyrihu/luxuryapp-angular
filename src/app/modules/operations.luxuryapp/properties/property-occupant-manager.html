@@ -119,7 +119,16 @@
             ariaLabel="Editar"
             (clicked)="onEditOccupant(occupant)"
           />
-          <iw-button-delete (confirmed)="onDeleteOccupant(occupant.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="onDeleteOccupant(occupant.id)"
+          />
         </div>
       </td>
     </tr>

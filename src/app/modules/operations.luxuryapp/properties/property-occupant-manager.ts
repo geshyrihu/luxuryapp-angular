@@ -20,7 +20,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -40,7 +40,6 @@ import {
     AppSortableColumn,
     AppSorticon,
     WebButtonLabel,
-    WebButtonIconDelete,
     CustomInputTextSignal,
     CustomInputCheckSignal,
     LxTag,
@@ -53,6 +52,7 @@ export class PropertyOccupantManager implements OnInit {
   apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
   private ref = inject(DynamicDialogRef);
+  private confirmS = inject(ConfirmService);
 
   loading = signal(false);
   occupants = signal<PropertyOccupant[]>([]);
@@ -180,7 +180,11 @@ export class PropertyOccupantManager implements OnInit {
     });
   }
 
-  onDeleteOccupant(id: string): void {
+  async onDeleteOccupant(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este ocupante?",
+    );
+    if (!confirmed) return;
     this.loading.set(true);
     this.errorMensaje = null;
 
