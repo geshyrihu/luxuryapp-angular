@@ -19,6 +19,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { EntregaRecepcionClienteForm } from "src/app/modules/operations.luxuryapp/delivery-receptions/delivery-reception/entrega-recepcion-cliente-form";
 import { EntregaRecepcionClienteListaDesktop } from "./desktop/entrega-recepcion-cliente-desktop";
 import { EntregaRecepcionClienteListaMobile } from "./mobile/entrega-recepcion-cliente-mobile";
@@ -39,6 +40,7 @@ export class EntregaRecepcionClienteLista {
   public aspRoleS = inject(AspRoleService);
   public AspRole = ApplicationRole;
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   data = signal<any[]>([]);
   loading = signal(true);
   // óMEJORA! El departamento ahora es un signal.
@@ -145,7 +147,11 @@ export class EntregaRecepcionClienteLista {
       });
   }
 
-  onDeleteFile(id: any) {
+  async onDeleteFile(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este archivo?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.EntregaRecepcionCliente.deleteFile(id))
       .then(() => {

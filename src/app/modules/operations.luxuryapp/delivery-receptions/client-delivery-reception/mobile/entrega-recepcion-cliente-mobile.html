@@ -9,7 +9,8 @@
     @if (showDepartmentFilter()) {
     <div class="d-flex flex-wrap gap-1 p-2">
       @for (item of departamentos(); track item) {
-      <ili-button-item
+      <lux-button-mobile
+        kind="item"
         [iconClass]="item.value == selectedDepartamento() ? 'material-symbols-light:check' : ''"
         [label]="item.value"
         (clicked)="departamentoChange.emit(item.value)"
@@ -33,21 +34,25 @@
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
           @if (item.archivo && item.superviso === '') {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:check"
             label="Validar"
             (clicked)="validar.emit(item.id)"
           />
           } @if (item.archivo && item.superviso !== '') {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:arrow-back"
             label="Revocar"
             (clicked)="invalidar.emit(item.id)"
           />
           } @if (item.archivo !== '') {
-          <ili-button-delete
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
             label="Eliminar archivo"
-            (confirmed)="deleteFile.emit(item.id)"
+            (clicked)="deleteFile.emit(item.id)"
           />
           }
         </ng-container>

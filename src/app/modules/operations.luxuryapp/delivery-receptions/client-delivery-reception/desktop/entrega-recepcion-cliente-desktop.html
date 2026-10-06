@@ -100,21 +100,30 @@
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
             @if (item.archivo && item.superviso === "") {
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:check"
               label="Validar"
               (clicked)="validar.emit(item.id)"
             />
             } @if (item.archivo && item.superviso !== "") {
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:arrow-back"
               label="Revocar"
               (clicked)="invalidar.emit(item.id)"
             />
             } @if (item.archivo !== "") {
-            <il-button-delete
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
               label="Eliminar archivo"
-              (confirmed)="deleteFile.emit(item.id)"
+              (clicked)="deleteFile.emit(item.id)"
             />
             }
           </ng-container>
