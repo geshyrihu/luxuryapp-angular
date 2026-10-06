@@ -11,7 +11,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -36,7 +35,6 @@ import { CustomerDto } from "../interfaces/customer.dto";
     AppSorticon,
     LxAvatar,
     NgbTooltipModule,
-    WebButtonIconActiveDesactive,
     LuxTableCaption,
     TableFooter,
   ],

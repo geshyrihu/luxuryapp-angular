@@ -21,9 +21,13 @@
         [noMargin]="true"
       />
       <div class="flex-shrink-0">
-        <iw-button-active-desactive
-          [state]="state()"
-          (stateChange)="sortChange.emit($event)"
+        <lux-button-web
+          kind="active-desactive"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+          (clicked)="sortChange.emit(!state())"
         />
       </div>
     </div>

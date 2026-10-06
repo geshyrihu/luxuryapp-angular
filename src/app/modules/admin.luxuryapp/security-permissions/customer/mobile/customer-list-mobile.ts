@@ -5,8 +5,8 @@ import {
   output,
 } from "@angular/core";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
 import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -19,7 +19,7 @@ import { CustomerDto } from "../interfaces/customer.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonMobile,
-    WebButtonIconActiveDesactive,
+    ButtonWeb,
     MobileActionMenu,
     MobileListItem,
     AppIcon,

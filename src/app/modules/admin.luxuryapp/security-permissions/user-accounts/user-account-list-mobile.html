@@ -40,10 +40,11 @@
             [filter]="true"
             (selectionChange)="typePersonChange.emit($event.value)"
           />
-          <ili-button-active-desactive
-            fluid
-            [state]="active()"
-            (stateChange)="activeChange.emit($event)"
+          <lux-button-mobile
+            kind="active-desactive"
+            icon="material-symbols-light:lock-open-outline"
+            [label]="active() ? 'Inactivos' : 'Activos'"
+            (clicked)="activeChange.emit(!active())"
           />
         </div>
       </div>

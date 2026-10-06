@@ -18,8 +18,6 @@ import {
   IonAccordionGroup,
   IonIcon,
 } from "@ionic/angular";
-import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -43,7 +41,6 @@ import { UserAccountDto } from "./interfaces/user-account.dto";
     IonAccordionGroup,
     IonIcon,
     MobileActionMenu,
-    MobileButtonLabelActiveDesactive,
     ReactiveFormsModule,
   ],
   styles: [

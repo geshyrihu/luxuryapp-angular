@@ -5,7 +5,7 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
+import { ButtonWeb } from "@ui/buttons/web";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -17,7 +17,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [
     MobileListItem,
     LxTag,
-    WebButtonIconActiveDesactive,
+    ButtonWeb,
     DataViewMobile,
     AppIcon,
   ],

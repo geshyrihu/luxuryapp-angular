@@ -10,7 +10,6 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 
-import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
 import { firstValueFrom } from "rxjs";
 import {
   AppSortableColumn,
@@ -55,7 +54,6 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     AppSortableColumn,
     AppSorticon,
     LxAvatar,
-    WebButtonLabelActiveDesactive,
     LuxTableCaption,
     TableFooter,
     CustomInputSelectSignal,

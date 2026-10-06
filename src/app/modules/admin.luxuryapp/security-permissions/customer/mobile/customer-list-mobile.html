@@ -6,10 +6,14 @@
   <div customFilters>
     <div class="mb-3 d-flex mt-1 mb-1">
       <div class="m-0">
-        <iw-button-active-desactive
+        <lux-button-web
+          kind="active-desactive"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           fluid
-          [state]="state()"
-          (stateChange)="sortChange.emit($event)"
+          [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+          (clicked)="sortChange.emit(!state())"
         />
       </div>
     </div>

@@ -8,10 +8,14 @@
       <h5 class="m-0 mb-3 text-secondary text-xs text-uppercase tracking-wider">
         Filtrar por Estado
       </h5>
-      <iw-button-active-desactive
+      <lux-button-web
+        kind="active-desactive"
+        displayMode="icon"
+        severity="secondary"
+        variant="soft"
         fluid
-        [state]="state()"
-        (stateChange)="selectActive.emit($event)"
+        [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+        (clicked)="selectActive.emit(!state())"
       />
     </div>
   </div>

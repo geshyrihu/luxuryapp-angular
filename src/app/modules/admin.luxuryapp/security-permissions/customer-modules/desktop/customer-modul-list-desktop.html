@@ -31,9 +31,13 @@
           class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
         >
           <div>
-            <iw-button-active-desactive
-              [state]="state()"
-              (stateChange)="selectActive.emit($event)"
+            <lux-button-web
+              kind="active-desactive"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              [icon]="state() ? 'material-symbols-light:lock' : 'material-symbols-light:lock-open'"
+              (clicked)="selectActive.emit(!state())"
             />
           </div>
         </div>

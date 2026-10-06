@@ -76,9 +76,13 @@
             />
           </div>
           <div>
-            <il-button-active-desactive
-              [state]="applicationUserState"
-              (stateChange)="onSelectActive($event)"
+            <lux-button-web
+              kind="active-desactive"
+              severity="secondary"
+              variant="outline"
+              icon="material-symbols-light:lock-open-outline"
+              [label]="applicationUserState ? 'Inactivos' : 'Activos'"
+              (clicked)="onSelectActive(!applicationUserState)"
             />
           </div>
         </div>
