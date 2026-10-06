@@ -120,7 +120,7 @@
           >
             <div class="d-flex align-items-center gap-3 flex-fill">
               @if (isPdf(item)) {
-              <lux-button-web displayMode="icon"-view-pdf
+              <lux-pdf-viewer-trigger displayMode="icon"
                 [url]="item.path"
                 [fileName]="item.fileName"
               />

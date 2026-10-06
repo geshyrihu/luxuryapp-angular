@@ -9,6 +9,7 @@ import {
 import { FormsModule } from "@angular/forms";
 
 import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -20,6 +21,7 @@ import { TaskChecklistItemInterface } from "@core/interfaces/tasks/task-checklis
   templateUrl: "./task-checklist-panel.html",
   imports: [
     ButtonWeb,
+    PdfViewerTrigger,
     FormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
