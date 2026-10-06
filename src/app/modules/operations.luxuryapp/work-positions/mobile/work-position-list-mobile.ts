@@ -5,20 +5,20 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { IWorkPosition } from "../interfaces/work-position.model";
+import { ButtonMobile } from "@ui/buttons/mobile";
 
 @Component({
   selector: "app-work-position-list-mobile",
   templateUrl: "./work-position-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonMobile,
     MobileActionMenu,
-    MobileButtonLabelItem,
     DataViewMobile,
     LxTag,
     MobileListItem,

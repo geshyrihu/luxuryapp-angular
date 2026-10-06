@@ -37,19 +37,22 @@
       </div>
       <div end>
         <ili-action-menu>
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:tune"
             label="Ajustes Generales"
             (clicked)="details.emit(item)"
           />
           @if (!isVacant(item)) {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:person"
             label="Ver colaborador"
             (clicked)="cardEmployee.emit(item.applicationUserId!)"
           />
           @if (item.employeeId) {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:manage-accounts"
             label="Administrar empleado"
             (clicked)="
@@ -60,10 +63,10 @@
             "
           />
           } }
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:delete-outline"
             label="Eliminar"
-            severity="danger"
             (clicked)="requestDelete.emit(item)"
           />
         </ili-action-menu>

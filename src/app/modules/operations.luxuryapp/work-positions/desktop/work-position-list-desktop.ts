@@ -7,7 +7,6 @@ import {
 import { Department } from "@core/enums/department.enum";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   SegmentItem,
@@ -22,6 +21,7 @@ import {
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IWorkPosition } from "../interfaces/work-position.model";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-work-position-list-desktop",
@@ -29,7 +29,7 @@ import { IWorkPosition } from "../interfaces/work-position.model";
   styleUrl: "../work-position-list.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

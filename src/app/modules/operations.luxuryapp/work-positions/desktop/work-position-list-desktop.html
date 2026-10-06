@@ -126,10 +126,14 @@
       <!-- ACCIONES -->
       <td>
         <div class="d-flex align-items-center justify-content-center gap-1">
-          <iw-button-item
-            iconClass="material-symbols-light:tune"
-            lxTooltip="Ajustes Generales"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Ajustes Generales"
             ariaLabel="Ajustes Generales"
+            iconClass="material-symbols-light:tune"
             tooltipPosition="top"
             (clicked)="details.emit(item)"
           />
@@ -161,18 +165,22 @@
             >{{ item.applicationUser }}</span
           >
           @if (item.employeeId) {
-          <iw-button-item
-            iconClass="material-symbols-light:manage-accounts"
-            lxTooltip="Administrar empleado"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Administrar empleado"
             ariaLabel="Administrar empleado"
+            iconClass="material-symbols-light:manage-accounts"
             tooltipPosition="top"
+            class="flex-shrink-0"
             (clicked)="
               administerEmployee.emit({
                 employeeId: item.employeeId!,
                 userId: item.applicationUserId!
               })
             "
-            class="flex-shrink-0"
           />
 
           }
