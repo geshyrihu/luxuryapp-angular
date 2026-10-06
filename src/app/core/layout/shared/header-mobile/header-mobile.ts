@@ -6,12 +6,12 @@ import { addIcons } from "ionicons";
 import { chevronBack } from "ionicons/icons";
 import { CustomerHeaderDataMobile } from "@core/layout/shared/customer-header-data-mobile/customer-header-data-mobile";
 import { NavigationService } from "@core/services/navigation.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ProfileUserMobile } from "../profile-user-mobile/profile-user";
 @Component({
   selector: "app-header-mobile",
   imports: [
-    AppIcon,
+    LxIcon,
     CustomerHeaderDataMobile,
     ProfileUserMobile,
     IonToolbar,

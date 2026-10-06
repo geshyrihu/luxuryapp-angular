@@ -15,13 +15,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { InfoAccountAuthDto } from "@core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { UpdateService } from "@core/services/update-pwa.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppPopover } from "@ui/web/popover/popover";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 
 @Component({
   selector: "app-profile-desktop",
-  imports: [RouterModule, AppPopover, AppAvatar, AppIcon],
+  imports: [RouterModule, AppPopover, AppAvatar, LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile-desktop.html",
 })

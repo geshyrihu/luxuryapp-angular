@@ -8,13 +8,13 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { PersonalAusenteResumenDto } from "./personal-ausente-card.model";
 
 @Component({
   selector: "app-personal-ausente-card",
   templateUrl: "./personal-ausente-card.html",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

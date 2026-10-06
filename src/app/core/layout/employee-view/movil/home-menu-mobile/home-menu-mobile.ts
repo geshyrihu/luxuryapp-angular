@@ -20,7 +20,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { SubMenuItem } from "@core/interfaces/menu.interface";
 import { MenuService } from "@core/services/menu.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
 @Component({
@@ -33,7 +33,7 @@ import { resolveIconifyIcon } from "@shared/utils/icon-mapping";
     IonItem,
     IonLabel,
     IonList,
-    AppIcon,
+    LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

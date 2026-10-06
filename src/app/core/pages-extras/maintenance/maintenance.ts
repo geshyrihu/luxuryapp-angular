@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-maintenance",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./maintenance.html",
-  imports: [AppIcon],
+  imports: [LxIcon],
 })
 
 /**

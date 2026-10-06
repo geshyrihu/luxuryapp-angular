@@ -34,7 +34,7 @@ import { ThemeService } from "@core/services/theme.service";
 import { UpdateService } from "@core/services/update-pwa.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
@@ -53,7 +53,7 @@ import { HeaderEmployeeAiModal } from "./header-employee-ai-modal";
 @Component({
   selector: "app-header-employee-desktop",
   imports: [
-    AppIcon,
+    LxIcon,
     Breadcrumbs,
     ButtonWeb,
     AppMenu,

@@ -84,7 +84,7 @@
   <ng-template #right>
     <div class="d-flex align-items-center gap-1">
       <!-- Búsqueda Global -->
-      <!-- <lux-search-web /> -->
+      <!-- <app-search /> -->
 
       <!-- Iconos de Navegación -->
       @for (navIcon of displayNavIcons; track navIcon.id) { @if
@@ -118,10 +118,10 @@
 
       <!-- Componentes de la derecha -->
       @if (!aspRoleS.roleSignal(AspRole.Comite)()) {
-       <lux-notifications-gadget-web />
+       <app-notifications-gadget />
       }
 
-      <lux-profile-desktop-web />
+      <app-profile-desktop />
     </div>
   </ng-template>
 </div>

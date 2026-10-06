@@ -26,7 +26,7 @@ import { AuthService } from "@core/auth/services/auth.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { SignalRService } from "@core/services/signalr.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { MobileButtonIconDelete } from "@ui/buttons/mobile-icon";
 @Component({
   selector: "app-notifications-list-mobile",
@@ -69,7 +69,7 @@ import { MobileButtonIconDelete } from "@ui/buttons/mobile-icon";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel, MobileButtonIconDelete],
+  imports: [LxIcon, IonContent, IonRefresher, IonRefresherContent, IonList, IonItem, IonIcon, IonLabel, MobileButtonIconDelete],
 })
 export class NotificationsListMobile implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -3,10 +3,10 @@ import { Router } from "@angular/router";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppDivider } from "@ui/web/divider/divider";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-unauthorized",
-   imports: [AppDivider, AppIcon, ButtonWeb],
+   imports: [AppDivider, LxIcon, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./unauthorized.html",
 })

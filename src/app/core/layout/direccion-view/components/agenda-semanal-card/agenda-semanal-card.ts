@@ -10,7 +10,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AgendaSemanal } from "../agenda-semanal/agenda-semanal";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 
@@ -18,7 +18,7 @@ import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.mod
   selector: "app-agenda-semanal-card",
   templateUrl: "./agenda-semanal-card.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, ButtonWeb],
+  imports: [LxIcon, ButtonWeb],
 })
 export class AgendaSemanalCard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

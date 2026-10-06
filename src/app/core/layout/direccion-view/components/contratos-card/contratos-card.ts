@@ -9,14 +9,14 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ContratosVigentesModal } from "../contratos-vigentes-modal/contratos-vigentes-modal";
 import type { ContratosPorVencerResumenDto } from "./contratos-card.model";
 
 @Component({
   selector: "app-contratos-card",
   templateUrl: "./contratos-card.html",
-  imports: [AppIcon, ButtonWeb],
+  imports: [LxIcon, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

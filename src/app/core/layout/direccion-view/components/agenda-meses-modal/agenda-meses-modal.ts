@@ -12,7 +12,7 @@ import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AppTag } from "@ui/web/tag/tag";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AgendaSemanalEventDto } from "../agenda-semanal/agenda-semanal.model";
 
 interface MesGroup {
@@ -24,7 +24,7 @@ interface MesGroup {
   selector: "app-agenda-meses-modal",
   templateUrl: "./agenda-meses-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppIcon, AppTag, LxTooltipDirective, ButtonWeb],
+  imports: [LxIcon, AppTag, LxTooltipDirective, ButtonWeb],
 })
 export class AgendaMesesModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

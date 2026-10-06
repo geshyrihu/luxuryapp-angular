@@ -8,13 +8,13 @@ import {
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { TareasLegalResumenDto } from "./tareas-legal-card.model";
 
 @Component({
   selector: "app-tareas-legal-card",
   templateUrl: "./tareas-legal-card.html",
-  imports: [LxTooltipDirective, AppIcon],
+  imports: [LxTooltipDirective, LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

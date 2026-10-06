@@ -7,7 +7,7 @@ import {
   Type,
 } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { Subject } from "rxjs";
 import {
   DynamicDialogConfig,
@@ -16,7 +16,7 @@ import {
 
 @Component({
   selector: "lux-desktop-dialog-shell",
-  imports: [NgComponentOutlet, AppIcon],
+  imports: [NgComponentOutlet, LxIcon],
   template: `
     <div class="modal-header">
       <h5 class="modal-title">{{ title }}</h5>

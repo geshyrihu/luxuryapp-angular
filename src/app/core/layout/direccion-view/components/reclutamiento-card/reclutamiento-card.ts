@@ -7,13 +7,13 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { VacantesResumenDto } from "./reclutamiento-card.model";
 
 @Component({
   selector: "app-reclutamiento-card",
   templateUrl: "./reclutamiento-card.html",
-  imports: [AppIcon],
+  imports: [LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `

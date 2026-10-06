@@ -7,13 +7,13 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { RoleType } from "@core/enums/role-type.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { Roles } from "@core/interfaces/roles.interface";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { GroupedRole } from "./interfaces/grouped-role.interface";
-import { AuthService } from "@core/auth/services/auth.service";
 
 const roleTypeNames: { [key in RoleType]: string } = {
   [RoleType.System]: "Sistema",
@@ -28,7 +28,7 @@ const roleTypeNames: { [key in RoleType]: string } = {
   selector: "app-update-role",
   templateUrl: "./update-role.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, AppIcon],
+  imports: [CommonModule, LxIcon],
 })
 export class UpdateRole implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -158,4 +158,3 @@ export class UpdateRole implements OnInit {
       });
   }
 }
-

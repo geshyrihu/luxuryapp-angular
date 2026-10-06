@@ -8,12 +8,12 @@ import { Router } from "@angular/router";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppDivider } from "@ui/web/divider/divider";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 @Component({
   selector: "app-page404",
   templateUrl: "./page404.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppDivider, AppIcon, ButtonWeb],
+  imports: [AppDivider, LxIcon, ButtonWeb],
 })
 export class Page404 implements OnInit {
   private router = inject(Router);

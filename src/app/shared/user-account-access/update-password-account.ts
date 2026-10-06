@@ -12,13 +12,13 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { UpdatePasswordDto } from "@core/interfaces/user-info.interface";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-update-password-account",
   templateUrl: "./update-password-account.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxMessage, ButtonWeb, AppIcon],
+  imports: [LxMessage, ButtonWeb, LxIcon],
 })
 export class UpdatePasswordAccount implements OnInit {
   apiResponseS = inject(ApiResponseService);

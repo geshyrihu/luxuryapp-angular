@@ -20,13 +20,18 @@
   @if (isSelfProfile()) {
   <div class="p-3 rounded border-1 bg-yellow-50 border-yellow-200">
     <div class="d-flex align-items-start gap-3">
-      <lux-icon [icon]="'material-symbols-light:error-outline'" class="text-yellow-600 text-xl mt-0.5" />
+      <lux-icon
+        [icon]="'material-symbols-light:error-outline'"
+        class="text-yellow-600 text-xl mt-0.5"
+      />
       <div class="flex-fill">
-        <span class="text-yellow-800 fw-semibold text-sm">Acceso restringido</span>
+        <span class="text-yellow-800 fw-semibold text-sm"
+          >Acceso restringido</span
+        >
         <p class="text-yellow-700 text-sm mt-1 mb-0">
-          No puedes autoadministrar tus propios roles. Para cambios en tus permisos,
-          contacta al <strong>Administrador del Condominio</strong> o al
-          <strong>Administrador del Sistema</strong>.
+          No puedes autoadministrar tus propios roles. Para cambios en tus
+          permisos, contacta al <strong>Administrador del Condominio</strong> o
+          al <strong>Administrador del Sistema</strong>.
         </p>
       </div>
     </div>
@@ -42,7 +47,9 @@
         >
           {{ group.groupName }}
         </h5>
-        <span class="text-xs fw-medium text-body-secondary bg-100 px-2 py-1 rounded">
+        <span
+          class="text-xs fw-medium text-body-secondary bg-100 px-2 py-1 rounded"
+        >
           {{ group.roles.length }} Roles
         </span>
       </div>

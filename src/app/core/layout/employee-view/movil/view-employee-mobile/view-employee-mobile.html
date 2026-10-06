@@ -12,9 +12,9 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <lux-home-menu-mobile-web
+        <app-home-menu-mobile
           (onCloseMenu)="closeMenu()"
-        ></lux-home-menu-mobile-web>
+        ></app-home-menu-mobile>
       </ion-content>
     </ion-menu>
 
@@ -26,7 +26,7 @@
     >
       <!-- Header fijo -->
       <ion-header class="ion-no-border">
-        <lux-header-mobile-web />
+        <app-header-mobile />
       </ion-header>
 
       <!-- área de contenido con scroll nativo Ionic -->
@@ -49,7 +49,7 @@
 
       <!-- Footer fijo (fuera del scroll) -->
       <ion-footer class="ion-no-border app-footer-floating">
-        <lux-footer-employee-mobile-web />
+        <app-footer-employee-mobile />
       </ion-footer>
     </div>
   </ion-app>

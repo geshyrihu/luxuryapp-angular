@@ -15,14 +15,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppBadge } from "@ui/web/badge/badge";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: "app-notifications-gadget",
   imports: [
     RouterModule,
-    AppIcon,
+    LxIcon,
     AppBadge,
     LxTooltipDirective,
     WebButtonIconDelete,

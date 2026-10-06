@@ -14,11 +14,11 @@ import { InfoAccountAuthDto } from "@core/interfaces/auth-user-token.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { UpdateService } from "@core/services/update-pwa.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppPopover } from "@ui/web/popover/popover";
 @Component({
   selector: "app-profile-committee-desktop",
-  imports: [RouterModule, AppPopover, AppIcon],
+  imports: [RouterModule, AppPopover, LxIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./profile.html",
 })
