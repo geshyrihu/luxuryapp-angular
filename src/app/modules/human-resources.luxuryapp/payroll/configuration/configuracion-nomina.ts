@@ -15,7 +15,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   ConfiguracionNominaDTO,
   ConfiguracionNominaUpdateDTO,
@@ -24,7 +23,6 @@ import {
 @Component({
   selector: "app-configuracion-nomina",
   imports: [
-    LxIcon,
     ReactiveFormsModule,
     LxFieldset,
     CustomInputSelectSignal,

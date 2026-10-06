@@ -9,7 +9,6 @@ import { FormControl } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -32,7 +31,6 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    LxTooltipDirective,
     CustomInputSelectSignal,
     ButtonWeb,
     LuxTableCaption,

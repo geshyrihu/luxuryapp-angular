@@ -10,8 +10,6 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
-
 @Component({
   selector: "app-task-template-items-mobile",
   templateUrl: "./task-template-items-mobile.html",
@@ -20,7 +18,6 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
     ButtonMobile,
     MobileActionMenu,
     DataViewMobile,
-    StatusBadge,
     MobileListItem,
     LxIcon],
 })

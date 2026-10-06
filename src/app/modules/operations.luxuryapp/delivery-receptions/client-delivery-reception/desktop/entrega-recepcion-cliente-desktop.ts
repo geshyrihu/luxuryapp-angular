@@ -7,7 +7,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -21,7 +20,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxIcon,
     TableEmptyMessage,
     AppTable,
-    ActionMenu,
     LuxTableCaption],
 })
 export class EntregaRecepcionClienteListaDesktop {

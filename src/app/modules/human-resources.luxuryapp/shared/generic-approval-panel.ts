@@ -18,7 +18,6 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
@@ -35,7 +34,6 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     PdfViewerTrigger,
     LuxTableCaption,
     TableFooter],

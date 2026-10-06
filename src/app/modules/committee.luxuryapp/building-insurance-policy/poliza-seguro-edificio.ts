@@ -11,7 +11,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { addIcons } from "ionicons";
 import {
@@ -24,7 +23,7 @@ import {
 } from "ionicons/icons";
 @Component({
   selector: "app-poliza-seguro-edificio",
-  imports: [ApiDatePipe, ButtonWeb, AppIcon],
+  imports: [ApiDatePipe, ButtonWeb],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./poliza-seguro-edificio.html",
 })

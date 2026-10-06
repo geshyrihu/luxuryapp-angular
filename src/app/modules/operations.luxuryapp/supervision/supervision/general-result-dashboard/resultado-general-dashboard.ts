@@ -24,10 +24,8 @@ import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { Mesanio } from "@ui/web/mesanio/mesanio";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
@@ -38,11 +36,9 @@ import {
     CommonModule,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     CustomInputTextSignal,
     LxTag,
-    LxProgressBar,
-    Mesanio],
+    LxProgressBar],
 })
 export class ResultadoGeneralDashboard implements OnInit {
   apiResponseS = inject(ApiResponseService);

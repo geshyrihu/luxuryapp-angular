@@ -20,7 +20,6 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -39,7 +38,6 @@ const DETAIL_URL = "/hr/salary-projections";
   imports: [
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     TableEmptyMessage,
     LxTag,
     ButtonWeb,

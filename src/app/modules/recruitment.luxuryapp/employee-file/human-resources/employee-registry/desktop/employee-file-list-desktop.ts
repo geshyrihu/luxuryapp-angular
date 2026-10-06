@@ -10,7 +10,6 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -25,7 +24,6 @@ import { ButtonWeb } from "@ui/buttons/web";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     LuxTableCaption,

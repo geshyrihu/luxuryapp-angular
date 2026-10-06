@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -22,7 +21,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     AppImage,
     RouterModule,
     LuxTableCaption,

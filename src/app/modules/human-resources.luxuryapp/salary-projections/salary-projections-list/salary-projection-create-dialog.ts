@@ -1,4 +1,3 @@
-import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
@@ -20,7 +19,7 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-salary-projection-create-dialog",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonMobile, ButtonWeb, FormsModule, CustomInputTextSignal],
+  imports: [ ButtonWeb, FormsModule, CustomInputTextSignal],
   template: `
     <div class="d-flex flex-column gap-3 p-3">
       <custom-input-text-signal

@@ -10,14 +10,13 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-funding-order-invoices",
-  imports: [ButtonWeb, LxTooltipDirective, AppTable],
+  imports: [ButtonWeb, AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-order-invoices.html",
 })

@@ -10,7 +10,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import { IncidenciaNominaDTO } from "../../interfaces/incidencia-nomina.interface";
 
 @Component({
@@ -20,7 +19,6 @@ import { IncidenciaNominaDTO } from "../../interfaces/incidencia-nomina.interfac
   imports: [
     CommonModule,
     ApiDatePipe,
-    LxIcon,
     MobileListItem,
     LxTag,
     ButtonMobile,

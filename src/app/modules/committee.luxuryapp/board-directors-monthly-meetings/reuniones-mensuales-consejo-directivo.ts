@@ -22,7 +22,7 @@ import { addIcons } from "ionicons";
 import { folderOpenOutline, videocamOutline } from "ionicons/icons";
 @Component({
   selector: "app-reuniones-mensuales-consejo-directivo",
-  imports: [AppIcon],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reuniones-mensuales-consejo-directivo.html",
 })

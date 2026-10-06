@@ -6,13 +6,10 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import type { TagSeverity } from "@ui/core/tag.base";
-import { AppStatCard } from "@ui/primitives/stat-card/stat-card";
-import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CommitteeMorosoItemDto } from "../interfaces/committee-cobranza.dto";
@@ -26,13 +23,10 @@ import { CommitteeCobranzaDetailModal } from "./committee-cobranza-detail-modal"
     CommonModule,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     CurrencyPipe,
     LuxTableCaption,
     TableEmptyMessage,
     LxTooltipDirective,
-    AppStatCard,
-    AppProgressBar,
     LxTag],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./committee-cobranza-web.html",

@@ -9,7 +9,6 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LxIcon } from '@ui/adaptive/icon/icon';
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 
@@ -27,7 +26,7 @@ export interface SeguimientoEvent {
 
 @Component({
   selector: "app-area-details-table",
-  imports: [LxIcon, ButtonWeb, LxTooltipDirective, ActionMenu, SanitizeHtmlPipe],
+  imports: [LxIcon, ButtonWeb, LxTooltipDirective, SanitizeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-area-table.html",
   styleUrl: "./meeting-area-table.scss",

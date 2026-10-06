@@ -9,7 +9,6 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balance-admin-view.interface";
 
@@ -23,7 +22,6 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
     ButtonMobile,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
     ApiDatePipe],
 })
 export class AdminVacacionesBalanceMobile {

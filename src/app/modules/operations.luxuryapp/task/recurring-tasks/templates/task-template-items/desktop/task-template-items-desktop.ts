@@ -10,7 +10,6 @@ import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.int
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -27,7 +26,6 @@ import {
     ButtonWeb,
     LuxTableCaption,
     TableFooter,
-    StatusBadge,
     AppTable,
     AppReorderableRow,
     AppReorderableRowHandle,

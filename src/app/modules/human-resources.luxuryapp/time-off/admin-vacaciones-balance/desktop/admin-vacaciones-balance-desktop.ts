@@ -15,7 +15,6 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balance-admin-view.interface";
@@ -29,7 +28,6 @@ import { VacationBalanceAdminViewDto } from "../../../interfaces/vacation-balanc
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
     LuxTableCaption,
     ButtonWeb,

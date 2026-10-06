@@ -22,23 +22,19 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxIcon } from '@ui/adaptive/icon/icon';
-import { RadarChart } from "@ui/web/charts/radar-chart";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
 @Component({
   selector: "app-resultado-evaluacion",
   templateUrl: "./resultado-evaluacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, 
-    LxIcon,
+  imports: [ButtonWeb,
     CommonModule,
     ApiDatePipe,
     LxCard,
     LxDivider,
     LxTag,
     LxMessage,
-    RadarChart,
     ],
 })
 export class ResultadoEvaluacion {

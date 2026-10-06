@@ -1,4 +1,3 @@
-import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
@@ -19,7 +18,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-query-panel",
 
-  imports: [ButtonMobile, ButtonWeb, 
+  imports: [ ButtonWeb, 
     FormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,

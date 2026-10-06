@@ -16,7 +16,6 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -36,7 +35,6 @@ const LIST_URL = "/hr/salary-projections";
   imports: [ButtonWeb, 
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     TableEmptyMessage,
     CustomInputTextSignal,
     FormsModule,

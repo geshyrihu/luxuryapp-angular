@@ -11,7 +11,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -30,7 +29,6 @@ import {
     SanitizeHtmlPipe,
     LxTag,
     ButtonWeb,
-    ActionMenu,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

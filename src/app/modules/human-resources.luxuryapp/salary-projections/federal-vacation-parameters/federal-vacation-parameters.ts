@@ -15,7 +15,6 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IFederalVacationParameter } from "../interfaces/salary-projections.models";
@@ -28,7 +27,6 @@ import { FederalVacationParameterForm } from "./federal-vacation-parameter-form"
   imports: [
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     TableEmptyMessage,
     ButtonWeb,
     RouterLink],

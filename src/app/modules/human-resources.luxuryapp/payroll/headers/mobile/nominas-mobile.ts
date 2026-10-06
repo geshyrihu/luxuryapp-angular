@@ -9,7 +9,6 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
 @Component({
@@ -18,7 +17,6 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ButtonWeb, 
     CommonModule,
-    LxIcon,
     MobileListItem,
     LxTag,
     DataViewMobile],

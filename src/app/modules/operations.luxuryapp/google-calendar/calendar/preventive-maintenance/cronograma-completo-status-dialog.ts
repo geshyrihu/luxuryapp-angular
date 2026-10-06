@@ -15,7 +15,6 @@ import { HtmlPrintService } from "@core/services/html-print.service";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus";
@@ -30,8 +29,6 @@ import { CronogramaAnualPdfStatus } from "./interfaces/CronogramaAnualPdfStatus"
     AppTable,
 
     AppSortableColumn,
-
-    AppSorticon,
     LuxTableCaption],
   providers: [CronogramaAnualPdfStatusService, HtmlPrintService],
 })

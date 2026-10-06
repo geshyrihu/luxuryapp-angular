@@ -11,11 +11,9 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
 import { LeaveRequestDetailDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
-import { LxIcon } from '@ui/adaptive/icon/icon';
-
 @Component({
   selector: "app-leave-request-detail-my",
-  imports: [ButtonWeb, LxIcon, LxTag],
+  imports: [ButtonWeb, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./mi-permiso-detalle.html",
 })

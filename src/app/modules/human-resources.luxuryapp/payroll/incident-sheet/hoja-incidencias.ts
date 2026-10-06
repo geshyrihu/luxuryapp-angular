@@ -13,7 +13,6 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   CeldaGuardarDTO,
   CeldaHojaDTO,
@@ -27,7 +26,7 @@ import {
 import { PeriodoNominaDTO } from "../interfaces/periodo-nomina.interface";
 @Component({
   selector: "app-hoja-incidencias",
-  imports: [ButtonWeb, LxIcon, LxTooltipDirective, LxPopover],
+  imports: [ButtonWeb, LxTooltipDirective, LxPopover],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./hoja-incidencias.html",
 })

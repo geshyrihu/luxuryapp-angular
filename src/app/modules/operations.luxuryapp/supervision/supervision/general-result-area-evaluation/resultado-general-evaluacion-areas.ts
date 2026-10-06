@@ -22,7 +22,6 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-evaluacion-areas-detalle";
@@ -34,7 +33,6 @@ import { ResultadoGeneralEvaluacionAreasDetalle } from "./resultado-general-eval
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption],
 })
 export class ResultadoGeneralEvaluacionAreas implements OnInit {

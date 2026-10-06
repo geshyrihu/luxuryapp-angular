@@ -19,8 +19,6 @@ import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
 import { VacationRequestMyDTO as VacationRequestHistoryDTO } from "@human-resources.luxuryapp/interfaces/vacation-request.interface";
 import { getStatusSeverity as statusSeverityFn } from "@human-resources.luxuryapp/shared/helpers/status-severity.helper";
-import { LxIcon } from '@ui/adaptive/icon/icon';
-
 /**
  * DTO local para representar una solicitud de vacaciones del empleado.
  * Refleja los campos que devuelve el endpoint GET /my-vacation-requests.
@@ -62,7 +60,6 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
   templateUrl: "./vacaciones-saldo.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    LxIcon,
     ApiDatePipe,
     ReactiveFormsModule,
     LxCard,

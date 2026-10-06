@@ -18,7 +18,6 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
@@ -53,7 +52,6 @@ export interface VacationHistoryItemDTO {
   templateUrl: "./vacaciones-admin-auditoria.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    LxIcon,
     ApiDatePipe,
     FormsModule,
     LxCard,

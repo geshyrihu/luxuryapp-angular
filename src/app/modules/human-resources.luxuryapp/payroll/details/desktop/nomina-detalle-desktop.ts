@@ -14,7 +14,6 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
@@ -30,7 +29,6 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption],
 })
 export class NominaDetalleDesktop {

@@ -10,12 +10,10 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import {
   SegmentedControl,
   SegmentItem,
 } from "@ui/primitives/segmented-control/segmented-control";
-import { AppImageFallback } from "@ui/web/image-fallback/image-fallback";
 import { CommitteeDirectorioDTO } from "../interfaces/committee-directorio.dto";
 import { DirectorioContactDetail } from "./contact-detail/directorio-contact-detail";
 
@@ -23,7 +21,7 @@ import { DirectorioContactDetail } from "./contact-detail/directorio-contact-det
   selector: "app-committee-directorio",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./directorio.html",
-  imports: [AppImageFallback, SegmentedControl, AppIcon],
+  imports: [ SegmentedControl],
 })
 export class CommitteeDirectorio implements OnInit {
   apiResponseS = inject(ApiResponseService);

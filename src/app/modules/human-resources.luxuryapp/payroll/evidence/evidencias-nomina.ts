@@ -23,11 +23,9 @@ import {
 import { NominaEncabezadoDTO } from "../interfaces/nomina-encabezado.interface";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 @Component({
   selector: "app-evidencias-nomina",
   imports: [
-    LxIcon,
     LxTooltipDirective,
     ApiDatePipe,
     ReactiveFormsModule,

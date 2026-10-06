@@ -22,7 +22,6 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { Touchspin } from "@ui/web/touchspin/touchspin";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -41,7 +40,6 @@ import { ROUTES } from "src/app/routing/route-paths";
     CustomInputSelectSignal,
     LxDivider,
     CustomInputTextAreaSignal,
-    Touchspin,
      ButtonWeb],
 })
 export class RealizarEvaluacion implements OnInit {

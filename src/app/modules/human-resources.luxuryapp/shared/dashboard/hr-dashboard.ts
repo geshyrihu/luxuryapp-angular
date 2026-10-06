@@ -23,7 +23,7 @@ interface HRModuleGroup {
 
 @Component({
   selector: "app-hr-dashboard",
-  imports: [LxIcon],
+  imports: [],
   templateUrl: "./hr-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [

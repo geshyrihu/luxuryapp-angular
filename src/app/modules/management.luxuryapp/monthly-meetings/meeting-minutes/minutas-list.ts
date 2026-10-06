@@ -21,7 +21,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { SwalService } from "@core/services/swal.service";
-import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MeetingDetailForm } from "./meeting-detail-form";
 import { MeetingForm } from "./meeting-form";
 import { MinutaPdfService } from "./minuta-pdf.service";
@@ -38,7 +37,6 @@ interface JuntaVisual {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    ActionMenu,
     LxTooltipDirective,
     LxIcon],
 })

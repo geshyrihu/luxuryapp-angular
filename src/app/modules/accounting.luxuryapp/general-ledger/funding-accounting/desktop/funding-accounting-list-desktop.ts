@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -24,7 +23,6 @@ import {
   imports: [
     LxIcon,
     ButtonWeb,
-    LxTooltipDirective,
     AppTable,
     AppSortableColumn,
     AppSorticon,

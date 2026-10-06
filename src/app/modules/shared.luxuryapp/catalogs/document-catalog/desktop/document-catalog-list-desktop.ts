@@ -8,7 +8,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -16,7 +15,6 @@ import {
   AppReorderableRow,
   AppReorderableRowHandle,
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { DocumentCatalogDto } from "../interfaces/document-catalog.dto";
@@ -26,16 +24,15 @@ import { DocumentCatalogDto } from "../interfaces/document-catalog.dto";
   templateUrl: "./document-catalog-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AppIcon,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     AppReorderableRow,
     AppReorderableRowHandle,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class DocumentCatalogListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

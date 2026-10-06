@@ -35,7 +35,6 @@ import { checkboxOutline, createOutline } from "ionicons/icons";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CronogramaCompletoStatusDialog } from "./cronograma-completo-status-dialog";
@@ -51,7 +50,6 @@ import { MantenimientoPreventivoForm } from "./mantenimiento-preventivo-form";
     ButtonWeb,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     FormsModule,
     CommonModule,
     LuxTableCaption,

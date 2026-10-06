@@ -40,8 +40,6 @@ import { EmployeeOnboardingChecklist } from "@recruitment.luxuryapp/employee-onb
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-
 import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
@@ -54,7 +52,6 @@ import { ButtonWeb } from "@ui/buttons/web";
     LxTag,
     LxAvatar,
     LxTabs,
-    LxTooltipDirective,
     ApiDatePipe,
     CurrencyPipe,
     AppTable,

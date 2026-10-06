@@ -22,7 +22,7 @@ import { addIcons } from "ionicons";
 import { documentTextOutline, folderOpenOutline } from "ionicons/icons";
 @Component({
   selector: "app-informes-financieros-consejo-directivo",
-  imports: [AppIcon],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informes-financieros-consejo-directivo.html",
 })

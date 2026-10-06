@@ -13,7 +13,6 @@ import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { OnboardingChecklistOptionDto } from "../interfaces/onboarding-checklist-option.dto";
@@ -29,8 +28,8 @@ import { formatRoles as formatRolesUtil } from "../onboarding-checklist-option.u
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class OnboardingChecklistOptionListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

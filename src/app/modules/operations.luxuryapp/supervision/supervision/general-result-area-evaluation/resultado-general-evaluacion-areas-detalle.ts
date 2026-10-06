@@ -18,7 +18,6 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
@@ -29,7 +28,6 @@ import {
     DataViewMobile,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
     LuxTableCaption,
     CommonModule,

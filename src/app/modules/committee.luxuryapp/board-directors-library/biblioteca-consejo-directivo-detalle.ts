@@ -18,7 +18,7 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 
 @Component({
   selector: "app-biblioteca-consejo-directivo-detalle",
-  imports: [AppIcon],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./biblioteca-consejo-directivo-detalle.html",
 })

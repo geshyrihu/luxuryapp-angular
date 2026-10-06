@@ -4,7 +4,6 @@ import {
   input,
   output,
 } from "@angular/core";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -22,7 +21,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,

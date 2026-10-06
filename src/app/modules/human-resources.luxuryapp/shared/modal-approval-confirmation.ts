@@ -17,7 +17,6 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
-import { LxIcon } from '@ui/adaptive/icon/icon';
 import {
   ApprovalConfirmationResult,
   ApprovalPanelRequest,
@@ -36,8 +35,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     LxDivider,
     LxMessage,
     LxTag,
-    CustomInputToggleSwitch,
-    LxIcon],
+    CustomInputToggleSwitch],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {

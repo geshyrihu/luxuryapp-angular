@@ -16,7 +16,6 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
@@ -34,7 +33,6 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LuxTableCaption],
 })
 export class PeriodosNominaDesktop {
