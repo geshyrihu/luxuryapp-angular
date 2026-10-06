@@ -12,8 +12,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -23,16 +23,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-invited-form",
   templateUrl: "./invited-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    WebButtonLabelItem,
-    WebButtonIconDelete,
-    CustomInputTextSignal,
-  ],
+  imports: [ReactiveFormsModule, ButtonWeb, CustomInputTextSignal],
 })
 export class InvitedForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private config = inject(DynamicDialogConfig);
+  private confirmS = inject(ConfirmService);
   customerId = input<string>();
   meetingId = input<any>();
 
@@ -71,7 +67,9 @@ export class InvitedForm implements OnInit {
     }
   }
 
-  onDelete(idParticipant: number): void {
+  async onDelete(idParticipant: number): Promise<void> {
+    const ok = await this.confirmS.confirm("¿Eliminar a este invitado?");
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.MeetingInvitado.delete(idParticipant))
       .then(() => {

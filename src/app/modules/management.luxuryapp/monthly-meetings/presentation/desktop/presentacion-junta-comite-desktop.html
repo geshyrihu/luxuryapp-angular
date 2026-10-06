@@ -102,10 +102,12 @@
               size="sm"
               (clicked)="edit.emit(item.id)"
             />
-            <il-button-delete
-              (confirmed)="deleteItem.emit(item.id)"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
               variant="text"
               size="sm"
+              (clicked)="deleteItem.emit(item.id)"
             />
           </div>
           }
@@ -128,7 +130,7 @@
                 <span class="fw-bold text-body text-sm">PORTADA</span>
                 @if (item.archivoPortada) {
                 <div class="d-flex flex-column gap-1">
-                  <il-button-view-pdf
+                  <lux-pdf-viewer-trigger
                     [url]="item.archivoPortada"
                     fileName="Portada"
                     size="sm"
@@ -162,10 +164,12 @@
               </div>
               @if (item.archivoPortada && !item.archivoFinal &&
               aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-              <il-button-delete
-                (confirmed)="deleteFile.emit({ id: item.id, area: 'Portada' })"
-                size="sm"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
                 variant="text"
+                size="sm"
+                (clicked)="deleteFile.emit({ id: item.id, area: 'Portada' })"
               />
               }
             </div>
@@ -184,7 +188,7 @@
                 <span class="fw-bold text-body text-sm">CONTABILIDAD</span>
                 @if (item.archivoContable) {
                 <div class="d-flex flex-column gap-1">
-                  <il-button-view-pdf
+                  <lux-pdf-viewer-trigger
                     [url]="item.archivoContable"
                     fileName="Contabilidad"
                     size="sm"
@@ -219,10 +223,12 @@
               </div>
               @if (item.archivoContable && !item.archivoFinal &&
               aspRoleS.anyOf([AspRole.Contador, AspRole.SuperUsuario])()) {
-              <il-button-delete
-                (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
-                size="sm"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
                 variant="text"
+                size="sm"
+                (clicked)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
               />
               }
             </div>
@@ -241,7 +247,7 @@
                 <span class="fw-bold text-body text-sm">OPERACIONES</span>
                 @if (item.archivoJunta) {
                 <div class="d-flex flex-column gap-1">
-                  <il-button-view-pdf
+                  <lux-pdf-viewer-trigger
                     [url]="item.archivoJunta"
                     fileName="Operaciones"
                     size="sm"
@@ -277,10 +283,12 @@
               </div>
               @if (item.archivoJunta && !item.archivoFinal &&
               aspRoleS.anyOf([AspRole.Administrador, AspRole.SuperUsuario])()) {
-              <il-button-delete
-                (confirmed)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
-                size="sm"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
                 variant="text"
+                size="sm"
+                (clicked)="deleteFile.emit({ id: item.id, area: 'Operaciones' })"
               />
               }
             </div>
@@ -290,14 +298,13 @@
           <div class="col-12 col-md-3 ps-4">
             @if (item.archivoFinal) {
             <div class="d-flex flex-column gap-1">
-              <il-button-view-pdf
+              <lux-pdf-viewer-trigger
                 [url]="item.archivoFinal"
                 fileName="Presentacion_Final"
                 label="DESCARGAR FINAL"
                 severity="success"
-                [fluid]="true"
                 iconClass="material-symbols-light:workspace-premium"
-                customClass="justify-content-start px-3"
+                styleClass="btn-fluid justify-content-start px-3"
               />
               <div
                 class="d-flex align-items-center justify-content-between mt-1"
@@ -311,10 +318,12 @@
                   >
                 </div>
                 @if (aspRoleS.anyOf([AspRole.SuperUsuario])()) {
-                <il-button-delete
-                  (confirmed)="deleteFile.emit({ id: item.id, area: 'Final' })"
-                  size="sm"
+                <lux-button-web
+                  kind="delete"
+                  severity="danger"
                   variant="text"
+                  size="sm"
+                  (clicked)="deleteFile.emit({ id: item.id, area: 'Final' })"
                 />
                 }
               </div>
@@ -323,25 +332,25 @@
             AspRole.SuperUsuario])() && item.archivoPortada &&
             item.archivoContable && item.archivoJunta) {
             <div class="d-flex flex-column gap-2">
-              <il-button-confirm
+              <lux-button-web
+                kind="confirm"
+                severity="success"
+                variant="soft"
                 iconClass="material-symbols-light:send"
                 label="ENVIAR COMITÉ"
                 [fluid]="true"
-                swalTitle="óEnviar presentación?"
-                swalText="Se notificaré a todos los miembros."
-                swalConfirmButtonText="Sí, enviar"
-                customClass="justify-content-start px-3"
-                (confirmed)="validar.emit(item.id)"
+                styleClass="justify-content-start px-3"
+                (clicked)="validar.emit(item.id)"
               />
-              <il-button-confirm
+              <lux-button-web
+                kind="confirm"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:check"
                 label="VALIDAR"
                 [fluid]="true"
-                severity="secondary"
-                swalTitle="óValidar sin enviar?"
-                swalText="Se generaré la versión final sin enviar correos."
-                customClass="justify-content-start px-3"
-                (confirmed)="onlyValidate.emit(item.id)"
+                styleClass="justify-content-start px-3"
+                (clicked)="onlyValidate.emit(item.id)"
               />
             </div>
             } @else {

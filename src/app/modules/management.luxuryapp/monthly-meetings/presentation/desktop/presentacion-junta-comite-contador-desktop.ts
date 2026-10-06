@@ -5,24 +5,16 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
   selector: "app-presentacion-junta-comite-contador-desktop",
   templateUrl: "./presentacion-junta-comite-contador-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    LxTag,
-    WebButtonLabel,
-    WebButtonLabelViewPdf,
-    ButtonWeb,
-    WebButtonLabelDelete,
-    AppIcon,
-  ],
+  imports: [LxTag, WebButtonLabel, PdfViewerTrigger, ButtonWeb, AppIcon],
 })
 export class PresentacionJuntaComiteContadorDesktop {
   data = input.required<any[]>();

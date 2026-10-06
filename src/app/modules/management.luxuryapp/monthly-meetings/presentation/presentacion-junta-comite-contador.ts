@@ -20,6 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PresentacionJuntaComiteContadorDesktop } from "./desktop/presentacion-junta-comite-contador-desktop";
 import { PresentacionJuntaComiteContadorMobile } from "./mobile/presentacion-junta-comite-contador-mobile";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
@@ -43,6 +44,7 @@ export class PresentacionJuntaComiteContador {
   dateS = inject(DateService);
   public AspRole = ApplicationRole;
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   ref: DynamicDialogRef;
   applicationUserId: string =
@@ -113,7 +115,11 @@ export class PresentacionJuntaComiteContador {
   }
 
   // Eliminar pdf
-  onDeleteFile(id: any, area: string) {
+  async onDeleteFile(id: any, area: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PresentacionJuntaComite.deleteFile(id, area))
       .then((result: boolean) => {

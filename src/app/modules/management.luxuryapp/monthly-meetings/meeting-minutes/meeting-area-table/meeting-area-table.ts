@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
-import { WebButtonIconAdd } from "@ui/buttons/web-icon/button-add";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  output,
+} from "@angular/core";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -24,23 +27,15 @@ export interface SeguimientoEvent {
 
 @Component({
   selector: "app-area-details-table",
-  imports: [
-    AppIcon,
-    WebButtonIconAdd,
-    WebButtonIconConfirm,
-    ButtonWeb,
-    WebButtonIconDelete,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
-    LxTooltipDirective,
-    ActionMenu,
-    SanitizeHtmlPipe,
-  ],
+  imports: [AppIcon, ButtonWeb, LxTooltipDirective, ActionMenu, SanitizeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./meeting-area-table.html",
   styleUrl: "./meeting-area-table.scss",
 })
 export class AreaDetailsTable {
+  private readonly confirmS = inject(ConfirmService);
+  private readonly swalS = inject(SwalService);
+
   title = input<string>("");
   icon = input<string>("material-symbols-light:article");
   meetingId = input<any>(0);
@@ -73,11 +68,24 @@ export class AreaDetailsTable {
     });
   }
 
-  onDeleteDetail(detailId: any): void {
+  async onDeleteDetail(detailId: any): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.deleteDetail.emit(detailId);
   }
 
-  onSendAreaEmail(): void {
+  async onSendAreaEmail(): Promise<void> {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: `Enviar por correo los pendientes de ${this.title()}`,
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.sendAreaEmail.emit();
   }
 
@@ -95,7 +103,11 @@ export class AreaDetailsTable {
     });
   }
 
-  onDeleteSeguimiento(seguimientoId: any): void {
+  async onDeleteSeguimiento(seguimientoId: any): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este seguimiento?",
+    );
+    if (!ok) return;
     this.deleteSeguimiento.emit(seguimientoId);
   }
 

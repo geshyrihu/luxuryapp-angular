@@ -149,11 +149,13 @@
           (clicked)="onOpenMinutes()"
         />
         } @if (canCancel(detail)) {
-        <il-button-delete
+        <lux-button-web
+          kind="delete"
+          severity="danger"
+          variant="soft"
           label="Cancelar sesion"
           [text]="true"
-          confirmMessage="Esta acción cancelará la sesión y, si existe agenda ligada, también cancelará el evento de agenda."
-          (confirmed)="onCancel()"
+          (clicked)="onCancel()"
         />
         }
       </div>

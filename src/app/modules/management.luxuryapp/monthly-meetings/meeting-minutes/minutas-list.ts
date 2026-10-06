@@ -19,13 +19,10 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import {
-  WebButtonLabelConfirm,
-  WebButtonLabelDelete,
-  WebButtonLabelItem,
-} from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
+import { SwalService } from "@core/services/swal.service";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { MeetingDetailForm } from "./meeting-detail-form";
 import { MeetingForm } from "./meeting-form";
@@ -44,10 +41,7 @@ interface JuntaVisual {
   imports: [
     WebButtonIcon,
     WebButtonLabel,
-    WebButtonLabelConfirm,
-    WebButtonLabelDelete,
     ButtonWeb,
-    WebButtonLabelItem,
     ActionMenu,
     LxTooltipDirective,
     AppIcon,
@@ -61,6 +55,8 @@ export class MinutasList {
   customerIdS = inject(CustomerIdService);
   customToastS = inject(CustomToastService);
   minutaPdfS = inject(MinutaPdfService);
+  confirmS = inject(ConfirmService);
+  swalS = inject(SwalService);
   route = inject(Router);
   readonly ROUTES = ROUTES;
   public AspRole = ApplicationRole;
@@ -137,7 +133,11 @@ export class MinutasList {
     );
   }
 
-  onDelete(id: string): void {
+  async onDelete(id: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.Meetings.delete(id))
       .then((result: boolean) => {
@@ -149,7 +149,16 @@ export class MinutasList {
       });
   }
 
-  onSendEmailMeeting(meetingId: string): void {
+  async onSendEmailMeeting(meetingId: string): Promise<void> {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de que desea enviar la minuta?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onPost(Endpoints.SendEmail.meeting(meetingId))
       .then(() => {});

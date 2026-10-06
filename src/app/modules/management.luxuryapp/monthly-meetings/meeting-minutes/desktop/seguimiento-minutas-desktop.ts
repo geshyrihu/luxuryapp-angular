@@ -10,8 +10,8 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -31,7 +31,7 @@ import {
     SanitizeHtmlPipe,
     LxTag,
     WebButtonLabel,
-    WebButtonLabelItem,
+    ButtonWeb,
     ActionMenu,
     LuxTableCaption,
     TableEmptyMessage,

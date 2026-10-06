@@ -129,17 +129,26 @@
       <td class="no-print">
         <app-action-menu>
           <ng-container actions>
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               label="Ver todos los seguimientos"
               iconClass="material-symbols-light:format-list-bulleted"
               (clicked)="todosSeguimientos.emit(item.id)"
             />
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               label="Agregar Seguimiento"
               iconClass="material-symbols-light:add-circle"
               (clicked)="addSeguimiento.emit(item.id)"
             />
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               label="Editar"
               iconClass="material-symbols-light:edit"
               (clicked)="edit.emit({ id: item.id, header: 'Editar Asunto' })"

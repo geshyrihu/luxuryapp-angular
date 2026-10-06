@@ -75,19 +75,22 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Ver seguimientos"
-            iconName="list-outline"
             (clicked)="todosSeguimientos.emit(item.id)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Agregar Seguimiento"
-            iconName="add-circle-outline"
             (clicked)="addSeguimiento.emit(item.id)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
             label="Editar"
-            iconName="create-outline"
             (clicked)="edit.emit({ id: item.id, header: 'Editar Asunto' })"
           />
         </ng-container>

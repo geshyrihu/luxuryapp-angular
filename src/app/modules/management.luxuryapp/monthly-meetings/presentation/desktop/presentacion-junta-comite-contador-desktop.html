@@ -112,7 +112,7 @@
                 <div
                   class="d-flex align-items-center gap-3 bg-white p-2 rounded shadow-sm border-1 border-gray-100"
                 >
-                  <il-button-view-pdf
+                  <lux-pdf-viewer-trigger
                     [url]="item.archivoContable"
                     fileName="Contabilidad"
                     label="REVISAR ARCHIVO"
@@ -128,10 +128,12 @@
                       size="sm"
                       (clicked)="upload.emit({ id: item.id, titulo: 'Contabilidad' })"
                     />
-                    <il-button-delete
-                      (confirmed)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
+                    <lux-button-web
+                      kind="delete"
+                      severity="danger"
                       variant="text"
                       size="sm"
+                      (clicked)="deleteFile.emit({ id: item.id, area: 'Contabilidad' })"
                     />
                   </div>
                   }
@@ -231,14 +233,13 @@
 
             @if (item.archivoFinal) {
             <div class="mt-2">
-              <il-button-view-pdf
+              <lux-pdf-viewer-trigger
                 [url]="item.archivoFinal"
                 fileName="Presentacion_Final"
                 label="VER PRESENTACIÓN FINAL"
-                [fluid]="true"
                 severity="success"
                 size="sm"
-                customClass="justify-content-start px-3"
+                styleClass="btn-fluid justify-content-start px-3"
               />
             </div>
             }

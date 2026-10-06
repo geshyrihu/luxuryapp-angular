@@ -20,6 +20,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { SwalService } from "@core/services/swal.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { PresentacionJuntaComiteDesktop } from "./desktop/presentacion-junta-comite-desktop";
 import { PresentacionJuntaComiteMobile } from "./mobile/presentacion-junta-comite-mobile";
 import { PresentacionJuntaAdd } from "./presentacion-junta-add";
@@ -40,6 +42,8 @@ export class PresentacionJuntaComite {
   dateS = inject(DateService);
   public AspRole = ApplicationRole;
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
+  swalS = inject(SwalService);
 
   ref: DynamicDialogRef;
   applicationUserId: string =
@@ -110,7 +114,11 @@ export class PresentacionJuntaComite {
   }
 
   // Eliminar pdf
-  onDeleteFile(id: any, area: string) {
+  async onDeleteFile(id: any, area: string): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PresentacionJuntaComite.deleteFile(id, area))
       .then((result: boolean) => {
@@ -118,7 +126,11 @@ export class PresentacionJuntaComite {
       });
   }
   // Eliminar registro completo
-  onDeleteItem(id: any) {
+  async onDeleteItem(id: any): Promise<void> {
+    const ok = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.PresentacionJuntaComite.delete(id))
       .then((result: boolean) => {
@@ -126,7 +138,16 @@ export class PresentacionJuntaComite {
       });
   }
 
-  onValidarPresentacion(id: any) {
+  async onValidarPresentacion(id: any): Promise<void> {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Se notificaré a todos los miembros.",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onPost(
         Endpoints.PresentacionJuntaComite.authorize(
@@ -142,7 +163,16 @@ export class PresentacionJuntaComite {
       });
   }
 
-  onOnlyValidate(id: any) {
+  async onOnlyValidate(id: any): Promise<void> {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Se generaré la versión final sin enviar correos.",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS
       .onPost(
         Endpoints.PresentacionJuntaComite.authorize(

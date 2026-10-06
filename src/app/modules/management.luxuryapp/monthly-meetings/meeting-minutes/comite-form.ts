@@ -12,8 +12,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -23,16 +23,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   selector: "app-comite-form",
   templateUrl: "./comite-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputSelectSignal,
-    WebButtonLabelItem,
-    WebButtonIconDelete,
-  ],
+  imports: [ReactiveFormsModule, CustomInputSelectSignal, ButtonWeb],
 })
 export class ComiteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private customerIdS = inject(CustomerIdService);
+  private confirmS = inject(ConfirmService);
   // private config = inject(DynamicDialogConfig); // Not used
 
   customerId = input<string>();
@@ -90,7 +86,9 @@ export class ComiteForm implements OnInit {
     }
   }
 
-  onDelete(idParticipant: number): void {
+  async onDelete(idParticipant: number): Promise<void> {
+    const ok = await this.confirmS.confirm("¿Eliminar a este participante?");
+    if (!ok) return;
     this.apiResponseS
       .onDelete(Endpoints.MeetingComite.delete(idParticipant))
       .then(() => {

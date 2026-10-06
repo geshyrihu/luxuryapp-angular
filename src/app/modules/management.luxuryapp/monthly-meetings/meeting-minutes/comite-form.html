@@ -13,7 +13,10 @@
       [showClear]="true"
       [customClass]="'w-full'"
     />
-    <il-button-item
+    <lux-button-web
+      kind="item"
+      severity="secondary"
+      variant="soft"
       label="Agregar"
       iconClass="material-symbols-light:add"
       [fluid]="true"
@@ -27,11 +30,15 @@
     class="d-flex align-items-center justify-content-between gap-2 p-2 border-bottom-1 border"
   >
     <span class="text-sm text-body">{{ item.cargo }} - {{ item.nombre }}</span>
-    <iw-button-delete
-      [tooltip]="'Eliminar'"
-      tooltipPosition="top"
-      confirmMessage="¿Eliminar a este participante?"
-      (confirmed)="onDelete(item.id)"
+    <lux-button-web
+      kind="delete"
+      displayMode="icon"
+      severity="danger"
+      variant="soft"
+      size="sm"
+      tooltip="Eliminar"
+      ariaLabel="Eliminar"
+      (clicked)="onDelete(item.id)"
     />
   </div>
   }

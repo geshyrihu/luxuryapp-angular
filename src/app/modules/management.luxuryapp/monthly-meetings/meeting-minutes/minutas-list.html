@@ -191,25 +191,34 @@
 
         <app-action-menu>
           <ng-container actions>
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:bar-chart"
               label="Exportar Excel"
               (clicked)="exportToExcel(item.id)"
             />
-            <il-button-confirm
+            <lux-button-web
+              kind="confirm"
+              severity="success"
+              variant="soft"
               iconClass="material-symbols-light:mail-outline"
               label="Enviar a Comité"
-              swalTitle="Confirmar envío"
-              swalText="¿Está seguro de que desea enviar la minuta?"
-              swalConfirmButtonText="Sí, enviar"
-              (confirmed)="onSendEmailMeeting(item.id)"
+              (clicked)="onSendEmailMeeting(item.id)"
             />
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:picture-as-pdf"
               label="Minuta PDF"
               (clicked)="onNavigateMinutaPublico(item.id)"
             />
-            <il-button-item
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
               iconClass="material-symbols-light:article"
               label="Resumen minuta"
               (clicked)="resumenMinuta(item.id)"
@@ -223,9 +232,11 @@
               "
             />
             @if (aspRoleS.hasAny([AspRole.SuperUsuario])) {
-            <il-button-delete
-              label="Eliminar"
-              (confirmed)="onDelete(item.id)"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="onDelete(item.id)"
             />
             }
           </ng-container>

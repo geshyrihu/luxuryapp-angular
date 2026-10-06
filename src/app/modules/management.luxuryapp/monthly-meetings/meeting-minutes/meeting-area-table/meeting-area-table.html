@@ -9,20 +9,25 @@
     </span>
 
     <div class="mm-area__actions">
-      <iw-button-add
+      <lux-button-web
+        kind="add"
+        variant="soft"
+        severity="primary"
+        displayMode="icon"
         size="sm"
-        lxTooltip="Agregar asunto"
+        tooltip="Agregar asunto"
         tooltipPosition="top"
         (clicked)="onAddDetail()"
       />
       @if (details().length > 0) {
-      <iw-button-confirm
-        swalTitle="Confirmar envío"
-        [swalText]="'Enviar por correo los pendientes de ' + title()"
-        lxTooltip="Enviar pendientes por correo"
+      <lux-button-web
+        kind="confirm"
+        displayMode="icon"
+        severity="success"
+        variant="soft"
+        tooltip="Enviar pendientes por correo"
         tooltipPosition="top"
-        swalConfirmButtonText="Sí, enviar"
-        (confirmed)="onSendAreaEmail()"
+        (clicked)="onSendAreaEmail()"
       />
       }
     </div>
@@ -81,12 +86,16 @@
                 [tooltip]="'Editar seguimiento'"
                 (clicked)="onEditSeguimiento(detail.id, seg.id)"
               />
-              <iw-button-delete
-                [tooltip]="'Eliminar seguimiento'"
+              <lux-button-web
+                kind="delete"
+                displayMode="icon"
+                severity="danger"
+                variant="soft"
+                size="sm"
+                tooltip="Eliminar seguimiento"
                 tooltipPosition="top"
-                confirmHeader="Eliminar seguimiento"
-                confirmMessage="¿Está seguro de eliminar este seguimiento?"
-                (confirmed)="onDeleteSeguimiento(seg.id)"
+                ariaLabel="Eliminar"
+                (clicked)="onDeleteSeguimiento(seg.id)"
               />
             </div>
           </li>
@@ -104,7 +113,10 @@
         >
           <app-action-menu>
             <ng-container actions>
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:forum"
                 label="Agregar seguimiento"
                 (clicked)="onAddSeguimiento(detail.id)"
@@ -115,9 +127,11 @@
                 variant="soft"
                 (clicked)="onEditDetail(detail.id)"
               />
-              <il-button-delete
-                label="Eliminar"
-                (confirmed)="onDeleteDetail(detail.id)"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="onDeleteDetail(detail.id)"
               />
             </ng-container>
           </app-action-menu>

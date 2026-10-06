@@ -19,8 +19,8 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ROUTES } from "src/app/routing/route-paths";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -125,7 +125,6 @@ interface IJuntaMensualSessionDetail extends IJuntaMensualSessionListItem {
     AppTable,
     LxTag,
     WebButtonLabel,
-    WebButtonLabelDelete,
   ],
 })
 export class JuntasMensualesSession {
@@ -137,6 +136,7 @@ export class JuntasMensualesSession {
   private readonly router = inject(Router);
   private readonly signalRService = inject(SignalRService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly confirmS = inject(ConfirmService);
 
   readonly loading = signal(false);
   readonly detailLoading = signal(false);
@@ -271,9 +271,14 @@ export class JuntasMensualesSession {
       });
   }
 
-  onCancel() {
+  async onCancel(): Promise<void> {
     const detail = this.selectedDetail();
     if (!detail) return;
+
+    const ok = await this.confirmS.confirm(
+      "Esta acción cancelará la sesión y, si existe agenda ligada, también cancelará el evento de agenda.",
+    );
+    if (!ok) return;
 
     this.apiResponseS
       .onPost<IJuntaMensualSessionListItem>(
