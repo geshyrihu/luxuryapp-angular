@@ -25,9 +25,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -55,7 +55,6 @@ import { AgendaSupervisionForm } from "./agenda-supervision-form";
     WebButtonIcon,
     LxTooltipDirective,
     TableEmptyMessage,
-    WebButtonLabelDelete,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
@@ -95,6 +94,7 @@ export class AgendaSupervision implements OnInit {
   fechaFinal: string = this.dateS.getDateFormat(
     this.rangoCalendarioService.fechaFinalDateFull,
   );
+  confirmS = inject(ConfirmService);
   applicationUserId = this.authS.applicationUserId;
   depto: string = "SUPERVISIÓN DE OPERACIONES";
   nombre: string =
@@ -154,7 +154,11 @@ export class AgendaSupervision implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta supervisión?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.AgendaSupervision.delete(id))
       .then((result: boolean) => {

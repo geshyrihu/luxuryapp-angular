@@ -121,9 +121,11 @@
               variant="soft"
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <il-button-delete
-              (confirmed)="onDelete(item.id)"
-              label="Eliminar"
+            <lux-button-web
+              kind="delete"
+              severity="danger"
+              variant="soft"
+              (clicked)="onDelete(item.id)"
             />
 
             }
@@ -175,7 +177,11 @@
             kind="edit"
             (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="onDelete(item.id)"
+          />
           }
         </ng-container>
       </ili-action-menu>

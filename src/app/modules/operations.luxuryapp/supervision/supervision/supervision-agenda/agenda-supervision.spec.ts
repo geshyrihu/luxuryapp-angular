@@ -7,6 +7,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { vi } from "vitest";
 import { AgendaSupervision } from "./agenda-supervision";
 
@@ -20,6 +21,7 @@ describe("agenda-supervision", () => {
   let mockDialogHandlerS: any;
   let mockRangoCalendarioS: any;
   let mockTableScrollHeightS: any;
+  let mockConfirmS: any;
 
   beforeEach(() => {
     mockDateS = {
@@ -47,6 +49,7 @@ describe("agenda-supervision", () => {
       fechas$: { subscribe: vi.fn() },
     };
     mockTableScrollHeightS = { scrollHeight: "500px" };
+    mockConfirmS = { confirm: vi.fn().mockResolvedValue(true) };
 
     TestBed.resetTestingModule();
     TestBed.overrideComponent(AgendaSupervision, {
@@ -62,6 +65,7 @@ describe("agenda-supervision", () => {
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: FiltroCalendarService, useValue: mockRangoCalendarioS },
         { provide: TableScrollHeightService, useValue: mockTableScrollHeightS },
+        { provide: ConfirmService, useValue: mockConfirmS },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
@@ -112,6 +116,16 @@ describe("agenda-supervision", () => {
     );
     expect(component.dataSignal().length).toBe(1);
     expect(component.dataSignal()[0].id).toBe("2");
+  });
+
+  it("onDelete should not delete when confirmation is cancelled", async () => {
+    mockConfirmS.confirm.mockResolvedValueOnce(false);
+    component.dataSignal.set([{ id: "1", name: "A" }]);
+
+    await component.onDelete("1");
+
+    expect(mockApiResponseS.onDelete).not.toHaveBeenCalled();
+    expect(component.dataSignal().length).toBe(1);
   });
 
   it("onModalForm should open dialog", async () => {
