@@ -6,14 +6,12 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { ButtonWeb } from "@ui/buttons/web";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -24,13 +22,12 @@ import {
   imports: [
     ButtonWeb,
     PdfViewerTrigger,
-    LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     LxTag,
-    LuxTableCaption],
+    LuxTableCaption,
+  ],
 })
 export class PolicyContractListDesktop {
   data = input.required<any[]>();

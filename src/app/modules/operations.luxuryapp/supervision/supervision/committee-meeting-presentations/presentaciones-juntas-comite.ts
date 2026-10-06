@@ -19,16 +19,15 @@ import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
-  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -42,13 +41,13 @@ import {
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
     NgbTooltipModule,
     LuxTableCaption,
     DataViewMobile,
     CustomInputTextSignal,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class PresentacionesJuntasComite implements OnInit {
   apiResponseS = inject(ApiResponseService);
