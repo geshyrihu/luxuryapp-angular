@@ -12,6 +12,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { VaultSecretsListDesktop } from "./desktop/vault-secrets-list-desktop";
 import { VaultSecretSummary } from "./interfaces/vault-secret.model";
 import { VaultSecretsListMobile } from "./mobile/vault-secrets-list-mobile";
@@ -28,6 +29,7 @@ export class VaultSecretsList {
   dialogHandlerS = inject(DialogHandlerService);
   aspRoleS = inject(AspRoleService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   readonly isSuperUsuario = this.aspRoleS.roleSignal(
     ApplicationRole.SuperUsuario,
@@ -87,7 +89,11 @@ export class VaultSecretsList {
       });
   }
 
-  onRevoke(secretName: string): void {
+  async onRevoke(secretName: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de revocar este secreto?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onPost(Endpoints.VaultSecrets.revoke(secretName), null)
       .then((result) => {

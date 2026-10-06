@@ -11,9 +11,12 @@
     />
   </div>
 
-  <il-button-send-email
+  <lux-button-web
+    kind="send-email"
     label="Enviar correo de prueba"
-    customClass="mt-3"
-    (confirmed)="onSendEmail()"
+    severity="info"
+    variant="soft"
+    styleClass="mt-3"
+    (clicked)="onSendEmail()"
   />
 </div>

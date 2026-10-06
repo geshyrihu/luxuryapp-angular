@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { AppTag } from "@ui/web/tag/tag";
@@ -27,7 +26,6 @@ import { AiKnowledgeBaseDto } from "@core/interfaces/ai-knowledge-base.dto";
     ButtonWeb,
     AppTag,
     AppIcon,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,

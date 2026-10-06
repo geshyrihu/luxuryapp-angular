@@ -44,22 +44,29 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:photo-library-outline"
             label="Imígenes"
             (clicked)="updateImages.emit(item.id)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:location-on-outline"
             label="Dirección"
             (clicked)="updateAddress.emit(item.id)"
           />
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             iconClass="material-symbols-light:location-on"
             label="Ubicaciones"
             (clicked)="manageLocations.emit({ id: item.id, name: item.nameCustomer })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

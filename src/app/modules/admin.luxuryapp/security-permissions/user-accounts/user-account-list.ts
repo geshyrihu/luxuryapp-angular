@@ -9,7 +9,6 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 
 import { WebButtonLabelActiveDesactive } from "@ui/buttons/web-label/button-active-desactive";
 import { firstValueFrom } from "rxjs";
@@ -41,8 +40,8 @@ import { MdEditAccount } from "./md-edit-account";
 import { UserAccountForm } from "./user-account-form";
 import { UserAccountListMobile } from "./user-account-list-mobile";
 
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 @Component({
   selector: "app-user-account-list",
   templateUrl: "./user-account-list.html",
@@ -50,14 +49,12 @@ import { ButtonWeb } from "@ui/buttons/web";
   imports: [
     ButtonWeb,
     UserAccountListMobile,
-    WebButtonIconItem,
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     LxAvatar,
-    WebButtonIconDelete,
     WebButtonLabelActiveDesactive,
     LuxTableCaption,
     TableFooter,
@@ -70,6 +67,7 @@ export class UserAccountList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   enumSelectS = inject(EnumSelectService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  confirmS = inject(ConfirmService);
   // Signals
   dataSignal = signal<UserAccountDto[]>([]);
   filteredDataSignal = signal<UserAccountDto[]>([]);
@@ -275,7 +273,11 @@ export class UserAccountList implements OnInit {
       });
   }
 
-  DeleteUserId(applicationUserId: string): void {
+  async DeleteUserId(applicationUserId: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta cuenta de usuario?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(
         Endpoints.UserAccounts.deleteAccountAndRelations(applicationUserId),

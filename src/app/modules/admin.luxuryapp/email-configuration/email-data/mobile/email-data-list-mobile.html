@@ -23,9 +23,10 @@
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-send-email
-            (confirmed)="sendTestEmail.emit(item.id)"
+          <lux-button-mobile
+            kind="send-email"
             label="Enviar"
+            (clicked)="sendTestEmail.emit(item.id)"
           />
         </ng-container>
       </ili-action-menu>

@@ -9,7 +9,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -30,7 +29,6 @@ import { ApplicationRoleDto } from "../interfaces/application-role.dto";
     NgStyle,
     FormsModule,
     CustomInputCheckSignal,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,

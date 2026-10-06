@@ -6,6 +6,7 @@ import { PlatformService } from '@core/services/platform.service';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { ConfirmService } from '@ui/buttons/shared/confirm.service';
 import { ModuleAppList } from './module-app-list';
 
 describe('ModuleAppList', () => {
@@ -24,6 +25,7 @@ describe('ModuleAppList', () => {
         { provide: ModalController, useValue: {} },
         { provide: NgbModal, useValue: {} },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     });

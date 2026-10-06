@@ -73,25 +73,46 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-item
-            lxTooltip="Imagenes"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            severity="secondary"
+            variant="soft"
+            displayMode="icon"
             iconClass="material-symbols-light:photo"
+            tooltip="Imagenes"
+            tooltipPosition="top"
             (clicked)="updateImages.emit(item.id)"
           />
-          <iw-button-item
-            lxTooltip="Dirección"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            severity="secondary"
+            variant="soft"
+            displayMode="icon"
             iconClass="material-symbols-light:location-on"
+            tooltip="Dirección"
+            tooltipPosition="top"
             (clicked)="updateAddress.emit(item.id)"
           />
-          <iw-button-item
-            lxTooltip="Ubicaciones"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            severity="secondary"
+            variant="soft"
+            displayMode="icon"
             iconClass="material-symbols-light:location-on"
+            tooltip="Ubicaciones"
+            tooltipPosition="top"
             (clicked)="manageLocations.emit({ id: item.id, name: item.nameCustomer })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

@@ -10,6 +10,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { AsambleaChecklistTemplateForm } from "./asamblea-checklist-template-form";
 import { AsambleaChecklistTemplateListDesktop } from "./desktop/asamblea-checklist-template-list-desktop";
 import { AsambleaChecklistTemplateDto } from "./interfaces/asamblea-checklist-template.dto";
@@ -28,6 +29,7 @@ export class AsambleaChecklistTemplateList implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
   private readonly dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   readonly dataSignal = signal<AsambleaChecklistTemplateDto[]>([]);
   readonly globalFilterFields = globalFilterFields([
@@ -53,7 +55,11 @@ export class AsambleaChecklistTemplateList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este item de checklist?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.AsambleaChecklistTemplate.delete(id))
       .then((response) => {

@@ -9,6 +9,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { addIcons } from "ionicons";
 import { storefrontOutline } from "ionicons/icons";
 import { CustomerProviderForm } from "./customer-provider-form";
@@ -26,6 +27,7 @@ export class MisProveedores {
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
   dataSignal = signal<any[]>([]);
 
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
@@ -67,7 +69,11 @@ export class MisProveedores {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este proveedor?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CustomerProvider.delete(id))
       .then((result: boolean) => {

@@ -9,7 +9,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -30,7 +29,6 @@ import { DatabaseBackupConfig } from "../interfaces/database-backup.interface";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

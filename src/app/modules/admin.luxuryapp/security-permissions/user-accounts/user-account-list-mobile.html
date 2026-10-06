@@ -68,30 +68,34 @@
           </ion-label>
           <ili-action-menu slot="end">
             @if (item.active) {
-              <ili-button-item
+              <lux-button-mobile
+                kind="item"
+                displayMode="label"
                 label="Bloquear"
-                iconName="lock-closed-outline"
                 (clicked)="block.emit(item.id)"
               />
             } @else {
-              <ili-button-item
+              <lux-button-mobile
+                kind="item"
+                displayMode="label"
                 label="Desbloquear"
-                iconName="lock-open-outline"
                 (clicked)="unlock.emit(item.id)"
               />
             }
-            <ili-button-item
+            <lux-button-mobile
+              kind="item"
+              displayMode="label"
               label="Permisos"
-              iconName="person-outline"
               (clicked)="permissions.emit({ id: item.id, email: item.email })"
             />
             <lux-button-mobile
               kind="edit"
               (clicked)="edit.emit(item.id)"
             />
-            <ili-button-delete
-              label="Eliminar"
-              (confirmed)="delete.emit(item.id)"
+            <lux-button-mobile
+              kind="delete"
+              color="danger"
+              (clicked)="delete.emit(item.id)"
             />
           </ili-action-menu>
         </ion-item>

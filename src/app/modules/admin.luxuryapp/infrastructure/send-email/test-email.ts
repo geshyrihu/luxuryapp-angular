@@ -1,28 +1,40 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
+import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SwalService } from "@core/services/swal.service";
 @Component({
   selector: "app-test-email",
   templateUrl: "./test-email.html",
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabelSendEmail,
+    ButtonWeb,
   ],
 })
 export class TestEmail {
   apiResponseS = inject(ApiResponseService);
+  swalS = inject(SwalService);
   // Campo para capturar el correo
   emailControl = new FormControl<string>("");
 
-  onSendEmail() {
+  async onSendEmail() {
     if (!this.emailControl.value) {
       alert("Por favor, ingresa un correo vólido");
       return;
     }
+
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Deseas enviar el correo electronico ahora?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
 
     // Endpoint: api/test/test-email/{email}
     const urlApi = Endpoints.Catalogs.EmailData.sendTestEmail(

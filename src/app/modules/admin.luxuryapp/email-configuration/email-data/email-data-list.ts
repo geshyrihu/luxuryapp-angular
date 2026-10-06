@@ -14,6 +14,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { SwalService } from "@core/services/swal.service";
 import { EmailDataListDesktop } from "./desktop/email-data-list-desktop";
 import { EmailDataForm } from "./email-data-form";
 import { EmailDataListMobile } from "./mobile/email-data-list-mobile";
@@ -28,6 +29,7 @@ export class EmailDataList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  swalS = inject(SwalService);
 
   dataSignal = signal<EmailDataFormDto[]>([]);
 
@@ -57,7 +59,16 @@ export class EmailDataList {
       });
   }
 
-  onSendTestEmail(id: string) {
+  async onSendTestEmail(id: string) {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Deseas enviar el correo electronico ahora?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.apiResponseS.onPost(
       Endpoints.Catalogs.EmailData.sendTestEmail(id),
       null,

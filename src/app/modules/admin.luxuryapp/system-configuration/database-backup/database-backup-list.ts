@@ -6,6 +6,7 @@ import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { DatabaseBackupForm } from "./database-backup-form";
 import { DatabaseBackupListDesktop } from "./desktop/database-backup-list-desktop";
 import { DatabaseBackupConfig } from "./interfaces/database-backup.interface";
@@ -22,6 +23,7 @@ export class DatabaseBackupList {
   dialogHandlerS = inject(DialogHandlerService);
   aspRoleS = inject(AspRoleService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   readonly isSuperUsuario = this.aspRoleS.roleSignal(
     ApplicationRole.SuperUsuario,
@@ -81,7 +83,11 @@ export class DatabaseBackupList {
       });
   }
 
-  onDeleteConfig(id: string): void {
+  async onDeleteConfig(id: string): Promise<void> {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar esta configuración de respaldo?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.DatabaseBackup.delete(id))
       .then((result) => {

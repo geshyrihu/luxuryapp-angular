@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -22,7 +21,6 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     ButtonMobile,
     FormsModule,
     ReactiveFormsModule,
-    MobileButtonLabelDelete,
     DataViewMobile,
     MobileActionMenu,
     CustomInputSelectSignal,

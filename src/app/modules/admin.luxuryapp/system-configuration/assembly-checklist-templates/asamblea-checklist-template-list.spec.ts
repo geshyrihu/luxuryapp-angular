@@ -5,6 +5,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/serv
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@core/services/platform.service';
 import { of } from 'rxjs';
+import { ConfirmService } from '@ui/buttons/shared/confirm.service';
 import { AsambleaChecklistTemplateList } from './asamblea-checklist-template-list';
 
 describe('AsambleaChecklistTemplateList', () => {
@@ -22,6 +23,7 @@ describe('AsambleaChecklistTemplateList', () => {
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     });

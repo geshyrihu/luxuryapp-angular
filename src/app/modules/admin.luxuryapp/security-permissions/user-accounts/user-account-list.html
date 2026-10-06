@@ -135,25 +135,37 @@
         <td class="no-print">
           <div class="d-flex">
             @if (item.active) {
-            <iw-button-item
-              (clicked)="onToBlockAccount(item.id)"
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
+              displayMode="icon"
               iconClass="material-symbols-light:lock"
-              lxTooltip="Bloquear"
+              tooltip="Bloquear"
               tooltipPosition="top"
+              (clicked)="onToBlockAccount(item.id)"
             />
             } @if (!item.active) {
-            <iw-button-item
-              (clicked)="onToUnlockAccount(item.id)"
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
+              displayMode="icon"
               iconClass="material-symbols-light:lock-open"
-              lxTooltip="Desbloquear"
+              tooltip="Desbloquear"
               tooltipPosition="top"
+              (clicked)="onToUnlockAccount(item.id)"
             />
             }
-            <iw-button-item
-              (clicked)="onModalEditAccount(item.id, item.email)"
+            <lux-button-web
+              kind="item"
+              severity="secondary"
+              variant="soft"
+              displayMode="icon"
               iconClass="material-symbols-light:person"
-              lxTooltip="Permisos"
+              tooltip="Permisos"
               tooltipPosition="top"
+              (clicked)="onModalEditAccount(item.id, item.email)"
             />
             <lux-button-web
               kind="edit"
@@ -165,7 +177,16 @@
               ariaLabel="Editar"
               (clicked)="onModalForm(item.id, 'Editar')"
             />
-            <iw-button-delete (confirmed)="DeleteUserId(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="DeleteUserId(item.id)"
+            />
           </div>
         </td>
       </tr>

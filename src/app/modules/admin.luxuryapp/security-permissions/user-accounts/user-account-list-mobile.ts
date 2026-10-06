@@ -19,9 +19,7 @@ import {
   IonIcon,
 } from "@ionic/angular";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -46,8 +44,6 @@ import { UserAccountDto } from "./interfaces/user-account.dto";
     IonIcon,
     MobileActionMenu,
     MobileButtonLabelActiveDesactive,
-    MobileButtonLabelDelete,
-    MobileButtonLabelItem,
     ReactiveFormsModule,
   ],
   styles: [

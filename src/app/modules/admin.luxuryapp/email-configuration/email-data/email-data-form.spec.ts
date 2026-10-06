@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { SwalService } from '@core/services/swal.service';
 import { EmailDataForm } from './email-data-form';
 
 describe('EmailDataForm', () => {
@@ -18,6 +19,7 @@ describe('EmailDataForm', () => {
         { provide: DynamicDialogConfig, useValue: { data: {} } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
+        { provide: SwalService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();

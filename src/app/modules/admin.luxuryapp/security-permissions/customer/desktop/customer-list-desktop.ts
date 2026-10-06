@@ -12,8 +12,6 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -31,7 +29,6 @@ import { CustomerDto } from "../interfaces/customer.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconItem,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
@@ -39,7 +36,6 @@ import { CustomerDto } from "../interfaces/customer.dto";
     AppSorticon,
     LxAvatar,
     NgbTooltipModule,
-    WebButtonIconDelete,
     WebButtonIconActiveDesactive,
     LuxTableCaption,
     TableFooter,

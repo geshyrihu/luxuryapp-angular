@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
@@ -31,7 +30,6 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableFooter,
     TableEmptyMessage,

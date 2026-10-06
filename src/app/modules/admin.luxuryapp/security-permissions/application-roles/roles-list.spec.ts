@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { RolesList } from './roles-list';
 import { PlatformService } from '@core/services/platform.service';
+import { ConfirmService } from '@ui/buttons/shared/confirm.service';
 
 describe('RolesList', () => {
   let component: RolesList;
@@ -25,6 +26,7 @@ describe('RolesList', () => {
         { provide: ModalController, useValue: {} },
         { provide: ActivatedRoute, useValue: { snapshot: { data: {}, params: {}, queryParams: {} }, params: of({}), queryParams: of({}) } },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     }).compileComponents();

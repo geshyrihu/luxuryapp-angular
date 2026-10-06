@@ -6,8 +6,6 @@ import {
 } from "@angular/core";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -23,8 +21,6 @@ import { CustomerDto } from "../interfaces/customer.dto";
     ButtonMobile,
     WebButtonIconActiveDesactive,
     MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     MobileListItem,
     AppIcon,
     DataViewMobile,

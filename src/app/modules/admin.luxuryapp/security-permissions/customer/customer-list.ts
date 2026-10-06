@@ -15,6 +15,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { addIcons } from "ionicons";
 import {
   createOutline,
@@ -40,6 +41,7 @@ export class CustomerList implements OnInit {
   dialogHandlerS = inject(DialogHandlerService);
   apiResponseS = inject(ApiResponseService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   // Declaración e inicialización de variables con Signals
   dataSignal = signal<CustomerDto[]>([]);
@@ -75,7 +77,11 @@ export class CustomerList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este cliente?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Customers.delete(id))
       .then((result: boolean) => {

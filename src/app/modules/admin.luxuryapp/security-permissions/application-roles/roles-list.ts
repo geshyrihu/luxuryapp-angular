@@ -12,6 +12,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ApplicationRoleDto } from "./interfaces/application-role.dto";
 import { RoleForm } from "./role-form";
 import { RolesListDesktop } from "./desktop/roles-list-desktop";
@@ -27,6 +28,7 @@ export class RolesList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<ApplicationRoleDto[]>([]);
   readonly globalFilterFields = signal([
@@ -59,7 +61,11 @@ export class RolesList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este rol?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ApplicationRoles.delete(id))
       .then((result) => {

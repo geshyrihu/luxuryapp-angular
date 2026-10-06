@@ -12,7 +12,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelSendEmail } from "@ui/buttons/web-label/button-send-email";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -21,6 +20,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SwalService } from "@core/services/swal.service";
 import { EmailDataFormDto, TestEmailResponse } from "@core/interfaces/email-data-form.interface";
 @Component({
   selector: "app-email-data-form",
@@ -28,7 +28,6 @@ import { EmailDataFormDto, TestEmailResponse } from "@core/interfaces/email-data
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    WebButtonLabelSendEmail,
     CustomInputTextSignal,
     ButtonWeb,
   ],
@@ -39,6 +38,7 @@ export class EmailDataForm implements OnInit {
   aspRoleS = inject(AspRoleService);
   config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
+  swalS = inject(SwalService);
 
   id: string = "";
   applicationUserId: string = "";
@@ -99,7 +99,16 @@ export class EmailDataForm implements OnInit {
     });
   }
 
-  TestEmail(): void {
+  async TestEmail(): Promise<void> {
+    const ok = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Deseas enviar el correo electronico ahora?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!ok) return;
     this.submitting.set(true);
     this.apiResponseS
       .onPost<TestEmailResponse>(Endpoints.Catalogs.EmailData.sendTestEmail(this.id), null)

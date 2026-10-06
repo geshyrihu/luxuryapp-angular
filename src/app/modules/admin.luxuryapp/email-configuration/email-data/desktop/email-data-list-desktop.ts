@@ -8,7 +8,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { EmailDataFormDto } from "@core/interfaces/email-data-form.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconSendEmail } from "@ui/buttons/web-icon/button-send-email";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -29,7 +28,6 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonIconSendEmail,
     LuxTableCaption,
     TableFooter,
   ],

@@ -13,6 +13,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ModuleAppListDesktop } from "./desktop/module-app-list-desktop";
 import { ModuleAppDto } from "./interfaces/module-app.dto";
 import { ModuleAppListMobile } from "./mobile/module-app-list-mobile";
@@ -28,6 +29,7 @@ export class ModuleAppList {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   constructor() {}
 
@@ -71,7 +73,11 @@ export class ModuleAppList {
   }
 
   // Funcion para eliminar un banco y refres
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este módulo?",
+    );
+    if (!confirmed) return;
     this.apiResponseS.onDelete(Endpoints.ModuleApps.delete(id)).then((_) => {
       // Actualizamos el signal para eliminar el elemento de la lista
       this.dataSignal.update((data) => data.filter((item) => item.id !== id));

@@ -6,6 +6,7 @@ import { PlatformService } from '@core/services/platform.service';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from '@core/services/dialog-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { SwalService } from '@core/services/swal.service';
 import { EmailDataList } from './email-data-list';
 
 describe('EmailDataList', () => {
@@ -24,6 +25,7 @@ describe('EmailDataList', () => {
         { provide: ModalController, useValue: {} },
         { provide: NgbModal, useValue: {} },
         { provide: PlatformService, useValue: { isMobile: () => false } },
+        { provide: SwalService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: 'HttpClientWithoutInterceptors', useValue: (globalThis as any).__mockHttpClient },
       ],
     });

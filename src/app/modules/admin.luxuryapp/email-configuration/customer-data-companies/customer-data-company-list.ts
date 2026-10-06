@@ -14,6 +14,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { CustomerDataCompanyForm } from "./customer-data-company-form";
 import { CustomerDataCompanyDto } from "./customer-data-company.dto";
 import { CustomerDataCompanyListDesktop } from "./desktop/customer-data-company-list-desktop";
@@ -29,6 +30,7 @@ export class CustomerDataCompanyList implements OnInit {
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   data = signal<CustomerDataCompanyDto[]>([]);
   readonly globalFilterFields = signal<string[]>([
@@ -96,7 +98,11 @@ export class CustomerDataCompanyList implements OnInit {
       });
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.CustomerDataCompany.delete(id))
       .then((result: boolean) => {

@@ -57,7 +57,13 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-send-email (confirmed)="sendTestEmail.emit(item.id)" />
+          <lux-button-web
+            kind="send-email"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            (clicked)="sendTestEmail.emit(item.id)"
+          />
         </div>
       </td>
 
