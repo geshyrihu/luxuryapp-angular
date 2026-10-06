@@ -13,11 +13,15 @@
       (add)="add.emit()"
       [dt]="dt"
     />
-    <iw-button-download
-      lxTooltip="Descargar PDF"
+    <lux-button-web
+      kind="download"
+      displayMode="icon"
+      severity="secondary"
+      variant="soft"
+      tooltip="Descargar PDF"
       tooltipPosition="top"
-      (clicked)="downloadPdf.emit()"
       class="mt-1"
+      (clicked)="downloadPdf.emit()"
     />
   </ng-template>
   <ng-template #header>
@@ -57,7 +61,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

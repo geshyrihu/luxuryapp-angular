@@ -18,6 +18,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { InventarioPinturaDesktop } from "./desktop/inventario-pintura-desktop";
 import { InventarioPinturaForm } from "./inventario-pintura-form";
 import { InventarioPinturaMobile } from "./mobile/inventario-pintura-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-pintura",
@@ -27,6 +28,7 @@ import { InventarioPinturaMobile } from "./mobile/inventario-pintura-mobile";
 })
 export class InventarioPintura {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   platformS = inject(PlatformService);
@@ -53,7 +55,11 @@ export class InventarioPintura {
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InventarioPintura.delete(id))
       .then((result: boolean) => {

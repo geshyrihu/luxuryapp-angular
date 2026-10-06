@@ -8,8 +8,6 @@ import {
 import { InventarioLlave } from "@core/interfaces/inventario-llave.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -26,8 +24,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDownload,
-    WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,

@@ -26,6 +26,7 @@ import { WarehouseStockListDesktop } from "./desktop/warehouse-stock-list-deskto
 import { WarehouseStockListMobile } from "./mobile/warehouse-stock-list-mobile";
 import { WarehouseStockAdd } from "./warehouse-stock-add";
 import { WarehouseStockEdit } from "./warehouse-stock-edit";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-warehouse-stock-list",
@@ -35,6 +36,7 @@ import { WarehouseStockEdit } from "./warehouse-stock-edit";
 })
 export class WarehouseStockList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   authS = inject(AuthService);
@@ -103,7 +105,11 @@ export class WarehouseStockList {
     });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InventarioProducto.delete(id))
       .then((result: boolean) => {

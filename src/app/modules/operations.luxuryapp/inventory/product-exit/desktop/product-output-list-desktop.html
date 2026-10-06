@@ -39,11 +39,14 @@
             }
           </div>
 
-          <iw-button-download
-            lxTooltip="Generar Reporte"
+          <lux-button-web
+            kind="download"
+            displayMode="icon"
+            severity="success"
+            variant="soft"
+            tooltip="Generar Reporte"
             tooltipPosition="top"
             iconClass="material-symbols-light:table-view"
-            severity="success"
             (clicked)="generateReport.emit()"
           />
         </div>
@@ -132,7 +135,16 @@
               [disabled]="item.cantidadDevuelta >= item.cantidad"
             />
 
-            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="delete.emit(item.id)"
+            />
           </div>
         </td>
       </tr>

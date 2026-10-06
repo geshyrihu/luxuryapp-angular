@@ -21,6 +21,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { ProductEntryListDesktop } from "./desktop/product-entry-list-desktop";
 import { ProductEntryListMobile } from "./mobile/product-entry-list-mobile";
 import { ProductEntryForm } from "./product-entry-form";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-list-entradas",
@@ -30,6 +31,7 @@ import { ProductEntryForm } from "./product-entry-form";
 })
 export class ProductEntryList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -65,7 +67,11 @@ export class ProductEntryList {
       }
     });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ProductEntries.delete(id))
       .then((result: boolean) => {

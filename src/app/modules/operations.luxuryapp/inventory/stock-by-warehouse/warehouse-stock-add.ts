@@ -48,15 +48,15 @@ interface IWarehouseStockRowForm {
 
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-warehouse-stock-add",
   templateUrl: "./warehouse-stock-add.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIconItem,
+    ButtonWeb,
     LxTooltipDirective,
     AppTable,
 

@@ -10,9 +10,6 @@ import { InventarioExtintorDto } from "@core/interfaces/inventario-extintor.inte
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconDownload } from "@ui/buttons/web-icon/button-download";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -31,9 +28,6 @@ import {
   imports: [
     ButtonWeb,
     WebButtonIcon,
-    WebButtonIconDownload,
-    WebButtonIconItem,
-    WebButtonIconDelete,
     LxTooltipDirective,
     TableEmptyMessage,
     AppImage,

@@ -6,8 +6,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -31,8 +29,6 @@ import {
     AppSortableColumn,
     AppSorticon,
     LxTooltipDirective,
-    WebButtonIconDelete,
-    WebButtonIconItem,
   ],
 })
 export class WarehouseStockListDesktop {

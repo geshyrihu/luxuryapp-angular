@@ -4,7 +4,10 @@
   (add)="add.emit()"
 >
   <div customFilters>
-    <ili-button-download (clicked)="downloadPdf.emit()" />
+    <lux-button-mobile
+      kind="download"
+      (clicked)="downloadPdf.emit()"
+    />
   </div>
   <ng-template #listItemTemplate let-item>
     <ili-list-item>
@@ -25,7 +28,11 @@
             kind="edit"
             (clicked)="edit.emit(item)"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

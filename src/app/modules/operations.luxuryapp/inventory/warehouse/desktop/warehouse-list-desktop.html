@@ -40,17 +40,25 @@
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
       <td class="no-print">
         <div class="d-flex">
-          <iw-button-item
-            (clicked)="viewProducts.emit(item.id)"
-            lxTooltip="Ver Productos"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Ver Productos"
             tooltipPosition="top"
             iconClass="material-symbols-light:package"
+            (clicked)="viewProducts.emit(item.id)"
           />
-          <iw-button-item
-            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
-            lxTooltip="Descargar Inventario"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Descargar Inventario"
             tooltipPosition="top"
             iconClass="material-symbols-light:picture-as-pdf"
+            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
           />
           <lux-button-web
             kind="edit"
@@ -62,7 +70,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

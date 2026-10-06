@@ -70,7 +70,16 @@
                       almacenId: item.almacenId
                     })"
             />
-            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="delete.emit(item.id)"
+            />
           </div>
         </td>
         }

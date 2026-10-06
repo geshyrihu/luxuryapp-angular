@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -21,7 +20,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     TableEmptyMessage,
     AppTable,
     AppImage,

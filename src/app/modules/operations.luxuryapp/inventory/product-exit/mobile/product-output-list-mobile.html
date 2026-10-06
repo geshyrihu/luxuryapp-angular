@@ -25,7 +25,10 @@
       <ili-action-menu end>
         <ng-container actions>
           @if (isSuperUsuario()) {
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
+            label="Editar"
+            iconName="create-outline"
             (clicked)="
                 edit.emit({
                   id: item.id,
@@ -35,8 +38,6 @@
                   nombreProducto: item.producto
                 })
               "
-            label="Editar"
-            iconName="create-outline"
           />
           }
           <ili-button-item
@@ -45,7 +46,11 @@
             [disabled]="item.cantidadDevuelta >= item.cantidad"
           />
 
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

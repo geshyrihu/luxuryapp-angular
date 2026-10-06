@@ -21,8 +21,6 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -37,12 +35,11 @@ import {
 import { WarehouseForm } from "./warehouse-form";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-warehouse-list",
@@ -53,12 +50,8 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ButtonMobile,
     AppIcon,
     MobileListItem,
-    WebButtonIconItem,
-    WebButtonIconDelete,
     LxTooltipDirective,
     MobileActionMenu,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
@@ -70,6 +63,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 })
 export class WarehouseList implements OnInit {
   authS = inject(AuthService);
+  confirmS = inject(ConfirmService);
   apiResponseS = inject(ApiResponseService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService); // Inyectamos AuthService para obtener el customerId
@@ -118,7 +112,11 @@ export class WarehouseList implements OnInit {
   }
 
   // CAMBIO: El ID de un almacón es 'string', no 'number'
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     // Usamos el servicio genórico para la petición DELETE
     this.apiResponseS.onDelete(Endpoints.Almacen.delete(id)).then(() => {
       // Actualizamos el signal localmente para una UI mós rópida

@@ -29,6 +29,7 @@ import { InventarioHidranteDesktop } from "./desktop/inventario-hidrante-desktop
 import { InventarioHidranteForm } from "./inventario-hidrante-form";
 import { InventarioHidranteQrService } from "./inventario-hidrante-qr.service";
 import { InventarioHidranteMobile } from "./mobile/inventario-hidrante-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-hidrante",
@@ -38,6 +39,7 @@ import { InventarioHidranteMobile } from "./mobile/inventario-hidrante-mobile";
 })
 export class InventarioHidrante {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   excelS = inject(AccountingCatalogExcelService);
@@ -125,7 +127,11 @@ export class InventarioHidrante {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Hydrants.delete(id))
       .then((result: boolean) => {

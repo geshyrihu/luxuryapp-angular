@@ -14,18 +14,25 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center w-full">
       <div class="d-flex align-items-center gap-2">
-        <iw-button-item
-          (clicked)="downloadPdf.emit()"
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Descargar PDF"
           ariaLabel="Descargar PDF"
           iconClass="material-symbols-light:picture-as-pdf"
-          lxTooltip="Descargar PDF"
           tooltipPosition="top"
+          (clicked)="downloadPdf.emit()"
         />
-        <iw-button-download
-          (clicked)="downloadAllQr.emit()"
-          lxTooltip="QR"
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="QR"
           tooltipPosition="top"
-          tooltip="Descargar todos los QR"
+          (clicked)="downloadAllQr.emit()"
         />
         <iw-button
           (clicked)="openScanner.emit()"
@@ -78,10 +85,14 @@
       <td><span>{{ item.expirationDate }}</span></td>
       <td>
         <div class="d-flex">
-          <iw-button-item
-            (clicked)="viewHistory.emit(item)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             tooltip="Ver historial de inspecciones"
             [iconClass]="'material-symbols-light:format-list-bulleted'"
+            (clicked)="viewHistory.emit(item)"
           />
           <lux-button-web
             kind="download"
@@ -102,7 +113,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

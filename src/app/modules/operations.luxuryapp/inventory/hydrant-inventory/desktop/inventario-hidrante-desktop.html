@@ -14,22 +14,32 @@
   <ng-template #caption>
     <div class="d-flex justify-content-between align-items-center w-full">
       <div class="d-flex align-items-center gap-2">
-        <iw-button-item
-          (clicked)="openScanner.emit()"
-          [iconClass]="'material-symbols-light:qr-code'"
+        <lux-button-web
+          kind="item"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
           tooltip="Escanear QR"
+          [iconClass]="'material-symbols-light:qr-code'"
+          (clicked)="openScanner.emit()"
         />
-        <iw-button-download
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="QR"
+          tooltipPosition="top"
           (clicked)="downloadAllQr.emit()"
-          lxTooltip="QR"
-          tooltipPosition="top"
-          tooltip="Descargar todos los QR"
         />
-        <iw-button-download
-          (clicked)="downloadTemplate.emit()"
-          lxTooltip="Plantilla"
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
+          severity="secondary"
+          variant="soft"
+          tooltip="Plantilla"
           tooltipPosition="top"
-          tooltip="Descargar plantilla Excel"
+          (clicked)="downloadTemplate.emit()"
         />
         <lux-button-web
           kind="custom"
@@ -91,10 +101,14 @@
       <td><span>{{ item.location }}</span></td>
       <td>
         <div class="d-flex">
-          <iw-button-item
-            (clicked)="viewHistory.emit(item)"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
             tooltip="Ver historial de inspecciones"
             [iconClass]="'material-symbols-light:format-list-bulleted'"
+            (clicked)="viewHistory.emit(item)"
           />
           <lux-button-web
             kind="download"
@@ -115,7 +129,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(item)"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </td>
     </tr>

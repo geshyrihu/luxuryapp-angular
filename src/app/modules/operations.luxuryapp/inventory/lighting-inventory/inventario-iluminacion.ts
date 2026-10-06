@@ -19,6 +19,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { InventarioIluminacionDesktop } from "./desktop/inventario-iluminacion-desktop";
 import { InventarioIluminacionForm } from "./inventario-iluminacion-form";
 import { InventarioIluminacionMobile } from "./mobile/inventario-iluminacion-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-iluminacion",
@@ -28,6 +29,7 @@ import { InventarioIluminacionMobile } from "./mobile/inventario-iluminacion-mob
 })
 export class InventarioIluminacion {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -57,7 +59,11 @@ export class InventarioIluminacion {
         this.dataSignal.set(result);
       });
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.InventarioIluminacion.delete(id))
       .then((result: boolean) => {

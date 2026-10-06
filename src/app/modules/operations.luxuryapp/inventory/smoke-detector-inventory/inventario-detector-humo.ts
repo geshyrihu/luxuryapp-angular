@@ -30,6 +30,7 @@ import { InventarioDetectorHumoForm } from "./inventario-detector-humo-form";
 import { InventarioDetectorHumoPdfService } from "./inventario-detector-humo-pdf.service";
 import { InventarioDetectorHumoQrService } from "./inventario-detector-humo-qr.service";
 import { InventarioDetectorHumoMobile } from "./mobile/inventario-detector-humo-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-detector-humo",
@@ -39,6 +40,7 @@ import { InventarioDetectorHumoMobile } from "./mobile/inventario-detector-humo-
 })
 export class InventarioDetectorHumo {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   excelS = inject(AccountingCatalogExcelService);
@@ -143,7 +145,11 @@ export class InventarioDetectorHumo {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.SmokeDetectors.delete(id))
       .then((result: boolean) => {

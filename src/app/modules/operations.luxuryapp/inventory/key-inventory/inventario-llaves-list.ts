@@ -21,6 +21,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { InventarioLlavesListDesktop } from "./desktop/inventario-llaves-list-desktop";
 import { InventarioLlaveForm } from "./inventario-llave-form";
 import { InventarioLlavesListMobile } from "./mobile/inventario-llaves-list-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-llaves-list",
@@ -30,6 +31,7 @@ import { InventarioLlavesListMobile } from "./mobile/inventario-llaves-list-mobi
 })
 export class InventarioLlavesList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -58,7 +60,11 @@ export class InventarioLlavesList {
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.KeyInventory.delete(id))
       .then((result: boolean) => {

@@ -85,16 +85,24 @@
         <td class="text-center">{{ item.compraRequerida }}</td>
         <td class="no-print">
           <div class="d-flex">
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              tooltip="Entrada"
               [iconClass]="'material-symbols-light:add'"
-              lxTooltip="Entrada"
               tooltipPosition="top"
               (clicked)="addEntrada.emit({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
             />
 
-            <iw-button-item
+            <lux-button-web
+              kind="item"
+              displayMode="icon"
+              severity="secondary"
+              variant="soft"
+              tooltip="Salida"
               iconClass="material-symbols-light:remove"
-              lxTooltip="Salida"
               tooltipPosition="top"
               (clicked)="addSalida.emit({ id: 0, idInventarioProducto: item.id, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
             />
@@ -110,7 +118,16 @@
               (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
             />
             @if (item.existencia <= 0) {
-            <iw-button-delete (confirmed)="delete.emit(item.id)" />
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="delete.emit(item.id)"
+            />
             }
           </div>
         </td>

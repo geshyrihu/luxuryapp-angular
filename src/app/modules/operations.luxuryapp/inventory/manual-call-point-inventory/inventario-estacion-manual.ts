@@ -30,6 +30,7 @@ import { InventarioEstacionManualForm } from "./inventario-estacion-manual-form"
 import { InventarioEstacionManualPdfService } from "./inventario-estacion-manual-pdf.service";
 import { InventarioEstacionManualQrService } from "./inventario-estacion-manual-qr.service";
 import { InventarioEstacionManualMobile } from "./mobile/inventario-estacion-manual-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-estacion-manual",
@@ -39,6 +40,7 @@ import { InventarioEstacionManualMobile } from "./mobile/inventario-estacion-man
 })
 export class InventarioEstacionManual {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   excelS = inject(AccountingCatalogExcelService);
@@ -146,7 +148,11 @@ export class InventarioEstacionManual {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ManualCallPoints.delete(id))
       .then((result: boolean) => {

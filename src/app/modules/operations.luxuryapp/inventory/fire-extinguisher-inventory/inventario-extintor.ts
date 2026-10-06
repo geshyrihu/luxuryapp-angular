@@ -31,6 +31,7 @@ import { InventarioExtintorForm } from "./inventario-extintor-form";
 import { InventarioExtintorPdfService } from "./inventario-extintor-pdf.service";
 import { InventarioExtintorQrService } from "./inventario-extintor-qr.service";
 import { InventarioExtintorMobile } from "./mobile/inventario-extintor-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-inventario-extintor",
@@ -40,6 +41,7 @@ import { InventarioExtintorMobile } from "./mobile/inventario-extintor-mobile";
 })
 export class InventarioExtintor {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   customerIdS = inject(CustomerIdService);
   inventarioExtintorPdfS = inject(InventarioExtintorPdfService);
@@ -107,7 +109,11 @@ export class InventarioExtintor {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.FireExtinguishers.delete(id))
       .then((result: boolean) => {

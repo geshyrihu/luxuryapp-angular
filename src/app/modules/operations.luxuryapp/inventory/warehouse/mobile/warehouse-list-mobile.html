@@ -21,21 +21,27 @@
 
       <ili-action-menu end>
         <ng-container actions>
-          <ili-button-item
-            (clicked)="viewProducts.emit(item.id)"
+          <lux-button-mobile
+            kind="item"
             label="Ver Productos"
             iconName="cube-outline"
+            (clicked)="viewProducts.emit(item.id)"
           />
-          <ili-button-item
-            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
+          <lux-button-mobile
+            kind="item"
             label="Descargar Inventario"
             iconName="document-text-outline"
+            (clicked)="downloadInventory.emit({ id: item.id, name: item.nombre })"
           />
           <lux-button-mobile
             kind="edit"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </ili-list-item>

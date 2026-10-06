@@ -21,6 +21,7 @@ import { PlatformService } from "@core/services/platform.service";
 import { RadioComunicacionListDesktop } from "./desktop/radio-comunicacion-list-desktop";
 import { RadioComunicacionListMobile } from "./mobile/radio-comunicacion-list-mobile";
 import { RadioComunicacionForm } from "./radio-comunicacion-form";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-radio-comunicacion-list",
@@ -30,6 +31,7 @@ import { RadioComunicacionForm } from "./radio-comunicacion-form";
 })
 export class RadioComunicacionList {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   dialogHandlerS = inject(DialogHandlerService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);
@@ -56,7 +58,11 @@ export class RadioComunicacionList {
       .onGetList(urlApi)
       .then((result: any) => this.dataSignal.set(result));
   }
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.RadioCommunication.delete(id))
       .then((result: boolean) => {

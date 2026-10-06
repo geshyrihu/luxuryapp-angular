@@ -28,17 +28,22 @@
       </span>
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
-            (clicked)="viewHistory.emit(item)"
+          <lux-button-mobile
+            kind="item"
             label="Historial"
             iconName="list-outline"
+            (clicked)="viewHistory.emit(item)"
           />
           <lux-button-mobile kind="download" label="QR" (clicked)="downloadQr.emit(item)" />
           <lux-button-mobile
             kind="edit"
             (clicked)="edit.emit(item)"
           />
-          <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
         </ng-container>
       </ili-action-menu>
     </div>

@@ -31,7 +31,8 @@
         </div>
       </div>
       <ili-action-menu slot="end">
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="add-outline"
           label="Entrada"
           (clicked)="
@@ -44,7 +45,8 @@
           "
         />
 
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="remove-outline"
           label="Salida"
           (clicked)="
@@ -63,7 +65,11 @@
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
         />
         @if (item.existencia <= 0) {
-        <ili-button-delete (confirmed)="delete.emit(item.id)" label="Eliminar" />
+        <lux-button-mobile
+          kind="delete"
+          color="danger"
+          (clicked)="delete.emit(item.id)"
+        />
         }
       </ili-action-menu>
     </ili-list-item>

@@ -23,6 +23,7 @@ import { ProductOutputListDesktop } from "./desktop/product-output-list-desktop"
 import { ProductOutputListMobile } from "./mobile/product-output-list-mobile";
 import { ProductOutputForm } from "./product-output-form";
 import { ProductReturn } from "./product-return";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-product-output-list",
@@ -33,6 +34,7 @@ import { ProductReturn } from "./product-return";
 })
 export class ProductOutputList implements OnInit, OnDestroy {
   apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private customerIdS = inject(CustomerIdService);
   private dialogHandlerS = inject(DialogHandlerService);
   public aspRoleS = inject(AspRoleService);
@@ -138,7 +140,11 @@ export class ProductOutputList implements OnInit, OnDestroy {
     );
   }
 
-  onDelete(id: any): void {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.ProductOutputs.delete(id))
       .then((result: boolean) => {
