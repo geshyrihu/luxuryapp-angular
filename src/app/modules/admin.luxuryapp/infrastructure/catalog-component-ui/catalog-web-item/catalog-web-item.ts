@@ -21,9 +21,8 @@ import { CalendarOptions } from "@fullcalendar/core";
 import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -34,13 +33,13 @@ import {
   CustomInputTextAreaSignal,
   CustomInputTextSignal,
 } from "@ui/inputs/web";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { Accordion, AccordionPanel } from "@ui/web/accordion/accordion";
 import { AppBadge } from "@ui/web/badge/badge";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppDivider } from "@ui/web/divider/divider";
 import { AppMessage } from "@ui/web/message/message";
+import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { AppPopover } from "@ui/web/popover/popover";
 import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
@@ -159,7 +158,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     AppSpinner,
     AppTag,
     AppToolbar,
-    LxTooltipDirective,
     FullCalendarModule,
     LxIcon,
     ButtonWeb,
@@ -171,7 +169,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     MobileLists,
     MobileData,
     MobileForms,
-    MobileOverlays],
+    MobileOverlays,
+  ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -197,7 +196,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [items]="[
                       { id: '0', title: 'Sección 1' },
                       { id: '1', title: 'Sección 2' },
-                      { id: '2', title: 'Sección 3' }]"
+                      { id: '2', title: 'Sección 3' },
+                    ]"
                     [(expandedIds)]="accordionExpandedIds"
                   >
                     <ng-template accordionPanel="0"
@@ -247,7 +247,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       { label: 'Inicio' },
                       { label: 'Sistema' },
                       { label: 'Catálogos' },
-                      { label: 'Proveedores' }]"
+                      { label: 'Proveedores' },
+                    ]"
                     [home]="{ label: 'Inicio' }"
                   />
                 </div>
@@ -349,14 +350,15 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       />
                     </div>
                     <p class="text-sm text-secondary mt-3 mb-0">
-                      <code>ticketId</code> no es input de <code>ButtonWeb</code>:
-                      la lógica de tracking (abrir ticket, ruta, contador real)
-                      pertenece al consumidor; aquí <code>[badgeCount]</code> solo
-                      pinta un badge visual. <code>state</code> tampoco es input:
-                      el consumidor deriva <code>label</code>/<code>icon</code> del
-                      estado (ver <code>kind="active-desactive"</code> como
-                      alternativa semántica). Para abrir el visor PDF se usa el
-                      bridge <code>&lt;lux-pdf-viewer-trigger&gt;</code> sobre
+                      <code>ticketId</code> no es input de
+                      <code>ButtonWeb</code>: la lógica de tracking (abrir
+                      ticket, ruta, contador real) pertenece al consumidor; aquí
+                      <code>[badgeCount]</code> solo pinta un badge visual.
+                      <code>state</code> tampoco es input: el consumidor deriva
+                      <code>label</code>/<code>icon</code> del estado (ver
+                      <code>kind="active-desactive"</code> como alternativa
+                      semántica). Para abrir el visor PDF se usa el bridge
+                      <code>&lt;lux-pdf-viewer-trigger&gt;</code> sobre
                       <code>lux-button-web kind="view-pdf"</code>.
                     </p>
                   </div>
@@ -670,8 +672,14 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-column gap-2">
-                    <lux-message-web severity="info" text="Mensaje informativo" />
-                    <lux-message-web severity="success" text="Operacion exitosa" />
+                    <lux-message-web
+                      severity="info"
+                      text="Mensaje informativo"
+                    />
+                    <lux-message-web
+                      severity="success"
+                      text="Operacion exitosa"
+                    />
                     <lux-message-web severity="warn" text="Advertencia" />
                     <lux-message-web severity="danger" text="Error critico" />
                     <lux-message-web
@@ -874,7 +882,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [tabs]="[
                       { id: '0', label: 'General' },
                       { id: '1', label: 'Detalle' },
-                      { id: '2', label: 'Documentos' }]"
+                      { id: '2', label: 'Documentos' },
+                    ]"
                     [(activeId)]="webItemTabActiveId"
                   >
                     <div tab="0"><p class="m-0">Contenido General.</p></div>
@@ -1399,7 +1408,8 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         border-radius: 2px;
         margin: 8px auto 2px;
       }
-    `],
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -1473,7 +1483,8 @@ export class CatalogWebItem {
     { label: "Operaciones", value: 2 },
     { label: "Recursos Humanos", value: 3 },
     { label: "TI", value: 4 },
-    { label: "Direccion General", value: 5 }];
+    { label: "Direccion General", value: 5 },
+  ];
 
   // Shared state
   accordionExpandedIds = signal<string[]>(["0"]);
@@ -1482,7 +1493,8 @@ export class CatalogWebItem {
   selectOptions = [
     { label: "Opcion 1", value: 1 },
     { label: "Opcion 2", value: 2 },
-    { label: "Opcion 3", value: 3 }];
+    { label: "Opcion 3", value: 3 },
+  ];
   dateVal: Date | null = null;
   numVal = 50;
   numVal2 = 12500;
@@ -1496,7 +1508,8 @@ export class CatalogWebItem {
   tableData = [
     { name: "Registro A", status: "Activo" },
     { name: "Registro B", status: "Inactivo" },
-    { name: "Registro C", status: "Pendiente" }];
+    { name: "Registro C", status: "Pendiente" },
+  ];
 
   // Calendar demo
   readonly calendarDemoOptions: CalendarOptions = {
@@ -1549,5 +1562,6 @@ export class CatalogWebItem {
       guests: 5,
       statusLabel: "Pendiente de sincronizar",
       severity: "secondary",
-    }];
+    },
+  ];
 }

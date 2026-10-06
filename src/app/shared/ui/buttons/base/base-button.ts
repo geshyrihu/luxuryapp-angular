@@ -41,8 +41,8 @@ export abstract class BaseButton {
   tooltip = input<string>("");
   tooltipPosition = input<"top" | "bottom" | "left" | "right">("top");
   clicked = output<Event>();
-  protected tooltipText = computed(() =>
-    this.tooltip() || this.title() || this.ariaLabel() || this.label(),
+  protected tooltipText = computed(
+    () => this.tooltip() || this.title() || this.ariaLabel() || this.label(),
   );
   protected normalizedSeverity = computed(() =>
     this.severity() === "warn" ? "warning" : this.severity(),
@@ -63,7 +63,9 @@ export abstract class BaseButton {
     this.icon() ? (resolveIconifyIcon(this.icon()) as AppIconName) : null,
   );
   protected resolvedIconClass = computed<AppIconName | null>(() =>
-    this.iconClass() ? (resolveIconifyIcon(this.iconClass()) as AppIconName) : null,
+    this.iconClass()
+      ? (resolveIconifyIcon(this.iconClass()) as AppIconName)
+      : null,
   );
   buttonClasses = computed(() => {
     const classes = ["btn"];
