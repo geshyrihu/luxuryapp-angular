@@ -12,7 +12,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import type { TabItem } from "@ui/core/tabs.base";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PresupuestoContabilidad } from "./accounting-budget/presupuesto-contabilidad";
@@ -92,8 +91,7 @@ const REPORT_META = [
     title: "Resultados Extraordinarios",
     description:
       "Resultados exclusivos de cuotas extraordinarias y mejoras o proyectos.",
-  },
-] as const;
+  }] as const;
 
 @Component({
   selector: "app-financial-reports-wrapper",
@@ -109,7 +107,6 @@ const REPORT_META = [
     CedulaPresupuestal,
     ReporteFinanciero,
     FlujoEfectivo,
-    WebButtonLabel,
     AnalisisCobranza,
     PresupuestoContabilidad,
     BancosInversionesComponent,
@@ -118,8 +115,7 @@ const REPORT_META = [
     ResultadosExtraordinarios,
     AiAgentComponent,
     AiAgentContabilidadComponent,
-    AiAgentExplicadorComponent,
-  ],
+    AiAgentExplicadorComponent],
   providers: [CobranzaOnlineStoreService, FinancialReportFilterStore],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./financial-reports-wrapper.html",
@@ -145,8 +141,7 @@ export default class FinancialReportsWrapper {
     // { id: "9", label: "Bancos e Inv." },
     // { id: "10", label: "Fondo Reserva" },
     // { id: "11", label: "Proyectos" },
-    { id: "12", label: "R. Extraordinarios V2" },
-  ]);
+    { id: "12", label: "R. Extraordinarios V2" }]);
 
   readonly activeReportTitle = computed(
     () => REPORT_META[this.reportIndex()]?.title ?? "Estados Financieros",

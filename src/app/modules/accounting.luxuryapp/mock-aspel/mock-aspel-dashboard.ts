@@ -3,14 +3,13 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from "@ang
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { EstadoDeCuentaResponse, MockAspelService, MockAspelSyncCustomer, MovimientoFilterOption, MovimientoResponse, PagedResponse, SaldoResponse } from "./services/mock-aspel.service";
 
 @Component({
   selector: "app-mock-aspel-dashboard",
-  imports: [CommonModule, DecimalPipe, FormsModule, ReactiveFormsModule, RouterLink, LxCard, WebButtonLabel, InputSelect, LxIcon],
+  imports: [CommonModule, DecimalPipe, FormsModule, ReactiveFormsModule, RouterLink, LxCard, InputSelect, LxIcon],
   templateUrl: "./mock-aspel-dashboard.html",
   styleUrl: "./mock-aspel-dashboard.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

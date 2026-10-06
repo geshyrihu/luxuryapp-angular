@@ -3,33 +3,8 @@ import {
   Component,
   ViewEncapsulation,
 } from "@angular/core";
-import {
-  MobileButtonIcon,
-  MobileButtonIconActiveDesactive,
-  MobileButtonIconAdd,
-  MobileButtonIconConfirm,
-  MobileButtonIconDelete,
-  MobileButtonIconDownload,
-  MobileButtonIconEdit,
-  MobileButtonIconSave,
-  MobileButtonIconSendEmail,
-  MobileButtonIconTracking,
-  MobileButtonIconViewPdf,
-} from "@ui/buttons/mobile-icon";
-import {
-  MobileButtonLabel,
-  MobileButtonLabelActiveDesactive,
-  MobileButtonLabelAdd,
-  MobileButtonLabelConfirm,
-  MobileButtonLabelDelete,
-  MobileButtonLabelDownload,
-  MobileButtonLabelEdit,
-  MobileButtonLabelItem,
-  MobileButtonLabelSave,
-  MobileButtonLabelSendEmail,
-  MobileButtonLabelTracking,
-  MobileButtonLabelViewPdf,
-} from "@ui/buttons/mobile-label";
+
+
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 /**
@@ -38,32 +13,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
  */
 @Component({
   selector: "app-mobile-buttons",
-  imports: [
-    MobileButtonLabel,
-    MobileButtonLabelAdd,
-    MobileButtonLabelEdit,
-    MobileButtonLabelSave,
-    MobileButtonLabelDelete,
-    MobileButtonLabelConfirm,
-    MobileButtonLabelSendEmail,
-    MobileButtonLabelViewPdf,
-    MobileButtonLabelActiveDesactive,
-    MobileButtonLabelDownload,
-    MobileButtonLabelItem,
-    MobileButtonLabelTracking,
-    MobileButtonIcon,
-    MobileButtonIconActiveDesactive,
-    MobileButtonIconAdd,
-    MobileButtonIconConfirm,
-    MobileButtonIconDelete,
-    MobileButtonIconEdit,
-    MobileButtonIconDownload,
-    MobileButtonIconSave,
-    MobileButtonIconSendEmail,
-    MobileButtonIconTracking,
-    MobileButtonIconViewPdf,
-    MobileActionMenu,
-  ],
+  imports: [MobileActionMenu],
   template: `
     <div class="mobile-card">
       <div class="mobile-card-header">Mobile Buttons · componentes reales</div>

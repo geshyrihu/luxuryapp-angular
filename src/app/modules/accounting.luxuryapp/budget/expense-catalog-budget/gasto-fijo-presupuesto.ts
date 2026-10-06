@@ -33,15 +33,13 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+
 
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    ButtonWeb,
+  imports: [ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,
@@ -50,8 +48,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxSpinner,
     LuxTableCaption,
     TableFooter,
-    LxMessage,
-  ],
+    LxMessage],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

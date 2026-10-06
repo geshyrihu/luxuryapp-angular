@@ -9,7 +9,7 @@ import {
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonLabel } from "@ui/buttons/web-label";
+
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppMessage } from "@ui/web/message/message";
@@ -30,12 +30,10 @@ import {
   imports: [
     ReactiveFormsModule,
     LxSpinner,
-    WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     AppMessage,
-    AiAgentComponent,
-  ],
+    AiAgentComponent],
   providers: [FinancialReportFilterStore],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-viewer.html",
@@ -70,8 +68,7 @@ export class ReportViewer implements OnInit {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 },
-  ];
+    { label: "Diciembre", value: 12 }];
 
   loading = signal(false);
   resultado = signal<IReportResult | null>(null);
@@ -202,8 +199,7 @@ export class ReportViewer implements OnInit {
     const mid = Math.ceil(secs.length / 2);
     return [
       secs.slice(0, mid).flatMap((s) => s.rows),
-      secs.slice(mid).flatMap((s) => s.rows),
-    ];
+      secs.slice(mid).flatMap((s) => s.rows)];
   }
 
   esRenglonEspecial(row: IReportResultRow): boolean {

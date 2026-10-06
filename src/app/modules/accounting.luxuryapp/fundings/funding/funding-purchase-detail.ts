@@ -10,19 +10,17 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-funding-purchase-detail",
   imports: [
     LxSpinner,
     CommonModule,
-    WebButtonLabel,
     CurrencyPipe,
     DecimalPipe,
     LxTag,
-    AppTable,
-  ],
+    AppTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-purchase-detail.html",
 })

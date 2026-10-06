@@ -35,10 +35,8 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { BudgetAccountRuleDataDTO } from "../../aspel-web-budget/presupuestos.interfaces";
 import { BudgetRuleForm } from "./budget-rule-form";
 
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -49,15 +47,12 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   imports: [
     ButtonWeb,
     ButtonMobile,
-    WebButtonIconDelete,
     MobileActionMenu,
-    MobileButtonLabelDelete,
     AppTable,
     LuxTableCaption,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",
 })

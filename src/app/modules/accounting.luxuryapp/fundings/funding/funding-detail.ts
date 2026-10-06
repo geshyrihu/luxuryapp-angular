@@ -43,7 +43,6 @@ import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order
 import { PaymentVoucherModal } from "@purchases.luxuryapp/purchase-orders/purchase-order/payment-voucher-modal/payment-voucher-modal";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
@@ -83,15 +82,11 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-funding-detail",
-  imports: [
-    WebButtonIcon,
-    ButtonWeb,
+  imports: [ButtonWeb,
     LxBadge,
-    WebButtonLabel,
     CommonModule,
 
     ReactiveFormsModule,
@@ -109,8 +104,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     LxIcon,
     LxTag,
     LxModal,
-    LxMessage,
-  ],
+    LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-detail.html",
 })

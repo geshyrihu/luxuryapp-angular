@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { LxImage } from "@ui/adaptive/image/image";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -20,7 +19,7 @@ import { CustomerImageDto } from "./interfaces/customer-image.dto";
   selector: "app-customer-images",
   templateUrl: "./customer-images.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxImage, LxIcon, WebButtonIcon],
+  imports: [LxImage, LxIcon],
 })
 export class CustomerImages implements OnInit {
   private apiResponseS = inject(ApiResponseService);

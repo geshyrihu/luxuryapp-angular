@@ -7,7 +7,6 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
@@ -25,11 +24,9 @@ import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface"
     LxIcon,
     FormsModule,
     AppTable,
-    WebButtonLabel,
     CustomInputTextSignal,
     AccountingNumberPipe,
-    DataViewMobile,
-  ],
+    DataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./balance-mensual.html",
 })
@@ -54,8 +51,7 @@ export class BalanceMensual {
     "Sep",
     "Oct",
     "Nov",
-    "Dic",
-  ];
+    "Dic"];
 
   // Computed properties para el HTML
   nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
@@ -92,8 +88,7 @@ export class BalanceMensual {
             cta.montoSeptiembre,
             cta.montoOctubre,
             cta.montoNoviembre,
-            cta.montoDiciembre,
-          ],
+            cta.montoDiciembre],
         });
       });
 

@@ -8,7 +8,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
@@ -28,15 +27,13 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     FormsModule,
     LxAccordion,
     LxTabs,
-    MobileButtonLabel,
     IonInputCheckbox,
     IonInputSelect,
     MobileActionMenu,
     MobileBadge,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class CatalogoGastosFijosListMobile {
   data = input.required<any[]>();
@@ -62,7 +59,6 @@ export class CatalogoGastosFijosListMobile {
 
   /** Accordion móvil (una sola sección colapsable). */
   genAccordionItems = [
-    { id: "generation", title: "Generar órdenes de Compra" },
-  ];
+    { id: "generation", title: "Generar órdenes de Compra" }];
   genExpanded = signal<string[]>([]);
 }

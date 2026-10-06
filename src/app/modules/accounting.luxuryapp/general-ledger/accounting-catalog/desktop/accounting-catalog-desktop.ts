@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -20,15 +19,12 @@ import { AccountingCatalogWithParent } from "../interfaces/AccountingCatalogWith
   selector: "app-accounting-catalog-desktop",
   templateUrl: "./accounting-catalog-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    WebButtonLabel,
-    LxIcon,
+  imports: [LxIcon,
     LuxTableCaption,
     TableFooter,
     AppSortableColumn,
     AppSorticon,
-    AppTable,
-  ],
+    AppTable],
 })
 export class AccountingCatalogDesktop {
   data = input.required<AccountingCatalogWithParent[]>();

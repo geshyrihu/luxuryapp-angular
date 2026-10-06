@@ -10,14 +10,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccessEventDto } from "@core/interfaces/access-event.dto";
 import { PagedResultDto } from "@core/interfaces/paged-result.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-access-events",
   templateUrl: "./access-events.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, AppTable, WebButtonLabel],
+  imports: [ApiDatePipe, AppTable],
 })
 export class AccessEvents implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -16,7 +16,7 @@ import {
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Added
+ // Added
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
@@ -29,10 +29,8 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxCheckbox,
     AppTable,
     LxTooltipDirective,
-    WebButtonLabel,
     ButtonWeb,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-group-files.html",
 })
@@ -43,8 +41,7 @@ export class FundingGroupFiles implements OnInit {
   selectedGroupFiles = signal<any[]>([]);
   viewOptions: any[] = [
     { icon: "material-symbols-light:grid-view", value: "grid" },
-    { icon: "material-symbols-light:format-list-bulleted", value: "list" },
-  ];
+    { icon: "material-symbols-light:format-list-bulleted", value: "list" }];
   viewMode = signal("grid");
   selectedFiles = signal<any[]>([]);
 

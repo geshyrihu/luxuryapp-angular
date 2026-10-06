@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -18,11 +18,9 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   selector: "app-testsignalr",
   imports: [
     LxCard,
-    WebButtonLabel,
     CustomInputTextSignal,
     InputAutocomplete,
-    CustomInputAutoMultiple,
-  ],
+    CustomInputAutoMultiple],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./testsignalr.html",
 })

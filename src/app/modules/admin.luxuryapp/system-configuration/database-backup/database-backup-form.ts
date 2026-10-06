@@ -11,7 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -33,13 +33,11 @@ import {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    WebButtonLabel,
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputMultiselectSignal,
     CustomInputNumberSignal,
-    CustomInputSelectButton,
-  ],
+    CustomInputSelectButton],
 })
 export class DatabaseBackupForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -55,8 +53,7 @@ export class DatabaseBackupForm implements OnInit {
 
   readonly destinationOptions = [
     { label: "OneDrive (Graph API)", value: "GraphApi" },
-    { label: "Carpeta local", value: "Local" },
-  ];
+    { label: "Carpeta local", value: "Local" }];
 
   readonly cronPresets = [
     { label: "Cada hora", value: "0 * * * *" },
@@ -66,8 +63,7 @@ export class DatabaseBackupForm implements OnInit {
     { label: "Diario 22:00", value: "0 22 * * *" },
     { label: "Cada Domingo 02:00", value: "0 2 * * 0" },
     { label: "Cada Sabado 02:00", value: "0 2 * * 6" },
-    { label: "Primer dia del mes 02:00", value: "0 2 1 * *" },
-  ];
+    { label: "Primer dia del mes 02:00", value: "0 2 1 * *" }];
 
   form = new FormGroup({
     name: new FormControl<string>("", {

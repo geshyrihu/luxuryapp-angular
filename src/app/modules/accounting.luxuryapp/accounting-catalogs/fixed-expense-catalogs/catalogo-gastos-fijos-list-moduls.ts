@@ -2,9 +2,9 @@ import { CommonModule, UpperCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelEdit } from "@ui/buttons/web-label/button-edit";
+
+
+
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -24,9 +24,6 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   DataViewMobile,
   TableEmptyMessage,
   CommonModule,
-  WebButtonLabel,
-  WebButtonLabelDelete,
-  WebButtonLabelEdit,
   CustomInputSelectSignal,
   FormsModule,
   IonInputCheckbox,
@@ -38,5 +35,4 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   AppSortableColumn,
   AppSorticon,
   LxTooltipDirective,
-  UpperCasePipe,
-];
+  UpperCasePipe];

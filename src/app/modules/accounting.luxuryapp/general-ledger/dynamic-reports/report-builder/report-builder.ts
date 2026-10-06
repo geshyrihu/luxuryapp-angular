@@ -19,8 +19,6 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxChip } from "@ui/adaptive/chip/chip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -65,15 +63,12 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     CustomInputSelectSignal,
     CustomInputCheckSignal,
     LxPopover,
-    WebButtonLabel,
-    WebButtonIcon,
     LxChip,
     AccountTreeSelect,
     CurrencyPipe,
     LxIcon,
     LxTag,
-    LxModal,
-  ],
+    LxModal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",
 })
@@ -131,13 +126,11 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Dos columnas", value: "table-twoColumn" },
     { label: "Comparativo", value: "table-comparative" },
     { label: "Presupuesto vs Real", value: "table-budgetVsActual" },
-    { label: "Tarjetas KPI", value: "summary-cards" },
-  ];
+    { label: "Tarjetas KPI", value: "summary-cards" }];
 
   fuentesAspel = [
     { label: "Contabilidad", value: "contabilidad" },
-    { label: "Cobranza", value: "cobranza" },
-  ];
+    { label: "Cobranza", value: "cobranza" }];
 
   empresaAspel = computed(() => this.toEmpresaAspel(this.dataSourceValue()));
   visualizationMode = computed(() => this.visualizationTypeValue());
@@ -154,8 +147,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 },
-  ];
+    { label: "Diciembre", value: 12 }];
 
   aniosPreview = Array.from({ length: 7 }, (_, idx) => {
     const year = new Date().getFullYear() - 3 + idx;
@@ -497,8 +489,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R1} + {R2}",
               multiplier: 1,
-            },
-          ],
+            }],
         },
         {
           sectionId: "S2",
@@ -525,8 +516,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R3} + {R4}",
               multiplier: 1,
-            },
-          ],
+            }],
         },
         {
           sectionId: "S3",
@@ -539,10 +529,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{S1_TOTAL} + {S2_TOTAL}",
               multiplier: 1,
-            },
-          ],
-        },
-      ];
+            }],
+        }];
       this.livePreviewS.sections.set(exampleSections);
       this.livePreviewS.triggerCompute();
     }
@@ -580,8 +568,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "contabilidad",
           year,
           month: period,
-        },
-      ]);
+        }]);
       return;
     }
 
@@ -602,8 +589,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "budget",
           year,
           month: period,
-        },
-      ]);
+        }]);
       return;
     }
 
@@ -615,8 +601,7 @@ export class ReportBuilder implements OnInit, OnDestroy {
         dataSource: "contabilidad",
         year,
         month: period,
-      },
-    ]);
+      }]);
   }
 
   private async computePreview() {

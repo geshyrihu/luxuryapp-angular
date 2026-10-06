@@ -16,7 +16,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccessPointDto } from "@core/interfaces/access-point.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -32,9 +32,7 @@ import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
     AppTable,
     CustomInputTextSignal,
     CustomInputSelectSignal,
-    CustomInputSwitch,
-    WebButtonLabel,
-  ],
+    CustomInputSwitch],
 })
 export class AccessPointList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -48,8 +46,7 @@ export class AccessPointList implements OnInit {
     { value: "Pedestrian", label: "Peatonal" },
     { value: "Vehicle", label: "Vehicular" },
     { value: "Service", label: "Servicio" },
-    { value: "Emergency", label: "Emergencia" },
-  ];
+    { value: "Emergency", label: "Emergencia" }];
 
   form!: FormGroup<AccessPointFormGroup>;
 

@@ -14,8 +14,6 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -32,16 +30,12 @@ interface AiMessage {
 
 @Component({
   selector: "app-ai-agent-explicador",
-  imports: [
-    WebButtonIcon,
-    WebButtonLabel,
-    CommonModule,
+  imports: [CommonModule,
     FormsModule,
     CustomInputTextSignal,
     LxSpinner,
     LxSidebar,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./ai-agent-explicador.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -65,8 +59,7 @@ export class AiAgentExplicadorComponent {
       role: "assistant",
       content:
         "Hola, soy tu Explicador IA de Contabilidad Online. Puedo resumir y explicar lo que significa este informe en lenguaje claro, usando solo las descripciones de los rubros y sin hablar en claves contables.",
-    },
-  ]);
+    }]);
 
   suggestedQuestions = [
     "Explócame este reporte en palabras sencillas.",
@@ -78,8 +71,7 @@ export class AiAgentExplicadorComponent {
     "Si se lo explicara a un administrador no contable, ócómo lo resumirías?",
     "óQuó lectura operativa harías de este reporte?",
     "óQuó datos llaman mós la atención y cómo se entienden?",
-    "Dame un resumen ejecutivo de este informe sin tecnicismos.",
-  ];
+    "Dame un resumen ejecutivo de este informe sin tecnicismos."];
 
   togglePanel() {
     this.visible.update((v) => !v);
@@ -127,8 +119,7 @@ export class AiAgentExplicadorComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        },
-      ]);
+        }]);
 
       const shouldReadResponse =
         this.autoReadResponses() &&
@@ -144,8 +135,7 @@ export class AiAgentExplicadorComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta en el explicador de Contabilidad Online. Intenta nuevamente mós tarde.",
-        },
-      ]);
+        }]);
     } finally {
       this.loading.set(false);
     }

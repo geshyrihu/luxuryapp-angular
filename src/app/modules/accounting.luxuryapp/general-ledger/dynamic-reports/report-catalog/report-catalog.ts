@@ -22,7 +22,6 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
@@ -30,15 +29,13 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
   selector: "app-report-catalog",
   imports: [
     LxTooltipDirective,
-    WebButtonIcon,
     ApiDatePipe,
     RouterModule,
     AppTable,
     LxTabs,
     ButtonWeb,
     DataViewMobile,
-    LxTag,
-  ],
+    LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-catalog.html",
 })
@@ -60,13 +57,11 @@ export class ReportCatalog implements OnInit {
     "name",
     "description",
     "visualizationType",
-    "dataSource",
-  ];
+    "dataSource"];
 
   catalogTabs = signal<TabItem[]>([
     { id: "0", label: "Mis reportes" },
-    { id: "1", label: "Plantillas" },
-  ]);
+    { id: "1", label: "Plantillas" }]);
   activeTab = signal<string>("0");
 
   onTabChange(tab: TabItem) {
@@ -86,8 +81,7 @@ export class ReportCatalog implements OnInit {
       ),
       this.api.onGetItem<IReportDefinitionList[]>(
         Endpoints.DynamicReports.getTemplates,
-      ),
-    ]);
+      )]);
     if (propios) this.propios.set(propios);
     if (plantillas) this.plantillas.set(plantillas);
     this.loading.set(false);

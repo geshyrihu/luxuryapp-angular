@@ -29,7 +29,6 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
@@ -43,10 +42,8 @@ interface ISearchForm {
   imports: [
     ReactiveFormsModule,
     CustomInputTextSignal,
-    WebButtonLabel,
     LxIcon,
-    LxMessage,
-  ],
+    LxMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./account-modal-add.html",
 })

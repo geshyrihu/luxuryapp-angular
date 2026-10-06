@@ -10,7 +10,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -36,11 +35,9 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
     AppSorticon,
     LxTag,
     LxIcon,
-    WebButtonLabel,
     CustomInputDateSignal,
     CustomInputTextSignal,
-    LxSkeleton,
-  ],
+    LxSkeleton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./brevo-email-logs.html",
 })

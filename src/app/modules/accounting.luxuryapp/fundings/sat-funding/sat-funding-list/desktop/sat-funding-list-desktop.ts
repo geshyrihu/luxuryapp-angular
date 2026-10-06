@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -24,14 +23,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    WebButtonIcon,
     LxTooltipDirective,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class SatFundingListDesktop {
   private tableScrollHeightS = inject(TableScrollHeightService);

@@ -1,8 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
@@ -33,8 +31,6 @@ type TagSeverity =
   imports: [
     CommonModule,
     FormsModule,
-    WebButtonLabel,
-    WebButtonIcon,
     InputText,
     InputTextarea,
     InputNumber,
@@ -53,8 +49,7 @@ type TagSeverity =
     AppSpinner,
     AppTag,
     AppToolbar,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./catalog-guia.html",
   styles: [
     `
@@ -66,8 +61,7 @@ type TagSeverity =
           margin-bottom: 1rem;
         }
       }
-    `,
-  ],
+    `],
   encapsulation: ViewEncapsulation.None,
 })
 export class CatalogGuia {
@@ -88,15 +82,13 @@ export class CatalogGuia {
     { label: "Administracion", value: "admin" },
     { label: "Operaciones", value: "ops" },
     { label: "Finanzas", value: "finance" },
-    { label: "Recursos Humanos", value: "hr" },
-  ];
+    { label: "Recursos Humanos", value: "hr" }];
 
   readonly modules = [
     { label: "Cuentas por cobrar", value: "ar" },
     { label: "Mantenimiento", value: "maintenance" },
     { label: "Compras", value: "purchases" },
-    { label: "Biblioteca", value: "library" },
-  ];
+    { label: "Biblioteca", value: "library" }];
 
   readonly metrics = [
     {
@@ -119,8 +111,7 @@ export class CatalogGuia {
       detail: "Controles tactiles y secciones apilables",
       icon: "icon.cellphone",
       tone: "success",
-    },
-  ];
+    }];
 
   readonly identityPillars = [
     {
@@ -149,8 +140,7 @@ export class CatalogGuia {
       application:
         "Color semantico reservado, maximo una primaria por bloque y danger confirmado.",
       severity: "warn" as TagSeverity,
-    },
-  ];
+    }];
 
   readonly businessScenarios = [
     {
@@ -173,8 +163,7 @@ export class CatalogGuia {
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
       rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
       icon: "icon.cellphone",
-    },
-  ];
+    }];
 
   readonly colorAssessment = [
     {
@@ -211,8 +200,7 @@ export class CatalogGuia {
       verdict: "Consistente",
       recommendation: "Adecuado para acciones destructivas.",
       severity: "danger" as TagSeverity,
-    },
-  ];
+    }];
 
   readonly buttonRules = [
     {
@@ -246,8 +234,7 @@ export class CatalogGuia {
       severity: "secondary" as TagSeverity,
       cardClass: "h-full border-left-3 border-300 surface-card shadow-1",
       iconClass: "icon.dots-horizontal text-600 text-xl",
-    },
-  ];
+    }];
 
   readonly componentCatalog = [
     {
@@ -321,8 +308,7 @@ export class CatalogGuia {
       preferredFor: "Dashboards y metricas.",
       avoidWhen: "Datos que requieren tabla para auditoria.",
       status: "Especializado" as const,
-    },
-  ];
+    }];
 
   readonly tableRows = [
     {
@@ -356,8 +342,7 @@ export class CatalogGuia {
       dueDate: "30/04/2026",
       amount: 23000,
       status: "Riesgo" as const,
-    },
-  ];
+    }];
 
   readonly globalRules = [
     {
@@ -389,8 +374,7 @@ export class CatalogGuia {
       title: "Sombras",
       description:
         "Usar sombra para jerarquia o hover, no como decoracion permanente.",
-    },
-  ];
+    }];
 
   readonly spacingRules = [
     {
@@ -407,8 +391,7 @@ export class CatalogGuia {
       title: "Densidad",
       description:
         "Tablas pueden ser compactas; formularios deben conservar aire para reducir errores.",
-    },
-  ];
+    }];
 
   readonly systemStates = [
     {
@@ -430,8 +413,7 @@ export class CatalogGuia {
       title: "Sin permisos",
       description:
         "Ser claro sin revelar informacion sensible del modulo bloqueado.",
-    },
-  ];
+    }];
 
   getStatusSeverity(
     status: "Aprobado" | "Revision" | "Pendiente" | "Riesgo",

@@ -18,7 +18,6 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AiService } from "@core/services/ai.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import {
@@ -31,7 +30,7 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   selector: "app-budget-audit-dialog",
   templateUrl: "./budget-audit-dialog.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [LxIcon, WebButtonLabel],
+  imports: [LxIcon],
 })
 export class BudgetAuditDialog implements OnInit {
   private ref = inject(DynamicDialogRef);
@@ -120,8 +119,7 @@ export class BudgetAuditDialog implements OnInit {
       item.gastoSeptiembre,
       item.gastoOctubre,
       item.gastoNoviembre,
-      item.gastoDiciembre,
-    ].filter((x): x is number => typeof x === "number");
+      item.gastoDiciembre].filter((x): x is number => typeof x === "number");
 
     const sum = expenses.reduce((a, b) => a + b, 0);
     return expenses.length ? sum / expenses.length : 0;

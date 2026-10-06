@@ -24,7 +24,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 @Component({
@@ -37,11 +36,9 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
     CustomInputCheckSignal,
     UpperCasePipe,
     DecimalPipe,
-    WebButtonLabel,
     ButtonWeb,
     LxTag,
-    LxMessage,
-  ],
+    LxMessage],
   styleUrls: ["./funding-accounting-detail.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-detail.html",

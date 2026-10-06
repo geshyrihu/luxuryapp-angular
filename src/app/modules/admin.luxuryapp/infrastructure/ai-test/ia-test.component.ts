@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -18,12 +17,10 @@ import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
     LxCard,
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./ia-test.component.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./ia-test.component.css",
@@ -36,8 +33,7 @@ export default class IaTestComponent {
     profile: ["Local", Validators.required],
     prompt: [
       "Hola, óqué modelo eres? Responde brevemente.",
-      Validators.required,
-    ],
+      Validators.required],
   });
 
   profiles = signal<{ label: string; value: string }[]>([
@@ -45,8 +41,7 @@ export default class IaTestComponent {
     { label: "Nvidia (Llama 3.1 8B)", value: "Nvidia" },
     { label: "Gemini 2.5 Flash", value: "GeminiFlash" },
     { label: "Gemini 3 Flash Preview", value: "Gemini3Flash" },
-    { label: "GPT-4o (Abacus)", value: "Abacus" },
-  ]);
+    { label: "GPT-4o (Abacus)", value: "Abacus" }]);
 
   isLoading = signal<boolean>(false);
   result = signal<AiTestResultDto | null>(null);

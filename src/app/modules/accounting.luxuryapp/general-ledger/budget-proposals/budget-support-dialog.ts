@@ -29,8 +29,6 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
-import { WebButtonLabelViewPdf } from "@ui/buttons/web-label/button-view-pdf";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -44,13 +42,10 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CustomInputTextSignal,
     CustomInputTextAreaSignal,
     CustomInputFile,
-    WebButtonLabel,
-    WebButtonLabelViewPdf,
     LxTag,
     LxCard,
     LxMessage,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",
 })

@@ -26,7 +26,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppSortableColumn,
@@ -44,14 +43,12 @@ import { BudgetProposalItemDTO } from "./interfaces/budget-proposal.model";
   imports: [
     LxIcon,
     CommonModule,
-    WebButtonLabel,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     AppTableCheckbox,
     AppTableHeaderCheckbox,
-    FormsModule,
-  ],
+    FormsModule],
 })
 export class BudgetForecastDialog implements OnInit {
   private ref = inject(DynamicDialogRef);
@@ -179,8 +176,7 @@ export class BudgetForecastDialog implements OnInit {
         item.gastoSeptiembre,
         item.gastoOctubre,
         item.gastoNoviembre,
-        item.gastoDiciembre,
-      ].filter((x): x is number => typeof x === "number");
+        item.gastoDiciembre].filter((x): x is number => typeof x === "number");
     }
 
     const sum = expensesToAverage.reduce((a, b) => a + b, 0);

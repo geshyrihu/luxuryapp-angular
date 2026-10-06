@@ -9,7 +9,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -19,21 +18,16 @@ import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface"
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-catalog-replica",
-  imports: [
-    WebButtonIcon,
-    LxTooltipDirective,
+  imports: [LxTooltipDirective,
     FormsModule,
     AppTable,
-    WebButtonLabel,
     CustomInputTextSignal,
     LxTag,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",
 })

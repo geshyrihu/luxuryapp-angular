@@ -7,7 +7,6 @@ import {
   output,
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -24,14 +23,12 @@ import { PurchaseHistoryDTO } from "../presupuestos.interfaces";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    WebButtonIcon,
     LxIcon,
     AppTable,
     AppSortableColumn,
     AppSorticon,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class PurchaseHistoryDesktop {
   data = input.required<PurchaseHistoryDTO[]>();

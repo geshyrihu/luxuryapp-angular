@@ -6,7 +6,6 @@ import {
   ViewEncapsulation,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppDivider } from "@ui/web/divider/divider";
 
 const LAYOUTS_LABELS: Record<string, string> = {
@@ -19,7 +18,7 @@ const LAYOUTS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-layouts-item",
-  imports: [WebButtonLabel, AppDivider],
+  imports: [AppDivider],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">

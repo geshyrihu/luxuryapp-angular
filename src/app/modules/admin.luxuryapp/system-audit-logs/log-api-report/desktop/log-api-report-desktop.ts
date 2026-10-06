@@ -11,8 +11,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -39,13 +37,10 @@ import { LogEntry } from "../interfaces/log-entry.interface";
     AppSorticon,
     LxCard,
     LxTag,
-    WebButtonLabel,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    WebButtonIcon,
     LuxTableCaption,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class LogApiReportDesktop {
   data = input.required<LogEntry[]>();

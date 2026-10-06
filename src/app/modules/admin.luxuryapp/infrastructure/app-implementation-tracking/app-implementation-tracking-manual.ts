@@ -4,7 +4,7 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
+
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -12,7 +12,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 @Component({
   selector: "app-implementation-tracking-manual",
 
-  imports: [WebButtonLabel],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="card p-4">

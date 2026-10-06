@@ -10,59 +10,10 @@ import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import {
-  MobileButtonIconActiveDesactive,
-  MobileButtonIconAdd,
-  MobileButtonIconConfirm,
-  MobileButtonIconDelete,
-  MobileButtonIconDownload,
-  MobileButtonIconEdit,
-  MobileButtonIconSave,
-  MobileButtonIconSendEmail,
-  MobileButtonIconTracking,
-  MobileButtonIconViewPdf,
-} from "@ui/buttons/mobile-icon";
 
-import {
-  WebButtonLabelActiveDesactive,
-  WebButtonLabelAdd,
-  WebButtonLabelConfirm,
-  WebButtonLabelDelete,
-  WebButtonLabelDownload,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-  WebButtonLabelSendEmail,
-  WebButtonLabelTracking,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import {
-  MobileButtonLabelActiveDesactive,
-  MobileButtonLabelAdd,
-  MobileButtonLabelConfirm,
-  MobileButtonLabelDelete,
-  MobileButtonLabelDownload,
-  MobileButtonLabelEdit,
-  MobileButtonLabelItem,
-  MobileButtonLabelSave,
-  MobileButtonLabelSendEmail,
-  MobileButtonLabelTracking,
-  MobileButtonLabelViewPdf,
-} from "@ui/buttons/mobile-label";
 
-import {
-  WebButtonIconActiveDesactive,
-  WebButtonIconAdd,
-  WebButtonIconConfirm,
-  WebButtonIconDelete,
-  WebButtonIconDownload,
-  WebButtonIconEdit,
-  WebButtonIconSave,
-  WebButtonIconSendEmail,
-  WebButtonIconTracking,
-  WebButtonIconViewPdf,
-} from "@ui/buttons/web-icon";
 import { SemanticEntry } from "./interfaces/semantic-entry.interface";
 
 type WebSize = "sm" | "md" | "lg";
@@ -140,8 +91,7 @@ const IL_SEMANTIC: SemanticEntry[] = [
     selector: "il-button-active-desactive [state]=false",
     defaultSeverity: "secondary",
     defaultVariant: "outline",
-  },
-];
+  }];
 
 const IW_SEMANTIC: SemanticEntry[] = [
   {
@@ -209,8 +159,7 @@ const IW_SEMANTIC: SemanticEntry[] = [
     selector: "iw-button-active-desactive [state]=false",
     defaultSeverity: "secondary",
     defaultVariant: "ghost",
-  },
-];
+  }];
 
 const II_SEMANTIC: SemanticEntry[] = [
   {
@@ -278,8 +227,7 @@ const II_SEMANTIC: SemanticEntry[] = [
     selector: "ii-button-active-desactive [state]=false",
     defaultSeverity: "primary",
     defaultVariant: "solid",
-  },
-];
+  }];
 
 const ILI_SEMANTIC: SemanticEntry[] = [
   {
@@ -353,8 +301,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     selector: "ili-button-active-desactive [state]=false",
     defaultSeverity: "primary",
     defaultVariant: "solid",
-  },
-];
+  }];
 
 @Component({
   selector: "app-button-catalog",
@@ -364,49 +311,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     AppTable,
     AppSelectButton,
     AppToggleSwitch,
-    MobileButtonIconAdd,
-    MobileButtonIconEdit,
-    MobileButtonIconDelete,
-    MobileButtonIconSave,
-    MobileButtonIconDownload,
-    MobileButtonIconConfirm,
-    MobileButtonIconSendEmail,
-    MobileButtonIconViewPdf,
-    MobileButtonIconTracking,
-    MobileButtonIconActiveDesactive,
-    WebButtonLabelAdd,
-    WebButtonLabelEdit,
-    WebButtonLabelDelete,
-    ButtonWeb,
-    WebButtonLabelDownload,
-    WebButtonLabelConfirm,
-    WebButtonLabelSendEmail,
-    WebButtonLabelViewPdf,
-    WebButtonLabelTracking,
-    WebButtonLabelItem,
-    WebButtonLabelActiveDesactive,
-    MobileButtonLabelAdd,
-    MobileButtonLabelEdit,
-    MobileButtonLabelDelete,
-    MobileButtonLabelSave,
-    MobileButtonLabelDownload,
-    MobileButtonLabelConfirm,
-    MobileButtonLabelSendEmail,
-    MobileButtonLabelViewPdf,
-    MobileButtonLabelTracking,
-    MobileButtonLabelItem,
-    MobileButtonLabelActiveDesactive,
-    WebButtonIconAdd,
-    WebButtonIconEdit,
-    WebButtonIconDelete,
-    WebButtonIconSave,
-    WebButtonIconDownload,
-    WebButtonIconConfirm,
-    WebButtonIconSendEmail,
-    WebButtonIconViewPdf,
-    WebButtonIconTracking,
-    WebButtonIconActiveDesactive,
-  ],
+    ButtonWeb],
   template: `
     <section class="fadein">
       <!-- -- Controls ----------------------------------------------- -->
@@ -1140,8 +1045,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
         color: var(--text-color-secondary);
         border: 1px solid var(--surface-border);
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -1154,8 +1058,7 @@ export class ButtonCatalog {
     "warning",
     "danger",
     "help",
-    "contrast",
-  ];
+    "contrast"];
   protected readonly webVariants = ["solid", "outline", "ghost", "text"];
   protected readonly ionicFills = ["solid", "outline", "clear"];
 

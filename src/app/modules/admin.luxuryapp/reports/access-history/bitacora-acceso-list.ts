@@ -16,7 +16,6 @@ import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { LxBadge } from "@ui/adaptive/badge/badge";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CalendarRange } from "@ui/web/rango-calendario-mes-anio/calendar-range";
@@ -39,10 +38,8 @@ import {
     AppSorticon,
     LxAvatar,
     CalendarRange,
-    WebButtonIcon,
     LuxTableCaption,
-    LxBadge,
-  ],
+    LxBadge],
 })
 // óCAMBIO! Ya no implementamos OnInit
 export class BitacoraAcceso {

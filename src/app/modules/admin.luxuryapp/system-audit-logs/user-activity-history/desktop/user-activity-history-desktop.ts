@@ -10,7 +10,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -32,11 +31,9 @@ import {
     AppSorticon,
     LxCard,
     LxTag,
-    WebButtonLabel,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    LuxTableCaption,
-  ],
+    LuxTableCaption],
 })
 export class UserActivityHistoryDesktop {
   data = input.required<any[]>();

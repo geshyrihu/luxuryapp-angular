@@ -3,14 +3,13 @@ import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } 
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MockAspelService, MockCuentaResponse, PolizaCreateRequest } from "./services/mock-aspel.service";
 
 @Component({
   selector: "app-mock-aspel-poliza-form",
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, LxCard, WebButtonLabel, LxIcon],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, LxCard, LxIcon],
   templateUrl: "./mock-aspel-poliza-form.html",
   styleUrl: "./mock-aspel-poliza-form.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

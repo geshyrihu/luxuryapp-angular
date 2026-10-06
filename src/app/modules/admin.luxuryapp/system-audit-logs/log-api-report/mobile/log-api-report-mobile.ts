@@ -7,7 +7,6 @@ import {
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -21,11 +20,9 @@ import { LogEntry } from "../interfaces/log-entry.interface";
     ApiDatePipe,
     LxCard,
     LxTag,
-    WebButtonLabel,
     DataViewMobile,
     MobileListItem,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class LogApiReportMobile {
   data = input.required<LogEntry[]>();

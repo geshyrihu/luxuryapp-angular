@@ -11,7 +11,6 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -22,20 +21,15 @@ import {
   IEspejoFilaTabla,
 } from "./interfaces/espejo-aspel-full.interface";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-espejo-aspel-full",
-  imports: [
-    WebButtonIcon,
-    FormsModule,
+  imports: [FormsModule,
     AppTable,
     CustomInputSelectButton,
     LxSpinner,
-    WebButtonLabel,
     CustomSearchInput,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./espejo-aspel-full.html",
 })
@@ -53,8 +47,7 @@ export class EspejoAspelFull {
 
   empresaOptions = [
     { label: "Contabilidad", value: "Contabilidad" },
-    { label: "Cobranza", value: "Cobranza" },
-  ];
+    { label: "Cobranza", value: "Cobranza" }];
   empresaSeleccionada = signal<string>("Contabilidad");
 
   readonly meses = [
@@ -69,8 +62,7 @@ export class EspejoAspelFull {
     "Sep",
     "Oct",
     "Nov",
-    "Dic",
-  ];
+    "Dic"];
 
   // Filas aplanadas por grupo
   filasPorGrupo = computed(() => {

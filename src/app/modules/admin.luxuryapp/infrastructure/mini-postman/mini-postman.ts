@@ -8,8 +8,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -29,10 +27,7 @@ import { KeyValuePair } from "./interfaces/key-value-pair.interface";
     CustomInputSelectSignal,
     CustomInputTextAreaSignal,
     InputText,
-    WebButtonLabel,
-    WebButtonIcon,
-    LxIcon,
-  ],
+    LxIcon],
 })
 export class MiniPostman {
   private http = inject(HttpClient);
@@ -44,8 +39,7 @@ export class MiniPostman {
     { label: "POST", value: "POST" },
     { label: "PUT", value: "PUT" },
     { label: "PATCH", value: "PATCH" },
-    { label: "DELETE", value: "DELETE" },
-  ];
+    { label: "DELETE", value: "DELETE" }];
 
   // --- Request state ---
   method = signal("GET");
@@ -62,8 +56,7 @@ export class MiniPostman {
   readonly reqTabs = computed(() => {
     const tabs = [
       { id: "params", label: "Params" },
-      { id: "headers", label: "Headers" },
-    ];
+      { id: "headers", label: "Headers" }];
     if (this.hasBody()) {
       tabs.push({ id: "body", label: "Body" });
     }
@@ -72,8 +65,7 @@ export class MiniPostman {
 
   readonly resTabs = [
     { id: "body-res", label: "Body" },
-    { id: "headers-res", label: "Headers" },
-  ];
+    { id: "headers-res", label: "Headers" }];
 
   // --- Response state ---
   loading = signal(false);

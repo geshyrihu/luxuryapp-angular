@@ -22,33 +22,7 @@ import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import {
-  WebButtonIconActiveDesactive,
-  WebButtonIconAdd,
-  WebButtonIconConfirm,
-  WebButtonIconDelete,
-  WebButtonIconDownload,
-  WebButtonIconEdit,
-  WebButtonIconItem,
-  WebButtonIconSave,
-  WebButtonIconSendEmail,
-  WebButtonIconTracking,
-  WebButtonIconViewPdf,
-} from "@ui/buttons/web-icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import {
-  WebButtonLabel,
-  WebButtonLabelActiveDesactive,
-  WebButtonLabelAdd,
-  WebButtonLabelConfirm,
-  WebButtonLabelDelete,
-  WebButtonLabelDownload,
-  WebButtonLabelEdit,
-  WebButtonLabelItem,
-  WebButtonLabelSendEmail,
-  WebButtonLabelTracking,
-  WebButtonLabelViewPdf,
-} from "@ui/buttons/web-label";
 import {
   CustomInputCheckSignal,
   CustomInputCurrencySignal,
@@ -168,7 +142,6 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     CustomInputTextAreaSignal,
     Accordion,
     AccordionPanel,
-    WebButtonLabel,
     AppPopover,
     AppSelectButton,
     AppTable,
@@ -188,29 +161,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     LxTooltipDirective,
     FullCalendarModule,
     LxIcon,
-    WebButtonLabel,
-    WebButtonLabelActiveDesactive,
-    WebButtonLabelAdd,
-    WebButtonLabelConfirm,
-    WebButtonLabelDelete,
-    WebButtonLabelDownload,
-    WebButtonLabelEdit,
-    WebButtonLabelItem,
     ButtonWeb,
-    WebButtonLabelSendEmail,
-    WebButtonLabelTracking,
-    WebButtonLabelViewPdf,
-    WebButtonIconActiveDesactive,
-    WebButtonIconAdd,
-    WebButtonIconConfirm,
-    WebButtonIconDelete,
-    WebButtonIconDownload,
-    WebButtonIconEdit,
-    WebButtonIconItem,
-    WebButtonIconSave,
-    WebButtonIconSendEmail,
-    WebButtonIconTracking,
-    WebButtonIconViewPdf,
     MobileButtons,
     MobileInputs,
     MobileFeedback,
@@ -218,8 +169,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
     MobileLists,
     MobileData,
     MobileForms,
-    MobileOverlays,
-  ],
+    MobileOverlays],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -245,8 +195,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [items]="[
                       { id: '0', title: 'Sección 1' },
                       { id: '1', title: 'Sección 2' },
-                      { id: '2', title: 'Sección 3' },
-                    ]"
+                      { id: '2', title: 'Sección 3' }]"
                     [(expandedIds)]="accordionExpandedIds"
                   >
                     <ng-template accordionPanel="0"
@@ -296,8 +245,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       { label: 'Inicio' },
                       { label: 'Sistema' },
                       { label: 'Catálogos' },
-                      { label: 'Proveedores' },
-                    ]"
+                      { label: 'Proveedores' }]"
                     [home]="{ label: 'Inicio' }"
                   />
                 </div>
@@ -889,8 +837,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [tabs]="[
                       { id: '0', label: 'General' },
                       { id: '1', label: 'Detalle' },
-                      { id: '2', label: 'Documentos' },
-                    ]"
+                      { id: '2', label: 'Documentos' }]"
                     [(activeId)]="webItemTabActiveId"
                   >
                     <div tab="0"><p class="m-0">Contenido General.</p></div>
@@ -1415,8 +1362,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
         border-radius: 2px;
         margin: 8px auto 2px;
       }
-    `,
-  ],
+    `],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -1490,8 +1436,7 @@ export class CatalogWebItem {
     { label: "Operaciones", value: 2 },
     { label: "Recursos Humanos", value: 3 },
     { label: "TI", value: 4 },
-    { label: "Direccion General", value: 5 },
-  ];
+    { label: "Direccion General", value: 5 }];
 
   // Shared state
   accordionExpandedIds = signal<string[]>(["0"]);
@@ -1500,8 +1445,7 @@ export class CatalogWebItem {
   selectOptions = [
     { label: "Opcion 1", value: 1 },
     { label: "Opcion 2", value: 2 },
-    { label: "Opcion 3", value: 3 },
-  ];
+    { label: "Opcion 3", value: 3 }];
   dateVal: Date | null = null;
   numVal = 50;
   numVal2 = 12500;
@@ -1515,8 +1459,7 @@ export class CatalogWebItem {
   tableData = [
     { name: "Registro A", status: "Activo" },
     { name: "Registro B", status: "Inactivo" },
-    { name: "Registro C", status: "Pendiente" },
-  ];
+    { name: "Registro C", status: "Pendiente" }];
 
   // Calendar demo
   readonly calendarDemoOptions: CalendarOptions = {
@@ -1569,6 +1512,5 @@ export class CatalogWebItem {
       guests: 5,
       statusLabel: "Pendiente de sincronizar",
       severity: "secondary",
-    },
-  ];
+    }];
 }

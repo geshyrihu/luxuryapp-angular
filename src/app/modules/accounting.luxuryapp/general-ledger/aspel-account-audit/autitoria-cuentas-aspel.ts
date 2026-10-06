@@ -10,7 +10,6 @@ import { FormsModule } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
@@ -25,21 +24,16 @@ import {
   IAutitoriaCuentasAspelResponseDTO,
 } from "./autitoria-cuentas-aspel.models";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-autitoria-cuentas-aspel",
-  imports: [
-    WebButtonIcon,
-    FormsModule,
+  imports: [FormsModule,
     AppTable,
     CustomInputSelectButton,
     LxSpinner,
-    WebButtonLabel,
     ButtonWeb,
     CustomSearchInput,
-    LxIcon,
-  ],
+    LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./autitoria-cuentas-aspel.html",
 })
@@ -56,8 +50,7 @@ export class AutitoriaCuentasAspel {
 
   empresaOptions = [
     { label: "Contabilidad", value: "Contabilidad" },
-    { label: "Cobranza", value: "Cobranza" },
-  ];
+    { label: "Cobranza", value: "Cobranza" }];
 
   readonly customers = computed(() => this.rawData()?.customers ?? []);
 

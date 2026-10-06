@@ -29,7 +29,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -66,10 +65,8 @@ interface ICatalogoGastoFijoForm {
     CustomInputTextAreaSignal,
     InputAutocomplete,
     CustomInputSelectSignal,
-    WebButtonLabel,
     ButtonWeb,
-    LxMessage,
-  ],
+    LxMessage],
 })
 export class CatalogoGastoFijoForm implements OnInit {
   // Inyección de dependencias
@@ -95,8 +92,7 @@ export class CatalogoGastoFijoForm implements OnInit {
   cb_formaDePago = signal<SelectItemDto[]>([]);
   cb_quincena = signal<SelectItemDto[]>([
     { label: "Primera Quincena", value: 0 },
-    { label: "Segunda Quincena", value: 1 },
-  ]);
+    { label: "Segunda Quincena", value: 1 }]);
 
   // Formulario reactivo tipado
   form: FormGroup<ICatalogoGastoFijoForm> = this.formB.group({
@@ -200,8 +196,7 @@ export class CatalogoGastoFijoForm implements OnInit {
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.providers(this.customerIdS.customerId()),
-      ),
-    ]);
+      )]);
 
     this.cb_usoCFDI.set((usoCFDI as SelectItemDto[]) || []);
     this.cb_metodoDePago.set((metodoDePago as SelectItemDto[]) || []);

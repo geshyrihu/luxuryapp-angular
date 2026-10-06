@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { AccordionItem } from "@ui/core/accordion.base";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
@@ -23,7 +22,7 @@ interface FrontendRoute {
 
 @Component({
   selector: "app-report-guide",
-  imports: [RouterModule, LxAccordion, WebButtonLabel, LxIcon, LxTag],
+  imports: [RouterModule, LxAccordion, LxIcon, LxTag],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-guide.html",
 })
@@ -35,8 +34,7 @@ export class ReportGuide {
       id: "technical",
       title: "Detalles Técnicos y Tipos de Datos (Solo Expertos)",
       icon: "material-symbols-light:settings",
-    },
-  ];
+    }];
 
   frontendRoutes: FrontendRoute[] = [
     {
@@ -67,8 +65,7 @@ export class ReportGuide {
       path: "/contabilidad/reportes/guia",
       component: "ReportGuide",
       description: "Esta Guía práctica del módulo.",
-    },
-  ];
+    }];
 
   apiRoutes: RouteEntry[] = [
     {
@@ -147,8 +144,7 @@ export class ReportGuide {
         "Catálogo de cuentas contables del cliente para el año indicado. Usado por el autocomplete en el Builder.",
       params: "customerId: Guid, year: int",
       response: "AccountCatalogItemDTO[] { code, name, level }",
-    },
-  ];
+    }];
 
   tiposRenglon = [
     {
@@ -185,8 +181,7 @@ export class ReportGuide {
       tipo: "spacer",
       descripcion: "Fila vacóa para separación visual.",
       ejemplo: "",
-    },
-  ];
+    }];
 
   tiposPeriodo = [
     {
@@ -210,8 +205,7 @@ export class ReportGuide {
       campo: "(ignorado)",
       descripcion:
         "Suma de los 12 meses del año. Para presupuesto suma los 12 montos de presupuesto.",
-    },
-  ];
+    }];
 
   tiposVisualizacion = [
     {
@@ -238,8 +232,7 @@ export class ReportGuide {
       tipo: "summary-cards",
       descripcion:
         "Tarjetas KPI. Muestra los renglones grandTotal y subtotal-bold como cards con valor principal.",
-    },
-  ];
+    }];
 
   ejemploJson = `{
   "sections": [

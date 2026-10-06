@@ -18,21 +18,18 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+
 
 @Component({
   selector: "app-cont-minuta-seguimientos",
   templateUrl: "./cont-minuta-seguimientos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    WebButtonIcon,
-    ButtonWeb,
+  imports: [ButtonWeb,
     TableEmptyMessage,
     CommonModule,
     AppTable,
 
-    NgbTooltip,
-  ],
+    NgbTooltip],
 })
 export class ContMinutaSeguimientos implements OnInit {
   config = inject(DynamicDialogConfig);

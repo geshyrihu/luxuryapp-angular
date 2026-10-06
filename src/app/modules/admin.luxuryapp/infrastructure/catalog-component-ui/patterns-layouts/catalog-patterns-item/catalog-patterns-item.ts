@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
@@ -35,7 +34,6 @@ const PATTERNS_LABELS: Record<string, string> = {
   selector: "app-catalog-patterns-item",
   imports: [
     FormsModule,
-    WebButtonLabel,
     AppDivider,
     CustomInputTextSignal,
     AppTable,
@@ -44,8 +42,7 @@ const PATTERNS_LABELS: Record<string, string> = {
     StatusBadge,
     AppCard,
     ChartWrapper,
-    AppToolbar,
-  ],
+    AppToolbar],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -351,8 +348,7 @@ const PATTERNS_LABELS: Record<string, string> = {
               <lux-tabs-web
                 [tabs]="[
                   { id: '0', label: 'Dashboard' },
-                  { id: '1', label: 'Reportes' },
-                ]"
+                  { id: '1', label: 'Reportes' }]"
                 [(activeId)]="patternsTabActiveId"
               >
                 <div tab="0"><p>Contenido Dashboard.</p></div>
@@ -557,8 +553,7 @@ export class CatalogPatternsItem {
   mockTableData = [
     { folio: "OC-10495", fecha: "2026-09-30", total: "$12,450.00" },
     { folio: "OC-10496", fecha: "2026-09-30", total: "$3,200.00" },
-    { folio: "OC-10497", fecha: "2026-09-29", total: "$45,900.00" },
-  ];
+    { folio: "OC-10497", fecha: "2026-09-29", total: "$45,900.00" }];
   mockChartData = {
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
     datasets: [
@@ -566,8 +561,7 @@ export class CatalogPatternsItem {
         label: "Ingresos",
         data: [65000, 59000, 80000, 81000, 56000, 125000],
         backgroundColor: "var(--ds-primary)",
-      },
-    ],
+      }],
   };
 
   // --- Navigation Hub Page demo data ---------------------------
@@ -634,8 +628,7 @@ interface DashboardGroup {
       bgColor: "#f3e8ff",
       color: "#7c3aed",
       description: "",
-    },
-  ];
+    }];
 
   readonly navHubImplementations: {
     label: string;
@@ -656,6 +649,5 @@ interface DashboardGroup {
       label: "Cobranza Nativa",
       icon: "material-symbols-light:paid",
       route: "/cobranza-nativa",
-    },
-  ];
+    }];
 }

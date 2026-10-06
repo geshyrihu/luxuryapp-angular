@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
@@ -43,7 +42,6 @@ const GUIA_LABELS: Record<string, string> = {
   imports: [
     CommonModule,
     FormsModule,
-    WebButtonLabel,
     InputText,
     InputTextarea,
     InputNumber,
@@ -58,8 +56,7 @@ const GUIA_LABELS: Record<string, string> = {
     AppRadioButton,
     AppTag,
     LxIcon,
-    ButtonCatalog,
-  ],
+    ButtonCatalog],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -437,15 +434,13 @@ export class CatalogGuiaItem {
     { label: "Administracion", value: "admin" },
     { label: "Operaciones", value: "ops" },
     { label: "Finanzas", value: "finance" },
-    { label: "Recursos Humanos", value: "hr" },
-  ];
+    { label: "Recursos Humanos", value: "hr" }];
 
   readonly modules = [
     { label: "Cuentas por cobrar", value: "ar" },
     { label: "Mantenimiento", value: "maintenance" },
     { label: "Compras", value: "purchases" },
-    { label: "Biblioteca", value: "library" },
-  ];
+    { label: "Biblioteca", value: "library" }];
 
   readonly metrics: {
     label: string;
@@ -474,8 +469,7 @@ export class CatalogGuiaItem {
       detail: "Controles tactiles y secciones apilables",
       icon: "material-symbols-light:devices-other",
       tone: "success",
-    },
-  ];
+    }];
 
   readonly identityPillars: {
     title: string;
@@ -510,8 +504,7 @@ export class CatalogGuiaItem {
       application:
         "Color semantico reservado, maximo una primaria por bloque y danger confirmado.",
       severity: "warn" as TagSeverity,
-    },
-  ];
+    }];
 
   readonly businessScenarios: {
     title: string;
@@ -539,8 +532,7 @@ export class CatalogGuiaItem {
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
       rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
       icon: "material-symbols-light:devices-other",
-    },
-  ];
+    }];
 
   readonly colorAssessment = [
     {
@@ -577,8 +569,7 @@ export class CatalogGuiaItem {
       verdict: "Consistente",
       recommendation: "Adecuado para acciones destructivas.",
       severity: "danger" as TagSeverity,
-    },
-  ];
+    }];
 
   readonly buttonRules: {
     variant: string;
@@ -619,8 +610,7 @@ export class CatalogGuiaItem {
       severity: "secondary" as TagSeverity,
       cardClass: "h-full border-left-3 border-300 surface-card shadow-1",
       iconClass: "material-symbols-light:more-horiz",
-    },
-  ];
+    }];
 
   readonly componentCatalog = [
     {
@@ -694,8 +684,7 @@ export class CatalogGuiaItem {
       preferredFor: "Dashboards y metricas.",
       avoidWhen: "Datos que requieren tabla para auditoria.",
       status: "Especializado" as const,
-    },
-  ];
+    }];
 
   getCatalogSeverity(
     status: "Usar" | "Web" | "Mobile" | "Especializado",

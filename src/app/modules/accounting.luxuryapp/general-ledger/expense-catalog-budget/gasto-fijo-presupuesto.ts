@@ -19,8 +19,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
+
+
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -32,28 +32,23 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
+
 
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
-  imports: [
-    WebButtonIcon,
-    ButtonWeb,
+  imports: [ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     LxSpinner,
-    WebButtonLabelDelete,
     LuxTableCaption,
     TableFooter,
-    LxMessage,
-  ],
+    LxMessage],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

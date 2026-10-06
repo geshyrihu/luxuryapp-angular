@@ -13,7 +13,6 @@ import {
 } from "@angular/forms";
 
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -32,10 +31,8 @@ interface IAspelSyncForm {
     CommonModule,
     ReactiveFormsModule,
     LxIcon,
-    WebButtonLabel,
     CustomInputNumberSignal,
-    LxCard,
-  ],
+    LxCard],
 })
 export class AspelSyncComponent {
   private formB = inject(FormBuilder);
@@ -59,8 +56,7 @@ export class AspelSyncComponent {
       validators: [
         Validators.required,
         Validators.min(2000),
-        Validators.max(2100),
-      ],
+        Validators.max(2100)],
     }),
   });
 

@@ -12,8 +12,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIconEdit } from "@ui/buttons/web-icon/button-edit";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,19 +32,16 @@ import {
     FormsModule,
     RouterModule,
     CustomInputSelectSignal,
-    WebButtonLabel,
     LxTooltipDirective,
     LxMessage,
     LxCheckbox,
     LxIcon,
-    WebButtonIconEdit,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon,
-  ],
+    AppSorticon],
 })
 export class CatalogoGastosFijosListDesktop {
   data = input.required<any[]>();

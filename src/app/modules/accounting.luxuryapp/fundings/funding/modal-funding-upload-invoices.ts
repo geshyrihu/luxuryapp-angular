@@ -19,7 +19,6 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -66,9 +65,7 @@ type ModalStatus =
     CustomInputCheckSignal,
     CustomInputSelectSignal,
     CustomInputTextSignal,
-    WebButtonLabel,
-    LxIcon,
-  ],
+    LxIcon],
   templateUrl: "./funding-upload-invoices-modal.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DialogService],

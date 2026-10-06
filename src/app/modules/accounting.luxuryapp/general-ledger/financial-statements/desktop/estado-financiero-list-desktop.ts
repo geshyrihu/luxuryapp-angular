@@ -9,7 +9,6 @@ import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -21,15 +20,13 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     LxTag,
-    WebButtonIcon,
     ButtonWeb,
     LxTooltipDirective,
     TableEmptyMessage,
     AppTable,
     NgbTooltipModule,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
 })
 export class EstadoFinancieroListDesktop {
   data = input.required<any[]>();

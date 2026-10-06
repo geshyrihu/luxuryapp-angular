@@ -25,8 +25,8 @@ import {
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
+
+
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
@@ -54,11 +54,8 @@ import {
     CustomInputNumberSignal,
     CustomInputDecimal,
     CustomInputSelectSignal,
-    WebButtonLabelItem,
-    WebButtonLabelDelete,
     LuxTableCaption,
-    TableFooter,
-  ],
+    TableFooter],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GastoFijoServicios implements OnInit {
