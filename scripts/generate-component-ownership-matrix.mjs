@@ -66,6 +66,61 @@ for (const file of consumerFiles) {
 }
 console.log(`Consumidores indexados: ${consumerFiles.length} archivos, ${consumersByClassName.size} símbolos @ui/* importados.`);
 
+// 1b) Resolver cadenas de re-export dentro de shared/ui (bridges de
+// compatibilidad tipo "export { InputCheck as CustomInputCheckSignal } from
+// '../adaptive/input-check/input-check'"). Sin esto, un componente consumido
+// solo via su alias de barrel aparece falsamente como "sin consumidores".
+console.log("Resolviendo alias de re-export en shared/ui...");
+const allUiFilesForAlias = walk(uiDir, [], { excludeSuffixes: [".spec.ts", ".stories.ts"] });
+const exportFromRe = /export\s*\{([^}]+)\}\s*from\s*["']([^"']+)["']/g;
+
+function resolveImportPath(fromFile, importPath) {
+  if (!importPath.startsWith(".")) return null; // solo relativos dentro de shared/ui
+  const base = path.resolve(path.dirname(fromFile), importPath);
+  const candidates = [`${base}.ts`, path.join(base, "index.ts")];
+  for (const c of candidates) if (fs.existsSync(c)) return c;
+  return null;
+}
+
+// edges: key `${resolvedTargetFile}::${originalName}` -> [{file, aliasName}, ...]
+const reExportEdges = new Map();
+for (const file of allUiFilesForAlias) {
+  const content = fs.readFileSync(file, "utf-8");
+  let m;
+  exportFromRe.lastIndex = 0;
+  while ((m = exportFromRe.exec(content))) {
+    const target = resolveImportPath(file, m[2]);
+    if (!target) continue;
+    const names = m[1].split(",").map((s) => s.trim()).filter(Boolean);
+    for (const n of names) {
+      const parts = n.split(/\s+as\s+/);
+      const originalName = parts[0].trim();
+      const aliasName = (parts[1] || parts[0]).trim();
+      const key = `${target}::${originalName}`;
+      if (!reExportEdges.has(key)) reExportEdges.set(key, []);
+      reExportEdges.get(key).push({ file, aliasName });
+    }
+  }
+}
+
+/** BFS desde (file, className) sobre reExportEdges; devuelve todos los nombres bajo los que se pudo importar este componente, en cualquier archivo de shared/ui. */
+function resolveAllAliasNames(file, className) {
+  const seen = new Set([className]);
+  const queue = [{ file, name: className }];
+  while (queue.length) {
+    const { file: f, name } = queue.shift();
+    const key = `${f}::${name}`;
+    const edges = reExportEdges.get(key) || [];
+    for (const e of edges) {
+      if (!seen.has(e.aliasName)) {
+        seen.add(e.aliasName);
+        queue.push({ file: e.file, name: e.aliasName });
+      }
+    }
+  }
+  return seen;
+}
+
 // 2) Walk shared/ui components/directives.
 console.log("Escaneando shared/ui...");
 const uiFiles = walk(uiDir, [], { excludeSuffixes: [".spec.ts", ".stories.ts"] });
@@ -147,8 +202,14 @@ for (const file of uiFiles) {
   const hasAria = ariaRe.test(content);
   const coreImportViolation = isCoreImportViolation(content);
 
-  const consumerSet = consumersByClassName.get(className) || new Set();
+  const aliasNames = resolveAllAliasNames(file, className);
+  const consumerSet = new Set();
+  for (const name of aliasNames) {
+    const s = consumersByClassName.get(name);
+    if (s) for (const f of s) consumerSet.add(f);
+  }
   const consumerCount = consumerSet.size;
+  const resolvedVia = [...aliasNames].filter((n) => n !== className).join("|");
 
   // Heuristica de madurez tentativa (NO decide ownership, solo clasifica señales objetivas).
   let madurezTentativa;
@@ -169,6 +230,7 @@ for (const file of uiFiles) {
     hasAria,
     coreImportViolation,
     consumerCount,
+    resolvedVia,
     madurezTentativa,
   });
 }
@@ -190,6 +252,7 @@ const csvHeader = [
   "hasAria",
   "coreImportViolation",
   "consumerCount",
+  "resolvedVia",
   "madurezTentativa",
   "owner",
   "madurezAprobada",
@@ -219,6 +282,7 @@ for (const r of rows) {
       r.hasAria,
       r.coreImportViolation,
       r.consumerCount,
+      r.resolvedVia,
       r.madurezTentativa,
       "", // owner: pendiente, no se inventa
       "", // madurezAprobada: pendiente de revisión humana
