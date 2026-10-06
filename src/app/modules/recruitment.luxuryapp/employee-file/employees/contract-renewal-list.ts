@@ -11,8 +11,6 @@ import {
   DialogSize,
 } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import {
@@ -41,9 +39,7 @@ type StatusSeverity =
     LxTag,
     LxTooltipDirective,
     LxIcon,
-    WebButtonLabel,
-    WebButtonIcon,
-  ],
+    ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="contract-renewal-list">

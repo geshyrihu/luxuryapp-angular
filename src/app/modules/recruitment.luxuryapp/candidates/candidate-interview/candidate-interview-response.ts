@@ -17,7 +17,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -37,7 +36,6 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   imports: [
     PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonLabel,
     AppTable,
     CandidateStageBadge,
     MappedPTag,

@@ -11,7 +11,6 @@ import { Router } from "@angular/router";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ChartJsData } from "@ui/web/charts/chart-adapters";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
@@ -28,7 +27,6 @@ import { CandidateApplicationKpisDto } from "./interfaces/candidate-application"
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    WebButtonLabel,
     AppTable,
     MappedPTag,
     ChartWrapper,

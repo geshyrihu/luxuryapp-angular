@@ -17,7 +17,6 @@ import { DateService } from "@core/services/date.service";
 import { FiltroCalendarService } from "@core/services/filtro-calendar.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd";
@@ -93,7 +92,6 @@ interface IWeeklyExecutiveReport {
     MultiAxisChart,
     RangoCalendarioyyyymmdd,
     CustomInputMultiselectSignal,
-    WebButtonLabel,
     ButtonWeb,
     LuxTableCaption,
   ],

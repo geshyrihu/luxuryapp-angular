@@ -24,7 +24,6 @@ import {
   ContractRenewalStatus,
 } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/interfaces/contract-renewal.dto";
 import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/employees/services/contract-renewal.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -43,7 +42,6 @@ interface DecisionOption {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    WebButtonLabel,
     LxTag,
     LxIcon,
     CustomInputSelectSignal,

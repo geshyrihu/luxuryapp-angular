@@ -19,8 +19,6 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonIcon } from "@ui/buttons/web-icon";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppReorderableRow,
@@ -55,9 +53,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
     FormsModule,
     LxDivider,
     LxFieldset,
-    WebButtonLabel,
     ButtonWeb,
-    WebButtonIcon,
     LxTag,
     AppTable,
     AppReorderableRow,

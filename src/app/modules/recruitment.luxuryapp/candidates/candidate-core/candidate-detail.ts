@@ -16,7 +16,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import { CandidateApplicationForm } from "../candidate-applications/candidate-application-form";
 import { CandidateHiringDocumentsModal } from "../candidate-applications/candidate-hiring-documents-modal";
@@ -34,8 +33,7 @@ import { CandidateDetail as CandidateDetailDto } from "./interfaces/candidate.dt
     LxTabs,
     LxDivider,
     CandidateStageBadge,
-    WebButtonLabel,
-  ],
+    ],
 })
 export class CandidateDetail implements OnInit {
   private config = inject(DynamicDialogConfig);

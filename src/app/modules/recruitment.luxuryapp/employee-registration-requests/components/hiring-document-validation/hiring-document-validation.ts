@@ -10,8 +10,6 @@ import {
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { EndpointsRecursosHumanos } from "@core/constants/endpoints/recursos-humanos.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -47,9 +45,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     LxDivider,
     LxFieldset,
     LxTag,
-    WebButtonIcon,
-    WebButtonLabel,
-  ],
+    ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./hiring-document-validation.html",
   styles: [

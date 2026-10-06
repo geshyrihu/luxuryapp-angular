@@ -31,7 +31,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
@@ -99,7 +98,6 @@ enum DuplicateMatchType {
     InputEmail,
     CandidateCvUpload,
     CandidatePhotoUpload,
-    WebButtonLabel,
     ButtonWeb,
   ],
 })

@@ -23,7 +23,6 @@ import {
 } from "@shared/integration/reclutamiento/candidates/candidate/interfaces/candidate.dto";
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 
@@ -43,8 +42,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
 
     LxAvatar,
     MappedPTag,
-    WebButtonLabel,
-  ],
+    ],
 })
 export class EmployeeQueueCandidateDetailModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

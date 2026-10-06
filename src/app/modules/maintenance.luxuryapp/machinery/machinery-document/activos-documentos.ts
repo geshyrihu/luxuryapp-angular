@@ -21,7 +21,6 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
@@ -29,7 +28,7 @@ import { ButtonWeb } from "@ui/buttons/web";
   selector: "app-activos-documentos",
   templateUrl: "./activos-documentos.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, LxIcon, NgbTooltipModule, WebButtonLabel],
+  imports: [ButtonWeb, LxIcon, NgbTooltipModule],
 })
 export class ActivosDocumentos implements OnInit {
   apiResponseS = inject(ApiResponseService);

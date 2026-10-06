@@ -14,7 +14,6 @@ import { MantenimientoPreventivoForm } from "@operations.luxuryapp/google-calend
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface Equipo {
@@ -42,7 +41,6 @@ interface Equipo {
 
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
-    WebButtonLabel,
     ButtonWeb,
   ],
   template: `

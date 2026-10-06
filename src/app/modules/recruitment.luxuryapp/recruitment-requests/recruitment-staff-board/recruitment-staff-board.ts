@@ -34,7 +34,6 @@ import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/c
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -83,7 +82,6 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     CdkDropList,
     LuxTableCaption,
     TableFooter,
-    WebButtonLabel,
     ActionMenu,
     LxIcon,
   ],

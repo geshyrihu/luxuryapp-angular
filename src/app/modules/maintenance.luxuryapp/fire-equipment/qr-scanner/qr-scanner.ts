@@ -6,7 +6,6 @@ import {
   signal,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ROUTES } from "src/app/routing/route-paths";
@@ -21,7 +20,7 @@ declare class BarcodeDetector {
   selector: "app-qr-scanner",
   templateUrl: "./qr-scanner.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [WebButtonLabel],
+  imports: [],
 })
 export class QrScanner implements OnDestroy {
   apiResponseS = inject(ApiResponseService);

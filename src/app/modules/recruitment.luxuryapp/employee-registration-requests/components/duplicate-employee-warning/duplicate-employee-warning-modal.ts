@@ -4,7 +4,6 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
@@ -31,7 +30,7 @@ interface DuplicateEmployeeWarningDialogData {
   selector: "app-duplicate-employee-warning-modal",
   templateUrl: "./duplicate-employee-warning-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WebButtonLabel],
+  imports: [],
   styles: [
     `
       :host {

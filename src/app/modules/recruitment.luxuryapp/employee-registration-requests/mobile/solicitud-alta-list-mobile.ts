@@ -6,7 +6,6 @@ import {
   output,
 } from "@angular/core";
 import { DateService } from "@core/services/date.service";
-import { MobileButtonLabel } from "@ui/buttons/mobile-label/button";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -21,7 +20,6 @@ import { ButtonMobile } from "@ui/buttons/mobile";
   imports: [
     ButtonMobile,
     MobileActionMenu,
-    MobileButtonLabel,
     DataViewMobile,
     MobileListItem,
     LxIcon,

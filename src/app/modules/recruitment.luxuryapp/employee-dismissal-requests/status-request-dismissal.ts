@@ -22,7 +22,6 @@ import { SolicitudBajaForm } from "@operations.luxuryapp/recruitment-requests/di
 import { StatusSolicitudVacanteService } from "@recruitment.luxuryapp/vacancy-requests/services/status-solicitud-vacante.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { StatusRequestDismissalDiscountForm } from "../recruitment-requests/request-dismissal-discount/status-request-dismissal-discount-form";
 
@@ -38,7 +37,6 @@ import { ButtonWeb } from "@ui/buttons/web";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    WebButtonIcon,
     LxTooltipDirective,
     NgbTooltipModule,
   ],

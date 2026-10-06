@@ -13,7 +13,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { IWorkPosition } from "@operations.luxuryapp/work-positions/interfaces/work-position.model";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
 import {
@@ -43,7 +42,6 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
     PdfViewerTrigger,
     ApiDatePipe,
     CurrencyPipe,
-    WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,
   ],

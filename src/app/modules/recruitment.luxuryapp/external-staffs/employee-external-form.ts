@@ -12,7 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
@@ -42,7 +41,6 @@ interface IEmployeeExternalForm {
   selector: "app-employee-external-form",
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputTextSignal,
     InputMask,
     CustomInputSelectSignal,

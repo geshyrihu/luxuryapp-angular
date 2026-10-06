@@ -15,7 +15,6 @@ import { FilterRequestsService } from "@core/http/services/filter-requests.servi
 import { DateService } from "@core/services/date.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -42,8 +41,7 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppSorticon,
     TableFooter,
     LxTag,
-    WebButtonLabel,
-  ],
+    ],
 })
 export class SolicitudAltaListDesktop {
   private readonly dateS = inject(DateService);

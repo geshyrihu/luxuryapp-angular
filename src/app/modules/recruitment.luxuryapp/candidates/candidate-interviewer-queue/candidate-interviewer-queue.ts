@@ -12,7 +12,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { candidateDecisionLabel } from "../../recruitment-shared/candidate-decision-labels";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
@@ -49,7 +48,6 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   imports: [
     PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,
   ],

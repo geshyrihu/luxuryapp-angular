@@ -15,7 +15,6 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxToast } from "@ui/adaptive/toast/toast";
 import { TabItem } from "@ui/core/tabs.base";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { MessageService } from "@core/services/message.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -48,7 +47,6 @@ import {
     CommonModule,
     GraphModule,
     LxAvatar,
-    WebButtonLabel,
     LxSidebar,
     LxTabs,
     LxTag,

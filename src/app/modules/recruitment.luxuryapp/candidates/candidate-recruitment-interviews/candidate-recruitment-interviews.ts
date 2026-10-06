@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ROUTES } from "src/app/routing/route-paths";
 import { RecruitmentAgendaList } from "../../recruitment-agenda-list";
 import { CandidateStageBadge } from "../../recruitment-shared/candidate-stage-badge";
@@ -48,7 +47,6 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   imports: [
     PdfViewerTrigger,
     ApiDatePipe,
-    WebButtonLabel,
     CandidateStageBadge,
     MappedPTag,
     RecruitmentAgendaList,

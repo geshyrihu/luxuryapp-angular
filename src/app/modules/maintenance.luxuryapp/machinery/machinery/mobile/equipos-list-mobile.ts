@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
@@ -14,7 +13,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-equipos-list-mobile",
   templateUrl: "./equipos-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LxIcon, WebButtonLabel, DataViewMobile, SanitizeHtmlPipe, CurrencyMexicoPipe],
+  imports: [LxIcon, DataViewMobile, SanitizeHtmlPipe, CurrencyMexicoPipe],
 })
 export class EquiposListMobile {
   data = input.required<any[]>();

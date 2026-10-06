@@ -15,7 +15,6 @@ import {
   CandidateInterviewerQueueItemDto,
 } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/candidates/recruitment-shared/agenda-status-tag-options";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { EmployeeInterviewerQueueService } from "./employee-interviewer-queue.service";
@@ -38,7 +37,7 @@ type QueueVacancyView = CandidateInterviewerQueueDto & {
   selector: "app-employee-interviewer-queue",
   templateUrl: "./employee-interviewer-queue.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ApiDatePipe, WebButtonLabel, AppAvatar],
+  imports: [ApiDatePipe, AppAvatar],
 })
 export class EmployeeInterviewerQueue {
   private queueS = inject(EmployeeInterviewerQueueService);
