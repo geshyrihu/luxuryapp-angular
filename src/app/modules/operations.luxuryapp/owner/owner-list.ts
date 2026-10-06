@@ -20,6 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { OwnerListDesktop } from "./desktop/owner-list-desktop";
 import { OwnerListMobile } from "./mobile/owner-list-mobile";
 import { OwnerForm } from "./owner-form";
@@ -38,6 +39,7 @@ export class OwnerList {
   customerIdS = inject(CustomerIdService);
   excelExportS = inject(ExcelExportService);
   platformS = inject(PlatformService);
+  confirmS = inject(ConfirmService);
 
   dataSignal = signal<Owner[]>([]);
   public AspRole = ApplicationRole;
@@ -69,7 +71,11 @@ export class OwnerList {
       .then((result: any) => this.dataSignal.set(result));
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este propietario?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.Owner.delete(id))
       .then((result: boolean) => {

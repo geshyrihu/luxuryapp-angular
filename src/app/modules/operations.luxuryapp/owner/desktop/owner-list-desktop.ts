@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -33,7 +32,6 @@ import {
     LuxTableCaption,
     TableFooter,
     ActionMenu,
-    WebButtonLabelDelete,
   ],
 })
 export class OwnerListDesktop {
