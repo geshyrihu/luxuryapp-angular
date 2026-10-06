@@ -14,7 +14,6 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -27,7 +26,6 @@ import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approva
     LxIcon,
     LxCard,
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputTextAreaSignal,
     ApiDatePipe,
   ],

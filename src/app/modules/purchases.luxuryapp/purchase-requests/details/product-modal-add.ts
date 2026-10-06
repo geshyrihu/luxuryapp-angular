@@ -53,13 +53,11 @@ interface IAddProductRow {
   unidadMedidaId: FormControl<number | null>;
 }
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-product-modal-add",
   templateUrl: "./product-modal-add.html",
   imports: [
-    WebButtonIcon,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,

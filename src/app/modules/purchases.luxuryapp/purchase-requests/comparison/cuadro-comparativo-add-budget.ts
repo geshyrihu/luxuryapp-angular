@@ -7,7 +7,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-cuadro-comparativo-add-budget",
@@ -42,7 +41,7 @@ import { WebButtonIcon } from "@ui/buttons/web-icon/button";
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CommonModule, ReactiveFormsModule, CustomInputSelectSignal, WebButtonIcon],
+  imports: [CommonModule, ReactiveFormsModule, CustomInputSelectSignal],
 })
 export class CuadroComparativoAddBudget {
   ref = inject(DynamicDialogRef);

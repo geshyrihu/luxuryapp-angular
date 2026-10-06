@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PurchaseOrderView } from "../purchase-order.types";
 
@@ -13,7 +12,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-datos-cotizacion",
   templateUrl: "./orden-compra-datos-cotizacion.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [RouterModule, LxIcon, WebButtonIcon],
+  imports: [RouterModule, LxIcon],
 })
 export class OrdenCompraDatosCotizacion {
   ordenCompra = input<PurchaseOrderView>();

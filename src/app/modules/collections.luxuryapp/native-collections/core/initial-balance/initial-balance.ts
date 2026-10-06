@@ -12,7 +12,6 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -37,7 +36,6 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     FormsModule,
     AppTable,
     CustomInputCurrencySignal,
-    WebButtonLabel,
     LxTag,
     LxCard,
     DataViewMobile,

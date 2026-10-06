@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PurchaseOrderView } from "../purchase-order.types";
 
@@ -13,7 +12,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-status-parcial",
   templateUrl: "./orden-compra-status-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ LxIcon, WebButtonIcon, LxTag],
+  imports: [ LxIcon, LxTag],
 })
 export class OrdenCompraStatusParcial {
   ordenCompra = input<PurchaseOrderView>();

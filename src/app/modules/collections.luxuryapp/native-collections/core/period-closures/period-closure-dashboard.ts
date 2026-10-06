@@ -16,8 +16,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -32,13 +30,11 @@ import { PeriodClosureResponseDTO } from "../../interfaces/period-closure.dto";
 @Component({
   selector: "app-period-closure-dashboard",
   imports: [
-    WebButtonIcon,
     LxCard,
     LxTag,
     LxTooltipDirective,
     AppTable,
     LuxTableCaption,
-    WebButtonLabel,
     DataViewMobile,
     MobileListItem,
     ApiDatePipe,

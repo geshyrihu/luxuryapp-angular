@@ -30,14 +30,12 @@ import {
 import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approval.dto";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-approval-inbox",
   imports: [
     LxIcon,
     MobileListItem,
-    WebButtonIcon,
     LxTooltipDirective,
     LxTag,
     TableEmptyMessage,

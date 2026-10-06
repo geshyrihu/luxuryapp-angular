@@ -25,14 +25,12 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LxModal } from "@ui/adaptive/modal/modal";
 
@@ -41,14 +39,12 @@ import { LxModal } from "@ui/adaptive/modal/modal";
   templateUrl: "./cuadro-comparativo-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonIcon,
     PdfViewerTrigger,
     CommonModule,
     ApiDatePipe,
     ReactiveFormsModule,
     AppTable,
     AppImage,
-    WebButtonLabel,
     LxModal,
   ],
 })

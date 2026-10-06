@@ -12,7 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
@@ -61,7 +60,6 @@ interface IMemberForm {
   imports: [
     LxIcon,
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputTextSignal,
     InputMask,
     CustomInputSelectSignal,

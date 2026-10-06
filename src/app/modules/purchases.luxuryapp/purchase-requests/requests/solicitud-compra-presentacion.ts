@@ -14,7 +14,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { TagSeverity } from "@ui/core/tag.base";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -23,7 +22,6 @@ import { AppImage } from "@ui/web/image/image";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { NIVEL_PRIORIDAD_TAG_OPTIONS } from "./nivel-prioridad-tag-options";
 import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
 
@@ -31,11 +29,9 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "./tipo-solicitud-tag-options";
   selector: "app-solicitud-compra-presentacion",
   templateUrl: "./solicitud-compra-presentacion.html",
   imports: [
-    WebButtonIcon,
     CommonModule,
     AppImage,
     AppTable,
-    WebButtonLabel,
     PdfViewerTrigger,
     LxTag,
     LxIcon,

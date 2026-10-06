@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { TagSeverity } from "@ui/core/tag.base";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -23,7 +22,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
   imports: [
     ButtonMobile,
     ApiDatePipe,
-    WebButtonLabel,
     MobileActionMenu,
     DataViewMobile,
     LxIcon,

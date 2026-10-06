@@ -8,8 +8,6 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { TagSeverity } from "@ui/core/tag.base";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -39,8 +37,6 @@ import { TIPO_SOLICITUD_TAG_OPTIONS } from "../tipo-solicitud-tag-options";
     AppSortableColumn,
     AppSorticon,
     LxTooltipDirective,
-    WebButtonLabel,
-    WebButtonIcon,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

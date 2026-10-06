@@ -12,7 +12,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
@@ -24,7 +23,7 @@ import type {
   selector: "app-cobranza-online-inspection-history-modal",
   templateUrl: "./cobranza-online-inspection-history-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AppTable, WebButtonLabel, LuxTableCaption],
+  imports: [AppTable, LuxTableCaption],
 })
 export class CobranzaOnlineInspectionHistoryModal implements OnInit {
   private apiResponseS = inject(ApiResponseService);

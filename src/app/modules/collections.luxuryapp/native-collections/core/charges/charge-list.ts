@@ -20,9 +20,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -47,7 +45,6 @@ import { downloadInitialBalanceTemplate } from "./initial-balance-template.helpe
   imports: [
     LxIcon,
     MobileListItem,
-    WebButtonIcon,
     ButtonWeb,
     LxTooltipDirective,
     LxTag,
@@ -56,7 +53,6 @@ import { downloadInitialBalanceTemplate } from "./initial-balance-template.helpe
     AppTable,
     TableEmptyMessage,
     LuxTableCaption,
-    WebButtonLabel,
     DecimalPipe,
     ApiDatePipe,
     DataViewMobile,

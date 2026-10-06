@@ -17,7 +17,6 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -43,7 +42,6 @@ import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto"
     TableEmptyMessage,
     AppTable,
     LuxTableCaption,
-    WebButtonLabel,
     DataViewMobile,
     ApiDatePipe,
     CurrencyPipe,

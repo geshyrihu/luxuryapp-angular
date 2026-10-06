@@ -12,7 +12,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -28,7 +27,6 @@ interface JobResult {
 @Component({
   selector: "app-automated-services",
   imports: [
-    WebButtonLabel,
     LxTag,
     CustomInputNumberSignal,
     CustomInputSelectSignal,

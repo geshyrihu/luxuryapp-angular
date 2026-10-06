@@ -11,7 +11,6 @@ import {
 } from "@core/services/dialog-handler.service";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
@@ -28,7 +27,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [WebButtonLabel, CustomInputFile, LxMessage, LxIcon],
+  imports: [CustomInputFile, LxMessage, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })

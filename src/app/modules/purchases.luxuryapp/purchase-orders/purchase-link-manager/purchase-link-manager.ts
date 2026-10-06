@@ -14,7 +14,6 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,7 +26,6 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   imports: [
     ApiDatePipe,
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputTextSignal,
     LxTooltipDirective,
     DragDropModule,

@@ -27,7 +27,6 @@ import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state
 import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspection-history-modal";
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
@@ -36,7 +35,6 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     LxIcon,
-    WebButtonIcon,
     LxTooltipDirective,
     RouterModule,
     AppTable,

@@ -20,7 +20,6 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -42,7 +41,6 @@ import {
     CustomInputSelectSignal,
     CustomInputDateSignal,
     UpperCasePipe,
-    WebButtonLabel,
     LxIcon,
     ApiDatePipe,
   ],

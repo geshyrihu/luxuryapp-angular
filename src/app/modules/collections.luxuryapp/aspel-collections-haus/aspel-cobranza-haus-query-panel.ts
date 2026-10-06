@@ -6,7 +6,6 @@ import {
   Output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
@@ -22,7 +21,6 @@ import {
     FormsModule,
     CustomInputDateSignal,
     CustomInputSelectSignal,
-    WebButtonLabel,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

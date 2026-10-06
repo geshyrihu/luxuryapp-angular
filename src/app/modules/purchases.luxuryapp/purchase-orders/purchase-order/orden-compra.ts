@@ -32,7 +32,6 @@ import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/service
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -59,7 +58,6 @@ import {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    WebButtonLabel,
     TableEmptyMessage,
     CommonModule,
     // Nuevo componente importado

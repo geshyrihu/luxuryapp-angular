@@ -9,7 +9,6 @@ import {
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -40,7 +39,6 @@ import { ChargeForm } from "../charges/charge-form";
     MobileListItem,
     LxIcon,
     TableEmptyMessage,
-    WebButtonIcon,
     LxTooltipDirective,
   ],
   templateUrl: "./payment-detail-modal.html",

@@ -9,7 +9,6 @@ import {
   untracked,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -78,7 +77,6 @@ import { AspelCobranzaReglasNegocioComponent } from "./aspel-collections-busines
     LxTag,
     LxCard,
     LxMessage,
-    WebButtonLabel,
   ],
 })
 export class AspelCobranzaHaus {

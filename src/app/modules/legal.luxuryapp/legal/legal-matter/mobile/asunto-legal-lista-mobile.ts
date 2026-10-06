@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -22,7 +21,6 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     MobileActionMenu,
     ButtonMobile,
     NgbTooltipModule,
-    WebButtonLabel,
     DataViewMobile,
   ],
 })

@@ -16,7 +16,6 @@ import { DateService } from "@core/services/date.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -35,7 +34,6 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
   imports: [
     AppTable,
     LuxTableCaption,
-    WebButtonLabel,
     LxCard,
     LxTag,
     DataViewMobile,

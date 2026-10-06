@@ -5,7 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -21,7 +20,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     TableEmptyMessage,
     AppTable,
     NgbTooltipModule,
-    WebButtonLabel,
     ActionMenu,
     LuxTableCaption,
   ],

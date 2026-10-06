@@ -23,7 +23,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -55,7 +54,6 @@ interface ILegalTaskClienteForm {
     InputAutocomplete,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    WebButtonLabel,
   ],
 })
 export class TicketLegalFormCliente implements OnInit {

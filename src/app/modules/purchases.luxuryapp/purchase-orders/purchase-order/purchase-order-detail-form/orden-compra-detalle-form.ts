@@ -14,7 +14,6 @@ import {
 import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 // Bootstrap Modules
 // Project components & services
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
@@ -38,7 +37,6 @@ export interface IOrdenCompraDetalleCompForm {
   selector: "app-orden-compra-detalle-form",
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputSelectSignal,
     CustomInputNumberSignal,
     CustomInputCurrencySignal,

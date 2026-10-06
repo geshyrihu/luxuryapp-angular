@@ -23,7 +23,6 @@ import {
 } from "@core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
 import { LxCard } from "@ui/adaptive/card/card";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -39,7 +38,6 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     AppTable,
     CustomInputTextSignal,
     CustomInputNumberSignal,
-    WebButtonLabel,
     PdfViewerTrigger,
     LxCard,
   ],

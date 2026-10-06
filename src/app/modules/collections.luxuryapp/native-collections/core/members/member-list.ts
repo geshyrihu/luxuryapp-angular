@@ -17,7 +17,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
@@ -33,7 +32,6 @@ import { PropertyMemberResponseDTO } from "../../interfaces/property-member.dto"
 @Component({
   selector: "app-member-list",
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
     LxTag,
     ButtonWeb,

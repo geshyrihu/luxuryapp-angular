@@ -14,8 +14,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -30,13 +28,11 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
 @Component({
   selector: "app-invoice-list",
   imports: [
-    WebButtonIcon,
     LxTooltipDirective,
     LxCard,
     LxTag,
     AppTable,
     LuxTableCaption,
-    WebButtonLabel,
     DataViewMobile,
     ApiDatePipe,
     ReactiveFormsModule,

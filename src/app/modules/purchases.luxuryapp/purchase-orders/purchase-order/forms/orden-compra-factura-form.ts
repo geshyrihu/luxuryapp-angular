@@ -12,7 +12,6 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -47,7 +46,6 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     AppTable,
     CustomInputFile,
-    WebButtonLabel,
     CustomInputSelectSignal,
     LxTooltipDirective,
     LxCard,

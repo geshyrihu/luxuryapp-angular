@@ -17,7 +17,6 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button"; // Nueva importación
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import {
@@ -31,7 +30,6 @@ import {
   imports: [
     CommonModule,
     AppTable,
-    WebButtonLabel,
     LxMessage,
     LxIcon,
     LxTag,

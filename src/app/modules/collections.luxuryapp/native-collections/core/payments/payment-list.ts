@@ -11,9 +11,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -39,7 +37,6 @@ import { PaymentForm } from "./payment-form";
 @Component({
   selector: "app-payment-list",
   imports: [
-    WebButtonIcon,
     ButtonWeb,
     LxTooltipDirective,
     LxTag,
@@ -50,7 +47,6 @@ import { PaymentForm } from "./payment-form";
     AppSorticon,
     TableEmptyMessage,
     LuxTableCaption,
-    WebButtonLabel,
     DecimalPipe,
     ApiDatePipe,
     DataViewMobile,

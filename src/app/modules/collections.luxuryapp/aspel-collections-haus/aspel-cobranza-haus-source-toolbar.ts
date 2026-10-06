@@ -7,7 +7,6 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
   AspelDataSource,
@@ -18,7 +17,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-source-toolbar",
 
-  imports: [FormsModule, LxTag, CustomInputSelectSignal, WebButtonLabel],
+  imports: [FormsModule, LxTag, CustomInputSelectSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div

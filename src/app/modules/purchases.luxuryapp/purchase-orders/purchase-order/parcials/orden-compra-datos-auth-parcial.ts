@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { PurchaseOrderAuthorizationStatus } from "@core/enums/purchase-order-authorization-status.enum";
 import { PurchaseOrderView } from "../purchase-order.types";
@@ -17,7 +16,7 @@ import { PurchaseOrderView } from "../purchase-order.types";
   selector: "app-orden-compra-datos-auth-parcial",
   templateUrl: "./orden-compra-datos-auth-parcial.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ LxIcon, WebButtonLabel, LxMessage],
+  imports: [ LxIcon, LxMessage],
 })
 export class OrdenCompraDatosAuthParcial {
   private ordenCompraService = inject(OrdenCompraService);

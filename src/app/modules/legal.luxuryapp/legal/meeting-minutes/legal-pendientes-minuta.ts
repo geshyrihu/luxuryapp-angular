@@ -18,7 +18,6 @@ import {
 import { PlatformService } from "@core/services/platform.service";
 import { MeetingSeguimientoEdit } from "@management.luxuryapp/monthly-meetings/meeting-minutes/meeting-seguimiento-edit";
 import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meeting-minutes/minuta-detalle-form";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { LegalPendientesMinutaDesktop } from "./desktop/legal-pendientes-minuta-desktop";
 import { LegalPendientesMinutaMobile } from "./mobile/legal-pendientes-minuta-mobile";
 
@@ -27,7 +26,6 @@ import { LegalPendientesMinutaMobile } from "./mobile/legal-pendientes-minuta-mo
   templateUrl: "./legal-pendientes-minuta.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    WebButtonLabel,
     LegalPendientesMinutaDesktop,
     LegalPendientesMinutaMobile,
   ],

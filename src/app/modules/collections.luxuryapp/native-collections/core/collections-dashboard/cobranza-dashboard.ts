@@ -12,7 +12,6 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router } from "@angular/router";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -54,7 +53,6 @@ export interface TendenciaMensualDTO {
   imports: [
     CommonModule,
     DecimalPipe,
-    WebButtonLabel,
     LxCard,
     LxProgressBar,
     LxIcon,

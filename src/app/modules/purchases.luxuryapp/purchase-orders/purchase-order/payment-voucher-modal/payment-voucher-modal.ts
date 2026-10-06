@@ -12,7 +12,6 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
@@ -21,17 +20,14 @@ import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 
 @Component({
   selector: "app-payment-voucher-modal",
   imports: [
-    WebButtonIcon,
     ButtonWeb,
     TableEmptyMessage,
     ApiDatePipe,
     AppTable,
-    WebButtonLabel,
     CustomInputFile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

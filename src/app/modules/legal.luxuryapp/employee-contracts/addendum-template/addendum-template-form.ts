@@ -9,7 +9,6 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
@@ -45,7 +44,6 @@ interface IAddendumTemplateForm {
     CustomInputSwitch,
     CustomInputTextAreaSignal,
     ButtonWeb,
-    WebButtonLabel,
   ],
 })
 export class AddendumTemplateFormComponent {

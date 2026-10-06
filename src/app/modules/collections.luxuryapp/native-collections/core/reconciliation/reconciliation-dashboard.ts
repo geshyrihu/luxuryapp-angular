@@ -13,7 +13,6 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -35,7 +34,6 @@ interface UnallocatedPayment {
   imports: [
     AppTable,
     LuxTableCaption,
-    WebButtonLabel,
     LxTag,
     LxCard,
     DataViewMobile,

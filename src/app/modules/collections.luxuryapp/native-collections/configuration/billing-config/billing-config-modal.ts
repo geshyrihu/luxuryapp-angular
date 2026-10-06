@@ -18,7 +18,6 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
 import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 // Services
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
@@ -38,7 +37,6 @@ import {
   imports: [
     LxIcon,
     ReactiveFormsModule,
-    WebButtonLabel,
     CustomInputNumberSignal,
     CustomInputSelectSignal,
     CustomInputSwitch,

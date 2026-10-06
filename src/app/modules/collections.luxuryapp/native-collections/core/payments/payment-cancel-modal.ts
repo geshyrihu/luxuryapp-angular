@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
@@ -13,7 +12,6 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   selector: "app-payment-cancel-modal",
   imports: [
     ReactiveFormsModule,
-    WebButtonLabel,
     ButtonWeb,
     CustomInputTextAreaSignal,
     LxIcon,

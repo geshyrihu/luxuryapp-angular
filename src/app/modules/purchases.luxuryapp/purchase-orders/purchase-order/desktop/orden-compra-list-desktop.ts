@@ -8,7 +8,6 @@ import {
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonLabel } from "@ui/buttons/web-label/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -114,7 +113,6 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    WebButtonLabel,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

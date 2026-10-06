@@ -41,7 +41,6 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service"; // Added
 import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
-import { WebButtonLabel } from "@ui/buttons/web-label";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
@@ -105,7 +104,6 @@ interface IStep3Form {
 
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
@@ -120,9 +118,7 @@ import {
 @Component({
   selector: "app-create-orden-compra-wizard",
   imports: [
-    WebButtonIcon,
     AppAvatar,
-    WebButtonLabel,
     CommonModule,
     InputAutocomplete,
     CustomInputSelectSignal,
