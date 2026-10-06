@@ -7,6 +7,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { vi } from "vitest";
 import { TaskReportWorkPlanPreview } from "./task-report-work-plan-preview";
+import { SwalService } from "@core/services/swal.service";
 
 describe("TaskReportWorkPlanPreview", () => {
   let component: TaskReportWorkPlanPreview;
@@ -37,6 +38,7 @@ describe("TaskReportWorkPlanPreview", () => {
     TestBed.configureTestingModule({
       imports: [TaskReportWorkPlanPreview],
       providers: [
+{ provide: SwalService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: AuthService, useValue: mockAuthS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
@@ -81,7 +83,7 @@ describe("TaskReportWorkPlanPreview", () => {
   });
 
   it("onSendWorkPlan should call api", () => {
-    component.onSendWorkPlan();
+    await component.onSendWorkPlan();
     expect(mockApiResponseS.onPost).toHaveBeenCalled();
   });
 });

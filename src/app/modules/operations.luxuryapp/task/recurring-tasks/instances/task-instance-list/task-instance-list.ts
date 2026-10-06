@@ -11,6 +11,7 @@ import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.int
 import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
+import { SwalService } from "@core/services/swal.service";
 import { LxToolbar } from "@ui/adaptive/toolbar/toolbar";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
@@ -33,6 +34,7 @@ export class TaskInstanceList implements OnInit {
   public dialogHandlerS = inject(DialogHandlerService);
   private dateS = inject(DateService);
   platformS = inject(PlatformService);
+  private swalS = inject(SwalService);
   data = signal<TaskInstance[]>([]);
   loading = signal(true);
   selectedDateControl = new FormControl<string>(this.dateS.getDateNow());
@@ -72,7 +74,16 @@ export class TaskInstanceList implements OnInit {
       });
   }
 
-  onReopenTask(id: string): void {
+  async onReopenTask(id: string): Promise<void> {
+    const confirmed = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "¿Está seguro de reabrir esta tarea?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     this.apiResponseS
       .onPost<any>(`recurring-tasks/instances/${id}/reopen`, {})
       .then((result) => {

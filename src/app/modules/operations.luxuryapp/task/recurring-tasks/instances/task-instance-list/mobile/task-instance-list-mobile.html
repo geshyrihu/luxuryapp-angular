@@ -22,16 +22,17 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             label="Completar"
-            (clicked)="complete.emit(task)"
             [disabled]="task.status === 1"
+            (clicked)="complete.emit(task)"
           />
-          <ili-button-confirm
+          <lux-button-mobile
+            kind="confirm"
             label="Reabrir"
-            (confirmed)="reopen.emit(task.id)"
             [disabled]="task.status !== 1"
-            confirmMessage="óEstés seguro de reabrir esta tarea?"
+            (clicked)="reopen.emit(task.id)"
           />
         </ng-container>
       </ili-action-menu>

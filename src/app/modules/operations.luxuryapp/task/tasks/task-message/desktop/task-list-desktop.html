@@ -521,25 +521,37 @@
           </a>
           <app-action-menu>
             <ng-container actions>
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:calendar-today"
                 label="Programar"
                 (clicked)="program.emit(item.id)"
               />
               @if (item.status !== 'Completed') {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:lock"
                 label="Cerrar"
                 (clicked)="closed.emit(item.id)"
               />
               } @if (item.status !== 'InProgress') {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:sync"
                 label="En proceso"
                 (clicked)="progress.emit(item.id)"
               />
               } @if (item.status === 'Completed') {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:lock-open"
                 label="Reabrir"
                 (clicked)="reopen.emit(item.id)"
@@ -552,9 +564,11 @@
                 (clicked)="edit.emit(item)"
               />
               @if (isSuperUser()) {
-              <il-button-delete
-                (confirmed)="delete.emit(item.id)"
-                label="Eliminar"
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="delete.emit(item.id)"
               />
               }
             </ng-container>

@@ -18,8 +18,10 @@
         />
       </div>
       @if (hasSuperUsuario()) {
-      <il-button-add
-        label="Agregar"
+      <lux-button-web
+        kind="add"
+        severity="info"
+        variant="soft"
         (clicked)="add.emit()"
       />
       }
@@ -95,20 +97,26 @@
           class="d-flex align-items-center justify-content-end gap-1 mt-auto pt-2 border-top no-print"
         >
           @if (item.customerId === customerId()) {
-          <iw-button-item
-            (clicked)="participants.emit(item)"
-            iconClass="material-symbols-light:group"
-            lxTooltip="Integrantes"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
             variant="text"
+            tooltip="Integrantes"
+            iconClass="material-symbols-light:group"
+            tooltipPosition="top"
+            (clicked)="participants.emit(item)"
           />
           } @if (hasSuperUsuario()) {
-          <iw-button-item
-            (clicked)="report.emit(item)"
-            iconClass="material-symbols-light:mail-outline"
-            lxTooltip="Reporte"
-            tooltipPosition="top"
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
             variant="text"
+            tooltip="Reporte"
+            iconClass="material-symbols-light:mail-outline"
+            tooltipPosition="top"
+            (clicked)="report.emit(item)"
           />
           }
           <lux-button-web
@@ -128,7 +136,16 @@
             variant="text"
             [severity]="item.active ? 'warn' : 'success'"
           />
-          <iw-button-delete (confirmed)="delete.emit(item.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(item.id)"
+          />
         </div>
       </div>
     </div>

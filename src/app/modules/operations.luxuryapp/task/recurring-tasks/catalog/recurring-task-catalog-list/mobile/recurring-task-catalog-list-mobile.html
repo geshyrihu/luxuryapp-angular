@@ -33,7 +33,11 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item label="Editar" (clicked)="edit.emit(template)" />
+          <lux-button-mobile
+            kind="item"
+            label="Editar"
+            (clicked)="edit.emit(template)"
+          />
           <ili-button-active-desactive
             label="Activar/Pausar"
             [state]="isActive(template)"

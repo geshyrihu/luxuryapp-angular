@@ -12,6 +12,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SwalService } from "@core/services/swal.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppImage } from "@ui/web/image/image";
@@ -21,13 +22,13 @@ import {
   AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
 
 @Component({
   selector: "app-task-report-work-plan-preview",
   imports: [
-    WebButtonIconConfirm,
+    ButtonWeb,
     AppTable,
 
     AppSortableColumn,
@@ -51,6 +52,7 @@ export class TaskReportWorkPlanPreview {
   authS = inject(AuthService);
   TaskGroupService = inject(TaskGroupService);
   tableScrollHeightS = inject(TableScrollHeightService);
+  private swalS = inject(SwalService);
   dataSignal = signal<any>(null); // Almacena los datos obtenidos del API
   globalFilterFields = computed(() => globalFilterFields(this.dataSignal()));
   loading = signal(true);
@@ -65,7 +67,16 @@ export class TaskReportWorkPlanPreview {
     this.onLoadData(); // Cargar datos al inicializar el componente
   }
 
-  onSendWorkPlan() {
+  async onSendWorkPlan() {
+    const confirmed = await this.swalS.confirm({
+      title: "Confirmación",
+      text: "Enviar plan de trabajo por correo.",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     this.apiResponseS
       .onPost(
         Endpoints.TaskWorkPlans.create(

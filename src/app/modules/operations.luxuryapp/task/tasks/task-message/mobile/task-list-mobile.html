@@ -132,30 +132,35 @@
 
             <ili-action-menu slot="end">
               <ng-container actions>
-                <ili-button-item
+                <lux-button-mobile
+                  kind="item"
                   iconClass="material-symbols-light:chat"
                   [label]="'Seguimiento (' + item.ticketMessageFollowUp + ')'"
                   (clicked)="followUp.emit(item.id)"
                 />
-                <ili-button-item
+                <lux-button-mobile
+                  kind="item"
                   iconClass="material-symbols-light:calendar-today"
                   label="Programar"
                   (clicked)="program.emit(item.id)"
                 />
                 @if (item.status !== 'Completed') {
-                <ili-button-item
+                <lux-button-mobile
+                  kind="item"
                   iconClass="material-symbols-light:lock"
                   label="Cerrar"
                   (clicked)="closed.emit(item.id)"
                 />
                 } @if (item.status !== 'InProgress') {
-                <ili-button-item
+                <lux-button-mobile
+                  kind="item"
                   iconClass="material-symbols-light:sync"
                   label="En proceso"
                   (clicked)="progress.emit(item.id)"
                 />
                 } @if (item.status === 'Completed') {
-                <ili-button-item
+                <lux-button-mobile
+                  kind="item"
                   iconClass="material-symbols-light:lock-open"
                   label="Reabrir"
                   (clicked)="reopen.emit(item.id)"
@@ -166,9 +171,10 @@
                   (clicked)="edit.emit(item)"
                 />
                 @if (isSuperUser()) {
-                <ili-button-delete
-                  (confirmed)="delete.emit(item.id)"
-                  label="Eliminar"
+                <lux-button-mobile
+                  kind="delete"
+                  color="danger"
+                  (clicked)="delete.emit(item.id)"
                 />
                 }
               </ng-container>

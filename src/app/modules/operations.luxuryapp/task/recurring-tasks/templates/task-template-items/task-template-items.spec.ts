@@ -16,6 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskTemplateItems } from "./task-template-items";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskTemplateItems", () => {
   let component: TaskTemplateItems;
@@ -59,6 +60,7 @@ describe("TaskTemplateItems", () => {
     TestBed.configureTestingModule({
       imports: [TaskTemplateItems],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: ActivatedRoute, useValue: mockRoute },
@@ -113,7 +115,7 @@ describe("TaskTemplateItems", () => {
   it("should delete item and reload list on success", async () => {
     mockApiResponseS.onGetList.mockResolvedValue([]);
 
-    component.onDeleteItem("item-1");
+    await component.onDeleteItem("item-1");
 
     expect(mockApiResponseS.onDelete).toHaveBeenCalledWith(
       "recurring-tasks/templates/items/item-1",
@@ -129,7 +131,7 @@ describe("TaskTemplateItems", () => {
     await new Promise((resolve) => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
-    component.onDeleteItem("item-1");
+    await component.onDeleteItem("item-1");
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();

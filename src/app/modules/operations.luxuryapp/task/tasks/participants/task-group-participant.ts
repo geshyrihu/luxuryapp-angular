@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
@@ -26,6 +25,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-group-participant",
@@ -41,12 +41,12 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
     ButtonWeb,
     MobileListItem,
     MobileActionMenu,
-    MobileButtonLabelDelete,
     AppIcon,
   ],
 })
 export class TaskGroupParticipant implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private customerIdS = inject(CustomerIdService);
   private formB = inject(FormBuilder);
   private config = inject(DynamicDialogConfig);
@@ -171,7 +171,11 @@ export class TaskGroupParticipant implements OnInit, OnDestroy {
     this.form.controls.id.setValue(item.id);
   }
 
-  async onDelete(id: any): Promise<void> {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     const result = await this.apiResponseS.onDelete(
       Endpoints.TaskGroupParticipants.delete(id),
     );

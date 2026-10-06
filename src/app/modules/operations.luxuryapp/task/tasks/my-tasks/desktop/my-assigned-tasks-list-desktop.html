@@ -146,20 +146,29 @@
           <app-action-menu>
             <ng-container actions>
               @if (item.status !== "Completed") {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:calendar-today"
                 label="Programar"
                 (clicked)="program.emit(item.id)"
               />
 
               } @if (item.status !== "Completed") {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:lock"
                 label="Cerrar"
                 (clicked)="closed.emit(item.id)"
               />
               } @if (item.status === "Completed") {
-              <il-button-item
+              <lux-button-web
+                kind="item"
+                severity="secondary"
+                variant="soft"
                 iconClass="material-symbols-light:lock-open"
                 label="Re abrir"
                 (clicked)="reopen.emit(item.id)"

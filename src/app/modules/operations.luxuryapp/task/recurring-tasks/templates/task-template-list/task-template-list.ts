@@ -15,6 +15,7 @@ import { ROUTES } from "src/app/routing/route-paths";
 import { TaskTemplateForm } from "../task-template-form/task-template-form";
 import { TaskTemplateListDesktop } from "./desktop/task-template-list-desktop";
 import { TaskTemplateListMobile } from "./mobile/task-template-list-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-template-list",
@@ -24,6 +25,7 @@ import { TaskTemplateListMobile } from "./mobile/task-template-list-mobile";
 })
 export class TaskTemplateList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private router = inject(Router);
   public dialogHandlerS = inject(DialogHandlerService);
   platformS = inject(PlatformService);
@@ -58,7 +60,11 @@ export class TaskTemplateList implements OnInit {
     this.router.navigate(ROUTES.TAREAS_RECURRENTES.ITEMS(templateId));
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     const urlApi = Endpoints.RecurringTasks.Templates.delete(id);
     this.apiResponseS
       .onDelete(urlApi)

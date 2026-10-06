@@ -10,8 +10,6 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { MobileButtonIcon } from "@ui/buttons/mobile-icon/button";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
@@ -36,8 +34,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     IonInputText,
     MobileActionMenu,
     MobileListItem,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     MobileButtonIcon,
     TaskStatus,
     AppAvatar,

@@ -6,10 +6,7 @@ import {
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { WebButtonLabelAdd } from "@ui/buttons/web-label/button-add";
 import { WebButtonIconActiveDesactive } from "@ui/buttons/web-icon/button-active-desactive";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
-import { WebButtonIconItem } from "@ui/buttons/web-icon/button-item";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
@@ -26,13 +23,10 @@ import { WorkGroupDTO } from "../task-group-list";
   imports: [
     ButtonWeb,
     LxTag,
-    WebButtonLabelAdd,
     StatusBadge,
     AppIcon,
     WebButtonIcon,
     WebButtonIconActiveDesactive,
-    WebButtonIconItem,
-    WebButtonIconDelete,
     EmptyState,
     CustomSearchInput,
     LxTooltipDirective,

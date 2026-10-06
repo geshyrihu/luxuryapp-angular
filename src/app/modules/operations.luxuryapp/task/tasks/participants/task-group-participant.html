@@ -79,7 +79,11 @@
         kind="edit"
         (clicked)="onEditParticipant(item)"
       />
-      <ili-button-delete (confirmed)="onDelete(item.id)" label="Eliminar" />
+      <lux-button-mobile
+        kind="delete"
+        color="danger"
+        (clicked)="onDelete(item.id)"
+      />
     </ili-action-menu>
   </ili-list-item>
   }

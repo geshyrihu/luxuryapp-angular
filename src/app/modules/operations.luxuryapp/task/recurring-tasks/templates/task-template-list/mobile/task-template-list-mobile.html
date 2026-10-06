@@ -30,14 +30,20 @@
 
       <ili-action-menu slot="end">
         <ng-container actions>
-          <ili-button-item
+          <lux-button-mobile
+            kind="item"
             label="Administrar Items"
             (clicked)="manageItems.emit(template.id)"
           />
-          <ili-button-item label="Editar" (clicked)="edit.emit(template)" />
-          <ili-button-delete
-            (confirmed)="delete.emit(template.id)"
-            label="Eliminar"
+          <lux-button-mobile
+            kind="item"
+            label="Editar"
+            (clicked)="edit.emit(template)"
+          />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(template.id)"
           />
         </ng-container>
       </ili-action-menu>

@@ -5,8 +5,6 @@ import {
   output,
 } from "@angular/core";
 import { MobileButtonLabelActiveDesactive } from "@ui/buttons/mobile-label/button-active-desactive";
-import { MobileButtonLabelDelete } from "@ui/buttons/mobile-label/button-delete";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
@@ -23,8 +21,6 @@ import { WorkGroupDTO } from "../task-group-list";
     ButtonMobile,
     MobileActionMenu,
     MobileButtonLabelActiveDesactive,
-    MobileButtonLabelItem,
-    MobileButtonLabelDelete,
     StatusBadge,
     DataViewMobile,
     AppIcon,

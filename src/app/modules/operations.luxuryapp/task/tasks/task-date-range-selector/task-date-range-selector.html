@@ -10,6 +10,12 @@
       (ngModelChange)="onDateChange($event)"
       [horizontal]="false"
     />
-    <il-button-item iconClass="material-symbols-light:search" (clicked)="emitSelectedDates()" />
+    <lux-button-web
+      kind="item"
+      severity="secondary"
+      variant="soft"
+      iconClass="material-symbols-light:search"
+      (clicked)="emitSelectedDates()"
+    />
   </div>
 </div>

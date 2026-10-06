@@ -42,9 +42,13 @@
       <td>{{ template.roleName }}</td>
       <td>
         <div class="d-flex">
-          <iw-button-item
+          <lux-button-web
+            kind="item"
+            displayMode="icon"
+            severity="secondary"
+            variant="soft"
+            tooltip="Items"
             [iconClass]="'material-symbols-light:description'"
-            lxTooltip="Items"
             tooltipPosition="top"
             (clicked)="manageItems.emit(template.id)"
           />
@@ -58,7 +62,16 @@
             ariaLabel="Editar"
             (clicked)="edit.emit(template)"
           />
-          <iw-button-delete (confirmed)="delete.emit(template.id)" />
+          <lux-button-web
+            kind="delete"
+            displayMode="icon"
+            severity="danger"
+            variant="soft"
+            size="sm"
+            tooltip="Eliminar"
+            ariaLabel="Eliminar"
+            (clicked)="delete.emit(template.id)"
+          />
         </div>
       </td>
     </tr>

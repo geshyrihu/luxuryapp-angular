@@ -15,7 +15,6 @@ import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelDelete, WebButtonLabelItem } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
@@ -97,8 +96,6 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     LxTooltipDirective,
     LxPopover,
     LxImage,
-    WebButtonLabelDelete,
-    WebButtonLabelItem,
     InitialsAbbrPipe,
     AppIcon,
   ],

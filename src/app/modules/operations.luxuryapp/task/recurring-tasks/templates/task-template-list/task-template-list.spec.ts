@@ -16,6 +16,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskTemplateList } from "./task-template-list";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskTemplateList", () => {
   let component: TaskTemplateList;
@@ -49,6 +50,7 @@ describe("TaskTemplateList", () => {
     TestBed.configureTestingModule({
       imports: [TaskTemplateList],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: Router, useValue: mockRouter },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
@@ -124,7 +126,7 @@ describe("TaskTemplateList", () => {
   it("should delete and reload on success", async () => {
     mockApiResponseS.onGetList.mockResolvedValue([]);
 
-    component.onDelete("tmpl-1");
+    await component.onDelete("tmpl-1");
 
     expect(mockApiResponseS.onDelete).toHaveBeenCalledWith(
       "recurring-tasks/templates/tmpl-1",
@@ -140,7 +142,7 @@ describe("TaskTemplateList", () => {
     await new Promise((resolve) => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
-    component.onDelete("tmpl-1");
+    await component.onDelete("tmpl-1");
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();
@@ -149,7 +151,7 @@ describe("TaskTemplateList", () => {
   it("should handle delete error gracefully", async () => {
     mockApiResponseS.onDelete.mockRejectedValue(new Error("Network error"));
 
-    component.onDelete("tmpl-1");
+    await component.onDelete("tmpl-1");
     await new Promise((resolve) => setTimeout(resolve));
   });
 

@@ -41,7 +41,8 @@
       </div>
 
       <ili-action-menu slot="end">
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="clipboard-outline"
           label="Seguimiento"
           (clicked)="followUp.emit(item.id)"
@@ -51,24 +52,28 @@
           kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
         />
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="calendar-outline"
           label="Programar"
           (clicked)="program.emit(item.id)"
         />
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="sync-outline"
           label="En proceso"
           (clicked)="progress.emit(item.id)"
         />
         } @if (item.status !== "Completed") {
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="lock-closed-outline"
           label="Cerrar"
           (clicked)="closed.emit(item.id)"
         />
         } @if (item.status === "Completed") {
-        <ili-button-item
+        <lux-button-mobile
+          kind="item"
           iconName="lock-open-outline"
           label="Re abrir"
           (clicked)="reopen.emit(item.id)"

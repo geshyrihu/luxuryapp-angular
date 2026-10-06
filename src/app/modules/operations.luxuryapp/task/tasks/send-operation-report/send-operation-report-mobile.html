@@ -4,14 +4,13 @@
     ariaLabel="Acciones de destinatarios"
     (changed)="onSegmentChange($event)"
   />
-  <ili-button-confirm
-    expand="block"
+  <lux-button-mobile
+    kind="confirm"
     size="small"
+    expand="block"
     label="Enviar Reporte"
     swalTitle="Confirmar envío"
-    swalText="¿Está seguro de que desea enviar el reporte?"
-    swalConfirmButtonText="Sí, enviar"
-    (confirmed)="service.onEnviarEmail()"
+    (clicked)="service.onEnviarEmail()"
   />
 </div>
 

@@ -8,7 +8,6 @@ import {
 import { TaskTemplateItem } from "@core/interfaces/recurring-tasks/task-template-item.interface";
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -26,7 +25,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonWeb,
-    WebButtonIconDelete,
     LuxTableCaption,
     TableFooter,
     StatusBadge,

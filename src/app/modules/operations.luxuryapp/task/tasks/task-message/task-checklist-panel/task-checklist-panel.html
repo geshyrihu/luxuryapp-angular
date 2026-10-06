@@ -51,9 +51,15 @@
               </span>
             </label>
 
-            <iw-button-delete
-              [confirmMessage]="'¿Eliminar el item &quot;' + item.description + '&quot;?'"
-              (confirmed)="onDeleteChecklistItem(item.id)"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="onDeleteChecklistItem(item.id)"
             />
           </div>
           }
@@ -141,9 +147,15 @@
               </div>
             </div>
 
-            <iw-button-delete
-              [confirmMessage]="'¿Eliminar el comprobante &quot;' + item.fileName + '&quot;?'"
-              (confirmed)="onDeleteAttachment(item.id)"
+            <lux-button-web
+              kind="delete"
+              displayMode="icon"
+              severity="danger"
+              variant="soft"
+              size="sm"
+              tooltip="Eliminar"
+              ariaLabel="Eliminar"
+              (clicked)="onDeleteAttachment(item.id)"
             />
           </div>
           }

@@ -58,6 +58,7 @@ import { TaskPhotosViewer } from "./task-photos-viewer/task-photos-viewer";
 import { TaskSummaryReport } from "./task-summary-report/task-summary-report";
 import { TaskListDesktop } from "./desktop/task-list-desktop";
 import { TaskListMobile } from "./mobile/task-list-mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-list",
@@ -77,6 +78,7 @@ import { TaskListMobile } from "./mobile/task-list-mobile";
 })
 export class TaskList implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
+  confirmS = inject(ConfirmService);
   private readonly apiS = inject(ApiResponseService);
   private readonly authS = inject(AuthService);
   private readonly customerIdS = inject(CustomerIdService);
@@ -539,7 +541,11 @@ export class TaskList implements OnInit {
       });
   }
 
-  onDelete(id: any) {
+  async onDelete(id: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiS
       .onDelete(
         Endpoints.Tasks.deleteByCustomer(id, this.customerIdS.customerId()),

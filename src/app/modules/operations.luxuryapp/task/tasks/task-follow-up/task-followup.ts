@@ -16,7 +16,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { WebButtonLabelDelete } from "@ui/buttons/web-label";
 import { ButtonWeb } from "@ui/buttons/web";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
@@ -38,6 +37,7 @@ import {
   TaskFollowUpItem,
   TaskImageReorderPayload,
 } from "../shared/interfaces/task-refactor.interface";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -55,7 +55,6 @@ interface ITicketMessageFollowupForm {
     ReactiveFormsModule,
     FormsModule,
     ButtonWeb,
-    WebButtonLabelDelete,
     AppSpinner,
     CustomInputTextAreaSignal,
     LxFileUpload,
@@ -64,6 +63,7 @@ interface ITicketMessageFollowupForm {
 })
 export class TaskFollowup implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
+  confirmS = inject(ConfirmService);
   private aspRoleS = inject(AspRoleService);
   private authS = inject(AuthService);
   private config = inject(DynamicDialogConfig);
@@ -216,7 +216,11 @@ export class TaskFollowup implements OnInit, OnDestroy {
       this.form.patchValue({ description: "" });
     }
   }
-  onDelete(id: string): void {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.TaskFollowUps.delete(id))
       .then((ok) => {

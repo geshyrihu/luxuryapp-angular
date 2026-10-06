@@ -7,6 +7,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { vi } from "vitest";
 import { TaskFollowup } from "./task-followup";
 import { TaskFollowUpEvidenceImage } from "../shared/interfaces/task-refactor.interface";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskFollowup", () => {
   let component: TaskFollowup;
@@ -38,6 +39,7 @@ describe("TaskFollowup", () => {
     TestBed.configureTestingModule({
       imports: [TaskFollowup],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: AspRoleService, useValue: mockAspRoleS },
         { provide: AuthService, useValue: mockAuthS },
@@ -90,7 +92,7 @@ describe("TaskFollowup", () => {
   });
 
   it("onDelete should call api and reload list", async () => {
-    component.onDelete("followup-1");
+    await component.onDelete("followup-1");
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onDelete).toHaveBeenCalled();

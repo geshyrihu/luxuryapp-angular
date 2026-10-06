@@ -35,8 +35,8 @@ import {
 } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
-import { MobileButtonLabelItem } from "@ui/buttons/mobile-label/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -45,16 +45,17 @@ import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReadList } from "../task-read-list";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-operation-report",
   templateUrl: "./task-operation-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
+    ButtonMobile,
     DataViewMobile,
     MobileListItem,
     MobileActionMenu,
-    MobileButtonLabelItem,
     ButtonWeb,
     TaskStatus,
     TaskReportActions,
@@ -82,10 +83,15 @@ export class TaskMessageOperationReport {
   onReopen(arg0: any) {
     throw new Error("Method not implemented");
   }
-  onDelete(_t42: any) {
+  async onDelete(_t42: any) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     throw new Error("Method not implemented");
   }
   activatedRoute = inject(ActivatedRoute);
+  confirmS = inject(ConfirmService);
   apiResponseS = inject(ApiResponseService);
   authS = inject(AuthService);
   customerIdS = inject(CustomerIdService);

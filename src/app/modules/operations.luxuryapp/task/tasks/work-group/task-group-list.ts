@@ -31,6 +31,7 @@ import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum
 import { TaskGroupListDesktop } from "./desktop/task-group-list-desktop";
 import { TaskGroupListMobile } from "./mobile/task-group-list-mobile";
 import { TaskGroupForm } from "./task-group-form";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-group-list",
@@ -40,6 +41,7 @@ import { TaskGroupForm } from "./task-group-form";
 })
 export class TaskGroupList {
   authS = inject(AuthService);
+  confirmS = inject(ConfirmService);
   apiResponseS = inject(ApiResponseService);
   customerIdS = inject(CustomerIdService);
   dialogHandlerS = inject(DialogHandlerService);
@@ -144,7 +146,11 @@ export class TaskGroupList {
     this.router.navigate(ROUTES.TICKETS.MENSAJES(ticketGroupIdStr));
   }
 
-  onDelete(id: string) {
+  async onDelete(id: string) {
+    const confirmed = await this.confirmS.confirm(
+      "¿Está seguro de eliminar este registro?",
+    );
+    if (!confirmed) return;
     this.apiResponseS
       .onDelete(Endpoints.TaskGroups.delete(id))
       .then((result: boolean) => {

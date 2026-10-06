@@ -34,14 +34,15 @@
     size="small"
     (clicked)="service.onMostrarInput(false, false, true, 'CCO')"
   />
-  <il-button-confirm
-    customClass="mr-2"
+  <lux-button-web
+    kind="confirm"
+    severity="success"
+    variant="soft"
     size="small"
+    customClass="mr-2"
     label="Enviar Reporte"
     swalTitle="Confirmar envío"
-    swalText="¿Está seguro de que desea enviar el reporte?"
-    swalConfirmButtonText="Sí, enviar"
-    (confirmed)="service.onEnviarEmail()"
+    (clicked)="service.onEnviarEmail()"
   />
 </div>
 

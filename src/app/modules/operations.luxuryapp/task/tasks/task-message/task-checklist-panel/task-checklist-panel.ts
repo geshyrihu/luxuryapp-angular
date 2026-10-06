@@ -7,9 +7,9 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { WebButtonIconDelete } from "@ui/buttons/web-icon/button-delete";
 import { WebButtonIconViewPdf } from "@ui/buttons/web-icon/button-view-pdf";
 import { WebButtonLabel } from "@ui/buttons/web-label";
+import { ButtonWeb } from "@ui/buttons/web";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskAttachmentInterface } from "@core/interfaces/tasks/task-attachment.interface";
@@ -19,8 +19,8 @@ import { TaskChecklistItemInterface } from "@core/interfaces/tasks/task-checklis
   selector: "app-task-checklist-panel",
   templateUrl: "./task-checklist-panel.html",
   imports: [
+    ButtonWeb,
     FormsModule,
-    WebButtonIconDelete,
     WebButtonIconViewPdf,
     WebButtonLabel,
   ],

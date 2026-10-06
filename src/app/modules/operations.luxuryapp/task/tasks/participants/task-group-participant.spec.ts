@@ -5,6 +5,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { vi } from "vitest";
 import { TaskGroupParticipant } from "./task-group-participant";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 describe("TaskGroupParticipant", () => {
   let component: TaskGroupParticipant;
@@ -33,6 +34,7 @@ describe("TaskGroupParticipant", () => {
     TestBed.configureTestingModule({
       imports: [TaskGroupParticipant],
       providers: [
+{ provide: ConfirmService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: CustomerIdService, useValue: mockCustomerIdS },
         { provide: DynamicDialogConfig, useValue: mockConfig },

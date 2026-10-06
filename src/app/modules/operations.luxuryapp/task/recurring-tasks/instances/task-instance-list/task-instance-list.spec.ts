@@ -16,6 +16,7 @@ import { DateService } from "@core/services/date.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskInstanceList } from "./task-instance-list";
+import { SwalService } from "@core/services/swal.service";
 
 describe("TaskInstanceList", () => {
   let component: TaskInstanceList;
@@ -48,6 +49,7 @@ describe("TaskInstanceList", () => {
     TestBed.configureTestingModule({
       imports: [TaskInstanceList],
       providers: [
+{ provide: SwalService, useValue: { confirm: vi.fn().mockResolvedValue(true) } },
         { provide: ApiResponseService, useValue: mockApiResponseS },
         { provide: DialogHandlerService, useValue: mockDialogHandlerS },
         { provide: DateService, useValue: mockDateS },
@@ -131,7 +133,7 @@ describe("TaskInstanceList", () => {
     mockApiResponseS.onGetList.mockResolvedValue([]);
     mockApiResponseS.onPost.mockResolvedValue(true);
 
-    component.onReopenTask("task-1");
+    await component.onReopenTask("task-1");
 
     expect(mockApiResponseS.onPost).toHaveBeenCalledWith(
       "recurring-tasks/instances/task-1/reopen",
@@ -146,7 +148,7 @@ describe("TaskInstanceList", () => {
     await new Promise((resolve) => setTimeout(resolve));
     mockApiResponseS.onGetList.mockClear();
 
-    component.onReopenTask("task-1");
+    await component.onReopenTask("task-1");
     await new Promise((resolve) => setTimeout(resolve));
 
     expect(mockApiResponseS.onGetList).not.toHaveBeenCalled();

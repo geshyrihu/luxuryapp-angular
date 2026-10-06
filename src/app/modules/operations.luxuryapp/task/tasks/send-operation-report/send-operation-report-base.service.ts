@@ -9,6 +9,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DestinatariosMailReporte } from "@core/interfaces/destinatarios-mail-reporte.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { SwalService } from "@core/services/swal.service";
 
 @Injectable()
 export class SendOperationReportBaseService {
@@ -17,6 +18,7 @@ export class SendOperationReportBaseService {
   private formB = inject(FormBuilder);
   private customerIdS = inject(CustomerIdService);
   private tableScrollHeightS = inject(TableScrollHeightService);
+  private swalS = inject(SwalService);
 
   year = 0;
   numeroSemana = 0;
@@ -72,7 +74,16 @@ export class SendOperationReportBaseService {
       });
   }
 
-  onEnviarEmail(): void {
+  async onEnviarEmail(): Promise<void> {
+    const confirmed = await this.swalS.confirm({
+      title: "Confirmar envío",
+      text: "¿Está seguro de que desea enviar el reporte?",
+      icon: "warning",
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+    });
+    if (!confirmed) return;
     const applicationUserId = this.authS.applicationUserId;
     const customerId: string = this.customerIdS.customerId();
     this.apiResponseS

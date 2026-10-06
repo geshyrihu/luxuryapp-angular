@@ -8,7 +8,7 @@ import {
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { WebButtonIcon } from "@ui/buttons/web-icon/button";
-import { WebButtonIconConfirm } from "@ui/buttons/web-icon/button-confirm";
+import { ButtonWeb } from "@ui/buttons/web";
 import { StatusBadge } from "@ui/web/status-badge/status-badge";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -21,8 +21,8 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   templateUrl: "./task-instance-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    ButtonWeb,
     WebButtonIcon,
-    WebButtonIconConfirm,
     ApiDatePipe,
     StatusBadge,
     AppTable,

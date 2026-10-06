@@ -92,7 +92,12 @@
                 {{ follow.createdAt }}
               </span>
               @if (isSuperUser()) {
-              <il-button-delete (confirmed)="onDelete(follow.id)" />
+              <lux-button-web
+                kind="delete"
+                severity="danger"
+                variant="soft"
+                (clicked)="onDelete(follow.id)"
+              />
               }
             </div>
           </div>

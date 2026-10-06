@@ -13,7 +13,6 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { WebButtonLabel } from "@ui/buttons/web-label/button";
-import { WebButtonLabelItem } from "@ui/buttons/web-label/button-item";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
@@ -31,7 +30,6 @@ import { TaskStatus } from "../../task-status/task-status";
   imports: [
     ButtonWeb,
     TableEmptyMessage,
-    WebButtonLabelItem,
     WebButtonLabel,
     TaskStatus,
     AppTable,

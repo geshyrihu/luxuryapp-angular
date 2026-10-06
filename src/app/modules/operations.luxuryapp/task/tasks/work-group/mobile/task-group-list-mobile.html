@@ -54,13 +54,15 @@
           <ili-action-menu slot="end">
             <ng-container actions>
               @if (item.customerId === customerId()) {
-              <ili-button-item
-                (clicked)="participants.emit(item)"
+              <lux-button-mobile
+                kind="item"
                 [label]="'Integrantes (' + item.TaskGroupParticipant + ')'"
                 iconName="people-outline"
+                (clicked)="participants.emit(item)"
               />
               } @if (hasSuperUsuario()) {
-              <ili-button-item
+              <lux-button-mobile
+                kind="item"
                 iconName="mail-outline"
                 label="Enviar por correo"
                 (clicked)="report.emit(item)"
@@ -70,18 +72,21 @@
                 kind="edit"
                 (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
               />
-              <ili-button-delete
-                (confirmed)="delete.emit(item.id)"
-                label="Eliminar"
+              <lux-button-mobile
+                kind="delete"
+                color="danger"
+                (clicked)="delete.emit(item.id)"
               />
               @if (item.active) {
-              <ili-button-item
+              <lux-button-mobile
+                kind="item"
                 iconName="lock-closed-outline"
                 label="Bloquear"
                 (clicked)="toggleStatus.emit(item.id)"
               />
               } @if (!item.active) {
-              <ili-button-item
+              <lux-button-mobile
+                kind="item"
                 iconName="lock-open-outline"
                 label="Desbloquear"
                 (clicked)="toggleStatus.emit(item.id)"
