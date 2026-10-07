@@ -10,6 +10,11 @@ import { Spanish } from "flatpickr/dist/l10n/es";
 import { BaseInputSignal } from "../../core/base-input-signal";
 import { parseDateInputValue } from "../../core/date-value";
 
+// 🚀 CRÍTICO SOBRE FLATPICKR:
+// Este componente usa `convertModelValue="true"` en su template.
+// Esto es necesario para que Flatpickr trabaje internamente con strings (YYYY-MM-DD)
+// y no con objetos Date puros. Si esto fuera `false`, al recibir strings de la API
+// Flatpickr no los reconocería, fallaría la validación interna y borraría la fecha al recargar.
 @Component({
   selector: "web-input-date",
 
@@ -45,10 +50,6 @@ import { parseDateInputValue } from "../../core/date-value";
         [locale]="spanishLocale"
         [altInput]="true"
         [altFormat]="'d/m/Y'"
-        <!-- 🚀 CRÍTICO: [convertModelValue]="true" es la magia aquí.
-             El wrapper adaptativo formatea el valor a string (YYYY-MM-DD). 
-             Si esto fuera false, Flatpickr esperaría objetos Date y fallaría
-             al comparar los strings de la API, borrando la fecha al recargar. -->
         [convertModelValue]="true"
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
