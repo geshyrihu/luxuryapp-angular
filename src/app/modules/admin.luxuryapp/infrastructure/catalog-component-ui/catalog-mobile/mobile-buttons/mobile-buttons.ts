@@ -109,7 +109,10 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 Iconos compactos (displayMode="icon")
               </div>
               <div class="d-flex align-items-center gap-3 flex-wrap">
-                <lux-button-mobile displayMode="icon" />
+                <lux-button-mobile
+                  displayMode="icon"
+                  ariaLabel="Acción personalizada"
+                />
                 <lux-button-mobile kind="add" displayMode="icon" />
                 <lux-button-mobile kind="edit" displayMode="icon" />
                 <lux-button-mobile kind="save" displayMode="icon" />
