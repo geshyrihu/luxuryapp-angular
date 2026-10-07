@@ -80,7 +80,7 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
@@ -104,7 +104,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     LuxInputCheckSignal,
     LxIcon,
     LxTag,
-    LxModal,
+    LuxModal,
     LxMessage,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

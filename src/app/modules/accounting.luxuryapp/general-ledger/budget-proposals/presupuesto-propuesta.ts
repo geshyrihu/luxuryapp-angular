@@ -44,7 +44,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { SwalService } from "@core/services/swal.service";
 import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { Subscription } from "rxjs";
@@ -101,7 +101,7 @@ import {
     LuxInputSelectSignal,
     CustomSearchInput,
     FormsModule,
-    LxModal,
+    LuxModal,
     LxTooltipDirective,
     AppTable,
     MultipleSegmentedControl,

@@ -17,7 +17,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { AppMessage } from "@ui/web/message/message";
@@ -30,7 +30,7 @@ import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
     ButtonWeb,
     ReglamentosListDesktop,
     ReglamentosListMobile,
-    LxModal,
+    LuxModal,
     AppMessage,
     LuxInputTextAreaSignal,
     ReactiveFormsModule,

@@ -207,36 +207,42 @@
             No hay evidencias cargadas para esta solicitud.
           </p>
           } @else { @for (evidencia of getVisualEvidenceCards(); track
-          evidencia.id) {
+          evidencia.id; let evidenceIndex = $index) {
           <div class="col-12 col-md-3 px-2">
             <div class="border-1 border rounded p-2 h-full bg-body">
-              <lux-image-web
-                [src]="evidencia.src"
-                [alt]="evidencia.alt"
-                styleClass="block w-full"
-                [imageStyle]="{
-                width: '100%',
-                height: '220px',
-                display: 'block',
-                'object-fit': 'cover',
-                'border-radius': '10px'
-              }"
-                [preview]="true"
-              />
-              <div
-                class="d-flex justify-content-between align-items-center mt-2"
-              >
-                <small class="text-body-secondary">
-                  {{ evidencia.isPending ? "Pendiente de carga" : "Guardada" }}
-                </small>
+              <div class="position-relative">
+                <button
+                  type="button"
+                  class="evidence-image-trigger"
+                  [attr.aria-label]="'Ampliar ' + evidencia.alt"
+                  (click)="openEvidenceGallery(evidenceIndex)"
+                >
+                  <lux-image-web
+                    [src]="evidencia.src"
+                    [alt]="evidencia.alt"
+                    styleClass="block w-full"
+                    [imageStyle]="{
+                    width: '100%',
+                    height: '220px',
+                    display: 'block',
+                    'object-fit': 'cover',
+                    'border-radius': '10px'
+                  }"
+                  />
+                </button>
                 @if (!cleanView && !evidencia.isPending) {
-                <lux-button-web
-                  iconClass="material-symbols-light:delete"
-                  label="Eliminar"
-                  (clicked)="onDeleteEvidence(evidencia.id)"
-                  severity="danger"
-                  variant="text"
-                />
+                <div class="position-absolute top-0 end-0 p-2">
+                  <lux-button-web
+                    displayMode="icon"
+                    iconClass="material-symbols-light:delete"
+                    ariaLabel="Eliminar evidencia"
+                    tooltip="Eliminar evidencia"
+                    (clicked)="onDeleteEvidence(evidencia.id)"
+                    severity="danger"
+                    variant="solid"
+                    size="small"
+                  />
+                </div>
                 }
               </div>
             </div>

@@ -25,10 +25,18 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
+import {
+  Gallery,
+  GalleryModule,
+  ImageItem,
+  ImageSize,
+  ThumbnailsPosition,
+} from "ng-gallery";
+import { Lightbox, LightboxModule } from "ng-gallery/lightbox";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
@@ -46,7 +54,27 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     ReactiveFormsModule,
     AppTable,
     AppImage,
-    LxModal,
+    LuxModal,
+    GalleryModule,
+    LightboxModule,
+  ],
+  styles: [
+    `
+      .evidence-image-trigger {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: zoom-in;
+        text-align: start;
+      }
+
+      .evidence-image-trigger:focus-visible {
+        outline: 2px solid var(--ds-primary);
+        outline-offset: 2px;
+      }
+    `,
   ],
 })
 export class CuadroComparativoList implements OnInit, OnDestroy {
@@ -58,6 +86,8 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   aiService = inject(AiService);
   authS = inject(AuthService);
   swalService = inject(SwalService);
+  gallery = inject(Gallery);
+  lightbox = inject(Lightbox);
   ref: DynamicDialogRef;
 
   showAiModal: boolean = false;
@@ -545,6 +575,30 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     );
 
     return [...uploadedCards, ...pendingCards].slice(0, 4);
+  }
+
+  openEvidenceGallery(index: number): void {
+    const items = this.getVisualEvidenceCards().map(
+      (evidencia) =>
+        new ImageItem({
+          src: evidencia.src,
+          thumb: evidencia.src,
+          alt: evidencia.alt,
+        }),
+    );
+    const galleryId = "purchase-request-evidence";
+    const galleryRef = this.gallery.ref(galleryId);
+
+    galleryRef.setConfig({
+      imageSize: ImageSize.Cover,
+      thumbPosition: ThumbnailsPosition.Top,
+    });
+    galleryRef.load(items);
+    this.lightbox.open(index, galleryId, {
+      role: "dialog",
+      ariaLabel: "Galería de evidencias",
+      keyboardShortcuts: true,
+    });
   }
 
   async onOpenAddBudgetModal() {

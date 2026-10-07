@@ -31,7 +31,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { startWith } from "rxjs";
@@ -70,7 +70,7 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
     CurrencyPipe,
     LxIcon,
     LxTag,
-    LxModal,
+    LuxModal,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",

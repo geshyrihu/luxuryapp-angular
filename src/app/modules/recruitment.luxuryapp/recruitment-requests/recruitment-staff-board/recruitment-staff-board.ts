@@ -32,9 +32,9 @@ import { JobDescriptionForm } from "@operations.luxuryapp/work-positions/job-des
 import { WorkPositionForm } from "@operations.luxuryapp/work-positions/work-position-form";
 import { CandidateProcessHiringModal } from "@shared/integration/reclutamiento/candidates/candidate-application/candidate-process-hiring-modal";
 import { LxAvatar } from "@ui/adaptive/avatar/avatar";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -52,7 +52,7 @@ import {
 import { CandidateInterviewerQueueService } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/candidate-interviewer-queue.service";
 import { CandidateInterviewerQueueDto } from "@shared/integration/reclutamiento/candidates/candidate-interviewer-queue/interfaces/candidate-interviewer-queue.interface";
 import { CardEmployee, IEmployee } from "@shared/integration/recursos-humanos";
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
@@ -75,7 +75,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     LxAvatar,
     LxTag,
     LxSidebar,
-    LxModal,
+    LuxModal,
     CdkDrag,
     CdkDragHandle,
     CdkDragPreview,

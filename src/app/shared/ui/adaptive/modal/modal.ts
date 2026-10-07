@@ -7,7 +7,6 @@ import { Dialog } from "@ui/web/dialog/dialog";
 
 @Component({
   selector: "lux-modal",
-
   imports: [NgTemplateOutlet, Dialog, MobileModal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -35,6 +34,6 @@ import { Dialog } from "@ui/web/dialog/dialog";
     }
   `,
 })
-export class LxModal extends ModalBase {
+export class LuxModal extends ModalBase {
   protected platform = inject(PlatformService);
 }

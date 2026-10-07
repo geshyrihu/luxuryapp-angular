@@ -12,7 +12,7 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { LxModal } from "@ui/adaptive/modal/modal";
+import { LuxModal } from "@ui/adaptive/modal/modal";
 
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -37,7 +37,7 @@ import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal
     LuxInputTextAreaSignal,
     LuxInputSwitch,
     ButtonWeb,
-    LxModal,
+    LuxModal,
   ],
 })
 export class JobDescriptionForm implements OnInit {

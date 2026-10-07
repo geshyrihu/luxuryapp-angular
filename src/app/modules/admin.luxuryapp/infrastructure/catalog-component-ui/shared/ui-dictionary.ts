@@ -171,7 +171,7 @@ export const UI_DICTIONARY: UIDictionaryItem[] = [
   },
   {
     selector: "lux-modal",
-    className: "LxModal",
+    className: "LuxModal",
     category: "adaptive",
     path: "shared/ui/adaptive/modal/modal.ts",
   },
