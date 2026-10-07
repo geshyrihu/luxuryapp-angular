@@ -25,10 +25,10 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { EMemberRole } from "../../interfaces/enums";
 import {
   CreatePropertyMemberWithAccountDTO,

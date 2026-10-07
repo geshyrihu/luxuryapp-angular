@@ -22,10 +22,10 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { firstValueFrom } from "rxjs";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 

@@ -16,7 +16,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { AccordionItem } from "@ui/core/accordion.base";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { filter } from "rxjs/operators";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";

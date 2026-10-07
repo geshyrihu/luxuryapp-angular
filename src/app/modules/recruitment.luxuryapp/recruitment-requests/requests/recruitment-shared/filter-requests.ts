@@ -14,9 +14,9 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import saveAs from "file-saver";
 
 @Component({

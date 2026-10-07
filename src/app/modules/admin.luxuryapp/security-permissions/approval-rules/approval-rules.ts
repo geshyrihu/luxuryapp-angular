@@ -29,7 +29,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import {
   AppFrozenColumn,
   AppTable,

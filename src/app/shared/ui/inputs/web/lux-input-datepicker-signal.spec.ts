@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FlatpickrDefaults } from "angularx-flatpickr";
-import { LuxInputDatepicker } from "./custom-input-datepicker-signal";
+import { LuxInputDatepicker } from "./lux-input-datepicker-signal";
 
 describe("LuxInputDatepicker", () => {
   let component: LuxInputDatepicker;

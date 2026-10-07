@@ -30,7 +30,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";

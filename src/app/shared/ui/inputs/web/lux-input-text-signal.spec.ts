@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputTextSignal } from "./custom-input-text-signal";
+import { LuxInputTextSignal } from "./lux-input-text-signal";
 
 describe("LuxInputTextSignal", () => {
   let component: LuxInputTextSignal;

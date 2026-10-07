@@ -21,11 +21,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 
 interface ITaskTemplateForm {
   name: FormControl<string>;

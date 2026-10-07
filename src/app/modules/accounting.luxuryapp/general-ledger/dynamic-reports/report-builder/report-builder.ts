@@ -21,11 +21,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { LxChip } from "@ui/adaptive/chip/chip";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxPopover } from "@ui/adaptive/popover/popover";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";

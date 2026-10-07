@@ -24,8 +24,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 interface IInventarioIluminacionForm {
   id: FormControl<string>;

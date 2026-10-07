@@ -18,7 +18,7 @@ import { DateService } from "@core/services/date.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 import {
   AppSortableColumn,

@@ -36,8 +36,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 

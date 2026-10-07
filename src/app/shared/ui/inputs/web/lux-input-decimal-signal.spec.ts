@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputDecimal } from "./custom-input-decimal-signal";
+import { LuxInputDecimal } from "./lux-input-decimal-signal";
 
 describe("LuxInputDecimal", () => {
   let component: LuxInputDecimal;

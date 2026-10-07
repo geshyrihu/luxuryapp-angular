@@ -15,7 +15,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
 import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 

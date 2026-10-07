@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputNumberSignal } from "./custom-input-number-signal";
+import { LuxInputNumberSignal } from "./lux-input-number-signal";
 
 describe("LuxInputNumberSignal", () => {
   let component: LuxInputNumberSignal;

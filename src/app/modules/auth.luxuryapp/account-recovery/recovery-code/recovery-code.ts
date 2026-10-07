@@ -19,7 +19,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { catchError, finalize, throwError } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IValidateRecoveryCodeResponse } from "./interfaces/validate-recovery-code.interface";

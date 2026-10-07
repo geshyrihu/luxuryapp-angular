@@ -21,7 +21,7 @@ import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { ThemeService } from "@core/services/theme.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 import { AppToolbar } from "@ui/web/toolbar/toolbar";
 import { filter, map, startWith } from "rxjs";

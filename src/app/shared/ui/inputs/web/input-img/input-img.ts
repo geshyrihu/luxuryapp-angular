@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputImg } from "../custom-input-img-signal";
+import { LuxInputImg } from "../lux-input-img-signal";
 
 @Component({
   selector: "web-input-img",

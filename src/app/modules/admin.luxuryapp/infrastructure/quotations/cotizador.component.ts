@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
 import { ModuleQuote } from "./interfaces/module-quote.interface";
 
 @Component({

@@ -26,9 +26,9 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { firstValueFrom } from "rxjs";
 
 interface IOwnerForm {

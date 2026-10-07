@@ -15,7 +15,7 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({

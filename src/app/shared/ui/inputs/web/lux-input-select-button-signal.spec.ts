@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputSelectButton } from "./custom-input-select-button-signal";
+import { LuxInputSelectButton } from "./lux-input-select-button-signal";
 
 describe("LuxInputSelectButton", () => {
   let component: LuxInputSelectButton;

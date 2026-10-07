@@ -14,7 +14,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PlatformService } from "@core/services/platform.service";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import {
   type SegmentItem,
   SegmentedControl,

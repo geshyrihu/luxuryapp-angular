@@ -22,9 +22,9 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/lux-input-decimal-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 interface IMedidorForm {
   id: FormControl<string | null>;

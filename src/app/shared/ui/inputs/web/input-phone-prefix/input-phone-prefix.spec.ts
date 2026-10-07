@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputPhonePrefix } from "./input-phone-prefix";
 
-vi.mock("../custom-input-phone-prefix", () => ({
+vi.mock("../lux-input-phone-prefix", () => ({
   LuxInputPhonePrefix: class {},
 }));
 

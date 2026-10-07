@@ -31,7 +31,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {

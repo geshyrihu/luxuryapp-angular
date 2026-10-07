@@ -25,7 +25,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { TicketLegalSeguimiento } from "./ticket-legal-seguimiento";
 
 const LEGAL_WORK_GROUP_ID = "019df32f-4945-71c5-8fd0-ab574ea412cd";

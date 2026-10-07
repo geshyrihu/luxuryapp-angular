@@ -17,7 +17,7 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
 import { AspelSyncService } from "./aspel-sync.service";
 
 interface IAspelSyncForm {

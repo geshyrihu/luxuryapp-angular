@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputMaskSignal } from "../custom-input-mask-signal";
+import { LuxInputMaskSignal } from "../lux-input-mask-signal";
 
 @Component({
   selector: "web-input-mask",

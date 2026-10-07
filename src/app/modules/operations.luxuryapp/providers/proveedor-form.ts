@@ -28,12 +28,12 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 interface IProveedorForm {

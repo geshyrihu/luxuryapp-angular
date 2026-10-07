@@ -21,10 +21,10 @@ import {
 } from "@core/services/dialog-handler.service";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { ESanctionStatus } from "./interfaces/sanction.dto";
 
 interface ISanctionForm {

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputDateTime } from "./input-date-time";
 
-vi.mock("../custom-input-date-time-signal", () => ({
+vi.mock("../lux-input-date-time-signal", () => ({
   LuxInputDateTimeSignal: class {},
 }));
 

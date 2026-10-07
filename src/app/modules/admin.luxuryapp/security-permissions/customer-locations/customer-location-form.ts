@@ -22,9 +22,9 @@ import {
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputSelectBool } from "@ui/inputs/adaptive/input-select-bool/input-select-bool";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { CustomerLocationAddOrEditDto } from "./interfaces/customer-location-add-or-edit.dto";
 import { CustomerLocationTypeOptions } from "./interfaces/customer-location-type.enum";
 

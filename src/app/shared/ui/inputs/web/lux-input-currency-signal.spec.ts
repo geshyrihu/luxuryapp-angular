@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputCurrencySignal } from "./custom-input-currency-signal";
+import { LuxInputCurrencySignal } from "./lux-input-currency-signal";
 
 describe("LuxInputCurrencySignal", () => {
   let component: LuxInputCurrencySignal;

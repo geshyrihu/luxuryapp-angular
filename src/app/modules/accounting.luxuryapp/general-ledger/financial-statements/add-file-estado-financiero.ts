@@ -14,7 +14,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
 @Component({
   selector: "app-add-file-estado-financiero",
   templateUrl: "./add-file-estado-financiero.html",

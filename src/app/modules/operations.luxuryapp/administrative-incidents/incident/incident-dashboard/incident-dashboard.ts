@@ -10,7 +10,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {

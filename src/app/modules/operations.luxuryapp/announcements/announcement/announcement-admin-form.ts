@@ -33,10 +33,10 @@ import { LxEditor } from "@ui/adaptive/editor/editor";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
 import {
   Customer,
   IAnnouncement,

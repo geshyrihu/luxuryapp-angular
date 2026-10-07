@@ -8,8 +8,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { IaTestService } from "./ia-test.service";
 import { AiTestResultDto } from "./interfaces/ai-test-result.interface";
 

@@ -19,8 +19,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { PurchaseOrderBudget } from "./purchase-order.types";
 export interface IOrdenCompraPresupuestoForm {
   id: FormControl<string | null>;

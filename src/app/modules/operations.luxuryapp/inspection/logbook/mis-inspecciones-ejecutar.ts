@@ -23,8 +23,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { MisInspeccionesAgregarImagenes } from "@operations.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 import { map } from "rxjs";

@@ -12,7 +12,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { FundingPurchaseDetail } from "@accounting.luxuryapp/fundings/funding/funding-purchase-detail";

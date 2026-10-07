@@ -22,9 +22,9 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 
 @Component({
   selector: "app-job-description-form",

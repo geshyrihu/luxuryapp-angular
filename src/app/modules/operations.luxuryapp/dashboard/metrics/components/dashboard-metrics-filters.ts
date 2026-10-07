@@ -11,8 +11,8 @@ import {
 import { FormsModule } from "@angular/forms";
 import { AuthService } from "@core/auth/services/auth.service";
 import { DateService } from "@core/services/date.service";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 
 export interface DashboardMetricsFilter {
   fechaInicio: string;

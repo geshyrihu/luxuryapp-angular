@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputDatepicker } from "../custom-input-datepicker-signal";
+import { LuxInputDatepicker } from "../lux-input-datepicker-signal";
 
 @Component({
   selector: "web-input-datepicker",

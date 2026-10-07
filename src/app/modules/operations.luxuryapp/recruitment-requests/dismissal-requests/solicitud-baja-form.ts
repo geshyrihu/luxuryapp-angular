@@ -30,11 +30,11 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 

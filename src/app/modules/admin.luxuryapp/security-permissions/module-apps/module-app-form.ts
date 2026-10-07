@@ -23,9 +23,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { ModuleAppFormGroup } from "./interfaces/module-app-form.interface";
 import { ModuleAppGetDto } from "./interfaces/module-app-get.dto";
 

@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputDateTimeSignal } from "./custom-input-date-time-signal";
+import { LuxInputDateTimeSignal } from "./lux-input-date-time-signal";
 
 describe("LuxInputDateTimeSignal", () => {
   let component: LuxInputDateTimeSignal;

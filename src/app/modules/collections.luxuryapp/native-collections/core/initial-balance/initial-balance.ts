@@ -14,7 +14,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";

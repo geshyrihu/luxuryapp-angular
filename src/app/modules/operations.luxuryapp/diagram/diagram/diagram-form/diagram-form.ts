@@ -25,7 +25,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 interface IDiagramForm {
   id: FormControl<string | null>;

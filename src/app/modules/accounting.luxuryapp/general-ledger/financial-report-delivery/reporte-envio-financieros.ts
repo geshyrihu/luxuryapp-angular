@@ -18,7 +18,7 @@ import { DateService } from "@core/services/date.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { LxIcon } from "@ui/adaptive/icon/icon";

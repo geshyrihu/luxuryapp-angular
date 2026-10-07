@@ -20,7 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import {
   IssueFineChargeDTO,

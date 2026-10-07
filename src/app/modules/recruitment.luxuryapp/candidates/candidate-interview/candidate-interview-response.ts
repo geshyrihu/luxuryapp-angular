@@ -18,7 +18,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";

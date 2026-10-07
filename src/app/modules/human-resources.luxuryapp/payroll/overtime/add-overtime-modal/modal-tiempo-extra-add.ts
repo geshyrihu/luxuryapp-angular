@@ -18,9 +18,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/lux-input-decimal-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import {
   TiempoExtraCreateDTO,
   TiempoExtraDTO,

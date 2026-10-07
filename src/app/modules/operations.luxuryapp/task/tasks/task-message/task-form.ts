@@ -32,12 +32,12 @@ import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputAutoMultiple } from "@ui/inputs/web/lux-input-autocomplete-multiple-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import {
   TaskAdditionalImage,

@@ -25,7 +25,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 
 interface IITaskMessageDTOProgramForm {
   id: FormControl<string | null>;

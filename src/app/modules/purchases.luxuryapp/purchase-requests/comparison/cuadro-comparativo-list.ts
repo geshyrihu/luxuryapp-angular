@@ -109,6 +109,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   comiteEventsSignal = signal<any[]>([]);
   selectedEvidenceFiles: File[] = [];
   selectedEvidencePreviewUrls: string[] = [];
+  isUploadingEvidence = false;
   budgetSelectOptionsSignal = signal<SelectItemDto[]>([]);
 
   paramsSignal = toSignal(this.routeActive.params);
@@ -696,7 +697,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     );
   }
 
-  onEvidenceFilesSelected(event: Event) {
+  async onEvidenceFilesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     const files = Array.from(input.files || []);
     if (files.length === 0) return;
@@ -737,29 +738,43 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       URL.createObjectURL(file),
     );
     input.value = "";
+    await this.onUploadEvidenceFiles();
   }
 
   async onUploadEvidenceFiles() {
-    if (this.selectedEvidenceFiles.length === 0) return;
+    if (this.selectedEvidenceFiles.length === 0 || this.isUploadingEvidence) {
+      return;
+    }
 
+    this.isUploadingEvidence = true;
     let hasError = false;
 
-    for (const file of this.selectedEvidenceFiles) {
-      const formData = new FormData();
-      formData.append("File", file);
-      formData.append("Descripción", file.name);
-      formData.append("ApplicationUserId", this.authS.applicationUserId);
-      const result = await this.apiResponseS.onPostFile(
-        Endpoints.PurchaseRequests.cuadroComparativoEvidences(
-          this.solicitudCompraId,
-        ),
-        formData,
-      );
+    try {
+      for (const file of this.selectedEvidenceFiles) {
+        const formData = new FormData();
+        formData.append("File", file);
+        formData.append("Descripción", file.name);
+        formData.append("ApplicationUserId", this.authS.applicationUserId);
+        const result = await this.apiResponseS.onPostFile(
+          Endpoints.PurchaseRequests.cuadroComparativoEvidences(
+            this.solicitudCompraId,
+          ),
+          formData,
+        );
 
-      if (!result) {
-        hasError = true;
-        break;
+        if (!result) {
+          hasError = true;
+          break;
+        }
       }
+    } catch {
+      hasError = true;
+      this.customToastService.showError(
+        "No se pudieron subir todas las fotos.",
+        "Error al subir fotos",
+      );
+    } finally {
+      this.isUploadingEvidence = false;
     }
 
     if (!hasError) {

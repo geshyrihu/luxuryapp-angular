@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputMask } from "./input-mask";
 
-vi.mock("../custom-input-mask-signal", () => ({
+vi.mock("../lux-input-mask-signal", () => ({
   LuxInputMaskSignal: class {},
 }));
 

@@ -20,9 +20,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 // Definición de un ótem de factura analizada extendido para el frontend

@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputDateTimeNative } from "./custom-input-date-time-native";
+import { LuxInputDateTimeNative } from "./lux-input-date-time-native";
 
 describe("LuxInputDateTimeNative", () => {
   let component: LuxInputDateTimeNative;

@@ -21,7 +21,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { CfdiUseAddOrEditDto } from "./interfaces/cfdi-use-add-or-edit.dto";
 import { CfdiUseFormGroup } from "./interfaces/cfdi-use-form.interface";
 

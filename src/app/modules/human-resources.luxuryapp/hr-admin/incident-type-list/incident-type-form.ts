@@ -21,9 +21,9 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { IncidentTypeDetailDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IncidentTypeFormGroup } from "./interfaces/incident-type-form.interface";
 
 @Component({

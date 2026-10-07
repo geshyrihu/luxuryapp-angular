@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputDateTimeSignal } from "../custom-input-date-time-signal";
+import { LuxInputDateTimeSignal } from "../lux-input-date-time-signal";
 
 @Component({
   selector: "web-input-date-time",

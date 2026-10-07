@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputToggleSwitch } from "./custom-input-toggle-switch-signal";
+import { LuxInputToggleSwitch } from "./lux-input-toggle-switch-signal";
 
 describe("LuxInputToggleSwitch", () => {
   let component: LuxInputToggleSwitch;

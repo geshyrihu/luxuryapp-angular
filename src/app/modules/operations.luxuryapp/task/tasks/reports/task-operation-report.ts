@@ -24,7 +24,7 @@ import { SendOperationReport } from "@operations.luxuryapp/task/tasks/send-opera
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
 import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-actions/task-report-actions";
 import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
 
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";

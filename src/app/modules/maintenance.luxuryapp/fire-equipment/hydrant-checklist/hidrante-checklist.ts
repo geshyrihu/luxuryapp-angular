@@ -25,10 +25,10 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputTextAreaSignal } from "@ui/inputs/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTime } from "@ui/inputs/web/lux-input-time-signal";
 import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 

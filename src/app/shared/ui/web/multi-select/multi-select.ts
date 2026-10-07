@@ -5,7 +5,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MultiSelectBase } from "@ui/core/multi-select.base";
-import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
 
 @Component({
   selector: "lux-multi-select-web",

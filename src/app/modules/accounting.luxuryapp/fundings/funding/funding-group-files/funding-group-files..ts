@@ -18,7 +18,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 // Added
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({

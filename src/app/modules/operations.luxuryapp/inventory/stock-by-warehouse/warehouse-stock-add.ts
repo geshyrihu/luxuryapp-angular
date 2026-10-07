@@ -27,8 +27,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
   AppSortableColumn,

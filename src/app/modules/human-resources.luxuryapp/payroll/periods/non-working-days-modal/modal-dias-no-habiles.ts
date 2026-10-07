@@ -12,9 +12,9 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   DiasNoHabilesCreateDTO,

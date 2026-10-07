@@ -7,7 +7,7 @@ import {
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { PhonePrefix } from "@core/data/phone-prefixes.data";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputPhonePrefix } from "../custom-input-phone-prefix";
+import { LuxInputPhonePrefix } from "../lux-input-phone-prefix";
 
 @Component({
   selector: "web-input-phone-prefix",

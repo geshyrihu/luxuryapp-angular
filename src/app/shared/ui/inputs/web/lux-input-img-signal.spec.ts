@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormControl } from "@angular/forms";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { vi } from "vitest";
-import { LuxInputImg } from "./custom-input-img-signal";
+import { LuxInputImg } from "./lux-input-img-signal";
 
 describe("LuxInputImg", () => {
   let component: LuxInputImg;

@@ -7,7 +7,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { FlatpickrDefaults } from "angularx-flatpickr";
 import { of } from "rxjs";
 import { UserAccountForm } from "./user-account-form";

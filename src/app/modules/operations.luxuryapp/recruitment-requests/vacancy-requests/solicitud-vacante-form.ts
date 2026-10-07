@@ -17,7 +17,7 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import { WorkPositionDetailDTO } from "./WorkPositionDetailDTO";
 

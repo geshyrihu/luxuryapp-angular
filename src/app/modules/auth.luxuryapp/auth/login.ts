@@ -24,9 +24,9 @@ import { UserTokenDto } from "@core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { LoaderService } from "@core/services/loader.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputPassword } from "@ui/inputs/web/lux-input-password-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 

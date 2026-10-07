@@ -15,8 +15,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { firstValueFrom } from "rxjs";
 import { IRequestEmployeeRegisterBasicInfo } from "./dtos/request-employee-register-basic-info.dto";
 import { IRequestEmployeeRegisterUpdateStatus } from "./dtos/request-employee-register-update-status.dto";

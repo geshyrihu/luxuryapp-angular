@@ -21,11 +21,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/lux-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { PurchaseOrderDetailLine } from "./purchase-order.types";
 export interface IOrdenCompraDetalleForm {
   id: FormControl<string | null>;

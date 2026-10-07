@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { SubirPdf } from "../custom-input-upload-pdf-signal";
+import { SubirPdf } from "../lux-input-upload-pdf-signal";
 
 @Component({
   selector: "web-input-upload-pdf",

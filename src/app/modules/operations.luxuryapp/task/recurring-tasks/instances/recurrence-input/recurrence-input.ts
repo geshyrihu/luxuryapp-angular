@@ -20,10 +20,10 @@ import {
 } from "@angular/forms";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
-import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
 
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 
 interface RecurrenceFrequency {
   label: string;

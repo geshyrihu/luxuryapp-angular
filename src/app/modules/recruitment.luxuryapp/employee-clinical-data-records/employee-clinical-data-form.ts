@@ -20,8 +20,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.interface";
 
 @Component({

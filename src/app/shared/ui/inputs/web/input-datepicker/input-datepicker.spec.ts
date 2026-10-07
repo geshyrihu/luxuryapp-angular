@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputDatepicker } from "./input-datepicker";
 
-vi.mock("../custom-input-datepicker-signal", () => ({
+vi.mock("../lux-input-datepicker-signal", () => ({
   LuxInputDatepicker: class {},
 }));
 

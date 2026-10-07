@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputMonth } from "./input-month";
 
-vi.mock("../custom-input-month-signal", () => ({
+vi.mock("../lux-input-month-signal", () => ({
   LuxInputMonth: class {},
 }));
 

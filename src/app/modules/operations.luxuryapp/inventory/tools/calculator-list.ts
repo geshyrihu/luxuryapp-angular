@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
 @Component({
   selector: "app-calculator-list",
   templateUrl: "./calculator-list.html",

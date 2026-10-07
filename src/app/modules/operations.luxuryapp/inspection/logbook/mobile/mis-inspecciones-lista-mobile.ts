@@ -8,7 +8,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 

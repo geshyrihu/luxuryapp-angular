@@ -14,7 +14,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";

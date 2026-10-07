@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 @Component({
   selector: "app-rejection-reason-prompt",
   imports: [ButtonWeb, ReactiveFormsModule, LuxInputTextAreaSignal],

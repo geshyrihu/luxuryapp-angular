@@ -15,7 +15,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
 
 import {
   ApprovalConfirmationResult,

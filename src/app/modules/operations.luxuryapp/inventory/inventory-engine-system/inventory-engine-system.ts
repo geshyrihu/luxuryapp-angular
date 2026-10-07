@@ -24,7 +24,7 @@ import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/f
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 
 @Component({
   selector: "app-inventory-engine-system",

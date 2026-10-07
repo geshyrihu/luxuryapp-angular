@@ -11,7 +11,7 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 /**
  * 🧮 Diálogo para crear una nueva propuesta de proyección de sueldos.

@@ -16,8 +16,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
 import { GenerarNominaDTO } from "../../interfaces/nomina-encabezado.interface";
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 

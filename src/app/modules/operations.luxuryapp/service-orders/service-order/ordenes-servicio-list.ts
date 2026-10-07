@@ -19,10 +19,10 @@ import {
   DialogHandlerService,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { PlatformService } from "@core/services/platform.service";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { PeriodMonthService } from "@core/services/periodo-month.service";
-import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
+import { SubirPdf } from "@ui/inputs/web/lux-input-upload-pdf-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AyudaOrdenesServicio } from "./ayuda-ordenes-servicio";
 import { OrdenesServicioListDesktop } from "./desktop/ordenes-servicio-list-desktop";
@@ -89,7 +89,8 @@ export class OrdenesServicio {
     { icon: "material-symbols-light:settings", id: 1, nombre: "equipos" },
     { icon: "material-symbols-light:bolt", id: 5, nombre: "gimnasio" },
     { icon: "material-symbols-light:videocam", id: 6, nombre: "sistemas" },
-    { icon: "material-symbols-light:palette", id: 10, nombre: "pintura" }];
+    { icon: "material-symbols-light:palette", id: 10, nombre: "pintura" },
+  ];
 
   onSegmentFilterChange(event: any) {
     const nombre = event.detail.value;
@@ -116,7 +117,8 @@ export class OrdenesServicio {
     this.mm = date.getMonth() + 1;
     const initialFecha = [
       date.getFullYear(),
-      (this.mm > 9 ? "" : "0") + this.mm].join("-");
+      (this.mm > 9 ? "" : "0") + this.mm,
+    ].join("-");
     this.fechaControl.setValue(initialFecha);
 
     this.reporteOrdenesServicioService.setDate(Date.now);

@@ -20,10 +20,10 @@ import { ButtonWeb } from "@ui/buttons/web";
 // Project components & services
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/lux-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { PurchaseOrderProductDraft } from "../purchase-order.types";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;

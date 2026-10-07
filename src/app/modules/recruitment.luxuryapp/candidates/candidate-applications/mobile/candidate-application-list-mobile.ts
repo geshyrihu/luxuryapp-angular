@@ -9,7 +9,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";

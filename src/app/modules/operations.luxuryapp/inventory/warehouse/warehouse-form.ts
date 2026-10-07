@@ -41,7 +41,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FormHelper } from "@core/helpers/form-helper";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 @Component({
   selector: "app-warehouse-form",

@@ -20,8 +20,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { RecruitmentSourceCatalogFormGroup } from "./interfaces/recruitment-source-catalog-form.interface";
 import { RecruitmentSourceCatalogDTO } from "./interfaces/recruitment-source-catalog.dto";
 

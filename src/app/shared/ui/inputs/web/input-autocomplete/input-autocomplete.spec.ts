@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputAutocomplete } from "./input-autocomplete";
 
-vi.mock("../custom-input-autocomplete-signal", () => ({
+vi.mock("../lux-input-autocomplete-signal", () => ({
   LuxInputAutoComplete: class {},
 }));
 

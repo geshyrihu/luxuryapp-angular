@@ -11,9 +11,9 @@ import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { ButtonWeb } from "@ui/buttons/web";
 
 import { LxMessage } from "@ui/adaptive/message/message";
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";

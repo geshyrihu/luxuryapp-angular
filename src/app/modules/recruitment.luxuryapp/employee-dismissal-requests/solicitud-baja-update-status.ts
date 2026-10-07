@@ -18,7 +18,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.
 export const ESTATUS_BAJA = [

@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputUrl } from "../custom-input-url-signal";
+import { LuxInputUrl } from "../lux-input-url-signal";
 
 @Component({
   selector: "web-input-url",

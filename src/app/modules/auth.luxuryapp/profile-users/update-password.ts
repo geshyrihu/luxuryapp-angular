@@ -19,7 +19,7 @@ import { ChangePassword } from "@core/interfaces/change-password.interface";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { LuxInputPassword } from "@ui/inputs/web/lux-input-password-signal";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",

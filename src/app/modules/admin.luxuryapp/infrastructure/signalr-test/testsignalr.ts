@@ -13,8 +13,8 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputAutoMultiple } from "@ui/inputs/web/lux-input-autocomplete-multiple-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 @Component({
   selector: "app-testsignalr",
   imports: [

@@ -18,9 +18,9 @@ import { AccessPointDto } from "@core/interfaces/access-point.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
 

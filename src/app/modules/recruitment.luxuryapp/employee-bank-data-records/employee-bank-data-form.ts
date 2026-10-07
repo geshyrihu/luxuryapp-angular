@@ -23,8 +23,8 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface";
 
 @Component({

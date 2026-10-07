@@ -11,7 +11,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -19,7 +19,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 @Component({
   selector: "app-purchase-link-manager",

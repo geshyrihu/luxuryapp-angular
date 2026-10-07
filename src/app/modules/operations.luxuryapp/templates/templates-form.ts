@@ -16,8 +16,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 @Component({
   selector: "app-templates-form",

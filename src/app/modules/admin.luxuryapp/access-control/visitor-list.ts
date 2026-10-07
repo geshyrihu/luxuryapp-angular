@@ -17,8 +17,8 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { VisitorDto } from "@core/interfaces/visitor.dto";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/lux-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
 

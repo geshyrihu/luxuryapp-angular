@@ -23,7 +23,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputPhonePrefix } from "@ui/inputs/adaptive/input-phone-prefix/input-phone-prefix";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 
 @Component({
   selector: "app-customer-data-company-form",

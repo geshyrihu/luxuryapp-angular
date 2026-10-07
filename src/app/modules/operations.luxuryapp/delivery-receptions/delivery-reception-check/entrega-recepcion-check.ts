@@ -7,7 +7,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
-import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({

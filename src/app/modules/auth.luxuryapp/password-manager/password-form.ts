@@ -22,9 +22,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputPassword } from "@ui/inputs/web/lux-input-password-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { CredentialFormGroup } from "./interfaces/password-form.interface";
 

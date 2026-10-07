@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputMonth } from "../custom-input-month-signal";
+import { LuxInputMonth } from "../lux-input-month-signal";
 
 @Component({
   selector: "web-input-month",

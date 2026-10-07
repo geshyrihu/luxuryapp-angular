@@ -15,7 +15,7 @@ import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { SortEvent } from "@core/interfaces/sort-event.interface";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";

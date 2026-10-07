@@ -14,16 +14,16 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SwalService } from "@core/services/swal.service";
 import {
   DialogHandlerService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { SubirPdf } from "@ui/inputs/web/custom-input-upload-pdf-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
+import { SubirPdf } from "@ui/inputs/web/lux-input-upload-pdf-signal";
 @Component({
   selector: "app-activos-documentos",
   templateUrl: "./activos-documentos.html",

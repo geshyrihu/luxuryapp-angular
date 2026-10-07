@@ -28,7 +28,7 @@ import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacati
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxPanel } from "@ui/adaptive/panel/panel";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { VacationRequestMyDTO } from "../../interfaces/vacation-request.interface";
 

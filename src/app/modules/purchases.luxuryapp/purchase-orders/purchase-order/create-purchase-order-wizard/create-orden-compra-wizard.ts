@@ -25,7 +25,7 @@ import {
 } from "@core/services/dialog-handler.service"; // Added DynamicDialogConfig
 import { AppAvatar } from "@ui/web/avatar/avatar";
 // Added
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
 // Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -43,8 +43,8 @@ import { EnumSelectService } from "@core/services/enum-select.service"; // Added
 import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import {
   generateYearOptions,
   groupFundingPeriodsByMonth,

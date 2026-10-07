@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputAutoComplete } from "./custom-input-autocomplete-signal";
+import { LuxInputAutoComplete } from "./lux-input-autocomplete-signal";
 
 describe("LuxInputAutoComplete", () => {
   let component: LuxInputAutoComplete;

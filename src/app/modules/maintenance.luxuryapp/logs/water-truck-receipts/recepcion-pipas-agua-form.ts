@@ -23,9 +23,9 @@ import {
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { LuxInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
-import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDateTimeNative } from "@ui/inputs/web/lux-input-date-time-native";
+import { LuxInputDecimal } from "@ui/inputs/web/lux-input-decimal-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
 
 @Component({

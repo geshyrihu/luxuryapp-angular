@@ -15,7 +15,7 @@ import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTree } from "@ui/adaptive/tree/tree";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 

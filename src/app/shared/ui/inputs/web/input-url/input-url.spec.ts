@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
 import { WebInputUrl } from "./input-url";
 
-vi.mock("../custom-input-url-signal", () => ({
+vi.mock("../lux-input-url-signal", () => ({
   LuxInputUrl: class {},
 }));
 

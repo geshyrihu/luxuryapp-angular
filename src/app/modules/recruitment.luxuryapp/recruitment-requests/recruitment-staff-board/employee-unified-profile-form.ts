@@ -26,12 +26,12 @@ import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-
 import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
 import { InputToggleSwitch } from "@ui/inputs/adaptive/input-toggle-switch/input-toggle-switch";
-import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputPhonePrefix } from "@ui/inputs/web/lux-input-phone-prefix";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { provideFlatpickrDefaults } from "angularx-flatpickr";
 import { firstValueFrom } from "rxjs";
 

@@ -14,7 +14,7 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { PlatformService } from "@core/services/platform.service";
 import { StorageService } from "@core/services/storage.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { MaintenanceReportsDesktop } from "./desktop/maintenance-reports-list-desktop";
 import { MenuReportMaintenance } from "./menu-report-maintenance";

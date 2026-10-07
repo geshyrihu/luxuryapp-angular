@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { LuxInputAutoComplete } from "../custom-input-autocomplete-signal";
+import { LuxInputAutoComplete } from "../lux-input-autocomplete-signal";
 
 @Component({
   selector: "web-input-autocomplete",

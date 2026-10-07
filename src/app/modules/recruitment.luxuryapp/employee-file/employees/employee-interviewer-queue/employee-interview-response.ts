@@ -23,7 +23,7 @@ import { AGENDA_STATUS_TAG_OPTIONS } from "@shared/integration/reclutamiento/can
 import { CandidateStageBadge } from "@shared/integration/reclutamiento/candidates/recruitment-shared/candidate-stage-badge";
 import { MappedPTag } from "@shared/integration/reclutamiento/candidates/recruitment-shared/mapped-p-tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { firstValueFrom } from "rxjs";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";

@@ -20,11 +20,11 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LeaveRequestMyDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputFile } from "@ui/inputs/web/lux-input-file-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/lux-input-time-signal";
 interface LeaveRequestEditDTO {
   leaveType: number;
   startDate: string;

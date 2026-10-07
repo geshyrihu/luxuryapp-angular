@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputHour } from "./custom-input-hour-signal";
+import { LuxInputHour } from "./lux-input-hour-signal";
 
 describe("LuxInputHour", () => {
   let component: LuxInputHour;

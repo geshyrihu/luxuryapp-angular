@@ -23,7 +23,7 @@ import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import {
   AppSortableColumn,
   AppTable,

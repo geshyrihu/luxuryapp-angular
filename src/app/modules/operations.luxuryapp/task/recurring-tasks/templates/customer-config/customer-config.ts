@@ -15,8 +15,8 @@ import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.int
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",

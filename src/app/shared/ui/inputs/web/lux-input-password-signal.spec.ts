@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputPassword } from "./custom-input-password-signal";
+import { LuxInputPassword } from "./lux-input-password-signal";
 
 describe("LuxInputPassword", () => {
   let component: LuxInputPassword;

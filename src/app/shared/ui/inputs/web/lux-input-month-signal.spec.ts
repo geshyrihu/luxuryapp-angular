@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputMonth } from "./custom-input-month-signal";
+import { LuxInputMonth } from "./lux-input-month-signal";
 
 describe("LuxInputMonth", () => {
   let component: LuxInputMonth;

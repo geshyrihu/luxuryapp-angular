@@ -13,7 +13,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { IFederalVacationParameter } from "../interfaces/salary-projections.models";
 
 @Component({

@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputSelectBool } from "./custom-input-select-bool-signal";
+import { LuxInputSelectBool } from "./lux-input-select-bool-signal";
 
 describe("LuxInputSelectBool", () => {
   let component: LuxInputSelectBool;

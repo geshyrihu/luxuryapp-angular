@@ -20,7 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 export interface IOrdenCompraDenegadaForm {
   id: FormControl<string | null>;
   ordenCompraId: FormControl<string | null>;

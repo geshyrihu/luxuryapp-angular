@@ -29,9 +29,9 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "../../../../core/auth/services/customer-id.service";
 

@@ -13,7 +13,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 @Component({
   selector: "app-general-anual-mantenimiento",
   templateUrl: "./general-anual-mantenimiento.html",

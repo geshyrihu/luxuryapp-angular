@@ -19,9 +19,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputTextAreaSignal } from "@ui/inputs/web";
-import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
+import { LuxInputTime } from "@ui/inputs/web/lux-input-time-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 // D:\repos\luxuryapp-api\client\angular\src\app\core\components\inputs\web\custom-input-autocomplete-multiple-signal.ts
 import { AuthService } from "@core/auth/services/auth.service";

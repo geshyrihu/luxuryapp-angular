@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { LuxInputMaskSignal } from "./custom-input-mask-signal";
+import { LuxInputMaskSignal } from "./lux-input-mask-signal";
 
 describe("LuxInputMaskSignal", () => {
   let component: LuxInputMaskSignal;

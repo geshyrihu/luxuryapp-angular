@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { vi } from "vitest";
-import { LuxInputAutoMultiple } from "./custom-input-autocomplete-multiple-signal";
+import { LuxInputAutoMultiple } from "./lux-input-autocomplete-multiple-signal";
 
 describe("LuxInputAutoMultiple", () => {
   let component: LuxInputAutoMultiple;

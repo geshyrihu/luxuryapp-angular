@@ -21,7 +21,6 @@ import { BaseInputSignal } from "../../core/base-input-signal";
  */
 @Component({
   selector: "web-input-text",
-
   imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <base-input-signal
@@ -57,7 +56,8 @@ import { BaseInputSignal } from "../../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputText),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputText
   extends BaseInputSignal

@@ -21,10 +21,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { ApplicationRoleDto } from "../../../admin.luxuryapp/security-permissions/application-roles/interfaces/application-role.dto";
 import { OnboardingChecklistOptionFormGroup } from "./interfaces/onboarding-checklist-option-form.interface";
 import {

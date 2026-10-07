@@ -12,9 +12,9 @@ import { LxImage } from "@ui/adaptive/image/image";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
 
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";

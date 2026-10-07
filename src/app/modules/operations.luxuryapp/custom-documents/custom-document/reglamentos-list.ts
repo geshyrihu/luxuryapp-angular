@@ -19,7 +19,7 @@ import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.e
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxModal } from "@ui/adaptive/modal/modal";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { AppMessage } from "@ui/web/message/message";
 import { ReglamentosListDesktop } from "./desktop/reglamentos-list-desktop";
 import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
