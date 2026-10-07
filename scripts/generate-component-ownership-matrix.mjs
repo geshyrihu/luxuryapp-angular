@@ -56,22 +56,32 @@ for (const file of consumerFiles) {
   while ((m = importLineRe.exec(content))) {
     const names = m[1]
       .split(",")
-      .map((s) => s.trim().split(/\s+as\s+/)[0].trim())
+      .map((s) =>
+        s
+          .trim()
+          .split(/\s+as\s+/)[0]
+          .trim(),
+      )
       .filter(Boolean);
     for (const name of names) {
-      if (!consumersByClassName.has(name)) consumersByClassName.set(name, new Set());
+      if (!consumersByClassName.has(name))
+        consumersByClassName.set(name, new Set());
       consumersByClassName.get(name).add(file);
     }
   }
 }
-console.log(`Consumidores indexados: ${consumerFiles.length} archivos, ${consumersByClassName.size} símbolos @ui/* importados.`);
+console.log(
+  `Consumidores indexados: ${consumerFiles.length} archivos, ${consumersByClassName.size} símbolos @ui/* importados.`,
+);
 
 // 1b) Resolver cadenas de re-export dentro de shared/ui (bridges de
-// compatibilidad tipo "export { InputCheck as CustomInputCheckSignal } from
+// compatibilidad tipo "export { InputCheck as LuxInputCheckSignal } from
 // '../adaptive/input-check/input-check'"). Sin esto, un componente consumido
 // solo via su alias de barrel aparece falsamente como "sin consumidores".
 console.log("Resolviendo alias de re-export en shared/ui...");
-const allUiFilesForAlias = walk(uiDir, [], { excludeSuffixes: [".spec.ts", ".stories.ts"] });
+const allUiFilesForAlias = walk(uiDir, [], {
+  excludeSuffixes: [".spec.ts", ".stories.ts"],
+});
 const exportFromRe = /export\s*\{([^}]+)\}\s*from\s*["']([^"']+)["']/g;
 
 function resolveImportPath(fromFile, importPath) {
@@ -91,7 +101,10 @@ for (const file of allUiFilesForAlias) {
   while ((m = exportFromRe.exec(content))) {
     const target = resolveImportPath(file, m[2]);
     if (!target) continue;
-    const names = m[1].split(",").map((s) => s.trim()).filter(Boolean);
+    const names = m[1]
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
     for (const n of names) {
       const parts = n.split(/\s+as\s+/);
       const originalName = parts[0].trim();
@@ -123,7 +136,9 @@ function resolveAllAliasNames(file, className) {
 
 // 2) Walk shared/ui components/directives.
 console.log("Escaneando shared/ui...");
-const uiFiles = walk(uiDir, [], { excludeSuffixes: [".spec.ts", ".stories.ts"] });
+const uiFiles = walk(uiDir, [], {
+  excludeSuffixes: [".spec.ts", ".stories.ts"],
+});
 
 const decoratorRe = /@(Component|Directive)\(\{/;
 const selectorRe = /selector:\s*["']([^"']+)["']/;
@@ -155,7 +170,9 @@ const CORE_WHITELIST = [
   "services/custom-toast.service",
   "services/image-processing.service",
 ];
-const coreWhitelistRe = new RegExp(`^(interfaces/|(${CORE_WHITELIST.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})$)`);
+const coreWhitelistRe = new RegExp(
+  `^(interfaces/|(${CORE_WHITELIST.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})$)`,
+);
 
 function isCoreImportViolation(content) {
   const re = /from\s*["'](@core\/([^"']+)|[^"']*\.luxuryapp\/[^"']+)["']/g;
@@ -222,7 +239,9 @@ for (const file of uiFiles) {
     layer,
     path: `shared/ui/${relPath}`,
     decorator: decMatch[1],
-    selector: selectorMatch ? selectorMatch[1] : "(sin selector, directiva por atributo o base abstracta)",
+    selector: selectorMatch
+      ? selectorMatch[1]
+      : "(sin selector, directiva por atributo o base abstracta)",
     className,
     inputs: [...inputs].join("|"),
     outputs: [...outputs].join("|"),
@@ -235,7 +254,11 @@ for (const file of uiFiles) {
   });
 }
 
-rows.sort((a, b) => (a.layer !== b.layer ? a.layer.localeCompare(b.layer) : a.className.localeCompare(b.className)));
+rows.sort((a, b) =>
+  a.layer !== b.layer
+    ? a.layer.localeCompare(b.layer)
+    : a.className.localeCompare(b.className),
+);
 
 console.log(`Componentes/directivas detectados: ${rows.length}`);
 
@@ -305,7 +328,10 @@ const sinSpecConCero = [];
 
 for (const r of rows) {
   byLayer.set(r.layer, (byLayer.get(r.layer) || 0) + 1);
-  byMadurez.set(r.madurezTentativa, (byMadurez.get(r.madurezTentativa) || 0) + 1);
+  byMadurez.set(
+    r.madurezTentativa,
+    (byMadurez.get(r.madurezTentativa) || 0) + 1,
+  );
   if (r.consumerCount === 0) sinConsumidores.push(r);
   if (r.coreImportViolation) coreViolations.push(r);
   if (!r.hasSpec && r.consumerCount > 0) sinSpecConCero.push(r);
@@ -321,7 +347,9 @@ md += `## Totales\n\n`;
 md += `**Componentes/directivas detectados:** ${rows.length}\n\n`;
 
 md += `## Por capa\n\n| Capa | Cantidad |\n|---|---:|\n`;
-for (const [layer, count] of [...byLayer.entries()].sort((a, b) => b[1] - a[1])) {
+for (const [layer, count] of [...byLayer.entries()].sort(
+  (a, b) => b[1] - a[1],
+)) {
   md += `| ${layer} | ${count} |\n`;
 }
 
@@ -337,20 +365,25 @@ if (coreViolations.length === 0) {
   md += `Ninguna detectada.\n`;
 } else {
   md += `| Path | Clase |\n|---|---|\n`;
-  for (const r of coreViolations) md += `| \`${r.path}\` | \`${r.className}\` |\n`;
+  for (const r of coreViolations)
+    md += `| \`${r.path}\` | \`${r.className}\` |\n`;
 }
 
 md += `\n## Sin consumidores en modules/core (candidatos a revisar: ¿app-specific, deprecated, o falso negativo del grep?)\n\n`;
 md += `Total: ${sinConsumidores.length}. Antes de reclasificar cualquiera como \`deprecated\`, verificar manualmente (el grep solo indexa imports \`import { X } from "@ui/..."\"\; un re-export, un alias distinto o un uso solo dentro de shared/ui no cuenta como cero consumidores reales).\n\n`;
 md += `| Path | Clase | Selector |\n|---|---|---|\n`;
-for (const r of sinConsumidores.slice(0, 60)) md += `| \`${r.path}\` | \`${r.className}\` | \`${r.selector}\` |\n`;
-if (sinConsumidores.length > 60) md += `\n_(${sinConsumidores.length - 60} filas más en el CSV completo)_\n`;
+for (const r of sinConsumidores.slice(0, 60))
+  md += `| \`${r.path}\` | \`${r.className}\` | \`${r.selector}\` |\n`;
+if (sinConsumidores.length > 60)
+  md += `\n_(${sinConsumidores.length - 60} filas más en el CSV completo)_\n`;
 
 md += `\n## Con consumidores pero sin spec (${sinSpecConCero.length})\n\n`;
 md += `Candidatos a priorizar para Fase 5 (cobertura funcional).\n\n`;
 md += `| Path | Clase | Consumidores |\n|---|---|---:|\n`;
-for (const r of sinSpecConCero.slice(0, 40)) md += `| \`${r.path}\` | \`${r.className}\` | ${r.consumerCount} |\n`;
-if (sinSpecConCero.length > 40) md += `\n_(${sinSpecConCero.length - 40} filas más en el CSV completo)_\n`;
+for (const r of sinSpecConCero.slice(0, 40))
+  md += `| \`${r.path}\` | \`${r.className}\` | ${r.consumerCount} |\n`;
+if (sinSpecConCero.length > 40)
+  md += `\n_(${sinSpecConCero.length - 40} filas más en el CSV completo)_\n`;
 
 fs.mkdirSync(path.dirname(outMd), { recursive: true });
 fs.writeFileSync(outMd, md, "utf-8");

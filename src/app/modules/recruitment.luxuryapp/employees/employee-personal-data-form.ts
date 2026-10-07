@@ -13,21 +13,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ECountry } from "@core/enums/paises.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { EnumSelectService } from "@core/services/enum-select.service";
 import { DateService } from "@core/services/date.service";
+import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { provideFlatpickrDefaults } from "angularx-flatpickr";
+import { firstValueFrom } from "rxjs";
 import { IEmployeePersonalDataForm } from "./interfaces/employee-personal-data-form.interface";
 
 @Component({
@@ -35,10 +35,10 @@ import { IEmployeePersonalDataForm } from "./interfaces/employee-personal-data-f
   templateUrl: "./employee-personal-data-form.html",
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputDateSignal,
+    LuxInputDateSignal,
     InputAutocomplete,
     ButtonWeb,
   ],
@@ -191,5 +191,3 @@ export class EmployeePersonalDataForm implements OnInit {
       });
   }
 }
-
-

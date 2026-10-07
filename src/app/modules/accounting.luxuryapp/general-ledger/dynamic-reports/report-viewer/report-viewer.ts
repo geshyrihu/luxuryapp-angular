@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,16 +9,17 @@ import {
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppMessage } from "@ui/web/message/message";
+import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/financial-reports/online/ai-agent/ai-agent";
+import { FinancialReportFilterStore } from "@accounting.luxuryapp/general-ledger/financial-reports/online/state/financial-report-filter.store.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
-import { AiAgentComponent } from "@accounting.luxuryapp/general-ledger/financial-reports/online/ai-agent/ai-agent";
-import { FinancialReportFilterStore } from "@accounting.luxuryapp/general-ledger/financial-reports/online/state/financial-report-filter.store.service";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { AppMessage } from "@ui/web/message/message";
 import {
   IReportColumn,
   IReportResult,
@@ -28,13 +28,15 @@ import {
 
 @Component({
   selector: "app-report-viewer",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
     LxSpinner,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
     AppMessage,
-    AiAgentComponent],
+    AiAgentComponent,
+  ],
   providers: [FinancialReportFilterStore],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-viewer.html",
@@ -69,7 +71,8 @@ export class ReportViewer implements OnInit {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 }];
+    { label: "Diciembre", value: 12 },
+  ];
 
   loading = signal(false);
   resultado = signal<IReportResult | null>(null);
@@ -200,7 +203,8 @@ export class ReportViewer implements OnInit {
     const mid = Math.ceil(secs.length / 2);
     return [
       secs.slice(0, mid).flatMap((s) => s.rows),
-      secs.slice(mid).flatMap((s) => s.rows)];
+      secs.slice(mid).flatMap((s) => s.rows),
+    ];
   }
 
   esRenglonEspecial(row: IReportResultRow): boolean {
@@ -238,5 +242,3 @@ export class ReportViewer implements OnInit {
     return this.esDobleColumna();
   }
 }
-
-

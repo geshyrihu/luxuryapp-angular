@@ -12,16 +12,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { CustomToastService } from "@core/services/custom-toast.service";
+import { DateService } from "@core/services/date.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DateService } from "@core/services/date.service";
-import { CustomToastService } from "@core/services/custom-toast.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   ChargeTemplateResponseDTO,
   CreateChargeTemplateDTO,
@@ -33,13 +40,6 @@ import {
   EDiscountType,
   Recurrence,
 } from "../../interfaces/enums";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IChargeTemplateForm {
   name: FormControl<string>;
@@ -63,14 +63,15 @@ interface IChargeTemplateForm {
   selector: "app-charge-template-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputCurrencySignal,
-    CustomInputSelectSignal,
-    CustomInputCheckSignal,
-    CustomInputDateSignal,
-    CustomInputNumberSignal,
+    LuxInputTextSignal,
+    LuxInputCurrencySignal,
+    LuxInputSelectSignal,
+    LuxInputCheckSignal,
+    LuxInputDateSignal,
+    LuxInputNumberSignal,
     ButtonWeb,
-    LxCard],
+    LxCard,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-template-form.html",
 })
@@ -110,15 +111,18 @@ export class ChargeTemplateForm implements OnInit {
     { label: "Cuatrimestral", value: Recurrence.Cuatrimestral },
     { label: "Quimestral", value: Recurrence.Quimestral },
     { label: "Semestral", value: Recurrence.Semestral },
-    { label: "Anual", value: Recurrence.Anual }];
+    { label: "Anual", value: Recurrence.Anual },
+  ];
 
   calculationMethods = [
     { label: "Monto Fijo por Depto", value: ECalculationMethod.FixedAmount },
-    { label: "Prorrateo por Indiviso", value: ECalculationMethod.Indiviso }];
+    { label: "Prorrateo por Indiviso", value: ECalculationMethod.Indiviso },
+  ];
 
   discountTypes = [
     { label: "Monto Fijo ($)", value: EDiscountType.FixedValue },
-    { label: "Porcentaje (%)", value: EDiscountType.Percentage }];
+    { label: "Porcentaje (%)", value: EDiscountType.Percentage },
+  ];
 
   async ngOnInit() {
     this.id = this.config.data.id;
@@ -150,7 +154,8 @@ export class ChargeTemplateForm implements OnInit {
         validators: [
           Validators.required,
           Validators.min(1),
-          Validators.max(31)],
+          Validators.max(31),
+        ],
       }),
       startDate: new FormControl(new Date(), {
         nonNullable: true,
@@ -180,11 +185,7 @@ export class ChargeTemplateForm implements OnInit {
   async loadChargeTypes() {
     const res = await this.apiResponseS.onGetItem<
       ChargeTypeCatalogResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.ChargeTypes.customer(
-        this.customerId,
-      ),
-    );
+    >(Endpoints.CobranzaCore.ChargeTypes.customer(this.customerId));
 
     this.chargeTypes.set(
       (res ?? []).map((x) => ({
@@ -232,7 +233,9 @@ export class ChargeTemplateForm implements OnInit {
           ...raw,
           startDate: this.dateS.getDateFormat(raw.startDate) ?? "",
           endDate: this.dateS.getDateFormat(raw.endDate),
-          retroactiveStartDate: this.dateS.getDateFormat(raw.retroactiveStartDate),
+          retroactiveStartDate: this.dateS.getDateFormat(
+            raw.retroactiveStartDate,
+          ),
         };
         if (this.id) {
           return {
@@ -260,7 +263,8 @@ export class ChargeTemplateForm implements OnInit {
       startDate: this.dateS.getDateFormat(this.form.getRawValue().startDate),
       endDate: this.dateS.getDateFormat(this.form.getRawValue().endDate),
       earlyPaymentDiscount: this.form.getRawValue().earlyPaymentDiscount,
-      earlyPaymentDiscountType: this.form.getRawValue().earlyPaymentDiscountType,
+      earlyPaymentDiscountType:
+        this.form.getRawValue().earlyPaymentDiscountType,
       earlyPaymentGraceDays: this.form.getRawValue().earlyPaymentGraceDays,
       isRetroactive: this.form.getRawValue().isRetroactive,
       retroactiveStartDate: this.dateS.getDateFormat(
@@ -270,10 +274,7 @@ export class ChargeTemplateForm implements OnInit {
     };
 
     this.apiResponseS
-      .onPost(
-        Endpoints.CobranzaCore.Templates.preview,
-        payload,
-      )
+      .onPost(Endpoints.CobranzaCore.Templates.preview, payload)
       .then((res) => {
         if (res) {
           this.toastS.showSuccess(

@@ -6,36 +6,40 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { Recurrence } from "@core/enums/recurrence.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import {
+  DialogHandlerService,
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 @Component({
   selector: "app-projected-expenses-form",
   templateUrl: "./projected-expenses-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     InputAutocomplete,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputCurrencySignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputCurrencySignal,
+    ButtonWeb,
+  ],
 })
 export class ProjectedExpensesForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -86,7 +90,8 @@ export class ProjectedExpensesForm implements OnInit {
       this.loadProviders(),
       this.loadMonths(),
       this.loadExpenseTypes(),
-      this.loadRecurrences()]);
+      this.loadRecurrences(),
+    ]);
 
     if (this.id !== "") {
       this.onLoadData();
@@ -245,4 +250,3 @@ export class ProjectedExpensesForm implements OnInit {
     }
   }
 }
-

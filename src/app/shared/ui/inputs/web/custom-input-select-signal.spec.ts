@@ -1,78 +1,78 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputSelectSignal } from './custom-input-select-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { LuxInputSelectSignal } from "./custom-input-select-signal";
 
-describe('CustomInputSelectSignal', () => {
-  let component: CustomInputSelectSignal;
-  let fixture: ComponentFixture<CustomInputSelectSignal>;
+describe("LuxInputSelectSignal", () => {
+  let component: LuxInputSelectSignal;
+  let fixture: ComponentFixture<LuxInputSelectSignal>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputSelectSignal, {
+    TestBed.overrideComponent(LuxInputSelectSignal, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputSelectSignal],
+      imports: [LuxInputSelectSignal],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputSelectSignal);
+    fixture = TestBed.createComponent(LuxInputSelectSignal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('default signal values', () => {
-    it('should have default data as empty array', () => {
+  describe("default signal values", () => {
+    it("should have default data as empty array", () => {
       expect(component.data()).toEqual([]);
     });
 
-    it('should have default valueDefault as null', () => {
+    it("should have default valueDefault as null", () => {
       expect(component.valueDefault()).toBeNull();
     });
 
-    it('should have default showClear as true', () => {
+    it("should have default showClear as true", () => {
       expect(component.showClear()).toBe(true);
     });
 
-    it('should have default filter as false', () => {
+    it("should have default filter as false", () => {
       expect(component.filter()).toBe(false);
     });
 
-    it('should have default loading as false', () => {
+    it("should have default loading as false", () => {
       expect(component.loading()).toBe(false);
     });
 
     it('should have default filterBy as "label"', () => {
-      expect(component.filterBy()).toBe('label');
+      expect(component.filterBy()).toBe("label");
     });
 
     it('should have default optionLabel as "label"', () => {
-      expect(component.optionLabel()).toBe('label');
+      expect(component.optionLabel()).toBe("label");
     });
 
     it('should have default optionValue as "value"', () => {
-      expect(component.optionValue()).toBe('value');
+      expect(component.optionValue()).toBe("value");
     });
 
-    it('should have default customClass as empty string', () => {
-      expect(component.customClass()).toBe('');
+    it("should have default customClass as empty string", () => {
+      expect(component.customClass()).toBe("");
     });
 
-    it('should have default size as undefined', () => {
+    it("should have default size as undefined", () => {
       expect(component.size()).toBeUndefined();
     });
   });
 
-  describe('outputs', () => {
-    it('should emit selectionChange output', () => {
+  describe("outputs", () => {
+    it("should emit selectionChange output", () => {
       const spy = vi.fn();
       component.selectionChange.subscribe(spy);
       component.selectionChange.emit({ value: 1 });
@@ -80,27 +80,27 @@ describe('CustomInputSelectSignal', () => {
     });
   });
 
-  describe('ControlValueAccessor', () => {
-    it('should implement registerOnChange', () => {
+  describe("ControlValueAccessor", () => {
+    it("should implement registerOnChange", () => {
       const fn = vi.fn();
       component.registerOnChange(fn);
-      component.onChange('test');
-      expect(fn).toHaveBeenCalledWith('test');
+      component.onChange("test");
+      expect(fn).toHaveBeenCalledWith("test");
     });
 
-    it('should implement registerOnTouched', () => {
+    it("should implement registerOnTouched", () => {
       const fn = vi.fn();
       component.registerOnTouched(fn);
       component.onTouch();
       expect(fn).toHaveBeenCalled();
     });
 
-    it('should implement writeValue', () => {
-      component.writeValue('test-value');
-      expect(component.internalControl.value).toBe('test-value');
+    it("should implement writeValue", () => {
+      component.writeValue("test-value");
+      expect(component.internalControl.value).toBe("test-value");
     });
 
-    it('should implement setDisabledState', () => {
+    it("should implement setDisabledState", () => {
       component.setDisabledState(true);
       expect(component.internalControl.disabled).toBe(true);
       component.setDisabledState(false);

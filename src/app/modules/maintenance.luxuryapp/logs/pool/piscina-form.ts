@@ -12,17 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IPiscinaForm {
   id: FormControl<string | null>;
@@ -43,9 +46,9 @@ interface IPiscinaForm {
     ReactiveFormsModule,
     ButtonWeb,
     InputImg,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
   ],
 })
 export class PiscinaForm implements OnInit {
@@ -104,8 +107,13 @@ export class PiscinaForm implements OnInit {
     const urlApi = Endpoints.RefactorMantenimiento.piscinaById(this.id());
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       this.model.set(result);
-      const tipo = this.cb_typePiscina().find((x: any) => x.label === result.typePiscina);
-      this.form.patchValue({ ...result, typePiscina: tipo ? Number(tipo.value) : null });
+      const tipo = this.cb_typePiscina().find(
+        (x: any) => x.label === result.typePiscina,
+      );
+      this.form.patchValue({
+        ...result,
+        typePiscina: tipo ? Number(tipo.value) : null,
+      });
     });
   }
 
@@ -159,4 +167,3 @@ export class PiscinaForm implements OnInit {
       });
   }
 }
-

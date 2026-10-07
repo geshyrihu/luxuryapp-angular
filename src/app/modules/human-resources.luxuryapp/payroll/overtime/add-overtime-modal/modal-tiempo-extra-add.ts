@@ -7,17 +7,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   TiempoExtraCreateDTO,
   TiempoExtraDTO,
@@ -29,10 +32,11 @@ import {
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputDateSignal,
-    CustomInputDecimal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputDateSignal,
+    LuxInputDecimal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-tiempo-extra-add.html",
 })
@@ -53,7 +57,8 @@ export default class ModalTiempoExtraAdd implements OnInit {
     fecha: ["", Validators.required],
     horasSimples: [
       0,
-      [Validators.required, Validators.min(0), Validators.max(9)]],
+      [Validators.required, Validators.min(0), Validators.max(9)],
+    ],
     horasDobles: [0, [Validators.required, Validators.min(0)]],
     observaciones: [""],
   });
@@ -140,4 +145,3 @@ export default class ModalTiempoExtraAdd implements OnInit {
     });
   }
 }
-

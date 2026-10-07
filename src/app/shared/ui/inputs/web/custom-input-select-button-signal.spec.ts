@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CustomInputSelectButton } from './custom-input-select-button-signal';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LuxInputSelectButton } from "./custom-input-select-button-signal";
 
-describe('CustomInputSelectButton', () => {
-  let component: CustomInputSelectButton;
-  let fixture: ComponentFixture<CustomInputSelectButton>;
+describe("LuxInputSelectButton", () => {
+  let component: LuxInputSelectButton;
+  let fixture: ComponentFixture<LuxInputSelectButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomInputSelectButton],
+      imports: [LuxInputSelectButton],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomInputSelectButton);
+    fixture = TestBed.createComponent(LuxInputSelectButton);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

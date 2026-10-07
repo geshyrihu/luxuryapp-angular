@@ -11,25 +11,20 @@ import {
   UntypedFormGroup,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { passwordValidation } from "@core/directives/password-validation.directive";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ChangePassword } from "@core/interfaces/change-password.interface";
+import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 @Component({
   selector: "app-actualizar-contrasena",
   templateUrl: "./update-password.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    LxIcon,
-    ReactiveFormsModule,
-    LxCard,
-    ButtonWeb,
-    CustomInputPassword],
+  imports: [LxIcon, ReactiveFormsModule, LxCard, ButtonWeb, LuxInputPassword],
 })
 export class UpdatePasswordComponent implements OnInit {
   formB = inject(FormBuilder);
@@ -54,7 +49,8 @@ export class UpdatePasswordComponent implements OnInit {
           "",
           {
             validators: [Validators.required, passwordValidation()],
-          }],
+          },
+        ],
         confirm: ["", Validators.required],
       },
       {

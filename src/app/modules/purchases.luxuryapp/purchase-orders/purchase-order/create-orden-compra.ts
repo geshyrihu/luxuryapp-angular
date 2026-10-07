@@ -12,11 +12,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -25,6 +20,14 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 
 @Component({
@@ -34,9 +37,10 @@ import { ROUTES } from "src/app/routing/route-paths";
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class CreateOrdenCompra implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -63,7 +67,8 @@ export class CreateOrdenCompra implements OnInit {
   form: FormGroup = new FormGroup({
     id: new FormControl(0, [Validators.required]),
     customerId: new FormControl(this.customerIdS.customerId(), [
-      Validators.required]),
+      Validators.required,
+    ]),
     folio: new FormControl(""),
     indice: new FormControl("0"),
     fechaSolicitud: new FormControl("", [Validators.required]),
@@ -98,9 +103,9 @@ export class CreateOrdenCompra implements OnInit {
   }
 
   async onLoadSelectItemProvider(): Promise<void> {
-    const result = await this.apiResponseS.onGetSelectItem<
-      SelectItemDto[]
-    >(Endpoints.SelectItems.providers(this.customerIdS.customerId()));
+    const result = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+      Endpoints.SelectItems.providers(this.customerIdS.customerId()),
+    );
     this.cb_providers.set(result ?? []);
   }
 

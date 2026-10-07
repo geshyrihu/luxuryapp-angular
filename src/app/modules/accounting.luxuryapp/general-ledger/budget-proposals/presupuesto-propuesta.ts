@@ -45,7 +45,7 @@ import { SignalRService } from "@core/services/signalr.service";
 import { SwalService } from "@core/services/swal.service";
 import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
 import { LxModal } from "@ui/adaptive/modal/modal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { Subscription } from "rxjs";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -80,8 +80,8 @@ import { FeeComparisonByIndivisoModal } from "./modal-fee-comparison-by-indiviso
  * ============================================================================
  */
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import {
   MultipleSegmentedControl,
@@ -98,14 +98,15 @@ import {
   imports: [
     LxIcon,
     CommonModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     CustomSearchInput,
     FormsModule,
     LxModal,
     LxTooltipDirective,
     AppTable,
     MultipleSegmentedControl,
-    NgxMaskDirective],
+    NgxMaskDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-propuesta.html",
 })
@@ -1003,7 +1004,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.gastoSeptiembre,
         item.gastoOctubre,
         item.gastoNoviembre,
-        item.gastoDiciembre].filter((expense) => typeof expense === "number") as number[];
+        item.gastoDiciembre,
+      ].filter((expense) => typeof expense === "number") as number[];
     }
 
     if (expensesToAverage.length === 0) {
@@ -1067,7 +1069,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
         item.presupuestoSeptiembre,
         item.presupuestoOctubre,
         item.presupuestoNoviembre,
-        item.presupuestoDiciembre].filter((budget) => typeof budget === "number") as number[];
+        item.presupuestoDiciembre,
+      ].filter((budget) => typeof budget === "number") as number[];
     }
 
     if (budgetsToAverage.length === 0) {
@@ -1336,7 +1339,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
       charIndex: 12,
       gastoKey: "gastoDiciembre",
       pptKey: "presupuestoDiciembre",
-    }] as const;
+    },
+  ] as const;
 
   /** Lista de meses para iterar en la plantilla (mantenido para reportes y utilidades) */
   readonly months: string[] = this.monthColumns.map((m) => m.name);
@@ -1354,7 +1358,8 @@ export class PresupuestoPropuesta implements OnDestroy, OnInit {
     { value: "septiembre", label: "SEP" },
     { value: "octubre", label: "OCT" },
     { value: "noviembre", label: "NOV" },
-    { value: "diciembre", label: "DIC" }];
+    { value: "diciembre", label: "DIC" },
+  ];
 
   /** Signal que almacena los meses seleccionados para calcular el promedio. */
   selectedMonthsForAvg = signal<string[]>([...this.months]);

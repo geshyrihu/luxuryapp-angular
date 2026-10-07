@@ -15,13 +15,6 @@ import {
   ValidatorFn,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -37,6 +30,13 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDatepicker } from "@ui/inputs/web/custom-input-datepicker-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { RecurrenceInput } from "../../instances/recurrence-input/recurrence-input";
 
 interface RecurringTaskCatalogFormGroup {
@@ -60,13 +60,14 @@ interface RecurringTaskCatalogFormGroup {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputDatepicker,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    RecurrenceInput],
+    LuxInputCheckSignal,
+    LuxInputDatepicker,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    RecurrenceInput,
+  ],
 })
 export class RecurringTaskCatalogForm implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -112,7 +113,8 @@ export class RecurringTaskCatalogForm implements OnInit {
         validators: [
           Validators.required,
           Validators.min(0),
-          Validators.max(30)],
+          Validators.max(30),
+        ],
       }),
       backupUserId: new FormControl<string | null>(null),
     },
@@ -285,4 +287,3 @@ export class RecurringTaskCatalogForm implements OnInit {
       .toLowerCase();
   }
 }
-

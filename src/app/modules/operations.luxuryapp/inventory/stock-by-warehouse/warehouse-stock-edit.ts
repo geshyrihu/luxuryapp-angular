@@ -11,16 +11,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-warehouse-stock-edit",
@@ -29,10 +32,11 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class WarehouseStockEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -52,7 +56,10 @@ export class WarehouseStockEdit implements OnInit {
 
   private buildForm(data?: any) {
     return this.formB.nonNullable.group({
-      customerId: [data?.customerId ?? this.customerIdS.customerId(), [Validators.required]],
+      customerId: [
+        data?.customerId ?? this.customerIdS.customerId(),
+        [Validators.required],
+      ],
       productoId: [data?.productoId ?? "", [Validators.required]],
       almacenId: [data?.almacenId ?? "", [Validators.required]],
       producto: [data?.producto ?? ""],
@@ -60,7 +67,9 @@ export class WarehouseStockEdit implements OnInit {
       unidadDeMedidaId: [data?.unidadDeMedidaId ?? "", [Validators.required]],
       stockMin: [data?.stockMin ?? 0, [Validators.required]],
       stockMax: [data?.stockMax ?? 0, [Validators.required]],
-      applicationUserId: [data?.applicationUserId ?? this.authS.applicationUserId],
+      applicationUserId: [
+        data?.applicationUserId ?? this.authS.applicationUserId,
+      ],
     });
   }
 
@@ -122,4 +131,3 @@ export class WarehouseStockEdit implements OnInit {
     }
   }
 }
-

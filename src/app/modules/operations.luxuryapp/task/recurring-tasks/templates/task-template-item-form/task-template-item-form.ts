@@ -13,18 +13,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 import { RecurrenceInput } from "../../instances/recurrence-input/recurrence-input";
 
 interface ITaskTemplateItemForm {
@@ -43,12 +46,13 @@ interface ITaskTemplateItemForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     RecurrenceInput,
     InputDatepicker,
-    CustomInputCheckSignal],
+    LuxInputCheckSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [DatePipe],
 })

@@ -11,18 +11,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { CustomInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { LuxInputDateTimeNative } from "@ui/inputs/web/custom-input-date-time-native";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
 
 @Component({
@@ -32,9 +35,9 @@ import { IRecepcionPipaAguaForm } from "./recepcion-pipas-agua.interfaces";
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputTextSignal,
-    CustomInputDateTimeNative,
-    CustomInputDecimal,
+    LuxInputTextSignal,
+    LuxInputDateTimeNative,
+    LuxInputDecimal,
     InputImg,
     InputAutocomplete,
   ],
@@ -142,9 +145,7 @@ export class RecepcionPipasAguaForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(
-        Endpoints.RecepcionPipasAgua.getById(this.id),
-      )
+      .onGetItem(Endpoints.RecepcionPipasAgua.getById(this.id))
       .then((result: any) => {
         this.urlFotoPipaLlena.set(result.fotoPipaLlenaUrl ?? "");
         this.urlFotoPipaVacia.set(result.fotoPipaVaciaUrl ?? "");
@@ -188,14 +189,49 @@ export class RecepcionPipasAguaForm implements OnInit {
       fd.append("colaboradorMttoId", dto.colaboradorMttoId);
     if (dto.guardiaSeguridad)
       fd.append("guardiaSeguridad", dto.guardiaSeguridad);
-    this.appendFoto(fd, "fotoPipaLlena", dto.fotoPipaLlena, this.urlFotoPipaLlena());
-    this.appendFoto(fd, "fotoPipaVacia", dto.fotoPipaVacia, this.urlFotoPipaVacia());
-    this.appendFoto(fd, "fotoIneChofer", dto.fotoIneChofer, this.urlFotoIneChofer());
+    this.appendFoto(
+      fd,
+      "fotoPipaLlena",
+      dto.fotoPipaLlena,
+      this.urlFotoPipaLlena(),
+    );
+    this.appendFoto(
+      fd,
+      "fotoPipaVacia",
+      dto.fotoPipaVacia,
+      this.urlFotoPipaVacia(),
+    );
+    this.appendFoto(
+      fd,
+      "fotoIneChofer",
+      dto.fotoIneChofer,
+      this.urlFotoIneChofer(),
+    );
     this.appendFoto(fd, "fotoPlacas", dto.fotoPlacas, this.urlFotoPlacas());
-    this.appendFoto(fd, "fotoMedidorAntes", dto.fotoMedidorAntes, this.urlFotoMedidorAntes());
-    this.appendFoto(fd, "fotoMedidorDespues", dto.fotoMedidorDespues, this.urlFotoMedidorDespues());
-    this.appendFoto(fd, "fotoNivelAntes", dto.fotoNivelAntes, this.urlFotoNivelAntes());
-    this.appendFoto(fd, "fotoNivelDespues", dto.fotoNivelDespues, this.urlFotoNivelDespues());
+    this.appendFoto(
+      fd,
+      "fotoMedidorAntes",
+      dto.fotoMedidorAntes,
+      this.urlFotoMedidorAntes(),
+    );
+    this.appendFoto(
+      fd,
+      "fotoMedidorDespues",
+      dto.fotoMedidorDespues,
+      this.urlFotoMedidorDespues(),
+    );
+    this.appendFoto(
+      fd,
+      "fotoNivelAntes",
+      dto.fotoNivelAntes,
+      this.urlFotoNivelAntes(),
+    );
+    this.appendFoto(
+      fd,
+      "fotoNivelDespues",
+      dto.fotoNivelDespues,
+      this.urlFotoNivelDespues(),
+    );
     this.appendFoto(fd, "fotoNota", dto.fotoNota, this.urlFotoNota());
     return fd;
   }
@@ -221,4 +257,3 @@ export class RecepcionPipasAguaForm implements OnInit {
     }
   }
 }
-

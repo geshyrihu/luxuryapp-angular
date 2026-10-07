@@ -13,24 +13,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { firstValueFrom } from "rxjs";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import {
-  ComiteVigilanciaEditData,
-} from "@core/interfaces/comite-vigilancia.interface";
+import { ComiteVigilanciaEditData } from "@core/interfaces/comite-vigilancia.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { firstValueFrom } from "rxjs";
 
 interface IComiteVigilanciaForm {
   id: FormControl<string | null>;
@@ -46,10 +44,11 @@ interface IComiteVigilanciaForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
     InputAutocomplete,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class ComiteVigilanciaForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -94,7 +93,8 @@ export class ComiteVigilanciaForm implements OnInit {
           this.customerIdS.customerId(),
         ),
       ),
-      firstValueFrom(this.enumSelectS.typePosicionComite())]);
+      firstValueFrom(this.enumSelectS.typePosicionComite()),
+    ]);
 
     this.cb_condomino.set(condominos as SelectItemDto[]);
     this.cb_position.set(positions);
@@ -192,4 +192,3 @@ export class ComiteVigilanciaForm implements OnInit {
     });
   }
 }
-

@@ -1,27 +1,27 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { ButtonWeb } from "@ui/buttons/web";
 
 // Bootstrap Modules
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
-
-
 
 @Component({
   selector: "app-entrega-recepcion-check",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     LxAccordion,
     AppTable,
 
     LxTag,
-    CustomInputSelectButton],
+    LuxInputSelectButton,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./entrega-recepcion-check.html",
 })
@@ -48,7 +48,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
         label: "No Entregado",
         value: "no-entregado",
         icon: "material-symbols-light:cancel",
-      }];
+      },
+    ];
 
     this.auditModules = [
       {
@@ -103,7 +104,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Máxima validez legal frente a terceros (bancos, juicios).",
-          }],
+          },
+        ],
       },
       {
         name: "Fiscal y Contable",
@@ -188,7 +190,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Protege y transparenta el uso de los fondos a largo plazo.",
-          }],
+          },
+        ],
       },
       {
         name: "Recursos Humanos y Seguridad Social",
@@ -247,7 +250,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Asegura la correcta entrega y devolución de activos y accesos.",
-          }],
+          },
+        ],
       },
       {
         name: "Operación y Servicios",
@@ -294,7 +298,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Profesionaliza la atención y permite medir la eficiencia operativa.",
-          }],
+          },
+        ],
       },
       {
         name: "Mantenimiento y Activos",
@@ -335,7 +340,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Centraliza la información túcnica para agilizar reparaciones.",
-          }],
+          },
+        ],
       },
       {
         name: "Protección Civil y Riesgos",
@@ -388,7 +394,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             type: "Obligatorio",
             status: null,
             observations: "Requisito legal en muchas localidades.",
-          }],
+          },
+        ],
       },
       {
         name: "Tecnologóa, Accesos y Contraseóas",
@@ -416,7 +423,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Demuestra el manejo responsable de la información de los residentes.",
-          }],
+          },
+        ],
       },
       {
         name: "Relación con Comité y Gobierno Interno",
@@ -443,7 +451,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Evita malos entendidos y establece expectativas claras.",
-          }],
+          },
+        ],
       },
       {
         name: "Juicios, Cobranza y Morosidad",
@@ -475,7 +484,8 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Define los pasos a seguir antes de iniciar un proceso legal.",
-          }],
+          },
+        ],
       },
       {
         name: "Proyectos y Pendientes Heredados",
@@ -494,8 +504,10 @@ export class EntregaRecepcionCheckComponent implements OnInit {
             status: null,
             observations:
               "Permite un seguimiento profesional y evita desviaciones.",
-          }],
-      }];
+          },
+        ],
+      },
+    ];
 
     // Add controls dynamically
     this.auditModules = this.auditModules.map((module) => ({

@@ -1,1 +1,1 @@
-export { InputTime as CustomInputTime } from "../adaptive/input-time/input-time";
+export { InputTime as LuxInputTime } from "../adaptive/input-time/input-time";

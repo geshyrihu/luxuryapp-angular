@@ -13,9 +13,9 @@ import {
 
 // Custom Inputs
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 // Services
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -37,9 +37,9 @@ import {
   imports: [
     LxIcon,
     ReactiveFormsModule,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
     ButtonWeb,
   ],
   templateUrl: "./billing-config-modal.html",

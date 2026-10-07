@@ -13,11 +13,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
 import { IEmployeeAddressForm } from "./interfaces/employee-address-form.interface";
@@ -26,7 +26,7 @@ import { IEmployeeAddressForm } from "./interfaces/employee-address-form.interfa
   selector: "app-employee-address-form",
   templateUrl: "./employee-address-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class EmployeeAddressForm implements OnInit {
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
@@ -98,5 +98,3 @@ export class EmployeeAddressForm implements OnInit {
       });
   }
 }
-
-

@@ -5,17 +5,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-categoria-asunto-legal-form",
   templateUrl: "./categoria-asunto-legal-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class CategoriaAsuntoLegalForm {
   private apiResponseS = inject(ApiResponseService);
@@ -58,4 +61,3 @@ export class CategoriaAsuntoLegalForm {
     });
   }
 }
-

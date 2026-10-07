@@ -16,9 +16,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -31,12 +31,12 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import {
   TaskFollowUpEvidenceImage,
   TaskFollowUpItem,
   TaskImageReorderPayload,
 } from "../shared/interfaces/task-refactor.interface";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 interface ITicketMessageFollowupForm {
   id: FormControl<string>;
   ticketMessageId: FormControl<string>;
@@ -54,8 +54,9 @@ interface ITicketMessageFollowupForm {
     ReactiveFormsModule,
     FormsModule,
     ButtonWeb,
-    CustomInputTextAreaSignal,
-    LxFileUpload],
+    LuxInputTextAreaSignal,
+    LxFileUpload,
+  ],
 })
 export class TaskFollowup implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -94,7 +95,8 @@ export class TaskFollowup implements OnInit, OnDestroy {
       validators: [
         Validators.required,
         Validators.maxLength(200),
-        Validators.minLength(10)],
+        Validators.minLength(10),
+      ],
     }),
   });
 
@@ -116,7 +118,9 @@ export class TaskFollowup implements OnInit, OnDestroy {
     );
     const followUps = result ?? [];
     this.description.set(followUps);
-    await Promise.all(followUps.map((followUp) => this.loadEvidence(followUp.id)));
+    await Promise.all(
+      followUps.map((followUp) => this.loadEvidence(followUp.id)),
+    );
   }
 
   evidenceFor(followUpId: string): TaskFollowUpEvidenceImage[] {
@@ -124,26 +128,30 @@ export class TaskFollowup implements OnInit, OnDestroy {
   }
 
   async loadEvidence(followUpId: string): Promise<void> {
-    const result = await this.apiResponseS.onGetList<TaskFollowUpEvidenceImage[]>(
-      Endpoints.TaskFollowUpEvidenceImages.list(followUpId),
-    );
+    const result = await this.apiResponseS.onGetList<
+      TaskFollowUpEvidenceImage[]
+    >(Endpoints.TaskFollowUpEvidenceImages.list(followUpId));
     this.evidenceImages.update((current) => ({
       ...current,
       [followUpId]: result ?? [],
     }));
   }
 
-  async onEvidenceSelect(event: { files?: File[] }, followUpId: string): Promise<void> {
+  async onEvidenceSelect(
+    event: { files?: File[] },
+    followUpId: string,
+  ): Promise<void> {
     const files = event.files ?? [];
     if (!files.length) return;
 
     for (const file of files) {
       const formData = new FormData();
       formData.append("File", file, file.name);
-      const result = await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
-        Endpoints.TaskFollowUpEvidenceImages.upload(followUpId),
-        formData,
-      );
+      const result =
+        await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
+          Endpoints.TaskFollowUpEvidenceImages.upload(followUpId),
+          formData,
+        );
       if (result === false) break;
     }
     await this.loadEvidence(followUpId);
@@ -160,7 +168,11 @@ export class TaskFollowup implements OnInit, OnDestroy {
     if (deleted) await this.loadEvidence(followUpId);
   }
 
-  async moveEvidence(followUpId: string, index: number, direction: -1 | 1): Promise<void> {
+  async moveEvidence(
+    followUpId: string,
+    index: number,
+    direction: -1 | 1,
+  ): Promise<void> {
     const images = [...this.evidenceFor(followUpId)];
     const targetIndex = index + direction;
     if (targetIndex < 0 || targetIndex >= images.length) return;
@@ -199,10 +211,11 @@ export class TaskFollowup implements OnInit, OnDestroy {
         for (const file of files) {
           const formData = new FormData();
           formData.append("File", file, file.name);
-          const uploadResult = await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
-            Endpoints.TaskFollowUpEvidenceImages.upload(createdFollowUp.id),
-            formData,
-          );
+          const uploadResult =
+            await this.apiResponseS.onPostFile<TaskFollowUpEvidenceImage>(
+              Endpoints.TaskFollowUpEvidenceImages.upload(createdFollowUp.id),
+              formData,
+            );
           if (uploadResult === false) break;
         }
         await this.loadEvidence(createdFollowUp.id);

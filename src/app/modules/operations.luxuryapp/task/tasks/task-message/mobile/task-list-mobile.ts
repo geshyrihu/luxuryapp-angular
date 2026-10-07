@@ -5,18 +5,18 @@ import {
   output,
 } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
-import { IonButton } from "@ionic/angular";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { IonButton } from "@ionic/angular";
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 
 import { TaskStatus } from "../../task-status/task-status";
 import { ITaskMessageDTO } from "../interfaces/task-message.dto";
@@ -34,11 +34,12 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     MobileActionMenu,
     MobileListItem,
     TaskStatus,
-    CustomInputToggleSwitch,
+    LuxInputToggleSwitch,
     FormsModule,
     InitialsAbbrPipe,
     LxIcon,
-    DataViewMobile],
+    DataViewMobile,
+  ],
 })
 export class TaskListMobile {
   data = input.required<ITaskMessageDTO[]>();

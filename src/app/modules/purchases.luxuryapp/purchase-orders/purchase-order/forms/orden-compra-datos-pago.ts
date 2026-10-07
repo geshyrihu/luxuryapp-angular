@@ -13,20 +13,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { lastValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { lastValueFrom } from "rxjs";
 import {
   generateYearOptions,
   groupFundingPeriodsByMonth,
@@ -62,10 +65,11 @@ export interface IOrdenCompraDatosPagoForm {
     ReactiveFormsModule,
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
     ButtonWeb,
-    LxTag],
+    LxTag,
+  ],
 })
 export class OrdenCompraDatosPago implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -158,7 +162,8 @@ export class OrdenCompraDatosPago implements OnInit {
         Endpoints.SelectItems.wayToPay,
       ),
       lastValueFrom(this.enumSelectS.onLoadEnumList("tipo-gasto")),
-      lastValueFrom(this.enumSelectS.onLoadEnumList("funding-period", false))];
+      lastValueFrom(this.enumSelectS.onLoadEnumList("funding-period", false)),
+    ];
 
     const [
       providers,
@@ -166,7 +171,8 @@ export class OrdenCompraDatosPago implements OnInit {
       useCfdi,
       wayToPay,
       tipoGasto,
-      fundingPeriods] = await Promise.all(promises);
+      fundingPeriods,
+    ] = await Promise.all(promises);
 
     this.cb_providers.set((providers as SelectItemDto[]) || []);
     this.cb_payment_method.set((paymentMethods as SelectItemDto[]) || []);
@@ -176,9 +182,10 @@ export class OrdenCompraDatosPago implements OnInit {
     this.processFundingPeriods((fundingPeriods as SelectItemDto[]) || []);
     this.cb_fundingYear.set(generateYearOptions());
 
-    const result = await this.apiResponseS.onGetItem<PurchaseOrderPaymentFormData>(
-      Endpoints.PurchaseOrderPaymentData.getById(this.ordenCompraDatosPagoId),
-    );
+    const result =
+      await this.apiResponseS.onGetItem<PurchaseOrderPaymentFormData>(
+        Endpoints.PurchaseOrderPaymentData.getById(this.ordenCompraDatosPagoId),
+      );
     if (result) this.form.patchValue(result);
   }
 
@@ -188,7 +195,9 @@ export class OrdenCompraDatosPago implements OnInit {
 
   selectFundingPeriod(quincena: SelectItemDto) {
     const control = this.form.get("fundingPeriod");
-    control?.setValue(toggleFundingPeriodSelection(control.value, quincena.value));
+    control?.setValue(
+      toggleFundingPeriodSelection(control.value, quincena.value),
+    );
   }
 
   onSubmit() {

@@ -15,7 +15,7 @@ import { MenuItem } from "@core/interfaces/menu-item.interface";
 import { SortEvent } from "@core/interfaces/sort-event.interface";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar"; // Added
 import { LxSplitButton } from "@ui/adaptive/split-button/split-button";
@@ -42,8 +42,8 @@ import { OrdenCompraDatosPago } from "@purchases.luxuryapp/purchase-orders/purch
 import { OrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/orden-compra";
 import { PaymentVoucherModal } from "@purchases.luxuryapp/purchase-orders/purchase-order/payment-voucher-modal/payment-voucher-modal";
 import { OrdenCompraService } from "@purchases.luxuryapp/purchase-orders/services/orden-compra.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
 import { FundingExcelExportService } from "../../general-ledger/funding-excel-export.service";
 import { CreateOrdenCompraFueraFondeo } from "./create-purchase-order-outside-funding/create-orden-compra-fuera-fondeo";
@@ -85,7 +85,8 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 
 @Component({
   selector: "app-funding-detail",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     LxBadge,
     CommonModule,
 
@@ -100,11 +101,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     AppReorderableRowHandle,
     LxTooltipDirective,
     UpperCasePipe,
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     LxIcon,
     LxTag,
     LxModal,
-    LxMessage],
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-detail.html",
 })

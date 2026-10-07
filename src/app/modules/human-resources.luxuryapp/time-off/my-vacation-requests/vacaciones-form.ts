@@ -15,10 +15,6 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { LxPanel } from "@ui/adaptive/panel/panel";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -29,6 +25,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { VacationBalanceDTO } from "@human-resources.luxuryapp/interfaces/vacation-balance.interface";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LxPanel } from "@ui/adaptive/panel/panel";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 import { VacationRequestMyDTO } from "../../interfaces/vacation-request.interface";
 
@@ -50,9 +50,10 @@ interface VacationRequestEditDTO {
     ReactiveFormsModule,
     LxPanel,
     LxMessage,
-    CustomInputDateSignal,
-    // CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputDateSignal,
+    // LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class VacacionesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -75,7 +76,7 @@ export class VacacionesForm implements OnInit {
 
   form = this.formB.nonNullable.group(
     {
-      startDate: ["", [Validators.required]], // Type inferred as string | Date? Initially "" suggests string. CustomInputDateSignal often works with Date or string.
+      startDate: ["", [Validators.required]], // Type inferred as string | Date? Initially "" suggests string. LuxInputDateSignal often works with Date or string.
       endDate: ["", [Validators.required]],
       reason: ["", [Validators.maxLength(500)]],
     },
@@ -425,5 +426,3 @@ export class VacacionesForm implements OnInit {
     }
   }
 }
-
-

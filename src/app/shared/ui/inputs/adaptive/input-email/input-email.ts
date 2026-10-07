@@ -12,7 +12,6 @@ import { WebInputEmail } from "../../web/input-email/input-email";
 
 @Component({
   selector: "lux-input-email",
-
   imports: [WebInputEmail, IonInputEmail],
   providers: [
     {

@@ -24,15 +24,19 @@ import { SendOperationReport } from "@operations.luxuryapp/task/tasks/send-opera
 import { TaskDateRangeSelector } from "@operations.luxuryapp/task/tasks/task-date-range-selector/task-date-range-selector";
 import { TaskReportActions } from "@operations.luxuryapp/task/tasks/task-report-actions/task-report-actions";
 import { TaskStatus } from "@operations.luxuryapp/task/tasks/task-status/task-status";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
-import { ButtonWeb } from "@ui/buttons/web";
 import { ButtonMobile } from "@ui/buttons/mobile";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
@@ -41,7 +45,6 @@ import { TaskClose } from "../task-close";
 import { TaskFollowup } from "../task-follow-up/task-followup";
 import { TaskForm } from "../task-message/task-form";
 import { TaskReadList } from "../task-read-list";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
 @Component({
   selector: "app-task-operation-report",
@@ -62,8 +65,9 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 
     LuxTableCaption,
     LuxTableCaption,
-    CustomInputSwitch,
-    ReactiveFormsModule],
+    LuxInputSwitch,
+    ReactiveFormsModule,
+  ],
 })
 export class TaskMessageOperationReport {
   onProgram(arg0: any) {

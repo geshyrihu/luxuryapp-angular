@@ -7,14 +7,14 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
   ConfiguracionNominaDTO,
   ConfiguracionNominaUpdateDTO,
@@ -25,10 +25,11 @@ import {
   imports: [
     ReactiveFormsModule,
     LxFieldset,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    CustomInputDecimal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputDecimal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./configuracion-nomina.html",
 })
@@ -45,21 +46,25 @@ export default class ConfiguracionNomina implements OnInit {
     frecuenciaPago: [0, Validators.required],
     diaPago1: [
       15,
-      [Validators.required, Validators.min(1), Validators.max(31)]],
+      [Validators.required, Validators.min(1), Validators.max(31)],
+    ],
     diaPago2: [
       30,
-      [Validators.required, Validators.min(1), Validators.max(31)]],
+      [Validators.required, Validators.min(1), Validators.max(31)],
+    ],
     diasAguinaldo: [15, [Validators.required, Validators.min(15)]],
     factorPrimaVacacional: [0.25, [Validators.required, Validators.min(0.25)]],
     minutosToleranciaRetardo: [10, [Validators.required, Validators.min(0)]],
     retardosPorFalta: [3, [Validators.required, Validators.min(1)]],
     porcentajeEnfermedadMaternidad: [
       0.00625,
-      [Validators.required, Validators.min(0)]],
+      [Validators.required, Validators.min(0)],
+    ],
     porcentajeIvcm: [0.00625, [Validators.required, Validators.min(0)]],
     porcentajeCesantiaVejez: [
       0.01125,
-      [Validators.required, Validators.min(0)]],
+      [Validators.required, Validators.min(0)],
+    ],
   });
 
   constructor() {

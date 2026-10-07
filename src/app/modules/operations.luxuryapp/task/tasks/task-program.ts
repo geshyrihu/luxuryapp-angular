@@ -12,20 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  CrudSubmitOptions,
-  FormHelper,
-} from "@core/helpers/form-helper";
+import { CrudSubmitOptions, FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 interface IITaskMessageDTOProgramForm {
   id: FormControl<string | null>;
@@ -41,9 +41,10 @@ interface IITaskMessageDTOProgramForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputDateSignal,
+    LuxInputDateSignal,
     InputAutocomplete,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class TaskProgram implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -144,4 +145,3 @@ export class TaskProgram implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,10 +16,11 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccessPointDto } from "@core/interfaces/access-point.dto";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
 
@@ -28,12 +28,14 @@ import { AccessPointFormGroup } from "./interfaces/access-point-form.interface";
   selector: "app-access-point-list",
   templateUrl: "./access-point-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
     AppTable,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+  ],
 })
 export class AccessPointList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -47,7 +49,8 @@ export class AccessPointList implements OnInit {
     { value: "Pedestrian", label: "Peatonal" },
     { value: "Vehicle", label: "Vehicular" },
     { value: "Service", label: "Servicio" },
-    { value: "Emergency", label: "Emergencia" }];
+    { value: "Emergency", label: "Emergencia" },
+  ];
 
   form!: FormGroup<AccessPointFormGroup>;
 

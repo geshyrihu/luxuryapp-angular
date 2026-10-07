@@ -50,7 +50,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
     </base-input-signal>
   `,
 })
-export class CustomInputDateTimeNative implements OnInit {
+export class LuxInputDateTimeNative implements OnInit {
   control = input<FormControl>(new FormControl());
   id = input<string>(`dtn-${Math.random().toString(36).substring(2, 9)}`);
   label = input<string>("");

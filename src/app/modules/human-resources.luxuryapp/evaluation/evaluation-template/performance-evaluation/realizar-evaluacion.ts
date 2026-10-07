@@ -16,18 +16,18 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxCard } from "@ui/adaptive/card/card";
-import { LxDivider } from "@ui/adaptive/divider/divider";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { LxDivider } from "@ui/adaptive/divider/divider";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 @Component({
   selector: "app-realizar-evaluacion",
@@ -37,10 +37,11 @@ import { ROUTES } from "src/app/routing/route-paths";
     ReactiveFormsModule,
     LxCard,
     LxMessage,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxDivider,
-    CustomInputTextAreaSignal,
-     ButtonWeb],
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class RealizarEvaluacion implements OnInit {
   authS = inject(AuthService);
@@ -141,13 +142,16 @@ export class RealizarEvaluacion implements OnInit {
     this.form = this.fb.nonNullable.group({
       evaluatorId: [
         { value: this.userIdLogged, disabled: this.isEditMode },
-        Validators.required],
+        Validators.required,
+      ],
       evaluatedId: [
         { value: null as string | null, disabled: this.isEditMode },
-        Validators.required],
+        Validators.required,
+      ],
       evaluationTemplateId: [
         { value: null as string | null, disabled: this.isEditMode },
-        Validators.required],
+        Validators.required,
+      ],
       evaluationDate: [this.dateS.getDateNow(), Validators.required],
       answers: this.fb.array([]),
     });
@@ -206,10 +210,12 @@ export class RealizarEvaluacion implements OnInit {
         this.answers.push(
           this.fb.nonNullable.group({
             templateQuestionId: [
-              { value: question.id, disabled: this.isEditMode }],
+              { value: question.id, disabled: this.isEditMode },
+            ],
             score: [
               { value: 1, disabled: this.isEditMode },
-              [Validators.required, Validators.min(0), Validators.max(5)]],
+              [Validators.required, Validators.min(0), Validators.max(5)],
+            ],
             comments: [{ value: "", disabled: this.isEditMode }],
           }),
         );
@@ -294,4 +300,3 @@ export class RealizarEvaluacion implements OnInit {
     }
   }
 }
-

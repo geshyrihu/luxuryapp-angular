@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,12 +9,13 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { LxMessage } from "@ui/adaptive/message/message";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
 import { PropertyInitialBalanceDTO } from "../../interfaces/charge.dto";
 import { downloadInitialBalanceTemplate } from "./initial-balance-template.helper";
 
@@ -28,7 +28,7 @@ interface BulkImportResult {
 
 @Component({
   selector: "app-bulk-import-modal",
-  imports: [ButtonWeb, CustomInputFile, LxMessage, LxIcon],
+  imports: [ButtonWeb, LuxInputFile, LxMessage, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bulk-import-modal.html",
 })
@@ -101,4 +101,3 @@ export default class BulkImportModal implements OnInit {
     this.ref.close(this.result && this.result.successCount > 0);
   }
 }
-

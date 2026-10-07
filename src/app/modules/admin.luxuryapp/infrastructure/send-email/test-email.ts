@@ -1,18 +1,14 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SwalService } from "@core/services/swal.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-test-email",
   templateUrl: "./test-email.html",
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    ButtonWeb,
-  ],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class TestEmail {
   apiResponseS = inject(ApiResponseService);
@@ -53,4 +49,3 @@ export class TestEmail {
       });
   }
 }
-

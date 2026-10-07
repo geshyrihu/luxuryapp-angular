@@ -13,16 +13,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PurchaseOrderDetailLine } from "./purchase-order.types";
 export interface IOrdenCompraDetalleForm {
   id: FormControl<string | null>;
@@ -42,12 +45,13 @@ export interface IOrdenCompraDetalleForm {
   templateUrl: "./orden-compra-edit-detalle.html",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputCurrencySignal,
-    CustomInputDecimal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputCurrencySignal,
+    LuxInputDecimal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush, // Add OnPush strategy
 })
 export class OrdenCompraEditDetalle implements OnInit {
@@ -92,7 +96,9 @@ export class OrdenCompraEditDetalle implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem<PurchaseOrderDetailLine>(Endpoints.PurchaseOrderDetails.getById(this.id))
+      .onGetItem<PurchaseOrderDetailLine>(
+        Endpoints.PurchaseOrderDetails.getById(this.id),
+      )
       .then((result) => {
         if (result) this.form.patchValue(result);
         this.cdr.detectChanges(); // Call detectChanges after patching the form

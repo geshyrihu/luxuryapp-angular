@@ -6,17 +6,20 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
 @Component({
   selector: "app-add-file-estado-financiero",
   templateUrl: "./add-file-estado-financiero.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputFile, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputFile, ButtonWeb],
 })
 export class AddFileEstadoFinanciero implements OnInit {
   formB = inject(FormBuilder);
@@ -67,4 +70,3 @@ export class AddFileEstadoFinanciero implements OnInit {
     return formData;
   }
 }
-

@@ -10,12 +10,15 @@ import { RouterModule } from "@angular/router";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-ordenes-servicio-list-desktop",
@@ -25,13 +28,14 @@ import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux
     ButtonWeb,
     CommonModule,
     RouterModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     LxTag,
-    LxTooltipDirective],
+    LxTooltipDirective,
+  ],
 })
 export class OrdenesServicioListDesktop {
   data = input.required<any[]>();
@@ -39,9 +43,9 @@ export class OrdenesServicioListDesktop {
   fechaControl = input.required<FormControl<string | null>>();
   filtroEquiposValue = input<any>();
   filtroId = input<any>();
-  filtroEquipos = input<{ icon: AppIconName; id: any | string; nombre: string }[]>(
-    [],
-  );
+  filtroEquipos = input<
+    { icon: AppIconName; id: any | string; nombre: string }[]
+  >([]);
 
   reloadOrdenes = output<{ id: any; value: any }>();
   edit = output<{

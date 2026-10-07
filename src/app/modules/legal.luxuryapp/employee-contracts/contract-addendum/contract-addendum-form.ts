@@ -9,21 +9,24 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import {
   ContractAddendumAddOrEditDTO,
   ContractAddendumDetailDTO,
   EAddendumType,
-} from './interfaces/contract-addendum.dto';
+} from "./interfaces/contract-addendum.dto";
 
 interface IContractAddendumForm {
   workContractId: import("@angular/forms").FormControl<string>;
@@ -42,11 +45,12 @@ interface IContractAddendumForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class ContractAddendumFormComponent {
   apiS = inject(ApiResponseService);
@@ -70,7 +74,8 @@ export class ContractAddendumFormComponent {
     { value: "ExtensionContrato", label: "Extensión de Contrato" },
     { value: "ModificacionJornada", label: "Modificación de Jornada" },
     { value: "ClausulaAdicional", label: "Clóusula Adicional" },
-    { value: "OtrasCondiciones", label: "Otra Condición" }];
+    { value: "OtrasCondiciones", label: "Otra Condición" },
+  ];
 
   placeholderText =
     "Usa {{ADENDA_NUMERO}}, {{VALOR_ANTERIOR}}, {{VALOR_NUEVO}}, {{FECHA_EFECTIVA}} como variables dinámicas";
@@ -127,4 +132,3 @@ export class ContractAddendumFormComponent {
     this.ref.close();
   }
 }
-

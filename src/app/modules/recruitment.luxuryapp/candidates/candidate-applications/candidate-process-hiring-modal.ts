@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -18,16 +17,17 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DateService } from "@core/services/date.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { DateService } from "@core/services/date.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CandidateDetail } from "../candidate-core/interfaces/candidate.dto";
 import { CandidateProcessHiringFormGroup } from "./interfaces/candidate-process-hiring-form.interface";
 import {
@@ -59,12 +59,13 @@ interface DuplicateEmployeeMatch {
   selector: "app-candidate-process-hiring-modal",
   templateUrl: "./candidate-process-hiring-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CurrencyPipe,
     ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    ],
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+  ],
 })
 export class CandidateProcessHiringModal implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -155,7 +156,11 @@ export class CandidateProcessHiringModal implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (this.submitting() || this.searchingDuplicates() || !this.hasValidTarget()) {
+    if (
+      this.submitting() ||
+      this.searchingDuplicates() ||
+      !this.hasValidTarget()
+    ) {
       return;
     }
 
@@ -276,7 +281,9 @@ export class CandidateProcessHiringModal implements OnInit {
           phoneNumber: payload.phoneNumber,
         },
       );
-      const matches: DuplicateEmployeeMatch[] = Array.isArray(response) ? response : [];
+      const matches: DuplicateEmployeeMatch[] = Array.isArray(response)
+        ? response
+        : [];
 
       this.lastDuplicateFingerprint.set(fingerprint);
       this.duplicateMatches.set(matches);
@@ -317,7 +324,9 @@ export class CandidateProcessHiringModal implements OnInit {
     };
   }
 
-  private buildDuplicateFingerprint(payload: CandidateProcessHiringDto): string {
+  private buildDuplicateFingerprint(
+    payload: CandidateProcessHiringDto,
+  ): string {
     return [
       payload.firstName.trim().toLowerCase(),
       payload.lastName.trim().toLowerCase(),
@@ -463,7 +472,3 @@ export class CandidateProcessHiringModal implements OnInit {
     });
   }
 }
-
-
-
-

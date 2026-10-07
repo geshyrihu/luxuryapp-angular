@@ -5,12 +5,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import {
   CobranzaPaymentResponseDTO,
   CreateCobranzaPaymentDTO,
@@ -19,10 +22,10 @@ import {
 import { EPaymentMethod, EPaymentStatus } from "../../interfaces/enums";
 
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IPaymentEditForm {
   propertyId: FormControl<string>;
@@ -37,11 +40,12 @@ interface IPaymentEditForm {
   selector: "app-payment-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputCurrencySignal,
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    ButtonWeb,
+  ],
   templateUrl: "./payment-form.html",
 })
 export class PaymentForm implements OnInit {
@@ -58,7 +62,8 @@ export class PaymentForm implements OnInit {
 
   statusOptions = signal([
     { label: "Registrado", value: EPaymentStatus.Registrado },
-    { label: "Verificado", value: EPaymentStatus.Verificado }]);
+    { label: "Verificado", value: EPaymentStatus.Verificado },
+  ]);
 
   methodOptions = [
     {
@@ -69,7 +74,8 @@ export class PaymentForm implements OnInit {
     { label: "Cheque nominativo", value: EPaymentMethod.NominativeCheck },
     { label: "Tarjeta de crédito", value: EPaymentMethod.CreditCard },
     { label: "Tarjeta de débito", value: EPaymentMethod.DebitCard },
-    { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined }];
+    { label: "Por definir (otros)", value: EPaymentMethod.ToBeDefined },
+  ];
 
   form = new FormGroup<IPaymentEditForm>({
     propertyId: new FormControl("", {
@@ -105,9 +111,9 @@ export class PaymentForm implements OnInit {
   }
 
   async loadProperties() {
-    const res = await this.apiResponseS.onGetSelectItem<SelectItemDto<string>[]>(
-      Endpoints.SelectItems.properties(this.customerId),
-    );
+    const res = await this.apiResponseS.onGetSelectItem<
+      SelectItemDto<string>[]
+    >(Endpoints.SelectItems.properties(this.customerId));
     this.propertiesOptions.set(res ?? []);
   }
 
@@ -136,7 +142,8 @@ export class PaymentForm implements OnInit {
           {
             label: lockedStatuses[res.status] ?? String(res.status),
             value: res.status,
-          }]);
+          },
+        ]);
       }
     }
   }
@@ -165,6 +172,3 @@ export class PaymentForm implements OnInit {
     });
   }
 }
-
-
-

@@ -12,18 +12,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 @Component({
   selector: "app-administration-form-list",
   templateUrl: "./administration-form-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputSelectSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputSelectSignal, ButtonWeb],
 })
 export class AdministrationFormList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -38,7 +38,8 @@ export class AdministrationFormList implements OnInit {
 
   form = new FormGroup({
     administrationparticipante: new FormControl<string | null>(null, [
-      Validators.required]),
+      Validators.required,
+    ]),
   });
 
   get administrationparticipante() {
@@ -103,4 +104,3 @@ export class AdministrationFormList implements OnInit {
       });
   }
 }
-

@@ -11,19 +11,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: "app-entrega-recepcion-cliente-form",
@@ -31,11 +34,12 @@ import { EnumSelectService } from "@core/services/enum-select.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputFile,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputFile,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class EntregaRecepcionClienteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -107,4 +111,3 @@ export class EntregaRecepcionClienteForm implements OnInit {
     return formData;
   }
 }
-

@@ -1,1 +1,1 @@
-export { InputToggleSwitch as CustomInputToggleSwitch } from "../adaptive/input-toggle-switch/input-toggle-switch";
+export { InputToggleSwitch as LuxInputToggleSwitch } from "../adaptive/input-toggle-switch/input-toggle-switch";

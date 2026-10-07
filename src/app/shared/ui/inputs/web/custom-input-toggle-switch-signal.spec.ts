@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CustomInputToggleSwitch } from './custom-input-toggle-switch-signal';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LuxInputToggleSwitch } from "./custom-input-toggle-switch-signal";
 
-describe('CustomInputToggleSwitch', () => {
-  let component: CustomInputToggleSwitch;
-  let fixture: ComponentFixture<CustomInputToggleSwitch>;
+describe("LuxInputToggleSwitch", () => {
+  let component: LuxInputToggleSwitch;
+  let fixture: ComponentFixture<LuxInputToggleSwitch>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomInputToggleSwitch],
+      imports: [LuxInputToggleSwitch],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomInputToggleSwitch);
+    fixture = TestBed.createComponent(LuxInputToggleSwitch);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,3 +1,4 @@
+import { UpdateSatFundingDetailDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,9 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
@@ -23,7 +21,9 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { UpdateSatFundingDetailDto } from "@accounting.luxuryapp/general-ledger/sat-funding/interfaces/sat-funding-detail.interface";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 interface ISatFundingInvoiceEditForm {
   id: FormControl<string>;
   bankId: FormControl<number | null>;
@@ -40,9 +40,10 @@ interface ISatFundingInvoiceEditForm {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
-    CustomInputTextSignal],
+    LuxInputTextSignal,
+  ],
 })
 export class SatFundingInvoiceEditFormComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -62,7 +63,8 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" }];
+    { value: 9, label: "Impuestos y contribuciones" },
+  ];
 
   ngOnInit(): void {
     this.id = this.config.data.satFundingDetailId;
@@ -107,5 +109,3 @@ export class SatFundingInvoiceEditFormComponent implements OnInit {
       });
   }
 }
-
-

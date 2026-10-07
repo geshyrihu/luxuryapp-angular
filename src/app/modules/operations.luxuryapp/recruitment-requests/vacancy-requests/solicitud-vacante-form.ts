@@ -1,4 +1,3 @@
-import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -8,10 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom } from "rxjs";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
@@ -20,6 +16,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { WorkSchedulePresentationService } from "@core/services/work-schedule-presentation.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 import { WorkPositionDetailDTO } from "./WorkPositionDetailDTO";
 
 @Component({
@@ -29,8 +28,9 @@ import { WorkPositionDetailDTO } from "./WorkPositionDetailDTO";
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputTextAreaSignal,
-    CurrencyPipe],
+    LuxInputTextAreaSignal,
+    CurrencyPipe,
+  ],
 })
 export class SolicitudVacanteForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -54,7 +54,8 @@ export class SolicitudVacanteForm implements OnInit {
     { label: "Jueves", value: 4 },
     { label: "Viernes", value: 5 },
     { label: "Sábado", value: 6 },
-    { label: "Domingo", value: 0 }] as const;
+    { label: "Domingo", value: 0 },
+  ] as const;
 
   form = this.formB.nonNullable.group({
     id: [this.config.data.workPositionId],
@@ -73,7 +74,9 @@ export class SolicitudVacanteForm implements OnInit {
   }
 
   onLoadData() {
-    const urlApi = OperationRecruitmentEndpoints.workPositions.getById(this.workPositionId);
+    const urlApi = OperationRecruitmentEndpoints.workPositions.getById(
+      this.workPositionId,
+    );
     this.apiResponseS
       .onGetItem<WorkPositionDetailDTO>(urlApi)
       .then((result) => {
@@ -154,4 +157,3 @@ export class SolicitudVacanteForm implements OnInit {
       });
   }
 }
-

@@ -12,18 +12,17 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DateService } from "@core/services/date.service";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   SuspensionDayAddDTO,
   SuspensionDayDetailDTO,
 } from "../interfaces/incident.interfaces";
-import { ButtonWeb } from "@ui/buttons/web";
-
 
 @Component({
   selector: "app-suspension-days-manager",
@@ -33,8 +32,9 @@ import { ButtonWeb } from "@ui/buttons/web";
     ReactiveFormsModule,
     AppTable,
     ApiDatePipe,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal],
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./suspension-days-manager.html",
 })

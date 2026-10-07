@@ -12,9 +12,12 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   InspectionListItem,
   InspectionSummary,
@@ -34,10 +37,11 @@ type InspectionTableRow = InspectionSummary & {
     ButtonWeb,
     FormsModule,
     LxTooltipDirective,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     AppTable,
     AppSortableColumn,
-    TableEmptyMessage],
+    TableEmptyMessage,
+  ],
 })
 export class ListaInspeccionesDesktop {
   private readonly tableScrollHeightS = inject(TableScrollHeightService);
@@ -60,7 +64,11 @@ export class ListaInspeccionesDesktop {
   readonly tableRows = tableRows();
   readonly rowsPerPageOptions = rowsPerPageOptions();
   readonly scrollHeight = this.tableScrollHeightS.scrollHeight;
-  readonly globalFilterFields = ["name", "recurrenceUnitDisplayName", "departament"];
+  readonly globalFilterFields = [
+    "name",
+    "recurrenceUnitDisplayName",
+    "departament",
+  ];
 
   readonly rows = computed<InspectionTableRow[]>(() =>
     this.data().flatMap((group) =>

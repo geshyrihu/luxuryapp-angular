@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,15 +11,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
 // Bootstrap Modules
 // Project components & services
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { PurchaseOrderProductDraft } from "../purchase-order.types";
 export interface IOrdenCompraDetalleCompForm {
   productoId: FormControl<string | null>;
@@ -36,12 +39,13 @@ export interface IOrdenCompraDetalleCompForm {
 
 @Component({
   selector: "app-orden-compra-detalle-form",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    CustomInputCurrencySignal,
-    CustomInputDecimal,
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputCurrencySignal,
+    LuxInputDecimal,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./orden-compra-detalle-form.html",
@@ -56,8 +60,10 @@ export class OrdenCompraDetalleForm implements OnInit {
   cb_measurement_units: SelectItemDto[] = [];
 
   ngOnInit(): void {
-    this.productData = this.config.data.product as Partial<PurchaseOrderProductDraft>;
-    this.cb_measurement_units = this.config.data.measurementUnits as SelectItemDto[];
+    this.productData = this.config.data
+      .product as Partial<PurchaseOrderProductDraft>;
+    this.cb_measurement_units = this.config.data
+      .measurementUnits as SelectItemDto[];
 
     this.form = this.fb.group<IOrdenCompraDetalleCompForm>({
       productoId: new FormControl(

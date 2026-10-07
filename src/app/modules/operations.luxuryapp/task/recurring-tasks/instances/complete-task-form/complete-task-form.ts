@@ -11,12 +11,15 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TaskInstance } from "@core/interfaces/recurring-tasks/task-instance.interface";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface ICompleteTaskForm {
   comments: FormControl<string>;
@@ -29,9 +32,10 @@ interface ICompleteTaskForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextAreaSignal,
+    LuxInputTextAreaSignal,
     LxFileUpload,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class CompleteTaskForm implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -80,4 +84,3 @@ export class CompleteTaskForm implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
-

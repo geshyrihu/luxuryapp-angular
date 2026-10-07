@@ -1,5 +1,5 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ButtonWeb } from "@ui/buttons/web";
 /**
  * ============================================================================
  * ⚠️ ADVERTENCIA CRÍTICA / CRITICAL WARNING ⚠️
@@ -27,28 +27,30 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 
+import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { BudgetProposalItemDTO } from "@accounting.luxuryapp/general-ledger/budget-proposals/interfaces/budget-proposal.model";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-budget-support-dialog",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     PdfViewerTrigger,
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputFile,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputFile,
     LxTag,
     LxCard,
     LxMessage,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-support-dialog.html",
 })
@@ -106,7 +108,7 @@ export class BudgetSupportDialog implements OnInit {
 
   onFileSelected(file: File): void {
     if (file) {
-      const selectedFiles: File[] = [file]; // CustomInputFile emits single file by default, but we can adapt if we want multiple
+      const selectedFiles: File[] = [file]; // LuxInputFile emits single file by default, but we can adapt if we want multiple
       const pdfFiles = selectedFiles.filter(
         (f) => f.type === "application/pdf",
       );
@@ -119,9 +121,9 @@ export class BudgetSupportDialog implements OnInit {
       // this.supportForm.get("files")?.setValue([...currentFiles, ...pdfFiles]);
 
       // For now, let's assume single file replacement or append if multiple is supported by the custom component (it's not by default usually, unless configured)
-      // The instructions say "multiple" was on the input. CustomInputFile usually emits one file.
+      // The instructions say "multiple" was on the input. LuxInputFile usually emits one file.
       // If we want multiple, we might need a different approach or modify the custom input.
-      // Assuming CustomInputFile emits one file, we push it to the array.
+      // Assuming LuxInputFile emits one file, we push it to the array.
 
       const currentFiles = this.supportForm.get("files")?.value || [];
       this.supportForm.get("files")?.setValue([...currentFiles, ...pdfFiles]);
@@ -267,4 +269,3 @@ export class BudgetSupportDialog implements OnInit {
     this.ref.close();
   }
 }
-

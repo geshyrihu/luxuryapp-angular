@@ -1,18 +1,15 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
   input,
   output,
 } from "@angular/core";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { FormsModule } from "@angular/forms";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { FormsModule } from "@angular/forms";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -26,16 +23,18 @@ import { IRegistroChecador } from "../interfaces/chekador-empleados.models";
   selector: "app-chekador-list-desktop",
   templateUrl: "./chekador-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
     LxTag,
     LxImage,
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     FormsModule,
     LuxTableCaption,
-    TableFooter],
+    TableFooter,
+  ],
 })
 export class ChekadorListDesktop {
   data = input.required<IRegistroChecador[]>();

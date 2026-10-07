@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
-  DestroyRef,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   FormBuilder,
   FormControl,
@@ -13,23 +14,25 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 
 interface IMantenimientoPreventivoForm {
   id: FormControl<string | null>;
@@ -56,13 +59,14 @@ interface IMantenimientoPreventivoForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
     InputAutocomplete,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class MantenimientoPreventivoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -144,7 +148,8 @@ export class MantenimientoPreventivoForm implements OnInit {
       this.loadAccountingCatalogs(),
       this.loadRecurrence(),
       this.loadTypeMaintance(),
-      this.loadMonths()]);
+      this.loadMonths(),
+    ]);
 
     switch (this.config.data.task) {
       case "create":

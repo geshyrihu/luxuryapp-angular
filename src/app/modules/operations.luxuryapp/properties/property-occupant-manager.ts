@@ -22,8 +22,8 @@ import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -38,10 +38,11 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    CustomInputTextSignal,
-    CustomInputCheckSignal,
+    LuxInputTextSignal,
+    LuxInputCheckSignal,
     LxTag,
-    LxMessage],
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-occupant-manager.html",
 })

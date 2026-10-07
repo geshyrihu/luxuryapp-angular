@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,10 +10,11 @@ import { rowsPerPageOptions } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -28,7 +28,8 @@ import { LogEntry } from "../interfaces/log-entry.interface";
   selector: "app-log-api-report-desktop",
   templateUrl: "./log-api-report-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     TableEmptyMessage,
     CommonModule,
     ApiDatePipe,
@@ -38,10 +39,11 @@ import { LogEntry } from "../interfaces/log-entry.interface";
     AppSorticon,
     LxCard,
     LxTag,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
     LuxTableCaption,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class LogApiReportDesktop {
   data = input.required<LogEntry[]>();

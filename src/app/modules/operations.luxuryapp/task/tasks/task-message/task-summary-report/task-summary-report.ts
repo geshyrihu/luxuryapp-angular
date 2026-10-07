@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,10 +12,14 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
-import { ITaskMessageDTO, ITaskResultDTO } from "../interfaces/task-message.dto";
+import {
+  ITaskMessageDTO,
+  ITaskResultDTO,
+} from "../interfaces/task-message.dto";
 
 interface SummaryRow {
   index: number;
@@ -42,10 +45,7 @@ const MAX_PAGES = 10;
   selector: "app-task-summary-report",
   templateUrl: "./task-summary-report.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb,
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    LxIcon],
+  imports: [ButtonWeb, ReactiveFormsModule, LuxInputDateSignal, LxIcon],
   styles: [
     `
       .summary-screen-table {
@@ -57,7 +57,8 @@ const MAX_PAGES = 10;
       .summary-screen-table td .cell-sub {
         font-size: 0.85rem;
       }
-    `],
+    `,
+  ],
 })
 export class TaskSummaryReport implements OnInit {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -117,7 +118,8 @@ export class TaskSummaryReport implements OnInit {
         rows: this.toRows(
           inRange.filter((item) => item.status === "Completed"),
         ),
-      }];
+      },
+    ];
 
     return candidates.filter((group) => group.rows.length > 0);
   });
@@ -135,7 +137,8 @@ export class TaskSummaryReport implements OnInit {
     try {
       const [open, completed] = await Promise.all([
         this.fetchAll("NotStarted"),
-        this.fetchAll("Completed")]);
+        this.fetchAll("Completed"),
+      ]);
       this.items.set([...open, ...completed]);
     } finally {
       this.loading.set(false);
@@ -319,5 +322,4 @@ ${this.htmlPrintS.getStandardCss()}
     parts.push(`${this.total()} tarea(s)`);
     return parts.join(" · ");
   }
-
 }

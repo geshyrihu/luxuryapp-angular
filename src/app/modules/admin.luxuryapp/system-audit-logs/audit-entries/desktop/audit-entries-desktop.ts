@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,8 +11,9 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -27,7 +27,8 @@ import { AuditEntry } from "../interfaces/audit-entry.interface";
   selector: "app-audit-entries-desktop",
   templateUrl: "./audit-entries-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     TableEmptyMessage,
     ApiDatePipe,
     ReactiveFormsModule,
@@ -36,9 +37,10 @@ import { AuditEntry } from "../interfaces/audit-entry.interface";
     AppSorticon,
     LxCard,
     LxTag,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    LuxTableCaption],
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxTableCaption,
+  ],
 })
 export class AuditEntriesDesktop {
   data = input.required<AuditEntry[]>();

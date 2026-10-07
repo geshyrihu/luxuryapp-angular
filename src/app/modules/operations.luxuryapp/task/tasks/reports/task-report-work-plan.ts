@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,30 +22,35 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-
 
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskForm } from "../task-message/task-form";
 
 @Component({
   selector: "app-task-report-work-plan",
   templateUrl: "./task-report-work-plan.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     DataViewMobile,
     MobileListItem,
     LuxTableCaption,
     LxIcon,
     AppTable,
     AppSortableColumn,
-    CustomInputSelectSignal,
-    ReactiveFormsModule],
+    LuxInputSelectSignal,
+    ReactiveFormsModule,
+  ],
 })
 export class TaskReportWorkPlan implements OnInit {
   onUpdatePriority(taskId: string): void {

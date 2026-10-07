@@ -6,23 +6,27 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-asunto-legal-form",
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./asunto-legal-form.html",
 })
@@ -45,7 +49,8 @@ export class AsuntoLegalForm implements OnInit {
     {
       value: false,
       label: "Externo",
-    }];
+    },
+  ];
 
   form = this.formB.nonNullable.group({
     id: [{ value: "", disabled: true }],
@@ -140,4 +145,3 @@ export class AsuntoLegalForm implements OnInit {
     });
   }
 }
-

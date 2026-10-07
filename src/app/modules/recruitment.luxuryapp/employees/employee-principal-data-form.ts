@@ -13,12 +13,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
 interface IEmployeePrincipalDataForm {
@@ -33,12 +33,7 @@ interface IEmployeePrincipalDataForm {
   selector: "employee-principal-data-form",
   templateUrl: "./employee-principal-data-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    InputMask,
-    ButtonWeb,
-  ],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, InputMask, ButtonWeb],
 })
 export class EmployeePrincipalDataForm implements OnInit {
   // employeeAddOrEditService = inject(EmployeeAddOrEditService);
@@ -69,7 +64,9 @@ export class EmployeePrincipalDataForm implements OnInit {
     }),
   });
   ngOnInit() {
-    if (this.isReadOnly()) { this.form.disable(); }
+    if (this.isReadOnly()) {
+      this.form.disable();
+    }
     this.onLoadData();
   }
 
@@ -99,5 +96,3 @@ export class EmployeePrincipalDataForm implements OnInit {
       });
   }
 }
-
-

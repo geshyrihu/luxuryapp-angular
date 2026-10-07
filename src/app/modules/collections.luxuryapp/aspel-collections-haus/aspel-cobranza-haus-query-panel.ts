@@ -7,8 +7,8 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
   AspelQueryMode,
   AspelQueryRequest,
@@ -18,12 +18,7 @@ import {
 @Component({
   selector: "app-aspel-cobranza-haus-query-panel",
 
-  imports: [
-    ButtonWeb,
-    FormsModule,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-  ],
+  imports: [ButtonWeb, FormsModule, LuxInputDateSignal, LuxInputSelectSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card shadow-none border-1 surface-border">

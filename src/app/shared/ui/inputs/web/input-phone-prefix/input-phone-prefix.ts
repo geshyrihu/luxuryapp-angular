@@ -7,12 +7,12 @@ import {
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { PhonePrefix } from "@core/data/phone-prefixes.data";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
+import { LuxInputPhonePrefix } from "../custom-input-phone-prefix";
 
 @Component({
   selector: "web-input-phone-prefix",
 
-  imports: [ReactiveFormsModule, CustomInputPhonePrefix],
+  imports: [ReactiveFormsModule, LuxInputPhonePrefix],
   template: `
     <web-custom-input-phone-prefix
       [control]="control() || internalControl"
@@ -34,10 +34,10 @@ import { CustomInputPhonePrefix } from "../custom-input-phone-prefix";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputPhonePrefix),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputPhonePrefix extends BaseInputSignal {
   prefixList = input<PhonePrefix[]>([]);
   countryCode = input<string>("");
 }
-

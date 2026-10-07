@@ -46,12 +46,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputDecimal),
+      useExisting: forwardRef(() => LuxInputDecimal),
       multi: true,
     },
   ],
 })
-export class CustomInputDecimal extends BaseInputSignal {
+export class LuxInputDecimal extends BaseInputSignal {
   // <--- Inputs Específicos --->
   showButtons = input<boolean>(false);
   minFractionDigits = input<number>(0);

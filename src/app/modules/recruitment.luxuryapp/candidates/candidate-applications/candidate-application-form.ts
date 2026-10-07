@@ -26,12 +26,12 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { CandidateCvUpload } from "../../recruitment-shared/candidate-cv-upload";
 import { CandidateForm } from "../candidate-core/candidate-form";
 import {
@@ -47,12 +47,12 @@ import { CandidateApplicationDetail } from "./interfaces/candidate-application";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputNumberSignal,
-    CustomInputTextAreaSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
+    LuxInputNumberSignal,
+    LuxInputTextAreaSignal,
+    LuxInputTextSignal,
     InputMask,
     InputEmail,
     CandidateCvUpload,

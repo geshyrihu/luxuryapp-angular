@@ -3,11 +3,9 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
-
-
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -24,7 +22,7 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   DataViewMobile,
   TableEmptyMessage,
   CommonModule,
-  CustomInputSelectSignal,
+  LuxInputSelectSignal,
   FormsModule,
   IonInputCheckbox,
   IonInputSelect,
@@ -35,4 +33,5 @@ export const CATALOGO_GASTOS_FIJOS_LIST_MODULES = [
   AppSortableColumn,
   AppSorticon,
   LxTooltipDirective,
-  UpperCasePipe];
+  UpperCasePipe,
+];

@@ -1,5 +1,10 @@
 import { NgClass } from "@angular/common";
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../core/base-input-signal";
 
@@ -42,10 +47,11 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputEmail),
+      useExisting: forwardRef(() => LuxInputEmail),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputEmail extends BaseInputSignal {
+export class LuxInputEmail extends BaseInputSignal {
   customClass = input<string>("");
 }

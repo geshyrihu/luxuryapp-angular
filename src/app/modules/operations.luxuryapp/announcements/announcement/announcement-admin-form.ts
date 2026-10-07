@@ -30,13 +30,13 @@ import { FileUploadModule } from "@iplab/ngx-file-upload";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxEditor } from "@ui/adaptive/editor/editor";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxListbox } from "@ui/adaptive/listbox/listbox";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import {
   Customer,
   IAnnouncement,
@@ -55,15 +55,16 @@ import { ImageGenerationDialog } from "./image-generation-dialog/image-generatio
     FormsModule,
     NgSelectModule,
     FileUploadModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
     ButtonWeb,
-    CustomInputToggleSwitch,
+    LuxInputToggleSwitch,
     LxDivider,
     LxEditor,
     LxListbox,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class AnnouncementAdminForm implements OnInit {
   private fb = inject(FormBuilder);
@@ -98,10 +99,12 @@ export class AnnouncementAdminForm implements OnInit {
     sendByEmail: [false],
     targetedCustomerIds: [
       [] as number[],
-      [Validators.required, Validators.minLength(1)]],
+      [Validators.required, Validators.minLength(1)],
+    ],
     recipientRoleIds: [
       [] as string[],
-      [Validators.required, Validators.minLength(1)]],
+      [Validators.required, Validators.minLength(1)],
+    ],
     mainImageControl: [[] as File[]],
     attachmentsControl: [[] as File[]],
   });
@@ -128,7 +131,8 @@ export class AnnouncementAdminForm implements OnInit {
         ),
         this.apiResponseS.onGetSelectItem<Customer[]>(
           Endpoints.SelectItems.customersActiveShortName,
-        )]);
+        ),
+      ]);
 
       this.allRoles.set(filteredRoles || []);
       const filteredCustomers = this.filterCustomersForCreation(
@@ -225,7 +229,9 @@ export class AnnouncementAdminForm implements OnInit {
     this.data.set({ ...currentData, imagePath: null });
   }
 
-  async requestDeleteAttachment(attachmentToRemove: IAttachment): Promise<void> {
+  async requestDeleteAttachment(
+    attachmentToRemove: IAttachment,
+  ): Promise<void> {
     const currentData = this.data();
     if (!currentData?.attachments) return;
     const confirmed = await this.swalService.confirm({
@@ -315,14 +321,16 @@ export class AnnouncementAdminForm implements OnInit {
   ): Customer[] {
     const adminRoles = [
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente];
+      ApplicationRole.Asistente,
+    ];
     const universalRoles = [
       ApplicationRole.Reclutamiento,
       ApplicationRole.Legal,
       ApplicationRole.SupervisionOperativa,
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
-      ApplicationRole.RecursosHumanos];
+      ApplicationRole.RecursosHumanos,
+    ];
 
     if (adminRoles.includes(userRole as ApplicationRole)) {
       return customers.filter((c) => c.value === userCustomerId);

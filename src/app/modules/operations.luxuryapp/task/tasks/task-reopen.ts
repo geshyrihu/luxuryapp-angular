@@ -12,16 +12,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  CrudSubmitOptions,
-  FormHelper,
-} from "@core/helpers/form-helper";
+import { CrudSubmitOptions, FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IITaskMessageDTOReopenForm {
   applicationUserId: FormControl<string>;
@@ -34,7 +34,7 @@ interface IITaskMessageDTOReopenForm {
   selector: "app-task-reopen",
   templateUrl: "./task-reopen.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputTextAreaSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextAreaSignal, ButtonWeb],
 })
 export class TaskReopen implements OnInit {
   private authS = inject(AuthService);
@@ -84,4 +84,3 @@ export class TaskReopen implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

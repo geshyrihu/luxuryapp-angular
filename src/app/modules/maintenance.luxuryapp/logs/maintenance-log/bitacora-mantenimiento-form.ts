@@ -6,11 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -18,6 +13,11 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
+import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IBitacoraMantenimientoForm {
   customerId: FormControl<string>;
@@ -35,8 +35,8 @@ interface IBitacoraMantenimientoForm {
     ReactiveFormsModule,
     ButtonWeb,
     InputAutocomplete,
-    CustomInputCheckSignal,
-    CustomInputTextAreaSignal,
+    LuxInputCheckSignal,
+    LuxInputTextAreaSignal,
   ],
 })
 export class BitacoraMantenimientoForm implements OnInit {
@@ -105,4 +105,3 @@ export class BitacoraMantenimientoForm implements OnInit {
     });
   }
 }
-

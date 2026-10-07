@@ -14,20 +14,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 
 interface IProductOutputForm {
   id: FormControl<string>;
@@ -48,14 +51,15 @@ interface IProductOutputForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class ProductOutputForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -86,12 +90,11 @@ export class ProductOutputForm implements OnInit {
     return this.form.controls;
   }
   onLoadExistencia() {
-    const urlApi =
-      Endpoints.InventarioProducto.stockByProductAndWarehouse(
-        this.customerIdS.customerId(),
-        this.config.data.idProducto,
-        this.config.data.almacenId,
-      );
+    const urlApi = Endpoints.InventarioProducto.stockByProductAndWarehouse(
+      this.customerIdS.customerId(),
+      this.config.data.idProducto,
+      this.config.data.almacenId,
+    );
     this.apiResponseS.onGetList(urlApi).then((result: any) => {
       if (result !== null) {
         this.existenciaAlmacen.set(result.existencia);
@@ -214,10 +217,7 @@ export class ProductOutputForm implements OnInit {
     } else {
       this.apiResponseS
         .onPut(
-          Endpoints.ProductOutputs.update(
-            this.id,
-            this.cantidadActualUsada(),
-          ),
+          Endpoints.ProductOutputs.update(this.id, this.cantidadActualUsada()),
           payload,
         )
         .then((result: boolean) => {

@@ -12,17 +12,20 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 
 interface IExtintorChecklistForm {
@@ -45,10 +48,10 @@ interface IExtintorChecklistForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputTime,
+    LuxInputCheckSignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    LuxInputTime,
   ],
 })
 export class ExtintorChecklist implements OnInit {
@@ -129,4 +132,3 @@ export class ExtintorChecklist implements OnInit {
     }
   }
 }
-

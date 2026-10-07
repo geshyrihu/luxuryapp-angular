@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,12 +12,13 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -28,7 +28,8 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
 
 @Component({
   selector: "app-invoice-list",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxTooltipDirective,
     LxCard,
     LxTag,
@@ -37,7 +38,7 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
     DataViewMobile,
     ApiDatePipe,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxIcon,
     MobileListItem,
   ],

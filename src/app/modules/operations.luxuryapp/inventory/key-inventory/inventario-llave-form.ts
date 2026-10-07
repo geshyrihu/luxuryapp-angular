@@ -12,17 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IFormInventarioLlave {
   id: FormControl<string>;
@@ -40,10 +43,11 @@ interface IFormInventarioLlave {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class InventarioLlaveForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -118,4 +122,3 @@ export class InventarioLlaveForm implements OnInit {
       });
   }
 }
-

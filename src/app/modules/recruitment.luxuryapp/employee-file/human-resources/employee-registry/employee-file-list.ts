@@ -12,7 +12,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { PlatformService } from "@core/services/platform.service";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 import { EmployeeFileListDesktop } from "./desktop/employee-file-list-desktop";
 import { EmployeeFileSummaryDTO } from "./interfaces/employee-file.interfaces";
@@ -23,7 +23,7 @@ import { EmployeeFileListMobile } from "./mobile/employee-file-list-mobile";
   templateUrl: "./employee-file-list.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     EmployeeFileListDesktop,
     EmployeeFileListMobile,
   ],

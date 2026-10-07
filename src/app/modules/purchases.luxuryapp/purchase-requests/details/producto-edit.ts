@@ -21,9 +21,9 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-producto-edit",
@@ -31,10 +31,11 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    ButtonWeb,
+  ],
 })
 export class ProductoEdit implements OnInit {
   apiResponseS = inject(ApiResponseService);

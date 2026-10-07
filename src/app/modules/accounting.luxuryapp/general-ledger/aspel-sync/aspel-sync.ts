@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -12,12 +11,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { LxCard } from "@ui/adaptive/card/card";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
+import { LxCard } from "@ui/adaptive/card/card";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { AspelSyncService } from "./aspel-sync.service";
 
 interface IAspelSyncForm {
@@ -28,12 +28,14 @@ interface IAspelSyncForm {
   selector: "app-aspel-sync",
   templateUrl: "./aspel-sync.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     LxIcon,
-    CustomInputNumberSignal,
-    LxCard],
+    LuxInputNumberSignal,
+    LxCard,
+  ],
 })
 export class AspelSyncComponent {
   private formB = inject(FormBuilder);
@@ -57,7 +59,8 @@ export class AspelSyncComponent {
       validators: [
         Validators.required,
         Validators.min(2000),
-        Validators.max(2100)],
+        Validators.max(2100),
+      ],
     }),
   });
 
@@ -146,4 +149,3 @@ export class AspelSyncComponent {
     return !this.syncing() && this.form.valid && this.customerDataReady();
   }
 }
-

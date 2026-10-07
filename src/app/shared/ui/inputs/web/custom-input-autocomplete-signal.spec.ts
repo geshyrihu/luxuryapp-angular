@@ -1,102 +1,103 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputAutoComplete } from './custom-input-autocomplete-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { LuxInputAutoComplete } from "./custom-input-autocomplete-signal";
 
-describe('CustomInputAutoComplete', () => {
-  let component: CustomInputAutoComplete;
-  let fixture: ComponentFixture<CustomInputAutoComplete>;
+describe("LuxInputAutoComplete", () => {
+  let component: LuxInputAutoComplete;
+  let fixture: ComponentFixture<LuxInputAutoComplete>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputAutoComplete, {
+    TestBed.overrideComponent(LuxInputAutoComplete, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputAutoComplete],
+      imports: [LuxInputAutoComplete],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputAutoComplete);
+    fixture = TestBed.createComponent(LuxInputAutoComplete);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('default signal values', () => {
-    it('should have default data as empty array', () => {
+  describe("default signal values", () => {
+    it("should have default data as empty array", () => {
       expect(component.data()).toEqual([]);
     });
 
-    it('should have default size as undefined', () => {
+    it("should have default size as undefined", () => {
       expect(component.size()).toBeUndefined();
     });
   });
 
-  describe('outputs', () => {
-    it('should emit propagar output', () => {
+  describe("outputs", () => {
+    it("should emit propagar output", () => {
       const spy = vi.fn();
       component.propagar.subscribe(spy);
-      component.propagar.emit('test');
-      expect(spy).toHaveBeenCalledWith('test');
+      component.propagar.emit("test");
+      expect(spy).toHaveBeenCalledWith("test");
     });
   });
 
-  describe('onComplete (search)', () => {
-    it('should filter data based on query', () => {
-      fixture.componentRef.setInput('data', [
-        { label: 'Mexico', value: 'MX' },
-        { label: 'United States', value: 'US' },
-        { label: 'Canada', value: 'CA' }]);
+  describe("onComplete (search)", () => {
+    it("should filter data based on query", () => {
+      fixture.componentRef.setInput("data", [
+        { label: "Mexico", value: "MX" },
+        { label: "United States", value: "US" },
+        { label: "Canada", value: "CA" },
+      ]);
       fixture.detectChanges();
 
-      component.onComplete({ term: 'exi' });
+      component.onComplete({ term: "exi" });
       expect(component.resolvedSuggestions()).toEqual([
-        { label: 'Mexico', value: 'MX' }]);
+        { label: "Mexico", value: "MX" },
+      ]);
     });
 
-    it('should return empty array when no match found', () => {
-      fixture.componentRef.setInput('data', [
-        { label: 'Mexico', value: 'MX' }]);
+    it("should return empty array when no match found", () => {
+      fixture.componentRef.setInput("data", [{ label: "Mexico", value: "MX" }]);
       fixture.detectChanges();
 
-      component.onComplete({ term: 'xyz' });
+      component.onComplete({ term: "xyz" });
       expect(component.resolvedSuggestions()).toEqual([]);
     });
 
-    it('should be case insensitive', () => {
-      fixture.componentRef.setInput('data', [
-        { label: 'Mexico', value: 'MX' }]);
+    it("should be case insensitive", () => {
+      fixture.componentRef.setInput("data", [{ label: "Mexico", value: "MX" }]);
       fixture.detectChanges();
 
-      component.onComplete({ term: 'MEX' });
+      component.onComplete({ term: "MEX" });
       expect(component.resolvedSuggestions()).toEqual([
-        { label: 'Mexico', value: 'MX' }]);
+        { label: "Mexico", value: "MX" },
+      ]);
     });
   });
 
-  describe('onSelectItem', () => {
-    it('should emit propagar with selected item and set control value', () => {
+  describe("onSelectItem", () => {
+    it("should emit propagar with selected item and set control value", () => {
       const spy = vi.fn();
       component.propagar.subscribe(spy);
-      const selectedItem = { label: 'Mexico', value: 'MX' };
+      const selectedItem = { label: "Mexico", value: "MX" };
       component.onSelectItem(selectedItem);
       expect(spy).toHaveBeenCalledWith(selectedItem);
       expect(component.internalControl.value).toEqual(selectedItem);
     });
   });
 
-  describe('onClear', () => {
-    it('should clear control value and emit propagar with null', () => {
+  describe("onClear", () => {
+    it("should clear control value and emit propagar with null", () => {
       const spy = vi.fn();
       component.propagar.subscribe(spy);
-      component.internalControl.setValue({ label: 'Mexico', value: 'MX' });
+      component.internalControl.setValue({ label: "Mexico", value: "MX" });
       component.onClear();
       expect(component.internalControl.value).toBeNull();
       expect(spy).toHaveBeenCalledWith(null);

@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
-  DestroyRef,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
   FormBuilder,
@@ -15,21 +16,23 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IServiceOrderForm {
   id: FormControl<string | null>;
@@ -62,11 +65,12 @@ interface IServiceOrderForm {
     ReactiveFormsModule,
     ButtonWeb,
     InputAutocomplete,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
-    CustomInputTextSignal],
+    LuxInputCurrencySignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
+    LuxInputTextSignal,
+  ],
 })
 export class ServiceOrderForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -104,7 +108,10 @@ export class ServiceOrderForm implements OnInit {
     providerId: new FormControl<number | null>(null),
     provider: new FormControl<string | null>(null),
     // La validación de coherencia se aplica por grupo más abajo.
-    price: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+    price: new FormControl<number | null>(null, [
+      Validators.required,
+      Validators.min(0),
+    ]),
     employeeResponsableId: new FormControl("", {
       nonNullable: true,
       validators: [Validators.required],
@@ -112,7 +119,9 @@ export class ServiceOrderForm implements OnInit {
     employeeResponsable: new FormControl<string | null>(null),
     typeMaintance: new FormControl<number | null>(null, [Validators.required]),
     executionDate: new FormControl("", { nonNullable: true }),
-    observations: new FormControl<string | null>(null, [Validators.maxLength(4000)]),
+    observations: new FormControl<string | null>(null, [
+      Validators.maxLength(4000),
+    ]),
     cumplimientoActividades: new FormControl(false, {
       nonNullable: true,
       validators: [Validators.required],
@@ -153,7 +162,8 @@ export class ServiceOrderForm implements OnInit {
     }
 
     // Status.Concluido === 1 requiere fecha de ejecución.
-    if (status === 1 && !executionDate) errors["concludedWithoutExecution"] = true;
+    if (status === 1 && !executionDate)
+      errors["concludedWithoutExecution"] = true;
 
     return Object.keys(errors).length ? errors : null;
   };
@@ -172,7 +182,8 @@ export class ServiceOrderForm implements OnInit {
       this.loadProviders(),
       this.loadApplicationUsers(),
       this.loadStatus(),
-      this.loadTypeMaintance()]);
+      this.loadTypeMaintance(),
+    ]);
 
     if (this.id() !== 0) {
       await this.onLoadData();
@@ -204,9 +215,7 @@ export class ServiceOrderForm implements OnInit {
 
   private async loadStatus(): Promise<void> {
     // defaultOption=false omite el placeholder "--Seleccione una opción--".
-    const data = await this.apiResponseS.onGetEnumSelectItem(
-      "status/false",
-    );
+    const data = await this.apiResponseS.onGetEnumSelectItem("status/false");
     this.cb_Status.set((data as SelectItemDto[]) || []);
   }
 
@@ -294,20 +303,23 @@ export class ServiceOrderForm implements OnInit {
     );
 
     // Actualizar formulario
-    this.form.patchValue({
-      ...result,
-      executionDate,
-      requestDate,
-      activity,
-      observations,
-      machineryId: machineryId,
-      machinery: selectedMachinery?.label || null,
-      providerId: providerId,
-      provider: selectedProvider?.label || null,
-      employeeResponsableId: String(employeeResponsableId),
-      employeeResponsable: selectedEmployee?.label || null,
-      isInternalExecution: result.isInternalExecution === true,
-    }, { emitEvent: false });
+    this.form.patchValue(
+      {
+        ...result,
+        executionDate,
+        requestDate,
+        activity,
+        observations,
+        machineryId: machineryId,
+        machinery: selectedMachinery?.label || null,
+        providerId: providerId,
+        provider: selectedProvider?.label || null,
+        employeeResponsableId: String(employeeResponsableId),
+        employeeResponsable: selectedEmployee?.label || null,
+        isInternalExecution: result.isInternalExecution === true,
+      },
+      { emitEvent: false },
+    );
     this.isFinalStatus = [1, 2, 4].includes(Number(result.status));
     this.applyExecutionMode();
     if (this.isFinalStatus) this.form.disable({ emitEvent: false });

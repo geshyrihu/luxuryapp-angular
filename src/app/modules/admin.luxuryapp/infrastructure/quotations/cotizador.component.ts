@@ -6,9 +6,9 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
 import { ModuleQuote } from "./interfaces/module-quote.interface";
 
 @Component({
@@ -17,8 +17,8 @@ import { ModuleQuote } from "./interfaces/module-quote.interface";
   imports: [
     CommonModule,
     FormsModule,
-    CustomInputCheckSignal,
-    CustomInputNumberSignal,
+    LuxInputCheckSignal,
+    LuxInputNumberSignal,
     LxIcon,
   ],
   templateUrl: "./cotizador.component.html",
@@ -93,4 +93,3 @@ export class CotizadorComponent {
     this.departmentsCount.set(Math.max(1, count || 1));
   }
 }
-

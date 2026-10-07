@@ -6,11 +6,11 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputEmail } from "../custom-input-email-signal";
+import { LuxInputEmail } from "../custom-input-email-signal";
 
 @Component({
   selector: "web-input-email",
-  imports: [ReactiveFormsModule, CustomInputEmail],
+  imports: [ReactiveFormsModule, LuxInputEmail],
   template: `
     <web-custom-input-email
       [control]="control() || internalControl"
@@ -33,7 +33,8 @@ import { CustomInputEmail } from "../custom-input-email-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputEmail),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputEmail extends BaseInputSignal {
   customClass = input<string>("");

@@ -17,8 +17,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -28,6 +26,8 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-ticket-legal-seguimiento",
@@ -38,8 +38,9 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class TicketLegalSeguimiento implements OnInit, OnDestroy {
   private formB = inject(FormBuilder);
@@ -67,7 +68,9 @@ export class TicketLegalSeguimiento implements OnInit, OnDestroy {
       [
         Validators.required,
         Validators.maxLength(200),
-        Validators.minLength(10)]],
+        Validators.minLength(10),
+      ],
+    ],
   });
 
   constructor() {

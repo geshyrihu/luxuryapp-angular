@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   input,
   output,
 } from "@angular/core";
@@ -11,10 +10,13 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-product-output-list-desktop",
@@ -27,9 +29,10 @@ import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux
     AppTable,
     AppSortableColumn,
     TableFooter,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     ReactiveFormsModule,
-    InputDatepicker],
+    InputDatepicker,
+  ],
 })
 export class ProductOutputListDesktop {
   data = input.required<any[]>();

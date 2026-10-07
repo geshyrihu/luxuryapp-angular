@@ -5,11 +5,11 @@ import {
   output,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { ButtonMobile } from "@ui/buttons/mobile";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { InspectionListItem } from "../../models/inspection.model";
 
 @Component({
@@ -20,9 +20,10 @@ import { InspectionListItem } from "../../models/inspection.model";
   imports: [
     ButtonMobile,
     FormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     DataViewMobile,
-    MobileActionMenu],
+    MobileActionMenu,
+  ],
 })
 export class ListaInspeccionesMobile {
   groupedData = input<Record<string, InspectionListItem["inspecciones"]>>({});

@@ -1,5 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
-import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,20 +5,21 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 @Component({
   selector: "app-confirm-presentation-modal",
 
-  imports: [ButtonWeb,
-    ReactiveFormsModule,
-    CustomInputDateSignal,
-    LxRadioButton],
+  imports: [ButtonWeb, ReactiveFormsModule, LuxInputDateSignal, LxRadioButton],
   templateUrl: "./confirm-presentation-modal.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -75,4 +74,3 @@ export class ConfirmPresentationModal {
     this.ref.close();
   }
 }
-

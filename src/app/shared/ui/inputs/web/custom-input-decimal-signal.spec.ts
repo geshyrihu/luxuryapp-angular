@@ -1,93 +1,92 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputDecimal } from './custom-input-decimal-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LuxInputDecimal } from "./custom-input-decimal-signal";
 
-describe('CustomInputDecimal', () => {
-  let component: CustomInputDecimal;
-  let fixture: ComponentFixture<CustomInputDecimal>;
+describe("LuxInputDecimal", () => {
+  let component: LuxInputDecimal;
+  let fixture: ComponentFixture<LuxInputDecimal>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputDecimal, {
+    TestBed.overrideComponent(LuxInputDecimal, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputDecimal],
+      imports: [LuxInputDecimal],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputDecimal);
+    fixture = TestBed.createComponent(LuxInputDecimal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('default signal values', () => {
-    it('should have default showButtons as false', () => {
+  describe("default signal values", () => {
+    it("should have default showButtons as false", () => {
       expect(component.showButtons()).toBe(false);
     });
 
-    it('should have default minFractionDigits as 0', () => {
+    it("should have default minFractionDigits as 0", () => {
       expect(component.minFractionDigits()).toBe(0);
     });
 
-    it('should have default maxFractionDigits as 4', () => {
+    it("should have default maxFractionDigits as 4", () => {
       expect(component.maxFractionDigits()).toBe(4);
     });
 
-    it('should have default customClass as empty string', () => {
-      expect(component.customClass()).toBe('');
+    it("should have default customClass as empty string", () => {
+      expect(component.customClass()).toBe("");
     });
 
-    it('should have default size as undefined', () => {
+    it("should have default size as undefined", () => {
       expect(component.size()).toBeUndefined();
     });
 
-    it('should have default useGrouping as true', () => {
+    it("should have default useGrouping as true", () => {
       expect(component.useGrouping()).toBe(true);
     });
 
-    it('should have default prefix as undefined', () => {
+    it("should have default prefix as undefined", () => {
       expect(component.prefix()).toBeUndefined();
     });
 
-    it('should have default suffix as undefined', () => {
+    it("should have default suffix as undefined", () => {
       expect(component.suffix()).toBeUndefined();
     });
 
-    it('should have default showClear as false', () => {
+    it("should have default showClear as false", () => {
       expect(component.showClear()).toBe(false);
     });
   });
 
-  describe('computed properties', () => {
-    it('should compute inputStyleClass with default empty string', () => {
-      expect(component.inputStyleClass()).toBe('');
+  describe("computed properties", () => {
+    it("should compute inputStyleClass with default empty string", () => {
+      expect(component.inputStyleClass()).toBe("");
     });
 
     it('should compute inputStyleClass with "form-control-sm" when size is "small"', () => {
-      fixture.componentRef.setInput('size', 'small');
+      fixture.componentRef.setInput("size", "small");
       fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('form-control-sm');
+      expect(component.inputStyleClass()).toBe("form-control-sm");
     });
 
     it('should compute inputStyleClass with "form-control-lg" when size is "large"', () => {
-      fixture.componentRef.setInput('size', 'large');
+      fixture.componentRef.setInput("size", "large");
       fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('form-control-lg');
+      expect(component.inputStyleClass()).toBe("form-control-lg");
     });
 
-    it('should include customClass in inputStyleClass', () => {
-      fixture.componentRef.setInput('customClass', 'my-class');
+    it("should include customClass in inputStyleClass", () => {
+      fixture.componentRef.setInput("customClass", "my-class");
       fixture.detectChanges();
-      expect(component.inputStyleClass()).toBe('my-class');
+      expect(component.inputStyleClass()).toBe("my-class");
     });
   });
 });

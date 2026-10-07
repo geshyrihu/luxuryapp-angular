@@ -15,7 +15,7 @@ import { LxDivider } from "@ui/adaptive/divider/divider";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
 import {
   ApprovalConfirmationResult,
@@ -35,7 +35,7 @@ import { ApprovalInfoService } from "./approval-info.service";
     LxDivider,
     LxMessage,
     LxTag,
-    CustomInputToggleSwitch,
+    LuxInputToggleSwitch,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

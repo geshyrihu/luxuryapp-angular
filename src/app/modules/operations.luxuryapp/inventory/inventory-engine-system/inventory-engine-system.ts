@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,13 +23,14 @@ import { ActivosForm } from "@maintenance.luxuryapp/machinery/machinery-asset/ac
 import { FichaTecnicaActivo } from "@maintenance.luxuryapp/machinery/machinery/ficha-tecnica-activo";
 import { ServiceHistoryMachinery } from "@maintenance.luxuryapp/machinery/machinery/service-history-machinery";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-inventory-engine-system",
   templateUrl: "./inventory-engine-system.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb,  CustomInputSelectSignal, LxTooltipDirective],
+  imports: [ButtonWeb, LuxInputSelectSignal, LxTooltipDirective],
 })
 export class InventoryEngineSystem {
   apiResponseS = inject(ApiResponseService);

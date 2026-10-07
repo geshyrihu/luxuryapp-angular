@@ -6,15 +6,18 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import {
   MES_OPTIONS,
   PeriodoNominaCreateDTO,
@@ -27,10 +30,11 @@ import {
   selector: "app-modal-periodo-add",
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    CustomInputDateSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputDateSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-periodo-add.html",
 })
@@ -110,10 +114,7 @@ export default class ModalPeriodoAdd implements OnInit {
       };
       this.submitting.set(true);
       this.apiResponseS
-        .onPut(
-          Endpoints.HR.Nomina.Periodos.update(existing.id),
-          dto,
-        )
+        .onPut(Endpoints.HR.Nomina.Periodos.update(existing.id), dto)
         .then((r) => {
           if (r) this.ref.close(true);
         })
@@ -121,4 +122,3 @@ export default class ModalPeriodoAdd implements OnInit {
     }
   }
 }
-

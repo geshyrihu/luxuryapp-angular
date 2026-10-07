@@ -25,10 +25,10 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import { MeetingSeguimientoEdit } from "./meeting-seguimiento-edit";
 
@@ -49,12 +49,12 @@ interface IMinutaDetalleForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-     ButtonWeb,
-    ],
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class MinutaDetalleForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -74,7 +74,8 @@ export class MinutaDetalleForm implements OnInit {
   cb_estatus = signal<any[]>([
     { value: 0, label: "Pendiente" },
     { value: 1, label: "Concluido" },
-    { value: 2, label: "No Autorizado" }]);
+    { value: 2, label: "No Autorizado" },
+  ]);
   cb_area = signal<SelectItemDto[]>([]);
 
   form: FormGroup<IMinutaDetalleForm> = new FormGroup({
@@ -94,7 +95,8 @@ export class MinutaDetalleForm implements OnInit {
       nonNullable: true,
     }),
     meetingId: new FormControl(this.config.data.meetingId ?? null, [
-      Validators.required]),
+      Validators.required,
+    ]),
     applicationUserId: new FormControl(this.authS.applicationUserId, {
       nonNullable: true,
     }),

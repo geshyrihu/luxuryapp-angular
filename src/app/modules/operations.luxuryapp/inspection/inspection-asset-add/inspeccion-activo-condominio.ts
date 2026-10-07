@@ -13,10 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -26,6 +22,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 interface IReviewForm {
   id: FormControl<string | null>;
@@ -44,9 +44,10 @@ interface IReviewForm {
     FormsModule,
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class InspeccionActivoCondominio implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -69,7 +70,8 @@ export class InspeccionActivoCondominio implements OnInit {
     condominiumAssetName: new FormControl<string | null>(null),
     position: new FormControl<number>(0, [
       Validators.required,
-      Validators.min(1)]),
+      Validators.min(1),
+    ]),
     inspectionReviews: new FormArray<FormGroup<IReviewForm>>([]),
   });
 
@@ -177,7 +179,8 @@ export class InspeccionActivoCondominio implements OnInit {
         {
           value: removedValue,
           label: removedReview.label || removedReview.catalogDescription || "",
-        }];
+        },
+      ];
 
       updatedCatalog.sort((a, b) => a.label.localeCompare(b.label));
       this.cb_inspection_reviews_catalog.set(updatedCatalog);

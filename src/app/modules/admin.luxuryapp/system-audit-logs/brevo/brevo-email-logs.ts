@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,11 +8,12 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -27,7 +27,8 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
  */
 @Component({
   selector: "app-brevo-email-logs",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ApiDatePipe,
     FormsModule,
     ReactiveFormsModule,
@@ -36,9 +37,10 @@ import { BrevoPagedResultDto } from "./interfaces/brevo-paged-result.interface";
     AppSorticon,
     LxTag,
     LxIcon,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    LxSkeleton],
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LxSkeleton,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./brevo-email-logs.html",
 })

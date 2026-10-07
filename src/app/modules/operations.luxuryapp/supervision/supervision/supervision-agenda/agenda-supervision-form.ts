@@ -12,18 +12,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IAgendaSupervisionForm {
   id: FormControl<string | null>;
@@ -41,11 +44,12 @@ interface IAgendaSupervisionForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class AgendaSupervisionForm implements OnInit {
   private authS = inject(AuthService);
@@ -65,10 +69,12 @@ export class AgendaSupervisionForm implements OnInit {
     id: [""],
     fechaSolicitud: [
       this.dateS.getDateNow() as Date | string | null,
-      Validators.required],
+      Validators.required,
+    ],
     customerId: [
       this.authS.userToken.infoUserAuthDTO.customerId,
-      Validators.required],
+      Validators.required,
+    ],
     problema: ["", Validators.required],
     solucion: [""],
     fechaConclusion: [null],
@@ -95,7 +101,7 @@ export class AgendaSupervisionForm implements OnInit {
     const urlApi = Endpoints.AgendaSupervision.getById(this.id);
     this.apiResponseS.onGetItem(urlApi).then((result: any) => {
       // Date handling might need adjustment if getDateFormat returns string
-      // But CustomInputDateSignal expects Date object or compatible string.
+      // But LuxInputDateSignal expects Date object or compatible string.
       // DateService.getDateFormat likely returns string "yyyy-MM-dd".
       // Typed form expects Date|null if defined as such, or string if defined as string.
       // Initial value for fechaSolicitud is Date.
@@ -129,4 +135,3 @@ export class AgendaSupervisionForm implements OnInit {
     });
   }
 }
-

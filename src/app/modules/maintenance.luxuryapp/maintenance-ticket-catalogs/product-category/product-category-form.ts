@@ -12,19 +12,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ProductCategoryFormGroup } from "./interfaces/product-category-form.interface";
 
 @Component({
   selector: "app-product-category-form",
   templateUrl: "./product-category-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class ProductCategoryForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -74,4 +77,3 @@ export class ProductCategoryForm implements OnInit {
     });
   }
 }
-

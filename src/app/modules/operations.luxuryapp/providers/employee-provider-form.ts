@@ -11,15 +11,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom } from "rxjs";
-import { EmployeeInternalService } from "@shared/integration/recursos-humanos";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
@@ -33,6 +24,15 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { EmployeeInternalService } from "@shared/integration/recursos-humanos";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 
 type Opcion = "none" | "vacante" | "alta";
 
@@ -42,13 +42,14 @@ type Opcion = "none" | "vacante" | "alta";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
     InputImg,
     ButtonWeb,
-    CustomInputTextAreaSignal],
+    LuxInputTextAreaSignal,
+  ],
 })
 export class EmployeeProviderForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -99,7 +100,8 @@ export class EmployeeProviderForm implements OnInit {
     email: new FormControl<string>("", [
       Validators.required,
       Validators.email,
-      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]),
+      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
+    ]),
   });
 
   altaForm = new FormGroup({
@@ -127,8 +129,7 @@ export class EmployeeProviderForm implements OnInit {
     ),
   });
 
-  preselectedCandidateId: string | null =
-    this.config.data?.candidateId ?? null;
+  preselectedCandidateId: string | null = this.config.data?.candidateId ?? null;
 
   vacancyCandidates = signal<any[]>([]);
   candidateControl = new FormControl<string | null>(null);
@@ -160,41 +161,53 @@ export class EmployeeProviderForm implements OnInit {
 
   private async loadVacancyCandidates(): Promise<void> {
     try {
-      console.log("loadVacancyCandidates called for PositionRequestId:", this.preselectedPositionRequestId);
+      console.log(
+        "loadVacancyCandidates called for PositionRequestId:",
+        this.preselectedPositionRequestId,
+      );
       const res = await this.apiResponseS.onGetItem<any>(
-        `recruitment-candidate-processes/request-position/${this.preselectedPositionRequestId}`
+        `recruitment-candidate-processes/request-position/${this.preselectedPositionRequestId}`,
       );
       console.log("Response from recruitment-candidate-processes:", res);
-      
-      const activeProcesses = res?.activeProcesses || res?.ActiveProcesses || [];
-      const historicalProcesses = res?.historicalProcesses || res?.HistoricalProcesses || [];
+
+      const activeProcesses =
+        res?.activeProcesses || res?.ActiveProcesses || [];
+      const historicalProcesses =
+        res?.historicalProcesses || res?.HistoricalProcesses || [];
       const processes = [...activeProcesses, ...historicalProcesses];
 
       if (processes.length > 0) {
         // Filter by stage 7 (Seleccionado) or 8 (AltaEnProceso)
         const approvedCandidates = processes.filter((c: any) => {
           const stage = c.currentStage ?? c.CurrentStage ?? c.stage ?? c.Stage;
-          return stage === 7 || stage === 8 || stage === 'Seleccionado' || stage === 'AltaEnProceso';
+          return (
+            stage === 7 ||
+            stage === 8 ||
+            stage === "Seleccionado" ||
+            stage === "AltaEnProceso"
+          );
         });
-        
+
         console.log("Approved candidates filtered:", approvedCandidates);
         this.vacancyCandidates.set(
           approvedCandidates.map((c: any) => ({
-            label: `${c.candidateName ?? c.CandidateName ?? 'Candidato'} (Etapa ${c.currentStage ?? c.CurrentStage ?? ''})`,
-            value: c.candidateId ?? c.CandidateId
-          }))
+            label: `${c.candidateName ?? c.CandidateName ?? "Candidato"} (Etapa ${c.currentStage ?? c.CurrentStage ?? ""})`,
+            value: c.candidateId ?? c.CandidateId,
+          })),
         );
       } else {
         console.log("No active or historical processes found");
       }
     } catch (err) {
-      console.error('Error fetching vacancy candidates', err);
+      console.error("Error fetching vacancy candidates", err);
     }
   }
 
   private async loadCandidateData(): Promise<void> {
     try {
-      const candidate = await this.apiResponseS.onGetItem<any>(`recruitment-candidates/${this.preselectedCandidateId}`);
+      const candidate = await this.apiResponseS.onGetItem<any>(
+        `recruitment-candidates/${this.preselectedCandidateId}`,
+      );
       if (candidate) {
         this.form.patchValue({
           firstName: candidate.firstName,
@@ -202,16 +215,16 @@ export class EmployeeProviderForm implements OnInit {
           email: candidate.email,
           phoneNumber: candidate.phoneNumber,
         });
-        
+
         // Ejecutar búsqueda de duplicados automáticamente
         if (candidate.email || candidate.phoneNumber) {
           const duplicate = await this.apiResponseS.onGetItem<any>(
-            `employee-internal/check-duplicate?email=${candidate.email || ''}&phoneNumber=${candidate.phoneNumber || ''}`
+            `employee-internal/check-duplicate?email=${candidate.email || ""}&phoneNumber=${candidate.phoneNumber || ""}`,
           );
 
           if (duplicate) {
             const reuse = window.confirm(
-              `Se detectó que el candidato ya existe como colaborador: ${duplicate.fullName}.\n\n¿Deseas usar su perfil existente (Reingreso/Transferencia) y pasar directamente a la Fase 2 (Alta a Vacante)?`
+              `Se detectó que el candidato ya existe como colaborador: ${duplicate.fullName}.\n\n¿Deseas usar su perfil existente (Reingreso/Transferencia) y pasar directamente a la Fase 2 (Alta a Vacante)?`,
             );
             if (reuse) {
               this.newEmployeeId.set(duplicate.employeeId);
@@ -221,10 +234,13 @@ export class EmployeeProviderForm implements OnInit {
             }
           }
 
-          const fullName = `${candidate.firstName} ${candidate.lastName}`.trim();
+          const fullName =
+            `${candidate.firstName} ${candidate.lastName}`.trim();
           this.searchExistingPerson({ target: { value: fullName } });
           if (candidate.phoneNumber) {
-            this.searchExistingPhone({ target: { value: candidate.phoneNumber } });
+            this.searchExistingPhone({
+              target: { value: candidate.phoneNumber },
+            });
           }
         }
       }
@@ -240,7 +256,8 @@ export class EmployeeProviderForm implements OnInit {
         EndpointsReclutamiento.RequestEmployeeRegister.getVacantes(customerId),
       ),
       firstValueFrom(this.enumSelectS.typeContractRegister()),
-      this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`)]);
+      this.apiResponseS.onGetItem<any>(`customer-addresses/${customerId}`),
+    ]);
 
     this.cb_vacantes.set(vacantes ?? []);
     this.cb_typeContractRegister.set((tiposContrato as SelectItemDto[]) ?? []);

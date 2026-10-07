@@ -1,10 +1,10 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   forwardRef,
   inject,
   input,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
@@ -19,10 +19,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
  */
 @Component({
   selector: "web-custom-input-date-time-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    FlatpickrDirective],
+  imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -60,11 +57,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputDateTimeSignal),
+      useExisting: forwardRef(() => LuxInputDateTimeSignal),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputDateTimeSignal extends BaseInputSignal {
+export class LuxInputDateTimeSignal extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);
   cdr = inject(ChangeDetectorRef);
   protected readonly spanishLocale = Spanish;

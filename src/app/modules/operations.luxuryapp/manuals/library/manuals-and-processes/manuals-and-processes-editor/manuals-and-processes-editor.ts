@@ -3,7 +3,6 @@ import {
   DragDropModule,
   moveItemInArray,
 } from "@angular/cdk/drag-drop";
-import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,21 +22,22 @@ import {
 } from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { ROUTES } from "src/app/routing/route-paths";
+import { ApiDatePipe } from "../../../../../../shared/pipes/api-date.pipe";
 import { DiagramPreviewComponent } from "../diagram-preview";
 import {
   IManualAdjuntoSimpleDTO,
@@ -86,15 +86,16 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     ReactiveFormsModule,
     DragDropModule,
     LxTag,
-    CustomInputSelectButton,
-    CustomInputSwitch,
+    LuxInputSelectButton,
+    LuxInputSwitch,
     LxFileUpload,
     ButtonWeb,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputMultiselectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputMultiselectSignal,
     DiagramPreviewComponent,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class ManualsAndProcessesEditor implements OnInit {
   private apiS = inject(ApiResponseService);
@@ -136,7 +137,8 @@ export class ManualsAndProcessesEditor implements OnInit {
     { label: "Normal", value: 0 },
     { label: "Nota", value: 1 },
     { label: "Advertencia", value: 2 },
-    { label: "Buenas Practicas", value: 3 }];
+    { label: "Buenas Practicas", value: 3 },
+  ];
 
   pasoForm: FormGroup<IPasoForm> = this.fb.group({
     titulo: new FormControl("", {

@@ -11,15 +11,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   CreateRegulationArticleDTO,
   RegulationArticleResponseDTO,
@@ -38,11 +41,12 @@ interface IRegulationArticleForm {
   selector: "app-regulation-article-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputDecimal,
-    CustomInputCheckSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputDecimal,
+    LuxInputCheckSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./regulation-article-form.html",
 })
@@ -80,9 +84,7 @@ export class RegulationArticleForm implements OnInit {
 
   async loadData() {
     const res = await this.apiResponseS.onGetItem<RegulationArticleResponseDTO>(
-      Endpoints.CobranzaCore.RegulationArticles.getById(
-        this.id,
-      ),
+      Endpoints.CobranzaCore.RegulationArticles.getById(this.id),
     );
     if (res) this.form.patchValue(res);
   }
@@ -91,8 +93,7 @@ export class RegulationArticleForm implements OnInit {
     FormHelper.submitCrud({
       form: this.form,
       api: this.apiResponseS,
-      endpoint:
-        Endpoints.CobranzaCore.RegulationArticles.create,
+      endpoint: Endpoints.CobranzaCore.RegulationArticles.create,
       id: this.id,
       ref: this.ref,
       submitting: this.submitting,
@@ -112,6 +113,3 @@ export class RegulationArticleForm implements OnInit {
     });
   }
 }
-
-
-

@@ -4,12 +4,12 @@ import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { NgSelectComponent } from "@ng-select/ng-select";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "repro-host",
 
-  imports: [CustomInputSelectSignal, ReactiveFormsModule],
+  imports: [LuxInputSelectSignal, ReactiveFormsModule],
   template: `
     <lux-input-select-signal
       [control]="control"

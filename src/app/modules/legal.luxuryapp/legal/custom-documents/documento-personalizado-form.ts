@@ -12,16 +12,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IDocumentoPersonalizadoForm {
   id: FormControl<string>;
@@ -35,10 +38,11 @@ interface IDocumentoPersonalizadoForm {
   selector: "app-documento-personalizado-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputFile,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputFile,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./documento-personalizado-form.html",
 })

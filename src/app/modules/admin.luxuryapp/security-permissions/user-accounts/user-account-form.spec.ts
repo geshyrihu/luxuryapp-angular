@@ -1,15 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { FlatpickrDefaults } from "angularx-flatpickr";
 import {
   DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { of } from "rxjs";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { FlatpickrDefaults } from "angularx-flatpickr";
+import { of } from "rxjs";
 import { UserAccountForm } from "./user-account-form";
 
 describe("UserAccountForm", () => {
@@ -20,7 +20,7 @@ describe("UserAccountForm", () => {
     TestBed.overrideComponent(InputMask, {
       set: { template: "<div>Mock Mask</div>", imports: [] },
     });
-    TestBed.overrideComponent(CustomInputSelectSignal, {
+    TestBed.overrideComponent(LuxInputSelectSignal, {
       set: { template: "<div>Mock Select</div>", imports: [] },
     });
 
@@ -48,7 +48,8 @@ describe("UserAccountForm", () => {
           provide: "HttpClientWithoutInterceptors",
           useValue: (globalThis as any).__mockHttpClient,
         },
-        { provide: FlatpickrDefaults, useValue: {} }],
+        { provide: FlatpickrDefaults, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserAccountForm);

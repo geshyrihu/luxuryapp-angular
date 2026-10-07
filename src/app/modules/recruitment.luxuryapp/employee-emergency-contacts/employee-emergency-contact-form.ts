@@ -11,26 +11,29 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { firstValueFrom } from "rxjs";
 @Component({
   selector: "app-employee-emergency-contact-form",
   templateUrl: "./employee-emergency-contact-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
   ],
 })
@@ -84,4 +87,3 @@ export class EmployeeEmergencyContactForm implements OnInit {
     });
   }
 }
-

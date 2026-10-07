@@ -12,14 +12,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IRescheduleForm {
   meetingDate: FormControl<Date | string | null>;
@@ -37,9 +40,10 @@ interface IRescheduleForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal],
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+  ],
 })
 export class JuntaMensualSessionRescheduleForm implements OnInit {
   private readonly formB = inject(FormBuilder);
@@ -96,18 +100,13 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
 
     this.submitting.set(true);
     this.apiResponseS
-      .onPut(
-        Endpoints.JuntaMensualSession.reschedule(
-          this.id(),
-        ),
-        {
-          startAt,
-          endAt,
-          modality: raw.modality,
-          location: raw.location ?? "",
-          description: raw.description ?? "",
-        },
-      )
+      .onPut(Endpoints.JuntaMensualSession.reschedule(this.id()), {
+        startAt,
+        endAt,
+        modality: raw.modality,
+        location: raw.location ?? "",
+        description: raw.description ?? "",
+      })
       .then((result) => {
         if (result) {
           this.ref.close(true);
@@ -157,7 +156,7 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     );
 
     if (match) {
-      const [ year, month, day, hour, minute, second] = match;
+      const [year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,
@@ -172,4 +171,3 @@ export class JuntaMensualSessionRescheduleForm implements OnInit {
     return isNaN(parsed.getTime()) ? null : parsed;
   }
 }
-

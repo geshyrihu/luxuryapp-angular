@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -15,17 +14,19 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { CollectionCaseResponseDTO } from "../../interfaces/collection-case.dto";
 
 @Component({
   selector: "app-collection-case-detail-modal",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxIcon,
     ReactiveFormsModule,
-    CustomInputTextAreaSignal,
+    LuxInputTextAreaSignal,
     ApiDatePipe,
     CurrencyPipe,
   ],

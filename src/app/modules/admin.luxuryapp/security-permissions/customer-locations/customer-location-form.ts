@@ -11,19 +11,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { InputSelectBool } from "@ui/inputs/adaptive/input-select-bool/input-select-bool";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { EndpointsAdmin } from "@core/constants/endpoints/admin.endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CustomerLocationAddOrEditDto } from "./interfaces/customer-location-add-or-edit.dto";
-import { CustomerLocationType, CustomerLocationTypeOptions } from "./interfaces/customer-location-type.enum";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { InputSelectBool } from "@ui/inputs/adaptive/input-select-bool/input-select-bool";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { CustomerLocationAddOrEditDto } from "./interfaces/customer-location-add-or-edit.dto";
+import { CustomerLocationTypeOptions } from "./interfaces/customer-location-type.enum";
 
 @Component({
   selector: "app-customer-location-form",
@@ -32,11 +35,12 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   imports: [
     ReactiveFormsModule,
     InputMask,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSelectSignal,
     InputSelectBool,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class CustomerLocationForm implements OnInit {
   ref = inject(DynamicDialogRef);
@@ -47,10 +51,12 @@ export class CustomerLocationForm implements OnInit {
   id: string = "";
   submitting = signal(false);
 
-  locationTypeOptions: SelectItemDto[] = CustomerLocationTypeOptions.map((opt) => ({
-    value: opt.value,
-    label: opt.label,
-  }));
+  locationTypeOptions: SelectItemDto[] = CustomerLocationTypeOptions.map(
+    (opt) => ({
+      value: opt.value,
+      label: opt.label,
+    }),
+  );
 
   form = new FormGroup({
     id: new FormControl<string | null>(null),
@@ -135,4 +141,3 @@ export class CustomerLocationForm implements OnInit {
     });
   }
 }
-

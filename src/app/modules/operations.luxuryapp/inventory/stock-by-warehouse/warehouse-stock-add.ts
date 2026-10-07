@@ -27,10 +27,13 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface IWarehouseStockRowForm {
   productoId: FormControl<string>;
@@ -44,8 +47,8 @@ interface IWarehouseStockRowForm {
 
 import { LazyLoadEvent } from "@core/interfaces/lazy-load-event.interface";
 
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { ButtonWeb } from "@ui/buttons/web";
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 
 @Component({
   selector: "app-warehouse-stock-add",
@@ -56,11 +59,12 @@ import { ButtonWeb } from "@ui/buttons/web";
     AppTable,
 
     AppSortableColumn,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     TableFooter,
-    CustomInputNumberSignal,
+    LuxInputNumberSignal,
     ReactiveFormsModule,
-    LuxTableCaption],
+    LuxTableCaption,
+  ],
 })
 export class WarehouseStockAdd implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -79,7 +83,8 @@ export class WarehouseStockAdd implements OnInit {
     "value.nombreProducto",
     "value.existencia",
     "value.stockMax",
-    "value.stockMin"]);
+    "value.stockMin",
+  ]);
 
   loading = signal(true);
   totalRecords: number = 0;

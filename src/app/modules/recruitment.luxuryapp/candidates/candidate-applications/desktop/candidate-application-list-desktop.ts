@@ -14,7 +14,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -35,7 +35,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
     PdfViewerTrigger,
     CommonModule,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,

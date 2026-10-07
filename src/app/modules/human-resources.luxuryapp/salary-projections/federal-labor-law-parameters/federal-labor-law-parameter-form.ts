@@ -1,18 +1,26 @@
-import { ButtonWeb } from "@ui/buttons/web";
-import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ApiResponseService } from "@core/http/services/api-response.service";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IFederalLaborLawParameter } from "../interfaces/salary-projections.models";
-import { ApiResponseService } from '@core/http/services/api-response.service';
-import { Endpoints } from '@core/constants/endpoints/endpoints';
 
 @Component({
   selector: "app-federal-labor-law-parameter-form",
   templateUrl: "./federal-labor-law-parameter-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, FormsModule, CustomInputTextSignal],
+  imports: [ButtonWeb, FormsModule, LuxInputTextSignal],
 })
 export class FederalLaborLawParameterForm {
   private readonly api = inject(ApiResponseService);
@@ -41,22 +49,30 @@ export class FederalLaborLawParameterForm {
     this.saving.set(true);
     try {
       const result = this.row()
-        ? await this.api.onPut<IFederalLaborLawParameter>(Endpoints.SalaryProjections.federalLaborLawParameter(this.year()), {
-            christmasBonusDays: this.christmasBonusDays(),
-            vacationPremiumPercentage: this.vacationPremiumPercentage(),
-            sundayPremiumPercentage: this.sundayPremiumPercentage(),
-          })
-        : await this.api.onPost<IFederalLaborLawParameter>(Endpoints.SalaryProjections.federalLaborLawParameters, {
-            year: this.year(),
-            christmasBonusDays: this.christmasBonusDays(),
-            vacationPremiumPercentage: this.vacationPremiumPercentage(),
-            sundayPremiumPercentage: this.sundayPremiumPercentage(),
-          });
+        ? await this.api.onPut<IFederalLaborLawParameter>(
+            Endpoints.SalaryProjections.federalLaborLawParameter(this.year()),
+            {
+              christmasBonusDays: this.christmasBonusDays(),
+              vacationPremiumPercentage: this.vacationPremiumPercentage(),
+              sundayPremiumPercentage: this.sundayPremiumPercentage(),
+            },
+          )
+        : await this.api.onPost<IFederalLaborLawParameter>(
+            Endpoints.SalaryProjections.federalLaborLawParameters,
+            {
+              year: this.year(),
+              christmasBonusDays: this.christmasBonusDays(),
+              vacationPremiumPercentage: this.vacationPremiumPercentage(),
+              sundayPremiumPercentage: this.sundayPremiumPercentage(),
+            },
+          );
       if (result) this.ref.close(true);
-    } finally { this.saving.set(false); }
+    } finally {
+      this.saving.set(false);
+    }
   }
 
-  close(): void { this.ref.close(false); }
+  close(): void {
+    this.ref.close(false);
+  }
 }
-
-

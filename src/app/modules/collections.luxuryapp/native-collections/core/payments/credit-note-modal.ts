@@ -5,11 +5,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -19,6 +14,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { EPaymentMethod } from "../../interfaces/enums";
 
 interface ICreditNoteForm {
@@ -44,11 +44,12 @@ interface CreditNoteRequestDTO {
   imports: [
     LxIcon,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputCurrencySignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputCurrencySignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
   templateUrl: "./credit-note-modal.html",
 })
 export default class CreditNoteModalComponent implements OnInit {
@@ -90,7 +91,8 @@ export default class CreditNoteModalComponent implements OnInit {
     { label: "Período de cortesía", value: "Período de cortesía" },
     { label: "Acuerdo de pago (quita)", value: "Acuerdo de pago (quita)" },
     { label: "Condonación por siniestro", value: "Condonación por siniestro" },
-    { label: "Otro motivo", value: "Otro motivo" }];
+    { label: "Otro motivo", value: "Otro motivo" },
+  ];
 
   ngOnInit() {
     this.customerId = this.config.data?.customerId;

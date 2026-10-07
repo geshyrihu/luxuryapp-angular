@@ -10,16 +10,19 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   ContractTemplateListDTO,
   EContractType,
@@ -40,11 +43,12 @@ interface IContractTemplateForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class ContractTemplateFormComponent implements OnInit {
   apiS = inject(ApiResponseService);
@@ -76,7 +80,8 @@ export class ContractTemplateFormComponent implements OnInit {
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
     { value: "Practicas", label: "Prácticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
-    { value: "Honorarios", label: "Honorarios" }];
+    { value: "Honorarios", label: "Honorarios" },
+  ];
 
   ngOnInit(): void {
     const data = this.config.data?.item as ContractTemplateListDTO | null;
@@ -111,4 +116,3 @@ export class ContractTemplateFormComponent implements OnInit {
     this.ref.close();
   }
 }
-

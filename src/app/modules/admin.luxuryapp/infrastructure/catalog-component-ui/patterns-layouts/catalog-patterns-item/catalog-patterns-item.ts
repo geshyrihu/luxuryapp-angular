@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppDivider } from "@ui/web/divider/divider";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -37,7 +37,7 @@ const PATTERNS_LABELS: Record<string, string> = {
     ButtonWeb,
     FormsModule,
     AppDivider,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     AppTable,
     Tabs,
     LxIcon,

@@ -12,19 +12,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { firstValueFrom } from "rxjs";
 
 interface IInventarioHidranteForm {
   id: FormControl<string>;
@@ -43,11 +46,12 @@ interface IInventarioHidranteForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     InputImg,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class InventarioHidranteForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -123,10 +127,7 @@ export class InventarioHidranteForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(
-          Endpoints.Hydrants.update(this.id),
-          formData,
-        )
+        .onPut(Endpoints.Hydrants.update(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
@@ -146,4 +147,3 @@ export class InventarioHidranteForm implements OnInit {
     return formData;
   }
 }
-

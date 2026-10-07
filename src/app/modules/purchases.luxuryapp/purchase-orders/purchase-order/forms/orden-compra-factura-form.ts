@@ -12,8 +12,8 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal"; // Added
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -32,9 +32,9 @@ export interface IOrdenCompraFacturaForm {
 }
 
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-orden-compra-factura-form",
@@ -45,8 +45,8 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     TableEmptyMessage,
     ReactiveFormsModule,
     AppTable,
-    CustomInputFile,
-    CustomInputSelectSignal,
+    LuxInputFile,
+    LuxInputSelectSignal,
     LxTooltipDirective,
     LxCard,
     LxIcon,

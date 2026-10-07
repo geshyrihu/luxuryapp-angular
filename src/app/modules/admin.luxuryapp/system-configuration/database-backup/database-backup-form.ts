@@ -12,12 +12,6 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +19,12 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-database-backup-form",
@@ -33,11 +33,12 @@ import {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputMultiselectSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectButton],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputMultiselectSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectButton,
+  ],
 })
 export class DatabaseBackupForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -53,7 +54,8 @@ export class DatabaseBackupForm implements OnInit {
 
   readonly destinationOptions = [
     { label: "OneDrive (Graph API)", value: "GraphApi" },
-    { label: "Carpeta local", value: "Local" }];
+    { label: "Carpeta local", value: "Local" },
+  ];
 
   readonly cronPresets = [
     { label: "Cada hora", value: "0 * * * *" },
@@ -63,7 +65,8 @@ export class DatabaseBackupForm implements OnInit {
     { label: "Diario 22:00", value: "0 22 * * *" },
     { label: "Cada Domingo 02:00", value: "0 2 * * 0" },
     { label: "Cada Sabado 02:00", value: "0 2 * * 6" },
-    { label: "Primer dia del mes 02:00", value: "0 2 1 * *" }];
+    { label: "Primer dia del mes 02:00", value: "0 2 1 * *" },
+  ];
 
   form = new FormGroup({
     name: new FormControl<string>("", {
@@ -210,4 +213,3 @@ export class DatabaseBackupForm implements OnInit {
     };
   }
 }
-

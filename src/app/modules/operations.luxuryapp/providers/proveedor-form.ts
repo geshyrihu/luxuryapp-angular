@@ -14,17 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -35,6 +24,17 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 interface IProveedorForm {
   id: FormControl<string | null>;
@@ -76,16 +76,17 @@ interface IProveedorForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
-    CustomInputMultiselectSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
+    LuxInputMultiselectSignal,
     InputAutocomplete,
-    CustomInputFile,
+    LuxInputFile,
     InputImg,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class ProveedorForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -189,7 +190,8 @@ export class ProveedorForm implements OnInit {
       ),
       this.apiResponseS.onGetEnumSelectItem(
         Endpoints.EnumSelectItems.serviceType,
-      )]);
+      ),
+    ]);
 
     this.cb_category.set(categories as SelectItemDto[]);
     this.cb_bancos.set(banks as SelectItemDto[]);
@@ -294,4 +296,3 @@ export class ProveedorForm implements OnInit {
     this.form.patchValue({ constanciaFiscal: file });
   }
 }
-

@@ -15,7 +15,7 @@ import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { LxBadge } from "@ui/adaptive/badge/badge";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTree } from "@ui/adaptive/tree/tree";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 
@@ -25,7 +25,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
 @Component({
   selector: "app-account-tree-select",
 
-  imports: [LxTree, LxBadge, DragDropModule, LxIcon, CustomInputTextSignal],
+  imports: [LxTree, LxBadge, DragDropModule, LxIcon, LuxInputTextSignal],
   template: `
     <div class="d-flex flex-column gap-2 p-1 h-full">
       <div class="p-inputgroup w-full sticky top-0 z-1 bg-white">

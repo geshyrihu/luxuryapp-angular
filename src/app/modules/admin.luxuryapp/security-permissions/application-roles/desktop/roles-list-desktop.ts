@@ -10,7 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
@@ -28,12 +28,13 @@ import { ApplicationRoleDto } from "../interfaces/application-role.dto";
     ButtonWeb,
     NgStyle,
     FormsModule,
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
     AppSortableColumn,
-    AppSorticon],
+    AppSorticon,
+  ],
 })
 export class RolesListDesktop {
   tableScrollHeightS = inject(TableScrollHeightService);

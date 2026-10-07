@@ -12,25 +12,24 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { RecruitmentSourceCatalogDTO } from "./interfaces/recruitment-source-catalog.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { RecruitmentSourceCatalogFormGroup } from "./interfaces/recruitment-source-catalog-form.interface";
+import { RecruitmentSourceCatalogDTO } from "./interfaces/recruitment-source-catalog.dto";
 
 @Component({
   selector: "app-recruitment-source-catalog-form",
   templateUrl: "./recruitment-source-catalog-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSwitch,
-    ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, LuxInputSwitch, ButtonWeb],
 })
 export class RecruitmentSourceCatalogForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

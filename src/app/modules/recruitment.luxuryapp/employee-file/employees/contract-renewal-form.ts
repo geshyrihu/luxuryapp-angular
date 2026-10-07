@@ -27,7 +27,7 @@ import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/emp
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 type StatusSeverity =
   "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -46,7 +46,7 @@ interface DecisionOption {
     ReactiveFormsModule,
     LxTag,
     LxIcon,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

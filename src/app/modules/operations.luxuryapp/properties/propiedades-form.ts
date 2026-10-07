@@ -24,9 +24,9 @@ import {
 } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IPropiedadesForm {
   id: FormControl<string | null>;
@@ -50,10 +50,11 @@ interface IPropiedadesForm {
   imports: [
     ApiDatePipe,
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class PropiedadesForm implements OnInit {
   apiResponseS = inject(ApiResponseService);

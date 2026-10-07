@@ -12,21 +12,24 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { firstValueFrom } from "rxjs";
 
 interface IInventarioExtintorForm {
   id: FormControl<string>;
@@ -44,12 +47,13 @@ interface IInventarioExtintorForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     InputImg,
-    CustomInputDateSignal,
-    ButtonWeb],
+    LuxInputDateSignal,
+    ButtonWeb,
+  ],
 })
 export class InventarioExtintorForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -132,10 +136,7 @@ export class InventarioExtintorForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(
-          Endpoints.FireExtinguishers.update(this.id),
-          formData,
-        )
+        .onPut(Endpoints.FireExtinguishers.update(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
@@ -158,4 +159,3 @@ export class InventarioExtintorForm implements OnInit {
     return formData;
   }
 }
-

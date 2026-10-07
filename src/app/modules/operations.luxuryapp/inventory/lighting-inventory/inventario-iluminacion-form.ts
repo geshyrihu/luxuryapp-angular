@@ -12,17 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IInventarioIluminacionForm {
   id: FormControl<string>;
@@ -40,10 +43,11 @@ interface IInventarioIluminacionForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputAutocomplete,
-    CustomInputNumberSignal,
-    ButtonWeb],
+    LuxInputNumberSignal,
+    ButtonWeb,
+  ],
 })
 export class InventarioIluminacionForm implements OnInit {
   formB = inject(FormBuilder);
@@ -97,7 +101,8 @@ export class InventarioIluminacionForm implements OnInit {
       this.apiResponseS.onGetList(
         Endpoints.Machineries.getAutocompleteInv(this.customerIdS.customerId()),
       ),
-      this.apiResponseS.onGetList(Endpoints.Products.autoComplete)]);
+      this.apiResponseS.onGetList(Endpoints.Products.autoComplete),
+    ]);
 
     this.cb_machinery.set(machinery as SelectItemDto[]);
     this.cb_producto.set(productos as SelectItemDto[]);
@@ -166,4 +171,3 @@ export class InventarioIluminacionForm implements OnInit {
     });
   }
 }
-

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,9 +15,10 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { VisitorDto } from "@core/interfaces/visitor.dto";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
 
@@ -26,11 +26,13 @@ import { VisitorFormGroup } from "./interfaces/visitor-form.interface";
   selector: "app-visitor-list",
   templateUrl: "./visitor-list.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
     AppTable,
-    CustomInputTextSignal,
-    CustomInputSwitch],
+    LuxInputTextSignal,
+    LuxInputSwitch,
+  ],
 })
 export class VisitorList implements OnInit {
   private apiResponseS = inject(ApiResponseService);

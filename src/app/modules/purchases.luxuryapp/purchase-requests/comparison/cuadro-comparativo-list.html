@@ -287,10 +287,10 @@
         {{ item.producto | uppercase }}
       </td>
       <td>{{ item.cantidad }}</td>
-      <td>{{ item.unidadMedida }}</td>
+      <td>{{ item.unitOfMeasure ?? item.unidadMedida }}</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
-        [class.bg-yellow-200]="isLowestPrice(item, proveedor.posicionCotizacion) && evaluarPrecioIndependiente"
+        [class.bg-yellow-50]="isLowestPrice(item, proveedor.posicionCotizacion) && evaluarPrecioIndependiente"
       >
         {{ item['total' + (proveedor.posicionCotizacion === 1 ? '' :
         proveedor.posicionCotizacion)] | number : "1.0-0" }}
@@ -304,7 +304,7 @@
       <td colspan="3" class="text-end fw-bold">TOTAL</td>
       @for (proveedor of cotizacionProveedorSignal(); track proveedor.id) {
       <td
-        [class.bg-yellow-200]="this['amarilloTotal' + proveedor.posicionCotizacion]"
+        [class.bg-yellow-50]="this['amarilloTotal' + proveedor.posicionCotizacion]"
       >
         {{ this['total' + proveedor.posicionCotizacion] | number : "1.0-0" }}
       </td>
@@ -475,7 +475,8 @@
         </td>
         <td class="text-center">
           @if (!cleanView) {
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
             (clicked)="onDeleteBudget(budget.id)"
             severity="danger"

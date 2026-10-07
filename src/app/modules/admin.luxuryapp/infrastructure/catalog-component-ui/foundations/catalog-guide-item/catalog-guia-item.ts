@@ -14,9 +14,9 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
@@ -48,9 +48,9 @@ const GUIA_LABELS: Record<string, string> = {
     InputTextarea,
     InputNumber,
     InputDatepicker,
-    CustomInputToggleSwitch,
-    CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
+    LuxInputToggleSwitch,
+    LuxInputSelectSignal,
+    LuxInputMultiselectSignal,
     CustomSearchInput,
     AppTable,
     AppCheckbox,

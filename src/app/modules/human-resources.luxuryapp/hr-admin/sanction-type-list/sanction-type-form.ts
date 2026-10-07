@@ -10,10 +10,6 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -24,6 +20,10 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { SanctionTypeDetailDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface";
 
 @Component({
@@ -32,10 +32,11 @@ import { SanctionTypeFormGroup } from "./interfaces/sanction-type-form.interface
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+    ButtonWeb,
+  ],
 })
 export class SanctionTypeForm implements OnInit {
   apiS = inject(ApiResponseService);
@@ -103,5 +104,3 @@ export class SanctionTypeForm implements OnInit {
     this.ref.close();
   }
 }
-
-

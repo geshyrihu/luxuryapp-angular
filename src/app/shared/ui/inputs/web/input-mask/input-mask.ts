@@ -6,12 +6,12 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputMaskSignal } from "../custom-input-mask-signal";
+import { LuxInputMaskSignal } from "../custom-input-mask-signal";
 
 @Component({
   selector: "web-input-mask",
 
-  imports: [ReactiveFormsModule, CustomInputMaskSignal],
+  imports: [ReactiveFormsModule, LuxInputMaskSignal],
   template: `
     <web-custom-input-mask-signal
       [control]="control() || internalControl"
@@ -37,7 +37,8 @@ import { CustomInputMaskSignal } from "../custom-input-mask-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputMask),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputMask extends BaseInputSignal {
   customMask = input.required<string>();

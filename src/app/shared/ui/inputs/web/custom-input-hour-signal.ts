@@ -53,12 +53,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputHour),
+      useExisting: forwardRef(() => LuxInputHour),
       multi: true,
     },
   ],
 })
-export class CustomInputHour extends BaseInputSignal {
+export class LuxInputHour extends BaseInputSignal {
   // <--- Inputs Específicos --->
   size = input<"small" | "large" | undefined>(undefined);
   protected readonly spanishLocale = Spanish;

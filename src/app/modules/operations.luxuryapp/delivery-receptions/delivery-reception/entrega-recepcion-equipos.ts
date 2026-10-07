@@ -13,12 +13,15 @@ import {
   rowsPerPageOptions,
   tableRows,
 } from "@core/helpers/table-options";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { StripTagsPipe } from "@shared/pipes/StripTags.pipe";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 @Component({
   selector: "app-entrega-recepcion-equipos",
@@ -29,8 +32,9 @@ import { ReportHeader } from "@ui/web/report-header/report-header";
     AppSortableColumn,
     ReportHeader,
     FormsModule,
-    CustomInputCheckSignal,
-    StripTagsPipe],
+    LuxInputCheckSignal,
+    StripTagsPipe,
+  ],
 })
 export class EntregaRecepcionEquipos {
   apiResponseS = inject(ApiResponseService);

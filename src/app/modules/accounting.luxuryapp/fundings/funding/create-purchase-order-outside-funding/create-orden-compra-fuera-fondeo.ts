@@ -12,16 +12,19 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { TipoGasto } from "@core/enums/tipo-gasto.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 
 const tipoGastoLabels: { [key: number]: string } = {
@@ -43,9 +46,10 @@ const tipoGastoLabels: { [key: number]: string } = {
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class CreateOrdenCompraFueraFondeo implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -120,4 +124,3 @@ export class CreateOrdenCompraFueraFondeo implements OnInit {
       });
   }
 }
-

@@ -16,11 +16,6 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -28,6 +23,11 @@ import { SecurityService } from "@core/auth/services/security.service";
 import { UserTokenDto } from "@core/interfaces/auth-user-token.dto";
 import { ConsoleLoggerService } from "@core/services/console-logger.service";
 import { LoaderService } from "@core/services/loader.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { catchError, finalize, of, startWith, switchMap } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxIcon } from "@ui/adaptive/icon/icon";
@@ -40,10 +40,11 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     RouterModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputTextSignal,
-    CustomInputPassword,
-    LxIcon],
+    LuxInputCheckSignal,
+    LuxInputTextSignal,
+    LuxInputPassword,
+    LxIcon,
+  ],
 })
 export class LoginComponent implements OnInit {
   readonly ROUTES = ROUTES;

@@ -11,15 +11,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 
 @Component({
   selector: "app-presentacion-junta-add",
@@ -27,10 +30,11 @@ import { DateService } from "@core/services/date.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputTime,
+    LuxInputDateSignal,
+    LuxInputTime,
     ButtonWeb,
-    CustomInputTextSignal],
+    LuxInputTextSignal,
+  ],
 })
 export class PresentacionJuntaAdd implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -111,4 +115,3 @@ export class PresentacionJuntaAdd implements OnInit {
     }
   }
 }
-

@@ -13,19 +13,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  CrudSubmitOptions,
-  FormHelper,
-} from "@core/helpers/form-helper";
+import { CrudSubmitOptions, FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ApplicationRoleAddOrEditDto } from "./interfaces/application-role-add-or-edit.dto";
 import { RoleFormGroup } from "./interfaces/role-form.interface";
 
@@ -35,11 +35,12 @@ import { RoleFormGroup } from "./interfaces/role-form.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputCheckSignal,
-    CustomInputNumberSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputCheckSignal,
+    LuxInputNumberSignal,
+    ButtonWeb,
+  ],
 })
 export class RoleForm implements OnInit {
   private formB = inject(FormBuilder);
@@ -121,4 +122,3 @@ export class RoleForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -17,6 +16,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { ButtonWeb } from "@ui/buttons/web";
 // Bootstrap Modules
 import { MenuItem } from "@core/interfaces/menu-item.interface";
 import {
@@ -25,7 +25,7 @@ import {
 } from "@core/services/dialog-handler.service"; // Added DynamicDialogConfig
 import { AppAvatar } from "@ui/web/avatar/avatar";
 // Added
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 // Added
 import { LxSteps } from "@ui/adaptive/steps/steps";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -43,8 +43,8 @@ import { EnumSelectService } from "@core/services/enum-select.service"; // Added
 import { ProductosForm } from "@purchases.luxuryapp/products/productos-form";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   generateYearOptions,
   groupFundingPeriodsByMonth,
@@ -103,9 +103,9 @@ interface IStep3Form {
   budgets: FormArray<FormGroup<IBudgetForm>>;
 }
 
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { FileUpload } from "@ui/web/file-upload/file-upload";
 import {
@@ -118,14 +118,15 @@ import {
 
 @Component({
   selector: "app-create-orden-compra-wizard",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     AppAvatar,
     CommonModule,
     InputAutocomplete,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
     FormsModule,
-    CustomInputCurrencySignal, // Added
+    LuxInputCurrencySignal, // Added
     ReactiveFormsModule,
     LxSteps,
     AppTable,

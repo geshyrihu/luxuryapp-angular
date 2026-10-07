@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { SendOperationReportBaseService } from "./send-operation-report-base.service";
 
 @Component({
@@ -19,10 +22,11 @@ import { SendOperationReportBaseService } from "./send-operation-report-base.ser
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxTag,
-    CustomInputCheckSignal,
-    LuxTableCaption],
+    LuxInputCheckSignal,
+    LuxTableCaption,
+  ],
   templateUrl: "./send-operation-report-web.html",
   changeDetection: ChangeDetectionStrategy.Eager,
 })

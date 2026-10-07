@@ -18,7 +18,7 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   PagoPrestamoDTO,
@@ -35,7 +35,8 @@ import {
     AppTable,
     LxTag,
     ButtonWeb,
-    CustomInputTextAreaSignal],
+    LuxInputTextAreaSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-prestamo-detalle.html",
 })

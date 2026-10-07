@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import { HttpParams } from "@angular/common/http";
 import {
@@ -16,12 +15,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { listOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -32,7 +32,8 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
 
 @Component({
   selector: "app-ledger-viewer",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     AppTable,
     LuxTableCaption,
     LxCard,
@@ -41,8 +42,8 @@ import { FinancialLedgerEntryDTO } from "../../interfaces/ledger.dto";
     ApiDatePipe,
     CurrencyPipe,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
     MobileListItem,
     LxIcon,
   ],

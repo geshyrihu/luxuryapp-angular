@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -8,12 +7,13 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { lastValueFrom } from "rxjs";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HistoryEntry } from "./interfaces/history-entry.interface";
 import { KeyValuePair } from "./interfaces/key-value-pair.interface";
@@ -22,13 +22,15 @@ import { KeyValuePair } from "./interfaces/key-value-pair.interface";
   selector: "app-mini-postman",
   templateUrl: "./mini-postman.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     FormsModule,
     LxTabs,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
     InputText,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class MiniPostman {
   private http = inject(HttpClient);
@@ -40,7 +42,8 @@ export class MiniPostman {
     { label: "POST", value: "POST" },
     { label: "PUT", value: "PUT" },
     { label: "PATCH", value: "PATCH" },
-    { label: "DELETE", value: "DELETE" }];
+    { label: "DELETE", value: "DELETE" },
+  ];
 
   // --- Request state ---
   method = signal("GET");
@@ -57,7 +60,8 @@ export class MiniPostman {
   readonly reqTabs = computed(() => {
     const tabs = [
       { id: "params", label: "Params" },
-      { id: "headers", label: "Headers" }];
+      { id: "headers", label: "Headers" },
+    ];
     if (this.hasBody()) {
       tabs.push({ id: "body", label: "Body" });
     }
@@ -66,7 +70,8 @@ export class MiniPostman {
 
   readonly resTabs = [
     { id: "body-res", label: "Body" },
-    { id: "headers-res", label: "Headers" }];
+    { id: "headers-res", label: "Headers" },
+  ];
 
   // --- Response state ---
   loading = signal(false);
@@ -294,4 +299,3 @@ export class MiniPostman {
     return i;
   }
 }
-

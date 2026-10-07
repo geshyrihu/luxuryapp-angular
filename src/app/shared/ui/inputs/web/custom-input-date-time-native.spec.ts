@@ -1,56 +1,55 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputDateTimeNative } from './custom-input-date-time-native';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LuxInputDateTimeNative } from "./custom-input-date-time-native";
 
-describe('CustomInputDateTimeNative', () => {
-  let component: CustomInputDateTimeNative;
-  let fixture: ComponentFixture<CustomInputDateTimeNative>;
+describe("LuxInputDateTimeNative", () => {
+  let component: LuxInputDateTimeNative;
+  let fixture: ComponentFixture<LuxInputDateTimeNative>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputDateTimeNative, {
+    TestBed.overrideComponent(LuxInputDateTimeNative, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputDateTimeNative],
+      imports: [LuxInputDateTimeNative],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputDateTimeNative);
+    fixture = TestBed.createComponent(LuxInputDateTimeNative);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('signal defaults', () => {
-    it('should have default values', () => {
-      expect(component.timePart()).toBe('');
+  describe("signal defaults", () => {
+    it("should have default values", () => {
+      expect(component.timePart()).toBe("");
       expect(component.horizontal()).toBe(true);
       expect(component.required()).toBe(false);
-      expect(component.label()).toBe('');
+      expect(component.label()).toBe("");
     });
 
-    it('should generate a random id', () => {
+    it("should generate a random id", () => {
       expect(component.id()).toMatch(/^dtn-/);
     });
 
-    it('should have a default FormControl', () => {
+    it("should have a default FormControl", () => {
       expect(component.control()).toBeDefined();
     });
   });
 
-  describe('onTimeChange', () => {
-    it('should update timePart signal from event', () => {
-      const event = { target: { value: '14:30' } } as unknown as Event;
+  describe("onTimeChange", () => {
+    it("should update timePart signal from event", () => {
+      const event = { target: { value: "14:30" } } as unknown as Event;
       component.onTimeChange(event);
-      expect(component.timePart()).toBe('14:30');
+      expect(component.timePart()).toBe("14:30");
     });
   });
 });

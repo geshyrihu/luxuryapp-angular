@@ -43,12 +43,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputSwitch),
+      useExisting: forwardRef(() => LuxInputSwitch),
       multi: true,
     },
   ],
 })
-export class CustomInputSwitch extends BaseInputSignal {
+export class LuxInputSwitch extends BaseInputSignal {
   // 📤 EVENTO DE SALIDA
   // Notifica al componente padre cuando el valor del switch cambia.
   switchChange = output<boolean>();

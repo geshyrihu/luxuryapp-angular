@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,11 +11,12 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -33,10 +33,11 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
 
 @Component({
   selector: "app-initial-balance",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     FormsModule,
     AppTable,
-    CustomInputCurrencySignal,
+    LuxInputCurrencySignal,
     LxTag,
     LxCard,
     DataViewMobile,

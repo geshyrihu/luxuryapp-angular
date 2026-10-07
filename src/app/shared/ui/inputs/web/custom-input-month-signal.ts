@@ -1,4 +1,9 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../core/base-input-signal";
 
@@ -41,10 +46,11 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputMonth),
+      useExisting: forwardRef(() => LuxInputMonth),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputMonth extends BaseInputSignal {
+export class LuxInputMonth extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);
 }

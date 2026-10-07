@@ -6,21 +6,23 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from "@angular/forms";
 
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 
-import { LxMessage } from "@ui/adaptive/message/message";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom, lastValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -30,9 +32,20 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import type { WorkDayForm, WorkPositionScheduleForm } from "../../recruitment.luxuryapp/work-positions/models/work-position-schedule-form.model";
-import type { WorkPositionScheduleDto } from "../../recruitment.luxuryapp/work-positions/models/work-position-schedule-dto.model";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom, lastValueFrom } from "rxjs";
 import { WorkPositionService } from "../../recruitment.luxuryapp/work-positions/interfaces/work-position.service";
+import type { WorkPositionScheduleDto } from "../../recruitment.luxuryapp/work-positions/models/work-position-schedule-dto.model";
+import type {
+  WorkDayForm,
+  WorkPositionScheduleForm,
+} from "../../recruitment.luxuryapp/work-positions/models/work-position-schedule-form.model";
 
 type WorkDayControls = {
   id: FormControl<string>;
@@ -44,7 +57,9 @@ type WorkDayControls = {
 };
 type WorkDayGroup = FormGroup<WorkDayControls>;
 
-const workDayValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+const workDayValidator: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
   if (control.get("esDescanso")?.value) return null;
   const entry = control.get("horaEntrada")?.value as string | null;
   const exit = control.get("horaSalida")?.value as string | null;
@@ -53,37 +68,77 @@ const workDayValidator: ValidatorFn = (control: AbstractControl): ValidationErro
   return null;
 };
 
-const scheduleValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+const scheduleValidator: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
   const days = control.get("diasDeTrabajo") as FormArray<WorkDayGroup> | null;
-  return days?.controls.some((day) => day.invalid) ? { incompleteWorkDay: true } : null;
+  return days?.controls.some((day) => day.invalid)
+    ? { incompleteWorkDay: true }
+    : null;
 };
 
 @Component({
   selector: "app-work-position-form",
   templateUrl: "./work-position-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  styles: [`
-    .schedule-week { overflow-x: auto; }
-    .schedule-week-days { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: .35rem; min-width: 826px; }
-    .schedule-day { min-width: 0; padding: .35rem !important; }
-    .schedule-day-header { min-height: 1.3rem; font-size: .72rem; }
-    .schedule-day-header strong { font-size: .75rem; }
-    .schedule-day-header label { font-size: .65rem; white-space: nowrap; }
-    .schedule-day-hours { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem; }
-    .schedule-day-hours label { font-size: .65rem; }
-    .schedule-day-hours input { min-width: 0; padding: .2rem .25rem; font-size: .72rem; }
-    .schedule-day-copy { font-size: .62rem; white-space: nowrap; }
-    .schedule-week-header { font-size: .78rem; }
-  `],
+  styles: [
+    `
+      .schedule-week {
+        overflow-x: auto;
+      }
+      .schedule-week-days {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(118px, 1fr));
+        gap: 0.35rem;
+        min-width: 826px;
+      }
+      .schedule-day {
+        min-width: 0;
+        padding: 0.35rem !important;
+      }
+      .schedule-day-header {
+        min-height: 1.3rem;
+        font-size: 0.72rem;
+      }
+      .schedule-day-header strong {
+        font-size: 0.75rem;
+      }
+      .schedule-day-header label {
+        font-size: 0.65rem;
+        white-space: nowrap;
+      }
+      .schedule-day-hours {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.25rem;
+      }
+      .schedule-day-hours label {
+        font-size: 0.65rem;
+      }
+      .schedule-day-hours input {
+        min-width: 0;
+        padding: 0.2rem 0.25rem;
+        font-size: 0.72rem;
+      }
+      .schedule-day-copy {
+        font-size: 0.62rem;
+        white-space: nowrap;
+      }
+      .schedule-week-header {
+        font-size: 0.78rem;
+      }
+    `,
+  ],
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputAutocomplete,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
-    LxMessage],
+    LxMessage,
+  ],
 })
 export class WorkPositionForm implements OnInit {
   // --- INYECCIÓN DE DEPENDENCIAS ---
@@ -109,40 +164,60 @@ export class WorkPositionForm implements OnInit {
   scheduleError = signal<string | null>(null);
 
   readonly days = [
-    { label: "LUNES", dw: 1 }, { label: "MARTES", dw: 2 }, { label: "MIÉRCOLES", dw: 3 },
-    { label: "JUEVES", dw: 4 }, { label: "VIERNES", dw: 5 }, { label: "SÁBADO", dw: 6 }, { label: "DOMINGO", dw: 0 }] as const;
+    { label: "LUNES", dw: 1 },
+    { label: "MARTES", dw: 2 },
+    { label: "MIÉRCOLES", dw: 3 },
+    { label: "JUEVES", dw: 4 },
+    { label: "VIERNES", dw: 5 },
+    { label: "SÁBADO", dw: 6 },
+    { label: "DOMINGO", dw: 0 },
+  ] as const;
 
-  readonly timeOptions: SelectItemDto[] = Array.from({ length: 48 }, (_, index) => {
-    const hour = Math.floor(index / 2);
-    const minutes = index % 2 === 0 ? "00" : "30";
-    const value = `${hour.toString().padStart(2, "0")}:${minutes}`;
-    const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
-    const period = hour < 12 ? "AM" : "PM";
+  readonly timeOptions: SelectItemDto[] = Array.from(
+    { length: 48 },
+    (_, index) => {
+      const hour = Math.floor(index / 2);
+      const minutes = index % 2 === 0 ? "00" : "30";
+      const value = `${hour.toString().padStart(2, "0")}:${minutes}`;
+      const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+      const period = hour < 12 ? "AM" : "PM";
 
-    return {
-      value,
-      label: `${hour12.toString().padStart(2, "0")}:${minutes} ${period}`,
-    };
-  });
+      return {
+        value,
+        label: `${hour12.toString().padStart(2, "0")}:${minutes} ${period}`,
+      };
+    },
+  );
 
   readonly AspRole = ApplicationRole;
   readonly canEditCurrentSalary = computed(() =>
-    this.aspRoleS.hasAny([ApplicationRole.RecursosHumanos, ApplicationRole.SuperUsuario]),
+    this.aspRoleS.hasAny([
+      ApplicationRole.RecursosHumanos,
+      ApplicationRole.SuperUsuario,
+    ]),
   );
-  readonly scheduleForm = this.fb.group({
-    id: this.fb.control(""),
-    name: this.fb.control("Horario del puesto", [Validators.required, Validators.maxLength(100)]),
-    isActive: this.fb.control(true),
-    tipoJornada: this.fb.control(7, Validators.required),
-    observaciones: this.fb.control("", Validators.maxLength(500)),
-    diasDeTrabajo: this.fb.array<WorkDayGroup>(this.buildWorkDays()),
-  }, { validators: scheduleValidator });
+  readonly scheduleForm = this.fb.group(
+    {
+      id: this.fb.control(""),
+      name: this.fb.control("Horario del puesto", [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
+      isActive: this.fb.control(true),
+      tipoJornada: this.fb.control(7, Validators.required),
+      observaciones: this.fb.control("", Validators.maxLength(500)),
+      diasDeTrabajo: this.fb.array<WorkDayGroup>(this.buildWorkDays()),
+    },
+    { validators: scheduleValidator },
+  );
 
   readonly weeklyHours = computed(() => {
     const result: Record<number, number> = {};
     for (const week of [1, 2, 3, 4]) {
       let minutes = 0;
-      for (const day of this.workDays.controls.filter((item) => item.controls.numeroSemanaCiclo.value === week)) {
+      for (const day of this.workDays.controls.filter(
+        (item) => item.controls.numeroSemanaCiclo.value === week,
+      )) {
         minutes += this.dayWorkedMinutes(day);
       }
       result[week] = Number((minutes / 60).toFixed(2));
@@ -211,13 +286,15 @@ export class WorkPositionForm implements OnInit {
 
   async onLoadSelectItems(): Promise<void> {
     const customerId = this.customerIdS.customerId();
-    const [state, applicationRoles, employees] =
-      await Promise.all([
-        lastValueFrom(this.enumSelectS.state()),
-        this.apiS.onGetSelectItem<SelectItemDto[]>(
-          Endpoints.SelectItems.applicationRolesToAdministrator,
-        ),
-        this.apiS.onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.employeesByCustomer(customerId))]);
+    const [state, applicationRoles, employees] = await Promise.all([
+      lastValueFrom(this.enumSelectS.state()),
+      this.apiS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.applicationRolesToAdministrator,
+      ),
+      this.apiS.onGetSelectItem<SelectItemDto[]>(
+        Endpoints.SelectItems.employeesByCustomer(customerId),
+      ),
+    ]);
 
     this.cb_state.set(state);
     this.cb_applicationRole.set(applicationRoles ?? []);
@@ -250,7 +327,9 @@ export class WorkPositionForm implements OnInit {
 
   async loadSchedule(): Promise<void> {
     try {
-      const response = await firstValueFrom(this.workPositionService.getSchedule(this.id()!));
+      const response = await firstValueFrom(
+        this.workPositionService.getSchedule(this.id()!),
+      );
       this.scheduleLoaded.set(true);
       if (response.data) this.patchSchedule(response.data);
     } catch {
@@ -300,12 +379,15 @@ export class WorkPositionForm implements OnInit {
       );
       if (!scheduleResponse?.success) {
         throw new Error(
-          scheduleResponse?.error?.message || "No se pudo actualizar el horario.",
+          scheduleResponse?.error?.message ||
+            "No se pudo actualizar el horario.",
         );
       }
       this.ref.close(true);
     } catch {
-      this.scheduleError.set("El puesto se guardó, pero no se pudo actualizar su horario.");
+      this.scheduleError.set(
+        "El puesto se guardó, pero no se pudo actualizar su horario.",
+      );
     } finally {
       this.scheduleSaving.set(false);
       this.submitting.set(false);
@@ -317,7 +399,11 @@ export class WorkPositionForm implements OnInit {
   }
 
   findDay(week: number, dayOfWeek: number): WorkDayGroup | undefined {
-    return this.workDays.controls.find((day) => day.controls.numeroSemanaCiclo.value === week && day.controls.diaSemana.value === dayOfWeek);
+    return this.workDays.controls.find(
+      (day) =>
+        day.controls.numeroSemanaCiclo.value === week &&
+        day.controls.diaSemana.value === dayOfWeek,
+    );
   }
 
   onRestChange(day: WorkDayGroup, isRest: boolean): void {
@@ -367,20 +453,28 @@ export class WorkPositionForm implements OnInit {
   private buildWorkDays(): WorkDayGroup[] {
     const groups: WorkDayGroup[] = [];
     for (let week = 1; week <= 4; week++) {
-      for (const day of this.days) groups.push(this.createDayGroup(day.dw, week));
+      for (const day of this.days)
+        groups.push(this.createDayGroup(day.dw, week));
     }
     return groups;
   }
 
-  private createDayGroup(dayOfWeek: number, week: number, value?: WorkDayForm): WorkDayGroup {
-    return this.fb.group<WorkDayControls>({
-      id: this.fb.control(value?.id ?? ""),
-      diaSemana: this.fb.control(value?.diaSemana ?? dayOfWeek),
-      numeroSemanaCiclo: this.fb.control(value?.numeroSemanaCiclo ?? week),
-      horaEntrada: this.fb.control(this.normalizeTime(value?.horaEntrada)),
-      horaSalida: this.fb.control(this.normalizeTime(value?.horaSalida)),
-      esDescanso: this.fb.control(value?.esDescanso ?? false),
-    }, { validators: workDayValidator });
+  private createDayGroup(
+    dayOfWeek: number,
+    week: number,
+    value?: WorkDayForm,
+  ): WorkDayGroup {
+    return this.fb.group<WorkDayControls>(
+      {
+        id: this.fb.control(value?.id ?? ""),
+        diaSemana: this.fb.control(value?.diaSemana ?? dayOfWeek),
+        numeroSemanaCiclo: this.fb.control(value?.numeroSemanaCiclo ?? week),
+        horaEntrada: this.fb.control(this.normalizeTime(value?.horaEntrada)),
+        horaSalida: this.fb.control(this.normalizeTime(value?.horaSalida)),
+        esDescanso: this.fb.control(value?.esDescanso ?? false),
+      },
+      { validators: workDayValidator },
+    );
   }
 
   private normalizeTime(value: string | null | undefined): string | null {
@@ -397,10 +491,18 @@ export class WorkPositionForm implements OnInit {
       tipoJornada: schedule.tipoJornada,
       observaciones: schedule.observaciones,
     });
-    const byKey = new Map((schedule.diasDeTrabajo ?? []).map((day) => [`${day.numeroSemanaCiclo}-${day.diaSemana}`, day]));
+    const byKey = new Map(
+      (schedule.diasDeTrabajo ?? []).map((day) => [
+        `${day.numeroSemanaCiclo}-${day.diaSemana}`,
+        day,
+      ]),
+    );
     this.workDays.clear();
     for (let week = 1; week <= 4; week++) {
-      for (const day of this.days) this.workDays.push(this.createDayGroup(day.dw, week, byKey.get(`${week}-${day.dw}`)));
+      for (const day of this.days)
+        this.workDays.push(
+          this.createDayGroup(day.dw, week, byKey.get(`${week}-${day.dw}`)),
+        );
     }
     this.scheduleForm.updateValueAndValidity();
   }

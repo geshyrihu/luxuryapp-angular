@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -8,12 +9,11 @@ import {
   output,
   signal,
   ViewChild,
-  ChangeDetectionStrategy,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { BaseInputSignal } from "../core/base-input-signal";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
+import { BaseInputSignal } from "../core/base-input-signal";
 @Component({
   selector: "web-custom-input-img-signal",
   imports: [ReactiveFormsModule, BaseInputSignal],
@@ -168,9 +168,10 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
         font-size: 0.875rem;
         text-align: center;
       }
-    `],
+    `,
+  ],
 })
-export class CustomInputImg implements OnChanges {
+export class LuxInputImg implements OnChanges {
   private readonly imageProcessing = inject(ImageProcessingService);
   private readonly toast = inject(CustomToastService);
   control = input<FormControl>(new FormControl());
@@ -227,7 +228,7 @@ export class CustomInputImg implements OnChanges {
   });
 
   private isNullUrl(url: any): boolean {
-    if (typeof url !== 'string') return true;
+    if (typeof url !== "string") return true;
     return url.endsWith("/null") || url === "null";
   }
 
@@ -317,4 +318,3 @@ export class CustomInputImg implements OnChanges {
     });
   }
 }
-

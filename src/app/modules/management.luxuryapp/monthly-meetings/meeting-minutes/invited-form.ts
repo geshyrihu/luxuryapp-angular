@@ -12,18 +12,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
+import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-invited-form",
   templateUrl: "./invited-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, ButtonWeb, CustomInputTextSignal],
+  imports: [ReactiveFormsModule, ButtonWeb, LuxInputTextSignal],
 })
 export class InvitedForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -85,4 +85,3 @@ export class InvitedForm implements OnInit {
       });
   }
 }
-

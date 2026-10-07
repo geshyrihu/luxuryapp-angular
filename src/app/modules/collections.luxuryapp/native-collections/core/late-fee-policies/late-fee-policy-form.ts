@@ -11,10 +11,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { ELateFeeType } from "../../interfaces/enums";
 import {
   CreateLateFeePolicyDTO,
@@ -23,10 +26,10 @@ import {
 } from "../../interfaces/late-fee-policy.dto";
 
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 interface ILateFeePolicyForm {
   graceDays: FormControl<number>;
@@ -40,11 +43,12 @@ interface ILateFeePolicyForm {
   selector: "app-late-fee-policy-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputNumberSignal,
-    CustomInputDecimal,
-    CustomInputSelectSignal,
-    CustomInputCheckSignal,
-    ButtonWeb],
+    LuxInputNumberSignal,
+    LuxInputDecimal,
+    LuxInputSelectSignal,
+    LuxInputCheckSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./late-fee-policy-form.html",
 })
@@ -79,7 +83,8 @@ export class LateFeePolicyForm implements OnInit {
 
   typeOptions = [
     { label: "Monto Fijo", value: ELateFeeType.Fijo },
-    { label: "Porcentaje", value: ELateFeeType.Porcentaje }];
+    { label: "Porcentaje", value: ELateFeeType.Porcentaje },
+  ];
 
   ngOnInit() {
     this.id = this.config.data.id;
@@ -111,6 +116,3 @@ export class LateFeePolicyForm implements OnInit {
     });
   }
 }
-
-
-

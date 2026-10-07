@@ -12,11 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateProcessStage } from "@core/enums/candidate-process-stage";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +20,11 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { ChangeStageApplicationRequest } from "../candidate-applications/interfaces/candidate-application";
 import {
   CandidateRecruitmentInterviewBoardItem,
@@ -38,10 +38,10 @@ import { CandidateRecruitmentInterviewsService } from "./candidate-recruitment-i
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
     ButtonWeb,
   ],
 })
@@ -299,4 +299,3 @@ export class CandidateRecruitmentScheduleModal implements OnInit {
     });
   }
 }
-

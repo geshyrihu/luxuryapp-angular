@@ -6,15 +6,18 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
 import { GenerarNominaDTO } from "../../interfaces/nomina-encabezado.interface";
 import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
 
@@ -22,9 +25,10 @@ import { PeriodoNominaDTO } from "../../interfaces/periodo-nomina.interface";
   selector: "app-modal-generar-nomina",
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-     ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-generar-nomina.html",
 })
@@ -82,4 +86,3 @@ export default class ModalGenerarNomina implements OnInit {
     });
   }
 }
-

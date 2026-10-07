@@ -13,7 +13,7 @@ export type TriState = true | false | null;
 /**
  * AppTristateSwitch — Toggle de 3 estados: ON / OFF / Indeterminado (null).
  * Uso: permisos heredados, configuraciones parciales, selección múltiple mixta.
- * Diferente de CustomInputSwitch que solo maneja boolean.
+ * Diferente de LuxInputSwitch que solo maneja boolean.
  */
 @Component({
   selector: "lux-tristate-switch",
@@ -151,7 +151,8 @@ export type TriState = true | false | null;
         font-size: var(--ds-font-size-help);
         color: var(--ds-text-secondary);
       }
-    `],
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })

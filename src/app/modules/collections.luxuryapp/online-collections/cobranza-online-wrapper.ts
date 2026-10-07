@@ -12,18 +12,18 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
-import { filter } from "rxjs/operators";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { AccordionItem } from "@ui/core/accordion.base";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { filter } from "rxjs/operators";
 import { cobranzaOnlineFilterState } from "./state/cobranza-online-filter.state";
 import { CobranzaOnlineStoreService } from "./state/cobranza-online-store.service";
 
 @Component({
   selector: "app-cobranza-online-wrapper",
-  imports: [RouterModule, LxIcon, LxSpinner, CustomInputDateSignal],
+  imports: [RouterModule, LxIcon, LxSpinner, LuxInputDateSignal],
   templateUrl: "./cobranza-online-wrapper.html",
   styleUrls: ["./cobranza-online.styles.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,7 +45,8 @@ export class CobranzaOnlineWrapper {
         id: "context",
         title: `Cliente: ${customer} · ${period}`,
         icon: "material-symbols-light:apartment",
-      }];
+      },
+    ];
   });
 
   readonly currentYear = cobranzaOnlineFilterState.year;
@@ -159,4 +160,3 @@ export class CobranzaOnlineWrapper {
     if (route) this.router.navigateByUrl(route);
   }
 }
-

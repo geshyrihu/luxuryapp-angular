@@ -9,11 +9,11 @@ import {
 import { FormsModule } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ReportFilterService } from "../aspel-full-mirror/financial-report-filter.service";
 import { AutitoriaCuentasAspelExportService } from "./autitoria-cuentas-aspel-export.service";
@@ -24,16 +24,17 @@ import {
   IAutitoriaCuentasAspelResponseDTO,
 } from "./autitoria-cuentas-aspel.models";
 
-
 @Component({
   selector: "app-autitoria-cuentas-aspel",
-  imports: [FormsModule,
+  imports: [
+    FormsModule,
     AppTable,
-    CustomInputSelectButton,
+    LuxInputSelectButton,
     LxSpinner,
     ButtonWeb,
     CustomSearchInput,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./autitoria-cuentas-aspel.html",
 })
@@ -50,7 +51,8 @@ export class AutitoriaCuentasAspel {
 
   empresaOptions = [
     { label: "Contabilidad", value: "Contabilidad" },
-    { label: "Cobranza", value: "Cobranza" }];
+    { label: "Cobranza", value: "Cobranza" },
+  ];
 
   readonly customers = computed(() => this.rawData()?.customers ?? []);
 

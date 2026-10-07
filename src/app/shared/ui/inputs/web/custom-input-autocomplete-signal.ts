@@ -1,5 +1,6 @@
 import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChild,
   forwardRef,
@@ -8,13 +9,8 @@ import {
   output,
   Renderer2,
   TemplateRef,
-  ChangeDetectionStrategy,
 } from "@angular/core";
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from "@angular/forms";
+import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { BaseInputSignal } from "../core/base-input-signal";
 
@@ -25,7 +21,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
     NgTemplateOutlet,
     BaseInputSignal,
     ReactiveFormsModule,
-    NgSelectModule],
+    NgSelectModule,
+  ],
   template: `
     <base-input-signal
       [control]="control()"
@@ -88,22 +85,34 @@ import { BaseInputSignal } from "../core/base-input-signal";
       </ng-select>
     </base-input-signal>
   `,
-  styles: [`
-      :host ::ng-deep .ng-select-sm .ng-select-container { min-height: 2rem; font-size: .875rem; }
-      :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container { padding: .25rem .5rem; }
-      :host ::ng-deep .ng-select-lg .ng-select-container { min-height: 3rem; font-size: 1.125rem; }
-      :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container { padding: .75rem 1rem; }
+  styles: [
     `
+      :host ::ng-deep .ng-select-sm .ng-select-container {
+        min-height: 2rem;
+        font-size: 0.875rem;
+      }
+      :host ::ng-deep .ng-select-sm .ng-select-container .ng-value-container {
+        padding: 0.25rem 0.5rem;
+      }
+      :host ::ng-deep .ng-select-lg .ng-select-container {
+        min-height: 3rem;
+        font-size: 1.125rem;
+      }
+      :host ::ng-deep .ng-select-lg .ng-select-container .ng-value-container {
+        padding: 0.75rem 1rem;
+      }
+    `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputAutoComplete),
+      useExisting: forwardRef(() => LuxInputAutoComplete),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputAutoComplete extends BaseInputSignal {
+export class LuxInputAutoComplete extends BaseInputSignal {
   private readonly renderer = inject(Renderer2);
   private openPanelEl: HTMLElement | null = null;
 

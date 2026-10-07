@@ -26,7 +26,7 @@ import {
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -39,11 +39,11 @@ import {
 import { MantenimientoPreventivoForm } from "../preventive-maintenance/mantenimiento-preventivo-form";
 const date = new Date();
 
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-listado-anual-mantenimiento",
@@ -57,7 +57,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LuxTableCaption,
     LxTooltipDirective,
     TableFooter,
@@ -65,7 +65,8 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class ListadoAnualMantenimiento {
   apiResponseS = inject(ApiResponseService);

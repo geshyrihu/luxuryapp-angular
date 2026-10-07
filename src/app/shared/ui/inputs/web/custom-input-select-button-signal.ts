@@ -49,12 +49,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputSelectButton),
+      useExisting: forwardRef(() => LuxInputSelectButton),
       multi: true,
     },
   ],
 })
-export class CustomInputSelectButton
+export class LuxInputSelectButton
   extends BaseInputSignal
   implements ControlValueAccessor
 {

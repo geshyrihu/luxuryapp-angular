@@ -7,12 +7,12 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
+import { LuxInputDatepicker } from "../custom-input-datepicker-signal";
 
 @Component({
   selector: "web-input-datepicker",
 
-  imports: [ReactiveFormsModule, CustomInputDatepicker],
+  imports: [ReactiveFormsModule, LuxInputDatepicker],
   template: `
     <web-custom-input-datepicker-signal
       [control]="control() || internalControl"
@@ -45,7 +45,8 @@ import { CustomInputDatepicker } from "../custom-input-datepicker-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputDatepicker),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputDatepicker extends BaseInputSignal {
   dateSelect = output<any>();

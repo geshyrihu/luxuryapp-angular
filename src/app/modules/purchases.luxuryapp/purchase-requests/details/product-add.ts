@@ -20,8 +20,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IProductSuggestion } from "./IProductSuggestion";
 import { ProductModalAdd } from "./product-modal-add";
 
@@ -50,8 +50,8 @@ import { ProductModalAdd } from "./product-modal-add";
     ReactiveFormsModule,
     ButtonWeb,
     InputAutocomplete,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
   ],
 })
 export class ProductAdd implements OnInit {

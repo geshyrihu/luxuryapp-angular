@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,16 +9,17 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
-import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ElevenLabsService } from "@core/services/eleven-labs.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 interface AiMessage {
@@ -32,12 +32,15 @@ interface AiMessage {
 @Component({
   selector: "app-ai-agent-contable",
 
-  imports: [ButtonWeb, CommonModule,
+  imports: [
+    ButtonWeb,
+    CommonModule,
     FormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxSpinner,
     LxSidebar,
-    LxIcon],
+    LxIcon,
+  ],
   templateUrl: "./ai-agent.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -61,7 +64,8 @@ export class AiAgentComponent {
       role: "assistant",
       content:
         "Hola, soy tu Auditor Contable IA. Estoy analizando el reporte actual. óEn quó te puedo ayudar?",
-    }]);
+    },
+  ]);
 
   suggestedQuestions = [
     "óLos estados financieros fueron elaborados bajo principios contables consistentes?",
@@ -73,7 +77,8 @@ export class AiAgentComponent {
     "óQuó desviaciones presupuestales se presentaron y justificaciones?",
     "óExisten pagos duplicados o anticipos pendientes?",
     "óLas conciliaciones bancarias estén actualizadas?",
-    "óExisten partidas en trónsito mayores a 30 días?"];
+    "óExisten partidas en trónsito mayores a 30 días?",
+  ];
 
   togglePanel() {
     this.visible.update((v) => !v);
@@ -121,7 +126,8 @@ export class AiAgentComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        }]);
+        },
+      ]);
 
       const shouldReadResponse =
         this.autoReadResponses() &&
@@ -137,7 +143,8 @@ export class AiAgentComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta. Por favor, intenta de nuevo mós tarde.",
-        }]);
+        },
+      ]);
     } finally {
       this.loading.set(false);
     }

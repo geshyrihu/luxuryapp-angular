@@ -16,8 +16,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { MessageService } from "@core/services/message.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppSpinner } from "@ui/web/spinner/spinner";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -57,12 +57,13 @@ import {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
     AppSpinner,
     LuxTableCaption,
     TableFooter,
-    LxTag],
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
@@ -89,7 +90,8 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
   availableYears = [
     { label: "2024", value: 2024 },
     { label: "2025", value: 2025 },
-    { label: "2026", value: 2026 }];
+    { label: "2026", value: 2026 },
+  ];
   // Id de la orden de compra que viene desde el modal
   ordenCompraId: string = "";
 
@@ -212,7 +214,8 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente]);
+      ApplicationRole.Asistente,
+    ]);
     if (superUser) return false; // los superusuarios no tienen restricciones ??
 
     const accountNumber = (item.accountNumber || "")
@@ -231,7 +234,8 @@ export class OrdenCompraPresupuesto implements OnInit, OnDestroy {
     const superUser = this.aspRoleS.hasAny([
       ApplicationRole.SuperUsuario,
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente]);
+      ApplicationRole.Asistente,
+    ]);
     if (superUser) return false; // Admins y SuperUsuarios siempre pueden guardar
 
     const accountNumber = (item.accountNumber || "")

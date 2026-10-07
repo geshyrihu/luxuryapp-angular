@@ -6,12 +6,12 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
+import { LuxInputDateTimeSignal } from "../custom-input-date-time-signal";
 
 @Component({
   selector: "web-input-date-time",
 
-  imports: [ReactiveFormsModule, CustomInputDateTimeSignal],
+  imports: [ReactiveFormsModule, LuxInputDateTimeSignal],
   template: `
     <web-custom-input-date-time-signal
       [control]="control() || internalControl"
@@ -34,7 +34,8 @@ import { CustomInputDateTimeSignal } from "../custom-input-date-time-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputDateTime),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputDateTime extends BaseInputSignal {
   size = input<"small" | "large" | undefined>(undefined);

@@ -13,19 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { InputToggleSwitch } from "@ui/inputs/adaptive/input-toggle-switch/input-toggle-switch";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { provideFlatpickrDefaults } from "angularx-flatpickr";
-import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
@@ -34,6 +21,19 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { InputToggleSwitch } from "@ui/inputs/adaptive/input-toggle-switch/input-toggle-switch";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputPhonePrefix } from "@ui/inputs/web/custom-input-phone-prefix";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { provideFlatpickrDefaults } from "angularx-flatpickr";
+import { firstValueFrom } from "rxjs";
 
 interface EmployeeUnifiedProfileFormControls {
   firstName: FormControl<string>;
@@ -105,14 +105,14 @@ interface EmployeeUnifiedProfileFormControls {
   ],
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
     InputAutocomplete,
-    CustomInputCurrencySignal,
-    CustomInputNumberSignal,
-    CustomInputPhonePrefix,
+    LuxInputCurrencySignal,
+    LuxInputNumberSignal,
+    LuxInputPhonePrefix,
     InputToggleSwitch,
     InputImg,
     ButtonWeb,
@@ -324,19 +324,14 @@ export class EmployeeUnifiedProfileForm implements OnInit {
   }
 
   private async onLoadCatalogs(): Promise<void> {
-    const [
-      bloodTypes,
-      maritalStatuses,
-      sexes,
-      typeContracts,
-      educationLevels,
-    ] = await Promise.all([
-      firstValueFrom(this.enumSelectS.bloodType()),
-      firstValueFrom(this.enumSelectS.maritalStatus()),
-      firstValueFrom(this.enumSelectS.sex()),
-      firstValueFrom(this.enumSelectS.typeContract()),
-      firstValueFrom(this.enumSelectS.educationLevel()),
-    ]);
+    const [bloodTypes, maritalStatuses, sexes, typeContracts, educationLevels] =
+      await Promise.all([
+        firstValueFrom(this.enumSelectS.bloodType()),
+        firstValueFrom(this.enumSelectS.maritalStatus()),
+        firstValueFrom(this.enumSelectS.sex()),
+        firstValueFrom(this.enumSelectS.typeContract()),
+        firstValueFrom(this.enumSelectS.educationLevel()),
+      ]);
 
     this.cb_blood_type.set(bloodTypes);
     this.cb_marital_status.set(maritalStatuses);
@@ -471,7 +466,8 @@ export class EmployeeUnifiedProfileForm implements OnInit {
 
   private findNationalityObject(nationality: any): SelectItemDto | null {
     if (!nationality) return null;
-    if (typeof nationality === "object" && nationality.value) return nationality;
+    if (typeof nationality === "object" && nationality.value)
+      return nationality;
 
     return (
       this.cb_nationality().find(
@@ -483,7 +479,10 @@ export class EmployeeUnifiedProfileForm implements OnInit {
   private getInvalidFieldLabels(): string[] {
     return Object.entries(this.form.controls)
       .filter(([key, control]) => control.invalid)
-      .map(([key]) => this.fieldLabels[key as keyof EmployeeUnifiedProfileFormControls])
+      .map(
+        ([key]) =>
+          this.fieldLabels[key as keyof EmployeeUnifiedProfileFormControls],
+      )
       .filter((label): label is string => Boolean(label));
   }
 
@@ -495,4 +494,3 @@ export class EmployeeUnifiedProfileForm implements OnInit {
     });
   }
 }
-

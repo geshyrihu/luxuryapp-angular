@@ -21,7 +21,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { catchError, finalize, Subject, throwError } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 
@@ -34,7 +34,7 @@ interface IResetPasswordForm {
   selector: "app-reset-password",
   imports: [
     ReactiveFormsModule,
-    CustomInputPassword,
+    LuxInputPassword,
     ButtonWeb,
     RouterModule,
     LxIcon,

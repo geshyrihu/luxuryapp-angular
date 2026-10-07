@@ -73,6 +73,6 @@ import { WebInputImg } from "../../web/input-img/input-img";
 })
 export class InputImg extends WebInputImg {
   protected platform = inject(PlatformService);
-  /** Alias histórico de fileSelected (legacy CustomInputImg). */
+  /** Alias histórico de fileSelected (legacy LuxInputImg). */
   propagar = output<File>();
 }

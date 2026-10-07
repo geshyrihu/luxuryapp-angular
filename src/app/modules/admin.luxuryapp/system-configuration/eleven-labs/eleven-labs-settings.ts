@@ -13,13 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxCard } from "@ui/adaptive/card/card";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import {
   ElevenLabsSettingsService,
@@ -28,6 +21,13 @@ import {
 } from "@core/services/eleven-labs-settings.service";
 import { ElevenLabsService } from "@core/services/eleven-labs.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxCard } from "@ui/adaptive/card/card";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.interface";
 
 @Component({
@@ -40,11 +40,12 @@ import { ElevenLabsSettingsFormGroup } from "./interfaces/eleven-labs-settings.i
     ReactiveFormsModule,
     LxCard,
     ButtonWeb,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    CustomInputSwitch,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal],
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputSwitch,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+  ],
 })
 export class ElevenLabsSettingsComponent implements OnInit {
   private readonly formB = inject(FormBuilder);
@@ -73,7 +74,8 @@ export class ElevenLabsSettingsComponent implements OnInit {
     {
       label: "Flash v2.5",
       value: "eleven_flash_v2_5",
-    }];
+    },
+  ];
 
   readonly form: FormGroup<ElevenLabsSettingsFormGroup> =
     this.formB.group<ElevenLabsSettingsFormGroup>({
@@ -265,10 +267,10 @@ export class ElevenLabsSettingsComponent implements OnInit {
         selectedVoice.description,
         selectedVoice.gender,
         selectedVoice.accent,
-        selectedVoice.age]
+        selectedVoice.age,
+      ]
         .filter(Boolean)
         .join(" | "),
     );
   }
 }
-

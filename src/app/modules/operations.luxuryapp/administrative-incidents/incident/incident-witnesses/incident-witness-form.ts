@@ -11,14 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   IncidentWitnessAddOrEditDTO,
   IncidentWitnessDetailDTO,
@@ -37,8 +40,9 @@ interface IWitnessForm {
     ReactiveFormsModule,
     InputMask,
     ButtonWeb,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-witness-form.html",
 })
@@ -61,7 +65,8 @@ export class IncidentWitnessFormComponent implements OnInit {
     this.form = this.fb.group<IWitnessForm>({
       fullName: this.fb.control("", [
         Validators.required,
-        Validators.maxLength(200)]),
+        Validators.maxLength(200),
+      ]),
       position: this.fb.control("", [Validators.maxLength(150)]),
       phone: this.fb.control(""),
       statement: this.fb.control("", [Validators.maxLength(2000)]),
@@ -116,4 +121,3 @@ export class IncidentWitnessFormComponent implements OnInit {
     this.ref.close();
   }
 }
-

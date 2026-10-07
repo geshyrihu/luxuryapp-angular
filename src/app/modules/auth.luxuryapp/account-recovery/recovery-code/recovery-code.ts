@@ -13,18 +13,16 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { catchError, finalize, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
-import { ROUTES } from "src/app/routing/route-paths";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { SwalService } from "@core/services/swal.service";
-import {
-  IValidateRecoveryCodeResponse,
-} from "./interfaces/validate-recovery-code.interface";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { catchError, finalize, throwError } from "rxjs";
+import { ROUTES } from "src/app/routing/route-paths";
+import { IValidateRecoveryCodeResponse } from "./interfaces/validate-recovery-code.interface";
 
 /** Minutos de validez del código (RN-CRED-003): countdown de la pantalla. */
 const CODE_COUNTDOWN_SECONDS = 120;
@@ -43,10 +41,11 @@ interface ICodeForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     ButtonWeb,
     RouterModule,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class RecoveryCode {
   readonly ROUTES = ROUTES;
@@ -89,19 +88,18 @@ export class RecoveryCode {
       return;
     }
 
-    const identifierValue = this.formIdentifier.controls.identifier.value.trim();
+    const identifierValue =
+      this.formIdentifier.controls.identifier.value.trim();
     this.submitting.set(true);
     this.errorMessage.set("");
 
     this.dataConnectorS
-      .post(
-        Endpoints.Auth.recoverAccount.initiateByCode,
-        { identifier: identifierValue },
-      )
+      .post(Endpoints.Auth.recoverAccount.initiateByCode, {
+        identifier: identifierValue,
+      })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          const msg =
-            error.error?.message || "Ocurrió un error inesperado.";
+          const msg = error.error?.message || "Ocurrió un error inesperado.";
           this.errorMessage.set(msg);
           return throwError(() => new Error(msg));
         }),
@@ -147,8 +145,7 @@ export class RecoveryCode {
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          const msg =
-            error.error?.message || "Código inválido o expirado.";
+          const msg = error.error?.message || "Código inválido o expirado.";
           this.errorMessage.set(msg);
           return throwError(() => new Error(msg));
         }),
@@ -160,7 +157,9 @@ export class RecoveryCode {
       .subscribe({
         next: (response: any) => {
           const data =
-            response.body?.data ?? response.body ?? ({} as IValidateRecoveryCodeResponse);
+            response.body?.data ??
+            response.body ??
+            ({} as IValidateRecoveryCodeResponse);
           // El token viaja en el state de navegación; nunca en query params.
           this.router.navigate(ROUTES.AUTH.RESET_PASSWORD, {
             state: { email: data.email, token: data.token },
@@ -185,8 +184,7 @@ export class RecoveryCode {
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          const msg =
-            error.error?.message || "Ocurrió un error inesperado.";
+          const msg = error.error?.message || "Ocurrió un error inesperado.";
           this.errorMessage.set(msg);
           return throwError(() => new Error(msg));
         }),

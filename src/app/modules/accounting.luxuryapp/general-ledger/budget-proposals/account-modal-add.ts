@@ -29,9 +29,9 @@ import {
 
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LxMessage } from "@ui/adaptive/message/message";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxMessage } from "@ui/adaptive/message/message";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IAvailableAccountDTO } from "./interfaces/IAvailableAccountDto";
 
 interface ISearchForm {
@@ -40,11 +40,13 @@ interface ISearchForm {
 
 @Component({
   selector: "app-account-modal-add",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxIcon,
-    LxMessage],
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./account-modal-add.html",
 })

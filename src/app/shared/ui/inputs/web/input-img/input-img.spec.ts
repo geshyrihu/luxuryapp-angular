@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { WebInputImg } from './input-img';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { WebInputImg } from "./input-img";
 
-vi.mock('../custom-input-img-signal', () => ({
-  CustomInputImg: class {},
+vi.mock("../custom-input-img-signal", () => ({
+  LuxInputImg: class {},
 }));
 
-describe('WebInputImg', () => {
+describe("WebInputImg", () => {
   let component: WebInputImg;
   let fixture: ComponentFixture<WebInputImg>;
 
   beforeEach(() => {
     TestBed.overrideComponent(WebInputImg, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [WebInputImg],
@@ -24,18 +24,18 @@ describe('WebInputImg', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should register onChange callback', () => {
+  it("should register onChange callback", () => {
     const fn = vi.fn();
     component.registerOnChange(fn);
-    component.onChange('test');
-    expect(fn).toHaveBeenCalledWith('test');
+    component.onChange("test");
+    expect(fn).toHaveBeenCalledWith("test");
   });
 
-  it('should register onTouched callback', () => {
+  it("should register onTouched callback", () => {
     const fn = vi.fn();
     component.registerOnTouched(fn);
     component.onTouch();

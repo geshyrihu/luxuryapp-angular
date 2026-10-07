@@ -13,14 +13,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { firstValueFrom } from "rxjs";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
@@ -143,12 +146,13 @@ interface IGoogleCalendarEventForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    SegmentedControl],
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    SegmentedControl,
+  ],
 })
 export class GoogleCalendarForm implements OnInit {
   private static readonly MeetingDurationMinutes = 90;
@@ -177,12 +181,14 @@ export class GoogleCalendarForm implements OnInit {
     {
       label: "Mismo martes/tercer martes del mes",
       value: GoogleCalendarRecurrenceMode.OrdinalWeekday,
-    }]);
+    },
+  ]);
   readonly meetingDurationMinutes = signal(
     GoogleCalendarForm.MeetingDurationMinutes,
   );
   readonly canOverrideScheduleConflicts = this.aspRoleS.anyOf([
-    ApplicationRole.SuperUsuario]);
+    ApplicationRole.SuperUsuario,
+  ]);
   readonly isEditMode = computed(() => !!this.id());
   readonly subjectType = signal<number | null>(null);
   readonly modality = signal<number | null>(null);
@@ -219,7 +225,8 @@ export class GoogleCalendarForm implements OnInit {
       label: "JINT",
       value: 3,
       description: "Junta con proveedores y otros asuntos",
-    }]);
+    },
+  ]);
   readonly modalityOptions = signal<IOptionShortcut[]>([
     {
       label: "VIR",
@@ -230,7 +237,8 @@ export class GoogleCalendarForm implements OnInit {
       label: "PRE",
       value: 1,
       description: "Presencial",
-    }]);
+    },
+  ]);
   readonly timeSlotOptions = signal(this.buildTimeSlotOptions());
   readonly dateEvents = signal<IGoogleCalendarEventListItem[]>([]);
   readonly selectedDate = signal<Date | null>(null);
@@ -648,7 +656,8 @@ export class GoogleCalendarForm implements OnInit {
         if (requiresPaddles) {
           paddlesControl.setValidators([
             Validators.required,
-            Validators.min(1)]);
+            Validators.min(1),
+          ]);
         } else {
           paddlesControl.clearValidators();
           paddlesControl.setValue(null, { emitEvent: false });
@@ -730,14 +739,15 @@ export class GoogleCalendarForm implements OnInit {
 
     // Remove implicit guests from manual guests array if they were added during load
     const implicitEmails = new Set(
-      suggestions
-        .map((s) => s.email?.trim().toLowerCase())
-        .filter((e) => !!e),
+      suggestions.map((s) => s.email?.trim().toLowerCase()).filter((e) => !!e),
     );
 
     const manualControls = this.guestsArray.controls;
     for (let i = manualControls.length - 1; i >= 0; i--) {
-      const email = manualControls[i].controls.email.getRawValue()?.trim().toLowerCase();
+      const email = manualControls[i].controls.email
+        .getRawValue()
+        ?.trim()
+        .toLowerCase();
       if (email && implicitEmails.has(email)) {
         this.guestsArray.removeAt(i);
       }
@@ -1301,7 +1311,7 @@ export class GoogleCalendarForm implements OnInit {
     );
 
     if (match) {
-      const [ year, month, day, hour, minute, second] = match;
+      const [year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,
@@ -1360,7 +1370,8 @@ export class GoogleCalendarForm implements OnInit {
               id: g.id || null,
               name: g.nameEmployee,
               email: g.email,
-            }))],
+            })),
+          ],
       assembly: isAssembly
         ? {
             copyLegal: true,
@@ -1433,7 +1444,8 @@ export class GoogleCalendarForm implements OnInit {
       "miercoles",
       "jueves",
       "viernes",
-      "sabado"][date.getDay()];
+      "sabado",
+    ][date.getDay()];
 
     return `${ordinal} ${weekday}`;
   }

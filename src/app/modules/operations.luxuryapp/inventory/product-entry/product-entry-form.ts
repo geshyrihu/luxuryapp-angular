@@ -13,13 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,6 +20,16 @@ import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IProductEntryForm {
   id: FormControl<string>;
@@ -50,12 +53,13 @@ interface IProductEntryForm {
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
     InputAutocomplete,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class ProductEntryForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -81,7 +85,8 @@ export class ProductEntryForm implements OnInit {
     id: new FormControl("", { nonNullable: true }),
     providerId: new FormControl(null, [Validators.required]),
     customerId: new FormControl(this.customerIdS.customerId(), [
-      Validators.required]),
+      Validators.required,
+    ]),
     fechaEntrada: new FormControl(this.dateS.getDateNow(), {
       nonNullable: true,
       validators: [Validators.required],
@@ -89,7 +94,8 @@ export class ProductEntryForm implements OnInit {
     productoId: new FormControl(0, [Validators.required]),
     nombreProducto: new FormControl({ value: "", disabled: true }),
     almacenId: new FormControl(this.config.data.almacenId, [
-      Validators.required]),
+      Validators.required,
+    ]),
     cantidad: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
@@ -101,7 +107,8 @@ export class ProductEntryForm implements OnInit {
     }),
     providerName: new FormControl(null),
     applicationUserId: new FormControl(this.authS.applicationUserId, [
-      Validators.required]),
+      Validators.required,
+    ]),
   });
 
   public saveProviderId(item: SelectItemDto): void {
@@ -128,7 +135,8 @@ export class ProductEntryForm implements OnInit {
       this.loadMeasurementUnits(),
       this.loadProviders(),
       this.loadAlmacenes(),
-      this.loadProducts()]);
+      this.loadProducts(),
+    ]);
 
     // Cargar datos del formulario despuós de tener los providers
     if (this.id()) {
@@ -137,10 +145,9 @@ export class ProductEntryForm implements OnInit {
   }
 
   private async loadMeasurementUnits(): Promise<void> {
-    const data =
-      await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.measurementUnits,
-      );
+    const data = await this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
+      Endpoints.SelectItems.measurementUnits,
+    );
     this.cb_measurement_unit.set(data);
   }
 

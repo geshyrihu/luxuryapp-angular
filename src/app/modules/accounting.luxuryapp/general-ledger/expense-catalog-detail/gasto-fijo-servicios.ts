@@ -26,10 +26,9 @@ import { LxAvatar } from "@ui/adaptive/avatar/avatar";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
-
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -51,11 +50,12 @@ import {
     AppSortableColumn,
     AppSorticon,
     LxAvatar,
-    CustomInputNumberSignal,
-    CustomInputDecimal,
-    CustomInputSelectSignal,
+    LuxInputNumberSignal,
+    LuxInputDecimal,
+    LuxInputSelectSignal,
     LuxTableCaption,
-    TableFooter],
+    TableFooter,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GastoFijoServicios implements OnInit {

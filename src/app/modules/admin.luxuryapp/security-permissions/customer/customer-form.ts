@@ -12,20 +12,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomerFormDto } from "@core/interfaces/customer-form.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerAddOrEditDto } from "./interfaces/customer-add-or-edit.dto";
 import { CustomerFormGroup } from "./interfaces/customer-form.interface";
 
@@ -35,13 +38,14 @@ import { CustomerFormGroup } from "./interfaces/customer-form.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputDateSignal,
-    CustomInputNumberSignal,
-    CustomInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputNumberSignal,
+    LuxInputSelectSignal,
     InputImg,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class CustomerForm implements OnInit {
   formB = inject(FormBuilder);
@@ -54,7 +58,8 @@ export class CustomerForm implements OnInit {
   id: string = "";
   optionActive: SelectItemDto[] = [
     { value: true, label: "Activo" },
-    { value: false, label: "Inactivo" }];
+    { value: false, label: "Inactivo" },
+  ];
 
   /** Entidades federativas (espejo de MexicanStateEnum del backend). */
   stateOptions: SelectItemDto[] = [
@@ -89,7 +94,8 @@ export class CustomerForm implements OnInit {
     "Tlaxcala",
     "Veracruz",
     "Yucatán",
-    "Zacatecas"].map((label, index) => ({ value: index, label }));
+    "Zacatecas",
+  ].map((label, index) => ({ value: index, label }));
 
   model: CustomerFormDto;
   photoFileUpdate: boolean = false;
@@ -193,4 +199,3 @@ export class CustomerForm implements OnInit {
     return formData;
   }
 }
-

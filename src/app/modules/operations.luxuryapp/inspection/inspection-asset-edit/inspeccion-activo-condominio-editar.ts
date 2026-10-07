@@ -12,15 +12,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { SwalService } from "@core/services/swal.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { SwalService } from "@core/services/swal.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IReviewForm {
   value: FormControl<any>;
@@ -34,8 +37,9 @@ interface IReviewForm {
   imports: [
     ReactiveFormsModule,
     InputAutocomplete,
-    CustomInputTextSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    ButtonWeb,
+  ],
 })
 export class InspeccionActivoCondominioEditar implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -56,12 +60,15 @@ export class InspeccionActivoCondominioEditar implements OnInit {
       nonNullable: true,
     }),
     condominiumAssetId: new FormControl<string | null>(null, [
-      Validators.required]),
+      Validators.required,
+    ]),
     condominiumAssetName: new FormControl<string | null>(null, [
-      Validators.required]),
+      Validators.required,
+    ]),
     position: new FormControl<number>(1, [
       Validators.required,
-      Validators.min(1)]),
+      Validators.min(1),
+    ]),
     reviewSelection: new FormControl<SelectItemDto | null>(null),
     inspectionReviews: new FormArray<FormGroup<IReviewForm>>([]),
   });
@@ -217,7 +224,8 @@ export class InspeccionActivoCondominioEditar implements OnInit {
         {
           value: removedReview.value,
           label: removedReview.label,
-        }];
+        },
+      ];
 
       updatedCatalog.sort((a, b) => a.label.localeCompare(b.label));
       this.cb_inspection_reviews_catalog.set(updatedCatalog);

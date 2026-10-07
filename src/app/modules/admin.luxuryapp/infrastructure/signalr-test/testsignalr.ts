@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,20 +7,23 @@ import {
 } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { LxCard } from "@ui/adaptive/card/card";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-testsignalr",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxCard,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputAutocomplete,
-    CustomInputAutoMultiple],
+    LuxInputAutoMultiple,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./testsignalr.html",
 })
@@ -81,9 +83,12 @@ export class Testsignalr implements OnInit {
   async sendSignalRToUsers(): Promise<void> {
     if (!this.selectedUserIds().length) return;
 
-    await this.apiResponseS.onPost(Endpoints.NotificationDiagnostics.testSignalUsers, {
-      userIds: this.selectedUserIds(),
-    });
+    await this.apiResponseS.onPost(
+      Endpoints.NotificationDiagnostics.testSignalUsers,
+      {
+        userIds: this.selectedUserIds(),
+      },
+    );
 
     alert("SignalR enviado a usuarios seleccionados");
   }
@@ -207,4 +212,3 @@ export class Testsignalr implements OnInit {
     console.log(result);
   }
 }
-

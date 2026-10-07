@@ -14,14 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { CandidateDecision } from "@core/enums/candidate-decision";
 import { CandidateRejectionReason } from "@core/enums/candidate-rejection-reason";
@@ -33,6 +25,14 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateTimeSignal } from "@ui/inputs/web/custom-input-date-time-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { firstValueFrom } from "rxjs";
 import { candidateDecisionLabel } from "../../recruitment-shared/candidate-decision-labels";
 import { CandidateInterviewFeedbackFormDialogData } from "./interfaces/candidate-interview-feedback-form-dialog-data.interface";
 import { CandidateInterviewResponseDto } from "./interfaces/candidate-interview-response.dto";
@@ -44,12 +44,12 @@ import { InterviewerActionRequestDto } from "./interfaces/interviewer-action-req
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    CustomInputDateTimeSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    LuxInputDateTimeSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
+    LuxInputTextSignal,
     ButtonWeb,
   ],
 })
@@ -249,5 +249,3 @@ export class CandidateInterviewFeedbackForm implements OnInit {
     return `${year}-${month}-${day}`;
   }
 }
-
-

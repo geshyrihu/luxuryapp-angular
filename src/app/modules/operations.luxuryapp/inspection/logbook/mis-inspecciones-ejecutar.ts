@@ -1,5 +1,5 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { BreakpointObserver } from "@angular/cdk/layout";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import {
   ChangeDetectionStrategy,
@@ -23,8 +23,8 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { MisInspeccionesAgregarImagenes } from "@operations.luxuryapp/inspection/logbook/mis-inspecciones-agregar-imagenes";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 import { map } from "rxjs";
@@ -32,20 +32,20 @@ import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-tab
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-
-
 @Component({
   selector: "app-mis-inspecciones-ejecutar",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
-    CustomInputToggleSwitch,
-    CustomInputTextAreaSignal,
+    LuxInputToggleSwitch,
+    LuxInputTextAreaSignal,
     LxTooltipDirective,
     AppTable,
 
     DataViewMobile,
     LuxTableCaption,
-    TableFooter],
+    TableFooter,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./mis-inspecciones-ejecutar.html",
 })
@@ -101,7 +101,8 @@ export class MisInspeccionesEjecutar implements OnInit {
 
   globalFilterFields = computed(() => [
     "inspectionDescription",
-    "condominiumAssetName"]);
+    "condominiumAssetName",
+  ]);
 
   constructor() {
     effect(() => {

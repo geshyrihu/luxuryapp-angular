@@ -5,28 +5,28 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
-import { LxCard } from "@ui/adaptive/card/card";
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
+import { LxCard } from "@ui/adaptive/card/card";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   ChargeTypeCatalogResponseDTO,
   CreateChargeTypeCatalogDTO,
   UpdateChargeTypeCatalogDTO,
 } from "../../interfaces/charge-type-catalog.dto";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface IChargeTypeForm {
   name: FormControl<string>;
@@ -38,10 +38,11 @@ interface IChargeTypeForm {
   selector: "app-charge-type-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
-    LxCard],
+    LxCard,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-form.html",
 })
@@ -114,4 +115,3 @@ export class ChargeTypeForm implements OnInit {
     });
   }
 }
-

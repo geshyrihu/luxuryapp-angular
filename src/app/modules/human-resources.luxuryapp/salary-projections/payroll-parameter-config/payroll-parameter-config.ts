@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { DecimalPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,9 +9,9 @@ import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
-
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import {
   AppSortableColumn,
@@ -32,13 +31,15 @@ const LIST_URL = "/hr/salary-projections";
   selector: "app-payroll-parameter-config",
   templateUrl: "./payroll-parameter-config.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     AppTable,
     AppSortableColumn,
     TableEmptyMessage,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     FormsModule,
-    DecimalPipe],
+    DecimalPipe,
+  ],
   styles: [
     `
       .app-sidepanel-backdrop {
@@ -82,7 +83,8 @@ const LIST_URL = "/hr/salary-projections";
         overflow-y: auto;
         flex: 1;
       }
-    `],
+    `,
+  ],
 })
 export class PayrollParameterConfig {
   private readonly api = inject(ApiResponseService);
@@ -116,7 +118,8 @@ export class PayrollParameterConfig {
         ),
         this.api.onGetList<IStateTaxParameter[]>(
           Endpoints.SalaryProjections.stateTaxParameters,
-        )]);
+        ),
+      ]);
 
       if (federal) {
         this.federalParameters.set(federal);

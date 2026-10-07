@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,23 +16,26 @@ import { AiService } from "@core/services/ai.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { EDocumentType } from "@legal.luxuryapp/legal/interfaces/document-type.enum";
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppMessage } from "@ui/web/message/message";
 import { ReglamentosListDesktop } from "./desktop/reglamentos-list-desktop";
 import { ReglamentosListMobile } from "./mobile/reglamentos-list-mobile";
 
 @Component({
   selector: "app-reglamentos",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     ReglamentosListDesktop,
     ReglamentosListMobile,
     LxModal,
     AppMessage,
-    CustomInputTextAreaSignal,
+    LuxInputTextAreaSignal,
     ReactiveFormsModule,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./reglamentos-list.html",
 })

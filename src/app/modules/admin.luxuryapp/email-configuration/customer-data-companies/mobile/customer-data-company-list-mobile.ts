@@ -5,12 +5,12 @@ import {
   output,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { CustomerDataCompanyDto } from "../customer-data-company.dto";
 
 @Component({
@@ -23,9 +23,10 @@ import { CustomerDataCompanyDto } from "../customer-data-company.dto";
     ReactiveFormsModule,
     DataViewMobile,
     MobileActionMenu,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class CustomerDataCompanyListMobile {
   data = input.required<CustomerDataCompanyDto[]>();

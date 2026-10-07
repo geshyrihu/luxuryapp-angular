@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { HttpParams } from "@angular/common/http";
 import {
   ChangeDetectionStrategy,
@@ -15,12 +14,13 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -28,7 +28,8 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
 
 @Component({
   selector: "app-financial-audit-log",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     AppTable,
     LuxTableCaption,
     LxCard,
@@ -37,8 +38,8 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
     MobileListItem,
     ApiDatePipe,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
     LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

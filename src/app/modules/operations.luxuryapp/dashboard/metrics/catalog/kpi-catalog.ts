@@ -1,10 +1,17 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import type { SelectItemDto } from "@core/interfaces/select-item.dto";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 import {
   CORPORATE_ROLES,
@@ -18,7 +25,7 @@ import {
 @Component({
   selector: "app-kpi-catalog",
   standalone: true,
-  imports: [FormsModule, CustomInputSelectSignal],
+  imports: [FormsModule, LuxInputSelectSignal],
   templateUrl: "./kpi-catalog.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -42,7 +49,9 @@ export class KpiCatalog implements OnInit {
   );
 
   readonly roleLabel = computed(
-    () => this.roleOptions().find((r) => r.value === this.selectedRole())?.label ?? "",
+    () =>
+      this.roleOptions().find((r) => r.value === this.selectedRole())?.label ??
+      "",
   );
 
   readonly seesAllCustomers = computed(() => {
@@ -51,21 +60,29 @@ export class KpiCatalog implements OnInit {
   });
 
   readonly isStaff = computed(() => STAFF_ROLES.includes(this.selectedRole()));
-  readonly isReview = computed(() => REVIEW_ROLES.includes(this.selectedRole()));
+  readonly isReview = computed(() =>
+    REVIEW_ROLES.includes(this.selectedRole()),
+  );
 
   readonly scopeLabel = computed(() =>
-    this.seesAllCustomers() ? "Todos los clientes" : this.customerName() || "Cliente seleccionado",
+    this.seesAllCustomers()
+      ? "Todos los clientes"
+      : this.customerName() || "Cliente seleccionado",
   );
 
   readonly visibleKpis = computed(() =>
     KPI_CATALOG.filter((k) => k.roles.includes(this.selectedRole())),
   );
 
-  readonly plannedKpis = computed(() => KPI_CATALOG.filter((k) => k.roles.length === 0));
+  readonly plannedKpis = computed(() =>
+    KPI_CATALOG.filter((k) => k.roles.length === 0),
+  );
 
   ngOnInit(): void {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto<string>[]>(Endpoints.SelectItems.dashboardKpiRoles)
+      .onGetSelectItem<SelectItemDto<string>[]>(
+        Endpoints.SelectItems.dashboardKpiRoles,
+      )
       .then((items) => {
         this.roleItems.set(items ?? []);
         if (!this.selectedRole() && items?.length) {

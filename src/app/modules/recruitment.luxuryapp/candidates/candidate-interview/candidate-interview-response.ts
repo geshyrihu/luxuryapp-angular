@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,8 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -34,13 +34,14 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   selector: "app-candidate-interview-response",
   templateUrl: "./candidate-interview-response.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     PdfViewerTrigger,
     ApiDatePipe,
     AppTable,
     CandidateStageBadge,
     MappedPTag,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     FormsModule,
   ],
 })

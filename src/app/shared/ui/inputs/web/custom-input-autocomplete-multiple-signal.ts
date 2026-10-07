@@ -59,12 +59,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputAutoMultiple),
+      useExisting: forwardRef(() => LuxInputAutoMultiple),
       multi: true,
     },
   ],
 })
-export class CustomInputAutoMultiple extends BaseInputSignal {
+export class LuxInputAutoMultiple extends BaseInputSignal {
   // <--- Inputs Específicos --->
   data = input<SelectItemDto[]>([]);
   size = input<"small" | "large" | undefined>(undefined);

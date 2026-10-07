@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
 
 /**
@@ -20,7 +20,7 @@ import { AbstractControl, ReactiveFormsModule } from "@angular/forms";
     }
   `,
 })
-export class ValidationErrorsCustomInput {
+export class ValidationErrorsLuxInput {
   control = input.required<AbstractControl | any>();
   placeholder = input<string>("");
 
@@ -63,12 +63,3 @@ export class ValidationErrorsCustomInput {
     });
   }
 }
-
-
-
-
-
-
-
-
-

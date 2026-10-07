@@ -7,12 +7,11 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputImg } from "../custom-input-img-signal";
+import { LuxInputImg } from "../custom-input-img-signal";
 
 @Component({
   selector: "web-input-img",
-
-  imports: [CustomInputImg, ReactiveFormsModule],
+  imports: [LuxInputImg, ReactiveFormsModule],
   template: `
     <web-custom-input-img-signal
       [control]="control()"
@@ -40,7 +39,8 @@ import { CustomInputImg } from "../custom-input-img-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputImg),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputImg extends BaseInputSignal {
   urlImgCurrent = input<string>("");

@@ -11,14 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-vault-secret-form",
@@ -27,9 +30,10 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSelectSignal],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSelectSignal,
+  ],
 })
 export class VaultSecretForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -47,7 +51,8 @@ export class VaultSecretForm implements OnInit {
     { label: "Private Key", value: "PRIVATE_KEY" },
     { label: "OAuth Secret", value: "OAUTH_SECRET" },
     { label: "OAuth Token", value: "OAUTH_TOKEN" },
-    { label: "DB Connection", value: "DB_CONNECTION" }];
+    { label: "DB Connection", value: "DB_CONNECTION" },
+  ];
 
   form = new FormGroup({
     secretName: new FormControl<string>("", {
@@ -99,4 +104,3 @@ export class VaultSecretForm implements OnInit {
     }
   }
 }
-

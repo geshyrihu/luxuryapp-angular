@@ -1,4 +1,3 @@
-import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,17 +16,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
@@ -36,8 +27,16 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
-import { ROUTES } from "src/app/routing/route-paths";
+import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
+import { ROUTES } from "src/app/routing/route-paths";
 
 interface DiscountDescriptionFormValue {
   description: string;
@@ -89,12 +88,13 @@ interface SolicitudBajaFormValue {
     LxIcon,
     ReactiveFormsModule,
     FileUploadModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -148,7 +148,8 @@ interface SolicitudBajaFormValue {
           text-align: center !important;
         }
       }
-    `],
+    `,
+  ],
 })
 export class SolicitudBajaForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -190,7 +191,9 @@ export class SolicitudBajaForm implements OnInit {
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(250)]],
+        Validators.maxLength(250),
+      ],
+    ],
     discountDescriptions: this.formBuilder.array([]),
     lawyerAssistance: [false],
     employeeInformed: [false],
@@ -205,7 +208,10 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png"])]],
+          ".png",
+        ]),
+      ],
+    ],
   });
 
   get discountDescriptions() {
@@ -241,18 +247,20 @@ export class SolicitudBajaForm implements OnInit {
     const urlApi = OperationRecruitmentEndpoints.requestDismissal.getByEmployee(
       this.employeeId,
     );
-    this.apiResponseS.onGetItem<RequestDismissalDraftDTO>(urlApi).then((result) => {
-      if (result) {
-        this.form.patchValue({
-          ...result,
-          executionDate: this.toDate(result.executionDate),
-          lastdayofwork: this.toDate(result.lastdayofwork),
-          applicationRole:
-            result.profession || result.applicationRoleName || "",
-          applicationRoleKey: result.professionKey || "",
-        });
-      }
-    });
+    this.apiResponseS
+      .onGetItem<RequestDismissalDraftDTO>(urlApi)
+      .then((result) => {
+        if (result) {
+          this.form.patchValue({
+            ...result,
+            executionDate: this.toDate(result.executionDate),
+            lastdayofwork: this.toDate(result.lastdayofwork),
+            applicationRole:
+              result.profession || result.applicationRoleName || "",
+            applicationRoleKey: result.professionKey || "",
+          });
+        }
+      });
   }
 
   handleValueChange(newValue: number | null) {
@@ -268,7 +276,9 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png"])]);
+          ".png",
+        ]),
+      ]);
       if (newValue == 0)
         this.mensajeRenuncia = "Adjunta la renuncia firmada (PDF/DOCX/IMG).";
       else if (newValue == 2)
@@ -286,7 +296,9 @@ export class SolicitudBajaForm implements OnInit {
           ".docx",
           ".jpg",
           ".jpeg",
-          ".png"])]);
+          ".png",
+        ]),
+      ]);
 
       if (newValue == 3) {
         this.mensajeRenuncia =
@@ -304,13 +316,16 @@ export class SolicitudBajaForm implements OnInit {
   }
 
   checkEvaluations() {
-    const urlApi = OperationRecruitmentEndpoints.performanceEvaluations.historyByEmployee(
-      this.employeeId,
-    );
-    this.apiResponseS.onGetItem<EvaluationHistoryItem[]>(urlApi).then((result) => {
-      this.hasEvaluations =
-        result && Array.isArray(result) && result.length > 0;
-    });
+    const urlApi =
+      OperationRecruitmentEndpoints.performanceEvaluations.historyByEmployee(
+        this.employeeId,
+      );
+    this.apiResponseS
+      .onGetItem<EvaluationHistoryItem[]>(urlApi)
+      .then((result) => {
+        this.hasEvaluations =
+          result && Array.isArray(result) && result.length > 0;
+      });
   }
 
   goToCreateEvaluation() {

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, CurrencyPipe, UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -19,11 +18,12 @@ import {
   SignalRService,
 } from "@core/services/signalr.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -33,14 +33,15 @@ import {
 
 @Component({
   selector: "app-native-statement",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     AppTable,
     LxCard,
     LxTag,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
     UpperCasePipe,
     LxIcon,
     ApiDatePipe,

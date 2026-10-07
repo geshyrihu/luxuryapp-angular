@@ -1,4 +1,9 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
 import { BaseInputSignal } from "../core/base-input-signal";
@@ -7,10 +12,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
 // Un componente para entradas de texto con formato de máscara.
 @Component({
   selector: "web-custom-input-mask-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    NgxMaskDirective],
+  imports: [BaseInputSignal, ReactiveFormsModule, NgxMaskDirective],
   template: `
     <!-- 🏗️ ESTRUCTURA BASE -->
     <!-- Reutilizamos BaseInput para manejar la etiqueta, los errores y la disposición. -->
@@ -48,11 +50,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
     provideNgxMask(),
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputMaskSignal),
+      useExisting: forwardRef(() => LuxInputMaskSignal),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputMaskSignal extends BaseInputSignal {
+export class LuxInputMaskSignal extends BaseInputSignal {
   // 🎨 PROPIEDADES ADICIONALES
   customMask = input.required<string>();
   size = input<"small" | "large" | undefined>(undefined);

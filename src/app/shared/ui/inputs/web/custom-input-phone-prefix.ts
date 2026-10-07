@@ -1,10 +1,7 @@
-import { Component, forwardRef, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, forwardRef } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { PHONE_PREFIXES, PhonePrefix } from "@core/data/phone-prefixes.data";
 import { NgSelectModule } from "@ng-select/ng-select";
-import {
-  PHONE_PREFIXES,
-  PhonePrefix,
-} from "@core/data/phone-prefixes.data";
 import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
@@ -32,10 +29,10 @@ import { BaseInputSignal } from "../core/base-input-signal";
         <!-- Valor seleccionado -->
         <ng-template ng-label-tmp let-item="item">
           @if (item) {
-          <div class="d-flex align-items-center gap-2">
-            <span class="text-xl leading-none">{{ item.flag }}</span>
-            <span class="font-medium">{{ item.dialCode }}</span>
-          </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-xl leading-none">{{ item.flag }}</span>
+              <span class="font-medium">{{ item.dialCode }}</span>
+            </div>
           }
         </ng-template>
 
@@ -54,11 +51,11 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputPhonePrefix),
+      useExisting: forwardRef(() => LuxInputPhonePrefix),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputPhonePrefix extends BaseInputSignal {
+export class LuxInputPhonePrefix extends BaseInputSignal {
   readonly prefixes: PhonePrefix[] = PHONE_PREFIXES;
 }
-

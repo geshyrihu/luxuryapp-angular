@@ -9,18 +9,21 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   IncidentDetailDTO,
   IncidentResolveDTO,
-} from './interfaces/incident.interfaces';
+} from "./interfaces/incident.interfaces";
 
 interface IIncidentResolveForm {
   investigationStatus: import("@angular/forms").FormControl<number>;
@@ -35,10 +38,11 @@ interface IIncidentResolveForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
+    ButtonWeb,
+  ],
 })
 export class IncidentResolveComponent {
   apiS = inject(ApiResponseService);
@@ -113,4 +117,3 @@ export class IncidentResolveComponent {
     this.ref.close();
   }
 }
-

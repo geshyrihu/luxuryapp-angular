@@ -9,20 +9,23 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import {
   AddendumTemplateAddOrEditDTO,
   AddendumTemplateListDTO,
   EAddendumType,
-} from './interfaces/addendum-template.dto';
+} from "./interfaces/addendum-template.dto";
 
 interface IAddendumTemplateForm {
   name: import("@angular/forms").FormControl<string>;
@@ -39,10 +42,10 @@ interface IAddendumTemplateForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputSwitch,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputSwitch,
+    LuxInputTextAreaSignal,
     ButtonWeb,
   ],
 })
@@ -116,4 +119,3 @@ export class AddendumTemplateFormComponent {
     this.ref.close();
   }
 }
-

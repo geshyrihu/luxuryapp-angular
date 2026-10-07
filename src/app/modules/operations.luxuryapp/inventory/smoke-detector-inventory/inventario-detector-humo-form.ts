@@ -13,18 +13,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IInventarioDetectorHumoForm {
   id: FormControl<string>;
@@ -42,11 +45,12 @@ interface IInventarioDetectorHumoForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputMask,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     InputImg,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class InventarioDetectorHumoForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -109,12 +113,13 @@ export class InventarioDetectorHumoForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetItem(
-        Endpoints.SmokeDetectors.getById(this.id),
-      )
+      .onGetItem(Endpoints.SmokeDetectors.getById(this.id))
       .then((result: any) => {
         this.urlBaseImg = result.currentPhoto;
-        this.form.patchValue({ ...result, applicationUserId: this.authS.applicationUserId });
+        this.form.patchValue({
+          ...result,
+          applicationUserId: this.authS.applicationUserId,
+        });
       });
   }
 
@@ -130,10 +135,7 @@ export class InventarioDetectorHumoForm implements OnInit {
         });
     } else {
       this.apiResponseS
-        .onPut(
-          Endpoints.SmokeDetectors.update(this.id),
-          formData,
-        )
+        .onPut(Endpoints.SmokeDetectors.update(this.id), formData)
         .then((result: boolean) => {
           result ? this.ref.close(true) : this.submitting.set(false);
         });
@@ -146,9 +148,9 @@ export class InventarioDetectorHumoForm implements OnInit {
     formData.append("detectorType", String(DTO.detectorType));
     formData.append("location", String(DTO.location));
     formData.append("localCode", String(DTO.localCode));
-    if (DTO.applicationUserId) formData.append("applicationUserId", String(DTO.applicationUserId));
+    if (DTO.applicationUserId)
+      formData.append("applicationUserId", String(DTO.applicationUserId));
     if (DTO.photo) formData.append("photo", DTO.photo);
     return formData;
   }
 }
-

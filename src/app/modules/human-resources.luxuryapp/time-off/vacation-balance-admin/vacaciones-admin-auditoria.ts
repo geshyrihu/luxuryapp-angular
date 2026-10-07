@@ -17,7 +17,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 
@@ -56,10 +56,11 @@ export interface VacationHistoryItemDTO {
     FormsModule,
     LxCard,
     LxSpinner,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxMessage,
     AppTable,
-    LxTag],
+    LxTag,
+  ],
 })
 export class VacacionesAdminAuditoria implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -190,7 +191,8 @@ export class VacacionesAdminAuditoria implements OnInit {
       this.apiResponseS.onGetList<VacationHistoryItemDTO[]>(
         Endpoints.HR.VacationRequestApproval.history,
         { employeeId },
-      )]);
+      ),
+    ]);
 
     this.balance.set(balanceData);
 

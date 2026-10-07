@@ -6,8 +6,8 @@ import {
   inject,
   OnInit,
 } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { FormsModule } from "@angular/forms";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -15,16 +15,16 @@ import {
   Router,
   RouterModule,
 } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import type { MenuItem } from "@core/interfaces/menu-item.interface";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { AppToolbar } from "@ui/web/toolbar/toolbar";
-import { filter, map, startWith } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
+import type { MenuItem } from "@core/interfaces/menu-item.interface";
 import { ThemeService } from "@core/services/theme.service";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
+import { AppToolbar } from "@ui/web/toolbar/toolbar";
+import { filter, map, startWith } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 import { Profiledesktop } from "../../../employee-view/desktop/profile-desktop/profile-desktop";
 
@@ -32,13 +32,14 @@ import { Profiledesktop } from "../../../employee-view/desktop/profile-desktop/p
   selector: "app-header-direccion-desktop",
   imports: [
     Breadcrumbs,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     FormsModule,
     Profiledesktop,
     RouterModule,
     AppToolbar,
     LxTooltipDirective,
-    ButtonWeb],
+    ButtonWeb,
+  ],
   templateUrl: "./header-direccion-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: "./header-direccion-desktop.scss",
@@ -79,7 +80,9 @@ export class HeaderDirecciondesktop implements OnInit {
       this.title = route.snapshot.data["title"] || "";
       const parent = route.parent?.snapshot.data["breadcrumb"];
       const child = route.snapshot.data["breadcrumb"];
-      this.breadcrumbItems = [{ icon: "material-symbols-light:home", routerLink: "/direccion" }];
+      this.breadcrumbItems = [
+        { icon: "material-symbols-light:home", routerLink: "/direccion" },
+      ];
       if (parent) this.breadcrumbItems.push({ label: parent });
       if (child) this.breadcrumbItems.push({ label: child });
     });

@@ -12,10 +12,6 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
@@ -24,6 +20,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EmployeeFileWorkPositionDTO } from "@recruitment.luxuryapp/employee-file/human-resources/employee-registry/interfaces/employee-file.interfaces";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   EContractType,
   EmployeeWorkContractDetailDTO,
@@ -44,10 +44,11 @@ interface IWorkContractForm {
   imports: [
     ReactiveFormsModule,
     CurrencyPipe,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class WorkContractFormComponent implements OnInit {
   apiS = inject(ApiResponseService);
@@ -84,7 +85,8 @@ export class WorkContractFormComponent implements OnInit {
     { value: "ObraDeterminada", label: "Por Obra Determinada" },
     { value: "Practicas", label: "Prácticas Profesionales" },
     { value: "Outsourcing", label: "Outsourcing" },
-    { value: "Honorarios", label: "Honorarios" }];
+    { value: "Honorarios", label: "Honorarios" },
+  ];
 
   form!: FormGroup<IWorkContractForm>;
 
@@ -186,5 +188,3 @@ export class WorkContractFormComponent implements OnInit {
     this.ref.close();
   }
 }
-
-

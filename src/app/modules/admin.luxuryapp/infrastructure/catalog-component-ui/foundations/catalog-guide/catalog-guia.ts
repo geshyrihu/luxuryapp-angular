@@ -7,9 +7,9 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -37,9 +37,9 @@ type TagSeverity =
     InputTextarea,
     InputNumber,
     InputDatepicker,
-    CustomInputToggleSwitch,
-    CustomInputSelectSignal,
-    CustomInputMultiselectSignal,
+    LuxInputToggleSwitch,
+    LuxInputSelectSignal,
+    LuxInputMultiselectSignal,
     CustomSearchInput,
     AppTable,
     AppSortableColumn,

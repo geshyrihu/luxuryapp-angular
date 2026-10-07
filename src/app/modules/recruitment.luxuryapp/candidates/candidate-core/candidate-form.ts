@@ -34,11 +34,11 @@ import { LxRadioButton } from "@ui/adaptive/radio-button/radio-button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputEmail } from "@ui/inputs/adaptive/input-email/input-email";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import {
   debounceTime,
@@ -88,11 +88,11 @@ enum DuplicateMatchType {
 
   imports: [
     ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSelectSignal,
     LxRadioButton,
     InputMask,
     InputEmail,

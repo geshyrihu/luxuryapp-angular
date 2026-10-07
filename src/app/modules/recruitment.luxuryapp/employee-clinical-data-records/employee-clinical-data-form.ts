@@ -11,9 +11,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -22,6 +19,9 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.interface";
 
 @Component({
@@ -30,8 +30,8 @@ import { IEmployeeClinicalDataForm } from "./interfaces/employee-clinical-data.i
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
   ],
 })
@@ -94,5 +94,3 @@ export class EmployeeClinicalDataForm implements OnInit {
     });
   }
 }
-
-

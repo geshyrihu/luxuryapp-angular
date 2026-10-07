@@ -6,6 +6,7 @@ import {
   OnInit,
   signal,
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
   AbstractControl,
   FormArray,
@@ -15,19 +16,21 @@ import {
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { InspectionEdit } from "../models/inspection.model";
 
 interface IInspeccionsForm {
@@ -35,7 +38,7 @@ interface IInspeccionsForm {
   name: FormControl<string | null>;
   departamentId: FormControl<number | null>;
   customerId: FormControl<string | null>;
-  departament: FormControl<number | null>;  // Valor numérico del enum
+  departament: FormControl<number | null>; // Valor numérico del enum
   recurrenceUnit: FormControl<number | null>;
   recurrenceInterval: FormControl<number | null>;
   isActive: FormControl<boolean | null>;
@@ -47,12 +50,13 @@ interface IInspeccionsForm {
   selector: "app-inspecciones-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputCheckSignal,
-    CustomInputNumberSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputCheckSignal,
+    LuxInputNumberSignal,
     ButtonWeb,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./inspecciones-form.html",
 })
@@ -72,10 +76,12 @@ export class InspeccionesForm implements OnInit {
   recurrenceUnitOptions = [
     { label: "Días", value: 1 },
     { label: "Semanas", value: 2 },
-    { label: "Meses", value: 3 }];
+    { label: "Meses", value: 3 },
+  ];
   activeStatusOptions = [
     { label: "Activa", value: true },
-    { label: "Inactiva", value: false }];
+    { label: "Inactiva", value: false },
+  ];
 
   id: string = "";
 
@@ -115,7 +121,8 @@ export class InspeccionesForm implements OnInit {
     { label: "Jueves", value: 4, key: "day_4" },
     { label: "Viernes", value: 5, key: "day_5" },
     { label: "Sábado", value: 6, key: "day_6" },
-    { label: "Domingo", value: 0, key: "day_0" }];
+    { label: "Domingo", value: 0, key: "day_0" },
+  ];
 
   ngOnInit(): void {
     // Initialize daysForm
@@ -161,7 +168,7 @@ export class InspeccionesForm implements OnInit {
             id: result.id ?? "",
             name: result.name ?? "",
             customerId: result.customerId ?? "",
-            departament: result.departament ?? 0,  // Valor numérico del enum
+            departament: result.departament ?? 0, // Valor numérico del enum
             recurrenceUnit: result.recurrenceUnit ?? 1,
             recurrenceInterval: result.recurrenceInterval ?? 1,
             isActive: result.isActive ?? true,

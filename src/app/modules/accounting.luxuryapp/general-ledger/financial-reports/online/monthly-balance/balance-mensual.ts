@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,26 +7,29 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 
 @Component({
   selector: "app-balance-mensual",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxIcon,
     FormsModule,
     AppTable,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     AccountingNumberPipe,
-    DataViewMobile],
+    DataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./balance-mensual.html",
 })
@@ -52,7 +54,8 @@ export class BalanceMensual {
     "Sep",
     "Oct",
     "Nov",
-    "Dic"];
+    "Dic",
+  ];
 
   // Computed properties para el HTML
   nombreEmpresa = computed(() => this.data()?.nombreEmpresa || "");
@@ -89,7 +92,8 @@ export class BalanceMensual {
             cta.montoSeptiembre,
             cta.montoOctubre,
             cta.montoNoviembre,
-            cta.montoDiciembre],
+            cta.montoDiciembre,
+          ],
         });
       });
 

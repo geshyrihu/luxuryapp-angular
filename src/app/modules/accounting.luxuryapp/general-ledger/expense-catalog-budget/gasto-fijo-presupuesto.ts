@@ -20,9 +20,8 @@ import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 
-
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -33,22 +32,23 @@ import {
 
 import { LxMessage } from "@ui/adaptive/message/message";
 
-
 @Component({
   selector: "app-gasto-fijo-presupuesto",
   templateUrl: "./gasto-fijo-presupuesto.html",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     CommonModule,
     FormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
     LxSpinner,
     LuxTableCaption,
     TableFooter,
-    LxMessage],
+    LxMessage,
+  ],
 })
 export class GastoFijoPresupuesto implements OnInit {
   apiResponseS = inject(ApiResponseService);

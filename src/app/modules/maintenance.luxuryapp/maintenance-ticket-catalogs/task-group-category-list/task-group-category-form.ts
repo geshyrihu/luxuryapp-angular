@@ -14,18 +14,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  CrudSubmitOptions,
-  FormHelper,
-} from "@core/helpers/form-helper";
+import { CrudSubmitOptions, FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-form.interface";
 
 @Component({
@@ -34,8 +34,8 @@ import { TaskGroupCategoryFormGroup } from "./interfaces/task-group-category-for
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
   ],
 })
@@ -75,7 +75,8 @@ export class TaskGroupCategoryForm implements OnInit {
   });
 
   ngOnInit() {
-    this.enumService.departament()
+    this.enumService
+      .departament()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data) => {
         this.cb_departament.set(data);
@@ -107,4 +108,3 @@ export class TaskGroupCategoryForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

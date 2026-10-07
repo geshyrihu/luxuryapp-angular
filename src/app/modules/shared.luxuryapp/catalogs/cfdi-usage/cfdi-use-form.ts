@@ -12,13 +12,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CfdiUseAddOrEditDto } from "./interfaces/cfdi-use-add-or-edit.dto";
 import { CfdiUseFormGroup } from "./interfaces/cfdi-use-form.interface";
 
@@ -26,7 +29,7 @@ import { CfdiUseFormGroup } from "./interfaces/cfdi-use-form.interface";
   selector: "app-cfdi-use-form",
   templateUrl: "./cfdi-use-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class CfdiUseForm implements OnInit {
   authS = inject(AuthService);
@@ -79,4 +82,3 @@ export class CfdiUseForm implements OnInit {
     });
   }
 }
-

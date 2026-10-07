@@ -1,70 +1,68 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputCurrencySignal } from './custom-input-currency-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { LuxInputCurrencySignal } from "./custom-input-currency-signal";
 
-describe('CustomInputCurrencySignal', () => {
-  let component: CustomInputCurrencySignal;
-  let fixture: ComponentFixture<CustomInputCurrencySignal>;
+describe("LuxInputCurrencySignal", () => {
+  let component: LuxInputCurrencySignal;
+  let fixture: ComponentFixture<LuxInputCurrencySignal>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputCurrencySignal, {
+    TestBed.overrideComponent(LuxInputCurrencySignal, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputCurrencySignal],
+      imports: [LuxInputCurrencySignal],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputCurrencySignal);
+    fixture = TestBed.createComponent(LuxInputCurrencySignal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('default signal values', () => {
-    it('should have default showButtons as false', () => {
+  describe("default signal values", () => {
+    it("should have default showButtons as false", () => {
       expect(component.showButtons()).toBe(false);
     });
 
-    it('should have default minFractionDigits as 2', () => {
+    it("should have default minFractionDigits as 2", () => {
       expect(component.minFractionDigits()).toBe(2);
     });
 
-    it('should have default maxFractionDigits as 2', () => {
+    it("should have default maxFractionDigits as 2", () => {
       expect(component.maxFractionDigits()).toBe(2);
     });
 
-    it('should have default customClass as empty string', () => {
-      expect(component.customClass()).toBe('');
+    it("should have default customClass as empty string", () => {
+      expect(component.customClass()).toBe("");
     });
 
-    it('should have default size as undefined', () => {
+    it("should have default size as undefined", () => {
       expect(component.size()).toBeUndefined();
     });
 
-    it('should have default useGrouping as true', () => {
+    it("should have default useGrouping as true", () => {
       expect(component.useGrouping()).toBe(true);
     });
 
     it('should have default prefix as "$ "', () => {
-      expect(component.prefix()).toBe('$ ');
+      expect(component.prefix()).toBe("$ ");
     });
 
-    it('should have default suffix as undefined', () => {
+    it("should have default suffix as undefined", () => {
       expect(component.suffix()).toBeUndefined();
     });
 
-    it('should have default showClear as false', () => {
+    it("should have default showClear as false", () => {
       expect(component.showClear()).toBe(false);
     });
   });
-
 });

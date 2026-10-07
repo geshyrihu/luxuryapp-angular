@@ -11,11 +11,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 // Assuming EStatus enum is available globally or imported
 // For this example, I'll define it here based on the C# enum.
 export const ESTATUS_BAJA = [
@@ -35,7 +38,7 @@ interface ISolicitudBajaUpdateStatusForm {
   selector: "app-solicitud-baja-update-status",
   templateUrl: "./solicitud-baja-update-status.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputSelectSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputSelectSignal, ButtonWeb],
 })
 export class SolicitudBajaUpdateStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -83,4 +86,3 @@ export class SolicitudBajaUpdateStatus implements OnInit {
       });
   }
 }
-

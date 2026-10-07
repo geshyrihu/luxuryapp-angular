@@ -15,12 +15,12 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/angular";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
@@ -31,7 +31,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     ButtonMobile,
     CommonModule,
     RouterModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     IonItem,
     IonLabel,
     IonAvatar,
@@ -41,7 +41,8 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     LxTag,
     MobileActionMenu,
     DataViewMobile,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class OrdenesServicioListMobile {
   data = input.required<any[]>();
@@ -49,9 +50,9 @@ export class OrdenesServicioListMobile {
   fechaControl = input.required<FormControl<string | null>>();
   filtroEquiposValue = input<any>();
   filtroId = input<any>();
-  filtroEquipos = input<{ icon: AppIconName; id: any | string; nombre: string }[]>(
-    [],
-  );
+  filtroEquipos = input<
+    { icon: AppIconName; id: any | string; nombre: string }[]
+  >([]);
 
   reloadOrdenes = output<{ id: any; value: any }>();
   edit = output<{

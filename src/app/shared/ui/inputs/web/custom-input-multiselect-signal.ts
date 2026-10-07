@@ -1,1 +1,1 @@
-export { InputMultiselect as CustomInputMultiselectSignal } from "../adaptive/input-multiselect/input-multiselect";
+export { InputMultiselect as LuxInputMultiselectSignal } from "../adaptive/input-multiselect/input-multiselect";

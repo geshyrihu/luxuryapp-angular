@@ -6,8 +6,8 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -16,8 +16,8 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { InspeccionPdfService } from "../inspeccion-pdf.service";
 
-import { ButtonWeb } from "@ui/buttons/web";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
 
 @Component({
   selector: "app-lista-informe-inspeccion",
@@ -25,8 +25,9 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     LxIcon,
     ButtonWeb,
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal],
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./lista-informe-inspeccion.html",
 })

@@ -24,14 +24,14 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxIcon } from '@ui/adaptive/icon/icon';
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 import { CustomerIdService } from "../../../../core/auth/services/customer-id.service";
 
@@ -55,14 +55,15 @@ interface CategoryForm {
   imports: [
     LxTooltipDirective,
     LxFieldset,
-     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    ButtonWeb,
+    LuxInputCheckSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class FormularioPlantillaEvaluacion implements OnInit {
   // Inyección de dependencias

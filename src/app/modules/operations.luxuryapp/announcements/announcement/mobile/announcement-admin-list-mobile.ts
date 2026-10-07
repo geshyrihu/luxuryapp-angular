@@ -7,13 +7,13 @@ import {
 import { FormControl } from "@angular/forms";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAnnouncementAdminList } from "../announcement.model";
 
 @Component({
@@ -25,10 +25,11 @@ import { IAnnouncementAdminList } from "../announcement.model";
     MobileActionMenu,
     ApiDatePipe,
     LxTag,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     DataViewMobile,
     LxIcon,
-    MobileListItem],
+    MobileListItem,
+  ],
 })
 export class AnnouncementAdminListMobile {
   data = input.required<IAnnouncementAdminList[]>();

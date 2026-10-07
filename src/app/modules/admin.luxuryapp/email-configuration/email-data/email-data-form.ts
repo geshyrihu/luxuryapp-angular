@@ -11,25 +11,28 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  EmailDataFormDto,
+  TestEmailResponse,
+} from "@core/interfaces/email-data-form.interface";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
-import { EmailDataFormDto, TestEmailResponse } from "@core/interfaces/email-data-form.interface";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-email-data-form",
   templateUrl: "./email-data-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class EmailDataForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -76,7 +79,9 @@ export class EmailDataForm implements OnInit {
 
   onLoadData() {
     this.apiResponseS
-      .onGetList<EmailDataFormDto>(Endpoints.Catalogs.EmailData.getById(this.id))
+      .onGetList<EmailDataFormDto>(
+        Endpoints.Catalogs.EmailData.getById(this.id),
+      )
       .then((result) => {
         if (result !== null) {
           this.form.patchValue({ ...result, port: String(result.port) });
@@ -110,11 +115,13 @@ export class EmailDataForm implements OnInit {
     if (!ok) return;
     this.submitting.set(true);
     this.apiResponseS
-      .onPost<TestEmailResponse>(Endpoints.Catalogs.EmailData.sendTestEmail(this.id), null)
+      .onPost<TestEmailResponse>(
+        Endpoints.Catalogs.EmailData.sendTestEmail(this.id),
+        null,
+      )
       .then((result) => {
         if (result) this.testEmailMessage.set(result.message);
         this.submitting.set(false);
       });
   }
 }
-

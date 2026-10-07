@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import {
   ChangeDetectionStrategy,
@@ -9,28 +8,30 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-purchase-link-manager",
   templateUrl: "./purchase-link-manager.html",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ApiDatePipe,
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxTooltipDirective,
     DragDropModule,
-    CustomInputSelectButton,
+    LuxInputSelectButton,
     LxIcon,
     LxTag,
   ],

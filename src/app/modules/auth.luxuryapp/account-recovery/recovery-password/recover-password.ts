@@ -15,16 +15,16 @@ import {
   Validators,
 } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { catchError, finalize, Subject, throwError } from "rxjs";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
-import { ROUTES } from "src/app/routing/route-paths";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
 import { SwalService } from "@core/services/swal.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { catchError, finalize, Subject, throwError } from "rxjs";
+import { ROUTES } from "src/app/routing/route-paths";
+import { RECOVERY_BY_CODE_ENABLED } from "../recovery-code/feature-flag";
 
 interface IRecoverPasswordForm {
   email: FormControl<string>;
@@ -36,10 +36,11 @@ interface IRecoverPasswordForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     ButtonWeb,
     RouterModule,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class RecoverPassword implements OnInit, OnDestroy {
   readonly ROUTES = ROUTES;

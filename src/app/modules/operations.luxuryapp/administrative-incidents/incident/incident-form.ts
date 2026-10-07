@@ -13,10 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputDateTime } from "@ui/inputs/adaptive/input-date-time/input-date-time";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
@@ -27,13 +23,17 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputDateTime } from "@ui/inputs/adaptive/input-date-time/input-date-time";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
-import { LxTabs } from "@ui/adaptive/tabs/tabs";
-import { TabItem } from "@ui/core/tabs.base";
 import {
   IncidentTypeListDTO,
   SanctionTypeListDTO,
 } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { TabItem } from "@ui/core/tabs.base";
 import { IncidentAttachmentsComponent } from "./incident-attachments/incident-attachments";
 import { IncidentWitnessesComponent } from "./incident-witnesses/incident-witnesses";
 import {
@@ -58,13 +58,14 @@ interface IIncidentForm {
   imports: [
     ReactiveFormsModule,
     LxTabs,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     InputDateTime,
-    CustomInputTextAreaSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
     IncidentAttachmentsComponent,
     IncidentWitnessesComponent,
-    SuspensionDaysManager],
+    SuspensionDaysManager,
+  ],
 })
 export class IncidentFormComponent implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -81,7 +82,8 @@ export class IncidentFormComponent implements OnInit {
     { id: "datos", label: "📋 Datos" },
     { id: "adjuntos", label: "📎 Adjuntos", disabled: !this.id() },
     { id: "testigos", label: "👤 Testigos", disabled: !this.id() },
-    { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() }]);
+    { id: "suspension", label: "📅 Días de Suspensión", disabled: !this.id() },
+  ]);
   incidentTypes = signal<SelectItemDto[]>([]);
   sanctionTypes = signal<SelectItemDto[]>([]);
   cb_severity = signal<SelectItemDto[]>([]);
@@ -103,7 +105,8 @@ export class IncidentFormComponent implements OnInit {
       description: this.fb.control("", [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(2000)]),
+        Validators.maxLength(2000),
+      ]),
       incidentDateTime: this.fb.control("", [Validators.required]),
       severityLevel: this.fb.control<number>(0, [Validators.required]),
       sanctionTypeId: this.fb.control(""),
@@ -192,4 +195,3 @@ export class IncidentFormComponent implements OnInit {
     };
   }
 }
-

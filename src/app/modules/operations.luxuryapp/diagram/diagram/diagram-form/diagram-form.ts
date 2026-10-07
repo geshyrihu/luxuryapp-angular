@@ -12,17 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IDiagramForm {
   id: FormControl<string | null>;
@@ -40,11 +43,7 @@ interface SelectItem {
 
 @Component({
   selector: "app-diagram-form",
-  imports: [
-    ReactiveFormsModule,
-    CustomInputTextSignal,
-    ButtonWeb,
-    LxListbox],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb, LxListbox],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-form.html",
 })
@@ -92,7 +91,8 @@ export class DiagramForm implements OnInit {
         ),
         this.apiResponseS.onGetSelectItem<SelectItem[]>(
           Endpoints.SelectItems.customersActiveShortName,
-        )]);
+        ),
+      ]);
 
       this.allRoles.set(roles || []);
       this.allCustomers.set(this.filterCustomers(customers || []));
@@ -107,14 +107,16 @@ export class DiagramForm implements OnInit {
 
     const adminRoles = [
       ApplicationRole.Administrador,
-      ApplicationRole.Asistente];
+      ApplicationRole.Asistente,
+    ];
     const universalRoles = [
       ApplicationRole.Reclutamiento,
       ApplicationRole.Legal,
       ApplicationRole.SupervisionOperativa,
       ApplicationRole.Contador,
       ApplicationRole.SuperUsuario,
-      ApplicationRole.RecursosHumanos];
+      ApplicationRole.RecursosHumanos,
+    ];
 
     if (adminRoles.includes(userRole as ApplicationRole)) {
       return customers.filter((c) => c.value === userCustomerId);
@@ -144,4 +146,3 @@ export class DiagramForm implements OnInit {
     });
   }
 }
-

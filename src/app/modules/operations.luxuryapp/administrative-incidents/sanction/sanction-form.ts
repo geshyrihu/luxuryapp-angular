@@ -10,11 +10,6 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +20,11 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ESanctionStatus } from "./interfaces/sanction.dto";
 
 interface ISanctionForm {
@@ -49,11 +49,12 @@ interface ISanctionChangeStatusForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputSwitch,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputSwitch,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class SanctionFormComponent {
   apiResponseS = inject(ApiResponseService);
@@ -76,7 +77,8 @@ export class SanctionFormComponent {
     { value: "Apelada", label: "Apelada" },
     { value: "Suspendida", label: "Suspendida" },
     { value: "Cumplida", label: "Cumplida" },
-    { value: "Revocada", label: "Revocada" }];
+    { value: "Revocada", label: "Revocada" },
+  ];
 
   ngOnInit(): void {
     const changeStatus = this.config.data?.changeStatus as boolean;
@@ -159,5 +161,3 @@ export class SanctionFormComponent {
     this.ref.close();
   }
 }
-
-

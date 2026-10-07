@@ -11,15 +11,17 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SwalService } from "@core/services/swal.service";
+import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
-import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ButtonWeb } from "@ui/buttons/web";
-
+import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
   selector: "app-task-report-work-plan-preview",
@@ -31,7 +33,8 @@ import { ButtonWeb } from "@ui/buttons/web";
     LuxTableCaption,
     ReactiveFormsModule,
 
-    CustomInputTextSignal],
+    LuxInputTextSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./task-report-work-plan-preview.html",
 })

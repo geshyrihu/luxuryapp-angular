@@ -12,13 +12,13 @@ import {
 } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 @Component({
   selector: "lux-bitacora-filtro-fecha-form-web",
   templateUrl: "./bitacora-filtro-fecha-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputDateSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputDateSignal, ButtonWeb],
 })
 export class BitacoraFiltroFechaForm {
   ref = inject(DynamicDialogRef);

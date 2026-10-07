@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule, formatNumber } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -18,10 +17,11 @@ import {
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { ThemeService } from "@core/services/theme.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppBreakdownList,
   type BreakdownItem,
@@ -38,11 +38,12 @@ import {
 
 @Component({
   selector: "app-analisis-cobranza-cliente",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     FormsModule,
     GooglePieChart4,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     AppTable,
 
     AppSortableColumn,
@@ -55,10 +56,12 @@ import {
     AppRankedList,
     LxIcon,
     MobileListItem,
-    DataViewMobile],
+    DataViewMobile,
+  ],
   providers: [
     CobranzaOnlineStoreService,
-    { provide: COBRANZA_ONLINE_STORE_AUTOLOAD, useValue: false }],
+    { provide: COBRANZA_ONLINE_STORE_AUTOLOAD, useValue: false },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./analisis-cobranza-cliente.html",
 })
@@ -82,7 +85,8 @@ export class AnalisisCobranzaClienteComponent {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS"];
+    "ANTICIPOS",
+  ];
 
   constructor() {
     effect(
@@ -220,7 +224,8 @@ export class AnalisisCobranzaClienteComponent {
         color: "var(--ds-success)",
         description: "Residual: perfecta - morosos - corriente",
       },
-      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true }];
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
+    ];
   });
 
   readonly filasCobranzaMes = computed<BreakdownItem[]>(() => {
@@ -253,7 +258,8 @@ export class AnalisisCobranzaClienteComponent {
         color: "var(--ds-warning)",
         description: "Cobranza perfecta - cobrado",
       },
-      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true }];
+      { label: "Cobranza perfecta", value: d.cobranzaPerfecta, isTotal: true },
+    ];
 
     return filas;
   });
@@ -282,7 +288,8 @@ export class AnalisisCobranzaClienteComponent {
         color: "var(--ds-info)",
         description: "Debe sin alcanzar los umbrales de moroso",
       },
-      { label: "Total deuda", value: d.totalDeuda, isTotal: true }];
+      { label: "Total deuda", value: d.totalDeuda, isTotal: true },
+    ];
   });
 
   readonly chartData = computed(() => {
@@ -307,7 +314,8 @@ export class AnalisisCobranzaClienteComponent {
       const datos = [
         { label: "MOROSOS", value: morosos, color: danger },
         { label: "DEUDA CORRIENTE", value: corriente, color: info },
-        { label: "COBRADO", value: cobrado, color: success }].filter((d) => d.value > 0);
+        { label: "COBRADO", value: cobrado, color: success },
+      ].filter((d) => d.value > 0);
 
       return {
         labels: datos.map((d) => d.label),
@@ -318,14 +326,16 @@ export class AnalisisCobranzaClienteComponent {
             hoverBackgroundColor: datos.map((d) => d.color),
             borderWidth: 2,
             borderColor: "transparent",
-          }],
+          },
+        ],
       };
     }
 
     const datos = [
       { label: "COBRANZA JUDICIAL", value: judicial, color: danger },
       { label: "MOROSOS", value: morosos, color: warning },
-      { label: "DEUDA CORRIENTE", value: corriente, color: info }].filter((d) => d.value > 0);
+      { label: "DEUDA CORRIENTE", value: corriente, color: info },
+    ].filter((d) => d.value > 0);
 
     return {
       labels: datos.map((d) => d.label),
@@ -336,7 +346,8 @@ export class AnalisisCobranzaClienteComponent {
           hoverBackgroundColor: datos.map((d) => d.color),
           borderWidth: 2,
           borderColor: "transparent",
-        }],
+        },
+      ],
     };
   });
 
@@ -361,7 +372,8 @@ export class AnalisisCobranzaClienteComponent {
           ...analysis.morosos,
           ...analysis.deudaCorriente,
           ...analysis.sinAdeudo,
-          ...analysis.anticipos];
+          ...analysis.anticipos,
+        ];
     }
   });
 

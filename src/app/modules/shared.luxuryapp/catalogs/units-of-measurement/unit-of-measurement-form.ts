@@ -12,20 +12,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { UnitOfMeasurementFormGroup } from "./interfaces/unit-of-measurement-form.interface";
 
 @Component({
   selector: "app-unit-of-measurement-form",
   templateUrl: "./unit-of-measurement-form.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CustomInputTextSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputTextSignal, ButtonWeb],
 })
 export class UnitOfMeasurementForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -69,4 +72,3 @@ export class UnitOfMeasurementForm implements OnInit {
     });
   }
 }
-

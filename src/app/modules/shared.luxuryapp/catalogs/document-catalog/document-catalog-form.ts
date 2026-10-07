@@ -12,19 +12,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { FormHelper } from "@core/helpers/form-helper";
+import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { FormHelper } from "@core/helpers/form-helper";
-import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DocumentCatalogDto } from "./interfaces/document-catalog.dto";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { DocumentCatalogFormGroup } from "./interfaces/document-catalog-form.interface";
+import { DocumentCatalogDto } from "./interfaces/document-catalog.dto";
 
 @Component({
   selector: "app-document-catalog-form",
@@ -32,10 +32,11 @@ import { DocumentCatalogFormGroup } from "./interfaces/document-catalog-form.int
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
+    ButtonWeb,
+  ],
 })
 export class DocumentCatalogForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -86,4 +87,3 @@ export class DocumentCatalogForm implements OnInit {
     });
   }
 }
-

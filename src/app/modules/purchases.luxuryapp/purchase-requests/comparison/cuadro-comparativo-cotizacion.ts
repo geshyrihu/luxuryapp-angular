@@ -24,8 +24,8 @@ import {
 } from "@core/services/dialog-handler.service";
 import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase-order/create-orden-compra";
 import { LxCard } from "@ui/adaptive/card/card";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { debounceTime } from "rxjs";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -38,8 +38,8 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     CommonModule,
     ReactiveFormsModule,
     AppTable,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
     PdfViewerTrigger,
     LxCard,
   ],

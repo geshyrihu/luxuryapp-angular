@@ -11,17 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface ISuspensionForm {
   suspensionReasonId: FormControl<string | null>;
@@ -35,8 +35,9 @@ interface ISuspensionForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal],
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+  ],
 })
 export class SuspensionOrdenServicio implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -50,10 +51,9 @@ export class SuspensionOrdenServicio implements OnInit {
   currentReasonId: string | null = this.config.data.suspensionReasonId ?? null;
 
   form: FormGroup<ISuspensionForm> = new FormGroup<ISuspensionForm>({
-    suspensionReasonId: new FormControl<string | null>(
-      this.currentReasonId,
-      [Validators.required],
-    ),
+    suspensionReasonId: new FormControl<string | null>(this.currentReasonId, [
+      Validators.required,
+    ]),
     suspensionNotes: new FormControl<string | null>(
       this.config.data.suspensionNotes ?? null,
       [Validators.maxLength(300)],
@@ -72,7 +72,10 @@ export class SuspensionOrdenServicio implements OnInit {
     );
     const items = data ?? [];
     this.reasons.set(
-      items.map((x: any) => ({ value: x.id, label: x.name })) as SelectItemDto[],
+      items.map((x: any) => ({
+        value: x.id,
+        label: x.name,
+      })) as SelectItemDto[],
     );
   }
 

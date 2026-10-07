@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CdkDragDrop, DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import {
@@ -20,21 +19,22 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LxChip } from "@ui/adaptive/chip/chip";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { ROUTES } from "src/app/routing/route-paths";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { ROUTES } from "src/app/routing/route-paths";
 
 import { LxPopover } from "@ui/adaptive/popover/popover";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
-import { LxModal } from "@ui/adaptive/modal/modal";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { startWith } from "rxjs";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
+import { LxModal } from "@ui/adaptive/modal/modal";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { startWith } from "rxjs";
 import { AccountTreeSelect } from "../account-tree-select/account-tree-select";
 import {
   ICanvasRow,
@@ -55,21 +55,23 @@ const flatCatalogCache = new Map<string, IAccountFlatItem[]>();
 
 @Component({
   selector: "app-report-builder",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
     LxTooltipDirective,
-    CustomInputSelectSignal,
-    CustomInputCheckSignal,
+    LuxInputSelectSignal,
+    LuxInputCheckSignal,
     LxPopover,
     LxChip,
     AccountTreeSelect,
     CurrencyPipe,
     LxIcon,
     LxTag,
-    LxModal],
+    LxModal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-builder.html",
 })
@@ -127,11 +129,13 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Dos columnas", value: "table-twoColumn" },
     { label: "Comparativo", value: "table-comparative" },
     { label: "Presupuesto vs Real", value: "table-budgetVsActual" },
-    { label: "Tarjetas KPI", value: "summary-cards" }];
+    { label: "Tarjetas KPI", value: "summary-cards" },
+  ];
 
   fuentesAspel = [
     { label: "Contabilidad", value: "contabilidad" },
-    { label: "Cobranza", value: "cobranza" }];
+    { label: "Cobranza", value: "cobranza" },
+  ];
 
   empresaAspel = computed(() => this.toEmpresaAspel(this.dataSourceValue()));
   visualizationMode = computed(() => this.visualizationTypeValue());
@@ -148,7 +152,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 }];
+    { label: "Diciembre", value: 12 },
+  ];
 
   aniosPreview = Array.from({ length: 7 }, (_, idx) => {
     const year = new Date().getFullYear() - 3 + idx;
@@ -490,7 +495,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R1} + {R2}",
               multiplier: 1,
-            }],
+            },
+          ],
         },
         {
           sectionId: "S2",
@@ -517,7 +523,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{R3} + {R4}",
               multiplier: 1,
-            }],
+            },
+          ],
         },
         {
           sectionId: "S3",
@@ -530,8 +537,10 @@ export class ReportBuilder implements OnInit, OnDestroy {
               accountNumbers: [],
               formula: "{S1_TOTAL} + {S2_TOTAL}",
               multiplier: 1,
-            }],
-        }];
+            },
+          ],
+        },
+      ];
       this.livePreviewS.sections.set(exampleSections);
       this.livePreviewS.triggerCompute();
     }
@@ -569,7 +578,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "contabilidad",
           year,
           month: period,
-        }]);
+        },
+      ]);
       return;
     }
 
@@ -590,7 +600,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
           dataSource: "budget",
           year,
           month: period,
-        }]);
+        },
+      ]);
       return;
     }
 
@@ -602,7 +613,8 @@ export class ReportBuilder implements OnInit, OnDestroy {
         dataSource: "contabilidad",
         year,
         month: period,
-      }]);
+      },
+    ]);
   }
 
   private async computePreview() {

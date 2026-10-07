@@ -11,12 +11,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 interface IBulkDateForm {
   expirationDate: FormControl<string | null>;
@@ -26,7 +29,7 @@ interface IBulkDateForm {
   selector: "app-inventario-extintor-bulk-date-form",
   templateUrl: "./inventario-extintor-bulk-date-form.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, CustomInputDateSignal, ButtonWeb],
+  imports: [ReactiveFormsModule, LuxInputDateSignal, ButtonWeb],
 })
 export class InventarioExtintorBulkDateForm {
   apiResponseS = inject(ApiResponseService);
@@ -59,4 +62,3 @@ export class InventarioExtintorBulkDateForm {
       });
   }
 }
-

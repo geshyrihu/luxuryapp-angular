@@ -12,16 +12,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
 interface IModalOrdenCompra {
   id: FormControl<string | null>;
@@ -44,11 +47,12 @@ interface IModalOrdenCompra {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
-    CustomInputToggleSwitch],
+    LuxInputToggleSwitch,
+  ],
 })
 export class ModalOrdenCompra implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -124,4 +128,3 @@ export class ModalOrdenCompra implements OnInit {
       });
   }
 }
-

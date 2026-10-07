@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { UpperCasePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -11,10 +10,11 @@ import { RouterModule } from "@angular/router";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxCheckbox } from "@ui/adaptive/checkbox/checkbox";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -28,11 +28,12 @@ import {
   selector: "app-catalogo-gastos-fijos-list-desktop",
   templateUrl: "./catalogo-gastos-fijos-list-desktop.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     UpperCasePipe,
     FormsModule,
     RouterModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxTooltipDirective,
     LxMessage,
     LxCheckbox,
@@ -42,7 +43,8 @@ import {
     TableFooter,
     AppTable,
     AppSortableColumn,
-    AppSorticon],
+    AppSorticon,
+  ],
 })
 export class CatalogoGastosFijosListDesktop {
   data = input.required<any[]>();

@@ -6,24 +6,25 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 @Component({
   selector: "app-general-anual-mantenimiento",
   templateUrl: "./general-anual-mantenimiento.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxTooltipDirective,
     LxIcon,
-    SanitizeHtmlPipe],
+    SanitizeHtmlPipe,
+  ],
 })
 export class GeneralAnualMantenimiento {
   apiResponseS = inject(ApiResponseService);
@@ -49,7 +50,8 @@ export class GeneralAnualMantenimiento {
     this.apiResponseS.onGetList(url).then((result: any) => {
       this.cb_providers.set([
         { label: "Todos", value: "" } as any,
-        ...(result || [])]);
+        ...(result || []),
+      ]);
     });
   }
 
@@ -70,4 +72,3 @@ export class GeneralAnualMantenimiento {
     });
   }
 }
-

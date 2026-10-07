@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,11 +5,12 @@ import {
   signal,
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AiService } from "@core/services/ai.service";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
@@ -18,10 +18,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
   templateUrl: "./image-generation-dialog.html",
   styleUrls: ["./image-generation-dialog.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb,
-    ReactiveFormsModule,
-    CustomInputTextAreaSignal,
-    LxIcon],
+  imports: [ButtonWeb, ReactiveFormsModule, LuxInputTextAreaSignal, LxIcon],
 })
 export class ImageGenerationDialog {
   private ref = inject(DynamicDialogRef);
@@ -58,7 +55,8 @@ export class ImageGenerationDialog {
       label: "Minimalista",
       value: "minimalist, clean lines, flat colors, modern",
       icon: "material-symbols-light:do-not-disturb-on",
-    }];
+    },
+  ];
 
   moods = [
     {
@@ -76,7 +74,8 @@ export class ImageGenerationDialog {
       value: "corporate, clean, white background, office",
       emoji: "🏢",
     },
-    { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" }];
+    { label: "Nocturno", value: "night, neon lights, dark mode", emoji: "??" },
+  ];
 
   elements: { label: string; value: string; icon: AppIconName }[] = [
     {
@@ -98,7 +97,8 @@ export class ImageGenerationDialog {
       label: "Abstracto",
       value: "abstract shapes, branding colors",
       icon: "material-symbols-light:palette",
-    }];
+    },
+  ];
 
   constructor() {
     this.initSpeechRecognition();
@@ -208,4 +208,3 @@ export class ImageGenerationDialog {
     }
   }
 }
-

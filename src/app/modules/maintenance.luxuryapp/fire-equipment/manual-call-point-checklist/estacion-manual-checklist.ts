@@ -12,13 +12,16 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 // D:\repos\luxuryapp-api\client\angular\src\app\core\components\inputs\web\custom-input-autocomplete-multiple-signal.ts
 import { AuthService } from "@core/auth/services/auth.service";
@@ -48,10 +51,10 @@ interface IEstacionManualChecklistForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputTime,
+    LuxInputCheckSignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    LuxInputTime,
   ],
 })
 export class EstacionManualChecklist implements OnInit {
@@ -132,4 +135,3 @@ export class EstacionManualChecklist implements OnInit {
     }
   }
 }
-

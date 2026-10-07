@@ -11,14 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-aspel-customer-empresa-form",
@@ -26,9 +29,10 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputNumberSignal,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputNumberSignal,
+    ButtonWeb,
+  ],
 })
 export class AspelCustomerEmpresaForm implements OnInit {
   formBuilder = inject(FormBuilder);
@@ -44,7 +48,8 @@ export class AspelCustomerEmpresaForm implements OnInit {
     customerId: ["", Validators.required],
     customerIdAspelId: [
       "",
-      [Validators.required, Validators.pattern("^[0-9]*$")]],
+      [Validators.required, Validators.pattern("^[0-9]*$")],
+    ],
     empresa: ["", Validators.required],
   });
 
@@ -77,4 +82,3 @@ export class AspelCustomerEmpresaForm implements OnInit {
     });
   }
 }
-

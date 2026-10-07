@@ -6,14 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   NominaDetalleDTO,
   NominaDetalleEditDTO,
@@ -23,10 +26,11 @@ import {
   selector: "app-modal-editar-empleado-nomina",
   imports: [
     ReactiveFormsModule,
-    CustomInputNumberSignal,
-    CustomInputDecimal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputNumberSignal,
+    LuxInputDecimal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-editar-empleado-nomina.html",
 })
@@ -96,4 +100,3 @@ export default class ModalEditarEmpleadoNomina implements OnInit {
     });
   }
 }
-

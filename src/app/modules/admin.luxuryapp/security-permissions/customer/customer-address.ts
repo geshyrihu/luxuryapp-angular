@@ -11,12 +11,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerAddressAddOrEditDto } from "./interfaces/customer-address-add-or-edit.dto";
 @Component({
   selector: "app-customer-address",
@@ -24,9 +27,10 @@ import { CustomerAddressAddOrEditDto } from "./interfaces/customer-address-add-o
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
 })
 export class CustomerAddress implements OnInit {
   ref = inject(DynamicDialogRef);
@@ -117,4 +121,3 @@ export class CustomerAddress implements OnInit {
       });
   }
 }
-

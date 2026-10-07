@@ -12,12 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { LxListbox } from "@ui/adaptive/listbox/listbox";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -27,6 +21,12 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxListbox } from "@ui/adaptive/listbox/listbox";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { IManualTemplateDetalleDTO } from "./interfaces/manuals-and-processes.dto";
 
 interface IManualTemplateForm {
@@ -54,13 +54,14 @@ interface IManualTemplateForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     LxListbox,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
-    CustomInputMultiselectSignal,
-    LxIcon],
+    LuxInputMultiselectSignal,
+    LxIcon,
+  ],
 })
 export class ManualsAndProcessesForm implements OnInit {
   private fb = inject(FormBuilder);
@@ -82,7 +83,8 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "Diario", value: 2 },
     { label: "Semanal", value: 3 },
     { label: "Mensual", value: 4 },
-    { label: "Anual", value: 5 }];
+    { label: "Anual", value: 5 },
+  ];
 
   daysOfWeekOptions = [
     { label: "Domingo", value: 0 },
@@ -91,14 +93,16 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "Miórcoles", value: 3 },
     { label: "Jueves", value: 4 },
     { label: "Viernes", value: 5 },
-    { label: "Síbado", value: 6 }];
+    { label: "Síbado", value: 6 },
+  ];
 
   weeksOfMonthOptions = [
     { label: "1ra Semana", value: 1 },
     { label: "2da Semana", value: 2 },
     { label: "3ra Semana", value: 3 },
     { label: "4ta Semana", value: 4 },
-    { label: "óltima Semana", value: 5 }];
+    { label: "óltima Semana", value: 5 },
+  ];
 
   daysOfMonthOptions = Array.from({ length: 31 }, (_, i) => ({
     label: `${i + 1}`,
@@ -117,7 +121,8 @@ export class ManualsAndProcessesForm implements OnInit {
     { label: "Septiembre", value: 9 },
     { label: "Octubre", value: 10 },
     { label: "Noviembre", value: 11 },
-    { label: "Diciembre", value: 12 }];
+    { label: "Diciembre", value: 12 },
+  ];
 
   form: FormGroup<IManualTemplateForm> = this.fb.group({
     folio: new FormControl("", {
@@ -177,7 +182,8 @@ export class ManualsAndProcessesForm implements OnInit {
       ),
       this.apiS.onGetItem<SelectItemDto[]>(
         Endpoints.EnumSelectItems.departament,
-      )]);
+      ),
+    ]);
 
     const groupedRoles = (roles ?? []).reduce((acc: any[], curr) => {
       const groupName = curr.group || "Otros";

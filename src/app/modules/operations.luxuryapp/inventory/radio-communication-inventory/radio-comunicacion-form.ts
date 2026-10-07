@@ -12,13 +12,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,6 +20,16 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { RadioComunicacionFormDto } from "@core/interfaces/radio-comunicacion-form.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { InputImg } from "@ui/inputs/adaptive/input-img/input-img";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IRadioComunicacionFormGroup {
   id: FormControl<string>;
@@ -47,12 +50,13 @@ interface IRadioComunicacionFormGroup {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
     InputAutocomplete,
     InputImg,
-    ButtonWeb],
+    ButtonWeb,
+  ],
 })
 export class RadioComunicacionForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -123,7 +127,8 @@ export class RadioComunicacionForm implements OnInit {
       ),
       this.apiResponseS.onGetEnumSelectItem(
         Endpoints.EnumSelectItems.departament,
-      )]);
+      ),
+    ]);
 
     this.cb_application_user.set(applicationUsers as SelectItemDto[]);
     this.cb_departament.set(departaments as SelectItemDto[]);
@@ -220,4 +225,3 @@ export class RadioComunicacionForm implements OnInit {
     return formData;
   }
 }
-

@@ -7,26 +7,27 @@ import {
   signal,
 } from "@angular/core";
 import { FormGroup, FormsModule } from "@angular/forms";
-import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomerTaskItemConfig } from "@core/interfaces/recurring-tasks/customer-task-item-config.interface";
 import { TaskTemplate } from "@core/interfaces/recurring-tasks/task-template.interface";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 @Component({
   selector: "app-customer-config",
   templateUrl: "./customer-config.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxFieldset,
-    CustomInputCheckSignal,
-    ButtonWeb],
+    LuxInputCheckSignal,
+    ButtonWeb,
+  ],
 })
 export class CustomerConfig implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -114,4 +115,3 @@ export class CustomerConfig implements OnInit {
     });
   }
 }
-

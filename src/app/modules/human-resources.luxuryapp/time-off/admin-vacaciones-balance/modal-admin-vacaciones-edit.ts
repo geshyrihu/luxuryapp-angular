@@ -5,15 +5,15 @@ import {
   OnInit,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ManualBalanceUpdateDto } from "../../interfaces/manual-balance-update.dto";
 
 interface AdminVacationEditDialogData {
@@ -26,9 +26,10 @@ interface AdminVacationEditDialogData {
   selector: "app-admin-vacaciones-edit-modal",
   imports: [
     ReactiveFormsModule,
-    CustomInputNumberSignal,
-    CustomInputTextAreaSignal,
-     ButtonWeb],
+    LuxInputNumberSignal,
+    LuxInputTextAreaSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./admin-vacaciones-edit-modal.html",
 })
@@ -43,13 +44,16 @@ export class AdminVacacionesEditModalComponent implements OnInit {
   form = this.formBuilder.nonNullable.group({
     newAvailableBalance: [
       this.employeeData.currentSystemBalance,
-      [Validators.required, Validators.min(0)]],
+      [Validators.required, Validators.min(0)],
+    ],
     justification: [
       "",
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(500)]],
+        Validators.maxLength(500),
+      ],
+    ],
   });
 
   submitting = false;
@@ -83,4 +87,3 @@ export class AdminVacacionesEditModalComponent implements OnInit {
       });
   }
 }
-

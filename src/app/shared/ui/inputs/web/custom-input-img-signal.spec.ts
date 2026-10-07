@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { CustomInputImg } from "./custom-input-img-signal";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormControl } from "@angular/forms";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { vi } from "vitest";
+import { LuxInputImg } from "./custom-input-img-signal";
 
-describe("CustomInputImg", () => {
-  let component: CustomInputImg;
-  let fixture: ComponentFixture<CustomInputImg>;
+describe("LuxInputImg", () => {
+  let component: LuxInputImg;
+  let fixture: ComponentFixture<LuxInputImg>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputImg, {
+    TestBed.overrideComponent(LuxInputImg, {
       set: {
         template: "<div>Mock</div>",
         imports: [],
@@ -18,13 +18,14 @@ describe("CustomInputImg", () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputImg],
+      imports: [LuxInputImg],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: CustomToastService, useValue: { showError: vi.fn() } }],
+        { provide: CustomToastService, useValue: { showError: vi.fn() } },
+      ],
     });
 
-    fixture = TestBed.createComponent(CustomInputImg);
+    fixture = TestBed.createComponent(LuxInputImg);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -158,4 +159,3 @@ describe("CustomInputImg", () => {
     });
   });
 });
-

@@ -13,10 +13,10 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -41,12 +41,13 @@ import type {
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     LuxTableCaption,
     TableFooter,
     DataViewMobile,
     TableEmptyMessage,
-    MobileListItem],
+    MobileListItem,
+  ],
 })
 export class CobranzaOnlineExclusions {
   private customerIdS = inject(CustomerIdService);
@@ -96,7 +97,8 @@ export class CobranzaOnlineExclusions {
     "reason",
     "propertyFullName",
     "propertyTower",
-    "propertyDepartment"]);
+    "propertyDepartment",
+  ]);
   readonly visibleReason = (row: CobranzaOnlineExcludedAccountRow) => {
     if (row.reason) return row.reason;
     if (!row.hasPropertyMatch) {

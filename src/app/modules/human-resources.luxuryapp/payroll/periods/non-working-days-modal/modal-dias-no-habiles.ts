@@ -12,9 +12,9 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
 import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
   DiasNoHabilesCreateDTO,
@@ -24,7 +24,6 @@ import {
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
-
 @Component({
   selector: "app-modal-dias-no-habiles",
   imports: [
@@ -32,10 +31,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
     AppTable,
     LxTag,
     ButtonWeb,
-    CustomInputDateSignal,
-    CustomInputTextSignal,
-    CustomInputSwitch,
-    ApiDatePipe],
+    LuxInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputSwitch,
+    ApiDatePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./modal-dias-no-habiles.html",
 })

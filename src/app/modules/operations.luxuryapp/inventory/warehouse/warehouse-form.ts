@@ -13,13 +13,16 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 
 export interface IWarehouseForm {
   id: FormControl<string>;
@@ -35,27 +38,24 @@ export interface IWarehouseForm {
  */
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { ReactiveFormsModule } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { FormHelper } from "@core/helpers/form-helper";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
-
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-warehouse-form",
   templateUrl: "./warehouse-form.html",
-  imports: [
-    CustomInputTextSignal,
-    ButtonWeb,
-
-    DragDropModule,
-    ReactiveFormsModule],
+  imports: [LuxInputTextSignal, ButtonWeb, DragDropModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger("dropAnimation", [
       transition(":enter", [
         style({ transform: "scale(0.9)", opacity: 0 }),
-        animate("200ms ease-out", style({ transform: "scale(1)", opacity: 1 }))])])],
+        animate("200ms ease-out", style({ transform: "scale(1)", opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class WarehouseForm implements OnInit {
   // Inyección de servicios mediante inject()
@@ -75,7 +75,8 @@ export class WarehouseForm implements OnInit {
   cb_users = signal<any[]>([]);
   isAdmin = this.aspRoleS.anyOf([
     ApplicationRole.Administrador,
-    ApplicationRole.SuperUsuario]);
+    ApplicationRole.SuperUsuario,
+  ]);
 
   // Listas de usuarios disponibles y asignados
   availableUsers: any[] = [];
@@ -107,7 +108,8 @@ export class WarehouseForm implements OnInit {
     if (
       this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
-        ApplicationRole.SuperUsuario])()
+        ApplicationRole.SuperUsuario,
+      ])()
     ) {
       await this.loadUsers(); // Carga todos los usuarios disponibles
     }
@@ -117,7 +119,8 @@ export class WarehouseForm implements OnInit {
     } else if (
       this.aspRoleS.anyOf([
         ApplicationRole.Administrador,
-        ApplicationRole.SuperUsuario])()
+        ApplicationRole.SuperUsuario,
+      ])()
     ) {
       this.availableUsers = [...this.allUsers]; // Todos los usuarios estón disponibles para nuevo almacón
     }

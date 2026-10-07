@@ -1,20 +1,19 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  Input,
   signal,
   viewChild,
-  Input
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { ButtonWeb } from "@ui/buttons/web";
 
-
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LxMessage } from "@ui/adaptive/message/message";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { EspejoAspelExtraordinarios } from "./espejo-aspel-extraordinarios";
 import { PresupuestoAspelEjercicioFiscal } from "./espejo-aspel-presupuesto";
 import { PresupuestoAspelExcelService } from "./presupuesto-aspel-excel.service";
@@ -25,15 +24,18 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 @Component({
   selector: "app-presupuesto-web-aspel-wrapper",
   templateUrl: "./wrapper.html",
-  imports: [ButtonWeb, LxTooltipDirective,
+  imports: [
+    ButtonWeb,
+    LxTooltipDirective,
     FormsModule,
     LxTabs,
     PresupuestoAspelEjercicioFiscal,
     EspejoAspelExtraordinarios,
     CustomSearchInput,
-    CustomInputSelectSignal,
-    CustomInputSelectButton,
-    LxMessage],
+    LuxInputSelectSignal,
+    LuxInputSelectButton,
+    LxMessage,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [PresupuestoWebAspelService, PresupuestoAspelExcelService],
 })
@@ -43,7 +45,8 @@ export class PresupuestoWebAspelWrapper {
   activeTabValue = signal("presupuesto");
   budgetTabs = [
     { id: "presupuesto", label: "Presupuesto" },
-    { id: "especiales", label: "Esp. 605/606" }];
+    { id: "especiales", label: "Esp. 605/606" },
+  ];
   sharedS = inject(PresupuestoWebAspelService);
 
   presupuestoComp = viewChild(PresupuestoAspelEjercicioFiscal);
@@ -62,6 +65,6 @@ export class PresupuestoWebAspelWrapper {
   }
 
   openModuleGuide(): void {
-    window.open('/guide/presupuesto-web-aspel', '_blank');
+    window.open("/guide/presupuesto-web-aspel", "_blank");
   }
 }

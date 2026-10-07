@@ -13,20 +13,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
-import {
-  CrudSubmitOptions,
-  FormHelper,
-} from "@core/helpers/form-helper";
+import { CrudSubmitOptions, FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface ITaskGroupForm {
   id: FormControl<string | null>;
@@ -42,9 +42,10 @@ interface ITaskGroupForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class TaskGroupForm implements OnInit {
   private readonly authS = inject(AuthService);
@@ -67,12 +68,14 @@ export class TaskGroupForm implements OnInit {
     id: new FormControl({ value: this.id(), disabled: true }),
     customerId: [
       this.customerIdS.customerId(),
-      { validators: [Validators.required] }],
+      { validators: [Validators.required] },
+    ],
     visibility: [0, { validators: [Validators.required] }],
     TaskGroupCategoryId: ["", { validators: [Validators.required] }],
     userCreateId: [
       this.authS.applicationUserId,
-      { validators: [Validators.required] }],
+      { validators: [Validators.required] },
+    ],
   });
 
   ngOnInit() {
@@ -112,4 +115,3 @@ export class TaskGroupForm implements OnInit {
     FormHelper.submitCrud(options);
   }
 }
-

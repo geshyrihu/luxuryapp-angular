@@ -7,7 +7,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-cuadro-comparativo-add-budget",
@@ -46,12 +46,7 @@ import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-sign
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    ButtonWeb,
-    CommonModule,
-    ReactiveFormsModule,
-    CustomInputSelectSignal,
-  ],
+  imports: [ButtonWeb, CommonModule, ReactiveFormsModule, LuxInputSelectSignal],
 })
 export class CuadroComparativoAddBudget {
   ref = inject(DynamicDialogRef);

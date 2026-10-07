@@ -37,13 +37,13 @@ import { CreateOrdenCompra } from "@purchases.luxuryapp/purchase-orders/purchase
 import { ProductAdd } from "@purchases.luxuryapp/purchase-requests/details/product-add";
 import { ProductModalAdd } from "@purchases.luxuryapp/purchase-requests/details/product-modal-add";
 import { SolicitudCompraDetalle } from "@purchases.luxuryapp/purchase-requests/details/solicitud-compra-detalle";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 
 export interface ISolicitudCompraForm {
@@ -67,10 +67,10 @@ export interface ISolicitudCompraForm {
     ReactiveFormsModule,
     RouterModule,
     AppProgressBar,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
     ProductAdd,
     SolicitudCompraDetalle,

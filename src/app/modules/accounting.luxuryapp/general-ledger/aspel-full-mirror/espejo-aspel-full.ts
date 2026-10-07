@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,10 +10,11 @@ import { FormsModule } from "@angular/forms";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { LxSpinner } from "@ui/adaptive/spinner/spinner";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxSpinner } from "@ui/adaptive/spinner/spinner";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ReportFilterService } from "./financial-report-filter.service";
 import {
@@ -22,15 +22,17 @@ import {
   IEspejoFilaTabla,
 } from "./interfaces/espejo-aspel-full.interface";
 
-
 @Component({
   selector: "app-espejo-aspel-full",
-  imports: [ButtonWeb, FormsModule,
+  imports: [
+    ButtonWeb,
+    FormsModule,
     AppTable,
-    CustomInputSelectButton,
+    LuxInputSelectButton,
     LxSpinner,
     CustomSearchInput,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./espejo-aspel-full.html",
 })
@@ -48,7 +50,8 @@ export class EspejoAspelFull {
 
   empresaOptions = [
     { label: "Contabilidad", value: "Contabilidad" },
-    { label: "Cobranza", value: "Cobranza" }];
+    { label: "Cobranza", value: "Cobranza" },
+  ];
   empresaSeleccionada = signal<string>("Contabilidad");
 
   readonly meses = [
@@ -63,7 +66,8 @@ export class EspejoAspelFull {
     "Sep",
     "Oct",
     "Nov",
-    "Dic"];
+    "Dic",
+  ];
 
   // Filas aplanadas por grupo
   filasPorGrupo = computed(() => {

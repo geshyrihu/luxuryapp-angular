@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { WebInputDateTime } from './input-date-time';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { WebInputDateTime } from "./input-date-time";
 
-vi.mock('../custom-input-date-time-signal', () => ({
-  CustomInputDateTimeSignal: class {},
+vi.mock("../custom-input-date-time-signal", () => ({
+  LuxInputDateTimeSignal: class {},
 }));
 
-describe('WebInputDateTime', () => {
+describe("WebInputDateTime", () => {
   let component: WebInputDateTime;
   let fixture: ComponentFixture<WebInputDateTime>;
 
   beforeEach(() => {
     TestBed.overrideComponent(WebInputDateTime, {
-      set: { template: '<div>Mock</div>', imports: [] },
+      set: { template: "<div>Mock</div>", imports: [] },
     });
     TestBed.configureTestingModule({
       imports: [WebInputDateTime],
@@ -24,18 +24,18 @@ describe('WebInputDateTime', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should register onChange callback', () => {
+  it("should register onChange callback", () => {
     const fn = vi.fn();
     component.registerOnChange(fn);
-    component.onChange('test');
-    expect(fn).toHaveBeenCalledWith('test');
+    component.onChange("test");
+    expect(fn).toHaveBeenCalledWith("test");
   });
 
-  it('should register onTouched callback', () => {
+  it("should register onTouched callback", () => {
     const fn = vi.fn();
     component.registerOnTouched(fn);
     component.onTouch();

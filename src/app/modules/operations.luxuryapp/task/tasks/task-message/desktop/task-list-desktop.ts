@@ -5,25 +5,26 @@ import {
   output,
 } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
-import {
-  rowsPerPageOptions,
-  tableRows,
-} from "@core/helpers/table-options";
+import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxPopover } from "@ui/adaptive/popover/popover";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 
 import { InitialsAbbrPipe } from "@shared/pipes/initials-abbr.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppReorderableRow, AppReorderableRowHandle, AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppReorderableRow,
+  AppReorderableRowHandle,
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { TaskStatus } from "../../task-status/task-status";
 import { ITaskMessageDTO } from "../interfaces/task-message.dto";
 
@@ -65,7 +66,8 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
         border-radius: 0.375rem;
         border: 1px solid var(--ds-border, #dee2e6);
       }
-    `],
+    `,
+  ],
   imports: [
     ButtonWeb,
     TableEmptyMessage,
@@ -73,17 +75,18 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     AppReorderableRow,
     AppReorderableRowHandle,
     AppSortableColumn,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     TaskStatus,
-    CustomInputSelectSignal,
-    CustomInputToggleSwitch,
+    LuxInputSelectSignal,
+    LuxInputToggleSwitch,
     FormsModule,
     LuxTableCaption,
     LxTooltipDirective,
     LxPopover,
     LxImage,
     InitialsAbbrPipe,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class TaskListDesktop {
   data = input.required<ITaskMessageDTO[]>();

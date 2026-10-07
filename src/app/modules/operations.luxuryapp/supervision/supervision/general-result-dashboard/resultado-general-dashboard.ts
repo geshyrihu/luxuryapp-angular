@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -22,8 +21,9 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxProgressBar } from "@ui/adaptive/progress-bar/progress-bar";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   AppSortableColumn,
   AppTable,
@@ -32,13 +32,15 @@ import {
   selector: "app-resultado-general-dashboard",
   templateUrl: "./resultado-general-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     CommonModule,
     AppTable,
     AppSortableColumn,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxTag,
-    LxProgressBar],
+    LxProgressBar,
+  ],
 })
 export class ResultadoGeneralDashboard implements OnInit {
   apiResponseS = inject(ApiResponseService);

@@ -14,14 +14,17 @@ import {
 
 import { LxModal } from "@ui/adaptive/modal/modal";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AiService } from "@core/services/ai.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSwitch } from "@ui/inputs/web/custom-input-switch-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-job-description-form",
@@ -30,11 +33,12 @@ import { AiService } from "@core/services/ai.service";
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputSwitch,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputSwitch,
     ButtonWeb,
-    LxModal],
+    LxModal,
+  ],
 })
 export class JobDescriptionForm implements OnInit {
   private fb = inject(FormBuilder);
@@ -167,4 +171,3 @@ export class JobDescriptionForm implements OnInit {
     });
   }
 }
-

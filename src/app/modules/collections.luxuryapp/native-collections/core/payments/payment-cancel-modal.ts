@@ -6,11 +6,11 @@ import {
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-payment-cancel-modal",
-  imports: [ReactiveFormsModule, ButtonWeb, CustomInputTextAreaSignal, LxIcon],
+  imports: [ReactiveFormsModule, ButtonWeb, LuxInputTextAreaSignal, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="d-flex flex-column gap-4">

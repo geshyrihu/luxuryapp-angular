@@ -12,21 +12,24 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
+import { firstValueFrom } from "rxjs";
 import { ROUTES } from "src/app/routing/route-paths";
 
 interface IHidranteChecklistForm {
@@ -53,11 +56,11 @@ interface IHidranteChecklistForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
-    CustomInputTime,
-    CustomInputSelectSignal,
+    LuxInputCheckSignal,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
+    LuxInputTime,
+    LuxInputSelectSignal,
   ],
 })
 export class HidranteChecklist implements OnInit {
@@ -145,4 +148,3 @@ export class HidranteChecklist implements OnInit {
     }
   }
 }
-

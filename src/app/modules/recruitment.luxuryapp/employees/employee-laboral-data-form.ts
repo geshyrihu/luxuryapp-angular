@@ -13,12 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { firstValueFrom } from "rxjs";
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
@@ -27,6 +21,12 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCurrencySignal } from "@ui/inputs/web/custom-input-currency-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { firstValueFrom } from "rxjs";
 // import { EmployeeAddOrEditService } from './employee-form.service';
 
 import { IEmployeeLaboralDataForm } from "./interfaces/employee-laboral-data-form.interface";
@@ -37,10 +37,10 @@ import { IEmployeeLaboralDataForm } from "./interfaces/employee-laboral-data-for
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputCurrencySignal,
-    CustomInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputCurrencySignal,
+    LuxInputNumberSignal,
     ButtonWeb,
   ],
 })
@@ -105,7 +105,9 @@ export class EmployeeLaboralDataForm implements OnInit {
   });
 
   async ngOnInit() {
-    if (this.isReadOnly()) { this.form.disable(); }
+    if (this.isReadOnly()) {
+      this.form.disable();
+    }
     this.form.controls.salary.valueChanges.subscribe((val) => {
       const daily = val ? val / 30.46 : null;
       this.form.controls.dailySalary.setValue(daily);
@@ -133,7 +135,7 @@ export class EmployeeLaboralDataForm implements OnInit {
       .then((result: any) => {
         this.form.patchValue({
           ...result,
-          active: result.active === true || result.active === 'true',
+          active: result.active === true || result.active === "true",
         });
         if (result.salary) {
           this.form.controls.dailySalary.setValue(result.salary / 30.46);
@@ -160,11 +162,9 @@ export class EmployeeLaboralDataForm implements OnInit {
       .then((result: any) => {
         this.form.patchValue({
           ...result,
-          active: result.active === true || result.active === 'true',
+          active: result.active === true || result.active === "true",
         });
         this.submitting.set(false);
       });
   }
 }
-
-

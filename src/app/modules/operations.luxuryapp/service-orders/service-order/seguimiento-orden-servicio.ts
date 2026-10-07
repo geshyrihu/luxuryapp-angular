@@ -14,9 +14,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 import { AspRoleService } from "@core/auth/services/asp-role.service";
 import { AuthService } from "@core/auth/services/auth.service";
@@ -48,11 +48,7 @@ interface ServiceOrderFollowUpItem {
   selector: "app-seguimiento-orden-servicio",
   templateUrl: "./seguimiento-orden-servicio.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [
-    LxIcon,
-    ReactiveFormsModule,
-    ButtonWeb,
-    CustomInputTextAreaSignal],
+  imports: [LxIcon, ReactiveFormsModule, ButtonWeb, LuxInputTextAreaSignal],
 })
 export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -69,19 +65,21 @@ export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
 
   serviceOrderId: string = this.config.data.id;
 
-  form: FormGroup<IServiceOrderFollowUpForm> = new FormGroup<IServiceOrderFollowUpForm>({
-    serviceOrderId: new FormControl<string>(this.serviceOrderId, {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    description: new FormControl<string>("", {
-      nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.maxLength(200),
-        Validators.minLength(10)],
-    }),
-  });
+  form: FormGroup<IServiceOrderFollowUpForm> =
+    new FormGroup<IServiceOrderFollowUpForm>({
+      serviceOrderId: new FormControl<string>(this.serviceOrderId, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      description: new FormControl<string>("", {
+        nonNullable: true,
+        validators: [
+          Validators.required,
+          Validators.maxLength(200),
+          Validators.minLength(10),
+        ],
+      }),
+    });
 
   descriptionValue = toSignal(this.form.controls.description.valueChanges, {
     initialValue: "",
@@ -97,9 +95,9 @@ export class SeguimientoOrdenServicio implements OnInit, OnDestroy {
   async onLoadData(): Promise<void> {
     this.loading.set(true);
     try {
-      const result = await this.apiResponseS.onGetList<ServiceOrderFollowUpItem[]>(
-        Endpoints.ServiceOrderFollowUps.list(this.serviceOrderId),
-      );
+      const result = await this.apiResponseS.onGetList<
+        ServiceOrderFollowUpItem[]
+      >(Endpoints.ServiceOrderFollowUps.list(this.serviceOrderId));
       this.followUps.set(result ?? []);
     } finally {
       this.loading.set(false);

@@ -12,19 +12,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { AdministrationFormList } from "./administration-form-list";
 import { ComiteForm } from "./comite-form";
 import { InvitedForm } from "./invited-form";
@@ -46,14 +49,15 @@ interface IMeetingForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
+    LuxInputSelectSignal,
     ButtonWeb,
     ComiteForm,
     InvitedForm,
-    AdministrationFormList],
+    AdministrationFormList,
+  ],
 })
 export class MeetingForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -139,4 +143,3 @@ export class MeetingForm implements OnInit {
       });
   }
 }
-

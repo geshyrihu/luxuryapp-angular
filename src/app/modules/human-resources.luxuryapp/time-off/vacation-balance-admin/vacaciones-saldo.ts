@@ -12,7 +12,7 @@ import { LxCard } from "@ui/adaptive/card/card";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApiDatePipe } from "../../../../shared/pipes/api-date.pipe";
 // Alias para evitar colisión de nombres con el mótodo de instancia onGetSeverity.
@@ -64,11 +64,12 @@ export interface VacationRequestMyDTO extends VacationRequestHistoryDTO {
     ReactiveFormsModule,
     LxCard,
     LxSpinner,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     LxMessage,
     AppTable,
 
-    LxTag],
+    LxTag,
+  ],
 })
 export class VacacionesSaldo implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -172,7 +173,8 @@ export class VacacionesSaldo implements OnInit {
       ),
       this.apiResponseS.onGetList<VacationRequestMyDTO[]>(
         Endpoints.HR.VacationRequest.getAll,
-      )])
+      ),
+    ])
       .then(([balanceData, allRequests]) => {
         this.balance.set(balanceData);
         this.checkAnniversaryReminder();

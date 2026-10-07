@@ -12,12 +12,15 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   PurchaseOrderInvoice,
   PurchaseOrderStatus,
@@ -41,9 +44,10 @@ export interface IOrdenCompraStatusForm {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputCheckSignal,
-    CustomInputTextSignal,
-    ButtonWeb],
+    LuxInputCheckSignal,
+    LuxInputTextSignal,
+    ButtonWeb,
+  ],
 })
 export class OrdenCompraStatus implements OnInit {
   apiResponseS = inject(ApiResponseService);

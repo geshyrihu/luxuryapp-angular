@@ -11,14 +11,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 @Component({
   selector: "app-catalogo-descripcion-form",
@@ -26,9 +29,10 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
 })
 export class CatalogoDescripcionForm implements OnInit {
   apiResponseS = inject(ApiResponseService);
@@ -42,12 +46,14 @@ export class CatalogoDescripcionForm implements OnInit {
     { value: "CONTABLE", label: "CONTABLE" },
     { value: "OPERACIONES", label: " OPERACIONES" },
     { value: "JURIDICO", label: "JURIDICO" },
-    { value: "MANTENIMIENTO", label: "MANTENIMIENTO" }]);
+    { value: "MANTENIMIENTO", label: "MANTENIMIENTO" },
+  ]);
 
   cb_grupo = signal<SelectItemDto[]>([]);
   cb_state = signal<SelectItemDto[]>([
     { value: 1, label: "Activo" },
-    { value: 0, label: "Inactivo" }]);
+    { value: 0, label: "Inactivo" },
+  ]);
 
   // Definición estricta del formulario
   form = new FormGroup({
@@ -109,4 +115,3 @@ export class CatalogoDescripcionForm implements OnInit {
     });
   }
 }
-

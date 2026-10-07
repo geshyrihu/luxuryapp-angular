@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,16 +7,17 @@ import {
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import saveAs from "file-saver";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { FilterRequestsService } from "@core/http/services/filter-requests.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
+import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import saveAs from "file-saver";
 
 @Component({
   selector: "app-filter-requests",
@@ -114,10 +114,11 @@ import { DataConnectorService } from "@core/services/data-connector.service";
     `,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
-    CustomInputDateSignal,
-    CustomInputSelectButton,
+    LuxInputDateSignal,
+    LuxInputSelectButton,
     CustomSearchInput,
   ],
 })

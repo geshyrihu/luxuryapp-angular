@@ -8,12 +8,6 @@ import {
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputFile } from "@ui/inputs/web/custom-input-file-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { CustomInputTime } from "@ui/inputs/web/custom-input-time-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +19,12 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LeaveRequestMyDTO } from "@human-resources.luxuryapp/interfaces/leave-request.interface";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputFile } from "@ui/inputs/web/custom-input-file-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTime } from "@ui/inputs/web/custom-input-time-signal";
 interface LeaveRequestEditDTO {
   leaveType: number;
   startDate: string;
@@ -40,12 +40,13 @@ interface LeaveRequestEditDTO {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputSelectSignal,
-    CustomInputDateSignal,
-    CustomInputTime,
-    CustomInputTextAreaSignal,
-    CustomInputFile,
-    ButtonWeb],
+    LuxInputSelectSignal,
+    LuxInputDateSignal,
+    LuxInputTime,
+    LuxInputTextAreaSignal,
+    LuxInputFile,
+    ButtonWeb,
+  ],
 })
 export class PermisoForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -229,5 +230,3 @@ export class PermisoForm implements OnInit {
     });
   }
 }
-
-

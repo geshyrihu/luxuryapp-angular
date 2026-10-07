@@ -11,16 +11,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   CreatePropertyFineDTO,
   PropertyFineResponseDTO,
@@ -41,11 +44,12 @@ interface IPropertyFineForm {
   selector: "app-property-fine-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextAreaSignal,
-    CustomInputDecimal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextAreaSignal,
+    LuxInputDecimal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-form.html",
 })
@@ -97,11 +101,7 @@ export class PropertyFineForm implements OnInit {
 
     const arts = await this.apiResponseS.onGetItem<
       RegulationArticleResponseDTO[]
-    >(
-      Endpoints.CobranzaCore.RegulationArticles.byCustomer(
-        this.customerId,
-      ),
-    );
+    >(Endpoints.CobranzaCore.RegulationArticles.byCustomer(this.customerId));
     if (arts) {
       this.articles.set(
         arts
@@ -142,6 +142,3 @@ export class PropertyFineForm implements OnInit {
     });
   }
 }
-
-
-

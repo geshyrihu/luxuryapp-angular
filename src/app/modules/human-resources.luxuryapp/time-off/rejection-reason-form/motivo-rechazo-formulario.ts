@@ -1,12 +1,12 @@
-import { ButtonWeb } from "@ui/buttons/web";
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 @Component({
   selector: "app-rejection-reason-prompt",
-  imports: [ButtonWeb, ReactiveFormsModule, CustomInputTextAreaSignal],
+  imports: [ButtonWeb, ReactiveFormsModule, LuxInputTextAreaSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./motivo-rechazo-formulario.html",
 })
@@ -21,4 +21,3 @@ export class MotivoRechazoFormulario {
     this.ref.close(data);
   }
 }
-

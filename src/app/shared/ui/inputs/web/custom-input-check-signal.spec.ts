@@ -1,36 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputCheckSignal } from './custom-input-check-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { LuxInputCheckSignal } from "./custom-input-check-signal";
 
-describe('CustomInputCheckSignal', () => {
-  let component: CustomInputCheckSignal;
-  let fixture: ComponentFixture<CustomInputCheckSignal>;
+describe("LuxInputCheckSignal", () => {
+  let component: LuxInputCheckSignal;
+  let fixture: ComponentFixture<LuxInputCheckSignal>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputCheckSignal, {
+    TestBed.overrideComponent(LuxInputCheckSignal, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputCheckSignal],
+      imports: [LuxInputCheckSignal],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputCheckSignal);
+    fixture = TestBed.createComponent(LuxInputCheckSignal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('outputs', () => {
-    it('should emit checkChange output with boolean value', () => {
+  describe("outputs", () => {
+    it("should emit checkChange output with boolean value", () => {
       const spy = vi.fn();
       component.checkChange.subscribe(spy);
       component.checkChange.emit(true);
@@ -38,27 +38,27 @@ describe('CustomInputCheckSignal', () => {
     });
   });
 
-  describe('ControlValueAccessor', () => {
-    it('should implement registerOnChange', () => {
+  describe("ControlValueAccessor", () => {
+    it("should implement registerOnChange", () => {
       const fn = vi.fn();
       component.registerOnChange(fn);
-      component.onChange('test');
-      expect(fn).toHaveBeenCalledWith('test');
+      component.onChange("test");
+      expect(fn).toHaveBeenCalledWith("test");
     });
 
-    it('should implement registerOnTouched', () => {
+    it("should implement registerOnTouched", () => {
       const fn = vi.fn();
       component.registerOnTouched(fn);
       component.onTouch();
       expect(fn).toHaveBeenCalled();
     });
 
-    it('should implement writeValue', () => {
+    it("should implement writeValue", () => {
       component.writeValue(true);
       expect(component.internalControl.value).toBe(true);
     });
 
-    it('should implement setDisabledState', () => {
+    it("should implement setDisabledState", () => {
       component.setDisabledState(true);
       expect(component.internalControl.disabled).toBe(true);
       component.setDisabledState(false);

@@ -1,16 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ActivatedRoute } from "@angular/router";
-import { FlatpickrDefaults } from "angularx-flatpickr";
 import {
   DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { of } from "rxjs";
 import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { FlatpickrDefaults } from "angularx-flatpickr";
+import { of } from "rxjs";
 import { CustomerForm } from "./customer-form";
 
 describe("CustomerForm", () => {
@@ -21,10 +21,10 @@ describe("CustomerForm", () => {
     TestBed.overrideComponent(InputMask, {
       set: { template: "<div>Mock Mask</div>", imports: [] },
     });
-    TestBed.overrideComponent(CustomInputSelectSignal, {
+    TestBed.overrideComponent(LuxInputSelectSignal, {
       set: { template: "<div>Mock Select</div>", imports: [] },
     });
-    TestBed.overrideComponent(CustomInputNumberSignal, {
+    TestBed.overrideComponent(LuxInputNumberSignal, {
       set: { template: "<div>Mock Number</div>", imports: [] },
     });
 
@@ -52,7 +52,8 @@ describe("CustomerForm", () => {
           provide: "HttpClientWithoutInterceptors",
           useValue: (globalThis as any).__mockHttpClient,
         },
-        { provide: FlatpickrDefaults, useValue: {} }],
+        { provide: FlatpickrDefaults, useValue: {} },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CustomerForm);

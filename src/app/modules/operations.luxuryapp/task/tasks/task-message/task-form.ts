@@ -29,15 +29,15 @@ import {
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { TaskGroupService } from "@operations.luxuryapp/task/tasks/task.service";
 import { LxFileUpload } from "@ui/adaptive/file-upload/file-upload";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxProcessingOverlay } from "@ui/adaptive/processing-overlay/processing-overlay";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputAutoMultiple } from "@ui/inputs/web/custom-input-autocomplete-multiple-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { firstValueFrom } from "rxjs";
 import {
   TaskAdditionalImage,
@@ -85,14 +85,15 @@ import { ImageProcessingService } from "@core/services/image-processing.service"
     ReactiveFormsModule,
     LxFileUpload,
     LxProcessingOverlay,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    CustomInputAutoMultiple,
-    CustomInputDateSignal,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputAutoMultiple,
+    LuxInputDateSignal,
+    LuxInputTextAreaSignal,
     ButtonWeb,
-    CustomInputCheckSignal,
-    LxIcon],
+    LuxInputCheckSignal,
+    LxIcon,
+  ],
 })
 export class TaskForm implements OnInit, OnDestroy {
   private apiResponseS = inject(ApiResponseService);
@@ -315,7 +316,8 @@ export class TaskForm implements OnInit, OnDestroy {
           true,
           this.authS.applicationUserId,
         ),
-      )]);
+      ),
+    ]);
 
     this.cb_priority.set(priority);
     this.cb_ticket_group.set(
@@ -336,7 +338,8 @@ export class TaskForm implements OnInit, OnDestroy {
           ticketGroupId,
           this.id || undefined,
         ),
-      )]);
+      ),
+    ]);
     this.cb_application_user.set(users as SelectItemDto[]);
     this.cb_predecessors.set(predecessors as SelectItemDto[]);
   }
@@ -496,7 +499,8 @@ export class TaskForm implements OnInit, OnDestroy {
       `Tipo: ${file.type || "sin MIME"}`,
       `Tamaño: ${this.formatFileSize(file.size)}`,
       `PWA: ${this.isStandaloneMode() ? "sí" : "no"}`,
-      `Error: ${errorMessage}`];
+      `Error: ${errorMessage}`,
+    ];
 
     this.imageProcessingDiagnostic.set(details.join("\n"));
     this.clientErrorLogger.logError(
@@ -523,7 +527,8 @@ export class TaskForm implements OnInit, OnDestroy {
       `Service Worker: ${this.getServiceWorkerState()}`,
       `Antes: ${this.describeSelectedFile(this.form.controls.beforeWork.value)}`,
       `Después: ${this.describeSelectedFile(this.form.controls.afterWork.value)}`,
-      `URL: ${httpError.url || "sin URL"}`];
+      `URL: ${httpError.url || "sin URL"}`,
+    ];
 
     this.imageProcessingDiagnostic.set(details.join("\n"));
     this.clientErrorLogger.logError(

@@ -13,10 +13,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +21,10 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputPassword } from "@ui/inputs/web/custom-input-password-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { CredentialDetailDto } from "./interfaces/credential-detail.dto";
 import { CredentialFormGroup } from "./interfaces/password-form.interface";
 
@@ -39,11 +39,12 @@ import { CredentialFormGroup } from "./interfaces/password-form.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputPassword,
-    CustomInputDateSignal,
+    LuxInputTextSignal,
+    LuxInputPassword,
+    LuxInputDateSignal,
     ButtonWeb,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class PasswordForm implements OnInit {
   apiS = inject(ApiResponseService);
@@ -125,7 +126,7 @@ export class PasswordForm implements OnInit {
       if (isoMatch) return isoMatch[0];
       const locMatch = value.match(/(\d{2})\/(\d{2})\/(\d{4})/);
       if (locMatch) {
-        const [ day, month, year] = locMatch;
+        const [day, month, year] = locMatch;
         return `${year}-${month}-${day}`;
       }
     }

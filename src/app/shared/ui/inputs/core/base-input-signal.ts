@@ -19,7 +19,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
-import { ValidationErrorsCustomInput } from "../core/validation-errors-custom-input";
+import { ValidationErrorsLuxInput } from "../core/validation-errors-custom-input";
 
 /**
  * 🧱 BASE INPUT SIGNAL - El cimiento de tus formularios (Web/Bootstrap)
@@ -34,8 +34,9 @@ import { ValidationErrorsCustomInput } from "../core/validation-errors-custom-in
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ValidationErrorsCustomInput,
-    AppIcon],
+    ValidationErrorsLuxInput,
+    AppIcon,
+  ],
   template: `
     <!-- Un único ng-content: Angular asigna el contenido proyectado a un solo
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
@@ -114,7 +115,8 @@ import { ValidationErrorsCustomInput } from "../core/validation-errors-custom-in
           grid-template-columns: 1fr;
         }
       }
-    `],
+    `,
+  ],
 })
 export class BaseInputSignal implements ControlValueAccessor, OnInit {
   control = input<AbstractControl | any>();
@@ -203,4 +205,3 @@ export class BaseInputSignal implements ControlValueAccessor, OnInit {
     }
   }
 }
-

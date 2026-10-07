@@ -30,7 +30,7 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { PlatformService } from "@core/services/platform.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { CardEmployee } from "@shared/integration/recursos-humanos";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -39,8 +39,8 @@ import { MdEditAccount } from "./md-edit-account";
 import { UserAccountForm } from "./user-account-form";
 import { UserAccountListMobile } from "./user-account-list-mobile";
 
-import { ButtonWeb } from "@ui/buttons/web";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
 @Component({
   selector: "app-user-account-list",
   templateUrl: "./user-account-list.html",
@@ -56,7 +56,8 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     LxAvatar,
     LuxTableCaption,
     TableFooter,
-    CustomInputSelectSignal],
+    LuxInputSelectSignal,
+  ],
 })
 export class UserAccountList implements OnInit {
   readonly platform = inject(PlatformService);
@@ -127,7 +128,8 @@ export class UserAccountList implements OnInit {
 
           // Agrupar customers ónicos para el select
           const uniqueCustomers = [
-            ...new Set(result.map((item: any) => item.customer))];
+            ...new Set(result.map((item: any) => item.customer)),
+          ];
 
           // Crear opciones para el select
           this.selectCustomerSignal.set([
@@ -135,7 +137,8 @@ export class UserAccountList implements OnInit {
             ...uniqueCustomers.map((customer): SelectItemDto => ({
               label: customer ? String(customer) : "Sin Cliente",
               value: customer ? String(customer) : "sin_cliente",
-            }))]);
+            })),
+          ]);
         }
       });
   }

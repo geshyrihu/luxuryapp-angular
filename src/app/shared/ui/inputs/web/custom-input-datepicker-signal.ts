@@ -1,4 +1,11 @@
-import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -9,10 +16,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
   selector: "web-custom-input-datepicker-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    FlatpickrDirective],
+  imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -50,11 +54,12 @@ import { BaseInputSignal } from "../core/base-input-signal";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputDatepicker),
+      useExisting: forwardRef(() => LuxInputDatepicker),
       multi: true,
-    }],
+    },
+  ],
 })
-export class CustomInputDatepicker
+export class LuxInputDatepicker
   extends BaseInputSignal
   implements ControlValueAccessor
 {
@@ -70,8 +75,16 @@ export class CustomInputDatepicker
   selectionMode = input<"single" | "multiple" | "range" | undefined>(undefined);
   dateStyle = input<Record<string, string>>({ minWidth: "195px" });
 
-  flatpickrMode = computed(() => this.selectionMode() === "range" ? "range" : this.selectionMode() === "multiple" ? "multiple" : "single");
-  flatpickrDateFormat = computed(() => this.dateFormat() === "dd/mm/yy" ? "d/m/Y" : this.dateFormat());
+  flatpickrMode = computed(() =>
+    this.selectionMode() === "range"
+      ? "range"
+      : this.selectionMode() === "multiple"
+        ? "multiple"
+        : "single",
+  );
+  flatpickrDateFormat = computed(() =>
+    this.dateFormat() === "dd/mm/yy" ? "d/m/Y" : this.dateFormat(),
+  );
 
   constructor() {
     super();

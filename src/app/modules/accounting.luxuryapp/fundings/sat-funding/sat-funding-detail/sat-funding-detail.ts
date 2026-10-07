@@ -19,8 +19,8 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 // Bootstrap Modules
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import {
   BulkUpdateTipoGastoDto,
@@ -31,9 +31,9 @@ import {
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { InputSelect } from "@ui/inputs/adaptive/input-select/input-select";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import {
   AppReorderableRow,
   AppReorderableRowHandle,
@@ -61,13 +61,14 @@ import { SatFundingInvoiceEditFormComponent } from "./sat-funding-invoice-edit-f
     AppSortableColumn,
 
     AppSorticon,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     InputSelect,
-    CustomInputDateSignal,
+    LuxInputDateSignal,
     LxTooltipDirective,
     ButtonWeb,
     LxCard,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class SatFundingDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -94,7 +95,8 @@ export class SatFundingDetailComponent implements OnInit {
     { value: 6, label: "Tarjeta Debito" },
     { value: 7, label: "Proyectos" },
     { value: 8, label: "Nomina" },
-    { value: 9, label: "Impuestos y contribuciones" }];
+    { value: 9, label: "Impuestos y contribuciones" },
+  ];
 
   form = this.formBuilder.nonNullable.group({
     startDate: [null as string | null, [Validators.required]],

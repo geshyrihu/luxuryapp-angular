@@ -11,10 +11,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
@@ -25,6 +21,10 @@ import {
 } from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
 import { EmployeeInternalService } from "@recruitment.luxuryapp/employees/employee-internal.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputMask } from "@ui/inputs/adaptive/input-mask/input-mask";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface";
 
 @Component({
@@ -33,8 +33,8 @@ import { IEmployeeBankDataForm } from "./interfaces/employee-bank-data.interface
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
     InputMask,
     ButtonWeb,
   ],
@@ -117,5 +117,3 @@ export class EmployeeBankDataForm implements OnInit {
     });
   }
 }
-
-

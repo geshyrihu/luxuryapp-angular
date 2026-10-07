@@ -1,4 +1,3 @@
-import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,13 +7,14 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   EvidenciaNominaDTO,
   TIPO_EVIDENCIA_COLORS,
@@ -30,8 +30,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     ApiDatePipe,
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputSelectSignal,
-    CustomInputTextAreaSignal],
+    LuxInputSelectSignal,
+    LuxInputTextAreaSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./evidencias-nomina.html",
 })

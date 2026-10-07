@@ -12,7 +12,7 @@ import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { FundingPurchaseDetail } from "@accounting.luxuryapp/fundings/funding/funding-purchase-detail";
@@ -33,12 +33,13 @@ import { PdfViewerModal } from "@ui/web/pdf-viewer-modal/pdf-viewer-modal";
     ReactiveFormsModule,
     AppTable,
 
-    CustomInputCheckSignal,
+    LuxInputCheckSignal,
     UpperCasePipe,
     DecimalPipe,
     ButtonWeb,
     LxTag,
-    LxMessage],
+    LxMessage,
+  ],
   styleUrls: ["./funding-accounting-detail.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./funding-accounting-detail.html",

@@ -1,4 +1,3 @@
-import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,22 +11,26 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
-import { ButtonWeb } from "@ui/buttons/web";
-import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { OperationRecruitmentEndpoints } from "@core/constants/endpoints/operation-recruitment.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { FileUploadModule, FileUploadValidators } from "@iplab/ngx-file-upload";
+import { ButtonWeb } from "@ui/buttons/web";
+import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { firstValueFrom } from "rxjs";
 
 interface RequestSalaryModificationSeedDTO {
   customerId?: string | null;
@@ -70,18 +73,19 @@ interface SolicitudModificacionSalarioFormValue {
   imports: [
     ReactiveFormsModule,
     FileUploadModule,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
-    CustomInputDateSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputDateSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
-    CustomInputTextAreaSignal,
-    InputAutocomplete],
+    LuxInputTextAreaSignal,
+    InputAutocomplete,
+  ],
 })
 export class SolicitudModificacionSalarioForm implements OnInit {
   private apiResponseS = inject(ApiResponseService);
   private formB = inject(FormBuilder);
-private config = inject(DynamicDialogConfig);
+  private config = inject(DynamicDialogConfig);
   private customerIdS = inject(CustomerIdService);
   private dateS = inject(DateService);
   private ref = inject(DynamicDialogRef);
@@ -161,19 +165,21 @@ private config = inject(DynamicDialogConfig);
       ),
       this.apiResponseS.onGetList<SelectItemDto[]>(
         OperationRecruitmentEndpoints.selectItems.vacancies(customerId),
-      )]);
+      ),
+    ]);
 
     this.cb_si_no.set(siNo);
     this.cb_applicationRole.set(applicationRoles as SelectItemDto[]);
     this.cb_vacantes.set(vacantes || []);
   }
 
-async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
-    const result = await this.apiResponseS.onGetItem<RequestSalaryModificationSeedDTO>(
-      OperationRecruitmentEndpoints.requestSalaryModification.getData(
-        this.employeeId,
-      ),
-    );
+  async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
+    const result =
+      await this.apiResponseS.onGetItem<RequestSalaryModificationSeedDTO>(
+        OperationRecruitmentEndpoints.requestSalaryModification.getData(
+          this.employeeId,
+        ),
+      );
 
     if (!result) return null;
 
@@ -308,10 +314,7 @@ async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
         ? String(formValue.finalSalary)
         : "0",
     );
-    formData.append(
-      "workPositionId",
-      formValue.workPositionId || "",
-    );
+    formData.append("workPositionId", formValue.workPositionId || "");
     formData.append(
       "executionDate",
       this.dateS.getDateFormat(formValue.executionDate as Date),
@@ -328,4 +331,3 @@ async onLoadData(): Promise<RequestSalaryModificationSeedDTO | null> {
     return formData;
   }
 }
-

@@ -14,15 +14,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IMedidorLecturaForm {
   id: FormControl<string | null>;
@@ -40,8 +43,8 @@ interface IMedidorLecturaForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputNumberSignal,
-    CustomInputTextSignal,
+    LuxInputNumberSignal,
+    LuxInputTextSignal,
   ],
 })
 export class MedidorLecturaForm implements OnInit {
@@ -166,4 +169,3 @@ export class MedidorLecturaForm implements OnInit {
     });
   }
 }
-

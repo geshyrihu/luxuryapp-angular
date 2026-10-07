@@ -1,1 +1,1 @@
-export { InputFile as CustomInputFile } from "../adaptive/input-file/input-file";
+export { InputFile as LuxInputFile } from "../adaptive/input-file/input-file";

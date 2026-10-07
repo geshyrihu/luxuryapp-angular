@@ -1,1 +1,1 @@
-export { InputSelectBool as CustomInputSelectBool } from "../adaptive/input-select-bool/input-select-bool";
+export { InputSelectBool as LuxInputSelectBool } from "../adaptive/input-select-bool/input-select-bool";

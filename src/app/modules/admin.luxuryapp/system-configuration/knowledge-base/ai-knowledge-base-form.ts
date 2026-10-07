@@ -12,15 +12,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AiKnowledgeBaseFormGroup } from "./interfaces/ai-knowledge-base-form.interface";
 
 @Component({
@@ -29,11 +32,11 @@ import { AiKnowledgeBaseFormGroup } from "./interfaces/ai-knowledge-base-form.in
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputCheckSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputCheckSignal,
     ButtonWeb,
-    CustomInputSelectSignal, // Importado
+    LuxInputSelectSignal, // Importado
   ],
 })
 export class AiKnowledgeBaseForm implements OnInit {
@@ -109,4 +112,3 @@ export class AiKnowledgeBaseForm implements OnInit {
     });
   }
 }
-

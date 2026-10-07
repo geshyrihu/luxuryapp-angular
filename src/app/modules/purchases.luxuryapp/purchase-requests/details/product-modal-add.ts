@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,9 +27,10 @@ import {
 } from "@core/services/dialog-handler.service";
 import { PaginationStore } from "@core/services/pagination-store";
 import { TarjetaProducto } from "@purchases.luxuryapp/products/tarjeta-producto";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { AppAvatar } from "@ui/web/avatar/avatar";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
 import {
@@ -54,18 +54,18 @@ interface IAddProductRow {
   unidadMedidaId: FormControl<number | null>;
 }
 
-
 @Component({
   selector: "app-product-modal-add",
   templateUrl: "./product-modal-add.html",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ReactiveFormsModule,
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputNumberSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputNumberSignal,
     AppAvatar,
     TableFooter,
   ],

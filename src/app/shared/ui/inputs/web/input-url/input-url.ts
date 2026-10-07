@@ -6,11 +6,11 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputUrl } from "../custom-input-url-signal";
+import { LuxInputUrl } from "../custom-input-url-signal";
 
 @Component({
   selector: "web-input-url",
-  imports: [BaseInputSignal, ReactiveFormsModule, CustomInputUrl],
+  imports: [BaseInputSignal, ReactiveFormsModule, LuxInputUrl],
   template: `
     <web-custom-input-url
       [control]="control() || internalControl"
@@ -33,7 +33,8 @@ import { CustomInputUrl } from "../custom-input-url-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputUrl),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputUrl extends BaseInputSignal {
   customClass = input<string>("");

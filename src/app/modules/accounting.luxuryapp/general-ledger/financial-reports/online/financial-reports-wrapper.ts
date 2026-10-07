@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,19 +11,20 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
+import { ButtonWeb } from "@ui/buttons/web";
 import type { TabItem } from "@ui/core/tabs.base";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { PresupuestoContabilidad } from "./accounting-budget/presupuesto-contabilidad";
 import { AiAgentContabilidadComponent } from "./ai-agent-contabilidad/ai-agent-contabilidad";
 import { AiAgentExplicadorComponent } from "./ai-agent-explicador/ai-agent-explicador";
 import { AiAgentComponent } from "./ai-agent/ai-agent";
 import { ProyectosAprobadosComponent } from "./approved-projects/proyectos-aprobados";
-import { ResultadosExtraordinarios } from "./extraordinary-results/resultados-extraordinarios";
 import { BancosInversionesComponent } from "./banks-investments/bancos-inversiones";
 import { CedulaPresupuestal } from "./budget-statement/cedula-presupuestal";
 import { FlujoEfectivo } from "./cash-flow/flujo-efectivo";
 import { AnalisisCobranza } from "./collection-analysis/analisis-cobranza";
+import { ResultadosExtraordinarios } from "./extraordinary-results/resultados-extraordinarios";
 import { CedulaExtraordinaria } from "./extraordinary-statement/cedula-extraordinaria";
 import { EstadoPosicionFinanciera } from "./financial-position-statement/estado-posicion-financiera";
 import { ReporteFinanciero } from "./financial-report/reporte-financiero";
@@ -92,15 +92,17 @@ const REPORT_META = [
     title: "Resultados Extraordinarios",
     description:
       "Resultados exclusivos de cuotas extraordinarias y mejoras o proyectos.",
-  }] as const;
+  },
+] as const;
 
 @Component({
   selector: "app-financial-reports-wrapper",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     FormsModule,
     LxTabs,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
     EstadoPosicionFinanciera,
     EstadoResultados,
     EstadoResultadosV2,
@@ -116,7 +118,8 @@ const REPORT_META = [
     ResultadosExtraordinarios,
     AiAgentComponent,
     AiAgentContabilidadComponent,
-    AiAgentExplicadorComponent],
+    AiAgentExplicadorComponent,
+  ],
   providers: [CobranzaOnlineStoreService, FinancialReportFilterStore],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./financial-reports-wrapper.html",
@@ -142,7 +145,8 @@ export default class FinancialReportsWrapper {
     // { id: "9", label: "Bancos e Inv." },
     // { id: "10", label: "Fondo Reserva" },
     // { id: "11", label: "Proyectos" },
-    { id: "12", label: "R. Extraordinarios V2" }]);
+    { id: "12", label: "R. Extraordinarios V2" },
+  ]);
 
   readonly activeReportTitle = computed(
     () => REPORT_META[this.reportIndex()]?.title ?? "Estados Financieros",

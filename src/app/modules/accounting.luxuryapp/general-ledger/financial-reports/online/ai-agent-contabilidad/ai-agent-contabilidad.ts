@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -10,16 +9,17 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 
-import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { ElevenLabsService } from "@core/services/eleven-labs.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxSidebar } from "@ui/adaptive/sidebar/sidebar";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 interface AiMessage {
@@ -31,12 +31,15 @@ interface AiMessage {
 
 @Component({
   selector: "app-ai-agent-contabilidad",
-  imports: [ButtonWeb, CommonModule,
+  imports: [
+    ButtonWeb,
+    CommonModule,
     FormsModule,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxSpinner,
     LxSidebar,
-    LxIcon],
+    LxIcon,
+  ],
   templateUrl: "./ai-agent-contabilidad.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
@@ -60,7 +63,8 @@ export class AiAgentContabilidadComponent {
       role: "assistant",
       content:
         "Hola, soy tu Auditor IA de Contabilidad Online. Puedo ayudarte a interpretar EPF, resultados, presupuesto, extraordinarias, flujo y cobranza con las reglas reales de este módulo.",
-    }]);
+    },
+  ]);
 
   suggestedQuestions = [
     "óQuó hallazgo relevante ves en este reporte y por qué importa?",
@@ -72,7 +76,8 @@ export class AiAgentContabilidadComponent {
     "Si este es EPF, ócómo impactan 104, 302, 303 o 205/206?",
     "Si este es Estado de Resultados, óquó cuentas dominan ingresos o gastos?",
     "Si este es P vs R, ócuól es la desviación mós importante?",
-    "Si este es Cobranza, óquó lectura operativa harías del corte?"];
+    "Si este es Cobranza, óquó lectura operativa harías del corte?",
+  ];
 
   togglePanel() {
     this.visible.update((v) => !v);
@@ -120,7 +125,8 @@ export class AiAgentContabilidadComponent {
           content: safeHtml,
           isHtml: true,
           rawContent: responseHtml,
-        }]);
+        },
+      ]);
 
       const shouldReadResponse =
         this.autoReadResponses() &&
@@ -136,7 +142,8 @@ export class AiAgentContabilidadComponent {
           role: "assistant",
           content:
             "Ocurrié un error al procesar tu pregunta en el agente de Contabilidad Online. Intenta nuevamente mós tarde.",
-        }]);
+        },
+      ]);
     } finally {
       this.loading.set(false);
     }

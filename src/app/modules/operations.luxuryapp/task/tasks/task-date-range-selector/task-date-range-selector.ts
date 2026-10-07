@@ -1,13 +1,18 @@
-import { Component, OnInit, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  output,
+} from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { DateRangeStorageService } from "../date-range-storage.service";
 import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { DateRangeStorageService } from "../date-range-storage.service";
 @Component({
   selector: "app-task-date-range-selector",
   templateUrl: "./task-date-range-selector.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ ButtonWeb, ReactiveFormsModule, CustomInputDateSignal],
+  imports: [ButtonWeb, ReactiveFormsModule, LuxInputDateSignal],
 })
 export class TaskDateRangeSelector implements OnInit {
   constructor(private dateRangeStorageService: DateRangeStorageService) {}

@@ -6,15 +6,18 @@ import {
   signal,
 } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
-import { firstValueFrom } from "rxjs";
 import { EndpointsReclutamiento } from "@core/constants/endpoints/reclutamiento.endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
 import { EnumSelectService } from "@core/services/enum-select.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { firstValueFrom } from "rxjs";
 import { IRequestEmployeeRegisterBasicInfo } from "./dtos/request-employee-register-basic-info.dto";
 import { IRequestEmployeeRegisterUpdateStatus } from "./dtos/request-employee-register-update-status.dto";
 @Component({
@@ -23,8 +26,8 @@ import { IRequestEmployeeRegisterUpdateStatus } from "./dtos/request-employee-re
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
   ],
 })
@@ -103,4 +106,3 @@ export class SolicitudAltaStatusForm implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
-

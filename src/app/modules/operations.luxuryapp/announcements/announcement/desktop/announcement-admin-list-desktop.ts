@@ -11,11 +11,14 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { IAnnouncementAdminList } from "../announcement.model";
 
 @Component({
@@ -31,7 +34,8 @@ import { IAnnouncementAdminList } from "../announcement.model";
     LxTag,
     LuxTableCaption,
     TableFooter,
-    CustomInputSelectSignal],
+    LuxInputSelectSignal,
+  ],
 })
 export class AnnouncementAdminListDesktop {
   data = input.required<IAnnouncementAdminList[]>();

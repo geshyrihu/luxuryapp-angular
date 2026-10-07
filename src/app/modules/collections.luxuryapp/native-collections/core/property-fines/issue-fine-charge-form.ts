@@ -20,7 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import {
   IssueFineChargeDTO,
@@ -31,10 +31,11 @@ import {
   selector: "app-issue-fine-charge-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputDateSignal,
+    LuxInputDateSignal,
     ButtonWeb,
     CurrencyPipe,
-    ApiDatePipe],
+    ApiDatePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./issue-fine-charge-form.html",
 })

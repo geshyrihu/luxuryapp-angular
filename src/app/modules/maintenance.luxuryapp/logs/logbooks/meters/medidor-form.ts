@@ -12,16 +12,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDecimal } from "@ui/inputs/web/custom-input-decimal-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IMedidorForm {
   id: FormControl<string | null>;
@@ -41,9 +44,9 @@ interface IMedidorForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputDecimal,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
+    LuxInputDecimal,
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
   ],
 })
 export class MedidorForm implements OnInit {
@@ -124,4 +127,3 @@ export class MedidorForm implements OnInit {
     }
   }
 }
-

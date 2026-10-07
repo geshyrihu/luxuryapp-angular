@@ -1,64 +1,64 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputFile } from './custom-input-file-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { LuxInputFile } from "./custom-input-file-signal";
 
-describe('CustomInputFile', () => {
-  let component: CustomInputFile;
-  let fixture: ComponentFixture<CustomInputFile>;
+describe("LuxInputFile", () => {
+  let component: LuxInputFile;
+  let fixture: ComponentFixture<LuxInputFile>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputFile, {
+    TestBed.overrideComponent(LuxInputFile, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputFile],
+      imports: [LuxInputFile],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputFile);
+    fixture = TestBed.createComponent(LuxInputFile);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have default accept as empty string', () => {
-    expect(component.accept()).toBe('');
+  it("should have default accept as empty string", () => {
+    expect(component.accept()).toBe("");
   });
 
-  it('should have default maxFileSize as 10000000', () => {
+  it("should have default maxFileSize as 10000000", () => {
     expect(component.maxFileSize()).toBe(10000000);
   });
 
-  it('should have default chooseLabel', () => {
-    expect(component.chooseLabel()).toBe('Seleccionar archivo');
+  it("should have default chooseLabel", () => {
+    expect(component.chooseLabel()).toBe("Seleccionar archivo");
   });
 
-  it('should set accept via input', () => {
-    fixture.componentRef.setInput('accept', '.pdf,.doc');
+  it("should set accept via input", () => {
+    fixture.componentRef.setInput("accept", ".pdf,.doc");
     fixture.detectChanges();
-    expect(component.accept()).toBe('.pdf,.doc');
+    expect(component.accept()).toBe(".pdf,.doc");
   });
 
-  describe('fileSelected output', () => {
-    it('should emit when file is selected', () => {
+  describe("fileSelected output", () => {
+    it("should emit when file is selected", () => {
       const emitSpy = vi.fn();
       component.fileSelected.subscribe(emitSpy);
 
-      const file = new File(['content'], 'test.txt', { type: 'text/plain' });
+      const file = new File(["content"], "test.txt", { type: "text/plain" });
       component.onFileSelected(file);
 
       expect(emitSpy).toHaveBeenCalledWith(file);
     });
 
-    it('should emit null when file is removed', () => {
+    it("should emit null when file is removed", () => {
       const emitSpy = vi.fn();
       component.fileSelected.subscribe(emitSpy);
 
@@ -68,38 +68,38 @@ describe('CustomInputFile', () => {
     });
   });
 
-  describe('uploadError output', () => {
-    it('should re-emit upload errors', () => {
+  describe("uploadError output", () => {
+    it("should re-emit upload errors", () => {
       const emitSpy = vi.fn();
       component.uploadError.subscribe(emitSpy);
-      component.onUploadError({ message: 'too big' });
-      expect(emitSpy).toHaveBeenCalledWith({ message: 'too big' });
+      component.onUploadError({ message: "too big" });
+      expect(emitSpy).toHaveBeenCalledWith({ message: "too big" });
     });
   });
 
-  describe('ControlValueAccessor', () => {
-    it('should call onChange when registered via registerOnChange', () => {
+  describe("ControlValueAccessor", () => {
+    it("should call onChange when registered via registerOnChange", () => {
       const fn = vi.fn();
       component.registerOnChange(fn);
-      component.onChange('value');
-      expect(fn).toHaveBeenCalledWith('value');
+      component.onChange("value");
+      expect(fn).toHaveBeenCalledWith("value");
     });
 
-    it('should call onTouch when registered via registerOnTouched', () => {
+    it("should call onTouch when registered via registerOnTouched", () => {
       const fn = vi.fn();
       component.registerOnTouched(fn);
       component.onTouch();
       expect(fn).toHaveBeenCalled();
     });
 
-    it('should write value via writeValue', () => {
-      const spy = vi.spyOn(component, 'writeValue');
-      component.writeValue('file value');
-      expect(spy).toHaveBeenCalledWith('file value');
+    it("should write value via writeValue", () => {
+      const spy = vi.spyOn(component, "writeValue");
+      component.writeValue("file value");
+      expect(spy).toHaveBeenCalledWith("file value");
     });
 
-    it('should set disabled state via setDisabledState', () => {
-      const spy = vi.spyOn(component, 'setDisabledState');
+    it("should set disabled state via setDisabledState", () => {
+      const spy = vi.spyOn(component, "setDisabledState");
       component.setDisabledState(true);
       expect(spy).toHaveBeenCalledWith(true);
     });

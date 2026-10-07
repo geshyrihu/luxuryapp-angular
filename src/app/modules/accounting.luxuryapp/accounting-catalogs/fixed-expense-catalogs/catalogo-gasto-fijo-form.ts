@@ -31,9 +31,9 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 interface ICatalogoGastoFijoForm {
@@ -61,12 +61,13 @@ interface ICatalogoGastoFijoForm {
     ReactiveFormsModule,
     AppTable,
 
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
     InputAutocomplete,
-    CustomInputSelectSignal,
+    LuxInputSelectSignal,
     ButtonWeb,
-    LxMessage],
+    LxMessage,
+  ],
 })
 export class CatalogoGastoFijoForm implements OnInit {
   // Inyección de dependencias
@@ -92,7 +93,8 @@ export class CatalogoGastoFijoForm implements OnInit {
   cb_formaDePago = signal<SelectItemDto[]>([]);
   cb_quincena = signal<SelectItemDto[]>([
     { label: "Primera Quincena", value: 0 },
-    { label: "Segunda Quincena", value: 1 }]);
+    { label: "Segunda Quincena", value: 1 },
+  ]);
 
   // Formulario reactivo tipado
   form: FormGroup<ICatalogoGastoFijoForm> = this.formB.group({
@@ -196,7 +198,8 @@ export class CatalogoGastoFijoForm implements OnInit {
       ),
       this.apiResponseS.onGetSelectItem<SelectItemDto[]>(
         Endpoints.SelectItems.providers(this.customerIdS.customerId()),
-      )]);
+      ),
+    ]);
 
     this.cb_usoCFDI.set((usoCFDI as SelectItemDto[]) || []);
     this.cb_metodoDePago.set((metodoDePago as SelectItemDto[]) || []);

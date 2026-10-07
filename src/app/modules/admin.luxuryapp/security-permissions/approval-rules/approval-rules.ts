@@ -25,11 +25,11 @@ import {
   IonToolbar,
 } from "@ionic/angular";
 import { LxCard } from "@ui/adaptive/card/card";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxInputSelectButton } from "@ui/inputs/web/custom-input-select-button-signal";
 import {
   AppFrozenColumn,
   AppTable,
@@ -48,7 +48,7 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     LxCard,
     AppTable,
     AppFrozenColumn,
-    CustomInputSelectButton,
+    LuxInputSelectButton,
     LxSkeleton,
     LxIcon,
     ButtonWeb,
@@ -64,7 +64,8 @@ import { ApprovalScope } from "./interfaces/approval-rules.enum";
     IonSelect,
     IonSelectOption,
     IonTitle,
-    IonToolbar],
+    IonToolbar,
+  ],
 })
 export class ApprovalRules implements OnInit {
   readonly platform = inject(PlatformService);
@@ -98,7 +99,8 @@ export class ApprovalRules implements OnInit {
       value: ApprovalScope.Global,
       icon: "material-symbols-light:public",
       class: "opt-global",
-    }];
+    },
+  ];
 
   ngOnInit(): void {
     this.loadMatrix();

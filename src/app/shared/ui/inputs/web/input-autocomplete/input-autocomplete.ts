@@ -9,12 +9,12 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../../core/base-input-signal";
-import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
+import { LuxInputAutoComplete } from "../custom-input-autocomplete-signal";
 
 @Component({
   selector: "web-input-autocomplete",
 
-  imports: [ReactiveFormsModule, CustomInputAutoComplete],
+  imports: [ReactiveFormsModule, LuxInputAutoComplete],
   template: `
     <web-custom-input-autocomplete-signal
       [control]="control() || internalControl"
@@ -57,7 +57,8 @@ import { CustomInputAutoComplete } from "../custom-input-autocomplete-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WebInputAutocomplete),
       multi: true,
-    }],
+    },
+  ],
 })
 export class WebInputAutocomplete extends BaseInputSignal {
   data = input<any[]>([]);

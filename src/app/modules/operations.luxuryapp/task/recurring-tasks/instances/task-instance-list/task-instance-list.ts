@@ -13,7 +13,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { PlatformService } from "@core/services/platform.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxToolbar } from "@ui/adaptive/toolbar/toolbar";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { CompleteTaskForm } from "../complete-task-form/complete-task-form";
 import { TaskInstanceListDesktop } from "./desktop/task-instance-list-desktop";
 import { TaskInstanceListMobile } from "./mobile/task-instance-list-mobile";
@@ -24,9 +24,10 @@ import { TaskInstanceListMobile } from "./mobile/task-instance-list-mobile";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     LxToolbar,
-    CustomInputDateSignal,
+    LuxInputDateSignal,
     TaskInstanceListDesktop,
-    TaskInstanceListMobile],
+    TaskInstanceListMobile,
+  ],
 })
 export class TaskInstanceList implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,19 +14,21 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxCard } from "@ui/adaptive/card/card";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { EFinancialApprovalOperationType } from "../../interfaces/enums";
 import { FinancialApprovalResponseDTO } from "../../interfaces/financial-approval.dto";
 
 @Component({
   selector: "app-approval-detail-modal",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxIcon,
     LxCard,
     ReactiveFormsModule,
-    CustomInputTextAreaSignal,
+    LuxInputTextAreaSignal,
     ApiDatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

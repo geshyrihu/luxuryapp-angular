@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,8 +8,9 @@ import {
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
 
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import {
@@ -19,11 +19,13 @@ import {
 } from "../interfaces/incident.interfaces";
 @Component({
   selector: "app-incident-dashboard",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     LxIcon,
     ReactiveFormsModule,
     AppTable,
-    CustomInputDateSignal],
+    LuxInputDateSignal,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./incident-dashboard.html",
 })
@@ -125,7 +127,8 @@ export class IncidentDashboardComponent implements OnInit {
             data: data.byMonth.map((m) => m.count),
             backgroundColor: "rgba(59, 130, 246, 0.8)",
             borderRadius: 8,
-          }],
+          },
+        ],
       });
     }
 
@@ -141,15 +144,18 @@ export class IncidentDashboardComponent implements OnInit {
               "#F59E0B",
               "#EF4444",
               "#8B5CF6",
-              "#EC4899"],
+              "#EC4899",
+            ],
             hoverBackgroundColor: [
               "#2563EB",
               "#059669",
               "#D97706",
               "#DC2626",
               "#7C3AED",
-              "#DB2777"],
-          }],
+              "#DB2777",
+            ],
+          },
+        ],
       });
     }
   }

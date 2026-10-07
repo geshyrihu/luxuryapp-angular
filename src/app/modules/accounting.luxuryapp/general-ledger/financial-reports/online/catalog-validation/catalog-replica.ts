@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,27 +7,31 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-catalog-replica",
-  imports: [ButtonWeb, LxTooltipDirective,
+  imports: [
+    ButtonWeb,
+    LxTooltipDirective,
     FormsModule,
     AppTable,
-    CustomInputTextSignal,
+    LuxInputTextSignal,
     LxTag,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./catalog-replica.html",
 })

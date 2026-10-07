@@ -11,7 +11,6 @@
  * Por favor, NO rompan el código.
  * ============================================================================
  */
-import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,12 +24,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import {
   BudgetAccountRuleCreateDTO,
   BudgetAccountRuleUpdateDTO,
@@ -40,9 +42,10 @@ import {
   selector: "app-budget-rule-form",
   imports: [
     ReactiveFormsModule,
-    CustomInputTextSignal,
-    CustomInputSelectSignal,
-    ButtonWeb],
+    LuxInputTextSignal,
+    LuxInputSelectSignal,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-form.html",
 })
@@ -66,7 +69,8 @@ export class BudgetRuleForm implements OnInit {
   // Opciones para el selector de tipo
   ruleTypes = [
     { label: "Cuenta Extra (Inclusión)", value: 0 },
-    { label: "Exclusión (Ocultar)", value: 1 }];
+    { label: "Exclusión (Ocultar)", value: 1 },
+  ];
 
   initialData: any;
 
@@ -120,4 +124,3 @@ export class BudgetRuleForm implements OnInit {
     });
   }
 }
-

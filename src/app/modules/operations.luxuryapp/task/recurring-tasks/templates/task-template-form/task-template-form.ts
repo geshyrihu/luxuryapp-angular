@@ -12,17 +12,20 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
-import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
+import { LuxInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { LuxInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 interface ITaskTemplateForm {
   name: FormControl<string>;
@@ -39,11 +42,12 @@ interface ITaskTemplateForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputCheckSignal,
-    CustomInputSelectSignal,
-    CustomInputTextSignal,
-    CustomInputTextAreaSignal,
-    CustomInputMultiselectSignal],
+    LuxInputCheckSignal,
+    LuxInputSelectSignal,
+    LuxInputTextSignal,
+    LuxInputTextAreaSignal,
+    LuxInputMultiselectSignal,
+  ],
 })
 export class TaskTemplateForm implements OnInit {
   private formBuilder = inject(FormBuilder);
@@ -88,9 +92,7 @@ export class TaskTemplateForm implements OnInit {
 
   loadRoles() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.applicationRoles,
-      )
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.applicationRoles)
       .then((response) => {
         this.roles.set(response || []);
       });
@@ -98,9 +100,7 @@ export class TaskTemplateForm implements OnInit {
 
   loadAvailableCustomers() {
     this.apiResponseS
-      .onGetSelectItem<SelectItemDto[]>(
-        Endpoints.SelectItems.customersActive,
-      )
+      .onGetSelectItem<SelectItemDto[]>(Endpoints.SelectItems.customersActive)
       .then((response) => {
         this.availableCustomers.set(response || []);
       });
@@ -118,4 +118,3 @@ export class TaskTemplateForm implements OnInit {
     });
   }
 }
-

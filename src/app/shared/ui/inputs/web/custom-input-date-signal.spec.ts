@@ -1,77 +1,77 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CustomInputDateSignal } from './custom-input-date-signal';
-import { vi } from 'vitest';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { vi } from "vitest";
+import { LuxInputDateSignal } from "./custom-input-date-signal";
 
-describe('CustomInputDateSignal', () => {
-  let component: CustomInputDateSignal;
-  let fixture: ComponentFixture<CustomInputDateSignal>;
+describe("LuxInputDateSignal", () => {
+  let component: LuxInputDateSignal;
+  let fixture: ComponentFixture<LuxInputDateSignal>;
 
   beforeEach(() => {
-    TestBed.overrideComponent(CustomInputDateSignal, {
+    TestBed.overrideComponent(LuxInputDateSignal, {
       set: {
-        template: '<div>Mock</div>',
+        template: "<div>Mock</div>",
         imports: [],
       },
     });
 
     TestBed.configureTestingModule({
-      imports: [CustomInputDateSignal],
+      imports: [LuxInputDateSignal],
       schemas: [NO_ERRORS_SCHEMA],
     });
 
-    fixture = TestBed.createComponent(CustomInputDateSignal);
+    fixture = TestBed.createComponent(LuxInputDateSignal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  describe('signal defaults', () => {
-    it('should have default values for inputs', () => {
+  describe("signal defaults", () => {
+    it("should have default values for inputs", () => {
       expect(component.disable()).toEqual([]);
-      expect(component.mode()).toBe('single');
+      expect(component.mode()).toBe("single");
     });
   });
 
-  describe('ControlValueAccessor', () => {
-    it('should register onChange callback', () => {
+  describe("ControlValueAccessor", () => {
+    it("should register onChange callback", () => {
       const fn = vi.fn();
       component.registerOnChange(fn);
-      component.onChange('test-value');
-      expect(fn).toHaveBeenCalledWith('test-value');
+      component.onChange("test-value");
+      expect(fn).toHaveBeenCalledWith("test-value");
     });
 
-    it('should register onTouched callback', () => {
+    it("should register onTouched callback", () => {
       const fn = vi.fn();
       component.registerOnTouched(fn);
       component.onTouch();
       expect(fn).toHaveBeenCalled();
     });
 
-    describe('writeValue', () => {
-      it('should set null/undefined values directly', () => {
+    describe("writeValue", () => {
+      it("should set null/undefined values directly", () => {
         component.writeValue(null);
         expect(component.internalControl.value).toBeNull();
         component.writeValue(undefined);
         expect(component.internalControl.value).toBeUndefined();
       });
 
-      it('should keep ISO date string as-is (conversión a Date ocurre en web-input-date)', () => {
-        component.writeValue('2024-06-15');
-        expect(component.internalControl.value).toBe('2024-06-15');
+      it("should keep ISO date string as-is (conversión a Date ocurre en web-input-date)", () => {
+        component.writeValue("2024-06-15");
+        expect(component.internalControl.value).toBe("2024-06-15");
       });
 
-      it('should pass through existing Date objects', () => {
+      it("should pass through existing Date objects", () => {
         const date = new Date(2024, 5, 15);
         component.writeValue(date);
         expect(component.internalControl.value).toBe(date);
       });
     });
 
-    it('setDisabledState should disable/enable control', () => {
+    it("setDisabledState should disable/enable control", () => {
       component.setDisabledState(true);
       expect(component.internalControl.disabled).toBe(true);
       component.setDisabledState(false);

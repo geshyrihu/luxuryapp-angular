@@ -15,14 +15,14 @@ import {
   tableRows,
 } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CustomInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
+import { LuxInputCheckSignal } from "@ui/inputs/web/custom-input-check-signal";
 import { ReportHeader } from "@ui/web/report-header/report-header";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-entrega-recepcion-llaves",
   templateUrl: "./entrega-recepcion-llaves.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AppTable, FormsModule, ReportHeader, CustomInputCheckSignal],
+  imports: [AppTable, FormsModule, ReportHeader, LuxInputCheckSignal],
 })
 export class EntregaRecepcionLlaves {
   apiResponseS = inject(ApiResponseService);

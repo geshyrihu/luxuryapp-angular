@@ -12,16 +12,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
-import { CustomInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { DynamicDialogConfig, DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { AuthService } from "@core/auth/services/auth.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { FormHelper } from "@core/helpers/form-helper";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DateService } from "@core/services/date.service";
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { LuxInputNumberSignal } from "@ui/inputs/web/custom-input-number-signal";
+import { LuxInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
 interface IMedidorLecturaAdminForm {
   id: FormControl<string | null>;
@@ -38,9 +41,9 @@ interface IMedidorLecturaAdminForm {
   imports: [
     ReactiveFormsModule,
     ButtonWeb,
-    CustomInputDateSignal,
-    CustomInputNumberSignal,
-    CustomInputTextSignal,
+    LuxInputDateSignal,
+    LuxInputNumberSignal,
+    LuxInputTextSignal,
   ],
 })
 export class MedidorLecturaAdminForm implements OnInit {
@@ -128,4 +131,3 @@ export class MedidorLecturaAdminForm implements OnInit {
     });
   }
 }
-
