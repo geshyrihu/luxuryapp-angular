@@ -10,6 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { AppToggleSwitch } from "@ui/web/toggle-switch/toggle-switch";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import { LuxButton } from "@ui/adaptive/button/button";
 
 
 import { ButtonWeb } from "@ui/buttons/web";
@@ -306,13 +307,14 @@ const ILI_SEMANTIC: SemanticEntry[] = [
 
 @Component({
   selector: "app-button-catalog",
-  imports: [ButtonMobile, 
+  imports: [ButtonMobile,
     CommonModule,
     FormsModule,
     AppTable,
     AppSelectButton,
     AppToggleSwitch,
-    ButtonWeb],
+    ButtonWeb,
+    LuxButton],
   template: `
     <section class="fadein">
       <!-- -- Controls ----------------------------------------------- -->
@@ -355,6 +357,47 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               inputId="btn-load"
             />
             <label for="btn-load" class="font-semibold text-sm">Loading</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------------------
+       PoC adaptativa lux-button
+       -------------------------------------------------------------- -->
+      <div class="catalog-section mb-6">
+        <div class="catalog-section-header">
+          <h3 class="m-0">PoC adaptativa <code class="ms-2 text-base">lux-button</code></h3>
+          <small class="text-color-secondary"
+            >Un mismo HTML; PlatformService elige Web o Ionic</small
+          >
+        </div>
+
+        <div class="card">
+          <div class="d-flex gap-3 flex-wrap align-items-center">
+            <lux-button
+              kind="add"
+              displayMode="both"
+              label="Acción adaptativa"
+              iconClass="material-symbols-light:add"
+              type="button"
+              ariaLabel="Ejecutar acción adaptativa"
+              [disabled]="isDisabled()"
+              [loading]="isLoading()"
+              (clicked)="recordPocClick()"
+            />
+            <lux-button
+              kind="item"
+              displayMode="icon"
+              iconClass="material-symbols-light:touch-app"
+              type="button"
+              ariaLabel="Seleccionar elemento adaptativo"
+              [disabled]="isDisabled()"
+              [loading]="isLoading()"
+              (clicked)="recordPocClick()"
+            />
+            <span class="text-sm text-color-secondary"
+              >Clicks registrados: {{ pocClickCount() }}</span
+            >
           </div>
         </div>
       </div>
@@ -1084,9 +1127,14 @@ export class ButtonCatalog {
   ionicSize = signal<IonicSize>("default");
   isDisabled = signal(false);
   isLoading = signal(false);
+  pocClickCount = signal(0);
 
   protected readonly ilSemantic = IL_SEMANTIC;
   protected readonly iwSemantic = IW_SEMANTIC;
   protected readonly iiSemantic = II_SEMANTIC;
   protected readonly iliSemantic = ILI_SEMANTIC;
+
+  protected recordPocClick(): void {
+    this.pocClickCount.update((count) => count + 1);
+  }
 }
