@@ -45,6 +45,10 @@ import { parseDateInputValue } from "../../core/date-value";
         [locale]="spanishLocale"
         [altInput]="true"
         [altFormat]="'d/m/Y'"
+        <!-- 🚀 CRÍTICO: [convertModelValue]="true" es la magia aquí.
+             El wrapper adaptativo formatea el valor a string (YYYY-MM-DD). 
+             Si esto fuera false, Flatpickr esperaría objetos Date y fallaría
+             al comparar los strings de la API, borrando la fecha al recargar. -->
         [convertModelValue]="true"
         [dateFormat]="'Y-m-d'"
         [allowInput]="true"
@@ -76,5 +80,9 @@ export class WebInputDate extends BaseInputSignal {
     return parseDateInputValue(date) ?? undefined;
   };
 
-  // Removed writeValue override since convertModelValue=true handles strings natively
+  // 🧹 Se eliminó el override de writeValue:
+  // Como ahora convertModelValue=true delega a Flatpickr la lectura de los strings,
+  // y este componente ya no se usa directamente con formControlName (sino a través 
+  // de su wrapper adaptativo InputDate pasándole directamente [control]), sobreescribir 
+  // el writeValue solo generaba desincronizaciones de ciclo de vida en Angular Signals.
 }

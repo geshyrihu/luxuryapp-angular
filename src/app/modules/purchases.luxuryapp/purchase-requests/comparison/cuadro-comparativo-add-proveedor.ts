@@ -66,6 +66,10 @@ export class CuadroComparativoAddProveedor implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
+    // 🛡️ Inicializamos con `null` (en lugar de `""` string vacío).
+    // Si inicia en "", al no llenarse se envía un string vacío en el FormData.
+    // El backend .NET espera un DateOnly y estalla si recibe "". Con null, 
+    // la petición falla apropiadamente desde la validación del front.
     fechaCotizacion: new FormControl<Date | string | null>(null, {
       validators: [Validators.required],
     }),
