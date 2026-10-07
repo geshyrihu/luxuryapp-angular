@@ -27,6 +27,7 @@
             icon="material-symbols-light:fact-check"
             variant="text"
             [severity]="selectionMode() ? 'primary' : 'secondary'"
+            ariaLabel="Seleccionar notificaciones"
             lxTooltip="Seleccionar"
             (clicked)="toggleSelectionMode()"
           />
@@ -35,6 +36,7 @@
             icon="material-symbols-light:refresh"
             variant="text"
             severity="secondary"
+            ariaLabel="Recargar notificaciones"
             lxTooltip="Recargar"
             (clicked)="onLoadNotification()"
             [loading]="loading()"
