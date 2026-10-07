@@ -115,13 +115,13 @@
           <ng-container actions>
             @if (applicationUserId == item.applicationUserId ||
             aspRoleS.hasRole(AspRole.SuperUsuario)) {
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="edit"
               severity="info"
               variant="soft"
               (clicked)="onModalForm({ id: item.id, title: 'Editar' })"
             />
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="delete"
               severity="danger"
               variant="soft"

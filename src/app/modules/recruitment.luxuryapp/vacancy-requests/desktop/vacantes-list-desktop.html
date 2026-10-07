@@ -84,14 +84,14 @@
             ariaLabel="Editar"
             (clicked)="edit.emit({ id: item.id })"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             iconClass="material-symbols-light:info"
             tooltip="Detalle del puesto"
             (clicked)="detail.emit(item.workPositionId)"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             iconClass="material-symbols-light:description"
@@ -109,7 +109,7 @@
             (clicked)="delete.emit(item.id)"
           />
           @if (isSuperUser()) {
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             iconClass="material-symbols-light:delete"

@@ -40,7 +40,7 @@
       <td>{{ item.activo ? "Activo" : "Inactivo" }}</td>
       <td class="no-print">
         <div class="d-flex">
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -50,7 +50,7 @@
             iconClass="material-symbols-light:package"
             (clicked)="viewProducts.emit(item.id)"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"

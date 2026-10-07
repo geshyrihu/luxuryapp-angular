@@ -146,7 +146,7 @@
           <app-action-menu>
             <ng-container actions>
               @if (item.status !== "Completed") {
-              <lux-button-web
+              <lux-button-web size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -156,7 +156,7 @@
               />
 
               } @if (item.status !== "Completed") {
-              <lux-button-web
+              <lux-button-web size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -165,7 +165,7 @@
                 (clicked)="closed.emit(item.id)"
               />
               } @if (item.status === "Completed") {
-              <lux-button-web
+              <lux-button-web size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -174,7 +174,7 @@
                 (clicked)="reopen.emit(item.id)"
               />
               } @if (item.status !== "Completed") {
-              <lux-button-web
+              <lux-button-web size="sm"
                 kind="edit"
                 severity="info"
                 variant="soft"

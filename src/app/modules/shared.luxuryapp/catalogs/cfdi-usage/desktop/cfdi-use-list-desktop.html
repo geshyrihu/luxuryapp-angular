@@ -39,7 +39,12 @@
       <td>{{ item.descripcion }}</td>
       <td class="no-print">
         <div class="d-flex">
-          <lux-button-web kind="edit" displayMode="icon"
+          <lux-button-web
+            kind="edit"
+            displayMode="icon"
+            severity="info"
+            variant="soft"
+            size="sm"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
           />
           <lux-button-web

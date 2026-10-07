@@ -92,7 +92,7 @@
       <td class="no-print">
         <lux-action-menu-web>
           <ng-container actions>
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               severity="secondary"
               variant="soft"
@@ -100,14 +100,14 @@
               label="Ver todos los seguimientos"
               (clicked)="viewAll.emit(item.id)"
             />
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="add"
               severity="info"
               variant="soft"
               label="Agregar Seguimiento"
               (clicked)="addTracking.emit(item.id)"
             />
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="edit"
               severity="info"
               variant="soft"

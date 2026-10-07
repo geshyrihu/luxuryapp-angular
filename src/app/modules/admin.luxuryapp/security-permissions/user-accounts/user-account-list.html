@@ -139,7 +139,7 @@
         <td class="no-print">
           <div class="d-flex">
             @if (item.active) {
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               severity="secondary"
               variant="soft"
@@ -150,7 +150,7 @@
               (clicked)="onToBlockAccount(item.id)"
             />
             } @if (!item.active) {
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               severity="secondary"
               variant="soft"
@@ -161,7 +161,7 @@
               (clicked)="onToUnlockAccount(item.id)"
             />
             }
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               severity="secondary"
               variant="soft"

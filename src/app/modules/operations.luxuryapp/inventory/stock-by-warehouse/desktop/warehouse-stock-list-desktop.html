@@ -85,7 +85,7 @@
         <td class="text-center">{{ item.compraRequerida }}</td>
         <td class="no-print">
           <div class="d-flex">
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               displayMode="icon"
               severity="secondary"
@@ -96,7 +96,7 @@
               (clicked)="addEntrada.emit({ id: 0, idProducto: item.productoId, nombreProducto: item.producto, almacenId: item.almacenId })"
             />
 
-            <lux-button-web
+            <lux-button-web size="sm"
               kind="item"
               displayMode="icon"
               severity="secondary"

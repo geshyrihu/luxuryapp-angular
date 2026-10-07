@@ -85,7 +85,7 @@
       </td>
       <td class="text-center no-print">
         <div class="d-flex gap-1 justify-content-center">
-          <lux-button-web
+          <lux-button-web size="sm"
             [label]="item.isDocumentationSent ? 'Reenviar Expediente' : 'Enviar Expediente'"
             iconClass="material-symbols-light:send"
             variant="outline"
@@ -97,13 +97,13 @@
       <td class="no-print">
         <div class="d-flex gap-1">
           @if (canCompleteAlta(item)) {
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Completar Alta"
             iconClass="material-symbols-light:person-add"
             variant="solid"
             (clicked)="completeAlta.emit(item)"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Cancelar"
             iconClass="material-symbols-light:cancel"
             severity="danger"
@@ -111,13 +111,13 @@
             (clicked)="abortHiring.emit(item)"
           />
           } @else if (canManageLinkedAlta(item)) {
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
             variant="outline"
             (clicked)="goToEmployeeFile.emit(item)"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="confirm"
             label="Concluir Alta"
             iconClass="material-symbols-light:check"
@@ -125,7 +125,7 @@
             variant="solid"
             (clicked)="concludeHiring.emit(item.id)"
           />
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Abortar Alta"
             iconClass="material-symbols-light:cancel"
             severity="danger"
@@ -133,14 +133,14 @@
             (clicked)="abortHiring.emit(item)"
           />
           } @else if (canOpenCompletedFile(item)) {
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Ir al Expediente"
             iconClass="material-symbols-light:badge"
             variant="outline"
             (clicked)="goToEmployeeFile.emit(item)"
           />
           } @else if (isCancelled(item)) {
-          <lux-button-web
+          <lux-button-web size="sm"
             label="Ver Detalles"
             iconClass="material-symbols-light:visibility"
             variant="outline"

@@ -186,7 +186,7 @@
       </td>
       <td class="no-print">
         <div class="d-flex">
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -197,7 +197,7 @@
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
           />
 
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -208,7 +208,7 @@
             (clicked)="uploadImg.emit(item.id)"
           />
 
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -219,7 +219,7 @@
             (clicked)="uploadDoc.emit(item.id)"
           />
 
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -231,7 +231,7 @@
           />
 
           @if (item.isSuspended) {
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -242,7 +242,7 @@
             (clicked)="resume.emit(item.id)"
           />
           } @else {
-          <lux-button-web
+          <lux-button-web size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"

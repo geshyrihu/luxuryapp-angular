@@ -96,14 +96,14 @@
             (clicked)="edit.emit(item)"
           />
           @if (item.destinationType === 'GraphApi') {
-          <lux-button-web
+          <lux-button-web size="sm"
             displayMode="icon"
             iconClass="material-symbols-light:cloud-done"
             severity="info"
             (clicked)="testConnection.emit(item.id)"
           />
           }
-          <lux-button-web
+          <lux-button-web size="sm"
             displayMode="both"
             label="Ejecutar"
             iconClass="material-symbols-light:play-arrow"
