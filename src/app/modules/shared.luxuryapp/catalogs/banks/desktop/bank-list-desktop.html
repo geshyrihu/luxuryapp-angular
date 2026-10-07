@@ -44,20 +44,23 @@
       <td class="no-print">
         <div class="d-flex gap-1">
           <lux-button-web
-            kind="edit"
-            displayMode="icon"
-            [attr.aria-label]="'Editar banco ' + item.shortName"
             (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
+            [attr.aria-label]="'Editar banco ' + item.shortName"
+            displayMode="icon"
+            kind="edit"
+            severity="info"
+            size="sm"
+            variant="soft"
           />
           <lux-button-web
-            kind="delete"
+            (clicked)="delete.emit(item.id)"
+            [ariaLabel]="'Eliminar banco ' + item.shortName"
             displayMode="icon"
+            kind="delete"
             severity="danger"
-            variant="soft"
             size="sm"
             tooltip="Eliminar"
-            [ariaLabel]="'Eliminar banco ' + item.shortName"
-            (clicked)="delete.emit(item.id)"
+            variant="soft"
           />
         </div>
       </td>
