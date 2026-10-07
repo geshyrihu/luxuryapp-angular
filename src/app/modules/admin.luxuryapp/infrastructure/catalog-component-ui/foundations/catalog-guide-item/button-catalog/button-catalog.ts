@@ -231,76 +231,76 @@ const II_SEMANTIC: SemanticEntry[] = [
     defaultVariant: "solid",
   }];
 
-const ILI_SEMANTIC: SemanticEntry[] = [
+const MOBILE_BUTTON_SEMANTIC: SemanticEntry[] = [
   {
-    id: "ili-add",
-    selector: "ili-button-add",
+    id: "lux-button-mobile-add",
+    selector: "lux-button-mobile-add",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-edit",
-    selector: "ili-button-edit",
+    id: "lux-button-mobile-edit",
+    selector: "lux-button-mobile-edit",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-delete",
-    selector: "ili-button-delete",
+    id: "lux-button-mobile-delete",
+    selector: "lux-button-mobile-delete",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-save",
-    selector: "ili-button-save",
+    id: "lux-button-mobile-save",
+    selector: "lux-button-mobile-save",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-download",
-    selector: "ili-button-download",
+    id: "lux-button-mobile-download",
+    selector: "lux-button-mobile-download",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "lux-confirm-dialog-mobile",
-    selector: "ili-button-confirm",
+    id: "lux-button-mobile-confirm",
+    selector: "lux-button-mobile-confirm",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-send-email",
-    selector: "ili-button-send-email",
+    id: "lux-button-mobile-send-email",
+    selector: "lux-button-mobile-send-email",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-view-pdf",
-    selector: "ili-button-view-pdf",
+    id: "lux-button-mobile-view-pdf",
+    selector: "lux-button-mobile-view-pdf",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-tracking",
-    selector: "ili-button-tracking",
+    id: "lux-button-mobile-tracking",
+    selector: "lux-button-mobile-tracking",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-item",
-    selector: "ili-button-item",
+    id: "lux-button-mobile-item",
+    selector: "lux-button-mobile-item",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-active-t",
-    selector: "ili-button-active-desactive [state]=true",
+    id: "lux-button-mobile-active-t",
+    selector: "lux-button-mobile-active-desactive [state]=true",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   },
   {
-    id: "ili-active-f",
-    selector: "ili-button-active-desactive [state]=false",
+    id: "lux-button-mobile-active-f",
+    selector: "lux-button-mobile-active-desactive [state]=false",
     defaultSeverity: "primary",
     defaultVariant: "solid",
   }];
@@ -894,13 +894,13 @@ const ILI_SEMANTIC: SemanticEntry[] = [
       </div>
 
       <!-- --------------------------------------------------------------
-       4. buttons-icon-label-ionic  (ili-*)  é  Icon + Label  Ionic
+       4. buttons-icon-label-ionic  (lux-button-mobile-*)  é  Icon + Label  Ionic
        -------------------------------------------------------------- -->
       <div class="catalog-section mb-6">
         <div class="catalog-section-header">
           <h3 class="m-0">
             buttons-icon-label-ionic
-            <code class="ms-2 text-base">ili-button-*</code>
+            <code class="ms-2 text-base">lux-button-mobile-*</code>
           </h3>
           <small class="text-color-secondary">Icon + Label é Ionic</small>
         </div>
@@ -934,7 +934,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
           </div>
         </div>
 
-        <lux-table [value]="iliSemantic" dataKey="id">
+        <lux-table [value]="mobileButtonSemantic" dataKey="id">
           <ng-template #caption>Semóntica por defecto</ng-template>
           <ng-template #header
             ><tr>
@@ -947,35 +947,35 @@ const ILI_SEMANTIC: SemanticEntry[] = [
             <tr>
               <td>
                 @switch (r.id) {
-                  @case ("ili-add") {
+                  @case ("lux-button-mobile-add") {
                     <lux-button-mobile kind="add"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-edit") {
+                  @case ("lux-button-mobile-edit") {
                     <lux-button-mobile kind="edit"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-delete") {
+                  @case ("lux-button-mobile-delete") {
                     <lux-button-mobile kind="delete"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-save") {
+                  @case ("lux-button-mobile-save") {
                     <lux-button-mobile kind="save"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-download") {
+                  @case ("lux-button-mobile-download") {
                     <lux-button-mobile kind="download"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
@@ -989,35 +989,35 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-send-email") {
+                  @case ("lux-button-mobile-send-email") {
                     <lux-button-mobile kind="send-email"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-view-pdf") {
+                  @case ("lux-button-mobile-view-pdf") {
                     <lux-button-mobile kind="view-pdf"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-tracking") {
+                  @case ("lux-button-mobile-tracking") {
                     <lux-button-mobile kind="tracking"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-item") {
+                  @case ("lux-button-mobile-item") {
                     <lux-button-mobile kind="item"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-active-t") {
+                  @case ("lux-button-mobile-active-t") {
                     <lux-button-mobile kind="active-desactive"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
@@ -1028,7 +1028,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                       estado activo/inactivo.</small
                     >
                   }
-                  @case ("ili-active-f") {
+                  @case ("lux-button-mobile-active-f") {
                     <lux-button-mobile kind="active-desactive"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"
@@ -1042,7 +1042,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
               </td>
               <td>
                 <code class="text-xs"
-                  >&lt;ili-button-*<br />&nbsp;&nbsp;color="primary"<br />&nbsp;&nbsp;fill="solid"
+                  >&lt;lux-button-mobile<br />&nbsp;&nbsp;kind="*"<br />&nbsp;&nbsp;severity="primary"<br />&nbsp;&nbsp;variant="solid"
                   /&gt;</code
                 >
               </td>
@@ -1132,7 +1132,7 @@ export class ButtonCatalog {
   protected readonly ilSemantic = IL_SEMANTIC;
   protected readonly iwSemantic = IW_SEMANTIC;
   protected readonly iiSemantic = II_SEMANTIC;
-  protected readonly iliSemantic = ILI_SEMANTIC;
+  protected readonly mobileButtonSemantic = MOBILE_BUTTON_SEMANTIC;
 
   protected recordPocClick(): void {
     this.pocClickCount.update((count) => count + 1);

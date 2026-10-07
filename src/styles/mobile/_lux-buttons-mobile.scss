@@ -1,12 +1,12 @@
 // ═══════════════════════════════════════════════════════════════
-// _ili-buttons.scss
-// Estilos de los botones móviles ili-* / ii-* y contextos reutilizables.
+// _lux-button-mobiles.scss
+// Estilos de los botones móviles lux-button-mobile-* / ii-* y contextos reutilizables.
 // Todo por tokens --ds-* / --ds-m-* (cero hex hardcodeado).
 // ═══════════════════════════════════════════════════════════════
 
 // ── Contexto: lista de acciones tipo action-sheet iOS ───────────
 // Aplicar `.lux-menu-mobile-list` a un contenedor cuyos hijos sean botones
-// ili-* (uno por fila). Convierte cualquier ili-button (incluso fill
+// lux-button-mobile-* (uno por fila). Convierte cualquier lux-button-mobile (incluso fill
 // solid) en una fila de menú plana: fondo transparente, texto en el
 // color del botón (edit→primary/azul, delete→danger/rojo), separadores
 // finos y área táctil cómoda. Usado por <lux-action-menu-mobile>.
@@ -15,7 +15,7 @@
   flex-direction: column;
   width: 100%;
 
-  // Cada wrapper (ili-button-edit, ili-button-delete, …) ocupa toda la fila
+  // Cada wrapper (lux-button-mobile-edit, lux-button-mobile-delete, …) ocupa toda la fila
   > * {
     display: block;
     width: 100%;

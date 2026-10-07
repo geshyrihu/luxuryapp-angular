@@ -52,14 +52,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         flex-direction: column;
         background: var(--ds-bg-surface);
         box-shadow: var(--ds-shadow-xl);
-        animation: ili-slide-left 0.25s ease-out;
+        animation: lux-sidebar-mobile-slide-left 0.25s ease-out;
       }
       .lux-sidebar-mobile-right {
         left: auto;
         right: 0;
-        animation: ili-slide-right 0.25s ease-out;
+        animation: lux-sidebar-mobile-slide-right 0.25s ease-out;
       }
-      @keyframes ili-slide-left {
+      @keyframes lux-sidebar-mobile-slide-left {
         from {
           transform: translateX(-100%);
         }
@@ -67,7 +67,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           transform: translateX(0);
         }
       }
-      @keyframes ili-slide-right {
+      @keyframes lux-sidebar-mobile-slide-right {
         from {
           transform: translateX(100%);
         }

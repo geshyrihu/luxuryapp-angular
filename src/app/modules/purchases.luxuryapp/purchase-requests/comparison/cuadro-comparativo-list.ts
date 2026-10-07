@@ -68,6 +68,89 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
         outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
+
+      .comparison-header__accent {
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          var(--ds-primary),
+          #2c7a9f 58%,
+          #d7a84a
+        );
+      }
+
+      .comparison-header__eyebrow,
+      .comparison-header__meta-label,
+      .comparison-header__folio span {
+        color: var(--bs-secondary-color);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .comparison-header__folio {
+        display: flex;
+        flex-direction: column;
+        min-width: 12rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid color-mix(in srgb, var(--ds-primary) 20%, transparent);
+        border-radius: 0.75rem;
+        background: color-mix(in srgb, var(--ds-primary) 5%, transparent);
+      }
+
+      .comparison-header__folio strong {
+        color: var(--ds-primary);
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+      }
+
+      .comparison-header__meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .comparison-header__meta-item {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 0.2rem;
+        padding: 0.8rem 0.95rem;
+        border-left: 3px solid
+          color-mix(in srgb, var(--ds-primary) 35%, transparent);
+        background: color-mix(in srgb, var(--bs-secondary-bg) 65%, transparent);
+      }
+
+      .comparison-header__meta-item strong,
+      .comparison-header__meta-item small {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .comparison-header__meta-item small {
+        color: var(--bs-secondary-color);
+      }
+
+      .comparison-header__warning {
+        padding: 0.65rem 0.85rem;
+        border-left: 3px solid var(--bs-danger);
+        color: var(--bs-danger-text-emphasis);
+        background: var(--bs-danger-bg-subtle);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      @media (max-width: 767.98px) {
+        .comparison-header__meta {
+          grid-template-columns: 1fr;
+        }
+
+        .comparison-header__folio {
+          width: 100%;
+        }
+      }
     `,
   ],
 })
@@ -153,7 +236,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revokeSelectedEvidencePreviews();
-    this.photoSwipe?.destroy();
+    this.closePhotoSwipe();
   }
 
   onLoadData() {
@@ -588,8 +671,8 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       }),
     );
 
-    this.photoSwipe?.destroy();
-    this.photoSwipe = new PhotoSwipe(
+    this.closePhotoSwipe();
+    const photoSwipe = new PhotoSwipe(
       this.evidencePhotoSwipe.nativeElement,
       PhotoSwipeUI_Default,
       items,
@@ -608,7 +691,19 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
         },
       },
     );
-    this.photoSwipe.init();
+    this.photoSwipe = photoSwipe;
+    photoSwipe.listen("destroy", () => {
+      if (this.photoSwipe === photoSwipe) {
+        this.photoSwipe = null;
+      }
+    });
+    photoSwipe.init();
+  }
+
+  private closePhotoSwipe(): void {
+    const photoSwipe = this.photoSwipe;
+    this.photoSwipe = null;
+    photoSwipe?.close();
   }
 
   private getPhotoSwipeDimensions(

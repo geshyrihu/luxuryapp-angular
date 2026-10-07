@@ -90,11 +90,11 @@ lux-card            ← adaptive
   (`ili-list-item`, `ili-action-menu`) también.
 - `ui-dictionary.ts` regenerado; build 0 errores / 0 warnings.
 
-### ⏭️ Restos fuera de scope — detalle
+### ✅ Restos fuera de scope — corregidos (2026-10-06)
 
-Tokens `ili-` que **no** pertenecen a los 54 wrappers renombrados. Todos son de
-**botones móviles** (`lux-button-mobile`), **animaciones** o **datos de demo**.
-Se dejan intactos a propósito para no mezclar con el rename de wrappers.
+Tokens `ili-` que **no** pertenecían a los 54 wrappers renombrados (botones móviles,
+animaciones y datos de demo). **Todos corregidos.** Se conserva el detalle original
+como referencia de qué eran.
 
 #### 1. `button-catalog.ts` (36 tokens) — 🗂️ DATOS DE DEMO (no selectores)
 **Ruta:** `src/app/modules/admin.luxuryapp/infrastructure/catalog-component-ui/foundations/catalog-guide-item/button-catalog/button-catalog.ts`
@@ -109,7 +109,8 @@ Se dejan intactos a propósito para no mezclar con el rename de wrappers.
   ```
   y se pintan solo como etiquetas: `<lux-table [value]="iliSemantic" dataKey="id">`.
 - **No se usan como selector en runtime.**
-- *Acción sugerida:* renombrar los strings a `lux-button-mobile-*` (o eliminar la tabla `ILI_SEMANTIC` si es legacy).
+- ✅ **Hecho:** `id` / `selector` / `@case` → `lux-button-mobile-*`; const `ILI_SEMANTIC` → `MOBILE_BUTTON_SEMANTIC`; field `iliSemantic` → `mobileButtonSemantic`; "ejemplo de uso" corregido a `kind`/`severity`/`variant`.
+  - ⚠️ Nota: el rename anterior había corrompido una entrada (`ili-confirm` → `lux-confirm-dialog-mobile`); ya reparada a `lux-button-mobile-confirm`.
 
 #### 2. `sidebar.ts` (4 tokens) — 🎞️ ANIMACIONES (keyframes)
 **Ruta:** `src/app/shared/ui/mobile/sidebar/sidebar.ts`
@@ -119,10 +120,10 @@ animation: ili-slide-left 0.25s ease-out;
 @keyframes ili-slide-right { ... }
 ```
 - Nombres de keyframes internos del sidebar móvil.
-- *Acción sugerida:* `lux-sidebar-mobile-slide-left/right` (cosmético, sin impacto funcional).
+- ✅ **Hecho:** keyframes y usos → `lux-sidebar-mobile-slide-left/right`.
 
 #### 3. `_ili-buttons.scss` + `styles.scss` (4 tokens) — 🎨 ESTILOS DE BOTONES MÓVILES
-**Rutas:** `src/styles/mobile/_ili-buttons.scss` + import en `src/styles/styles.scss`
+**Rutas:** `src/styles/mobile/_ili-buttons.scss` → `_lux-buttons-mobile.scss` + import en `src/styles/styles.scss`
 
 - Stylesheet de los botones móviles. Su **contenido real ya usa `.lux-menu-mobile-list`**;
   los `ili-` que quedan están **solo en comentarios**:
@@ -131,7 +132,7 @@ animation: ili-slide-left 0.25s ease-out;
   // Cada wrapper (ili-button-edit, ili-button-delete, ...) ocupa toda la fila
   ```
 - El **nombre del archivo** `_ili-buttons.scss` y el `@import` sí conservan `ili-`.
-- *Acción sugerida:* renombrar archivo → `_lux-buttons-mobile.scss` + actualizar `styles.scss` + comentarios.
+- ✅ **Hecho:** archivo `_ili-buttons.scss` → `_lux-buttons-mobile.scss`, `@import` en `styles.scss` actualizado, comentarios → `lux-button-mobile-*`.
 
 #### 4. `_committee.scss` (1 token) — ⚠️ SELECTOR HUÉRFANO (posible bug latente)
 **Ruta:** `src/styles/custom/_committee.scss` (~línea 1006)
@@ -148,14 +149,14 @@ animation: ili-slide-left 0.25s ease-out;
 ```
 - `ili-button` era el **selector viejo** del botón móvil; hoy es `lux-button-mobile`,
   así que este selector **ya no aplica** → el `flex: 1 1 0` no se está aplicando.
-- *Acción sugerida:* cambiar a `lux-button-mobile` (corrige el estilo, no solo el nombre).
+- ✅ **Hecho:** selector → `lux-button-mobile` (ahora el `flex: 1 1 0` sí aplica).
 
 ---
 
 #### Resumen
-| # | Archivo | Tipo | ¿Afecta runtime? | Acción sugerida |
-|---|---------|------|------------------|-----------------|
-| 1 | `button-catalog.ts` | Datos de demo | No | Renombrar strings / borrar tabla `ILI_SEMANTIC` |
-| 2 | `mobile/sidebar/sidebar.ts` | Keyframes | No (cosmético) | `lux-sidebar-mobile-slide-*` |
-| 3 | `_ili-buttons.scss` + `styles.scss` | Estilos (nombre/comentarios) | No | Renombrar archivo + import |
-| 4 | `_committee.scss` | Selector huérfano | **Sí (bug latente)** | Cambiar a `lux-button-mobile` |
+| # | Archivo | Tipo | ¿Afecta runtime? | Estado |
+|---|---------|------|------------------|--------|
+| 1 | `button-catalog.ts` | Datos de demo | No | ✅ Corregido |
+| 2 | `mobile/sidebar/sidebar.ts` | Keyframes | No (cosmético) | ✅ Corregido |
+| 3 | `_lux-buttons-mobile.scss` + `styles.scss` | Estilos (nombre/comentarios) | No | ✅ Corregido |
+| 4 | `_committee.scss` | Selector huérfano | **Sí (bug latente)** | ✅ Corregido |
