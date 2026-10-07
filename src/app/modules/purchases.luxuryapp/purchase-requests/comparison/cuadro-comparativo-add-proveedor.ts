@@ -28,7 +28,7 @@ import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 interface ICuadroComparativoAddProveedor {
   solicitudCompraId: FormControl<string>;
   nameProvider: FormControl<string>;
-  fechaCotizacion: FormControl<string>;
+  fechaCotizacion: FormControl<Date | string | null>;
   numeroCotizacion: FormControl<number | null>;
   garantia: FormControl<string>;
   entrega: FormControl<string>;
@@ -66,8 +66,7 @@ export class CuadroComparativoAddProveedor implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    fechaCotizacion: new FormControl("", {
-      nonNullable: true,
+    fechaCotizacion: new FormControl<Date | string | null>(null, {
       validators: [Validators.required],
     }),
     numeroCotizacion: new FormControl<number | null>(null),
