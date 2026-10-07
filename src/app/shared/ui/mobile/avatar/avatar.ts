@@ -7,28 +7,28 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
  * MobileAvatar — Wrapper sobre `ion-avatar`. Prioridad image > label > icono.
  */
 @Component({
-  selector: "ili-avatar",
+  selector: "lux-avatar-mobile",
 
   imports: [IonAvatar, AppIconMobile],
   template: `
     <ion-avatar
-      [class]="'ili-avatar ' + styleClass()"
-      [class.ili-avatar-square]="shape() === 'square'"
+      [class]="'lux-avatar-mobile ' + styleClass()"
+      [class.lux-avatar-mobile-square]="shape() === 'square'"
       [style.width.px]="sizePx()"
       [style.height.px]="sizePx()"
     >
       @if (image()) {
         <img [src]="image()" [alt]="label()" />
       } @else if (label()) {
-        <span class="ili-avatar-label">{{ label() }}</span>
+        <span class="lux-avatar-mobile-label">{{ label() }}</span>
       } @else if (icon()) {
-        <ili-icon [icon]="icon()" class="ili-avatar-icon" />
+        <lux-icon-mobile [icon]="icon()" class="lux-avatar-mobile-icon" />
       }
     </ion-avatar>
   `,
   styles: [
     `
-      .ili-avatar {
+      .lux-avatar-mobile {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -36,14 +36,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         color: var(--ds-text-secondary);
         overflow: hidden;
       }
-      .ili-avatar-square {
+      .lux-avatar-mobile-square {
         border-radius: 20%;
       }
-      .ili-avatar-label {
+      .lux-avatar-mobile-label {
         font-size: 0.8rem;
         font-weight: 600;
       }
-      .ili-avatar-icon {
+      .lux-avatar-mobile-icon {
         font-size: 1.1rem;
       }
     `],

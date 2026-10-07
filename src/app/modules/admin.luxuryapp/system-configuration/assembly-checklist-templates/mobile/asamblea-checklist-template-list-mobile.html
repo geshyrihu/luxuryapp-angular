@@ -4,7 +4,7 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <lux-icon
         slot="start"
         icon="material-symbols-light:fact-check"
@@ -28,7 +28,7 @@
         </p>
       </ion-label>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -42,7 +42,7 @@
           />
           }
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

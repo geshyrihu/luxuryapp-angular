@@ -9,7 +9,7 @@ import { MobilePaginator } from "@ui/mobile/paginator/paginator";
   imports: [MobilePaginator],
   template: `
     @if (platform.isMobile()) {
-      <ili-paginator
+      <lux-paginator-mobile
         [(page)]="page"
         [(rows)]="rows"
         [totalRecords]="totalRecords()"

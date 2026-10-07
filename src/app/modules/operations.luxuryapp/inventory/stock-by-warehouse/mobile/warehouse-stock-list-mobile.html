@@ -4,7 +4,7 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div slot="start">
         <app-avatar
           [image]="item.urlImagen"
@@ -30,7 +30,7 @@
           </span>
         </div>
       </div>
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <lux-button-mobile
           kind="item"
           iconName="add-outline"
@@ -71,7 +71,7 @@
           (clicked)="delete.emit(item.id)"
         />
         }
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

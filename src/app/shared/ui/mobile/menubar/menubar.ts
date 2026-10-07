@@ -4,39 +4,39 @@ import { MenubarBase } from "@ui/core/menubar.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-menubar",
+  selector: "lux-menubar-mobile",
 
   imports: [RouterModule, AppIconMobile],
   template: `
-    <div class="ili-menubar">
+    <div class="lux-menubar-mobile">
       <button
-        class="ili-menubar-hamburger"
+        class="lux-menubar-mobile-hamburger"
         (click)="toggleOpen()"
         aria-label="Menú"
       >
-        <ili-icon icon="material-symbols-light:menu" />
+        <lux-icon-mobile icon="material-symbols-light:menu" />
       </button>
       @if (isOpen()) {
-        <div class="ili-menubar-backdrop" (click)="close()"></div>
-        <div class="ili-menubar-dropdown">
+        <div class="lux-menubar-mobile-backdrop" (click)="close()"></div>
+        <div class="lux-menubar-mobile-dropdown">
           @for (item of items(); track $index) {
             @if (item.separator) {
-              <hr class="ili-menubar-separator" />
+              <hr class="lux-menubar-mobile-separator" />
             } @else {
               <button
-                class="ili-menubar-item"
-                [class.ili-menubar-item-disabled]="item.disabled"
+                class="lux-menubar-mobile-item"
+                [class.lux-menubar-mobile-item-disabled]="item.disabled"
                 [disabled]="item.disabled"
                 (click)="onItemClick(item)"
               >
                 @if (item.icon) {
-                  <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="ili-menubar-item-icon" />
+                  <lux-icon-mobile [icon]="iconName(item.icon) || 'material-symbols-light:circle'" class="lux-menubar-mobile-item-icon" />
                 }
                 <span>{{ item.label }}</span>
                 @if (item.items?.length) {
-                  <ili-icon
+                  <lux-icon-mobile
                     icon="material-symbols-light:chevron-right"
-                    class="ili-menubar-chevron"
+                    class="lux-menubar-mobile-chevron"
                   />
                 }
               </button>
@@ -48,10 +48,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-menubar {
+      .lux-menubar-mobile {
         position: relative;
       }
-      .ili-menubar-hamburger {
+      .lux-menubar-mobile-hamburger {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -64,13 +64,13 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
       }
-      .ili-menubar-backdrop {
+      .lux-menubar-mobile-backdrop {
         position: fixed;
         inset: 0;
         z-index: 900;
         background: var(--ds-bg-overlay);
       }
-      .ili-menubar-dropdown {
+      .lux-menubar-mobile-dropdown {
         position: absolute;
         top: 100%;
         left: 0;
@@ -82,7 +82,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         box-shadow: var(--ds-shadow-lg);
         padding: 0.5rem 0;
       }
-      .ili-menubar-item {
+      .lux-menubar-mobile-item {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -96,23 +96,23 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         text-align: left;
         transition: background 0.15s;
       }
-      .ili-menubar-item:active {
+      .lux-menubar-mobile-item:active {
         background: var(--ds-bg-elevated);
       }
-      .ili-menubar-item-disabled {
+      .lux-menubar-mobile-item-disabled {
         opacity: 0.4;
         cursor: not-allowed;
       }
-      .ili-menubar-item-icon {
+      .lux-menubar-mobile-item-icon {
         font-size: 1.125rem;
         color: var(--ds-text-secondary);
       }
-      .ili-menubar-chevron {
+      .lux-menubar-mobile-chevron {
         margin-left: auto;
         font-size: 0.875rem;
         color: var(--ds-text-muted);
       }
-      .ili-menubar-separator {
+      .lux-menubar-mobile-separator {
         margin: 0.25rem 0;
         border: none;
         border-top: 1px solid var(--ds-border);

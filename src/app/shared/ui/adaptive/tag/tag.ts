@@ -10,7 +10,7 @@ import { AppTag } from "@ui/web/tag/tag";
   imports: [AppTag, MobileTag],
   template: `
     @if (platform.isMobile()) {
-      <ili-tag
+      <lux-tag-mobile
         [value]="value()"
         [severity]="severity()"
         [rounded]="rounded()"

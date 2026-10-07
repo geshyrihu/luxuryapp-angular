@@ -5,7 +5,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 export type { SwipeAction } from "@ui/core/swipe-actions.base";
 
 @Component({
-  selector: "ili-swipe-actions",
+  selector: "lux-swipe-actions-mobile",
 
   imports: [AppIconMobile],
   template: `
@@ -23,7 +23,7 @@ export type { SwipeAction } from "@ui/core/swipe-actions.base";
             [style.background]="action.color"
             (click)="action.action(); reset()"
           >
-            <ili-icon [icon]="action.icon" class="text-white" />
+            <lux-icon-mobile [icon]="action.icon" class="text-white" />
             <span>{{ action.label }}</span>
           </button>
         }

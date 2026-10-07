@@ -10,7 +10,7 @@ import { AppSkeleton } from "@ui/web/skeleton/skeleton";
   imports: [AppSkeleton, MobileSkeleton],
   template: `
     @if (platform.isMobile()) {
-      <ili-skeleton
+      <lux-skeleton-mobile
         [width]="width()"
         [height]="height()"
         [borderRadius]="borderRadius()"

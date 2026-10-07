@@ -7,18 +7,18 @@ import { MessageBase } from "@ui/core/message.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-message",
+  selector: "lux-message-mobile",
 
   imports: [AppIconMobile],
   template: `
     <div
-      class="ili-message"
+      class="lux-message-mobile"
       [style.background]="colors().bg"
       [style.color]="colors().text"
       [style.border-color]="colors().border"
     >
-      <ili-icon [icon]="displayIcon()" class="ili-message-icon" />
-      <div class="ili-message-content">
+      <lux-icon-mobile [icon]="displayIcon()" class="lux-message-mobile-icon" />
+      <div class="lux-message-mobile-content">
         @if (text()) {
           {{ text() }}
         } @else {
@@ -28,12 +28,12 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       @if (closable()) {
         <button
           type="button"
-          class="ili-message-close"
+          class="lux-message-mobile-close"
           [style.color]="colors().text"
           (click)="onClose()"
           aria-label="Cerrar"
         >
-          <ili-icon icon="material-symbols-light:close" />
+          <lux-icon-mobile icon="material-symbols-light:close" />
         </button>
       }
     </div>
@@ -43,7 +43,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       :host {
         display: block;
       }
-      .ili-message {
+      .lux-message-mobile {
         width: 100%;
         display: flex;
         align-items: flex-start;
@@ -52,17 +52,17 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         border-radius: var(--ds-radius-md);
         border: 1px solid transparent;
       }
-      .ili-message-icon {
+      .lux-message-mobile-icon {
         margin-top: 0.05rem;
         font-size: 1rem;
         flex: 0 0 auto;
       }
-      .ili-message-content {
+      .lux-message-mobile-content {
         flex: 1 1 auto;
         line-height: 1.45;
         min-width: 0;
       }
-      .ili-message-close {
+      .lux-message-mobile-close {
         display: inline-flex;
         align-items: center;
         justify-content: center;

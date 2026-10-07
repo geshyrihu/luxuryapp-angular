@@ -6,7 +6,7 @@ import { Timeline } from "@ui/web/timeline/timeline";
 
 /**
  * Wrapper multiplataforma de Timeline. Renderiza `app-timeline` (Bootstrap) o
- * `ili-timeline` (timeline vertical nativo) según `PlatformService.isMobile()`.
+ * `lux-timeline-mobile` (timeline vertical nativo) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-timeline [events]="..." />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { Timeline } from "@ui/web/timeline/timeline";
   imports: [Timeline, MobileTimeline],
   template: `
     @if (platform.isMobile()) {
-      <ili-timeline [events]="events()" [align]="align()" [layout]="layout()" />
+      <lux-timeline-mobile [events]="events()" [align]="align()" [layout]="layout()" />
     } @else {
       <lux-timeline-web [events]="events()" [align]="align()" [layout]="layout()" />
     }

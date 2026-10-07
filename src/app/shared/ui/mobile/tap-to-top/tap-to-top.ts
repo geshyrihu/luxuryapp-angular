@@ -4,7 +4,7 @@ import { TapToTopBase } from "@ui/core/tap-to-top.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-tap-to-top",
+  selector: "lux-tap-to-top-mobile",
 
   imports: [CommonModule, AppIconMobile],
   encapsulation: ViewEncapsulation.None,
@@ -14,7 +14,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       (click)="tapToTop()"
       [ngStyle]="{ display: show ? 'block' : 'none' }"
     >
-      <ili-icon icon="ArrowUp" class="m-0 icon icon-" />
+      <lux-icon-mobile icon="ArrowUp" class="m-0 icon icon-" />
     </div>
   `,
   styles: [

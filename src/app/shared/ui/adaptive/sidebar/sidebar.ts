@@ -14,7 +14,7 @@ import { Sidebar } from "@ui/web/sidebar/sidebar";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-sidebar
+      <lux-sidebar-mobile
         [(visible)]="visible"
         [position]="position()"
         [closable]="closable()"
@@ -23,7 +23,7 @@ import { Sidebar } from "@ui/web/sidebar/sidebar";
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-sidebar>
+      </lux-sidebar-mobile>
     } @else {
       <lux-sidebar-web
         [(visible)]="visible"

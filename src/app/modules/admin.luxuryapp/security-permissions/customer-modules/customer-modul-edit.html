@@ -128,7 +128,7 @@
         class="m-0 rounded-lg overflow-hidden shadow-sm"
       >
         @for (item of group.items; track item.moduleAppId) {
-        <ili-list-item class="ion-no-padding">
+        <lux-list-item-mobile class="ion-no-padding">
           <lux-icon
             slot="start"
             [icon]="item.isAssigned ? 'material-symbols-light:check-circle' : 'material-symbols-light:circle-outline'"
@@ -148,7 +148,7 @@
             [ngModel]="item.isAssigned"
             (toggleChange)="toggleModuleActivation(item)"
           ></ion-input-toggle>
-        </ili-list-item>
+        </lux-list-item-mobile>
         }
       </div>
     </div>

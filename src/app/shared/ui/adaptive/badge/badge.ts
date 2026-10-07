@@ -6,7 +6,7 @@ import { AppBadge } from "@ui/web/badge/badge";
 
 /**
  * Wrapper multiplataforma de Badge. Renderiza `app-badge` (Bootstrap) o
- * `ili-badge` (Ionic) según `PlatformService.isMobile()`.
+ * `lux-badge-mobile` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-badge [value]="..." />`.
  */
 @Component({
@@ -14,7 +14,7 @@ import { AppBadge } from "@ui/web/badge/badge";
   imports: [AppBadge, MobileBadge],
   template: `
     @if (platform.isMobile()) {
-      <ili-badge [value]="value()" [color]="color()" [size]="size()" />
+      <lux-badge-mobile [value]="value()" [color]="color()" [size]="size()" />
     } @else {
       <lux-badge-web [value]="value()" [color]="color()" [size]="size()" />
     }

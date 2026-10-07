@@ -3,7 +3,7 @@ import { computed, Directive, input, model, output } from "@angular/core";
 /**
  * Base compartida de Rating (API + lógica de etiqueta/valor).
  *  - web:     `app-rating`  (Bootstrap p-rating)
- *  - mobile:  `ili-rating`  (estrellas táctiles con app-icon)
+ *  - mobile:  `lux-rating-mobile`  (estrellas táctiles con app-icon)
  *  - wrapper: `lux-rating`   (auto runtime)
  */
 @Directive()

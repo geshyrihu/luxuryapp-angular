@@ -103,7 +103,7 @@
   <div>
     @for(item of data(); track item.employeeId) {
     <div>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <ion-avatar slot="start">
           <img [src]="item.photoPath" alt="Avatar" />
         </ion-avatar>
@@ -114,7 +114,7 @@
             {{ item.historial.length }} registro(s) y
           </p>
         </ion-label>
-      </ili-list-item>
+      </lux-list-item-mobile>
       <div slot="content" class="ion-padding p-0">
         @if(item.historial.length > 0) {
         <div class="d-flex flex-column p-2 bg-body">

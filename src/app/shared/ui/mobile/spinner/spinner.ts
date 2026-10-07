@@ -6,7 +6,7 @@ import { SpinnerBase } from "@ui/core/spinner.base";
  * MobileSpinner — Spinner sobre `ion-spinner` (crescent) con tamaño y color.
  */
 @Component({
-  selector: "ili-spinner",
+  selector: "lux-spinner-mobile",
 
   imports: [IonSpinner],
   template: `

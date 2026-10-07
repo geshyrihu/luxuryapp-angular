@@ -14,9 +14,9 @@ import { AppDivider } from "@ui/web/divider/divider";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-divider [layout]="layout()"
+      <lux-divider-mobile [layout]="layout()"
         ><ng-container [ngTemplateOutlet]="projected"
-      /></ili-divider>
+      /></lux-divider-mobile>
     } @else {
       <lux-divider-web [layout]="layout()"
         ><ng-container [ngTemplateOutlet]="projected"

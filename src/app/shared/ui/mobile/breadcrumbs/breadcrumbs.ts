@@ -4,42 +4,42 @@ import { BreadcrumbsBase } from "@ui/core/breadcrumbs.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-breadcrumbs",
+  selector: "lux-breadcrumbs-mobile",
 
   imports: [RouterModule, AppIconMobile],
   template: `
-    <nav class="ili-bc">
+    <nav class="lux-breadcrumbs-mobile">
       @if (home(); as h) {
         <a
-          class="ili-bc-item"
+          class="lux-breadcrumbs-mobile-item"
           [routerLink]="h.routerLink"
           (click)="runCommand(h, $event)"
         >
-          <ili-icon [icon]="iconName(h.icon) || 'material-symbols-light:home'" />
+          <lux-icon-mobile [icon]="iconName(h.icon) || 'material-symbols-light:home'" />
         </a>
-          <ili-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
+          <lux-icon-mobile icon="material-symbols-light:chevron-right" class="lux-breadcrumbs-mobile-sep" />
       }
       @for (item of items(); track $index; let last = $last) {
         <a
-          class="ili-bc-item"
-          [class.ili-bc-current]="last"
+          class="lux-breadcrumbs-mobile-item"
+          [class.lux-breadcrumbs-mobile-current]="last"
           [routerLink]="item.routerLink"
           (click)="runCommand(item, $event)"
         >
           @if (item.icon) {
-            <ili-icon [icon]="iconName(item.icon) || 'material-symbols-light:circle'" />
+            <lux-icon-mobile [icon]="iconName(item.icon) || 'material-symbols-light:circle'" />
           }
           {{ item.label }}
         </a>
         @if (!last) {
-        <ili-icon icon="material-symbols-light:chevron-right" class="ili-bc-sep" />
+        <lux-icon-mobile icon="material-symbols-light:chevron-right" class="lux-breadcrumbs-mobile-sep" />
         }
       }
     </nav>
   `,
   styles: [
     `
-      .ili-bc {
+      .lux-breadcrumbs-mobile {
         display: flex;
         align-items: center;
         gap: 0.35rem;
@@ -49,10 +49,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
-      .ili-bc::-webkit-scrollbar {
+      .lux-breadcrumbs-mobile::-webkit-scrollbar {
         display: none;
       }
-      .ili-bc-item {
+      .lux-breadcrumbs-mobile-item {
         display: inline-flex;
         align-items: center;
         gap: 0.25rem;
@@ -62,11 +62,11 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         padding: 0.2rem 0.1rem;
         flex-shrink: 0;
       }
-      .ili-bc-current {
+      .lux-breadcrumbs-mobile-current {
         color: var(--ds-text-primary);
         font-weight: 600;
       }
-      .ili-bc-sep {
+      .lux-breadcrumbs-mobile-sep {
         color: var(--ds-text-muted);
         font-size: 0.9rem;
         flex-shrink: 0;

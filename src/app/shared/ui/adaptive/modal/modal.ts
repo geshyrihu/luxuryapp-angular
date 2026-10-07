@@ -14,14 +14,14 @@ import { Dialog } from "@ui/web/dialog/dialog";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-modal
+      <lux-modal-mobile
         [(visible)]="visible"
         [header]="header()"
         [closable]="closable()"
         (dismiss)="dismiss.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-modal>
+      </lux-modal-mobile>
     } @else {
       <lux-dialog-web
         [(visible)]="visible"

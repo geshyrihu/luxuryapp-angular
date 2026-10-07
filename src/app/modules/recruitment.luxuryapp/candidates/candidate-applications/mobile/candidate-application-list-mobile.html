@@ -15,7 +15,7 @@
   aria-label="Bandeja de procesos de candidatos"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div class="d-flex flex-column gap-1">
         <p class="fw-semibold m-0 text-body line-height-2">
           {{ item.candidateName }}
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         @if (item.cvFileName) {
         <lux-pdf-viewer-trigger
           [url]="item.cvFileUrl"
@@ -51,7 +51,7 @@
           [ariaLabel]="'Editar proceso de ' + item.candidateName"
           (clicked)="edit.emit({ id: item.id, title: 'Editar proceso de candidato' })"
         />
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

@@ -7,7 +7,7 @@ import { SplitButtonBase } from "@ui/core/split-button.base";
 import { IonButton, IonIcon } from "@ionic/angular";
 
 @Component({
-  selector: "ili-split-button",
+  selector: "lux-split-button-mobile",
   imports: [IonButton, IonIcon],
   template: `
     <div [class]="styleClass()" style="display: flex;">

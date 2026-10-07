@@ -9,7 +9,7 @@ import { RadioButtonBase } from "@ui/core/radio-button.base";
 import { IonRadio } from "@ionic/angular";
 
 @Component({
-  selector: "ili-radio-button",
+  selector: "lux-radio-button-mobile",
   imports: [ReactiveFormsModule, IonRadio],
   template: `<ion-radio
     [value]="value()"

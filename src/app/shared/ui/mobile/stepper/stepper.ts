@@ -4,50 +4,50 @@ import { StepperBase } from "@ui/core/stepper.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-stepper",
+  selector: "lux-stepper-mobile",
 
   imports: [IonButton, AppIconMobile],
   template: `
-    <div class="ili-stepper">
-      <div class="ili-stepper-steps">
+    <div class="lux-stepper-mobile">
+      <div class="lux-stepper-mobile-steps">
         @for (step of steps(); track step.value) {
           <div
-            class="ili-stepper-step"
-            [class.ili-stepper-active]="activeStep() === step.value"
-            [class.ili-stepper-completed]="step.value < activeStep()"
+            class="lux-stepper-mobile-step"
+            [class.lux-stepper-mobile-active]="activeStep() === step.value"
+            [class.lux-stepper-mobile-completed]="step.value < activeStep()"
           >
-            <div class="ili-stepper-indicator">
+            <div class="lux-stepper-mobile-indicator">
               @if (step.value < activeStep()) {
-                <ili-icon icon="material-symbols-light:check" />
+                <lux-icon-mobile icon="material-symbols-light:check" />
               } @else {
                 <span>{{ step.value }}</span>
               }
             </div>
             @if (step.icon) {
-              <ili-icon [icon]="step.icon" class="ili-stepper-step-icon" />
+              <lux-icon-mobile [icon]="step.icon" class="lux-stepper-mobile-step-icon" />
             }
-            <span class="ili-stepper-step-label">{{ step.label }}</span>
+            <span class="lux-stepper-mobile-step-label">{{ step.label }}</span>
           </div>
         }
       </div>
-      <div class="ili-stepper-body">
+      <div class="lux-stepper-mobile-body">
         <ng-content />
       </div>
-      <div class="ili-stepper-actions">
+      <div class="lux-stepper-mobile-actions">
         @if (activeStep() > 1) {
           <ion-button fill="clear" color="medium" (click)="previous()">
-            <ili-icon icon="material-symbols-light:arrow-back" slot="start" />
+            <lux-icon-mobile icon="material-symbols-light:arrow-back" slot="start" />
             Anterior
           </ion-button>
         }
         @if (activeStep() < lastStep()) {
           <ion-button (click)="next()">
             Siguiente
-            <ili-icon icon="material-symbols-light:arrow-forward" slot="end" />
+            <lux-icon-mobile icon="material-symbols-light:arrow-forward" slot="end" />
           </ion-button>
         } @else {
           <ion-button color="success" (click)="finish.emit()">
-            <ili-icon icon="material-symbols-light:check" slot="start" />
+            <lux-icon-mobile icon="material-symbols-light:check" slot="start" />
             {{ finishLabel() }}
           </ion-button>
         }
@@ -56,12 +56,12 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-stepper {
+      .lux-stepper-mobile {
         display: flex;
         flex-direction: column;
         gap: 1rem;
       }
-      .ili-stepper-steps {
+      .lux-stepper-mobile-steps {
         display: flex;
         align-items: flex-start;
         gap: 0.5rem;
@@ -69,10 +69,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         padding: 0.5rem 0;
         scrollbar-width: none;
       }
-      .ili-stepper-steps::-webkit-scrollbar {
+      .lux-stepper-mobile-steps::-webkit-scrollbar {
         display: none;
       }
-      .ili-stepper-step {
+      .lux-stepper-mobile-step {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,21 +81,21 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         flex-shrink: 0;
         opacity: 0.5;
       }
-      .ili-stepper-active {
+      .lux-stepper-mobile-active {
         opacity: 1;
       }
-      .ili-stepper-active .ili-stepper-indicator {
+      .lux-stepper-mobile-active .lux-stepper-mobile-indicator {
         background: var(--ds-primary);
         color: var(--ds-on-primary);
       }
-      .ili-stepper-completed {
+      .lux-stepper-mobile-completed {
         opacity: 0.8;
       }
-      .ili-stepper-completed .ili-stepper-indicator {
+      .lux-stepper-mobile-completed .lux-stepper-mobile-indicator {
         background: var(--ds-success);
         color: var(--ds-on-primary);
       }
-      .ili-stepper-indicator {
+      .lux-stepper-mobile-indicator {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -107,21 +107,21 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: 0.75rem;
         font-weight: 700;
       }
-      .ili-stepper-step-icon {
+      .lux-stepper-mobile-step-icon {
         font-size: 1rem;
         color: var(--ds-text-secondary);
       }
-      .ili-stepper-step-label {
+      .lux-stepper-mobile-step-label {
         font-size: 0.65rem;
         font-weight: 500;
         color: var(--ds-text-secondary);
         text-align: center;
         white-space: nowrap;
       }
-      .ili-stepper-body {
+      .lux-stepper-mobile-body {
         min-height: 150px;
       }
-      .ili-stepper-actions {
+      .lux-stepper-mobile-actions {
         display: flex;
         justify-content: space-between;
         gap: 0.5rem;

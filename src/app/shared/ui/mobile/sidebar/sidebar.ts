@@ -4,29 +4,29 @@ import { SidebarBase } from "@ui/core/sidebar.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-sidebar",
+  selector: "lux-sidebar-mobile",
 
   imports: [RouterModule, AppIconMobile],
   template: `
     @if (visible()) {
-      <div class="ili-sidebar-backdrop" (click)="onBackdropClick()"></div>
+      <div class="lux-sidebar-mobile-backdrop" (click)="onBackdropClick()"></div>
       <div
-        class="ili-sidebar-panel {{ styleClass() }}"
-        [class.ili-sidebar-right]="position() === 'right'"
+        class="lux-sidebar-mobile-panel {{ styleClass() }}"
+        [class.lux-sidebar-mobile-right]="position() === 'right'"
       >
-        <div class="ili-sidebar-header">
-          <span class="ili-sidebar-title">{{ header() }}</span>
+        <div class="lux-sidebar-mobile-header">
+          <span class="lux-sidebar-mobile-title">{{ header() }}</span>
           @if (closable()) {
             <button
-              class="ili-sidebar-close"
+              class="lux-sidebar-mobile-close"
               (click)="onHide()"
               aria-label="Cerrar"
             >
-              <ili-icon icon="material-symbols-light:close" />
+              <lux-icon-mobile icon="material-symbols-light:close" />
             </button>
           }
         </div>
-        <div class="ili-sidebar-body">
+        <div class="lux-sidebar-mobile-body">
           <ng-content />
         </div>
       </div>
@@ -34,14 +34,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-sidebar-backdrop {
+      .lux-sidebar-mobile-backdrop {
         position: fixed;
         inset: 0;
         z-index: 990;
         background: var(--ds-bg-overlay);
         backdrop-filter: blur(2px);
       }
-      .ili-sidebar-panel {
+      .lux-sidebar-mobile-panel {
         position: fixed;
         top: 0;
         left: 0;
@@ -54,7 +54,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         box-shadow: var(--ds-shadow-xl);
         animation: ili-slide-left 0.25s ease-out;
       }
-      .ili-sidebar-right {
+      .lux-sidebar-mobile-right {
         left: auto;
         right: 0;
         animation: ili-slide-right 0.25s ease-out;
@@ -75,19 +75,19 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           transform: translateX(0);
         }
       }
-      .ili-sidebar-header {
+      .lux-sidebar-mobile-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
         border-bottom: 1px solid var(--ds-border);
       }
-      .ili-sidebar-title {
+      .lux-sidebar-mobile-title {
         font-size: 1.05rem;
         font-weight: 700;
         color: var(--ds-text-primary);
       }
-      .ili-sidebar-close {
+      .lux-sidebar-mobile-close {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -100,10 +100,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         cursor: pointer;
         border-radius: var(--ds-radius-sm);
       }
-      .ili-sidebar-close:active {
+      .lux-sidebar-mobile-close:active {
         background: var(--ds-bg-elevated);
       }
-      .ili-sidebar-body {
+      .lux-sidebar-mobile-body {
         flex: 1;
         overflow-y: auto;
         padding: 1rem;

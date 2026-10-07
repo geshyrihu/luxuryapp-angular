@@ -5,7 +5,7 @@ import { MobileChip } from "@ui/mobile/chip/chip";
 import { AppChip } from "@ui/web/chip/chip";
 
 /**
- * Wrapper multiplataforma de Chip. Renderiza `app-chip` (Bootstrap) o `ili-chip`
+ * Wrapper multiplataforma de Chip. Renderiza `app-chip` (Bootstrap) o `lux-chip-mobile`
  * (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-chip label="..." />`.
  */
@@ -15,7 +15,7 @@ import { AppChip } from "@ui/web/chip/chip";
   imports: [AppChip, MobileChip],
   template: `
     @if (platform.isMobile()) {
-      <ili-chip
+      <lux-chip-mobile
         [label]="label()"
         [icon]="icon()"
         [image]="image()"

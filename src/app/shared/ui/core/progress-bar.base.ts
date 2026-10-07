@@ -9,7 +9,7 @@ export type ProgressBarColor =
 /**
  * Base compartida de ProgressBar.
  *  - web:     `app-progress-bar`  (Bootstrap p-progressbar, value 0..100)
- *  - mobile:  `ili-progress-bar`  (Ionic ion-progress-bar, value 0..1)
+ *  - mobile:  `lux-progress-bar-mobile`  (Ionic ion-progress-bar, value 0..1)
  *  - wrapper: `lux-progress-bar`   (auto runtime)
  *
  * API canónica: `value` en porcentaje 0..100.

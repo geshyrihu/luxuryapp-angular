@@ -3,7 +3,7 @@
   <h5 class="p-4 m-0">Pendientes Externos</h5>
   <lux-data-view-mobile [data]="dataExternal()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -36,7 +36,7 @@
         <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
         <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
         <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
     <ng-template #footer>
       <div class="p-3 text-center text-sm">
@@ -50,7 +50,7 @@
   <h5 class="p-4 m-0">Pendientes Internos</h5>
   <lux-data-view-mobile [data]="dataInternal()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -83,7 +83,7 @@
         <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
         <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
         <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
     <ng-template #footer>
       <div class="p-3 text-center text-sm">
@@ -97,7 +97,7 @@
   <h5 class="p-4 m-0">Pendientes sin Asignar</h5>
   <lux-data-view-mobile [data]="unassignedData()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -127,7 +127,7 @@
         <div class="text-justify text-sm" [innerHTML]="ticket.request"></div>
         <p class="mt-2 mb-1"><strong>Seguimiento:</strong></p>
         <p class="text-justify text-sm mt-0 mb-1">{{ ticket.seguimiento }}</p>
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
     <ng-template #footer>
       <div class="p-3 text-center text-sm">

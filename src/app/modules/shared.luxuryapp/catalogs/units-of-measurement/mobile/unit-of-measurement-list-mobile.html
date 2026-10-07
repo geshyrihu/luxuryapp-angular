@@ -4,7 +4,7 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" class="ion-no-padding" detail="false">
+    <lux-list-item-mobile lines="full" class="ion-no-padding" detail="false">
       <div
         slot="start"
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
@@ -18,7 +18,7 @@
         <p class="mt-0 mb-0">{{ item.descripcion }}</p>
       </div>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -31,7 +31,7 @@
             (clicked)="delete.emit(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

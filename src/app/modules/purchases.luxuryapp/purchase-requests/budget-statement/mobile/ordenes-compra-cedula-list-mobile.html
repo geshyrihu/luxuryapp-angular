@@ -5,7 +5,7 @@
     class="flex-grow-1"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item (click)="viewOrder.emit(item.ordenCompraId)" button>
+      <lux-list-item-mobile (click)="viewOrder.emit(item.ordenCompraId)" button>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -35,7 +35,7 @@
           end
           color="medium"
         />
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
   </lux-data-view-mobile>
 

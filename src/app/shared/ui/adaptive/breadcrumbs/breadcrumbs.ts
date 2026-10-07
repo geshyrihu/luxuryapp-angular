@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
 
 /**
  * Wrapper multiplataforma de Breadcrumbs. Renderiza `app-breadcrumbs` (Bootstrap)
- * o `ili-breadcrumbs` (scroll horizontal nativo) según `PlatformService.isMobile()`.
+ * o `lux-breadcrumbs-mobile` (scroll horizontal nativo) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-breadcrumbs [items]="..." />`.
  */
 @Component({
@@ -14,7 +14,7 @@ import { Breadcrumbs } from "@ui/web/breadcrumbs/breadcrumbs";
   imports: [Breadcrumbs, MobileBreadcrumbs],
   template: `
     @if (platform.isMobile()) {
-      <ili-breadcrumbs [items]="items()" [home]="home()" />
+      <lux-breadcrumbs-mobile [items]="items()" [home]="home()" />
     } @else {
       <lux-breadcrumbs-web [items]="items()" [home]="home()" />
     }

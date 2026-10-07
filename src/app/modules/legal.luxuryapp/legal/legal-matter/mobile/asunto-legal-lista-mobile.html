@@ -41,13 +41,13 @@
       </div>
 
       @for (legalMatter of category.legalMatters; track legalMatter) {
-      <ili-list-item>
+      <lux-list-item-mobile>
         <h3 class="fw-bold text-wrap">{{ legalMatter.title }}</h3>
         <p class="text-small text-body-secondary">
           {{ legalMatter.isInternal ? "Interno" : "Externo" }}
         </p>
 
-        <ili-action-menu end>
+        <lux-action-menu-mobile end>
           <ng-container actions>
             <lux-button-mobile
               kind="edit"
@@ -60,8 +60,8 @@
               (clicked)="delete.emit(legalMatter.id)"
             />
           </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
+        </lux-action-menu-mobile>
+      </lux-list-item-mobile>
       }
     </div>
   </ng-template>

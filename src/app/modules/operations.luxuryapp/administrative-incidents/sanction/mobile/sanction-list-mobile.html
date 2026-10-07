@@ -1,7 +1,7 @@
 <div class="card">
   <lux-data-view-mobile [data]="data()" [showAdd]="false">
     <ng-template #listItemTemplate let-item>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -22,7 +22,7 @@
           >
         </p>
 
-        <ili-action-menu slot="end">
+        <lux-action-menu-mobile slot="end">
           <ng-container actions>
             <lux-button-mobile
               kind="item"
@@ -31,8 +31,8 @@
               (clicked)="changeStatus.emit(item)"
             />
           </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
+        </lux-action-menu-mobile>
+      </lux-list-item-mobile>
     </ng-template>
   </lux-data-view-mobile>
 </div>

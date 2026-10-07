@@ -11,13 +11,13 @@ import { AppEditor } from "@ui/web/editor/editor";
   imports: [FormsModule, AppEditor, MobileEditor],
   template: `
     @if (platform.isMobile()) {
-      <ili-editor
+      <lux-editor-mobile
         [ngModel]="_value"
         (ngModelChange)="onInnerChange($event)"
         [style]="style()"
         [placeholder]="placeholder()"
         [styleClass]="styleClass()"
-      ></ili-editor>
+      ></lux-editor-mobile>
     } @else {
       <lux-editor-web
         [ngModel]="_value"

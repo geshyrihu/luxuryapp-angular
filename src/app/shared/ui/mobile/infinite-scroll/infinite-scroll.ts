@@ -6,7 +6,7 @@ import {
 import { InfiniteScrollBase } from "@ui/core/infinite-scroll.base";
 
 @Component({
-  selector: "ili-infinite-scroll",
+  selector: "lux-infinite-scroll-mobile",
 
   imports: [IonInfiniteScroll, IonInfiniteScrollContent],
   template: `

@@ -9,7 +9,7 @@ import { EditorBase } from "@ui/core/editor.base";
 import { IonTextarea } from "@ionic/angular";
 
 @Component({
-  selector: "ili-editor",
+  selector: "lux-editor-mobile",
 
   imports: [FormsModule, IonTextarea],
   template: `<ion-textarea

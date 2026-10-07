@@ -43,7 +43,7 @@ interface ICodeForm {
     ButtonMobile,
     IonInputText],
   template: `
-    <ili-page background="var(--ds-primary)">
+    <lux-page-mobile background="var(--ds-primary)">
       <div class="lm-bg">
         @for (image of sliderImages(); track image) {
           <div
@@ -148,7 +148,7 @@ interface ICodeForm {
           </div>
         </div>
       </div>
-    </ili-page>
+    </lux-page-mobile>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

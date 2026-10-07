@@ -10,7 +10,7 @@ import { AppCheckbox } from "@ui/web/checkbox/checkbox";
   imports: [AppCheckbox, IliCheckbox],
   template: `
     @if (platform.isMobile()) {
-      <ili-checkbox
+      <lux-checkbox-mobile
         [(checked)]="checked"
         [disabled]="disabled()"
         [label]="label()"

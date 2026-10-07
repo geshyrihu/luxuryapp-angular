@@ -112,7 +112,7 @@
   (add)="onAddDiagram()"
 >
   <ng-template #listItemTemplate let-diagram>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="d-flex align-items-center justify-content-center bg-green-50 rounded-md ms-3 w-3rem h-3rem flex-shrink-0"
@@ -128,7 +128,7 @@
         {{ diagram.updateAt | apiDate:'dd/MM/yyyy HH:mm' }}
       </p>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -154,7 +154,7 @@
             (clicked)="onDeleteDiagram(diagram.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

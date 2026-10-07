@@ -10,13 +10,13 @@ import { AppSteps } from "@ui/web/steps/steps";
   imports: [AppSteps, MobileSteps],
   template: `
     @if (platform.isMobile()) {
-      <ili-steps
+      <lux-steps-mobile
         [model]="model()"
         [readonly]="readonly()"
         [activeIndex]="activeIndex()"
         (activeIndexChange)="activeIndex.set($event)"
         [styleClass]="styleClass()"
-      ></ili-steps>
+      ></lux-steps-mobile>
     } @else {
       <lux-steps-web
         [model]="model()"

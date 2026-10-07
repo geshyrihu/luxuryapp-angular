@@ -7,18 +7,18 @@ import { ProgressBarBase } from "@ui/core/progress-bar.base";
  * (se convierte a 0..1 para Ionic).
  */
 @Component({
-  selector: "ili-progress-bar",
+  selector: "lux-progress-bar-mobile",
 
   imports: [IonProgressBar],
   template: `
-    <div class="ili-progress-bar-root">
+    <div class="lux-progress-bar-mobile-root">
       <ion-progress-bar
         [type]="mode()"
         [value]="fraction()"
         [color]="ionColor()"
       />
       @if (showValue() && mode() === "determinate") {
-        <span class="ili-progress-bar-value"
+        <span class="lux-progress-bar-mobile-value"
           >{{ clampedValue() }}{{ unit() }}</span
         >
       }
@@ -26,15 +26,15 @@ import { ProgressBarBase } from "@ui/core/progress-bar.base";
   `,
   styles: [
     `
-      .ili-progress-bar-root {
+      .lux-progress-bar-mobile-root {
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
-      .ili-progress-bar-root ion-progress-bar {
+      .lux-progress-bar-mobile-root ion-progress-bar {
         flex: 1;
       }
-      .ili-progress-bar-value {
+      .lux-progress-bar-mobile-value {
         font-size: 0.8125rem;
         color: var(--ds-text-secondary);
         min-width: 2.5rem;

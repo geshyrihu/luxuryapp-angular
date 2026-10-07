@@ -7,7 +7,7 @@ import { StepsBase } from "@ui/core/steps.base";
 import { IonSegment, IonSegmentButton, IonLabel } from "@ionic/angular";
 
 @Component({
-  selector: "ili-steps",
+  selector: "lux-steps-mobile",
   imports: [IonSegment, IonSegmentButton, IonLabel],
   template: `
     <ion-segment 

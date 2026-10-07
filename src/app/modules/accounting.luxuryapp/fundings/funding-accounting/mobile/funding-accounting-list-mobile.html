@@ -4,7 +4,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding" (click)="details.emit(item.id)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="details.emit(item.id)">
       <div start>
         <lux-icon icon="material-symbols-light:calculate" />
       </div>
@@ -13,6 +13,6 @@
         <p>Verificó: {{ item.verifiedByName || '? En espera' }}</p>
         <p>Autorizó: {{ item.authorizedByName || '? En espera' }}</p>
       </div>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

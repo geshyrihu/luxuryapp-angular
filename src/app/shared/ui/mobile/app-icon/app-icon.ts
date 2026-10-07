@@ -17,10 +17,10 @@ import { AppIconIonicon } from "@ui/primitives/app-icon/app-icon.catalog-ionicon
  *  - Literal ionicon:   `icon="person-outline"` → se usa directo
  *  - Iconify legacy:    `icon="material-symbols-light:person"` → extrae nombre
  *
- * Selector: `ili-icon` (consistente con patrón `ili-*` del repo).
+ * Selector: `lux-icon-mobile` (consistente con patrón `ili-*` del repo).
  */
 @Component({
-  selector: "ili-icon",
+  selector: "lux-icon-mobile",
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `<ion-icon [name]="resolvedName()"></ion-icon>`,
   styles: [

@@ -5,7 +5,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 export type { BottomNavItem } from "@ui/core/bottom-nav.base";
 
 @Component({
-  selector: "ili-bottom-nav",
+  selector: "lux-bottom-nav-mobile",
 
   imports: [AppIconMobile],
   template: `
@@ -20,7 +20,7 @@ export type { BottomNavItem } from "@ui/core/bottom-nav.base";
           (click)="select(item.id)"
         >
           <div class="bottom-nav-icon-wrap">
-            <ili-icon
+            <lux-icon-mobile
               [icon]="
                 activeId() === item.id && item.activeIcon
                   ? item.activeIcon

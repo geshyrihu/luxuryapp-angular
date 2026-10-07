@@ -6,7 +6,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
 
 /**
  * Wrapper multiplataforma de Avatar. Renderiza `app-avatar` (Bootstrap) o
- * `ili-avatar` (Ionic) según `PlatformService.isMobile()`.
+ * `lux-avatar-mobile` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-avatar [image]="..." shape="circle" />`.
  */
 @Component({
@@ -14,7 +14,7 @@ import { AppAvatar } from "@ui/web/avatar/avatar";
   imports: [AppAvatar, MobileAvatar],
   template: `
     @if (platform.isMobile()) {
-      <ili-avatar
+      <lux-avatar-mobile
         [image]="image()"
         [label]="label()"
         [icon]="icon()"

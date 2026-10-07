@@ -212,7 +212,7 @@
   </ng-container>
 
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -252,7 +252,7 @@
 
       @if (aspRoleS.hasAny([AspRole.JefeMantenimiento, AspRole.Administrador,
       AspRole.SuperUsuario])) {
-      <ili-action-menu end>
+      <lux-action-menu-mobile end>
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -285,8 +285,8 @@
             (clicked)="onDelete(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
+      </lux-action-menu-mobile>
       }
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

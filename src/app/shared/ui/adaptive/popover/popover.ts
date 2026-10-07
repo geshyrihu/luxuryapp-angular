@@ -14,7 +14,7 @@ import { AppPopover } from "@ui/web/popover/popover";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-popover
+      <lux-popover-mobile
         #inner
         [styleClass]="styleClass()"
         [appendTo]="appendTo()"
@@ -23,7 +23,7 @@ import { AppPopover } from "@ui/web/popover/popover";
         [focusOnShow]="focusOnShow()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-popover>
+      </lux-popover-mobile>
     } @else {
       <lux-popover-web
         #inner

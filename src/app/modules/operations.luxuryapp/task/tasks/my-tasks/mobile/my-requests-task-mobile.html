@@ -7,7 +7,7 @@
     <app-task-status (statusChange)="statusChange.emit($event)" />
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item alignTop="true" class="w-full">
+    <lux-list-item-mobile alignTop="true" class="w-full">
       <div
         slot="start"
         class="d-flex align-items-center justify-content-center flex-shrink-0 rounded-lg mt-1 w-3rem h-3rem bg-primary-50"
@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <lux-button-mobile
           kind="edit"
           (clicked)="edit.emit({
@@ -81,7 +81,7 @@
           label="Seguimiento"
           (clicked)="followUp.emit(item.id)"
         />
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

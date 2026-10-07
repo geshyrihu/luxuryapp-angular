@@ -6,7 +6,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 /**
  * Base compartida de Breadcrumbs.
  *  - web:     `app-breadcrumbs` (Bootstrap nativo)
- *  - mobile:  `ili-breadcrumbs` (scroll horizontal nativo con chevrons)
+ *  - mobile:  `lux-breadcrumbs-mobile` (scroll horizontal nativo con chevrons)
  *  - wrapper: `lux-breadcrumbs`  (auto runtime)
  * `MenuItem` es el modelo de menú estándar del proyecto.
  */

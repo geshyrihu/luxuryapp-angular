@@ -128,7 +128,7 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
 
             <!-- Action-sheet real -->
             <div>
-              <div class="section-label">Action-sheet (ili-action-menu)</div>
+              <div class="section-label">Action-sheet (lux-action-menu-mobile)</div>
               <p class="section-desc">
                 Toca el menú ⋮ — se abre como bottom-sheet nativo (CDK Overlay).
               </p>
@@ -137,11 +137,11 @@ import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobi
                 style="background: var(--ds-bg-elevated)"
               >
                 <span class="text-sm">Registro de ejemplo</span>
-                <ili-action-menu title="Opciones">
+                <lux-action-menu-mobile title="Opciones">
                   <lux-button-mobile kind="edit" label="Editar" />
                   <lux-button-mobile kind="view-pdf" label="Ver PDF" />
                   <lux-button-mobile kind="delete" label="Eliminar" />
-                </ili-action-menu>
+                </lux-action-menu-mobile>
               </div>
             </div>
           </div>

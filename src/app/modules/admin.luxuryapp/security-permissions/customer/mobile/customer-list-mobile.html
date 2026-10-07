@@ -19,7 +19,7 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item lines="full" detail="false">
+    <lux-list-item-mobile lines="full" detail="false">
       <ion-avatar slot="start" class="customer-logo-slot">
         @if (item.photoPath) {
         <img
@@ -42,7 +42,7 @@
         </p>
       </ion-label>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -72,8 +72,8 @@
             (clicked)="delete.emit(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>
 

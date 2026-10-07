@@ -10,7 +10,7 @@ import { ScrollTop } from "@ui/web/tap-to-top/tap-to-top";
   imports: [ScrollTop, MobileTapToTop],
   template: `
     @if (platform.isMobile()) {
-      <ili-tap-to-top />
+      <lux-tap-to-top-mobile />
     } @else {
       <lux-scroll-top-web />
     }

@@ -257,9 +257,9 @@
     <div
       class="border-top-1 border p-2 p-md-3 d-flex flex-wrap flex-md-nowrap gap-2 align-items-center"
     >
-      <ili-accordion [items]="contextAccordionItems()" class="flex-fill">
+      <lux-accordion-mobile [items]="contextAccordionItems()" class="flex-fill">
         <div accordion="context" class="d-flex flex-wrap gap-3 gap-md-4">
-          <ili-list-item [noPadding]="true">
+          <lux-list-item-mobile [noPadding]="true">
             <lux-icon
               start
               icon="material-symbols-light:database"
@@ -269,8 +269,8 @@
             <span end class="text-sm text-body-secondary font-mono"
               >{{ syncStatus()?.dataSource }}</span
             >
-          </ili-list-item>
-          <ili-list-item [noPadding]="true">
+          </lux-list-item-mobile>
+          <lux-list-item-mobile [noPadding]="true">
             <lux-icon
               start
               icon="material-symbols-light:schedule"
@@ -280,8 +280,8 @@
             <span end class="text-sm text-body-secondary font-mono"
               >{{ formattedLastSync() }}</span
             >
-          </ili-list-item>
-          <ili-list-item [noPadding]="true" [divider]="false">
+          </lux-list-item-mobile>
+          <lux-list-item-mobile [noPadding]="true" [divider]="false">
             <lux-icon
               start
               icon="material-symbols-light:group-outline"
@@ -291,9 +291,9 @@
             <span end class="text-sm text-body-secondary font-mono"
               >{{ totalCondominos() }}</span
             >
-          </ili-list-item>
+          </lux-list-item-mobile>
         </div>
-      </ili-accordion>
+      </lux-accordion-mobile>
 
       <div class="ms-auto flex-shrink-0 cobranza-period-field">
         <lux-input-date-signal

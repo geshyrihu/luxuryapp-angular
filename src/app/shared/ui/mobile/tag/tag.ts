@@ -7,20 +7,20 @@ import { TagBase } from "@ui/core/tag.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-tag",
+  selector: "lux-tag-mobile",
 
   imports: [AppIconMobile],
   template: `
     <span
-      class="ili-tag"
-      [class.ili-tag-rounded]="rounded()"
+      class="lux-tag-mobile"
+      [class.lux-tag-mobile-rounded]="rounded()"
       [style.background]="colors().bg"
       [style.color]="colors().text"
       [style.border-color]="colors().border"
       [attr.title]="tooltip()"
     >
       @if (icon()) {
-        <ili-icon [icon]="icon()" class="ili-tag-icon" />
+        <lux-icon-mobile [icon]="icon()" class="lux-tag-mobile-icon" />
       }
       {{ displayValue() }}
     </span>
@@ -30,7 +30,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       :host {
         display: inline-block;
       }
-      .ili-tag {
+      .lux-tag-mobile {
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
@@ -43,10 +43,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         line-height: 1.2;
         white-space: nowrap;
       }
-      .ili-tag-rounded {
+      .lux-tag-mobile-rounded {
         border-radius: var(--ds-radius-full);
       }
-      .ili-tag-icon {
+      .lux-tag-mobile-icon {
         display: inline-flex;
         font-size: 0.85rem;
         line-height: 1;

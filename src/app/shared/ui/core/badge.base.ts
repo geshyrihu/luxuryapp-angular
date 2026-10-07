@@ -14,7 +14,7 @@ export type BadgeSizeToken = "small" | "normal" | "large";
 /**
  * Base compartida de Badge (contador/etiqueta breve).
  *  - web:     `app-badge`  (Bootstrap p-badge)
- *  - mobile:  `ili-badge`  (Ionic ion-badge)
+ *  - mobile:  `lux-badge-mobile`  (Ionic ion-badge)
  *  - wrapper: `lux-badge`   (auto runtime)
  */
 @Directive()

@@ -4,7 +4,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 /**
  * Base compartida de Chip (API + lógica de remoción/click).
  *  - web:     `app-chip`  (Bootstrap p-chip)
- *  - mobile:  `ili-chip`  (Ionic ion-chip)
+ *  - mobile:  `lux-chip-mobile`  (Ionic ion-chip)
  *  - wrapper: `lux-chip`   (auto runtime)
  *
  * El icono se pasa como nombre de `app-icon` (Iconify), no como clase de PrimeIcons

@@ -30,7 +30,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
     ButtonMobile,
     IonInputText],
   template: `
-    <ili-page background="var(--ds-primary)">
+    <lux-page-mobile background="var(--ds-primary)">
         <!-- Fondo Premium -->
         <div class="lm-bg">
           @for (image of sliderImages(); track image) {
@@ -106,7 +106,7 @@ import { DataConnectorService } from "@core/services/data-connector.service";
             </form>
           </div>
         </div>
-    </ili-page>
+    </lux-page-mobile>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

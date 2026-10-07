@@ -9,7 +9,7 @@ import { MultiSelectBase } from "@ui/core/multi-select.base";
 import { IonItem, IonSelect, IonSelectOption } from "@ionic/angular";
 
 @Component({
-  selector: "ili-multi-select",
+  selector: "lux-multi-select-mobile",
   imports: [FormsModule, IonItem, IonSelect, IonSelectOption],
   template: `
     <ion-item [class]="styleClass()">

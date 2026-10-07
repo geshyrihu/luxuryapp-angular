@@ -10,7 +10,7 @@ import { InfiniteScroll } from "@ui/web/infinite-scroll/infinite-scroll";
   imports: [InfiniteScroll, MobileInfiniteScroll],
   template: `
     @if (platform.isMobile()) {
-      <ili-infinite-scroll
+      <lux-infinite-scroll-mobile
         [loading]="loading()"
         [threshold]="threshold()"
         [disabled]="disabled()"

@@ -67,7 +67,7 @@
     </div>
 
     @for (option of options; track option.route) {
-    <ili-list-item class="ion-no-padding" (click)="navigateTo(option.route)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="navigateTo(option.route)">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -79,7 +79,7 @@
       <p class="text-xs m-0 mt-1 text-body-secondary">
         {{ option.description }}
       </p>
-    </ili-list-item>
+    </lux-list-item-mobile>
     }
   </div>
 </div>

@@ -3,18 +3,18 @@ import { Component, ViewEncapsulation, signal } from "@angular/core";
 import { TooltipBase } from "@ui/core/tooltip.base";
 
 @Component({
-  selector: "ili-tooltip",
+  selector: "lux-tooltip-mobile",
 
   imports: [NgClass],
   template: `
     <div
-      class="ili-tooltip-wrapper"
+      class="lux-tooltip-mobile-wrapper"
       (touchstart)="onTouchStart()"
       (touchend)="onTouchEnd()"
     >
       <ng-content />
       @if (showTooltip()) {
-        <div class="ili-tooltip-popup" [ngClass]="'ili-tooltip-' + position()">
+        <div class="lux-tooltip-mobile-popup" [ngClass]="'lux-tooltip-mobile-' + position()">
           {{ text() }}
         </div>
       }
@@ -22,11 +22,11 @@ import { TooltipBase } from "@ui/core/tooltip.base";
   `,
   styles: [
     `
-      .ili-tooltip-wrapper {
+      .lux-tooltip-mobile-wrapper {
         position: relative;
         display: inline-flex;
       }
-      .ili-tooltip-popup {
+      .lux-tooltip-mobile-popup {
         position: absolute;
         z-index: 9999;
         padding: 0.35rem 0.65rem;
@@ -38,22 +38,22 @@ import { TooltipBase } from "@ui/core/tooltip.base";
         pointer-events: none;
         box-shadow: var(--ds-shadow-sm);
       }
-      .ili-tooltip-top {
+      .lux-tooltip-mobile-top {
         bottom: calc(100% + 6px);
         left: 50%;
         transform: translateX(-50%);
       }
-      .ili-tooltip-bottom {
+      .lux-tooltip-mobile-bottom {
         top: calc(100% + 6px);
         left: 50%;
         transform: translateX(-50%);
       }
-      .ili-tooltip-left {
+      .lux-tooltip-mobile-left {
         right: calc(100% + 6px);
         top: 50%;
         transform: translateY(-50%);
       }
-      .ili-tooltip-right {
+      .lux-tooltip-mobile-right {
         left: calc(100% + 6px);
         top: 50%;
         transform: translateY(-50%);

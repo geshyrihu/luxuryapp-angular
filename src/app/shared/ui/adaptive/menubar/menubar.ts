@@ -10,7 +10,7 @@ import { Menubar } from "@ui/web/menubar/menubar";
   imports: [Menubar, MobileMenubar],
   template: `
     @if (platform.isMobile()) {
-      <ili-menubar
+      <lux-menubar-mobile
         [items]="items()"
         [orientation]="orientation()"
         [(activeItem)]="activeItem"

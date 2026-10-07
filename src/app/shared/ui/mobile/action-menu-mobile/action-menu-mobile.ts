@@ -34,27 +34,27 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
  * que el handler del botón (SweetAlert / AlertController) abra encima.
  */
 @Component({
-  selector: "ili-action-menu",
+  selector: "lux-action-menu-mobile",
 
   imports: [AppIconMobile],
   template: `
     <button
       type="button"
-      class="ili-am-trigger"
+      class="lux-action-menu-mobile-trigger"
       (click)="openSheet()"
       aria-label="Opciones"
     >
-      <ili-icon icon="material-symbols-light:more-vert" />
+      <lux-icon-mobile icon="material-symbols-light:more-vert" />
     </button>
 
     <ng-template #sheetTpl>
-      <div class="ili-am-backdrop" (click)="close()">
-        <div class="ili-am-sheet" (click)="onInnerClick($event)">
-          <div class="ili-am-handle"></div>
+      <div class="lux-action-menu-mobile-backdrop" (click)="close()">
+        <div class="lux-action-menu-mobile-sheet" (click)="onInnerClick($event)">
+          <div class="lux-action-menu-mobile-handle"></div>
           @if (title()) {
-            <div class="ili-am-title">{{ title() }}</div>
+            <div class="lux-action-menu-mobile-title">{{ title() }}</div>
           }
-          <div class="ili-am-actions ili-menu-list">
+          <div class="lux-action-menu-mobile-actions lux-menu-mobile-list">
             <ng-content></ng-content>
           </div>
         </div>
@@ -68,7 +68,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         justify-content: flex-end;
       }
 
-      .ili-am-trigger {
+      .lux-action-menu-mobile-trigger {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -95,7 +95,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           outline-offset: 2px;
         }
       }
-      .ili-am-backdrop {
+      .lux-action-menu-mobile-backdrop {
         position: fixed;
         inset: 0;
         z-index: 1000;
@@ -104,7 +104,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         justify-content: center;
         background: var(--ds-bg-overlay);
       }
-      .ili-am-sheet {
+      .lux-action-menu-mobile-sheet {
         width: 100%;
         max-width: 480px;
         background: var(--ds-bg-surface);
@@ -112,9 +112,9 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           var(--ds-m-radius-sheet) 0 0;
         padding: 0.5rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
         box-shadow: var(--ds-shadow-2xl);
-        animation: ili-am-slide-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+        animation: lux-action-menu-mobile-slide-up 0.22s cubic-bezier(0.32, 0.72, 0, 1);
       }
-      @keyframes ili-am-slide-up {
+      @keyframes lux-action-menu-mobile-slide-up {
         from {
           transform: translateY(100%);
         }
@@ -122,21 +122,21 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           transform: translateY(0);
         }
       }
-      .ili-am-handle {
+      .lux-action-menu-mobile-handle {
         width: 36px;
         height: 4px;
         border-radius: 9999px;
         background: var(--ds-border-strong);
         margin: 0.25rem auto 0.5rem;
       }
-      .ili-am-title {
+      .lux-action-menu-mobile-title {
         text-align: center;
         font-size: 0.8125rem;
         font-weight: 600;
         color: var(--ds-text-muted);
         padding: 0.25rem 0 0.5rem;
       }
-      .ili-am-actions {
+      .lux-action-menu-mobile-actions {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;

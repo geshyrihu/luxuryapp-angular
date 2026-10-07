@@ -12,7 +12,7 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { ImageProcessingService } from "@core/services/image-processing.service";
 
 @Component({
-  selector: "ili-file-upload",
+  selector: "lux-file-upload-mobile",
   imports: [IonButton, IonIcon],
   template: `
     <div class="mobile-file-upload">

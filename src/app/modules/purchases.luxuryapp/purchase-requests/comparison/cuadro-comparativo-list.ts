@@ -3,10 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  ElementRef,
   inject,
   OnDestroy,
   OnInit,
   signal,
+  ViewChild,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -29,16 +31,8 @@ import { LuxModal } from "@ui/adaptive/modal/modal";
 import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
-import {
-  ButtonsStrategy,
-  GalleryModule as ModalGalleryModule,
-  Image as ModalGalleryImage,
-  KS_DEFAULT_BTN_CLOSE,
-  KS_DEFAULT_BTN_DOWNLOAD,
-  KS_DEFAULT_BTN_EXTURL,
-  KS_DEFAULT_BTN_FULL_SCREEN,
-  ModalGalleryService,
-} from "@ks89/angular-modal-gallery";
+import PhotoSwipe from "photoswipe";
+import PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
@@ -57,7 +51,6 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     AppTable,
     AppImage,
     LuxModal,
-    ModalGalleryModule,
   ],
   styles: [
     `
@@ -87,7 +80,9 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   aiService = inject(AiService);
   authS = inject(AuthService);
   swalService = inject(SwalService);
-  modalGallery = inject(ModalGalleryService);
+  @ViewChild("evidencePhotoSwipe", { static: true })
+  evidencePhotoSwipe!: ElementRef<HTMLElement>;
+  private photoSwipe: PhotoSwipe<PhotoSwipe.Options> | null = null;
   ref: DynamicDialogRef;
 
   showAiModal: boolean = false;
@@ -158,6 +153,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.revokeSelectedEvidencePreviews();
+    this.photoSwipe?.destroy();
   }
 
   onLoadData() {
@@ -577,56 +573,56 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
     return [...uploadedCards, ...pendingCards].slice(0, 4);
   }
 
-  openEvidenceGallery(index: number): void {
-    const images = this.getVisualEvidenceCards().map(
-      (evidencia, imageIndex) =>
-        new ModalGalleryImage(
-          imageIndex,
-          {
-            img: evidencia.src,
-            extUrl: evidencia.src,
-            downloadFileName: evidencia.alt,
-            alt: evidencia.alt,
-          },
-          {
-            img: evidencia.src,
-            alt: evidencia.alt,
-          },
-        ),
+  async openEvidenceGallery(index: number): Promise<void> {
+    const cards = this.getVisualEvidenceCards();
+    const items = await Promise.all(
+      cards.map(async (evidencia) => {
+        const dimensions = await this.getPhotoSwipeDimensions(evidencia.src);
+        return {
+          src: evidencia.src,
+          msrc: evidencia.src,
+          w: dimensions.width,
+          h: dimensions.height,
+          title: evidencia.alt,
+        };
+      }),
     );
-    this.modalGallery.open({
-      id: 1,
-      images,
-      currentImage: images[index],
-      libConfig: {
-        enableCloseOutside: true,
-        buttonsConfig: {
-          visible: true,
-          strategy: ButtonsStrategy.CUSTOM,
-          buttons: [
-            {
-              ...KS_DEFAULT_BTN_FULL_SCREEN,
-              title: "Pantalla completa",
-              ariaLabel: "Pantalla completa",
-            },
-            {
-              ...KS_DEFAULT_BTN_DOWNLOAD,
-              title: "Descargar imagen",
-              ariaLabel: "Descargar imagen",
-            },
-            {
-              ...KS_DEFAULT_BTN_EXTURL,
-              title: "Abrir imagen",
-              ariaLabel: "Abrir imagen",
-            },
-            {
-              ...KS_DEFAULT_BTN_CLOSE,
-              title: "Cerrar galería",
-              ariaLabel: "Cerrar galería",
-            },
-          ],
+
+    this.photoSwipe?.destroy();
+    this.photoSwipe = new PhotoSwipe(
+      this.evidencePhotoSwipe.nativeElement,
+      PhotoSwipeUI_Default,
+      items,
+      {
+        index,
+        bgOpacity: 0.95,
+        showHideOpacity: true,
+        getThumbBoundsFn: (itemIndex) => {
+          const trigger = document.querySelectorAll<HTMLElement>(
+            ".evidence-image-trigger",
+          )[itemIndex];
+          const bounds = trigger?.getBoundingClientRect();
+          return bounds
+            ? { x: bounds.left, y: bounds.top, w: bounds.width }
+            : { x: 0, y: 0, w: 0 };
         },
       },
+    );
+    this.photoSwipe.init();
+  }
+
+  private getPhotoSwipeDimensions(
+    src: string,
+  ): Promise<{ width: number; height: number }> {
+    return new Promise((resolve) => {
+      const image = new window.Image();
+      image.onload = () =>
+        resolve({
+          width: image.naturalWidth || 1600,
+          height: image.naturalHeight || 950,
+        });
+      image.onerror = () => resolve({ width: 1600, height: 950 });
+      image.src = src;
     });
   }
 

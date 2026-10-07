@@ -4,7 +4,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="w-3rem h-3rem rounded d-flex align-items-center justify-content-center flex-shrink-0 ms-3 bg-body-tertiary"
@@ -18,6 +18,6 @@
       <h3>{{ item.nombreEmpleado }}</h3>
       <p>{{ item.tipoSolicitud }} · {{ item.folio }}</p>
       <p>{{ item.fechaSolicitud }} · {{ item.status }}</p>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

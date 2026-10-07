@@ -79,7 +79,7 @@
     </div>
 
     @for (card of summaryCards(); track card.title) {
-    <ili-list-item class="ion-no-padding" (click)="navigateTo(card.route)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="navigateTo(card.route)">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -90,7 +90,7 @@
 
       <p class="fw-semibold m-0 text-body">{{ card.title }}</p>
       <p class="text-xs m-0 mt-1 text-body-secondary">{{ card.description }}</p>
-    </ili-list-item>
+    </lux-list-item-mobile>
     }
   </div>
   } @else { @for (group of visibleGroups(); track group.label) {
@@ -103,7 +103,7 @@
     </div>
 
     @for (card of group.cards; track card.title) {
-    <ili-list-item class="ion-no-padding" (click)="navigateTo(card.route)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="navigateTo(card.route)">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -114,7 +114,7 @@
 
       <p class="fw-semibold m-0 text-body">{{ card.title }}</p>
       <p class="text-xs m-0 mt-1 text-body-secondary">{{ card.description }}</p>
-    </ili-list-item>
+    </lux-list-item-mobile>
     }
   </div>
   } }

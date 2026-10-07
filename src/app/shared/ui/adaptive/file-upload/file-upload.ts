@@ -6,7 +6,7 @@ import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
 
 /**
  * Wrapper multiplataforma de FileUpload. Renderiza `app-file-upload` (web) o
- * `ili-file-upload` (móvil) según `PlatformService.isMobile()`.
+ * `lux-file-upload-mobile` (móvil) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-file-upload [multiple]="true" />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
   imports: [AppFileUpload, IliFileUpload],
   template: `
     @if (platform.isMobile()) {
-      <ili-file-upload
+      <lux-file-upload-mobile
         [chooseLabel]="chooseLabel()"
         [accept]="accept()"
         [maxFileSize]="maxFileSize()"
@@ -25,7 +25,7 @@ import { FileUpload as AppFileUpload } from "@ui/web/file-upload/file-upload";
         (filesChange)="filesChange.emit($event)"
         (upload)="upload.emit($event)"
         (onSelect)="onSelect.emit($event)"
-      ></ili-file-upload>
+      ></lux-file-upload-mobile>
     } @else {
       <lux-file-upload-web
         [chooseLabel]="chooseLabel()"

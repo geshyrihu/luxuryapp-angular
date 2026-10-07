@@ -101,7 +101,7 @@
       } @else {
       <div class="approval-mobile-list">
         @for (item of executions(); track item.id) {
-        <ili-list-item (click)="onSelect(item)" class="cursor-pointer">
+        <lux-list-item-mobile (click)="onSelect(item)" class="cursor-pointer">
           <div start class="approval-mobile-icon">
             <lux-icon icon="material-symbols-light:verified" />
           </div>
@@ -128,7 +128,7 @@
             icon="material-symbols-light:chevron-right"
             class="text-2xl text-on-surface-secondary"
           />
-        </ili-list-item>
+        </lux-list-item-mobile>
         }
       </div>
       }
@@ -345,7 +345,7 @@
       <p class="text-body-sm text-on-surface-secondary">Sin equipos en la cobertura.</p>
       } @else {
       @for (snap of coverage(); track snap.id) {
-      <ili-list-item alignTop="true">
+      <lux-list-item-mobile alignTop="true">
         <div class="d-flex flex-column gap-1">
           <span class="text-title-sm m-0">{{ snap.equipmentName }}</span>
           <span class="approval-muted">
@@ -364,7 +364,7 @@
           <span class="approval-muted">{{ snap.exceptionReason }}</span>
           }
         </div>
-      </ili-list-item>
+      </lux-list-item-mobile>
       }
       }
     </div>

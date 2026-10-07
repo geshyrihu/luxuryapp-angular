@@ -7,7 +7,7 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item>
+        <lux-list-item-mobile>
           <ion-avatar slot="start" class="mobile-avatar-slot">
             <span>{{ item.userName.charAt(0).toUpperCase() }}</span>
           </ion-avatar>
@@ -38,7 +38,7 @@
               {{ item.details }}
             </p>
           </ion-label>
-        </ili-list-item>
+        </lux-list-item-mobile>
       </ng-template>
     </lux-data-view-mobile>
 

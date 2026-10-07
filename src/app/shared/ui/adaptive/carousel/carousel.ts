@@ -10,7 +10,7 @@ import { Carousel } from "@ui/web/carousel/carousel";
   imports: [Carousel, MobileCarousel],
   template: `
     @if (platform.isMobile()) {
-      <ili-carousel
+      <lux-carousel-mobile
         [value]="value()"
         [autoplayInterval]="autoplayInterval()"
         [numVisible]="numVisible()"

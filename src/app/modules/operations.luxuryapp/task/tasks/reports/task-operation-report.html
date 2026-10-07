@@ -169,13 +169,13 @@
     />
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <p class="fw-semibold m-0 text-body">{{ item.folio }}</p>
       <p class="text-xs m-0 text-body-secondary">
         {{ item.responsibleArea }} · {{ item.dateFinished }}
       </p>
 
-      <ili-action-menu end>
+      <lux-action-menu-mobile end>
         <ng-container actions>
           <lux-button-mobile
             kind="item"
@@ -184,8 +184,8 @@
             (clicked)="onFollowUp(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>
 }

@@ -4,7 +4,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item class="ion-no-padding" (click)="verPdf.emit(item.id)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="verPdf.emit(item.id)">
       <div
         start
         class="w-2rem h-2rem rounded bg-blue-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -30,6 +30,6 @@
           }
         </div>
       </div>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

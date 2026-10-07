@@ -5,12 +5,12 @@
 // ═══════════════════════════════════════════════════════════════
 
 // ── Contexto: lista de acciones tipo action-sheet iOS ───────────
-// Aplicar `.ili-menu-list` a un contenedor cuyos hijos sean botones
+// Aplicar `.lux-menu-mobile-list` a un contenedor cuyos hijos sean botones
 // ili-* (uno por fila). Convierte cualquier ili-button (incluso fill
 // solid) en una fila de menú plana: fondo transparente, texto en el
 // color del botón (edit→primary/azul, delete→danger/rojo), separadores
-// finos y área táctil cómoda. Usado por <ili-action-menu>.
-.ili-menu-list {
+// finos y área táctil cómoda. Usado por <lux-action-menu-mobile>.
+.lux-menu-mobile-list {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -28,7 +28,7 @@
     // Neutraliza el fill solid → fila plana; el color del texto sale del
     // color semántico del botón (--ion-color-base lo fija Ionic vía [color]).
     // ⚠️ !important necesario: Ionic define el fondo con `:host(.button-solid)`
-    // (especificidad 0,2,0) que gana sobre `.ili-menu-list ion-button` (0,1,1).
+    // (especificidad 0,2,0) que gana sobre `.lux-menu-mobile-list ion-button` (0,1,1).
     // Hacemos el botón "soft" (fondo semitransparente, texto a color)
     // Usamos :host y ::part(native) para asegurar que sobreescribimos a Ionic
     --background: var(--ds-primary-light, #e0e7ff) !important;

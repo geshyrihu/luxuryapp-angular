@@ -4,7 +4,7 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div start>
         @if (!isVacant(item) && item.applicationUserPhoto) {
         <app-avatar
@@ -36,7 +36,7 @@
         }
       </div>
       <div end>
-        <ili-action-menu>
+        <lux-action-menu-mobile>
           <lux-button-mobile
             kind="item"
             iconClass="material-symbols-light:tune"
@@ -69,8 +69,8 @@
             label="Eliminar"
             (clicked)="requestDelete.emit(item)"
           />
-        </ili-action-menu>
+        </lux-action-menu-mobile>
       </div>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

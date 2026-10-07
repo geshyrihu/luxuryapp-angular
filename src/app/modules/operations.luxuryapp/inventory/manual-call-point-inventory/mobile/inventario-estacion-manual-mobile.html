@@ -35,7 +35,7 @@
         </h3>
         <p>{{ item.location }}</p>
       </span>
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="item"
@@ -60,7 +60,7 @@
             (clicked)="delete.emit(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
+      </lux-action-menu-mobile>
     </div>
   </ng-template>
 </lux-data-view-mobile>

@@ -4,7 +4,7 @@
   (add)="add.emit({ id: '', title: 'Nuevo Registro' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="w-3rem h-3rem rounded-md bg-green-50 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -18,7 +18,7 @@
       <h3>{{ item.nameComercial }}</h3>
       <p>{{ item.service }}</p>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <lux-button-mobile
           kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
@@ -28,7 +28,7 @@
           color="danger"
           (clicked)="delete.emit(item.id)"
         />
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

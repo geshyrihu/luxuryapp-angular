@@ -10,27 +10,27 @@ import { TabsBase } from "@ui/core/tabs.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-tabs",
+  selector: "lux-tabs-mobile",
 
   imports: [AppIconMobile],
   template: `
-    <div class="ili-tabs" role="tablist">
+    <div class="lux-tabs-mobile" role="tablist">
       @for (tab of tabs(); track tab.id) {
         <button
-          class="ili-tab-item"
+          class="lux-tabs-mobile-item"
           role="tab"
-          [class.ili-tab-active]="activeId() === tab.id"
-          [class.ili-tab-disabled]="tab.disabled"
+          [class.lux-tabs-mobile-active]="activeId() === tab.id"
+          [class.lux-tabs-mobile-disabled]="tab.disabled"
           [attr.aria-selected]="activeId() === tab.id"
           [disabled]="tab.disabled"
           (click)="select(tab)"
         >
           @if (tab.icon) {
-            <ili-icon [icon]="tab.icon" class="ili-tab-icon" />
+            <lux-icon-mobile [icon]="tab.icon" class="lux-tabs-mobile-icon" />
           }
-          <span class="ili-tab-label">{{ tab.label }}</span>
+          <span class="lux-tabs-mobile-label">{{ tab.label }}</span>
           @if (tab.badge && tab.badge > 0) {
-            <span class="ili-tab-badge">{{
+            <span class="lux-tabs-mobile-badge">{{
               tab.badge > 99 ? "99+" : tab.badge
             }}</span>
           }
@@ -38,14 +38,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       }
     </div>
     @if (!navOnly()) {
-      <div class="ili-tab-panels" #panels>
+      <div class="lux-tabs-mobile-panels" #panels>
         <ng-content />
       </div>
     }
   `,
   styles: [
     `
-      .ili-tabs {
+      .lux-tabs-mobile {
         display: flex;
         align-items: stretch;
         border-bottom: 2px solid var(--ds-border);
@@ -53,10 +53,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         overflow-x: auto;
         scrollbar-width: none;
       }
-      .ili-tabs::-webkit-scrollbar {
+      .lux-tabs-mobile::-webkit-scrollbar {
         display: none;
       }
-      .ili-tab-item {
+      .lux-tabs-mobile-item {
         display: flex;
         align-items: center;
         gap: 0.375rem;
@@ -75,22 +75,22 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           border-color 0.15s;
         -webkit-tap-highlight-color: transparent;
       }
-      .ili-tab-item:hover:not(.ili-tab-disabled) {
+      .lux-tabs-mobile-item:hover:not(.lux-tabs-mobile-disabled) {
         color: var(--ds-text-primary);
       }
-      .ili-tab-active {
+      .lux-tabs-mobile-active {
         color: var(--ds-primary) !important;
         border-bottom-color: var(--ds-primary);
         font-weight: 600;
       }
-      .ili-tab-disabled {
+      .lux-tabs-mobile-disabled {
         opacity: 0.4;
         cursor: not-allowed;
       }
-      .ili-tab-icon {
+      .lux-tabs-mobile-icon {
         font-size: 1rem;
       }
-      .ili-tab-badge {
+      .lux-tabs-mobile-badge {
         background: var(--ds-danger);
         color: var(--ds-on-primary);
         font-size: 0.625rem;
@@ -101,10 +101,11 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         text-align: center;
         line-height: 1.4;
       }
-      .ili-tab-panels {
+      .lux-tabs-mobile-panels {
         padding-top: 0.75rem;
       }
-    `],
+    `,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MobileTabs extends TabsBase {

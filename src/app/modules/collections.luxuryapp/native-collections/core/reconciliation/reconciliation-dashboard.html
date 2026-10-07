@@ -89,7 +89,7 @@
     [showAdd]="false"
   >
     <ng-template #listItemTemplate let-pay>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -107,7 +107,7 @@
           </p>
           <p>{{ pay.reference || 'Sin referencia' }}</p>
         </div>
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
   </lux-data-view-mobile>
 </lux-card>

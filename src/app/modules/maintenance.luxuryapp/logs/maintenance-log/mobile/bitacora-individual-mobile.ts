@@ -23,6 +23,5 @@ import { RangoCalendarioyyyymmdd } from "@ui/web/rango-calendario-yyyymmdd/rango
 export class BitacoraIndividualMobile {
   data = input.required<any[]>();
   globalFilterFields = input<string[]>([]);
-
   cardEmployee = output<string>();
 }

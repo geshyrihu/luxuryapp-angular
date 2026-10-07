@@ -263,7 +263,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
     defaultVariant: "solid",
   },
   {
-    id: "ili-confirm",
+    id: "lux-confirm-dialog-mobile",
     selector: "ili-button-confirm",
     defaultSeverity: "primary",
     defaultVariant: "solid",
@@ -982,7 +982,7 @@ const ILI_SEMANTIC: SemanticEntry[] = [
                       [loading]="isLoading()"
                     />
                   }
-                  @case ("ili-confirm") {
+                  @case ("lux-confirm-dialog-mobile") {
                     <lux-button-mobile kind="confirm"
                       [size]="ionicSize()"
                       [disabled]="isDisabled()"

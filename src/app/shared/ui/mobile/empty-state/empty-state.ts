@@ -8,21 +8,21 @@ import { EmptyStateBase } from "@ui/core/empty-state.base";
 import { AppIcon } from "@ui/primitives/app-icon/app-icon";
 
 @Component({
-  selector: "ili-empty-state",
+  selector: "lux-empty-state-mobile",
 
   imports: [IonButton, AppIcon],
   template: `
-    <div class="ili-empty-state">
+    <div class="lux-empty-state-mobile">
       @if (tag()) {
-        <span class="ili-empty-tag">{{ tag() }}</span>
+        <span class="lux-empty-state-mobile-tag">{{ tag() }}</span>
       }
       <lux-icon-base
         [icon]="icon()"
-        class="ili-empty-icon"
+        class="lux-empty-state-mobile-icon"
         [style.color]="iconColor()"
       />
-      <strong class="ili-empty-title">{{ title() }}</strong>
-      <p class="ili-empty-message">{{ message() }}</p>
+      <strong class="lux-empty-state-mobile-title">{{ title() }}</strong>
+      <p class="lux-empty-state-mobile-message">{{ message() }}</p>
       @if (actionLabel()) {
         <ion-button
           [color]="actionSeverity() === 'warn' ? 'warning' : actionSeverity()"
@@ -38,7 +38,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-empty-state {
+      .lux-empty-state-mobile {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -48,7 +48,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         padding: 2rem 1.25rem;
         min-height: 200px;
       }
-      .ili-empty-tag {
+      .lux-empty-state-mobile-tag {
         font-size: 0.7rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -58,16 +58,16 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
         padding: 0.2rem 0.6rem;
         border-radius: var(--ds-radius-full);
       }
-      .ili-empty-icon {
+      .lux-empty-state-mobile-icon {
         font-size: 3rem;
         line-height: 1;
       }
-      .ili-empty-title {
+      .lux-empty-state-mobile-title {
         font-size: 1rem;
         font-weight: 700;
         color: var(--ds-text-primary);
       }
-      .ili-empty-message {
+      .lux-empty-state-mobile-message {
         margin: 0;
         font-size: 0.875rem;
         color: var(--ds-text-secondary);

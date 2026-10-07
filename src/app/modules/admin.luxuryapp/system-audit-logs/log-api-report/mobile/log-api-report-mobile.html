@@ -7,7 +7,7 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item>
+        <lux-list-item-mobile>
           <lux-tag
             slot="start"
             [value]="item.level.charAt(0).toUpperCase()"
@@ -60,7 +60,7 @@
             </div>
             }
           </ion-label>
-        </ili-list-item>
+        </lux-list-item-mobile>
       </ng-template>
     </lux-data-view-mobile>
 

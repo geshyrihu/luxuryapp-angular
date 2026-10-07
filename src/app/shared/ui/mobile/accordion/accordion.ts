@@ -3,34 +3,34 @@ import { AccordionBase } from "@ui/core/accordion.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-accordion",
+  selector: "lux-accordion-mobile",
 
   imports: [AppIconMobile],
   template: `
-    <div class="ili-accordion">
+    <div class="lux-accordion-mobile">
       @for (item of items(); track item.id) {
         <div
-          class="ili-accordion-item"
-          [class.ili-accordion-disabled]="item.disabled"
+          class="lux-accordion-mobile-item"
+          [class.lux-accordion-mobile-disabled]="item.disabled"
         >
           <button
-            class="ili-accordion-header"
+            class="lux-accordion-mobile-header"
             [disabled]="item.disabled"
             (click)="toggle(item.id)"
           >
             @if (item.icon) {
-              <ili-icon [icon]="item.icon" class="ili-accordion-header-icon" />
+              <lux-icon-mobile [icon]="item.icon" class="lux-accordion-mobile-header-icon" />
             }
-            <span class="ili-accordion-header-title">{{ item.title }}</span>
-            <ili-icon
+            <span class="lux-accordion-mobile-header-title">{{ item.title }}</span>
+            <lux-icon-mobile
               [icon]="
                 isExpanded(item.id) ? 'material-symbols-light:keyboard-arrow-up' : 'material-symbols-light:keyboard-arrow-down'
               "
-              class="ili-accordion-chevron"
+              class="lux-accordion-mobile-chevron"
             />
           </button>
           @if (isExpanded(item.id)) {
-            <div class="ili-accordion-body">
+            <div class="lux-accordion-mobile-body">
               <ng-content [select]="'[accordion=' + item.id + ']'" />
             </div>
           }
@@ -40,23 +40,23 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-accordion {
+      .lux-accordion-mobile {
         display: flex;
         flex-direction: column;
         border: 1px solid var(--ds-border);
         border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
-      .ili-accordion-item {
+      .lux-accordion-mobile-item {
         border-bottom: 1px solid var(--ds-border);
       }
-      .ili-accordion-item:last-child {
+      .lux-accordion-mobile-item:last-child {
         border-bottom: none;
       }
-      .ili-accordion-disabled {
+      .lux-accordion-mobile-disabled {
         opacity: 0.4;
       }
-      .ili-accordion-header {
+      .lux-accordion-mobile-header {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -72,22 +72,22 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         -webkit-tap-highlight-color: transparent;
         transition: background 0.15s;
       }
-      .ili-accordion-header:active {
+      .lux-accordion-mobile-header:active {
         background: var(--ds-bg-elevated);
       }
-      .ili-accordion-header-icon {
+      .lux-accordion-mobile-header-icon {
         font-size: 1.125rem;
         color: var(--ds-primary);
       }
-      .ili-accordion-header-title {
+      .lux-accordion-mobile-header-title {
         flex: 1;
       }
-      .ili-accordion-chevron {
+      .lux-accordion-mobile-chevron {
         font-size: 0.875rem;
         color: var(--ds-text-muted);
         transition: transform 0.2s;
       }
-      .ili-accordion-body {
+      .lux-accordion-mobile-body {
         padding: 0 1rem 0.75rem;
         font-size: var(--ds-font-size-body);
         color: var(--ds-text-secondary);

@@ -6,7 +6,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
 
 /**
  * Wrapper multiplataforma. Renderiza la versión web (`app-empty-state`) o la
- * versión Ionic (`ili-empty-state`) según `PlatformService.isMobile()`.
+ * versión Ionic (`lux-empty-state-mobile`) según `PlatformService.isMobile()`.
  * Es el punto de entrada recomendado: `<lux-empty-state ... />`.
  */
 @Component({
@@ -16,7 +16,7 @@ import { EmptyState } from "@ui/web/empty-state/empty-state";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
-      <ili-empty-state
+      <lux-empty-state-mobile
         [icon]="icon()"
         [iconColor]="iconColor()"
         [title]="title()"

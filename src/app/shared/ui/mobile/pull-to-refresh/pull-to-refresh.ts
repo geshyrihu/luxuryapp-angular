@@ -3,7 +3,7 @@ import { PullToRefreshBase } from "@ui/core/pull-to-refresh.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-pull-to-refresh",
+  selector: "lux-pull-to-refresh-mobile",
 
   imports: [AppIconMobile],
   template: `
@@ -16,7 +16,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       @if (pulling()) {
         <div class="ptr-indicator" [style.height.px]="pullDistance()">
           <div class="ptr-spinner" [class.ptr-spinning]="refreshing()">
-            <ili-icon
+            <lux-icon-mobile
               [icon]="refreshing() ? 'material-symbols-light:arrow-downward' : 'material-symbols-light:arrow-downward'"
             />
           </div>

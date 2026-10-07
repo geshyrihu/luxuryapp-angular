@@ -4,17 +4,17 @@
   [globalFilterFields]="globalFilterFields()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <p class="fw-semibold m-0 text-body">{{ item.description }}</p>
       <p class="text-xs m-0 text-body-secondary">
         {{ item.provider }} · {{ item.endDate }}
       </p>
 
-      <ili-action-menu end>
+      <lux-action-menu-mobile end>
         <ng-container actions>
           <lux-pdf-viewer-trigger-mobile [url]="item.path" fileName="Poliza | Contrato" />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

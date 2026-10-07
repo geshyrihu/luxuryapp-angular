@@ -6,7 +6,7 @@ import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
 
 /**
  * Wrapper multiplataforma de ProgressBar. Renderiza `app-progress-bar` (Bootstrap)
- * o `ili-progress-bar` (Ionic) según `PlatformService.isMobile()`.
+ * o `lux-progress-bar-mobile` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-progress-bar [value]="..." />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { AppProgressBar } from "@ui/web/progress-bar/progress-bar";
   imports: [AppProgressBar, MobileProgressBar],
   template: `
     @if (platform.isMobile()) {
-      <ili-progress-bar
+      <lux-progress-bar-mobile
         [value]="value()"
         [mode]="mode()"
         [showValue]="showValue()"

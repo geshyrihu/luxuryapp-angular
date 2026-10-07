@@ -3,12 +3,12 @@ import { StatusBadgeBase } from "@ui/core/status-badge.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-status-badge",
+  selector: "lux-status-badge-mobile",
 
   imports: [AppIconMobile],
   template: `
     <span
-      class="ili-status-badge"
+      class="lux-status-badge-mobile"
       [style.background]="styles.bg"
       [style.color]="styles.text"
       [style.border-color]="styles.border"
@@ -16,14 +16,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       (click)="onStatusClick()"
     >
       @if (showIcon()) {
-        <ili-icon [icon]="getIcon()" class="ili-status-badge-icon" />
+        <lux-icon-mobile [icon]="getIcon()" class="lux-status-badge-mobile-icon" />
       }
       {{ getStatusText() }}
     </span>
   `,
   styles: [
     `
-      .ili-status-badge {
+      .lux-status-badge-mobile {
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
@@ -37,10 +37,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         white-space: nowrap;
         user-select: none;
       }
-      .ili-status-badge:active {
+      .lux-status-badge-mobile:active {
         opacity: 0.7;
       }
-      .ili-status-badge-icon {
+      .lux-status-badge-mobile-icon {
         font-size: 0.85rem;
         line-height: 1;
         display: inline-flex;

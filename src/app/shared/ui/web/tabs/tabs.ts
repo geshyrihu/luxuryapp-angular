@@ -15,7 +15,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
  * AppTabs — Wrapper con navegación Bootstrap. El contenido se proyecta en un
  * contenedor propio y se conmuta por `activeId` ocultando los `[tab=<id>]` que no
  * coinciden. Esto evita el `<ng-content [select]>` dinamico (no soportado de forma
- * fiable) y funciona igual que la pata movil `ili-tabs`.
+ * fiable) y funciona igual que la pata movil `lux-tabs-mobile`.
  * Slots: `<div tab="<id>">...</div>` por panel. Si no hay paneles proyectados,
  * `lux-tabs` funciona como selector puro (el feature conmuta con `@switch`).
  */

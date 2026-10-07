@@ -7,7 +7,7 @@ import { MenuBase } from "@ui/core/menu.base";
 import { IonList, IonItem, IonLabel, IonIcon } from "@ionic/angular";
 
 @Component({
-  selector: "ili-menu",
+  selector: "lux-menu-mobile",
   imports: [IonList, IonItem, IonLabel, IonIcon],
   template: `
     <ion-list [class]="styleClass()">

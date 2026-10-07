@@ -7,7 +7,7 @@ export type AvatarSize = "normal" | "large" | "xlarge";
 /**
  * Base compartida de Avatar (imagen, iniciales o icono).
  *  - web:     `app-avatar`  (Bootstrap p-avatar)
- *  - mobile:  `ili-avatar`  (Ionic ion-avatar)
+ *  - mobile:  `lux-avatar-mobile`  (Ionic ion-avatar)
  *  - wrapper: `lux-avatar`   (auto runtime)
  *
  * Prioridad de contenido: image > label (iniciales) > icon (`app-icon`).

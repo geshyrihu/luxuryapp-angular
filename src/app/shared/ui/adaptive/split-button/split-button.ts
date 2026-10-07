@@ -10,7 +10,7 @@ import { AppSplitButton } from "@ui/web/split-button/split-button";
   imports: [AppSplitButton, MobileSplitButton],
   template: `
     @if (platform.isMobile()) {
-      <ili-split-button
+      <lux-split-button-mobile
         [label]="label()"
         [icon]="icon()"
         [model]="model()"
@@ -19,7 +19,7 @@ import { AppSplitButton } from "@ui/web/split-button/split-button";
         [disabled]="disabled()"
         (onClick)="onClick.emit($event)"
         [styleClass]="styleClass()"
-      ></ili-split-button>
+      ></lux-split-button-mobile>
     } @else {
       <lux-split-button-web
         [label]="label()"

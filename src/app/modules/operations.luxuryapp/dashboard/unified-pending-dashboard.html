@@ -347,12 +347,12 @@
       }
     </div>
     <ng-template #listItemTemplate let-item>
-      <ili-list-item (click)="onNavigate(item)">
+      <lux-list-item-mobile (click)="onNavigate(item)">
         <p class="fw-semibold m-0 text-body">{{ item.title }}</p>
         <p class="text-xs m-0 text-body-secondary">
           {{ item.module }} · {{ item.responsible }}
         </p>
-      </ili-list-item>
+      </lux-list-item-mobile>
     </ng-template>
   </lux-data-view-mobile>
 

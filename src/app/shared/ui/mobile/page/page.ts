@@ -10,7 +10,7 @@ import { IonApp, IonContent } from "@ionic/angular";
  * (los estilos scoped del consumidor no cruzan el boundary).
  */
 @Component({
-  selector: "ili-page",
+  selector: "lux-page-mobile",
   imports: [IonApp, IonContent],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

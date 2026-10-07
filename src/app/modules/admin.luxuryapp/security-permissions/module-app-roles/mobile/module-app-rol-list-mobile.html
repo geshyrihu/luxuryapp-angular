@@ -5,7 +5,7 @@
   [groupedData]="groupedData()"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item
+    <lux-list-item-mobile
       (click)="select.emit({ roleId: item.roleId, roleName: item.roleName, title: 'Asignar Módulos' })"
     >
       <ion-avatar
@@ -27,6 +27,6 @@
         <h2 class="ion-text-wrap">{{ item.roleName }}</h2>
       </ion-label>
       <ion-note slot="end" color="medium">{{ item.modules }} módulos</ion-note>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

@@ -74,7 +74,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="w-2rem h-2rem rounded-lg bg-purple-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -93,15 +93,15 @@
         </p>
       </div>
       @if (item.status === EFinancialApprovalStatus.Pendiente) {
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
             (clicked)="openDetail(item)"
           />
         </ng-container>
-      </ili-action-menu>
+      </lux-action-menu-mobile>
       }
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

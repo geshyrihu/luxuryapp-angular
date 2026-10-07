@@ -10,7 +10,7 @@ import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
   imports: [AppMultiSelect, MobileMultiSelect],
   template: `
     @if (platform.isMobile()) {
-      <ili-multi-select
+      <lux-multi-select-mobile
         [options]="options()"
         [placeholder]="placeholder()"
         [optionLabel]="optionLabel()"
@@ -19,7 +19,7 @@ import { AppMultiSelect } from "@ui/web/multi-select/multi-select";
         (onChange)="onChange.emit($event)"
         [styleClass]="styleClass()"
         ><ng-content
-      /></ili-multi-select>
+      /></lux-multi-select-mobile>
     } @else {
       <lux-multi-select-web
         [options]="options()"

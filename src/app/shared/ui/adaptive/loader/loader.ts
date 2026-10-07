@@ -11,7 +11,7 @@ import { AppLoader } from "@ui/web/loader/loader";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
-      <ili-loader />
+      <lux-loader-mobile />
     } @else {
       <lux-loader-web />
     }

@@ -3,40 +3,40 @@ import { TimelineBase } from "@ui/core/timeline.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-timeline",
+  selector: "lux-timeline-mobile",
 
   imports: [AppIconMobile],
   template: `
-    <div class="ili-tl">
+    <div class="lux-timeline-mobile">
       @for (event of events(); track $index; let last = $last) {
-        <div class="ili-tl-row">
-          <div class="ili-tl-rail">
+        <div class="lux-timeline-mobile-row">
+          <div class="lux-timeline-mobile-rail">
             <div
-              class="ili-tl-marker"
+              class="lux-timeline-mobile-marker"
               [style.background]="event.color || 'var(--ds-primary)'"
             >
               @if (event.icon) {
-                <ili-icon [icon]="event.icon" class="text-white" />
+                <lux-icon-mobile [icon]="event.icon" class="text-white" />
               }
             </div>
             @if (!last) {
-              <div class="ili-tl-line"></div>
+              <div class="lux-timeline-mobile-line"></div>
             }
           </div>
 
-          <div class="ili-tl-card">
-            <div class="ili-tl-head">
+          <div class="lux-timeline-mobile-card">
+            <div class="lux-timeline-mobile-head">
               <strong>{{ event.title }}</strong>
               @if (event.date) {
-                <span class="ili-tl-date">{{ event.date }}</span>
+                <span class="lux-timeline-mobile-date">{{ event.date }}</span>
               }
             </div>
             @if (event.description) {
-              <p class="ili-tl-desc">{{ event.description }}</p>
+              <p class="lux-timeline-mobile-desc">{{ event.description }}</p>
             }
             @if (event.badge) {
               <span
-                class="ili-tl-badge"
+                class="lux-timeline-mobile-badge"
                 [style.background]="
                   event.badgeColor || 'var(--ds-primary-light)'
                 "
@@ -51,21 +51,21 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-tl {
+      .lux-timeline-mobile {
         display: flex;
         flex-direction: column;
       }
-      .ili-tl-row {
+      .lux-timeline-mobile-row {
         display: flex;
         gap: 0.75rem;
       }
-      .ili-tl-rail {
+      .lux-timeline-mobile-rail {
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-shrink: 0;
       }
-      .ili-tl-marker {
+      .lux-timeline-mobile-marker {
         width: 32px;
         height: 32px;
         border-radius: 50%;
@@ -76,14 +76,14 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         border: 2px solid var(--ds-bg-surface);
         box-shadow: 0 0 0 2px var(--ds-border);
       }
-      .ili-tl-line {
+      .lux-timeline-mobile-line {
         flex: 1;
         width: 2px;
         min-height: 1rem;
         background: var(--ds-border);
         margin: 2px 0;
       }
-      .ili-tl-card {
+      .lux-timeline-mobile-card {
         flex: 1;
         margin-bottom: 1.25rem;
         background: var(--ds-bg-surface);
@@ -91,7 +91,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         border-radius: var(--ds-radius-lg);
         padding: 0.75rem 1rem;
       }
-      .ili-tl-head {
+      .lux-timeline-mobile-head {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
@@ -99,17 +99,17 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         color: var(--ds-text-primary);
         font-size: 0.9375rem;
       }
-      .ili-tl-date {
+      .lux-timeline-mobile-date {
         font-size: 0.8125rem;
         color: var(--ds-text-muted);
         white-space: nowrap;
       }
-      .ili-tl-desc {
+      .lux-timeline-mobile-desc {
         margin: 0.25rem 0 0;
         font-size: 0.875rem;
         color: var(--ds-text-secondary);
       }
-      .ili-tl-badge {
+      .lux-timeline-mobile-badge {
         display: inline-block;
         margin-top: 0.5rem;
         padding: 0.125rem 0.5rem;

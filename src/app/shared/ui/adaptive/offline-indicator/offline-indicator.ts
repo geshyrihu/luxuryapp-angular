@@ -10,7 +10,7 @@ import { OfflineIndicator } from "@ui/web/offline-indicator/offline-indicator";
   imports: [OfflineIndicator, MobileOfflineIndicator],
   template: `
     @if (platform.isMobile()) {
-      <ili-offline-indicator />
+      <lux-offline-indicator-mobile />
     } @else {
       <lux-offline-indicator-web />
     }

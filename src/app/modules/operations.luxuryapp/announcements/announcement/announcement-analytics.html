@@ -33,7 +33,7 @@
           [showAdd]="false"
         >
           <ng-template #listItemTemplate let-analytic>
-            <ili-list-item>
+            <lux-list-item-mobile>
               <div start class="mobile-avatar-slot d-flex align-items-center justify-content-center rounded-circle bg-primary w-3rem h-3rem">
                 <span class="text-white fw-bold text-lg">{{ analytic.userName.charAt(0).toUpperCase() }}</span>
               </div>
@@ -53,7 +53,7 @@
                   </p>
                 </div>
 
-            </ili-list-item>
+            </lux-list-item-mobile>
           </ng-template>
         </lux-data-view-mobile>
       </div>

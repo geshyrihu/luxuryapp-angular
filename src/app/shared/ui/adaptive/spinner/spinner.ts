@@ -6,7 +6,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
 
 /**
  * Wrapper multiplataforma de Spinner. Renderiza `app-spinner` (Bootstrap) o
- * `ili-spinner` (Ionic) según `PlatformService.isMobile()`.
+ * `lux-spinner-mobile` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-spinner />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { AppSpinner } from "@ui/web/spinner/spinner";
   imports: [AppSpinner, MobileSpinner],
   template: `
     @if (platform.isMobile()) {
-      <ili-spinner
+      <lux-spinner-mobile
         [size]="size()"
         [color]="color()"
         [strokeWidth]="strokeWidth()"

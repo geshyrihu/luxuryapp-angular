@@ -7,7 +7,7 @@ import { IonSkeletonText } from "@ionic/angular";
 import { SkeletonBase } from "@ui/core/skeleton.base";
 
 @Component({
-  selector: "ili-skeleton",
+  selector: "lux-skeleton-mobile",
 
   imports: [IonSkeletonText],
   template: `

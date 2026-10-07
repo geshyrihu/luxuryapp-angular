@@ -40,7 +40,7 @@ export interface TabBarItem {
           (click)="select(tab)"
         >
           @if (tab.icon) {
-            <ili-icon [icon]="tab.icon" class="tab-bar-icon" />
+            <lux-icon-mobile [icon]="tab.icon" class="tab-bar-icon" />
           }
           <span>{{ tab.label }}</span>
           @if (tab.badge && tab.badge > 0) {

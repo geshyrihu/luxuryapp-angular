@@ -6,7 +6,7 @@ import { AppRating } from "@ui/web/rating/rating";
 
 /**
  * Wrapper multiplataforma de Rating. Renderiza `app-rating` (Bootstrap) o
- * `ili-rating` (estrellas táctiles Ionic) según `PlatformService.isMobile()`.
+ * `lux-rating-mobile` (estrellas táctiles Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-rating [(value)]="..." />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { AppRating } from "@ui/web/rating/rating";
   imports: [AppRating, MobileRating],
   template: `
     @if (platform.isMobile()) {
-      <ili-rating
+      <lux-rating-mobile
         [(value)]="value"
         [label]="label()"
         [hint]="hint()"

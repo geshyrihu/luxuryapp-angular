@@ -40,7 +40,7 @@ import { ROUTES } from "src/app/routing/route-paths";
     IonInputPassword,
     ButtonMobile],
   template: `
-    <ili-page background="var(--ds-primary)">
+    <lux-page-mobile background="var(--ds-primary)">
         <!-- Fondo Premium -->
         <div class="lm-bg">
           @for (image of sliderImages(); track image) {
@@ -114,7 +114,7 @@ import { ROUTES } from "src/app/routing/route-paths";
             </form>
           </div>
         </div>
-    </ili-page>
+    </lux-page-mobile>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [

@@ -58,7 +58,7 @@
           >{{ item.recurrenceUnitDisplayName ?? 'N/A' }}</span
         >
       </span>
-      <ili-action-menu end>
+      <lux-action-menu-mobile end>
         <lux-button-mobile
           kind="edit"
           (clicked)="edit.emit({ id: item.id, title: 'Editar' })"
@@ -74,7 +74,7 @@
           color="danger"
           (clicked)="delete.emit(item.id)"
         />
-      </ili-action-menu>
+      </lux-action-menu-mobile>
     </div>
   </ng-template>
 </lux-data-view-mobile>

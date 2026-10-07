@@ -6,21 +6,21 @@ import { BadgeBase } from "@ui/core/badge.base";
  * MobileBadge — Badge sobre `ion-badge` con color semántico y tamaño.
  */
 @Component({
-  selector: "ili-badge",
+  selector: "lux-badge-mobile",
 
   imports: [IonBadge],
   template: `
-    <ion-badge [color]="ionColor()" [class]="'ili-badge-' + size()">{{
+    <ion-badge [color]="ionColor()" [class]="'lux-badge-mobile-' + size()">{{
       displayValue()
     }}</ion-badge>
   `,
   styles: [
     `
-      ili-badge .ili-badge-small {
+      lux-badge-mobile .lux-badge-mobile-small {
         font-size: 0.65rem;
         padding: 2px 5px;
       }
-      ili-badge .ili-badge-large {
+      lux-badge-mobile .lux-badge-mobile-large {
         font-size: 0.95rem;
         padding: 5px 9px;
       }

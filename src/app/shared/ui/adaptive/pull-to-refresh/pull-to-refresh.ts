@@ -14,9 +14,9 @@ import { PullToRefresh } from "@ui/web/pull-to-refresh/pull-to-refresh";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-pull-to-refresh (refresh)="refresh.emit()">
+      <lux-pull-to-refresh-mobile (refresh)="refresh.emit()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-pull-to-refresh>
+      </lux-pull-to-refresh-mobile>
     } @else {
       <lux-pull-to-refresh-web (refresh)="refresh.emit()">
         <ng-container [ngTemplateOutlet]="projected" />

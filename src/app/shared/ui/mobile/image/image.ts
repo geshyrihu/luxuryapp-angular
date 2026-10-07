@@ -14,14 +14,14 @@ import { ImageBase } from "@ui/core/image.base";
 
 /** MobileImage — Wrapper sobre ion-img con preview accesible propio. */
 @Component({
-  selector: "ili-image",
+  selector: "lux-image-mobile",
   imports: [CommonModule, IonImg],
   template: `
     @if (preview()) {
       <button
         #previewTrigger
         type="button"
-        class="ili-image-trigger"
+        class="lux-image-mobile-trigger"
         aria-label="Ampliar imagen"
         (click)="openPreview()"
       >
@@ -43,7 +43,7 @@ import { ImageBase } from "@ui/core/image.base";
 
     @if (previewOpen()) {
       <div
-        class="ili-image-preview"
+        class="lux-image-mobile-preview"
         role="dialog"
         aria-modal="true"
         [attr.aria-label]="alt() || 'Vista previa de imagen'"
@@ -52,7 +52,7 @@ import { ImageBase } from "@ui/core/image.base";
       >
         <button
           type="button"
-          class="ili-image-preview-close"
+          class="lux-image-mobile-preview-close"
           aria-label="Cerrar vista previa"
           (click)="closePreview()"
         >X</button>
@@ -62,9 +62,9 @@ import { ImageBase } from "@ui/core/image.base";
   `,
   styles: [
     `
-      ili-image ion-img::part(image) { object-fit: contain; }
+      lux-image-mobile ion-img::part(image) { object-fit: contain; }
 
-      .ili-image-trigger {
+      .lux-image-mobile-trigger {
         display: inline-block;
         padding: 0;
         border: 0;
@@ -72,7 +72,7 @@ import { ImageBase } from "@ui/core/image.base";
         cursor: zoom-in;
       }
 
-      .ili-image-preview {
+      .lux-image-mobile-preview {
         position: fixed;
         inset: 0;
         z-index: 1000;
@@ -83,13 +83,13 @@ import { ImageBase } from "@ui/core/image.base";
         background: var(--ds-bg-overlay);
       }
 
-      .ili-image-preview img {
+      .lux-image-mobile-preview img {
         max-width: 95vw;
         max-height: 90vh;
         object-fit: contain;
       }
 
-      .ili-image-preview-close {
+      .lux-image-mobile-preview-close {
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
@@ -101,9 +101,9 @@ import { ImageBase } from "@ui/core/image.base";
         font-size: 1.25rem;
       }
 
-      .ili-image-trigger:focus-visible,
-      .ili-image-preview:focus-visible,
-      .ili-image-preview-close:focus-visible {
+      .lux-image-mobile-trigger:focus-visible,
+      .lux-image-mobile-preview:focus-visible,
+      .lux-image-mobile-preview-close:focus-visible {
         outline: 2px solid var(--ds-primary);
         outline-offset: 2px;
       }
@@ -122,7 +122,7 @@ export class MobileImage extends ImageBase {
     this.previousOverflow = document.body.style.overflow;
     this.renderer.setStyle(document.body, "overflow", "hidden");
     this.previewOpen.set(true);
-    queueMicrotask(() => (this.host.nativeElement.querySelector(".ili-image-preview") as HTMLElement | null)?.focus());
+    queueMicrotask(() => (this.host.nativeElement.querySelector(".lux-image-mobile-preview") as HTMLElement | null)?.focus());
   }
 
   closePreview(): void {

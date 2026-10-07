@@ -8,7 +8,7 @@ import { ToolbarBase } from "@ui/core/toolbar.base";
 import { IonToolbar, IonButtons } from "@ionic/angular";
 
 @Component({
-  selector: "ili-toolbar",
+  selector: "lux-toolbar-mobile",
   imports: [CommonModule, IonToolbar, IonButtons],
   template: `
     <ion-toolbar [class]="styleClass()">

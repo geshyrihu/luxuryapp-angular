@@ -3,7 +3,7 @@ import { IonSpinner } from "@ionic/angular";
 import { LoaderBase } from "../../core/loader.base";
 
 @Component({
-  selector: "ili-loader",
+  selector: "lux-loader-mobile",
 
   imports: [IonSpinner],
   template: `

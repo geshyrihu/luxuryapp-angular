@@ -12,7 +12,7 @@ import { Tabs } from "@ui/web/tabs/tabs";
 
 /**
  * `lux-tabs` — capa adaptativa. La navegacion la aporta `app-tabs` (web) o
- * `ili-tabs` (mobile) en modo `navOnly`, y los paneles se proyectan UNA sola vez
+ * `lux-tabs-mobile` (mobile) en modo `navOnly`, y los paneles se proyectan UNA sola vez
  * en un contenedor propio para no perder el contenido al alternar de stack.
  */
 @Component({
@@ -21,7 +21,7 @@ import { Tabs } from "@ui/web/tabs/tabs";
   imports: [Tabs, MobileTabs],
   template: `
     @if (platform.isMobile()) {
-      <ili-tabs
+      <lux-tabs-mobile
         [tabs]="tabs()"
         [(activeId)]="activeId"
         (tabChange)="tabChange.emit($event)"

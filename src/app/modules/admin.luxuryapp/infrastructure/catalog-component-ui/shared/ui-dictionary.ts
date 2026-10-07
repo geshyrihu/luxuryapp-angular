@@ -8,1923 +8,1923 @@ export interface UIDictionaryItem {
 
 export const UI_DICTIONARY: UIDictionaryItem[] = [
   {
-    selector: "[lxTooltip]",
-    className: "LxTooltipDirective",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tooltip/tooltip.directive.ts",
+    "selector": "[lxTooltip]",
+    "className": "LxTooltipDirective",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tooltip/tooltip.directive.ts"
   },
   {
-    selector: "[lxTooltip]",
-    className: "LxTooltip",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tooltip/tooltip.ts",
+    "selector": "[lxTooltip]",
+    "className": "LxTooltip",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tooltip/tooltip.ts"
   },
   {
-    selector: "[lxWeb]",
-    className: "LxWebDirective",
-    category: "adaptive",
-    path: "shared/ui/adaptive/viewport/viewport.directives.ts",
+    "selector": "[lxWeb]",
+    "className": "LxWebDirective",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/viewport/viewport.directives.ts"
   },
   {
-    selector: "lux-accordion",
-    className: "LxAccordion",
-    category: "adaptive",
-    path: "shared/ui/adaptive/accordion/accordion.ts",
+    "selector": "lux-accordion",
+    "className": "LxAccordion",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/accordion/accordion.ts"
   },
   {
-    selector: "lux-action-sheet",
-    className: "LxActionSheet",
-    category: "adaptive",
-    path: "shared/ui/adaptive/action-sheet/action-sheet.ts",
+    "selector": "lux-action-sheet",
+    "className": "LxActionSheet",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/action-sheet/action-sheet.ts"
   },
   {
-    selector: "lux-avatar",
-    className: "LxAvatar",
-    category: "adaptive",
-    path: "shared/ui/adaptive/avatar/avatar.ts",
+    "selector": "lux-avatar",
+    "className": "LxAvatar",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/avatar/avatar.ts"
   },
   {
-    selector: "lux-badge",
-    className: "LxBadge",
-    category: "adaptive",
-    path: "shared/ui/adaptive/badge/badge.ts",
+    "selector": "lux-badge",
+    "className": "LxBadge",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/badge/badge.ts"
   },
   {
-    selector: "lux-breadcrumbs",
-    className: "LxBreadcrumbs",
-    category: "adaptive",
-    path: "shared/ui/adaptive/breadcrumbs/breadcrumbs.ts",
+    "selector": "lux-breadcrumbs",
+    "className": "LxBreadcrumbs",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/breadcrumbs/breadcrumbs.ts"
   },
   {
-    selector: "lux-button",
-    className: "LuxButton",
-    category: "adaptive",
-    path: "shared/ui/adaptive/button/button.ts",
+    "selector": "lux-button",
+    "className": "LuxButton",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/button/button.ts"
   },
   {
-    selector: "lux-card",
-    className: "LxCard",
-    category: "adaptive",
-    path: "shared/ui/adaptive/card/card.ts",
+    "selector": "lux-card",
+    "className": "LxCard",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/card/card.ts"
   },
   {
-    selector: "lux-carousel",
-    className: "LxCarousel",
-    category: "adaptive",
-    path: "shared/ui/adaptive/carousel/carousel.ts",
+    "selector": "lux-carousel",
+    "className": "LxCarousel",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/carousel/carousel.ts"
   },
   {
-    selector: "lux-checkbox",
-    className: "LxCheckbox",
-    category: "adaptive",
-    path: "shared/ui/adaptive/checkbox/checkbox.ts",
+    "selector": "lux-checkbox",
+    "className": "LxCheckbox",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/checkbox/checkbox.ts"
   },
   {
-    selector: "lux-chip",
-    className: "LxChip",
-    category: "adaptive",
-    path: "shared/ui/adaptive/chip/chip.ts",
+    "selector": "lux-chip",
+    "className": "LxChip",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/chip/chip.ts"
   },
   {
-    selector: "lux-confirm-dialog",
-    className: "LxConfirmDialog",
-    category: "adaptive",
-    path: "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts",
+    "selector": "lux-confirm-dialog",
+    "className": "LxConfirmDialog",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/confirm-dialog/confirm-dialog.ts"
   },
   {
-    selector: "lux-debug-console",
-    className: "LxDebugConsole",
-    category: "adaptive",
-    path: "shared/ui/adaptive/debug-console/debug-console.ts",
+    "selector": "lux-debug-console",
+    "className": "LxDebugConsole",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/debug-console/debug-console.ts"
   },
   {
-    selector: "lux-divider",
-    className: "LxDivider",
-    category: "adaptive",
-    path: "shared/ui/adaptive/divider/divider.ts",
+    "selector": "lux-divider",
+    "className": "LxDivider",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/divider/divider.ts"
   },
   {
-    selector: "lux-editor",
-    className: "LxEditor",
-    category: "adaptive",
-    path: "shared/ui/adaptive/editor/editor.ts",
+    "selector": "lux-editor",
+    "className": "LxEditor",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/editor/editor.ts"
   },
   {
-    selector: "lux-empty-state",
-    className: "LxEmptyState",
-    category: "adaptive",
-    path: "shared/ui/adaptive/empty-state/empty-state.ts",
+    "selector": "lux-empty-state",
+    "className": "LxEmptyState",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/empty-state/empty-state.ts"
   },
   {
-    selector: "lux-fieldset",
-    className: "LxFieldset",
-    category: "adaptive",
-    path: "shared/ui/adaptive/fieldset/fieldset.ts",
+    "selector": "lux-fieldset",
+    "className": "LxFieldset",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/fieldset/fieldset.ts"
   },
   {
-    selector: "lux-file-upload",
-    className: "LxFileUpload",
-    category: "adaptive",
-    path: "shared/ui/adaptive/file-upload/file-upload.ts",
+    "selector": "lux-file-upload",
+    "className": "LxFileUpload",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/file-upload/file-upload.ts"
   },
   {
-    selector: "lux-icon",
-    className: "LxIcon",
-    category: "adaptive",
-    path: "shared/ui/adaptive/icon/icon.ts",
+    "selector": "lux-icon",
+    "className": "LxIcon",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/icon/icon.ts"
   },
   {
-    selector: "lux-image",
-    className: "LxImage",
-    category: "adaptive",
-    path: "shared/ui/adaptive/image/image.ts",
+    "selector": "lux-image",
+    "className": "LxImage",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/image/image.ts"
   },
   {
-    selector: "lux-infinite-scroll",
-    className: "LxInfiniteScroll",
-    category: "adaptive",
-    path: "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts",
+    "selector": "lux-infinite-scroll",
+    "className": "LxInfiniteScroll",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/infinite-scroll/infinite-scroll.ts"
   },
   {
-    selector: "lux-listbox",
-    className: "LxListbox",
-    category: "adaptive",
-    path: "shared/ui/adaptive/listbox/listbox.ts",
+    "selector": "lux-listbox",
+    "className": "LxListbox",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/listbox/listbox.ts"
   },
   {
-    selector: "lux-loader",
-    className: "LxLoader",
-    category: "adaptive",
-    path: "shared/ui/adaptive/loader/loader.ts",
+    "selector": "lux-loader",
+    "className": "LxLoader",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/loader/loader.ts"
   },
   {
-    selector: "lux-menu",
-    className: "LxMenu",
-    category: "adaptive",
-    path: "shared/ui/adaptive/menu/menu.ts",
+    "selector": "lux-menu",
+    "className": "LxMenu",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/menu/menu.ts"
   },
   {
-    selector: "lux-menubar",
-    className: "LxMenubar",
-    category: "adaptive",
-    path: "shared/ui/adaptive/menubar/menubar.ts",
+    "selector": "lux-menubar",
+    "className": "LxMenubar",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/menubar/menubar.ts"
   },
   {
-    selector: "lux-message",
-    className: "LxMessage",
-    category: "adaptive",
-    path: "shared/ui/adaptive/message/message.ts",
+    "selector": "lux-message",
+    "className": "LxMessage",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/message/message.ts"
   },
   {
-    selector: "lux-modal",
-    className: "LuxModal",
-    category: "adaptive",
-    path: "shared/ui/adaptive/modal/modal.ts",
+    "selector": "lux-modal",
+    "className": "LuxModal",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/modal/modal.ts"
   },
   {
-    selector: "lux-multi-select",
-    className: "LxMultiSelect",
-    category: "adaptive",
-    path: "shared/ui/adaptive/multi-select/multi-select.ts",
+    "selector": "lux-multi-select",
+    "className": "LxMultiSelect",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/multi-select/multi-select.ts"
   },
   {
-    selector: "lux-offline-indicator",
-    className: "LxOfflineIndicator",
-    category: "adaptive",
-    path: "shared/ui/adaptive/offline-indicator/offline-indicator.ts",
+    "selector": "lux-offline-indicator",
+    "className": "LxOfflineIndicator",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/offline-indicator/offline-indicator.ts"
   },
   {
-    selector: "lux-paginator",
-    className: "LxPaginator",
-    category: "adaptive",
-    path: "shared/ui/adaptive/paginator/paginator.ts",
+    "selector": "lux-paginator",
+    "className": "LxPaginator",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/paginator/paginator.ts"
   },
   {
-    selector: "lux-panel",
-    className: "LxPanel",
-    category: "adaptive",
-    path: "shared/ui/adaptive/panel/panel.ts",
+    "selector": "lux-panel",
+    "className": "LxPanel",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/panel/panel.ts"
   },
   {
-    selector: "lux-popover",
-    className: "LxPopover",
-    category: "adaptive",
-    path: "shared/ui/adaptive/popover/popover.ts",
+    "selector": "lux-popover",
+    "className": "LxPopover",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/popover/popover.ts"
   },
   {
-    selector: "lux-processing-overlay",
-    className: "LxProcessingOverlay",
-    category: "adaptive",
-    path: "shared/ui/adaptive/processing-overlay/processing-overlay.ts",
+    "selector": "lux-processing-overlay",
+    "className": "LxProcessingOverlay",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/processing-overlay/processing-overlay.ts"
   },
   {
-    selector: "lux-progress-bar",
-    className: "LxProgressBar",
-    category: "adaptive",
-    path: "shared/ui/adaptive/progress-bar/progress-bar.ts",
+    "selector": "lux-progress-bar",
+    "className": "LxProgressBar",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/progress-bar/progress-bar.ts"
   },
   {
-    selector: "lux-pull-to-refresh",
-    className: "LxPullToRefresh",
-    category: "adaptive",
-    path: "shared/ui/adaptive/pull-to-refresh/pull-to-refresh.ts",
+    "selector": "lux-pull-to-refresh",
+    "className": "LxPullToRefresh",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/pull-to-refresh/pull-to-refresh.ts"
   },
   {
-    selector: "lux-radio-button",
-    className: "LxRadioButton",
-    category: "adaptive",
-    path: "shared/ui/adaptive/radio-button/radio-button.ts",
+    "selector": "lux-radio-button",
+    "className": "LxRadioButton",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/radio-button/radio-button.ts"
   },
   {
-    selector: "lux-rating",
-    className: "LxRating",
-    category: "adaptive",
-    path: "shared/ui/adaptive/rating/rating.ts",
+    "selector": "lux-rating",
+    "className": "LxRating",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/rating/rating.ts"
   },
   {
-    selector: "lux-scroll-top",
-    className: "LxScrollTop",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tap-to-top/tap-to-top.ts",
+    "selector": "lux-scroll-top",
+    "className": "LxScrollTop",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tap-to-top/tap-to-top.ts"
   },
   {
-    selector: "lux-sidebar",
-    className: "LxSidebar",
-    category: "adaptive",
-    path: "shared/ui/adaptive/sidebar/sidebar.ts",
+    "selector": "lux-sidebar",
+    "className": "LxSidebar",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/sidebar/sidebar.ts"
   },
   {
-    selector: "lux-skeleton",
-    className: "LxSkeleton",
-    category: "adaptive",
-    path: "shared/ui/adaptive/skeleton/skeleton.ts",
+    "selector": "lux-skeleton",
+    "className": "LxSkeleton",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/skeleton/skeleton.ts"
   },
   {
-    selector: "lux-spinner",
-    className: "LxSpinner",
-    category: "adaptive",
-    path: "shared/ui/adaptive/spinner/spinner.ts",
+    "selector": "lux-spinner",
+    "className": "LxSpinner",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/spinner/spinner.ts"
   },
   {
-    selector: "lux-split-button",
-    className: "LxSplitButton",
-    category: "adaptive",
-    path: "shared/ui/adaptive/split-button/split-button.ts",
+    "selector": "lux-split-button",
+    "className": "LxSplitButton",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/split-button/split-button.ts"
   },
   {
-    selector: "lux-status-badge",
-    className: "LxStatusBadge",
-    category: "adaptive",
-    path: "shared/ui/adaptive/status-badge/status-badge.ts",
+    "selector": "lux-status-badge",
+    "className": "LxStatusBadge",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/status-badge/status-badge.ts"
   },
   {
-    selector: "lux-stepper",
-    className: "LxStepper",
-    category: "adaptive",
-    path: "shared/ui/adaptive/stepper/stepper.ts",
+    "selector": "lux-stepper",
+    "className": "LxStepper",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/stepper/stepper.ts"
   },
   {
-    selector: "lux-steps",
-    className: "LxSteps",
-    category: "adaptive",
-    path: "shared/ui/adaptive/steps/steps.ts",
+    "selector": "lux-steps",
+    "className": "LxSteps",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/steps/steps.ts"
   },
   {
-    selector: "lux-swipe-actions",
-    className: "LxSwipeActions",
-    category: "adaptive",
-    path: "shared/ui/adaptive/swipe-actions/swipe-actions.ts",
+    "selector": "lux-swipe-actions",
+    "className": "LxSwipeActions",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/swipe-actions/swipe-actions.ts"
   },
   {
-    selector: "lux-table",
-    className: "LxTable",
-    category: "adaptive",
-    path: "shared/ui/adaptive/table/table.ts",
+    "selector": "lux-table",
+    "className": "LxTable",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/table/table.ts"
   },
   {
-    selector: "lux-tabs",
-    className: "LxTabs",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tabs/tabs.ts",
+    "selector": "lux-tabs",
+    "className": "LxTabs",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tabs/tabs.ts"
   },
   {
-    selector: "lux-tag",
-    className: "LxTag",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tag/tag.ts",
+    "selector": "lux-tag",
+    "className": "LxTag",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tag/tag.ts"
   },
   {
-    selector: "lux-timeline",
-    className: "LxTimeline",
-    category: "adaptive",
-    path: "shared/ui/adaptive/timeline/timeline.ts",
+    "selector": "lux-timeline",
+    "className": "LxTimeline",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/timeline/timeline.ts"
   },
   {
-    selector: "lux-toast",
-    className: "LxToast",
-    category: "adaptive",
-    path: "shared/ui/adaptive/toast/toast.ts",
+    "selector": "lux-toast",
+    "className": "LxToast",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/toast/toast.ts"
   },
   {
-    selector: "lux-toolbar",
-    className: "LxToolbar",
-    category: "adaptive",
-    path: "shared/ui/adaptive/toolbar/toolbar.ts",
+    "selector": "lux-toolbar",
+    "className": "LxToolbar",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/toolbar/toolbar.ts"
   },
   {
-    selector: "lux-tree",
-    className: "LxTree",
-    category: "adaptive",
-    path: "shared/ui/adaptive/tree/tree.ts",
+    "selector": "lux-tree",
+    "className": "LxTree",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/tree/tree.ts"
   },
   {
-    selector: "lux-widget-card",
-    className: "LxWidgetCard",
-    category: "adaptive",
-    path: "shared/ui/adaptive/widget-card/widget-card.ts",
+    "selector": "lux-widget-card",
+    "className": "LxWidgetCard",
+    "category": "adaptive",
+    "path": "shared/ui/adaptive/widget-card/widget-card.ts"
   },
   {
-    selector: "lux-ai-chat-widget",
-    className: "AiChatWidget",
-    category: "ai-chat-widget",
-    path: "shared/ui/ai-chat-widget/ai-chat-widget.ts",
+    "selector": "lux-ai-chat-widget",
+    "className": "AiChatWidget",
+    "category": "ai-chat-widget",
+    "path": "shared/ui/ai-chat-widget/ai-chat-widget.ts"
   },
   {
-    selector: "lux-button-group",
-    className: "LuxButtonGroup",
-    category: "buttons",
-    path: "shared/ui/buttons/button-group/button-group.ts",
+    "selector": "lux-button-group",
+    "className": "LuxButtonGroup",
+    "category": "buttons",
+    "path": "shared/ui/buttons/button-group/button-group.ts"
   },
   {
-    selector: "lux-button-mobile",
-    className: "ButtonMobile",
-    category: "buttons",
-    path: "shared/ui/buttons/mobile/button.ts",
+    "selector": "lux-button-mobile",
+    "className": "ButtonMobile",
+    "category": "buttons",
+    "path": "shared/ui/buttons/mobile/button.ts"
   },
   {
-    selector: "lux-button-web",
-    className: "ButtonWeb",
-    category: "buttons",
-    path: "shared/ui/buttons/web/button.ts",
+    "selector": "lux-button-web",
+    "className": "ButtonWeb",
+    "category": "buttons",
+    "path": "shared/ui/buttons/web/button.ts"
   },
   {
-    selector: "lux-ds-chart",
-    className: "DsChart",
-    category: "charts",
-    path: "shared/ui/charts/chart.ts",
+    "selector": "lux-ds-chart",
+    "className": "DsChart",
+    "category": "charts",
+    "path": "shared/ui/charts/chart.ts"
   },
   {
-    selector: "[step]",
-    className: "StepperStepSection",
-    category: "core",
-    path: "shared/ui/core/stepper-step-section.directive.ts",
+    "selector": "[step]",
+    "className": "StepperStepSection",
+    "category": "core",
+    "path": "shared/ui/core/stepper-step-section.directive.ts"
   },
   {
-    selector: "base-processing-overlay",
-    className: "ProcessingOverlayBase",
-    category: "core",
-    path: "shared/ui/core/processing-overlay.base.ts",
+    "selector": "base-processing-overlay",
+    "className": "ProcessingOverlayBase",
+    "category": "core",
+    "path": "shared/ui/core/processing-overlay.base.ts"
   },
   {
-    selector: "lux-image-analysis-dialog",
-    className: "ImageAnalysisDialogComponent",
-    category: "image-analysis-dialog",
-    path: "shared/ui/image-analysis-dialog/image-analysis-dialog.ts",
+    "selector": "lux-image-analysis-dialog",
+    "className": "ImageAnalysisDialogComponent",
+    "category": "image-analysis-dialog",
+    "path": "shared/ui/image-analysis-dialog/image-analysis-dialog.ts"
   },
   {
-    selector: "base-input-signal",
-    className: "BaseInputSignal",
-    category: "inputs",
-    path: "shared/ui/inputs/core/base-input-signal.ts",
+    "selector": "base-input-signal",
+    "className": "BaseInputSignal",
+    "category": "inputs",
+    "path": "shared/ui/inputs/core/base-input-signal.ts"
   },
   {
-    selector: "base-ionic-input",
-    className: "BaseIonicInput",
-    category: "inputs",
-    path: "shared/ui/inputs/core/base-ionic-input.ts",
+    "selector": "base-ionic-input",
+    "className": "BaseIonicInput",
+    "category": "inputs",
+    "path": "shared/ui/inputs/core/base-ionic-input.ts"
   },
   {
-    selector: "ion-input-autocomplete",
-    className: "IonInputAutocomplete",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-autocomplete.ts",
+    "selector": "ion-input-autocomplete",
+    "className": "IonInputAutocomplete",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-autocomplete.ts"
   },
   {
-    selector: "ion-input-checkbox",
-    className: "IonInputCheckbox",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-checkbox.ts",
+    "selector": "ion-input-checkbox",
+    "className": "IonInputCheckbox",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-checkbox.ts"
   },
   {
-    selector: "ion-input-currency",
-    className: "IonInputCurrency",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-currency.ts",
+    "selector": "ion-input-currency",
+    "className": "IonInputCurrency",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-currency.ts"
   },
   {
-    selector: "ion-input-date",
-    className: "IonInputDate",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-date.ts",
+    "selector": "ion-input-date",
+    "className": "IonInputDate",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-date.ts"
   },
   {
-    selector: "ion-input-date-time",
-    className: "IonInputDateTime",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-date-time.ts",
+    "selector": "ion-input-date-time",
+    "className": "IonInputDateTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-date-time.ts"
   },
   {
-    selector: "ion-input-datepicker",
-    className: "IonInputDatepicker",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-datepicker.ts",
+    "selector": "ion-input-datepicker",
+    "className": "IonInputDatepicker",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-datepicker.ts"
   },
   {
-    selector: "ion-input-email",
-    className: "IonInputEmail",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-email.ts",
+    "selector": "ion-input-email",
+    "className": "IonInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-email.ts"
   },
   {
-    selector: "ion-input-file",
-    className: "IonInputFile",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-file.ts",
+    "selector": "ion-input-file",
+    "className": "IonInputFile",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-file.ts"
   },
   {
-    selector: "ion-input-img",
-    className: "IonInputImg",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-img.ts",
+    "selector": "ion-input-img",
+    "className": "IonInputImg",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-img.ts"
   },
   {
-    selector: "ion-input-mask",
-    className: "IonInputMask",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-mask.ts",
+    "selector": "ion-input-mask",
+    "className": "IonInputMask",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-mask.ts"
   },
   {
-    selector: "ion-input-month",
-    className: "IonInputMonth",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-month.ts",
+    "selector": "ion-input-month",
+    "className": "IonInputMonth",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-month.ts"
   },
   {
-    selector: "ion-input-multiselect",
-    className: "IonInputMultiselect",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-multiselect.ts",
+    "selector": "ion-input-multiselect",
+    "className": "IonInputMultiselect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-multiselect.ts"
   },
   {
-    selector: "ion-input-ng-select",
-    className: "IonInputNgSelect",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-ng-select.ts",
+    "selector": "ion-input-ng-select",
+    "className": "IonInputNgSelect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-ng-select.ts"
   },
   {
-    selector: "ion-input-number",
-    className: "IonInputNumber",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-number.ts",
+    "selector": "ion-input-number",
+    "className": "IonInputNumber",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-number.ts"
   },
   {
-    selector: "ion-input-password",
-    className: "IonInputPassword",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-password.ts",
+    "selector": "ion-input-password",
+    "className": "IonInputPassword",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-password.ts"
   },
   {
-    selector: "ion-input-phone-prefix",
-    className: "IonInputPhonePrefix",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-phone-prefix.ts",
+    "selector": "ion-input-phone-prefix",
+    "className": "IonInputPhonePrefix",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-phone-prefix.ts"
   },
   {
-    selector: "ion-input-search",
-    className: "IonInputSearch",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-search.ts",
+    "selector": "ion-input-search",
+    "className": "IonInputSearch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-search.ts"
   },
   {
-    selector: "ion-input-select",
-    className: "IonInputSelect",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-select.ts",
+    "selector": "ion-input-select",
+    "className": "IonInputSelect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-select.ts"
   },
   {
-    selector: "ion-input-select-bool",
-    className: "IonInputSelectBool",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-select-bool.ts",
+    "selector": "ion-input-select-bool",
+    "className": "IonInputSelectBool",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-select-bool.ts"
   },
   {
-    selector: "ion-input-select-prefix",
-    className: "IonInputSelectPrefix",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-select-prefix.ts",
+    "selector": "ion-input-select-prefix",
+    "className": "IonInputSelectPrefix",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-select-prefix.ts"
   },
   {
-    selector: "ion-input-text",
-    className: "IonInputText",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-text.ts",
+    "selector": "ion-input-text",
+    "className": "IonInputText",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-text.ts"
   },
   {
-    selector: "ion-input-textarea",
-    className: "IonInputTextarea",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-textarea.ts",
+    "selector": "ion-input-textarea",
+    "className": "IonInputTextarea",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-textarea.ts"
   },
   {
-    selector: "ion-input-time",
-    className: "IonInputTime",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-time.ts",
+    "selector": "ion-input-time",
+    "className": "IonInputTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-time.ts"
   },
   {
-    selector: "ion-input-toggle",
-    className: "IonInputToggle",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-toggle.ts",
+    "selector": "ion-input-toggle",
+    "className": "IonInputToggle",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-toggle.ts"
   },
   {
-    selector: "ion-input-upload-pdf",
-    className: "IonInputUploadPdf",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-upload-pdf.ts",
+    "selector": "ion-input-upload-pdf",
+    "className": "IonInputUploadPdf",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-upload-pdf.ts"
   },
   {
-    selector: "ion-input-url",
-    className: "IonInputUrl",
-    category: "inputs",
-    path: "shared/ui/inputs/mobile/ion-input-url.ts",
+    "selector": "ion-input-url",
+    "className": "IonInputUrl",
+    "category": "inputs",
+    "path": "shared/ui/inputs/mobile/ion-input-url.ts"
   },
   {
-    selector: "lux-custom-input-upload-pdf-signal",
-    className: "InputUploadPdf",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-upload-pdf/input-upload-pdf.ts",
+    "selector": "lux-custom-input-upload-pdf-signal",
+    "className": "InputUploadPdf",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-upload-pdf/input-upload-pdf.ts"
   },
   {
-    selector: "lux-input-autocomplete-multiple-signal",
-    className: "LuxInputAutoMultiple",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-autocomplete-multiple-signal.ts",
+    "selector": "lux-input-autocomplete-multiple-signal",
+    "className": "LuxInputAutoMultiple",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-autocomplete-multiple-signal.ts"
   },
   {
-    selector: "lux-input-autocomplete-signal",
-    className: "InputAutocomplete",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-autocomplete/input-autocomplete.ts",
+    "selector": "lux-input-autocomplete-signal",
+    "className": "InputAutocomplete",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-autocomplete/input-autocomplete.ts"
   },
   {
-    selector: "lux-input-check-signal",
-    className: "InputCheck",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-check/input-check.ts",
+    "selector": "lux-input-check-signal",
+    "className": "InputCheck",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-check/input-check.ts"
   },
   {
-    selector: "lux-input-currency-signal",
-    className: "InputCurrency",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-currency/input-currency.ts",
+    "selector": "lux-input-currency-signal",
+    "className": "InputCurrency",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-currency/input-currency.ts"
   },
   {
-    selector: "lux-input-date-signal",
-    className: "InputDate",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-date/input-date.ts",
+    "selector": "lux-input-date-signal",
+    "className": "InputDate",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-date/input-date.ts"
   },
   {
-    selector: "lux-input-date-time-native",
-    className: "LuxInputDateTimeNative",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-date-time-native.ts",
+    "selector": "lux-input-date-time-native",
+    "className": "LuxInputDateTimeNative",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-date-time-native.ts"
   },
   {
-    selector: "lux-input-date-time-signal",
-    className: "InputDateTime",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-date-time/input-date-time.ts",
+    "selector": "lux-input-date-time-signal",
+    "className": "InputDateTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-date-time/input-date-time.ts"
   },
   {
-    selector: "lux-input-datepicker-signal",
-    className: "InputDatepicker",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-datepicker/input-datepicker.ts",
+    "selector": "lux-input-datepicker-signal",
+    "className": "InputDatepicker",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-datepicker/input-datepicker.ts"
   },
   {
-    selector: "lux-input-decimal-signal",
-    className: "LuxInputDecimal",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-decimal-signal.ts",
+    "selector": "lux-input-decimal-signal",
+    "className": "LuxInputDecimal",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-decimal-signal.ts"
   },
   {
-    selector: "lux-input-email",
-    className: "InputEmail",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-email/input-email.ts",
+    "selector": "lux-input-email",
+    "className": "InputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-email/input-email.ts"
   },
   {
-    selector: "lux-input-file-signal",
-    className: "InputFile",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-file/input-file.ts",
+    "selector": "lux-input-file-signal",
+    "className": "InputFile",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-file/input-file.ts"
   },
   {
-    selector: "lux-input-hour-signal",
-    className: "LuxInputHour",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-hour-signal.ts",
+    "selector": "lux-input-hour-signal",
+    "className": "LuxInputHour",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-hour-signal.ts"
   },
   {
-    selector: "lux-input-img-signal",
-    className: "InputImg",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-img/input-img.ts",
+    "selector": "lux-input-img-signal",
+    "className": "InputImg",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-img/input-img.ts"
   },
   {
-    selector: "lux-input-mask-signal",
-    className: "InputMask",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-mask/input-mask.ts",
+    "selector": "lux-input-mask-signal",
+    "className": "InputMask",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-mask/input-mask.ts"
   },
   {
-    selector: "lux-input-month",
-    className: "InputMonth",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-month/input-month.ts",
+    "selector": "lux-input-month",
+    "className": "InputMonth",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-month/input-month.ts"
   },
   {
-    selector: "lux-input-multiselect-signal",
-    className: "InputMultiselect",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-multiselect/input-multiselect.ts",
+    "selector": "lux-input-multiselect-signal",
+    "className": "InputMultiselect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-multiselect/input-multiselect.ts"
   },
   {
-    selector: "lux-input-number-signal",
-    className: "InputNumber",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-number/input-number.ts",
+    "selector": "lux-input-number-signal",
+    "className": "InputNumber",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-number/input-number.ts"
   },
   {
-    selector: "lux-input-password-signal",
-    className: "InputPassword",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-password/input-password.ts",
+    "selector": "lux-input-password-signal",
+    "className": "InputPassword",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-password/input-password.ts"
   },
   {
-    selector: "lux-input-phone-prefix",
-    className: "InputPhonePrefix",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-phone-prefix/input-phone-prefix.ts",
+    "selector": "lux-input-phone-prefix",
+    "className": "InputPhonePrefix",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-phone-prefix/input-phone-prefix.ts"
   },
   {
-    selector: "lux-input-select-button-signal",
-    className: "LuxInputSelectButton",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-select-button-signal.ts",
+    "selector": "lux-input-select-button-signal",
+    "className": "LuxInputSelectButton",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-select-button-signal.ts"
   },
   {
-    selector: "lux-input-select-signal",
-    className: "InputSelect",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-select/input-select.ts",
+    "selector": "lux-input-select-signal",
+    "className": "InputSelect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-select/input-select.ts"
   },
   {
-    selector: "lux-input-select-signal-bool",
-    className: "InputSelectBool",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-select-bool/input-select-bool.ts",
+    "selector": "lux-input-select-signal-bool",
+    "className": "InputSelectBool",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-select-bool/input-select-bool.ts"
   },
   {
-    selector: "lux-input-switch-signal",
-    className: "LuxInputSwitch",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-switch-signal.ts",
+    "selector": "lux-input-switch-signal",
+    "className": "LuxInputSwitch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-switch-signal.ts"
   },
   {
-    selector: "lux-input-text-signal",
-    className: "InputText",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-text/input-text.ts",
+    "selector": "lux-input-text-signal",
+    "className": "InputText",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-text/input-text.ts"
   },
   {
-    selector: "lux-input-textarea-signal",
-    className: "InputTextarea",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-textarea/input-textarea.ts",
+    "selector": "lux-input-textarea-signal",
+    "className": "InputTextarea",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-textarea/input-textarea.ts"
   },
   {
-    selector: "lux-input-time-signal",
-    className: "InputTime",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-time/input-time.ts",
+    "selector": "lux-input-time-signal",
+    "className": "InputTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-time/input-time.ts"
   },
   {
-    selector: "lux-input-toggle-switch-signal",
-    className: "InputToggleSwitch",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-toggle-switch/input-toggle-switch.ts",
+    "selector": "lux-input-toggle-switch-signal",
+    "className": "InputToggleSwitch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-toggle-switch/input-toggle-switch.ts"
   },
   {
-    selector: "lux-input-url",
-    className: "InputUrl",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-url/input-url.ts",
+    "selector": "lux-input-url",
+    "className": "InputUrl",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-url/input-url.ts"
   },
   {
-    selector: "lux-search-input-signal",
-    className: "InputSearch",
-    category: "inputs",
-    path: "shared/ui/inputs/adaptive/input-search/input-search.ts",
+    "selector": "lux-search-input-signal",
+    "className": "InputSearch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/adaptive/input-search/input-search.ts"
   },
   {
-    selector: "lux-subir-pdf",
-    className: "SubirPdf",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-upload-pdf-signal.ts",
+    "selector": "lux-subir-pdf",
+    "className": "SubirPdf",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-upload-pdf-signal.ts"
   },
   {
-    selector: "lux-validation-errors-custom-input",
-    className: "ValidationErrorsLuxInput",
-    category: "inputs",
-    path: "shared/ui/inputs/core/validation-errors-custom-input.ts",
+    "selector": "lux-validation-errors-custom-input",
+    "className": "ValidationErrorsLuxInput",
+    "category": "inputs",
+    "path": "shared/ui/inputs/core/validation-errors-custom-input.ts"
   },
   {
-    selector: "web-custom-input-autocomplete-signal",
-    className: "LuxInputAutoComplete",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-autocomplete-signal.ts",
+    "selector": "web-custom-input-autocomplete-signal",
+    "className": "LuxInputAutoComplete",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-autocomplete-signal.ts"
   },
   {
-    selector: "web-custom-input-date-time-signal",
-    className: "LuxInputDateTimeSignal",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-date-time-signal.ts",
+    "selector": "web-custom-input-date-time-signal",
+    "className": "LuxInputDateTimeSignal",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-date-time-signal.ts"
   },
   {
-    selector: "web-custom-input-datepicker-signal",
-    className: "LuxInputDatepicker",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-datepicker-signal.ts",
+    "selector": "web-custom-input-datepicker-signal",
+    "className": "LuxInputDatepicker",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-datepicker-signal.ts"
   },
   {
-    selector: "web-custom-input-email",
-    className: "LuxInputEmail",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-email-signal.ts",
+    "selector": "web-custom-input-email",
+    "className": "LuxInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-email-signal.ts"
   },
   {
-    selector: "web-custom-input-img-signal",
-    className: "LuxInputImg",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-img-signal.ts",
+    "selector": "web-custom-input-img-signal",
+    "className": "LuxInputImg",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-img-signal.ts"
   },
   {
-    selector: "web-custom-input-mask-signal",
-    className: "LuxInputMaskSignal",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-mask-signal.ts",
+    "selector": "web-custom-input-mask-signal",
+    "className": "LuxInputMaskSignal",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-mask-signal.ts"
   },
   {
-    selector: "web-custom-input-month",
-    className: "LuxInputMonth",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-month-signal.ts",
+    "selector": "web-custom-input-month",
+    "className": "LuxInputMonth",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-month-signal.ts"
   },
   {
-    selector: "web-custom-input-phone-prefix",
-    className: "LuxInputPhonePrefix",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-phone-prefix.ts",
+    "selector": "web-custom-input-phone-prefix",
+    "className": "LuxInputPhonePrefix",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-phone-prefix.ts"
   },
   {
-    selector: "web-custom-input-url",
-    className: "LuxInputUrl",
-    category: "inputs",
-    path: "shared/ui/inputs/web/lux-input-url-signal.ts",
+    "selector": "web-custom-input-url",
+    "className": "LuxInputUrl",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/lux-input-url-signal.ts"
   },
   {
-    selector: "web-input-autocomplete",
-    className: "WebInputAutocomplete",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-autocomplete/input-autocomplete.ts",
+    "selector": "web-input-autocomplete",
+    "className": "WebInputAutocomplete",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-autocomplete/input-autocomplete.ts"
   },
   {
-    selector: "web-input-check",
-    className: "WebInputCheck",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-check/input-check.ts",
+    "selector": "web-input-check",
+    "className": "WebInputCheck",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-check/input-check.ts"
   },
   {
-    selector: "web-input-currency",
-    className: "WebInputCurrency",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-currency/input-currency.ts",
+    "selector": "web-input-currency",
+    "className": "WebInputCurrency",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-currency/input-currency.ts"
   },
   {
-    selector: "web-input-date",
-    className: "WebInputDate",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-date/input-date.ts",
+    "selector": "web-input-date",
+    "className": "WebInputDate",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-date/input-date.ts"
   },
   {
-    selector: "web-input-date-time",
-    className: "WebInputDateTime",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-date-time/input-date-time.ts",
+    "selector": "web-input-date-time",
+    "className": "WebInputDateTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-date-time/input-date-time.ts"
   },
   {
-    selector: "web-input-datepicker",
-    className: "WebInputDatepicker",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-datepicker/input-datepicker.ts",
+    "selector": "web-input-datepicker",
+    "className": "WebInputDatepicker",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-datepicker/input-datepicker.ts"
   },
   {
-    selector: "web-input-email",
-    className: "WebInputEmail",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-email/input-email.ts",
+    "selector": "web-input-email",
+    "className": "WebInputEmail",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-email/input-email.ts"
   },
   {
-    selector: "web-input-file",
-    className: "WebInputFile",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-file/input-file.ts",
+    "selector": "web-input-file",
+    "className": "WebInputFile",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-file/input-file.ts"
   },
   {
-    selector: "web-input-img",
-    className: "WebInputImg",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-img/input-img.ts",
+    "selector": "web-input-img",
+    "className": "WebInputImg",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-img/input-img.ts"
   },
   {
-    selector: "web-input-mask",
-    className: "WebInputMask",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-mask/input-mask.ts",
+    "selector": "web-input-mask",
+    "className": "WebInputMask",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-mask/input-mask.ts"
   },
   {
-    selector: "web-input-month",
-    className: "WebInputMonth",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-month/input-month.ts",
+    "selector": "web-input-month",
+    "className": "WebInputMonth",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-month/input-month.ts"
   },
   {
-    selector: "web-input-multiselect",
-    className: "WebInputMultiselect",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-multiselect/input-multiselect.ts",
+    "selector": "web-input-multiselect",
+    "className": "WebInputMultiselect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-multiselect/input-multiselect.ts"
   },
   {
-    selector: "web-input-number",
-    className: "WebInputNumber",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-number/input-number.ts",
+    "selector": "web-input-number",
+    "className": "WebInputNumber",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-number/input-number.ts"
   },
   {
-    selector: "web-input-password",
-    className: "WebInputPassword",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-password/input-password.ts",
+    "selector": "web-input-password",
+    "className": "WebInputPassword",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-password/input-password.ts"
   },
   {
-    selector: "web-input-phone-prefix",
-    className: "WebInputPhonePrefix",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-phone-prefix/input-phone-prefix.ts",
+    "selector": "web-input-phone-prefix",
+    "className": "WebInputPhonePrefix",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-phone-prefix/input-phone-prefix.ts"
   },
   {
-    selector: "web-input-search",
-    className: "WebInputSearch",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-search/input-search.ts",
+    "selector": "web-input-search",
+    "className": "WebInputSearch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-search/input-search.ts"
   },
   {
-    selector: "web-input-select",
-    className: "WebInputSelect",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-select/input-select.ts",
+    "selector": "web-input-select",
+    "className": "WebInputSelect",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-select/input-select.ts"
   },
   {
-    selector: "web-input-select-bool",
-    className: "WebInputSelectBool",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-select-bool/input-select-bool.ts",
+    "selector": "web-input-select-bool",
+    "className": "WebInputSelectBool",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-select-bool/input-select-bool.ts"
   },
   {
-    selector: "web-input-text",
-    className: "WebInputText",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-text/input-text.ts",
+    "selector": "web-input-text",
+    "className": "WebInputText",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-text/input-text.ts"
   },
   {
-    selector: "web-input-textarea",
-    className: "WebInputTextarea",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-textarea/input-textarea.ts",
+    "selector": "web-input-textarea",
+    "className": "WebInputTextarea",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-textarea/input-textarea.ts"
   },
   {
-    selector: "web-input-time",
-    className: "WebInputTime",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-time/input-time.ts",
+    "selector": "web-input-time",
+    "className": "WebInputTime",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-time/input-time.ts"
   },
   {
-    selector: "web-input-toggle-switch",
-    className: "WebInputToggleSwitch",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-toggle-switch/input-toggle-switch.ts",
+    "selector": "web-input-toggle-switch",
+    "className": "WebInputToggleSwitch",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-toggle-switch/input-toggle-switch.ts"
   },
   {
-    selector: "web-input-upload-pdf",
-    className: "WebInputUploadPdf",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-upload-pdf/input-upload-pdf.ts",
+    "selector": "web-input-upload-pdf",
+    "className": "WebInputUploadPdf",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-upload-pdf/input-upload-pdf.ts"
   },
   {
-    selector: "web-input-url",
-    className: "WebInputUrl",
-    category: "inputs",
-    path: "shared/ui/inputs/web/input-url/input-url.ts",
+    "selector": "web-input-url",
+    "className": "WebInputUrl",
+    "category": "inputs",
+    "path": "shared/ui/inputs/web/input-url/input-url.ts"
   },
   {
-    selector: "ili-accordion",
-    className: "MobileAccordion",
-    category: "mobile",
-    path: "shared/ui/mobile/accordion/accordion.ts",
+    "selector": "lux-accordion-mobile",
+    "className": "MobileAccordion",
+    "category": "mobile",
+    "path": "shared/ui/mobile/accordion/accordion.ts"
   },
   {
-    selector: "ili-action-menu",
-    className: "MobileActionMenu",
-    category: "mobile",
-    path: "shared/ui/mobile/action-menu-mobile/action-menu-mobile.ts",
+    "selector": "lux-action-menu-mobile",
+    "className": "MobileActionMenu",
+    "category": "mobile",
+    "path": "shared/ui/mobile/action-menu-mobile/action-menu-mobile.ts"
   },
   {
-    selector: "ili-avatar",
-    className: "MobileAvatar",
-    category: "mobile",
-    path: "shared/ui/mobile/avatar/avatar.ts",
+    "selector": "lux-avatar-mobile",
+    "className": "MobileAvatar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/avatar/avatar.ts"
   },
   {
-    selector: "ili-badge",
-    className: "MobileBadge",
-    category: "mobile",
-    path: "shared/ui/mobile/badge/badge.ts",
+    "selector": "lux-badge-mobile",
+    "className": "MobileBadge",
+    "category": "mobile",
+    "path": "shared/ui/mobile/badge/badge.ts"
   },
   {
-    selector: "ili-bottom-nav",
-    className: "MobileBottomNav",
-    category: "mobile",
-    path: "shared/ui/mobile/bottom-nav/bottom-nav.ts",
+    "selector": "lux-bottom-nav-mobile",
+    "className": "MobileBottomNav",
+    "category": "mobile",
+    "path": "shared/ui/mobile/bottom-nav/bottom-nav.ts"
   },
   {
-    selector: "ili-breadcrumbs",
-    className: "MobileBreadcrumbs",
-    category: "mobile",
-    path: "shared/ui/mobile/breadcrumbs/breadcrumbs.ts",
+    "selector": "lux-breadcrumbs-mobile",
+    "className": "MobileBreadcrumbs",
+    "category": "mobile",
+    "path": "shared/ui/mobile/breadcrumbs/breadcrumbs.ts"
   },
   {
-    selector: "ili-card",
-    className: "MobileCard",
-    category: "mobile",
-    path: "shared/ui/mobile/card/card.ts",
+    "selector": "lux-card-mobile",
+    "className": "MobileCard",
+    "category": "mobile",
+    "path": "shared/ui/mobile/card/card.ts"
   },
   {
-    selector: "ili-carousel",
-    className: "MobileCarousel",
-    category: "mobile",
-    path: "shared/ui/mobile/carousel/carousel.ts",
+    "selector": "lux-carousel-mobile",
+    "className": "MobileCarousel",
+    "category": "mobile",
+    "path": "shared/ui/mobile/carousel/carousel.ts"
   },
   {
-    selector: "ili-checkbox",
-    className: "IliCheckbox",
-    category: "mobile",
-    path: "shared/ui/mobile/checkbox/checkbox.ts",
+    "selector": "lux-checkbox-mobile",
+    "className": "IliCheckbox",
+    "category": "mobile",
+    "path": "shared/ui/mobile/checkbox/checkbox.ts"
   },
   {
-    selector: "ili-chip",
-    className: "MobileChip",
-    category: "mobile",
-    path: "shared/ui/mobile/chip/chip.ts",
+    "selector": "lux-chip-mobile",
+    "className": "MobileChip",
+    "category": "mobile",
+    "path": "shared/ui/mobile/chip/chip.ts"
   },
   {
-    selector: "ili-confirm-dialog",
-    className: "MobileConfirmDialog",
-    category: "mobile",
-    path: "shared/ui/mobile/confirm-dialog/confirm-dialog.ts",
+    "selector": "lux-confirm-dialog-mobile",
+    "className": "MobileConfirmDialog",
+    "category": "mobile",
+    "path": "shared/ui/mobile/confirm-dialog/confirm-dialog.ts"
   },
   {
-    selector: "ili-divider",
-    className: "IliDivider",
-    category: "mobile",
-    path: "shared/ui/mobile/divider/divider.ts",
+    "selector": "lux-data-view-mobile",
+    "className": "LuxDataViewMobile",
+    "category": "mobile",
+    "path": "shared/ui/mobile/data-view-mobile/data-view-mobile.ts"
   },
   {
-    selector: "ili-editor",
-    className: "MobileEditor",
-    category: "mobile",
-    path: "shared/ui/mobile/editor/editor.ts",
+    "selector": "lux-divider-mobile",
+    "className": "IliDivider",
+    "category": "mobile",
+    "path": "shared/ui/mobile/divider/divider.ts"
   },
   {
-    selector: "ili-empty-state",
-    className: "MobileEmptyState",
-    category: "mobile",
-    path: "shared/ui/mobile/empty-state/empty-state.ts",
+    "selector": "lux-editor-mobile",
+    "className": "MobileEditor",
+    "category": "mobile",
+    "path": "shared/ui/mobile/editor/editor.ts"
   },
   {
-    selector: "ili-fieldset",
-    className: "IliFieldset",
-    category: "mobile",
-    path: "shared/ui/mobile/fieldset/fieldset.ts",
+    "selector": "lux-empty-state-mobile",
+    "className": "MobileEmptyState",
+    "category": "mobile",
+    "path": "shared/ui/mobile/empty-state/empty-state.ts"
   },
   {
-    selector: "ili-file-upload",
-    className: "IliFileUpload",
-    category: "mobile",
-    path: "shared/ui/mobile/file-upload/file-upload.ts",
+    "selector": "lux-fieldset-mobile",
+    "className": "IliFieldset",
+    "category": "mobile",
+    "path": "shared/ui/mobile/fieldset/fieldset.ts"
   },
   {
-    selector: "ili-icon",
-    className: "AppIconMobile",
-    category: "mobile",
-    path: "shared/ui/mobile/app-icon/app-icon.ts",
+    "selector": "lux-file-upload-mobile",
+    "className": "IliFileUpload",
+    "category": "mobile",
+    "path": "shared/ui/mobile/file-upload/file-upload.ts"
   },
   {
-    selector: "ili-image",
-    className: "MobileImage",
-    category: "mobile",
-    path: "shared/ui/mobile/image/image.ts",
+    "selector": "lux-icon-mobile",
+    "className": "AppIconMobile",
+    "category": "mobile",
+    "path": "shared/ui/mobile/app-icon/app-icon.ts"
   },
   {
-    selector: "ili-infinite-scroll",
-    className: "MobileInfiniteScroll",
-    category: "mobile",
-    path: "shared/ui/mobile/infinite-scroll/infinite-scroll.ts",
+    "selector": "lux-image-mobile",
+    "className": "MobileImage",
+    "category": "mobile",
+    "path": "shared/ui/mobile/image/image.ts"
   },
   {
-    selector: "ili-list-item",
-    className: "MobileListItem",
-    category: "mobile",
-    path: "shared/ui/mobile/list-item/list-item.ts",
+    "selector": "lux-infinite-scroll-mobile",
+    "className": "MobileInfiniteScroll",
+    "category": "mobile",
+    "path": "shared/ui/mobile/infinite-scroll/infinite-scroll.ts"
   },
   {
-    selector: "ili-listbox",
-    className: "MobileListbox",
-    category: "mobile",
-    path: "shared/ui/mobile/listbox/listbox.ts",
+    "selector": "lux-list-item-mobile",
+    "className": "MobileListItem",
+    "category": "mobile",
+    "path": "shared/ui/mobile/list-item/list-item.ts"
   },
   {
-    selector: "ili-loader",
-    className: "MobileLoader",
-    category: "mobile",
-    path: "shared/ui/mobile/loader/mobile-loader.ts",
+    "selector": "lux-listbox-mobile",
+    "className": "MobileListbox",
+    "category": "mobile",
+    "path": "shared/ui/mobile/listbox/listbox.ts"
   },
   {
-    selector: "ili-menu",
-    className: "MobileMenu",
-    category: "mobile",
-    path: "shared/ui/mobile/menu/menu.ts",
+    "selector": "lux-loader-mobile",
+    "className": "MobileLoader",
+    "category": "mobile",
+    "path": "shared/ui/mobile/loader/mobile-loader.ts"
   },
   {
-    selector: "ili-menubar",
-    className: "MobileMenubar",
-    category: "mobile",
-    path: "shared/ui/mobile/menubar/menubar.ts",
+    "selector": "lux-menu-mobile",
+    "className": "MobileMenu",
+    "category": "mobile",
+    "path": "shared/ui/mobile/menu/menu.ts"
   },
   {
-    selector: "ili-message",
-    className: "MobileMessage",
-    category: "mobile",
-    path: "shared/ui/mobile/message/message.ts",
+    "selector": "lux-menubar-mobile",
+    "className": "MobileMenubar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/menubar/menubar.ts"
   },
   {
-    selector: "ili-modal",
-    className: "MobileModal",
-    category: "mobile",
-    path: "shared/ui/mobile/modal/modal.ts",
+    "selector": "lux-message-mobile",
+    "className": "MobileMessage",
+    "category": "mobile",
+    "path": "shared/ui/mobile/message/message.ts"
   },
   {
-    selector: "ili-multi-select",
-    className: "MobileMultiSelect",
-    category: "mobile",
-    path: "shared/ui/mobile/multi-select/multi-select.ts",
+    "selector": "lux-modal-mobile",
+    "className": "MobileModal",
+    "category": "mobile",
+    "path": "shared/ui/mobile/modal/modal.ts"
   },
   {
-    selector: "ili-offline-indicator",
-    className: "MobileOfflineIndicator",
-    category: "mobile",
-    path: "shared/ui/mobile/offline-indicator/offline-indicator.ts",
+    "selector": "lux-multi-select-mobile",
+    "className": "MobileMultiSelect",
+    "category": "mobile",
+    "path": "shared/ui/mobile/multi-select/multi-select.ts"
   },
   {
-    selector: "ili-page",
-    className: "MobilePage",
-    category: "mobile",
-    path: "shared/ui/mobile/page/page.ts",
+    "selector": "lux-offline-indicator-mobile",
+    "className": "MobileOfflineIndicator",
+    "category": "mobile",
+    "path": "shared/ui/mobile/offline-indicator/offline-indicator.ts"
   },
   {
-    selector: "ili-paginator",
-    className: "MobilePaginator",
-    category: "mobile",
-    path: "shared/ui/mobile/paginator/paginator.ts",
+    "selector": "lux-page-mobile",
+    "className": "MobilePage",
+    "category": "mobile",
+    "path": "shared/ui/mobile/page/page.ts"
   },
   {
-    selector: "ili-panel",
-    className: "IliPanel",
-    category: "mobile",
-    path: "shared/ui/mobile/panel/panel.ts",
+    "selector": "lux-paginator-mobile",
+    "className": "MobilePaginator",
+    "category": "mobile",
+    "path": "shared/ui/mobile/paginator/paginator.ts"
   },
   {
-    selector: "ili-popover",
-    className: "MobilePopover",
-    category: "mobile",
-    path: "shared/ui/mobile/popover/popover.ts",
+    "selector": "lux-panel-mobile",
+    "className": "IliPanel",
+    "category": "mobile",
+    "path": "shared/ui/mobile/panel/panel.ts"
   },
   {
-    selector: "ili-processing-overlay",
-    className: "MobileProcessingOverlay",
-    category: "mobile",
-    path: "shared/ui/mobile/processing-overlay/processing-overlay.ts",
+    "selector": "lux-pdf-viewer-trigger-mobile",
+    "className": "PdfViewerTriggerMobile",
+    "category": "mobile",
+    "path": "shared/ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile.ts"
   },
   {
-    selector: "ili-progress-bar",
-    className: "MobileProgressBar",
-    category: "mobile",
-    path: "shared/ui/mobile/progress-bar/progress-bar.ts",
+    "selector": "lux-popover-mobile",
+    "className": "MobilePopover",
+    "category": "mobile",
+    "path": "shared/ui/mobile/popover/popover.ts"
   },
   {
-    selector: "ili-pull-to-refresh",
-    className: "MobilePullToRefresh",
-    category: "mobile",
-    path: "shared/ui/mobile/pull-to-refresh/pull-to-refresh.ts",
+    "selector": "lux-processing-overlay-mobile",
+    "className": "MobileProcessingOverlay",
+    "category": "mobile",
+    "path": "shared/ui/mobile/processing-overlay/processing-overlay.ts"
   },
   {
-    selector: "ili-radio-button",
-    className: "MobileRadioButton",
-    category: "mobile",
-    path: "shared/ui/mobile/radio-button/radio-button.ts",
+    "selector": "lux-progress-bar-mobile",
+    "className": "MobileProgressBar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/progress-bar/progress-bar.ts"
   },
   {
-    selector: "ili-rating",
-    className: "MobileRating",
-    category: "mobile",
-    path: "shared/ui/mobile/rating/rating.ts",
+    "selector": "lux-pull-to-refresh-mobile",
+    "className": "MobilePullToRefresh",
+    "category": "mobile",
+    "path": "shared/ui/mobile/pull-to-refresh/pull-to-refresh.ts"
   },
   {
-    selector: "ili-sidebar",
-    className: "MobileSidebar",
-    category: "mobile",
-    path: "shared/ui/mobile/sidebar/sidebar.ts",
+    "selector": "lux-radio-button-mobile",
+    "className": "MobileRadioButton",
+    "category": "mobile",
+    "path": "shared/ui/mobile/radio-button/radio-button.ts"
   },
   {
-    selector: "ili-skeleton",
-    className: "MobileSkeleton",
-    category: "mobile",
-    path: "shared/ui/mobile/skeleton/skeleton.ts",
+    "selector": "lux-rating-mobile",
+    "className": "MobileRating",
+    "category": "mobile",
+    "path": "shared/ui/mobile/rating/rating.ts"
   },
   {
-    selector: "ili-spinner",
-    className: "MobileSpinner",
-    category: "mobile",
-    path: "shared/ui/mobile/spinner/spinner.ts",
+    "selector": "lux-sidebar-mobile",
+    "className": "MobileSidebar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/sidebar/sidebar.ts"
   },
   {
-    selector: "ili-split-button",
-    className: "MobileSplitButton",
-    category: "mobile",
-    path: "shared/ui/mobile/split-button/split-button.ts",
+    "selector": "lux-skeleton-mobile",
+    "className": "MobileSkeleton",
+    "category": "mobile",
+    "path": "shared/ui/mobile/skeleton/skeleton.ts"
   },
   {
-    selector: "ili-status-badge",
-    className: "MobileStatusBadge",
-    category: "mobile",
-    path: "shared/ui/mobile/status-badge/status-badge.ts",
+    "selector": "lux-spinner-mobile",
+    "className": "MobileSpinner",
+    "category": "mobile",
+    "path": "shared/ui/mobile/spinner/spinner.ts"
   },
   {
-    selector: "ili-stepper",
-    className: "MobileStepper",
-    category: "mobile",
-    path: "shared/ui/mobile/stepper/stepper.ts",
+    "selector": "lux-split-button-mobile",
+    "className": "MobileSplitButton",
+    "category": "mobile",
+    "path": "shared/ui/mobile/split-button/split-button.ts"
   },
   {
-    selector: "ili-steps",
-    className: "MobileSteps",
-    category: "mobile",
-    path: "shared/ui/mobile/steps/steps.ts",
+    "selector": "lux-status-badge-mobile",
+    "className": "MobileStatusBadge",
+    "category": "mobile",
+    "path": "shared/ui/mobile/status-badge/status-badge.ts"
   },
   {
-    selector: "ili-swipe-actions",
-    className: "MobileSwipeActions",
-    category: "mobile",
-    path: "shared/ui/mobile/swipe-actions/swipe-actions.ts",
+    "selector": "lux-stepper-mobile",
+    "className": "MobileStepper",
+    "category": "mobile",
+    "path": "shared/ui/mobile/stepper/stepper.ts"
   },
   {
-    selector: "ili-table",
-    className: "MobileTable",
-    category: "mobile",
-    path: "shared/ui/mobile/table/table.ts",
+    "selector": "lux-steps-mobile",
+    "className": "MobileSteps",
+    "category": "mobile",
+    "path": "shared/ui/mobile/steps/steps.ts"
   },
   {
-    selector: "ili-tabs",
-    className: "MobileTabs",
-    category: "mobile",
-    path: "shared/ui/mobile/tabs/tabs.ts",
+    "selector": "lux-swipe-actions-mobile",
+    "className": "MobileSwipeActions",
+    "category": "mobile",
+    "path": "shared/ui/mobile/swipe-actions/swipe-actions.ts"
   },
   {
-    selector: "ili-tag",
-    className: "MobileTag",
-    category: "mobile",
-    path: "shared/ui/mobile/tag/tag.ts",
+    "selector": "lux-tab-bar",
+    "className": "AppTabBar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tab-bar/tab-bar.ts"
   },
   {
-    selector: "ili-tap-to-top",
-    className: "MobileTapToTop",
-    category: "mobile",
-    path: "shared/ui/mobile/tap-to-top/tap-to-top.ts",
+    "selector": "lux-table-mobile",
+    "className": "MobileTable",
+    "category": "mobile",
+    "path": "shared/ui/mobile/table/table.ts"
   },
   {
-    selector: "ili-timeline",
-    className: "MobileTimeline",
-    category: "mobile",
-    path: "shared/ui/mobile/timeline/timeline.ts",
+    "selector": "lux-tabs-mobile",
+    "className": "MobileTabs",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tabs/tabs.ts"
   },
   {
-    selector: "ili-toast",
-    className: "MobileToast",
-    category: "mobile",
-    path: "shared/ui/mobile/toast/toast.ts",
+    "selector": "lux-tag-mobile",
+    "className": "MobileTag",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tag/tag.ts"
   },
   {
-    selector: "ili-toolbar",
-    className: "MobileToolbar",
-    category: "mobile",
-    path: "shared/ui/mobile/toolbar/toolbar.ts",
+    "selector": "lux-tap-to-top-mobile",
+    "className": "MobileTapToTop",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tap-to-top/tap-to-top.ts"
   },
   {
-    selector: "ili-tooltip",
-    className: "MobileTooltip",
-    category: "mobile",
-    path: "shared/ui/mobile/tooltip/tooltip.ts",
+    "selector": "lux-timeline-mobile",
+    "className": "MobileTimeline",
+    "category": "mobile",
+    "path": "shared/ui/mobile/timeline/timeline.ts"
   },
   {
-    selector: "ili-tree",
-    className: "MobileTree",
-    category: "mobile",
-    path: "shared/ui/mobile/tree/tree.ts",
+    "selector": "lux-toast-mobile",
+    "className": "MobileToast",
+    "category": "mobile",
+    "path": "shared/ui/mobile/toast/toast.ts"
   },
   {
-    selector: "lux-data-view-mobile",
-    className: "LuxDataViewMobile",
-    category: "mobile",
-    path: "shared/ui/mobile/data-view-mobile/data-view-mobile.ts",
+    "selector": "lux-toolbar-mobile",
+    "className": "MobileToolbar",
+    "category": "mobile",
+    "path": "shared/ui/mobile/toolbar/toolbar.ts"
   },
   {
-    selector: "lux-pdf-viewer-trigger-mobile",
-    className: "PdfViewerTriggerMobile",
-    category: "mobile",
-    path: "shared/ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile.ts",
+    "selector": "lux-tooltip-mobile",
+    "className": "MobileTooltip",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tooltip/tooltip.ts"
   },
   {
-    selector: "lux-tab-bar",
-    className: "AppTabBar",
-    category: "mobile",
-    path: "shared/ui/mobile/tab-bar/tab-bar.ts",
+    "selector": "lux-tree-mobile",
+    "className": "MobileTree",
+    "category": "mobile",
+    "path": "shared/ui/mobile/tree/tree.ts"
   },
   {
-    selector: "[appFocusTrap]",
-    className: "FocusTrap",
-    category: "primitives",
-    path: "shared/ui/primitives/focus-trap/focus-trap.ts",
+    "selector": "[appFocusTrap]",
+    "className": "FocusTrap",
+    "category": "primitives",
+    "path": "shared/ui/primitives/focus-trap/focus-trap.ts"
   },
   {
-    selector: "lux-action-icons-group",
-    className: "ActionIconsGroupComponent",
-    category: "primitives",
-    path: "shared/ui/primitives/action-icons-group/action-icons-group.component.ts",
+    "selector": "lux-action-icons-group",
+    "className": "ActionIconsGroupComponent",
+    "category": "primitives",
+    "path": "shared/ui/primitives/action-icons-group/action-icons-group.component.ts"
   },
   {
-    selector: "lux-activity-log",
-    className: "ActivityLog",
-    category: "primitives",
-    path: "shared/ui/primitives/activity-log/activity-log.ts",
+    "selector": "lux-activity-log",
+    "className": "ActivityLog",
+    "category": "primitives",
+    "path": "shared/ui/primitives/activity-log/activity-log.ts"
   },
   {
-    selector: "lux-approval-workflow",
-    className: "ApprovalWorkflow",
-    category: "primitives",
-    path: "shared/ui/primitives/approval-workflow/approval-workflow.ts",
+    "selector": "lux-approval-workflow",
+    "className": "ApprovalWorkflow",
+    "category": "primitives",
+    "path": "shared/ui/primitives/approval-workflow/approval-workflow.ts"
   },
   {
-    selector: "lux-avatar-group",
-    className: "AvatarGroup",
-    category: "primitives",
-    path: "shared/ui/primitives/avatar-group/avatar-group.ts",
+    "selector": "lux-avatar-group",
+    "className": "AvatarGroup",
+    "category": "primitives",
+    "path": "shared/ui/primitives/avatar-group/avatar-group.ts"
   },
   {
-    selector: "lux-breakdown-list",
-    className: "AppBreakdownList",
-    category: "primitives",
-    path: "shared/ui/primitives/breakdown-list/breakdown-list.ts",
+    "selector": "lux-breakdown-list",
+    "className": "AppBreakdownList",
+    "category": "primitives",
+    "path": "shared/ui/primitives/breakdown-list/breakdown-list.ts"
   },
   {
-    selector: "lux-gauge",
-    className: "Gauge",
-    category: "primitives",
-    path: "shared/ui/primitives/gauge/gauge.ts",
+    "selector": "lux-gauge",
+    "className": "Gauge",
+    "category": "primitives",
+    "path": "shared/ui/primitives/gauge/gauge.ts"
   },
   {
-    selector: "lux-icon-base",
-    className: "AppIcon",
-    category: "primitives",
-    path: "shared/ui/primitives/app-icon/app-icon.ts",
+    "selector": "lux-icon-base",
+    "className": "AppIcon",
+    "category": "primitives",
+    "path": "shared/ui/primitives/app-icon/app-icon.ts"
   },
   {
-    selector: "lux-inventory-level",
-    className: "AppInventoryLevel",
-    category: "primitives",
-    path: "shared/ui/primitives/inventory-level/inventory-level.ts",
+    "selector": "lux-inventory-level",
+    "className": "AppInventoryLevel",
+    "category": "primitives",
+    "path": "shared/ui/primitives/inventory-level/inventory-level.ts"
   },
   {
-    selector: "lux-kpi-card",
-    className: "KpiCard",
-    category: "primitives",
-    path: "shared/ui/primitives/kpi-card/kpi-card.ts",
+    "selector": "lux-kpi-card",
+    "className": "KpiCard",
+    "category": "primitives",
+    "path": "shared/ui/primitives/kpi-card/kpi-card.ts"
   },
   {
-    selector: "lux-lead-scoring",
-    className: "LeadScoring",
-    category: "primitives",
-    path: "shared/ui/primitives/lead-scoring/lead-scoring.ts",
+    "selector": "lux-lead-scoring",
+    "className": "LeadScoring",
+    "category": "primitives",
+    "path": "shared/ui/primitives/lead-scoring/lead-scoring.ts"
   },
   {
-    selector: "lux-multiple-segmented-control",
-    className: "MultipleSegmentedControl",
-    category: "primitives",
-    path: "shared/ui/primitives/multiple-segmented-control/multiple-segmented-control.ts",
+    "selector": "lux-multiple-segmented-control",
+    "className": "MultipleSegmentedControl",
+    "category": "primitives",
+    "path": "shared/ui/primitives/multiple-segmented-control/multiple-segmented-control.ts"
   },
   {
-    selector: "lux-order-status",
-    className: "OrderStatus",
-    category: "primitives",
-    path: "shared/ui/primitives/order-status/order-status.ts",
+    "selector": "lux-order-status",
+    "className": "OrderStatus",
+    "category": "primitives",
+    "path": "shared/ui/primitives/order-status/order-status.ts"
   },
   {
-    selector: "lux-ranked-list",
-    className: "AppRankedList",
-    category: "primitives",
-    path: "shared/ui/primitives/ranked-list/ranked-list.ts",
+    "selector": "lux-ranked-list",
+    "className": "AppRankedList",
+    "category": "primitives",
+    "path": "shared/ui/primitives/ranked-list/ranked-list.ts"
   },
   {
-    selector: "lux-realtime-indicator",
-    className: "AppRealtimeIndicator",
-    category: "primitives",
-    path: "shared/ui/primitives/realtime-indicator/realtime-indicator.ts",
+    "selector": "lux-realtime-indicator",
+    "className": "AppRealtimeIndicator",
+    "category": "primitives",
+    "path": "shared/ui/primitives/realtime-indicator/realtime-indicator.ts"
   },
   {
-    selector: "lux-segmented-control",
-    className: "SegmentedControl",
-    category: "primitives",
-    path: "shared/ui/primitives/segmented-control/segmented-control.ts",
+    "selector": "lux-segmented-control",
+    "className": "SegmentedControl",
+    "category": "primitives",
+    "path": "shared/ui/primitives/segmented-control/segmented-control.ts"
   },
   {
-    selector: "lux-stat-card",
-    className: "AppStatCard",
-    category: "primitives",
-    path: "shared/ui/primitives/stat-card/stat-card.ts",
+    "selector": "lux-stat-card",
+    "className": "AppStatCard",
+    "category": "primitives",
+    "path": "shared/ui/primitives/stat-card/stat-card.ts"
   },
   {
-    selector: "lux-tour",
-    className: "Tour",
-    category: "primitives",
-    path: "shared/ui/primitives/tour/tour.ts",
+    "selector": "lux-tour",
+    "className": "Tour",
+    "category": "primitives",
+    "path": "shared/ui/primitives/tour/tour.ts"
   },
   {
-    selector: "lux-tristate-switch",
-    className: "AppTristateSwitch",
-    category: "primitives",
-    path: "shared/ui/primitives/tristate-switch/tristate-switch.ts",
+    "selector": "lux-tristate-switch",
+    "className": "AppTristateSwitch",
+    "category": "primitives",
+    "path": "shared/ui/primitives/tristate-switch/tristate-switch.ts"
   },
   {
-    selector: "[appSortableColumn]",
-    className: "AppSortableColumn",
-    category: "web",
-    path: "shared/ui/web/lux-table/lux-table.ts",
+    "selector": "[appSortableColumn]",
+    "className": "AppSortableColumn",
+    "category": "web",
+    "path": "shared/ui/web/lux-table/lux-table.ts"
   },
   {
-    selector: "lux-action-menu-web",
-    className: "ActionMenu",
-    category: "web",
-    path: "shared/ui/web/action-menu/action-menu.ts",
+    "selector": "lux-action-menu-web",
+    "className": "ActionMenu",
+    "category": "web",
+    "path": "shared/ui/web/action-menu/action-menu.ts"
   },
   {
-    selector: "lux-advanced-pie-chart-web",
-    className: "AdvancedPieChart",
-    category: "web",
-    path: "shared/ui/web/charts/advanced-pie-chart.ts",
+    "selector": "lux-advanced-pie-chart-web",
+    "className": "AdvancedPieChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/advanced-pie-chart.ts"
   },
   {
-    selector: "lux-avatar-web",
-    className: "AppAvatar",
-    category: "web",
-    path: "shared/ui/web/avatar/avatar.ts",
+    "selector": "lux-avatar-web",
+    "className": "AppAvatar",
+    "category": "web",
+    "path": "shared/ui/web/avatar/avatar.ts"
   },
   {
-    selector: "lux-badge-web",
-    className: "AppBadge",
-    category: "web",
-    path: "shared/ui/web/badge/badge.ts",
+    "selector": "lux-badge-web",
+    "className": "AppBadge",
+    "category": "web",
+    "path": "shared/ui/web/badge/badge.ts"
   },
   {
-    selector: "lux-bar-chart-web",
-    className: "LuxBarChart",
-    category: "web",
-    path: "shared/ui/web/charts/lux-bar-chart.ts",
+    "selector": "lux-bar-chart-web",
+    "className": "LuxBarChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/lux-bar-chart.ts"
   },
   {
-    selector: "lux-bitacora-filtro-fecha-form-web",
-    className: "BitacoraFiltroFechaForm",
-    category: "web",
-    path: "shared/ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form.ts",
+    "selector": "lux-bitacora-filtro-fecha-form-web",
+    "className": "BitacoraFiltroFechaForm",
+    "category": "web",
+    "path": "shared/ui/web/bitacora-filtro-fecha/bitacora-filtro-fecha-form.ts"
   },
   {
-    selector: "lux-breadcrumbs-web",
-    className: "Breadcrumbs",
-    category: "web",
-    path: "shared/ui/web/breadcrumbs/breadcrumbs.ts",
+    "selector": "lux-breadcrumbs-web",
+    "className": "Breadcrumbs",
+    "category": "web",
+    "path": "shared/ui/web/breadcrumbs/breadcrumbs.ts"
   },
   {
-    selector: "lux-cabecera-solicitud-pago-pdf-web",
-    className: "CabeceraSolicitudPagoPdf",
-    category: "web",
-    path: "shared/ui/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf.ts",
+    "selector": "lux-cabecera-solicitud-pago-pdf-web",
+    "className": "CabeceraSolicitudPagoPdf",
+    "category": "web",
+    "path": "shared/ui/web/title-solicitud-pago-pdf/cabecera-solicitud-pago-pdf.ts"
   },
   {
-    selector: "lux-calendar-range-web",
-    className: "CalendarRange",
-    category: "web",
-    path: "shared/ui/web/rango-calendario-mes-anio/calendar-range.ts",
+    "selector": "lux-calendar-range-web",
+    "className": "CalendarRange",
+    "category": "web",
+    "path": "shared/ui/web/rango-calendario-mes-anio/calendar-range.ts"
   },
   {
-    selector: "lux-card-web",
-    className: "AppCard",
-    category: "web",
-    path: "shared/ui/web/card/card.ts",
+    "selector": "lux-card-web",
+    "className": "AppCard",
+    "category": "web",
+    "path": "shared/ui/web/card/card.ts"
   },
   {
-    selector: "lux-carousel-web",
-    className: "Carousel",
-    category: "web",
-    path: "shared/ui/web/carousel/carousel.ts",
+    "selector": "lux-carousel-web",
+    "className": "Carousel",
+    "category": "web",
+    "path": "shared/ui/web/carousel/carousel.ts"
   },
   {
-    selector: "lux-chart-wrapper-web",
-    className: "ChartWrapper",
-    category: "web",
-    path: "shared/ui/web/charts/chart-wrapper.ts",
+    "selector": "lux-chart-wrapper-web",
+    "className": "ChartWrapper",
+    "category": "web",
+    "path": "shared/ui/web/charts/chart-wrapper.ts"
   },
   {
-    selector: "lux-checkbox-web",
-    className: "AppCheckbox",
-    category: "web",
-    path: "shared/ui/web/checkbox/checkbox.ts",
+    "selector": "lux-checkbox-web",
+    "className": "AppCheckbox",
+    "category": "web",
+    "path": "shared/ui/web/checkbox/checkbox.ts"
   },
   {
-    selector: "lux-chip-web",
-    className: "AppChip",
-    category: "web",
-    path: "shared/ui/web/chip/chip.ts",
+    "selector": "lux-chip-web",
+    "className": "AppChip",
+    "category": "web",
+    "path": "shared/ui/web/chip/chip.ts"
   },
   {
-    selector: "lux-comparison-table-web",
-    className: "ComparisonTable",
-    category: "web",
-    path: "shared/ui/web/comparison-table/comparison-table.ts",
+    "selector": "lux-comparison-table-web",
+    "className": "ComparisonTable",
+    "category": "web",
+    "path": "shared/ui/web/comparison-table/comparison-table.ts"
   },
   {
-    selector: "lux-confirm-dialog-web",
-    className: "ConfirmDialog",
-    category: "web",
-    path: "shared/ui/web/confirm-dialog/confirm-dialog.ts",
+    "selector": "lux-confirm-dialog-web",
+    "className": "ConfirmDialog",
+    "category": "web",
+    "path": "shared/ui/web/confirm-dialog/confirm-dialog.ts"
   },
   {
-    selector: "lux-customer-360-web",
-    className: "AppCustomer360",
-    category: "web",
-    path: "shared/ui/web/customer-360/customer-360.ts",
+    "selector": "lux-customer-360-web",
+    "className": "AppCustomer360",
+    "category": "web",
+    "path": "shared/ui/web/customer-360/customer-360.ts"
   },
   {
-    selector: "lux-dashboard-layout-web",
-    className: "DashboardLayout",
-    category: "web",
-    path: "shared/ui/web/dashboard-layout/dashboard-layout.ts",
+    "selector": "lux-dashboard-layout-web",
+    "className": "DashboardLayout",
+    "category": "web",
+    "path": "shared/ui/web/dashboard-layout/dashboard-layout.ts"
   },
   {
-    selector: "lux-data-grid-web",
-    className: "DataGrid",
-    category: "web",
-    path: "shared/ui/web/data-grid/data-grid.ts",
+    "selector": "lux-data-grid-web",
+    "className": "DataGrid",
+    "category": "web",
+    "path": "shared/ui/web/data-grid/data-grid.ts"
   },
   {
-    selector: "lux-dialog-web",
-    className: "Dialog",
-    category: "web",
-    path: "shared/ui/web/dialog/dialog.ts",
+    "selector": "lux-dialog-web",
+    "className": "Dialog",
+    "category": "web",
+    "path": "shared/ui/web/dialog/dialog.ts"
   },
   {
-    selector: "lux-divider-web",
-    className: "AppDivider",
-    category: "web",
-    path: "shared/ui/web/divider/divider.ts",
+    "selector": "lux-divider-web",
+    "className": "AppDivider",
+    "category": "web",
+    "path": "shared/ui/web/divider/divider.ts"
   },
   {
-    selector: "lux-document-previewer-web",
-    className: "DocumentPreviewer",
-    category: "web",
-    path: "shared/ui/web/document-previewer/document-previewer.ts",
+    "selector": "lux-document-previewer-web",
+    "className": "DocumentPreviewer",
+    "category": "web",
+    "path": "shared/ui/web/document-previewer/document-previewer.ts"
   },
   {
-    selector: "lux-editor-web",
-    className: "AppEditor",
-    category: "web",
-    path: "shared/ui/web/editor/editor.ts",
+    "selector": "lux-editor-web",
+    "className": "AppEditor",
+    "category": "web",
+    "path": "shared/ui/web/editor/editor.ts"
   },
   {
-    selector: "lux-empty-state-web",
-    className: "EmptyState",
-    category: "web",
-    path: "shared/ui/web/empty-state/empty-state.ts",
+    "selector": "lux-empty-state-web",
+    "className": "EmptyState",
+    "category": "web",
+    "path": "shared/ui/web/empty-state/empty-state.ts"
   },
   {
-    selector: "lux-fieldset-web",
-    className: "AppFieldset",
-    category: "web",
-    path: "shared/ui/web/fieldset/fieldset.ts",
+    "selector": "lux-fieldset-web",
+    "className": "AppFieldset",
+    "category": "web",
+    "path": "shared/ui/web/fieldset/fieldset.ts"
   },
   {
-    selector: "lux-file-upload-web",
-    className: "FileUpload",
-    category: "web",
-    path: "shared/ui/web/file-upload/file-upload.ts",
+    "selector": "lux-file-upload-web",
+    "className": "FileUpload",
+    "category": "web",
+    "path": "shared/ui/web/file-upload/file-upload.ts"
   },
   {
-    selector: "lux-funnel-chart-web",
-    className: "FunnelChart",
-    category: "web",
-    path: "shared/ui/web/funnel-chart/funnel-chart.ts",
+    "selector": "lux-funnel-chart-web",
+    "className": "FunnelChart",
+    "category": "web",
+    "path": "shared/ui/web/funnel-chart/funnel-chart.ts"
   },
   {
-    selector: "lux-gantt-web",
-    className: "AppGantt",
-    category: "web",
-    path: "shared/ui/web/gantt/gantt.ts",
+    "selector": "lux-gantt-web",
+    "className": "AppGantt",
+    "category": "web",
+    "path": "shared/ui/web/gantt/gantt.ts"
   },
   {
-    selector: "lux-google-pie-chart4-web",
-    className: "GooglePieChart4",
-    category: "web",
-    path: "shared/ui/web/charts/google-pie-chart4.ts",
+    "selector": "lux-google-pie-chart4-web",
+    "className": "GooglePieChart4",
+    "category": "web",
+    "path": "shared/ui/web/charts/google-pie-chart4.ts"
   },
   {
-    selector: "lux-header-customer-web",
-    className: "HeaderCustomer",
-    category: "web",
-    path: "shared/ui/web/header-customer/haeder-customer.ts",
+    "selector": "lux-header-customer-web",
+    "className": "HeaderCustomer",
+    "category": "web",
+    "path": "shared/ui/web/header-customer/haeder-customer.ts"
   },
   {
-    selector: "lux-heatmap-web",
-    className: "AppHeatmap",
-    category: "web",
-    path: "shared/ui/web/heatmap/heatmap.ts",
+    "selector": "lux-heatmap-web",
+    "className": "AppHeatmap",
+    "category": "web",
+    "path": "shared/ui/web/heatmap/heatmap.ts"
   },
   {
-    selector: "lux-image-fallback-web",
-    className: "AppImageFallback",
-    category: "web",
-    path: "shared/ui/web/image-fallback/image-fallback.ts",
+    "selector": "lux-image-fallback-web",
+    "className": "AppImageFallback",
+    "category": "web",
+    "path": "shared/ui/web/image-fallback/image-fallback.ts"
   },
   {
-    selector: "lux-image-web",
-    className: "AppImage",
-    category: "web",
-    path: "shared/ui/web/image/image.ts",
+    "selector": "lux-image-web",
+    "className": "AppImage",
+    "category": "web",
+    "path": "shared/ui/web/image/image.ts"
   },
   {
-    selector: "lux-infinite-scroll-web",
-    className: "InfiniteScroll",
-    category: "web",
-    path: "shared/ui/web/infinite-scroll/infinite-scroll.ts",
+    "selector": "lux-infinite-scroll-web",
+    "className": "InfiniteScroll",
+    "category": "web",
+    "path": "shared/ui/web/infinite-scroll/infinite-scroll.ts"
   },
   {
-    selector: "lux-listbox-web",
-    className: "AppListbox",
-    category: "web",
-    path: "shared/ui/web/listbox/listbox.ts",
+    "selector": "lux-listbox-web",
+    "className": "AppListbox",
+    "category": "web",
+    "path": "shared/ui/web/listbox/listbox.ts"
   },
   {
-    selector: "lux-loader-web",
-    className: "AppLoader",
-    category: "web",
-    path: "shared/ui/web/loader/loader.ts",
+    "selector": "lux-loader-web",
+    "className": "AppLoader",
+    "category": "web",
+    "path": "shared/ui/web/loader/loader.ts"
   },
   {
-    selector: "lux-menu-web",
-    className: "AppMenu",
-    category: "web",
-    path: "shared/ui/web/menu/menu.ts",
+    "selector": "lux-menu-web",
+    "className": "AppMenu",
+    "category": "web",
+    "path": "shared/ui/web/menu/menu.ts"
   },
   {
-    selector: "lux-menubar-web",
-    className: "Menubar",
-    category: "web",
-    path: "shared/ui/web/menubar/menubar.ts",
+    "selector": "lux-menubar-web",
+    "className": "Menubar",
+    "category": "web",
+    "path": "shared/ui/web/menubar/menubar.ts"
   },
   {
-    selector: "lux-mesanio-web",
-    className: "Mesanio",
-    category: "web",
-    path: "shared/ui/web/mesanio/mesanio.ts",
+    "selector": "lux-mesanio-web",
+    "className": "Mesanio",
+    "category": "web",
+    "path": "shared/ui/web/mesanio/mesanio.ts"
   },
   {
-    selector: "lux-message-web",
-    className: "AppMessage",
-    category: "web",
-    path: "shared/ui/web/message/message.ts",
+    "selector": "lux-message-web",
+    "className": "AppMessage",
+    "category": "web",
+    "path": "shared/ui/web/message/message.ts"
   },
   {
-    selector: "lux-module-guide-web",
-    className: "ModuleGuide",
-    category: "web",
-    path: "shared/ui/web/module-guide/module-guide.ts",
+    "selector": "lux-module-guide-web",
+    "className": "ModuleGuide",
+    "category": "web",
+    "path": "shared/ui/web/module-guide/module-guide.ts"
   },
   {
-    selector: "lux-multi-axis-chart-web",
-    className: "MultiAxisChart",
-    category: "web",
-    path: "shared/ui/web/charts/multi-axis-chart.ts",
+    "selector": "lux-multi-axis-chart-web",
+    "className": "MultiAxisChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/multi-axis-chart.ts"
   },
   {
-    selector: "lux-multi-select-web",
-    className: "AppMultiSelect",
-    category: "web",
-    path: "shared/ui/web/multi-select/multi-select.ts",
+    "selector": "lux-multi-select-web",
+    "className": "AppMultiSelect",
+    "category": "web",
+    "path": "shared/ui/web/multi-select/multi-select.ts"
   },
   {
-    selector: "lux-offline-indicator-web",
-    className: "OfflineIndicator",
-    category: "web",
-    path: "shared/ui/web/offline-indicator/offline-indicator.ts",
+    "selector": "lux-offline-indicator-web",
+    "className": "OfflineIndicator",
+    "category": "web",
+    "path": "shared/ui/web/offline-indicator/offline-indicator.ts"
   },
   {
-    selector: "lux-page-title-report",
-    className: "PageTitleReport",
-    category: "web",
-    path: "shared/ui/web/title-page-report/page-title-report.ts",
+    "selector": "lux-page-title-report",
+    "className": "PageTitleReport",
+    "category": "web",
+    "path": "shared/ui/web/title-page-report/page-title-report.ts"
   },
   {
-    selector: "lux-page-title-report-maintenance",
-    className: "PageTitleReportMaintenance",
-    category: "web",
-    path: "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts",
+    "selector": "lux-page-title-report-maintenance",
+    "className": "PageTitleReportMaintenance",
+    "category": "web",
+    "path": "shared/ui/web/title-page-report-maintenance/page-title-report-maintenance.ts"
   },
   {
-    selector: "lux-paginator-web",
-    className: "AppPaginator",
-    category: "web",
-    path: "shared/ui/web/paginator/paginator.ts",
+    "selector": "lux-paginator-web",
+    "className": "AppPaginator",
+    "category": "web",
+    "path": "shared/ui/web/paginator/paginator.ts"
   },
   {
-    selector: "lux-panel-web",
-    className: "AppPanel",
-    category: "web",
-    path: "shared/ui/web/panel/panel.ts",
+    "selector": "lux-panel-web",
+    "className": "AppPanel",
+    "category": "web",
+    "path": "shared/ui/web/panel/panel.ts"
   },
   {
-    selector: "lux-pdf-viewer-modal-web",
-    className: "PdfViewerModal",
-    category: "web",
-    path: "shared/ui/web/pdf-viewer-modal/pdf-viewer-modal.ts",
+    "selector": "lux-pdf-viewer-modal-web",
+    "className": "PdfViewerModal",
+    "category": "web",
+    "path": "shared/ui/web/pdf-viewer-modal/pdf-viewer-modal.ts"
   },
   {
-    selector: "lux-pdf-viewer-trigger",
-    className: "PdfViewerTrigger",
-    category: "web",
-    path: "shared/ui/web/pdf-viewer-trigger/pdf-viewer-trigger.ts",
+    "selector": "lux-pdf-viewer-trigger",
+    "className": "PdfViewerTrigger",
+    "category": "web",
+    "path": "shared/ui/web/pdf-viewer-trigger/pdf-viewer-trigger.ts"
   },
   {
-    selector: "lux-pie-chart-web",
-    className: "PieChart",
-    category: "web",
-    path: "shared/ui/web/charts/pie-chart.ts",
+    "selector": "lux-pie-chart-web",
+    "className": "PieChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/pie-chart.ts"
   },
   {
-    selector: "lux-pivot-table-web",
-    className: "PivotTable",
-    category: "web",
-    path: "shared/ui/web/pivot-table/pivot-table.ts",
+    "selector": "lux-pivot-table-web",
+    "className": "PivotTable",
+    "category": "web",
+    "path": "shared/ui/web/pivot-table/pivot-table.ts"
   },
   {
-    selector: "lux-popover-web",
-    className: "AppPopover",
-    category: "web",
-    path: "shared/ui/web/popover/popover.ts",
+    "selector": "lux-popover-web",
+    "className": "AppPopover",
+    "category": "web",
+    "path": "shared/ui/web/popover/popover.ts"
   },
   {
-    selector: "lux-processing-overlay-web",
-    className: "AppProcessingOverlay",
-    category: "web",
-    path: "shared/ui/web/processing-overlay/processing-overlay.ts",
+    "selector": "lux-processing-overlay-web",
+    "className": "AppProcessingOverlay",
+    "category": "web",
+    "path": "shared/ui/web/processing-overlay/processing-overlay.ts"
   },
   {
-    selector: "lux-progress-bar-web",
-    className: "AppProgressBar",
-    category: "web",
-    path: "shared/ui/web/progress-bar/progress-bar.ts",
+    "selector": "lux-progress-bar-web",
+    "className": "AppProgressBar",
+    "category": "web",
+    "path": "shared/ui/web/progress-bar/progress-bar.ts"
   },
   {
-    selector: "lux-pull-to-refresh-web",
-    className: "PullToRefresh",
-    category: "web",
-    path: "shared/ui/web/pull-to-refresh/pull-to-refresh.ts",
+    "selector": "lux-pull-to-refresh-web",
+    "className": "PullToRefresh",
+    "category": "web",
+    "path": "shared/ui/web/pull-to-refresh/pull-to-refresh.ts"
   },
   {
-    selector: "lux-radar-chart-web",
-    className: "RadarChart",
-    category: "web",
-    path: "shared/ui/web/charts/radar-chart.ts",
+    "selector": "lux-radar-chart-web",
+    "className": "RadarChart",
+    "category": "web",
+    "path": "shared/ui/web/charts/radar-chart.ts"
   },
   {
-    selector: "lux-radio-button-web",
-    className: "AppRadioButton",
-    category: "web",
-    path: "shared/ui/web/radio-button/radio-button.ts",
+    "selector": "lux-radio-button-web",
+    "className": "AppRadioButton",
+    "category": "web",
+    "path": "shared/ui/web/radio-button/radio-button.ts"
   },
   {
-    selector: "lux-rango-calendario-yyyymmdd-web",
-    className: "RangoCalendarioyyyymmdd",
-    category: "web",
-    path: "shared/ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd.ts",
+    "selector": "lux-rango-calendario-yyyymmdd-web",
+    "className": "RangoCalendarioyyyymmdd",
+    "category": "web",
+    "path": "shared/ui/web/rango-calendario-yyyymmdd/rango-calendario-yyyymmdd.ts"
   },
   {
-    selector: "lux-rating-web",
-    className: "AppRating",
-    category: "web",
-    path: "shared/ui/web/rating/rating.ts",
+    "selector": "lux-rating-web",
+    "className": "AppRating",
+    "category": "web",
+    "path": "shared/ui/web/rating/rating.ts"
   },
   {
-    selector: "lux-report-header-web",
-    className: "ReportHeader",
-    category: "web",
-    path: "shared/ui/web/report-header/report-header.ts",
+    "selector": "lux-report-header-web",
+    "className": "ReportHeader",
+    "category": "web",
+    "path": "shared/ui/web/report-header/report-header.ts"
   },
   {
-    selector: "lux-scroll-top-web",
-    className: "ScrollTop",
-    category: "web",
-    path: "shared/ui/web/tap-to-top/tap-to-top.ts",
+    "selector": "lux-scroll-top-web",
+    "className": "ScrollTop",
+    "category": "web",
+    "path": "shared/ui/web/tap-to-top/tap-to-top.ts"
   },
   {
-    selector: "lux-section-nav",
-    className: "LxSectionNav",
-    category: "web",
-    path: "shared/ui/web/section-nav/section-nav.ts",
+    "selector": "lux-section-nav",
+    "className": "LxSectionNav",
+    "category": "web",
+    "path": "shared/ui/web/section-nav/section-nav.ts"
   },
   {
-    selector: "lux-select-button-web",
-    className: "AppSelectButton",
-    category: "web",
-    path: "shared/ui/web/select-button/select-button.ts",
+    "selector": "lux-select-button-web",
+    "className": "AppSelectButton",
+    "category": "web",
+    "path": "shared/ui/web/select-button/select-button.ts"
   },
   {
-    selector: "lux-sidebar-web",
-    className: "Sidebar",
-    category: "web",
-    path: "shared/ui/web/sidebar/sidebar.ts",
+    "selector": "lux-sidebar-web",
+    "className": "Sidebar",
+    "category": "web",
+    "path": "shared/ui/web/sidebar/sidebar.ts"
   },
   {
-    selector: "lux-skeleton-web",
-    className: "AppSkeleton",
-    category: "web",
-    path: "shared/ui/web/skeleton/skeleton.ts",
+    "selector": "lux-skeleton-web",
+    "className": "AppSkeleton",
+    "category": "web",
+    "path": "shared/ui/web/skeleton/skeleton.ts"
   },
   {
-    selector: "lux-spinner-web",
-    className: "AppSpinner",
-    category: "web",
-    path: "shared/ui/web/spinner/spinner.ts",
+    "selector": "lux-spinner-web",
+    "className": "AppSpinner",
+    "category": "web",
+    "path": "shared/ui/web/spinner/spinner.ts"
   },
   {
-    selector: "lux-split-button-web",
-    className: "AppSplitButton",
-    category: "web",
-    path: "shared/ui/web/split-button/split-button.ts",
+    "selector": "lux-split-button-web",
+    "className": "AppSplitButton",
+    "category": "web",
+    "path": "shared/ui/web/split-button/split-button.ts"
   },
   {
-    selector: "lux-status-badge-web",
-    className: "StatusBadge",
-    category: "web",
-    path: "shared/ui/web/status-badge/status-badge.ts",
+    "selector": "lux-status-badge-web",
+    "className": "StatusBadge",
+    "category": "web",
+    "path": "shared/ui/web/status-badge/status-badge.ts"
   },
   {
-    selector: "lux-steps-web",
-    className: "AppSteps",
-    category: "web",
-    path: "shared/ui/web/steps/steps.ts",
+    "selector": "lux-steps-web",
+    "className": "AppSteps",
+    "category": "web",
+    "path": "shared/ui/web/steps/steps.ts"
   },
   {
-    selector: "lux-swipe-actions-web",
-    className: "SwipeActions",
-    category: "web",
-    path: "shared/ui/web/swipe-actions/swipe-actions.ts",
+    "selector": "lux-swipe-actions-web",
+    "className": "SwipeActions",
+    "category": "web",
+    "path": "shared/ui/web/swipe-actions/swipe-actions.ts"
   },
   {
-    selector: "lux-table-caption",
-    className: "LuxTableCaption",
-    category: "web",
-    path: "shared/ui/web/lux-table-caption/lux-table-caption.ts",
+    "selector": "lux-table-caption",
+    "className": "LuxTableCaption",
+    "category": "web",
+    "path": "shared/ui/web/lux-table-caption/lux-table-caption.ts"
   },
   {
-    selector: "lux-table-checkbox",
-    className: "LuxTableCheckbox",
-    category: "web",
-    path: "shared/ui/web/lux-table-checkbox/lux-table-checkbox.ts",
+    "selector": "lux-table-checkbox",
+    "className": "LuxTableCheckbox",
+    "category": "web",
+    "path": "shared/ui/web/lux-table-checkbox/lux-table-checkbox.ts"
   },
   {
-    selector: "lux-table-empty-message",
-    className: "TableEmptyMessage",
-    category: "web",
-    path: "shared/ui/web/lux-table-empty-message/lux-table-empty-message.ts",
+    "selector": "lux-table-empty-message",
+    "className": "TableEmptyMessage",
+    "category": "web",
+    "path": "shared/ui/web/lux-table-empty-message/lux-table-empty-message.ts"
   },
   {
-    selector: "lux-table-footer",
-    className: "TableFooter",
-    category: "web",
-    path: "shared/ui/web/lux-table-footer/lux-table-footer.ts",
+    "selector": "lux-table-footer",
+    "className": "TableFooter",
+    "category": "web",
+    "path": "shared/ui/web/lux-table-footer/lux-table-footer.ts"
   },
   {
-    selector: "lux-table-global-filter",
-    className: "TableGlobalFilter",
-    category: "web",
-    path: "shared/ui/web/lux-table-global-filter/lux-table-global-filter.ts",
+    "selector": "lux-table-global-filter",
+    "className": "TableGlobalFilter",
+    "category": "web",
+    "path": "shared/ui/web/lux-table-global-filter/lux-table-global-filter.ts"
   },
   {
-    selector: "lux-tabs-web",
-    className: "Tabs",
-    category: "web",
-    path: "shared/ui/web/tabs/tabs.ts",
+    "selector": "lux-tabs-web",
+    "className": "Tabs",
+    "category": "web",
+    "path": "shared/ui/web/tabs/tabs.ts"
   },
   {
-    selector: "lux-tag-web",
-    className: "AppTag",
-    category: "web",
-    path: "shared/ui/web/tag/tag.ts",
+    "selector": "lux-tag-web",
+    "className": "AppTag",
+    "category": "web",
+    "path": "shared/ui/web/tag/tag.ts"
   },
   {
-    selector: "lux-territory-map-web",
-    className: "AppTerritoryMap",
-    category: "web",
-    path: "shared/ui/web/territory-map/territory-map.ts",
+    "selector": "lux-territory-map-web",
+    "className": "AppTerritoryMap",
+    "category": "web",
+    "path": "shared/ui/web/territory-map/territory-map.ts"
   },
   {
-    selector: "lux-timeline-web",
-    className: "Timeline",
-    category: "web",
-    path: "shared/ui/web/timeline/timeline.ts",
+    "selector": "lux-timeline-web",
+    "className": "Timeline",
+    "category": "web",
+    "path": "shared/ui/web/timeline/timeline.ts"
   },
   {
-    selector: "lux-toast-web",
-    className: "AppToast",
-    category: "web",
-    path: "shared/ui/web/toast/toast.ts",
+    "selector": "lux-toast-web",
+    "className": "AppToast",
+    "category": "web",
+    "path": "shared/ui/web/toast/toast.ts"
   },
   {
-    selector: "lux-toggle-switch-web",
-    className: "AppToggleSwitch",
-    category: "web",
-    path: "shared/ui/web/toggle-switch/toggle-switch.ts",
+    "selector": "lux-toggle-switch-web",
+    "className": "AppToggleSwitch",
+    "category": "web",
+    "path": "shared/ui/web/toggle-switch/toggle-switch.ts"
   },
   {
-    selector: "lux-toolbar-web",
-    className: "AppToolbar",
-    category: "web",
-    path: "shared/ui/web/toolbar/toolbar.ts",
+    "selector": "lux-toolbar-web",
+    "className": "AppToolbar",
+    "category": "web",
+    "path": "shared/ui/web/toolbar/toolbar.ts"
   },
   {
-    selector: "lux-touchspin-web",
-    className: "Touchspin",
-    category: "web",
-    path: "shared/ui/web/touchspin/touchspin.ts",
+    "selector": "lux-touchspin-web",
+    "className": "Touchspin",
+    "category": "web",
+    "path": "shared/ui/web/touchspin/touchspin.ts"
   },
   {
-    selector: "lux-tree-web",
-    className: "Tree",
-    category: "web",
-    path: "shared/ui/web/tree/tree.ts",
+    "selector": "lux-tree-web",
+    "className": "Tree",
+    "category": "web",
+    "path": "shared/ui/web/tree/tree.ts"
   },
   {
-    selector: "ng-template[accordionPanel]",
-    className: "AccordionPanel",
-    category: "web",
-    path: "shared/ui/web/accordion/accordion.ts",
-  },
+    "selector": "ng-template[accordionPanel]",
+    "className": "AccordionPanel",
+    "category": "web",
+    "path": "shared/ui/web/accordion/accordion.ts"
+  }
 ];

@@ -4,7 +4,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="w-2rem h-2rem rounded-lg bg-orange-100 d-flex align-items-center justify-content-center flex-shrink-0 ms-3"
@@ -20,14 +20,14 @@
         <p>{{ item.cliente }} · Folio: {{ item.folio }}</p>
         <p>{{ item.fechaSolicitud }}</p>
       </div>
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
             (clicked)="verDetalle.emit({ id: item.id, title: 'Editar asunto' })"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

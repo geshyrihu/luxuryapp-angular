@@ -10,12 +10,12 @@ import { AppRadioButton } from "@ui/web/radio-button/radio-button";
   imports: [AppRadioButton, MobileRadioButton],
   template: `
     @if (platform.isMobile()) {
-      <ili-radio-button
+      <lux-radio-button-mobile
         [value]="value()"
         [control]="control()"
         [inputId]="inputId()"
         [styleClass]="styleClass()"
-      ></ili-radio-button>
+      ></lux-radio-button-mobile>
     } @else {
       <lux-radio-button-web
         [value]="value()"

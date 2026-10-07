@@ -6,24 +6,24 @@ import {
 import { FieldsetBase } from "@ui/core/fieldset.base";
 
 @Component({
-  selector: "ili-fieldset",
+  selector: "lux-fieldset-mobile",
   template: `
-    <fieldset class="ili-fieldset">
+    <fieldset class="lux-fieldset-mobile">
       @if (legend()) {
-        <legend class="ili-fieldset-legend">{{ legend() }}</legend>
+        <legend class="lux-fieldset-mobile-legend">{{ legend() }}</legend>
       }
       <ng-content />
     </fieldset>
   `,
   styles: [
     `
-      .ili-fieldset {
+      .lux-fieldset-mobile {
         border: 1px solid var(--ds-border);
         border-radius: var(--ds-radius-md);
         padding: 1rem;
         margin: 0;
       }
-      .ili-fieldset-legend {
+      .lux-fieldset-mobile-legend {
         font-weight: 700;
         font-size: 0.875rem;
         padding: 0 0.5rem;

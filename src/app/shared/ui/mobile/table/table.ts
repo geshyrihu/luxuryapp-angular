@@ -11,7 +11,7 @@ import { MobileEmptyState } from "@ui/mobile/empty-state/empty-state";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-table",
+  selector: "lux-table-mobile",
 
   imports: [
     IonCard,
@@ -22,28 +22,28 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
     AppIconMobile,
     MobileEmptyState],
   template: `
-    <div class="ili-table-root">
+    <div class="lux-table-mobile-root">
       @if (loading()) {
         <ion-progress-bar type="indeterminate" />
       }
 
       @if (data().length === 0 && !loading()) {
-        <ili-empty-state
+        <lux-empty-state-mobile
           icon="material-symbols-light:table-view"
           [title]="'Sin registros'"
           [message]="emptyMessage()"
         />
       }
 
-      <div class="ili-table-cards">
+      <div class="lux-table-mobile-cards">
         @for (row of data(); track row[dataKey()] || $index) {
-          <ion-card class="ili-table-card" (click)="onRowClick(row)">
-            <ion-card-header class="ili-table-card-header">
+          <ion-card class="lux-table-mobile-card" (click)="onRowClick(row)">
+            <ion-card-header class="lux-table-mobile-card-header">
               @for (col of columns(); track col.field) {
                 @if ($first) {
-                  <ion-card-title class="ili-table-card-title">
+                  <ion-card-title class="lux-table-mobile-card-title">
                     @if (col.icon) {
-                      <ili-icon [icon]="col.icon" class="ili-table-card-icon" />
+                      <lux-icon-mobile [icon]="col.icon" class="lux-table-mobile-card-icon" />
                     }
                     {{ row[col.field] }}
                   </ion-card-title>
@@ -51,12 +51,12 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
               }
             </ion-card-header>
 
-            <ion-card-content class="ili-table-card-content">
+            <ion-card-content class="lux-table-mobile-card-content">
               @for (col of columns(); track col.field) {
                 @if (!$first) {
-                  <div class="ili-table-field">
-                    <span class="ili-table-field-label">{{ col.header }}</span>
-                    <span class="ili-table-field-value">{{
+                  <div class="lux-table-mobile-field">
+                    <span class="lux-table-mobile-field-label">{{ col.header }}</span>
+                    <span class="lux-table-mobile-field-value">{{
                       row[col.field]
                     }}</span>
                   </div>
@@ -70,24 +70,24 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-table-root {
+      .lux-table-mobile-root {
         width: 100%;
       }
-      .ili-table-cards {
+      .lux-table-mobile-cards {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
         padding: 0.5rem;
       }
-      .ili-table-card {
+      .lux-table-mobile-card {
         margin: 0;
         border-radius: var(--ds-radius-lg);
         box-shadow: var(--ds-shadow-sm);
       }
-      .ili-table-card-header {
+      .lux-table-mobile-card-header {
         padding: 0.75rem 1rem 0.25rem;
       }
-      .ili-table-card-title {
+      .lux-table-mobile-card-title {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -95,27 +95,27 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-weight: 600;
         color: var(--ds-text-primary);
       }
-      .ili-table-card-icon {
+      .lux-table-mobile-card-icon {
         font-size: 1.25rem;
       }
-      .ili-table-card-content {
+      .lux-table-mobile-card-content {
         padding: 0.25rem 1rem 0.75rem;
       }
-      .ili-table-field {
+      .lux-table-mobile-field {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0.35rem 0;
         border-bottom: 1px solid var(--ds-border);
       }
-      .ili-table-field:last-child {
+      .lux-table-mobile-field:last-child {
         border-bottom: none;
       }
-      .ili-table-field-label {
+      .lux-table-mobile-field-label {
         font-size: 0.8125rem;
         color: var(--ds-text-secondary);
       }
-      .ili-table-field-value {
+      .lux-table-mobile-field-value {
         font-size: 0.875rem;
         color: var(--ds-text-primary);
         font-weight: 500;

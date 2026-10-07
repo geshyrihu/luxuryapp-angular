@@ -12,9 +12,9 @@ import { ActionMenu } from "@ui/web/action-menu/action-menu";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-action-menu
+      <lux-action-menu-mobile
         ><ng-container [ngTemplateOutlet]="projected"
-      /></ili-action-menu>
+      /></lux-action-menu-mobile>
     } @else {
       <lux-action-menu-web
         ><ng-container [ngTemplateOutlet]="projected"

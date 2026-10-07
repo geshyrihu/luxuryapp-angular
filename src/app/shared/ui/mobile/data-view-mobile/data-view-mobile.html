@@ -69,13 +69,13 @@
           }
         </ion-list>
       } @else if (filterValue() && !loading()) {
-        <ili-empty-state
+        <lux-empty-state-mobile
           icon="material-symbols-light:search"
           title="Sin resultados"
           [message]="'No se encontraron resultados para &quot;' + filterValue() + '&quot;'"
         />
       } @else if (!loading() && filteredData().length === 0) {
-        <ili-empty-state
+        <lux-empty-state-mobile
           icon="material-symbols-light:move-to-inbox-outline"
           title="Sin registros"
           message="No hay registros disponibles."

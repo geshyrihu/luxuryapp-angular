@@ -6,7 +6,7 @@ import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
 
 /**
  * Wrapper multiplataforma de ConfirmDialog. Renderiza `app-confirm-dialog`
- * (Bootstrap) o `ili-confirm-dialog` (Ionic) según `PlatformService.isMobile()`.
+ * (Bootstrap) o `lux-confirm-dialog-mobile` (Ionic) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-confirm-dialog [(visible)]="..." />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { ConfirmDialog } from "@ui/web/confirm-dialog/confirm-dialog";
   imports: [ConfirmDialog, MobileConfirmDialog],
   template: `
     @if (platform.isMobile()) {
-      <ili-confirm-dialog
+      <lux-confirm-dialog-mobile
         [(visible)]="visible"
         [title]="title()"
         [message]="message()"

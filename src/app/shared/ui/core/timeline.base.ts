@@ -14,7 +14,7 @@ export interface TimelineEvent {
 /**
  * Base compartida de Timeline.
  *  - web:     `app-timeline` (Bootstrap p-timeline, soporta align/layout)
- *  - mobile:  `ili-timeline` (timeline vertical nativo)
+ *  - mobile:  `lux-timeline-mobile` (timeline vertical nativo)
  *  - wrapper: `lux-timeline`  (auto runtime)
  */
 @Directive()

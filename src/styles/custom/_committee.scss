@@ -381,7 +381,7 @@
   }
 }
 
-// El bottom-nav del catálogo (ili-bottom-nav) aporta fondo, borde y safe-area.
+// El bottom-nav del catálogo (lux-bottom-nav-mobile) aporta fondo, borde y safe-area.
 .committee-mobile-footer::before {
   display: none; // Elimina la línea/sombra por defecto del ion-footer (iOS)
 }

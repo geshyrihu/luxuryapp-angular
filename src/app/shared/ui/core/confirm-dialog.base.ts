@@ -36,7 +36,7 @@ export const CONFIRM_TYPE_CONFIG: Record<
 /**
  * Base compartida de ConfirmDialog (API + lógica de tipo).
  *  - web:     `app-confirm-dialog` (Bootstrap p-dialog)
- *  - mobile:  `ili-confirm-dialog` (overlay Ionic)
+ *  - mobile:  `lux-confirm-dialog-mobile` (overlay Ionic)
  *  - wrapper: `lux-confirm-dialog`  (auto runtime)
  */
 @Directive()

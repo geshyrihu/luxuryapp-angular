@@ -92,7 +92,7 @@
     </div>
   </ng-container>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item
+    <lux-list-item-mobile
       [alignTop]="true"
       [style.border-left]="'5px solid ' + statusBorderVar(item.status)"
     >
@@ -130,7 +130,7 @@
               {{ item.daysDifference }} días
             </span>
 
-            <ili-action-menu slot="end">
+            <lux-action-menu-mobile slot="end">
               <ng-container actions>
                 <lux-button-mobile
                   kind="item"
@@ -175,7 +175,7 @@
                 />
                 }
               </ng-container>
-            </ili-action-menu>
+            </lux-action-menu-mobile>
           </div>
         </div>
 
@@ -243,6 +243,6 @@
           />
         </div>
       </div>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

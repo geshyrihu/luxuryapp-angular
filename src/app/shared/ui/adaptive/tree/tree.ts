@@ -14,7 +14,7 @@ import { Tree } from "@ui/web/tree/tree";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-tree
+      <lux-tree-mobile
         [value]="value()"
         [(selection)]="selection"
         [selectionMode]="selectionMode()"
@@ -22,7 +22,7 @@ import { Tree } from "@ui/web/tree/tree";
         [metaKeySelection]="metaKeySelection()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-tree>
+      </lux-tree-mobile>
     } @else {
       <lux-tree-web
         [value]="value()"

@@ -26,23 +26,23 @@ import {
  * vertical space. Enforce min-width on nested button/icon elements.
  */
 @Component({
-  selector: "ili-list-item",
+  selector: "lux-list-item-mobile",
   template: `
     <article
-      class="ili-list-item"
-      [class.ili-list-item-no-padding]="noPadding()"
-      [class.ili-list-item-no-divider]="!divider()"
-      [class.ili-list-item-align-top]="alignTop()"
+      class="lux-list-item-mobile"
+      [class.lux-list-item-mobile-no-padding]="noPadding()"
+      [class.lux-list-item-mobile-no-divider]="!divider()"
+      [class.lux-list-item-mobile-align-top]="alignTop()"
     >
-      <div class="ili-list-item__start">
+      <div class="lux-list-item-mobile__start">
         <ng-content select="[start], [slot=start]" />
       </div>
 
-      <div class="ili-list-item__content">
+      <div class="lux-list-item-mobile__content">
         <ng-content />
       </div>
 
-      <div class="ili-list-item__end">
+      <div class="lux-list-item-mobile__end">
         <ng-content select="[end], [slot=end]" />
       </div>
     </article>
@@ -53,7 +53,7 @@ import {
         display: block;
       }
 
-      .ili-list-item {
+      .lux-list-item-mobile {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr) auto;
         align-items: center;
@@ -64,29 +64,29 @@ import {
         border-bottom: 1px solid var(--ds-border);
       }
 
-      .ili-list-item-no-padding {
+      .lux-list-item-mobile-no-padding {
         padding-inline: 0;
       }
 
-      .ili-list-item-no-divider {
+      .lux-list-item-mobile-no-divider {
         border-bottom: 0;
       }
 
-      .ili-list-item__start {
+      .lux-list-item-mobile__start {
         display: flex;
         align-items: center;
         flex-shrink: 0;
         grid-column: 1;
       }
 
-      .ili-list-item__end {
+      .lux-list-item-mobile__end {
         display: flex;
         align-items: center;
         flex-shrink: 0;
         grid-column: 3;
       }
 
-      .ili-list-item__content {
+      .lux-list-item-mobile__content {
         min-width: 0;
         display: flex;
         flex-direction: column;
@@ -94,15 +94,15 @@ import {
         grid-column: 2;
       }
 
-      .ili-list-item__content:empty,
-      .ili-list-item__start:empty,
-      .ili-list-item__end:empty {
+      .lux-list-item-mobile__content:empty,
+      .lux-list-item-mobile__start:empty,
+      .lux-list-item-mobile__end:empty {
         display: none;
       }
 
-      .ili-list-item.ili-list-item-align-top,
-      .ili-list-item.ili-list-item-align-top .ili-list-item__start,
-      .ili-list-item.ili-list-item-align-top .ili-list-item__end {
+      .lux-list-item-mobile.lux-list-item-mobile-align-top,
+      .lux-list-item-mobile.lux-list-item-mobile-align-top .lux-list-item-mobile__start,
+      .lux-list-item-mobile.lux-list-item-mobile-align-top .lux-list-item-mobile__end {
         align-items: flex-start;
       }
     `],

@@ -9,11 +9,11 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item (click)="cardEmployee.emit(item.applicationUserId)">
+    <lux-list-item-mobile (click)="cardEmployee.emit(item.applicationUserId)">
       <p class="fw-semibold m-0 text-body">{{ item.descripcion }}</p>
       <p class="text-xs m-0 text-body-secondary">
         {{ item.fechaRegistro | apiDate:'short' }} · {{ item.userName }}
       </p>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

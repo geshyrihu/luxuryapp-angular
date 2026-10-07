@@ -10,9 +10,9 @@ import { AppMenu } from "@ui/web/menu/menu";
   imports: [AppMenu, MobileMenu],
   template: `
     @if (platform.isMobile()) {
-      <ili-menu [model]="model()" [popup]="popup()" [styleClass]="styleClass()"
+      <lux-menu-mobile [model]="model()" [popup]="popup()" [styleClass]="styleClass()"
         ><ng-content
-      /></ili-menu>
+      /></lux-menu-mobile>
     } @else {
       <lux-menu-web
         #webMenu

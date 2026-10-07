@@ -4,7 +4,7 @@
   [showAdd]="false"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div start>
         <lux-icon
           icon="material-symbols-light:check-circle-outline"
@@ -18,7 +18,7 @@
         Total: {{ item.total | number:'1.2-2' }} | {{ item.fechaSolicitud |
         apiDate }}
       </p>
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="edit"
@@ -26,7 +26,7 @@
             (clicked)="viewOrder.emit(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

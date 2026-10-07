@@ -3,7 +3,7 @@ import { PopoverBase } from "@ui/core/popover.base";
 import { IonPopover } from "@ionic/angular";
 
 @Component({
-  selector: "ili-popover",
+  selector: "lux-popover-mobile",
   imports: [IonPopover],
   template: `
     <ion-popover

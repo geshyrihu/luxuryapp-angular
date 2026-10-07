@@ -7,7 +7,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
  * Versión optimizada para pantallas pequeñas.
  */
 @Component({
-  selector: "ili-processing-overlay",
+  selector: "lux-processing-overlay-mobile",
   imports: [AppIconMobile],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -18,7 +18,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         <div class="bg-white rounded-xl shadow-xl p-6 mx-3 w-full max-w-xs">
           <!-- Spinner -->
           <div class="animate-spin mb-3 inline-block w-full text-center">
-            <ili-icon icon="material-symbols-light:progress-activity" class="text-2xl text-primary-500" />
+            <lux-icon-mobile icon="material-symbols-light:progress-activity" class="text-2xl text-primary-500" />
           </div>
 
           <!-- Mensaje principal -->

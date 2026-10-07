@@ -3,15 +3,15 @@ import { Component, signal, ViewEncapsulation } from "@angular/core";
 import { CarouselBase } from "@ui/core/carousel.base";
 
 @Component({
-  selector: "ili-carousel",
+  selector: "lux-carousel-mobile",
 
   imports: [NgTemplateOutlet],
   template: `
-    <div class="ili-carousel">
-      <div class="ili-carousel-track" #track (scroll)="onScroll(track)">
+    <div class="lux-carousel-mobile">
+      <div class="lux-carousel-mobile-track" #track (scroll)="onScroll(track)">
         @for (item of value(); track $index) {
           <div
-            class="ili-carousel-slide"
+            class="lux-carousel-mobile-slide"
             [style.min-width.%]="100 / numVisible()"
           >
             <ng-container
@@ -22,14 +22,14 @@ import { CarouselBase } from "@ui/core/carousel.base";
         }
       </div>
       @if (value().length > 1) {
-        <div class="ili-carousel-dots">
+        <div class="lux-carousel-mobile-dots">
           @for (item of value(); track $index) {
             <button
-              class="ili-carousel-dot"
-              [class.ili-carousel-dot-active]="$index === activeIndex()"
+              class="lux-carousel-mobile-dot"
+              [class.lux-carousel-mobile-dot-active]="$index === activeIndex()"
               (click)="goTo(track, $index)"
             >
-              <span class="ili-carousel-dot-inner"></span>
+              <span class="lux-carousel-mobile-dot-inner"></span>
             </button>
           }
         </div>
@@ -38,12 +38,12 @@ import { CarouselBase } from "@ui/core/carousel.base";
   `,
   styles: [
     `
-      .ili-carousel {
+      .lux-carousel-mobile {
         position: relative;
         width: 100%;
         overflow: hidden;
       }
-      .ili-carousel-track {
+      .lux-carousel-mobile-track {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
@@ -51,22 +51,22 @@ import { CarouselBase } from "@ui/core/carousel.base";
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
-      .ili-carousel-track::-webkit-scrollbar {
+      .lux-carousel-mobile-track::-webkit-scrollbar {
         display: none;
       }
-      .ili-carousel-slide {
+      .lux-carousel-mobile-slide {
         flex-shrink: 0;
         scroll-snap-align: start;
         box-sizing: border-box;
         padding: 0 0.25rem;
       }
-      .ili-carousel-dots {
+      .lux-carousel-mobile-dots {
         display: flex;
         justify-content: center;
         gap: 0.5rem;
         padding: 0.75rem 0;
       }
-      .ili-carousel-dot {
+      .lux-carousel-mobile-dot {
         width: 0.5rem;
         height: 0.5rem;
         border-radius: 50%;
@@ -78,11 +78,11 @@ import { CarouselBase } from "@ui/core/carousel.base";
           background 0.2s,
           transform 0.2s;
       }
-      .ili-carousel-dot-active {
+      .lux-carousel-mobile-dot-active {
         background: var(--ds-primary);
         transform: scale(1.3);
       }
-      .ili-carousel-dot-inner {
+      .lux-carousel-mobile-dot-inner {
         display: block;
       }
     `],

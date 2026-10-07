@@ -13,13 +13,13 @@ import { Accordion } from "@ui/web/accordion/accordion";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-accordion
+      <lux-accordion-mobile
         [items]="items()"
         [multiple]="multiple()"
         [(expandedIds)]="expandedIds"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-accordion>
+      </lux-accordion-mobile>
     } @else {
       <lux-accordion-web
         [items]="items()"

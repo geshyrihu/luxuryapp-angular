@@ -11,7 +11,7 @@ import { AppListbox } from "@ui/web/listbox/listbox";
   imports: [AppListbox, MobileListbox],
   template: `
     @if (platform.isMobile()) {
-      <ili-listbox
+      <lux-listbox-mobile
         [value]="value()"
         (valueChange)="onValueChange($event)"
         [options]="options()"
@@ -29,7 +29,7 @@ import { AppListbox } from "@ui/web/listbox/listbox";
         [metaKeySelection]="metaKeySelection()"
         [styleClass]="styleClass()"
         ><ng-content
-      /></ili-listbox>
+      /></lux-listbox-mobile>
     } @else {
       <lux-listbox-web
         [value]="value()"

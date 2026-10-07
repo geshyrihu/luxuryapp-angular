@@ -30,7 +30,7 @@ import { AppProcessingOverlay } from "@ui/web/processing-overlay/processing-over
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (platform.isMobile()) {
-      <ili-processing-overlay
+      <lux-processing-overlay-mobile
         [isProcessing]="isProcessing()"
         [progress]="progress()"
         [message]="message()"

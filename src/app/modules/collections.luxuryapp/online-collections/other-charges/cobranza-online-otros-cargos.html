@@ -168,7 +168,7 @@
       [showAdd]="false"
     >
       <ng-template #listItemTemplate let-item>
-        <ili-list-item>
+        <lux-list-item-mobile>
           <div class="flex-fill min-w-0 ion-text-wrap p-2">
             <p class="fw-semibold m-0 text-body">{{ item.conceptName }}</p>
             <p class="text-xs m-0 mt-1 text-body-secondary">
@@ -185,7 +185,7 @@
               Por cobrar: {{ item.pending | accountingNumber}}
             </p>
           </div>
-        </ili-list-item>
+        </lux-list-item-mobile>
       </ng-template>
     </lux-data-view-mobile>
 

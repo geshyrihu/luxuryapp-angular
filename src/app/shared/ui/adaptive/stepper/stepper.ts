@@ -13,7 +13,7 @@ import { MobileStepper } from "@ui/mobile/stepper/stepper";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-stepper
+      <lux-stepper-mobile
         [steps]="steps()"
         [linear]="linear()"
         [finishLabel]="finishLabel()"
@@ -21,16 +21,16 @@ import { MobileStepper } from "@ui/mobile/stepper/stepper";
         (finish)="finish.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-stepper>
+      </lux-stepper-mobile>
     } @else {
-      <ili-stepper
+      <lux-stepper-mobile
         [steps]="steps()"
         [linear]="linear()"
         [finishLabel]="finishLabel()"
         [(activeStep)]="activeStep"
         (finish)="finish.emit()"
         ><ng-container [ngTemplateOutlet]="projected"
-      /></ili-stepper>
+      /></lux-stepper-mobile>
     }
   `,
 })

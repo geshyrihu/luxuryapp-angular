@@ -14,9 +14,9 @@ import { AppFieldset } from "@ui/web/fieldset/fieldset";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-fieldset [legend]="legend()">
+      <lux-fieldset-mobile [legend]="legend()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-fieldset>
+      </lux-fieldset-mobile>
     } @else {
       <lux-fieldset-web
         [legend]="legend()"

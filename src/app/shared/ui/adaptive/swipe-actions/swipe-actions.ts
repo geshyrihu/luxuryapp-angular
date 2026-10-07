@@ -14,9 +14,9 @@ import { SwipeActions } from "@ui/web/swipe-actions/swipe-actions";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-swipe-actions [actions]="actions()" [threshold]="threshold()">
+      <lux-swipe-actions-mobile [actions]="actions()" [threshold]="threshold()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-swipe-actions>
+      </lux-swipe-actions-mobile>
     } @else {
       <lux-swipe-actions-web [actions]="actions()" [threshold]="threshold()">
         <ng-container [ngTemplateOutlet]="projected" />

@@ -9,7 +9,7 @@ import { MobileTable } from "@ui/mobile/table/table";
   imports: [MobileTable],
   template: `
     @if (platform.isMobile()) {
-      <ili-table
+      <lux-table-mobile
         [columns]="columns()"
         [data]="data()"
         [loading]="loading()"

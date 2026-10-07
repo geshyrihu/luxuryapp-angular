@@ -4,11 +4,11 @@ import { TreeBase, TreeNode } from "@ui/core/tree.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-tree",
+  selector: "lux-tree-mobile",
 
   imports: [CommonModule, AppIconMobile],
   template: `
-    <div class="ili-tree">
+    <div class="lux-tree-mobile">
       @for (node of value(); track node.key || $index) {
         <ng-container
           *ngTemplateOutlet="
@@ -20,29 +20,29 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
     </div>
 
     <ng-template #nodeTemplate let-node let-depth="depth">
-      <div class="ili-tree-node" [style.paddingLeft.px]="depth * 20 + 8">
-        <div class="ili-tree-node-row" (click)="selectNode(node)">
+      <div class="lux-tree-mobile-node" [style.paddingLeft.px]="depth * 20 + 8">
+        <div class="lux-tree-mobile-node-row" (click)="selectNode(node)">
           @if (!node.leaf && node.children?.length) {
             <button
-              class="ili-tree-node-toggle"
+              class="lux-tree-mobile-node-toggle"
               (click)="toggleNode(node); $event.stopPropagation()"
             >
-              <ili-icon
+              <lux-icon-mobile
                 [icon]="
                   isExpanded(node) ? 'material-symbols-light:keyboard-arrow-down' : 'material-symbols-light:chevron-right'
                 "
               />
             </button>
           } @else {
-            <span class="ili-tree-node-toggle-spacer"></span>
+            <span class="lux-tree-mobile-node-toggle-spacer"></span>
           }
 
           @if (selectionMode() === "checkbox") {
             <button
-              class="ili-tree-checkbox"
+              class="lux-tree-mobile-checkbox"
               (click)="toggleCheck(node); $event.stopPropagation()"
             >
-              <ili-icon
+              <lux-icon-mobile
                 [icon]="
                   isChecked(node)
                     ? 'material-symbols-light:check-box'
@@ -55,19 +55,19 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           }
 
           @if (node.icon) {
-            <ili-icon [icon]="node.icon" class="ili-tree-node-icon" />
+            <lux-icon-mobile [icon]="node.icon" class="lux-tree-mobile-node-icon" />
           }
 
           <span
-            class="ili-tree-node-label"
-            [class.ili-tree-node-selected]="isSelected(node)"
+            class="lux-tree-mobile-node-label"
+            [class.lux-tree-mobile-node-selected]="isSelected(node)"
           >
             {{ node.label }}
           </span>
         </div>
 
         @if (isExpanded(node) && node.children?.length) {
-          <div class="ili-tree-node-children">
+          <div class="lux-tree-mobile-node-children">
             @for (child of node.children; track child.key || $index) {
               <ng-container
                 *ngTemplateOutlet="
@@ -83,13 +83,13 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-tree {
+      .lux-tree-mobile {
         width: 100%;
       }
-      .ili-tree-node {
+      .lux-tree-mobile-node {
         padding: 0.125rem 0;
       }
-      .ili-tree-node-row {
+      .lux-tree-mobile-node-row {
         display: flex;
         align-items: center;
         gap: 0.25rem;
@@ -98,10 +98,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         border-radius: var(--ds-radius-md);
         transition: background 0.15s;
       }
-      .ili-tree-node-row:hover {
+      .lux-tree-mobile-node-row:hover {
         background: var(--ds-bg-muted);
       }
-      .ili-tree-node-toggle {
+      .lux-tree-mobile-node-toggle {
         display: flex;
         align-items: center;
         border: none;
@@ -111,11 +111,11 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         color: var(--ds-text-secondary);
         font-size: 1rem;
       }
-      .ili-tree-node-toggle-spacer {
+      .lux-tree-mobile-node-toggle-spacer {
         display: inline-block;
         width: 1.25rem;
       }
-      .ili-tree-checkbox {
+      .lux-tree-mobile-checkbox {
         display: flex;
         align-items: center;
         border: none;
@@ -125,20 +125,20 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         color: var(--ds-primary);
         font-size: 1.125rem;
       }
-      .ili-tree-node-icon {
+      .lux-tree-mobile-node-icon {
         font-size: 1rem;
         color: var(--ds-text-secondary);
       }
-      .ili-tree-node-label {
+      .lux-tree-mobile-node-label {
         font-size: var(--ds-font-size-body);
         color: var(--ds-text-primary);
         flex: 1;
       }
-      .ili-tree-node-selected {
+      .lux-tree-mobile-node-selected {
         font-weight: 600;
         color: var(--ds-primary);
       }
-      .ili-tree-node-children {
+      .lux-tree-mobile-node-children {
         border-left: 1px solid var(--ds-border);
         margin-left: 0.75rem;
         padding-left: 0.5rem;

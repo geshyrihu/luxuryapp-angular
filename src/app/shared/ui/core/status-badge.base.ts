@@ -74,7 +74,7 @@ export const STATUS_SEVERITY_STYLES: Record<
 /**
  * Base compartida de StatusBadge (API + lógica de estatus/severidad).
  *  - web:     `app-status-badge` (span + lxTooltip)
- *  - mobile:  `ili-status-badge` (span sin tooltip; touch no tiene hover)
+ *  - mobile:  `lux-status-badge-mobile` (span sin tooltip; touch no tiene hover)
  *  - wrapper: `lux-status-badge`  (auto runtime)
  */
 @Directive()

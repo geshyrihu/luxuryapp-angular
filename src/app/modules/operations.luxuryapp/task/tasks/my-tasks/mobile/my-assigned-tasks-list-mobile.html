@@ -8,7 +8,7 @@
   </div>
 
   <ng-template #listItemTemplate let-item>
-    <ili-list-item alignTop="true" class="w-full">
+    <lux-list-item-mobile alignTop="true" class="w-full">
       <div slot="start">
         <app-avatar
           [image]="item.beforeWork ? item.beforeWork : 'assets/images/default-avatar.jpg'"
@@ -40,7 +40,7 @@
         </p>
       </div>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <lux-button-mobile
           kind="item"
           iconName="clipboard-outline"
@@ -79,7 +79,7 @@
           (clicked)="reopen.emit(item.id)"
         />
         }
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

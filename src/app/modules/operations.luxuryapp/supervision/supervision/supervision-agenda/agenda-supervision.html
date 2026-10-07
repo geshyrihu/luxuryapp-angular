@@ -163,13 +163,13 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <p class="fw-semibold m-0 text-body">{{ item.problema }}</p>
       <p class="text-xs m-0 text-body-secondary">
         {{ item.name.label }} · {{ item.estatus }}
       </p>
 
-      <ili-action-menu end>
+      <lux-action-menu-mobile end>
         <ng-container actions>
           @if (applicationUserId == item.applicationUserId ||
           aspRoleS.hasRole(AspRole.SuperUsuario)) {
@@ -184,7 +184,7 @@
           />
           }
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

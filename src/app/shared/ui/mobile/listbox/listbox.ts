@@ -9,7 +9,7 @@ import { IonCheckbox, IonItem, IonList } from "@ionic/angular";
 import { ListboxBase } from "@ui/core/listbox.base";
 
 @Component({
-  selector: "ili-listbox",
+  selector: "lux-listbox-mobile",
   imports: [FormsModule, IonList, IonItem, IonCheckbox],
   template: `
     <ion-list [class]="styleClass()">

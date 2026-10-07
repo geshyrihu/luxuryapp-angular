@@ -74,7 +74,7 @@
     </div>
 
     @for (module of group.cards; track module.route) {
-    <ili-list-item class="ion-no-padding" (click)="navigateTo(module.route)">
+    <lux-list-item-mobile class="ion-no-padding" (click)="navigateTo(module.route)">
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -87,7 +87,7 @@
       <p class="text-xs m-0 mt-1 text-body-secondary">
         {{ module.description }}
       </p>
-    </ili-list-item>
+    </lux-list-item-mobile>
     }
   </div>
   }

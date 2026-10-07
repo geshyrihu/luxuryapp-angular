@@ -1,6 +1,6 @@
 <lux-data-view-mobile [data]="data()" [showAdd]="false">
   <ng-template #listItemTemplate let-task>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg w-3rem h-3rem bg-primary-50"
@@ -20,7 +20,7 @@
         [status]="task.statusDescription"
       />
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="item"
@@ -35,7 +35,7 @@
             (clicked)="reopen.emit(task.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

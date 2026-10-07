@@ -3,7 +3,7 @@
   (add)="add.emit({ id: '', title: 'Agregar Beneficiario' })"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div
         start
         class="d-flex align-items-center justify-content-center flex-shrink-0 ms-3 me-2 rounded-lg"
@@ -21,7 +21,7 @@
         ?? {{ item.relationName }} | {{ item.phoneNumber }}
       </p>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="item"
@@ -34,7 +34,7 @@
             (clicked)="delete.emit(item.id)"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

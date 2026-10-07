@@ -10,12 +10,12 @@ import { AppToolbar } from "@ui/web/toolbar/toolbar";
   imports: [AppToolbar, MobileToolbar],
   template: `
     @if (platform.isMobile()) {
-      <ili-toolbar
+      <lux-toolbar-mobile
         [leftTemplate]="_leftTemplate"
         [rightTemplate]="_rightTemplate"
         [styleClass]="styleClass()"
         ><ng-content
-      /></ili-toolbar>
+      /></lux-toolbar-mobile>
     } @else {
       <lux-toolbar-web
         [leftTemplate]="_leftTemplate"

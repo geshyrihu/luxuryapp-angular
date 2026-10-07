@@ -14,9 +14,9 @@ import { AppPanel } from "@ui/web/panel/panel";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-panel [header]="header()">
+      <lux-panel-mobile [header]="header()">
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-panel>
+      </lux-panel-mobile>
     } @else {
       <lux-panel-web [header]="header()">
         <ng-container [ngTemplateOutlet]="projected" />

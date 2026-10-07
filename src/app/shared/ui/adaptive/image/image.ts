@@ -6,7 +6,7 @@ import { AppImage } from "@ui/web/image/image";
 
 /**
  * Wrapper multiplataforma de Image. Renderiza `app-image` (web, con preview) o
- * `ili-image` (Ionic ion-img) según `PlatformService.isMobile()`.
+ * `lux-image-mobile` (Ionic ion-img) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-image [src]="..." [preview]="true" />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { AppImage } from "@ui/web/image/image";
   imports: [AppImage, MobileImage],
   template: `
     @if (platform.isMobile()) {
-      <ili-image
+      <lux-image-mobile
         [src]="src()"
         [alt]="alt()"
         [width]="width()"

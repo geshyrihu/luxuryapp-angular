@@ -8,16 +8,16 @@ import { PaginatorBase } from "@ui/core/paginator.base";
 import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
 
 @Component({
-  selector: "ili-paginator",
+  selector: "lux-paginator-mobile",
 
   imports: [IonButton, IonSelect, IonSelectOption, AppIconMobile],
   template: `
-    <div class="ili-paginator">
-      <div class="ili-paginator-info">
+    <div class="lux-paginator-mobile">
+      <div class="lux-paginator-mobile-info">
         {{ firstItem() }}–{{ lastItem() }} de {{ totalRecords() }}
       </div>
 
-      <div class="ili-paginator-controls">
+      <div class="lux-paginator-mobile-controls">
         @if (showFirstLast()) {
           <ion-button
             fill="clear"
@@ -25,7 +25,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
             [disabled]="isFirstPage()"
             (click)="onPageChange(0)"
           >
-            <ili-icon icon="material-symbols-light:first-page" />
+            <lux-icon-mobile icon="material-symbols-light:first-page" />
           </ion-button>
         }
 
@@ -35,10 +35,10 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           [disabled]="isFirstPage()"
           (click)="onPageChange(page() - 1)"
         >
-          <ili-icon icon="material-symbols-light:chevron-left" />
+          <lux-icon-mobile icon="material-symbols-light:chevron-left" />
         </ion-button>
 
-        <span class="ili-paginator-current"
+        <span class="lux-paginator-mobile-current"
           >{{ page() + 1 }} / {{ totalPages() }}</span
         >
 
@@ -48,7 +48,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
           [disabled]="isLastPage()"
           (click)="onPageChange(page() + 1)"
         >
-          <ili-icon icon="material-symbols-light:chevron-right" />
+          <lux-icon-mobile icon="material-symbols-light:chevron-right" />
         </ion-button>
 
         @if (showFirstLast()) {
@@ -58,18 +58,18 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
             [disabled]="isLastPage()"
             (click)="onPageChange(totalPages() - 1)"
           >
-            <ili-icon icon="material-symbols-light:last-page" />
+            <lux-icon-mobile icon="material-symbols-light:last-page" />
           </ion-button>
         }
       </div>
 
       @if (rowsPerPageOptions().length > 0) {
-        <div class="ili-paginator-rows">
+        <div class="lux-paginator-mobile-rows">
           <ion-select
             [value]="rows()"
             (ionChange)="onRowsChange($event.detail.value)"
             interface="popover"
-            class="ili-paginator-select"
+            class="lux-paginator-mobile-select"
           >
             @for (opt of rowsPerPageOptions(); track opt) {
               <ion-select-option [value]="opt">{{ opt }}</ion-select-option>
@@ -81,7 +81,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
   `,
   styles: [
     `
-      .ili-paginator {
+      .lux-paginator-mobile {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -91,25 +91,25 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         font-size: 0.8125rem;
         color: var(--ds-text-secondary);
       }
-      .ili-paginator-info {
+      .lux-paginator-mobile-info {
         white-space: nowrap;
       }
-      .ili-paginator-controls {
+      .lux-paginator-mobile-controls {
         display: flex;
         align-items: center;
         gap: 0.125rem;
       }
-      .ili-paginator-current {
+      .lux-paginator-mobile-current {
         min-width: 3rem;
         text-align: center;
         font-weight: 600;
         color: var(--ds-text-primary);
       }
-      .ili-paginator-rows {
+      .lux-paginator-mobile-rows {
         display: flex;
         align-items: center;
       }
-      .ili-paginator-select {
+      .lux-paginator-mobile-select {
         --padding-start: 0.5rem;
         --padding-end: 0.5rem;
         font-size: 0.8125rem;

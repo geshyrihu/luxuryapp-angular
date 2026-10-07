@@ -14,7 +14,7 @@ import { AppCard } from "@ui/web/card/card";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-card
+      <lux-card-mobile
         [header]="header()"
         [subheader]="subheader()"
         [padded]="padded()"
@@ -26,7 +26,7 @@ import { AppCard } from "@ui/web/card/card";
         [footerTemplate]="footerTpl()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-card>
+      </lux-card-mobile>
     } @else {
       <lux-card-web
         [header]="header()"

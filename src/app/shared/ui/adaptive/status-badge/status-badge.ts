@@ -6,7 +6,7 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
 
 /**
  * Wrapper multiplataforma de StatusBadge. Renderiza `app-status-badge` (web,
- * con tooltip) o `ili-status-badge` (Ionic, sin tooltip) según la plataforma.
+ * con tooltip) o `lux-status-badge-mobile` (Ionic, sin tooltip) según la plataforma.
  * Punto de entrada recomendado: `<lux-status-badge [status]="..." />`.
  */
 @Component({
@@ -15,7 +15,7 @@ import { StatusBadge } from "@ui/web/status-badge/status-badge";
   imports: [StatusBadge, MobileStatusBadge],
   template: `
     @if (platform.isMobile()) {
-      <ili-status-badge
+      <lux-status-badge-mobile
         [status]="status()"
         [itemId]="itemId()"
         [clickable]="clickable()"

@@ -8,7 +8,7 @@ import { IonCheckbox } from "@ionic/angular";
 import { CheckboxBase } from "@ui/core/checkbox.base";
 
 @Component({
-  selector: "ili-checkbox",
+  selector: "lux-checkbox-mobile",
 
   imports: [FormsModule, IonCheckbox],
   template: `

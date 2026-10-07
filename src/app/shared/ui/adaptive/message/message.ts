@@ -14,7 +14,7 @@ import { AppMessage } from "@ui/web/message/message";
          slot; duplicarlo en ramas @if deja la rama no-else vacía. -->
     <ng-template #projected><ng-content /></ng-template>
     @if (platform.isMobile()) {
-      <ili-message
+      <lux-message-mobile
         [text]="text()"
         [severity]="severity()"
         [closable]="closable()"
@@ -22,7 +22,7 @@ import { AppMessage } from "@ui/web/message/message";
         (close)="close.emit()"
       >
         <ng-container [ngTemplateOutlet]="projected" />
-      </ili-message>
+      </lux-message-mobile>
     } @else {
       <lux-message-web
         [text]="text()"

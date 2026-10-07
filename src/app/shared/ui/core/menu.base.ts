@@ -6,7 +6,7 @@ export abstract class MenuBase {
   model = input<any>(undefined);
   /**
    * Se conserva por compatibilidad con `LxMenu` (wrapper adaptativo), que
-   * sigue pasando `[popup]` a `<lux-menu-web>`/`<ili-menu>`. `AppMenu` (web)
+   * sigue pasando `[popup]` a `<lux-menu-web>`/`<lux-menu-mobile>`. `AppMenu` (web)
    * ya siempre se comporta como panel flotante tipo dropdown — el valor
    * no cambia su comportamiento, solo evita romper el binding heredado.
    */

@@ -5,7 +5,7 @@
   aria-label="Bandeja de entrevistas pendientes"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div class="d-flex flex-column gap-1">
         <p class="fw-semibold m-0 text-body line-height-2">{{ item.candidateName }}</p>
         <p class="text-xs m-0 text-body-secondary">
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         @if (item.cvFileName) {
           <lux-pdf-viewer-trigger
             [url]="item.cvFileUrl"
@@ -31,7 +31,7 @@
           [ariaLabel]="'Llenar retroalimentacion de ' + item.candidateName"
           (clicked)="feedback.emit({ candidateApplicationId: item.id, candidateProcessId: item.candidateProcessId })"
         />
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

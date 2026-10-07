@@ -30,7 +30,7 @@
     [globalFilterFields]="['nameInspection', 'departament', 'frequency']"
   >
     <ng-template #listItemTemplate let-item>
-      <ili-list-item>
+      <lux-list-item-mobile>
         <div
           start
           class="d-flex align-items-center justify-content-center flex-shrink-0 w-3rem h-3rem bg-primary-50 rounded-md"
@@ -66,7 +66,7 @@
           </p>
         </div>
 
-        <ili-action-menu slot="end">
+        <lux-action-menu-mobile slot="end">
           <ng-container actions>
             @if (item.isRealized) {
             <lux-button-mobile
@@ -83,8 +83,8 @@
               (clicked)="inspeccionar.emit(item.id)"
             />
           </ng-container>
-        </ili-action-menu>
-      </ili-list-item>
+        </lux-action-menu-mobile>
+      </lux-list-item-mobile>
     </ng-template>
   </lux-data-view-mobile>
 </div>

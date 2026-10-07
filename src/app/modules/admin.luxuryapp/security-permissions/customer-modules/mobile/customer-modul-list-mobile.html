@@ -20,7 +20,7 @@
     </div>
   </div>
   <ng-template #listItemTemplate let-customer>
-    <ili-list-item
+    <lux-list-item-mobile
       button
       (click)="select.emit({ customerId: customer.customerId, nameCustomer: customer.nameCustomer })"
       lines="full"
@@ -51,6 +51,6 @@
         <lux-tag severity="danger" value="No Asignado"></lux-tag>
         }
       </div>
-    </ili-list-item>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

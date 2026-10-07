@@ -11,7 +11,7 @@ import { AppToast } from "@ui/web/toast/toast";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
-      <ili-toast />
+      <lux-toast-mobile />
     } @else {
       <lux-toast-web />
     }

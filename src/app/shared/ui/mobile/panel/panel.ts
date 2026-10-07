@@ -6,32 +6,32 @@ import {
 import { PanelBase } from "@ui/core/panel.base";
 
 @Component({
-  selector: "ili-panel",
+  selector: "lux-panel-mobile",
   template: `
-    <div class="ili-panel">
+    <div class="lux-panel-mobile">
       @if (header()) {
-        <div class="ili-panel-header">{{ header() }}</div>
+        <div class="lux-panel-mobile-header">{{ header() }}</div>
       }
-      <div class="ili-panel-content">
+      <div class="lux-panel-mobile-content">
         <ng-content />
       </div>
     </div>
   `,
   styles: [
     `
-      .ili-panel {
+      .lux-panel-mobile {
         border: 1px solid var(--ds-border);
         border-radius: var(--ds-radius-md);
         overflow: hidden;
       }
-      .ili-panel-header {
+      .lux-panel-mobile-header {
         padding: 0.75rem 1rem;
         font-weight: 700;
         font-size: 1rem;
         background: var(--ds-bg-sunken);
         border-bottom: 1px solid var(--ds-border);
       }
-      .ili-panel-content {
+      .lux-panel-mobile-content {
         padding: 1rem;
       }
     `],

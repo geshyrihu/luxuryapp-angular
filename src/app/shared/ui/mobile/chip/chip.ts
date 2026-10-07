@@ -8,20 +8,20 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
  * etiqueta y botón de remoción (`app-icon`) al final.
  */
 @Component({
-  selector: "ili-chip",
+  selector: "lux-chip-mobile",
 
   imports: [IonChip, IonLabel, AppIconMobile],
   template: `
     <ion-chip
       [color]="ionColor()"
       [disabled]="disabled()"
-      [class.ili-chip-clickable]="clickable()"
+      [class.lux-chip-mobile-clickable]="clickable()"
       (click)="onClick()"
     >
       @if (image()) {
-        <img class="ili-chip-img" [src]="image()" alt="" />
+        <img class="lux-chip-mobile-img" [src]="image()" alt="" />
       } @else if (icon()) {
-        <ili-icon [icon]="icon()" class="ili-chip-icon" />
+        <lux-icon-mobile [icon]="icon()" class="lux-chip-mobile-icon" />
       }
 
       <ion-label>{{ label() }}</ion-label>
@@ -29,33 +29,33 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
       @if (removable() && !disabled()) {
         <button
           type="button"
-          class="ili-chip-remove"
+          class="lux-chip-mobile-remove"
           aria-label="Quitar"
           (click)="onRemove(); $event.stopPropagation()"
         >
-          <ili-icon icon="material-symbols-light:cancel" />
+          <lux-icon-mobile icon="material-symbols-light:cancel" />
         </button>
       }
     </ion-chip>
   `,
   styles: [
     `
-      ili-chip ion-chip.ili-chip-clickable {
+      lux-chip-mobile ion-chip.lux-chip-mobile-clickable {
         cursor: pointer;
       }
-      .ili-chip-img {
+      .lux-chip-mobile-img {
         width: 20px;
         height: 20px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 0.35rem;
       }
-      .ili-chip-icon {
+      .lux-chip-mobile-icon {
         display: inline-flex;
         margin-right: 0.35rem;
         font-size: 1.05rem;
       }
-      .ili-chip-remove {
+      .lux-chip-mobile-remove {
         background: none;
         border: none;
         padding: 0;
@@ -66,7 +66,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
         opacity: 0.7;
         cursor: pointer;
       }
-      .ili-chip-remove:hover {
+      .lux-chip-mobile-remove:hover {
         opacity: 1;
       }
     `],

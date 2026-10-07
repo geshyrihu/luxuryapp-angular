@@ -43,7 +43,7 @@
 } @else {
 <div class="d-flex flex-column mt-3 gap-2">
   @for (item of cb_existing_Participant(); track item.id) {
-  <ili-list-item
+  <lux-list-item-mobile
     class="w-full border-1 rounded-md"
     [class.border-green-500]="item.isAdmin === 'Administrador'"
     [class.border-red-500]="item.isAdmin !== 'Administrador'"
@@ -74,15 +74,15 @@
     </div>
 
     <!-- Lado derecho: acciones -->
-    <ili-action-menu slot="end">
+    <lux-action-menu-mobile slot="end">
       <lux-button-mobile kind="edit" (clicked)="onEditParticipant(item)" />
       <lux-button-mobile
         kind="delete"
         color="danger"
         (clicked)="onDelete(item.id)"
       />
-    </ili-action-menu>
-  </ili-list-item>
+    </lux-action-menu-mobile>
+  </lux-list-item-mobile>
   }
 </div>
 }

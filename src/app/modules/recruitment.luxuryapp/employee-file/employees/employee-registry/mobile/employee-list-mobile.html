@@ -5,7 +5,7 @@
   trackByProperty="employeeId"
 >
   <ng-template #listItemTemplate let-item>
-    <ili-list-item>
+    <lux-list-item-mobile>
       <div start class="mobile-avatar-slot">
         @if (item.photoPath) {
         <img
@@ -42,7 +42,7 @@
       </p>
       <p class="text-xs m-0 text-body-secondary">{{ item.correoPersonal }}</p>
 
-      <ili-action-menu slot="end">
+      <lux-action-menu-mobile slot="end">
         <ng-container actions>
           <lux-button-mobile
             kind="item"
@@ -50,7 +50,7 @@
             (clicked)="editEmpleado.emit({ applicationUserId: item.applicationUserId, employeeId: item.employeeId, fullName: item.fullName })"
           />
         </ng-container>
-      </ili-action-menu>
-    </ili-list-item>
+      </lux-action-menu-mobile>
+    </lux-list-item-mobile>
   </ng-template>
 </lux-data-view-mobile>

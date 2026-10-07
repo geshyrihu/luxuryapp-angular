@@ -6,7 +6,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 /**
  * Wrapper multiplataforma de Icon. Renderiza `app-icon` (iconify) o
- * `ili-icon` (ionicons) según `PlatformService.isMobile()`.
+ * `lux-icon-mobile` (ionicons) según `PlatformService.isMobile()`.
  * Punto de entrada recomendado: `<lux-icon [icon]="AppIcon.Person" />`.
  */
 @Component({
@@ -14,7 +14,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
   imports: [AppIcon, AppIconMobile],
   template: `
     @if (platform.isMobile()) {
-      <ili-icon [icon]="icon()" [class]="styleClass()" />
+      <lux-icon-mobile [icon]="icon()" [class]="styleClass()" />
     } @else {
       <lux-icon-base [icon]="icon()" [class]="styleClass()" />
     }
