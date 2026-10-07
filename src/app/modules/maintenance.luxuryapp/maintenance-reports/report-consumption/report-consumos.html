@@ -20,7 +20,7 @@
         <div class="col-12 col-lg-8">
           <form [formGroup]="filtersForm" class="row g-4">
             <div class="col-12 col-md-6 col-xl-4">
-              <custom-input-multiselect-signal
+              <lux-input-multiselect-signal
                 [control]="filtersForm.controls.medidorIds"
                 [options]="medidorOptions()"
                 label="Medidores"
@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-xl-4">
-              <custom-input-multiselect-signal
+              <lux-input-multiselect-signal
                 [control]="filtersForm.controls.medidorCategoriaIds"
                 [options]="categoriaOptions()"
                 label="Categorias"
@@ -38,14 +38,14 @@
             </div>
 
             <div class="col-12 col-md-6 col-xl-4">
-              <custom-input-multiselect-signal
+              <lux-input-multiselect-signal
                 [control]="filtersForm.controls.areas"
                 [options]="areaOptions()"
                 label="Area / ubicacion"
                 placeholder="Todas las areas"
               />
               <small class="text-body-secondary">
-                 Fuente actual: descripciÃ³n del medidor.
+                Fuente actual: descripciÃ³n del medidor.
               </small>
             </div>
           </form>
@@ -200,18 +200,18 @@
             [showSearch]="false"
           />
         </ng-template>
-      <ng-template #header>
-        <tr>
-          <th>CATEGORÃA</th>
-          <th>NÃšMERO</th>
-          <th>ÃREA / UBICACIÃ“N</th>
-          <th>DESCRIPCIÃ“N</th>
-          <th class="text-end">CONSUMO TOTAL</th>
-          <th class="text-end">PROMEDIO SEMANAL</th>
-          <th class="text-end">MÃX. CONFIGURADO</th>
-          <th class="text-end">MÃX. DETECTADO</th>
-        </tr>
-      </ng-template>
+        <ng-template #header>
+          <tr>
+            <th>CATEGORÃA</th>
+            <th>NÃšMERO</th>
+            <th>ÃREA / UBICACIÃ“N</th>
+            <th>DESCRIPCIÃ“N</th>
+            <th class="text-end">CONSUMO TOTAL</th>
+            <th class="text-end">PROMEDIO SEMANAL</th>
+            <th class="text-end">MÃX. CONFIGURADO</th>
+            <th class="text-end">MÃX. DETECTADO</th>
+          </tr>
+        </ng-template>
         <ng-template #body let-item>
           <tr>
             <td>{{ item.categoria }}</td>

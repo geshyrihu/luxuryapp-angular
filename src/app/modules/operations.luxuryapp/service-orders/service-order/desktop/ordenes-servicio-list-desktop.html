@@ -12,7 +12,7 @@
     <div
       class="d-flex align-items-center flex-wrap gap-2 no-print mb-3 mt-1 px-3"
     >
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="fechaControl()"
         type="month"
         customClass=""
@@ -27,7 +27,8 @@
         class="d-flex align-items-center flex-wrap gap-1 p-1 rounded bg-body-tertiary"
       >
         @for (item of filtroEquipos(); track item) {
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           [lxTooltip]="'Ver ' + item.nombre"
           tooltipPosition="bottom"
           [iconClass]="item.icon"
@@ -38,7 +39,8 @@
         />
         }
       </div>
-      <lux-button-web displayMode="icon"
+      <lux-button-web
+        displayMode="icon"
         iconClass="material-symbols-light:help"
         size="sm"
         variant="outline"
@@ -186,7 +188,8 @@
       </td>
       <td class="no-print">
         <div class="d-flex">
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -197,7 +200,8 @@
             [routerLink]="['/report/maintenance-report/soporte-orden-servicio', item.id]"
           />
 
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -208,7 +212,8 @@
             (clicked)="uploadImg.emit(item.id)"
           />
 
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -219,7 +224,8 @@
             (clicked)="uploadDoc.emit(item.id)"
           />
 
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -231,7 +237,8 @@
           />
 
           @if (item.isSuspended) {
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -242,7 +249,8 @@
             (clicked)="resume.emit(item.id)"
           />
           } @else {
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"

@@ -16,14 +16,14 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { Endpoints } from "@core/constants/endpoints/endpoints";
+import { DataConnectorService } from "@core/services/data-connector.service";
+import { SwalService } from "@core/services/swal.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
 import { CustomInputPassword } from "@ui/inputs/web/custom-input-password-signal";
 import { catchError, finalize, Subject, throwError } from "rxjs";
-import { Endpoints } from "@core/constants/endpoints/endpoints";
-import { DataConnectorService } from "@core/services/data-connector.service";
 import { ROUTES } from "src/app/routing/route-paths";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-import { SwalService } from "@core/services/swal.service";
 
 interface IResetPasswordForm {
   newPassword: FormControl<string>;
@@ -37,7 +37,8 @@ interface IResetPasswordForm {
     CustomInputPassword,
     ButtonWeb,
     RouterModule,
-    LxIcon],
+    LxIcon,
+  ],
   template: `
     <!-- Página de restablecer contraseña — dos paneles claros -->
     <div class="auth-two-panel">
@@ -63,7 +64,12 @@ interface IResetPasswordForm {
               Restablecer Contraseña
             </h2>
             @if (email()) {
-              <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary);">Para: {{ email() }}</p>
+              <p
+                class="text-base m-0 mb-5"
+                style="color: var(--ds-text-secondary);"
+              >
+                Para: {{ email() }}
+              </p>
             }
 
             <form
@@ -72,7 +78,7 @@ interface IResetPasswordForm {
               (ngSubmit)="onSubmit()"
             >
               <div class="p-fluid">
-                <custom-input-password-signal
+                <lux-input-password-signal
                   [control]="form.controls.newPassword"
                   [horizontal]="false"
                   formControlName="newPassword"
@@ -86,7 +92,7 @@ interface IResetPasswordForm {
               </div>
 
               <div class="p-fluid">
-                <custom-input-password-signal
+                <lux-input-password-signal
                   [control]="form.controls.confirmPassword"
                   [horizontal]="false"
                   formControlName="confirmPassword"
@@ -128,7 +134,9 @@ interface IResetPasswordForm {
                 </div>
               }
 
-              <div class="d-flex align-items-center justify-content-center mt-2">
+              <div
+                class="d-flex align-items-center justify-content-center mt-2"
+              >
                 <a
                   [routerLink]="['/auth/login']"
                   class="font-semibold text-sm transition-colors"
@@ -141,7 +149,10 @@ interface IResetPasswordForm {
           </div>
         </main>
 
-        <footer class="px-4 md:px-6 py-4 text-sm" style="color: var(--ds-text-secondary);">
+        <footer
+          class="px-4 md:px-6 py-4 text-sm"
+          style="color: var(--ds-text-secondary);"
+        >
           &copy; 2026 Luxury Building Group. Todos los derechos reservados.
         </footer>
       </div>
@@ -153,7 +164,10 @@ interface IResetPasswordForm {
           alt=""
           class="auth-brand-icon-watermark"
         />
-        <div class="relative text-center px-6" style="max-width: 460px; z-index: 1;">
+        <div
+          class="relative text-center px-6"
+          style="max-width: 460px; z-index: 1;"
+        >
           <div class="auth-brand-badge mx-auto">
             <img
               src="assets/oficial/191410772_padded_logo.png"
@@ -162,10 +176,17 @@ interface IResetPasswordForm {
             />
           </div>
           <!-- Slogan provisional: pendiente de definición final del negocio. -->
-          <h2 class="text-5xl font-extrabold mb-3" style="color: var(--ds-primary); line-height: 1.15;">
-            Excelencia <span style="color: var(--ds-warning);">Inmobiliaria</span>
+          <h2
+            class="text-5xl font-extrabold mb-3"
+            style="color: var(--ds-primary); line-height: 1.15;"
+          >
+            Excelencia
+            <span style="color: var(--ds-warning);">Inmobiliaria</span>
           </h2>
-          <p class="text-base line-height-3" style="color: var(--ds-text-secondary);">
+          <p
+            class="text-base line-height-3"
+            style="color: var(--ds-text-secondary);"
+          >
             Gestiona recursos, proyectos y operaciones con la suite tecnológica
             definitiva diseñada para líderes de la industria.
           </p>
@@ -195,7 +216,8 @@ export class ResetPassword implements OnInit, OnDestroy {
           Validators.required,
           // RN-CRED-032: mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número.
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)],
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/),
+        ],
       }),
       confirmPassword: new FormControl("", {
         nonNullable: true,
@@ -210,8 +232,12 @@ export class ResetPassword implements OnInit, OnDestroy {
     // (flujo por código); nunca se exponde en la URL cuando viene del código.
     const stateToken = history.state?.token || "";
     const stateEmail = history.state?.email || "";
-    this.token.set(this.route.snapshot.queryParamMap.get("token") || stateToken);
-    this.email.set(this.route.snapshot.queryParamMap.get("email") || stateEmail);
+    this.token.set(
+      this.route.snapshot.queryParamMap.get("token") || stateToken,
+    );
+    this.email.set(
+      this.route.snapshot.queryParamMap.get("email") || stateEmail,
+    );
 
     if (!this.token()) {
       this.errorMessage.set("Enlace inválido o expirado.");

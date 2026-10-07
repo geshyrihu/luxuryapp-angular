@@ -79,7 +79,7 @@
   <!-- Acciones de decision (solo si esta Pendiente) -->
   @if (p.estadoValue === 0) {
   <form [formGroup]="formDecision" class="border-top-1 border pt-3">
-    <custom-input-textarea-signal
+    <lux-input-textarea-signal
       [control]="formDecision.controls['observaciones']"
       label="Observaciones de la Decision"
     />

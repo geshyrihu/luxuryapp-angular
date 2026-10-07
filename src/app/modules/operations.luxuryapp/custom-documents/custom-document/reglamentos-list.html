@@ -1,16 +1,16 @@
 @if (platformS.isMobile()) {
-  <app-reglamentos-list-mobile
-    [data]="dataSignal()"
-    [globalFilterFields]="globalFilterFields()"
-    (consult)="openConsultation($event)"
-  />
+<app-reglamentos-list-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (consult)="openConsultation($event)"
+/>
 } @else {
-  <app-reglamentos-list-desktop
-    [data]="dataSignal()"
-    [globalFilterFields]="globalFilterFields()"
-    (consult)="openConsultation($event)"
-    (rowReorder)="onRowReorder($event)"
-  />
+<app-reglamentos-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (consult)="openConsultation($event)"
+  (rowReorder)="onRowReorder($event)"
+/>
 }
 
 <lux-modal
@@ -26,7 +26,7 @@
 
     <div class="mb-4">
       <label for="query" class="fw-bold d-block mb-2">Tu Consulta</label>
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         id="query"
         [rows]="4"
         placeholder="Ej. óCuóles son las sanciones por ruido excesivo? óCuól es el horario de la alberca?"

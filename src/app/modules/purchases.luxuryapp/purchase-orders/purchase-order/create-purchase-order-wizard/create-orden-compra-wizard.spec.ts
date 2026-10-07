@@ -2,12 +2,12 @@ import { provideHttpClient } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 import { provideRouter } from "@angular/router";
-import { ModalController } from "@ionic/angular";
 import {
   DialogService,
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ModalController } from "@ionic/angular";
 import { CreateOrdenCompraWizard } from "./create-orden-compra-wizard";
 
 describe("CreateOrdenCompraWizard", () => {
@@ -21,7 +21,8 @@ describe("CreateOrdenCompraWizard", () => {
         DialogService,
         { provide: ModalController, useValue: {} },
         { provide: DynamicDialogRef, useValue: { close: () => {} } },
-        { provide: DynamicDialogConfig, useValue: { data: null } }],
+        { provide: DynamicDialogConfig, useValue: { data: null } },
+      ],
     }).compileComponents();
   });
 
@@ -38,7 +39,7 @@ describe("CreateOrdenCompraWizard", () => {
     // Regresión: con ng-content duplicado en base-input-signal, la rama
     // onlyInput del paso 2 renderizaba vacía (sin el ng-select del autocomplete).
     const input = el.querySelector(
-      "custom-input-autocomplete-signal ng-select input",
+      "lux-input-autocomplete-signal ng-select input",
     );
     expect(input).not.toBeNull();
   });

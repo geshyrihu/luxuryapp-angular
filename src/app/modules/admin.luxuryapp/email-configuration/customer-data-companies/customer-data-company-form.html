@@ -1,59 +1,59 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-autocomplete-signal
-        (propagar)="saveCustomer($event)"
-        [control]="form.controls.customer"
-        [data]="cb_customer()"
-        label="Cliente"
-        placeholder="Escribe para buscar cliente"
-      />
+  <lux-input-autocomplete-signal
+    (propagar)="saveCustomer($event)"
+    [control]="form.controls.customer"
+    [data]="cb_customer()"
+    label="Cliente"
+    placeholder="Escribe para buscar cliente"
+  />
 
-      <custom-input-autocomplete-signal
-        (propagar)="savAppRoles($event)"
-        [control]="form.controls.applicationRole"
-        [data]="cb_applicationRole()"
-        label="Rol"
-        placeholder="Escribe para buscar rol"
-      />
+  <lux-input-autocomplete-signal
+    (propagar)="savAppRoles($event)"
+    [control]="form.controls.applicationRole"
+    [data]="cb_applicationRole()"
+    label="Rol"
+    placeholder="Escribe para buscar rol"
+  />
 
-      <custom-input-autocomplete-signal
-        (propagar)="saveApplicationUser($event)"
-        [control]="form.controls.applicationUser"
-        [data]="cb_applicationUser()"
-        label="Usuario"
-        placeholder="Escribe para buscar usuario"
-      />
+  <lux-input-autocomplete-signal
+    (propagar)="saveApplicationUser($event)"
+    [control]="form.controls.applicationUser"
+    [data]="cb_applicationUser()"
+    label="Usuario"
+    placeholder="Escribe para buscar usuario"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.email"
-        label="Correo Electrónico"
-        placeholder="email"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.email"
+    label="Correo Electrónico"
+    placeholder="email"
+  />
 
-      <div class="d-flex gap-2">
-        <custom-input-phone-prefix
-          [control]="form.controls.phoneNumberPrefix"
-          label="Prefijo"
-          class="w-100"
-        />
-        <custom-input-mask-signal
-          [control]="form.controls.phoneNumber"
-          label="Teléfono"
-          customMask="(999) 999-9999"
-          placeholder="(555) 000-0000"
-          class="flex-fill"
-        />
-      </div>
+  <div class="d-flex gap-2">
+    <lux-input-phone-prefix
+      [control]="form.controls.phoneNumberPrefix"
+      label="Prefijo"
+      class="w-100"
+    />
+    <lux-input-mask-signal
+      [control]="form.controls.phoneNumber"
+      label="Teléfono"
+      customMask="(999) 999-9999"
+      placeholder="(555) 000-0000"
+      class="flex-fill"
+    />
+  </div>
 
-      <div class="d-flex justify-content-end mt-4">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
+  <div class="d-flex justify-content-end mt-4">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
 </form>

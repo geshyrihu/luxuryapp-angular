@@ -14,7 +14,7 @@ import { IonInputToggle } from "../../mobile/ion-input-toggle";
 import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle-switch";
 
 @Component({
-  selector: "custom-input-toggle-switch-signal",
+  selector: "lux-input-toggle-switch-signal",
 
   imports: [WebInputToggleSwitch, IonInputToggle],
   providers: [
@@ -22,7 +22,8 @@ import { WebInputToggleSwitch } from "../../web/input-toggle-switch/input-toggle
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputToggleSwitch),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -69,4 +70,3 @@ export class InputToggleSwitch extends BaseInputSignal {
     this.toggleChange.emit(event);
   }
 }
-

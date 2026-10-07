@@ -1,73 +1,91 @@
 <div class="p-3 p-md-4">
-  <h4 class="text-headline-md text-on-surface m-0 mb-4">Reporte de Inspecciones</h4>
+  <h4 class="text-headline-md text-on-surface m-0 mb-4">
+    Reporte de Inspecciones
+  </h4>
 
   <!-- Filtros -->
   <div class="card p-3 p-md-4 mb-4">
     <div class="row g-3 align-items-end">
-    <div class="col-12 col-lg-5">
-      <custom-input-select-signal
-        id="inspection"
-        label="Inspección"
-        [data]="inspectionResultSignal()"
-        optionLabel="label"
-        optionValue="value"
-        placeholder="Seleccione una inspección"
-        [control]="inspectionResultIdControl"
-        (selectionChange)="onReload()"
-        [horizontal]="false"
-        [filter]="true"
-        size="small"
-      />
+      <div class="col-12 col-lg-5">
+        <lux-input-select-signal
+          id="inspection"
+          label="Inspección"
+          [data]="inspectionResultSignal()"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Seleccione una inspección"
+          [control]="inspectionResultIdControl"
+          (selectionChange)="onReload()"
+          [horizontal]="false"
+          [filter]="true"
+          size="small"
+        />
+      </div>
+      <div class="col-12 col-lg-4">
+        <lux-input-date-signal
+          [control]="dateControl"
+          label="Fecha a revisar"
+          mode="single"
+          dateFormat="Y-m-d"
+          altFormat="d/m/Y"
+          (change)="onDateChange(dateControl.value)"
+          [horizontal]="false"
+          size="small"
+        />
+      </div>
+      <div class="col-12 col-lg-3 d-flex justify-content-lg-end">
+        @if (inspectionResultIdControl.value !== '' && dataSignal()) {
+        <lux-button-web
+          size="sm"
+          displayMode="both"
+          label="Descargar PDF"
+          severity="danger"
+          iconClass="material-symbols-light:picture-as-pdf"
+          tooltip="Descargar reporte en PDF"
+          (clicked)="onExportPDF()"
+        />
+        }
+      </div>
     </div>
-    <div class="col-12 col-lg-4">
-      <custom-input-date-signal
-        [control]="dateControl"
-        label="Fecha a revisar"
-        mode="single"
-        dateFormat="Y-m-d"
-        altFormat="d/m/Y"
-        (change)="onDateChange(dateControl.value)"
-        [horizontal]="false"
-        size="small"
-      />
-    </div>
-    <div class="col-12 col-lg-3 d-flex justify-content-lg-end">
-      @if (inspectionResultIdControl.value !== '' && dataSignal()) {
-      <lux-button-web
-        size="sm"
-        displayMode="both"
-        label="Descargar PDF"
-        severity="danger"
-        iconClass="material-symbols-light:picture-as-pdf"
-        tooltip="Descargar reporte en PDF"
-        (clicked)="onExportPDF()"
-      />
-      }
-    </div>
-  </div>
   </div>
 
   @if (!dataSignal()) {
   <div class="d-flex justify-content-center align-items-center p-5">
-    <p class="text-body-md text-on-surface-secondary">No hay datos para mostrar</p>
+    <p class="text-body-md text-on-surface-secondary">
+      No hay datos para mostrar
+    </p>
   </div>
   } @if (dataSignal()) {
   <div class="d-flex flex-column gap-5">
     <!-- Información General -->
     <div class="card p-4 p-md-5">
-      <h5 class="text-title-lg text-primary m-0 mb-4">{{ dataSignal().name }}</h5>
+      <h5 class="text-title-lg text-primary m-0 mb-4">
+        {{ dataSignal().name }}
+      </h5>
       <div class="row gap-3 g-4">
         <div class="col-12 col-md-6">
-          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Departamento</p>
-          <p class="text-body-md text-on-surface m-0">{{ dataSignal().departament }}</p>
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">
+            Departamento
+          </p>
+          <p class="text-body-md text-on-surface m-0">
+            {{ dataSignal().departament }}
+          </p>
         </div>
         <div class="col-12 col-md-6">
-          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Frecuencia</p>
-          <p class="text-body-md text-on-surface m-0">{{ dataSignal().frequency }}</p>
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">
+            Frecuencia
+          </p>
+          <p class="text-body-md text-on-surface m-0">
+            {{ dataSignal().frequency }}
+          </p>
         </div>
         <div class="col-12">
-          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">Realizado por</p>
-          <p class="text-body-md text-on-surface m-0">{{ dataSignal().user }}</p>
+          <p class="text-body-sm text-on-surface-secondary m-0 mb-1">
+            Realizado por
+          </p>
+          <p class="text-body-md text-on-surface m-0">
+            {{ dataSignal().user }}
+          </p>
         </div>
       </div>
     </div>
@@ -75,8 +93,12 @@
     <!-- Resultados -->
     @for (item of dataSignal().results; track item) {
     <div class="card p-4 p-md-5 border-outline">
-      <div class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline">
-        <h6 class="text-title-md text-on-surface m-0">{{ item.inspectionDescription }}</h6>
+      <div
+        class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom-1 border-outline"
+      >
+        <h6 class="text-title-md text-on-surface m-0">
+          {{ item.inspectionDescription }}
+        </h6>
         @if (item.state) {
         <lux-icon
           icon="material-symbols-light:check-circle"
@@ -92,14 +114,18 @@
 
       @if (item.observations) {
       <div class="mb-4">
-        <p class="text-body-sm fw-medium text-on-surface m-0 mb-2">Observaciones:</p>
-        <p class="text-body-sm text-on-surface-secondary m-0">{{ item.observations }}</p>
+        <p class="text-body-sm fw-medium text-on-surface m-0 mb-2">
+          Observaciones:
+        </p>
+        <p class="text-body-sm text-on-surface-secondary m-0">
+          {{ item.observations }}
+        </p>
       </div>
-      }
-
-      @if (item.images && item.images.length > 0) {
+      } @if (item.images && item.images.length > 0) {
       <div>
-        <p class="text-body-sm fw-medium text-on-surface m-0 mb-3">Reporte Fotográfico ({{ item.images.length }})</p>
+        <p class="text-body-sm fw-medium text-on-surface m-0 mb-3">
+          Reporte Fotográfico ({{ item.images.length }})
+        </p>
         <div class="row gap-3 g-4">
           @for (image of item.images; track image) {
           <div class="col-6 col-sm-4 col-md-3">

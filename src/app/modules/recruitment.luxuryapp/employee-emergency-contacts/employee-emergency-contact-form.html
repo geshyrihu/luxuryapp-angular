@@ -1,38 +1,37 @@
-
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      label="Id"
-      placeholder="Id"
-      [readonly]="true"
-    />
-    <custom-input-text-signal
-      [control]="form.controls.nameContact"
-      label="Nombre Completo"
-      placeholder="Nombre completo"
-    />
-    <custom-input-mask-signal
-      [control]="form.controls.phoneNumber"
-      label="Tél. Celular"
-      placeholder="(00) 0000-0000"
-      customMask="(00) 0000-0000"
-    />
-    <custom-input-select-signal
-      [control]="form.controls.relation"
-      label="Parentesco"
-      [data]="cb_relacion()"
-      [filter]="true"
-    />
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-      class="pb-2"
-    />
-  </form>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    placeholder="Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.nameContact"
+    label="Nombre Completo"
+    placeholder="Nombre completo"
+  />
+  <lux-input-mask-signal
+    [control]="form.controls.phoneNumber"
+    label="Tél. Celular"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.relation"
+    label="Parentesco"
+    [data]="cb_relacion()"
+    [filter]="true"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+    class="pb-2"
+  />
+</form>

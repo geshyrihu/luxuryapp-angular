@@ -34,10 +34,10 @@
     <ng-template #header>
       <tr>
         <th class="table-col-3rem">
-          <custom-input-check-signal
+          <lux-input-check-signal
             [ngModel]="allSelected()"
             (checkChange)="onSelectAll($event)"
-          ></custom-input-check-signal>
+          ></lux-input-check-signal>
         </th>
         <th class="table-col-8">Estado</th>
         <th>Proveedor</th>
@@ -49,11 +49,11 @@
     <ng-template #body let-item>
       <tr>
         <td>
-          <custom-input-check-signal
+          <lux-input-check-signal
             [ngModel]="item.selected()"
             (checkChange)="item.selected.set($event); onRowSelect()"
             [disabled]="item.status !== 0 && item.status !== 5"
-          ></custom-input-check-signal>
+          ></lux-input-check-signal>
         </td>
         <td>
           @switch(item.status) { @case(0) {
@@ -96,21 +96,21 @@
         </td>
         <td>{{ item.total | number:'1.2-2' }}</td>
         <td>
-          <custom-input-select-signal
+          <lux-input-select-signal
             [data]="tiposGasto"
             [ngModel]="item.tipoGasto()"
             (ngModelChange)="item.tipoGasto.set($event)"
             [disabled]="item.status !== 0 && item.status !== 5"
             [filter]="true"
           >
-          </custom-input-select-signal>
+          </lux-input-select-signal>
         </td>
         <td>
-          <custom-input-text-signal
+          <lux-input-text-signal
             [ngModel]="item.justificacionGasto()"
             (ngModelChange)="item.justificacionGasto.set($event)"
             [disabled]="item.status !== 0 && item.status !== 5"
-          ></custom-input-text-signal>
+          ></lux-input-text-signal>
         </td>
       </tr>
     </ng-template>

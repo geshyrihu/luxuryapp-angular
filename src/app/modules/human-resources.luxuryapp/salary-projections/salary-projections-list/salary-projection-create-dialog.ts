@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +9,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 
@@ -19,10 +19,10 @@ import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 @Component({
   selector: "app-salary-projection-create-dialog",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ ButtonWeb, FormsModule, CustomInputTextSignal],
+  imports: [ButtonWeb, FormsModule, CustomInputTextSignal],
   template: `
     <div class="d-flex flex-column gap-3 p-3">
-      <custom-input-text-signal
+      <lux-input-text-signal
         label="Nombre de la propuesta"
         [ngModel]="name()"
         (ngModelChange)="name.set($event)"

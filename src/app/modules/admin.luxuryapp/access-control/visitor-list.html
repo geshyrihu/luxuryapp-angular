@@ -3,45 +3,45 @@
     {{ editingId() ? "Editar visitante" : "Nuevo visitante" }}
   </h2>
   <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.fullName"
       label="Nombre completo"
       placeholder="Nombre completo"
       required
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.email"
       label="Correo"
       placeholder="Correo"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.phone"
       label="Teléfono"
       placeholder="Teléfono"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.company"
       label="Empresa"
       placeholder="Empresa"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.vehiclePlate"
       label="Placa"
       placeholder="Placa vehicular"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.documentId"
       label="Documento"
       placeholder="Documento de identidad"
     />
 
     @if (editingId()) {
-    <custom-input-switch-signal
+    <lux-input-switch-signal
       [control]="form.controls.isBlacklisted"
       label="En lista negra"
     />
     @if (form.controls.isBlacklisted.value) {
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.blacklistReason"
       label="Motivo de lista negra"
       placeholder="Motivo"

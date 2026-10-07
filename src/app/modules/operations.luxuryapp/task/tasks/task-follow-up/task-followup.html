@@ -14,7 +14,7 @@
     class="d-flex flex-column"
   >
     <div class="mb-4">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         label="Nuevo Seguimiento"
         [control]="form.controls.description"
         placeholder="Escribe los detalles del seguimiento..."
@@ -124,19 +124,22 @@
                   class="evidence-preview rounded"
                 />
                 <div class="d-flex gap-1 mt-1">
-                  <lux-button-web displayMode="icon"
+                  <lux-button-web
+                    displayMode="icon"
                     icon="material-symbols-light:arrow-upward"
                     ariaLabel="Mover evidencia arriba"
                     [disabled]="imageIndex === 0"
                     (clicked)="moveEvidence(follow.id, imageIndex, -1)"
                   />
-                  <lux-button-web displayMode="icon"
+                  <lux-button-web
+                    displayMode="icon"
                     icon="material-symbols-light:arrow-downward"
                     ariaLabel="Mover evidencia abajo"
                     [disabled]="imageIndex === evidenceFor(follow.id).length - 1"
                     (clicked)="moveEvidence(follow.id, imageIndex, 1)"
                   />
-                  <lux-button-web displayMode="icon"
+                  <lux-button-web
+                    displayMode="icon"
                     icon="material-symbols-light:delete-outline"
                     severity="danger"
                     ariaLabel="Eliminar evidencia"

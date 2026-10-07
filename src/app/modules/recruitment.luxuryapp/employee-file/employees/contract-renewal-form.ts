@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -25,9 +24,10 @@ import {
   ContractRenewalStatus,
 } from "@recruitment.luxuryapp/employee-file/employees/employee-registry/interfaces/contract-renewal.dto";
 import { ContractRenewalService } from "@recruitment.luxuryapp/employee-file/employees/services/contract-renewal.service";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 type StatusSeverity =
   "info" | "success" | "warn" | "danger" | "secondary" | "contrast";
@@ -40,7 +40,8 @@ interface DecisionOption {
 @Component({
   selector: "app-contract-renewal-form",
   standalone: true,
-   imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     ReactiveFormsModule,
     LxTag,
@@ -105,7 +106,7 @@ interface DecisionOption {
         <!-- Form Fields -->
         <div class="form-field">
           <label for="decision">Decisión *</label>
-          <custom-input-select-signal
+          <lux-input-select-signal
             id="decision"
             formControlName="decision"
             [data]="decisionOptions()"

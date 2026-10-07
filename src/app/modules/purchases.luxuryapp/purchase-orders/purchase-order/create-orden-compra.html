@@ -1,4 +1,4 @@
-<custom-input-autocomplete-signal
+<lux-input-autocomplete-signal
   (propagar)="saveProviderId($event)"
   [control]="providerControl"
   [data]="cb_providers()"
@@ -7,25 +7,25 @@
 />
 
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-date-signal
+  <lux-input-date-signal
     [control]="form.controls.fechaSolicitud"
     label="Fecha de solicitud"
     placeholder="fecha de solicitud"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.equipoOInstalacion"
     label="Area"
     placeholder="area"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.justificacionGasto"
     label="Justificación"
     placeholder="justificación"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.notasEspeciales"
     label="Notas Especiales"
     placeholder="Notas especiales"
@@ -42,10 +42,3 @@
     [loading]="submitting()"
   />
 </form>
-
-
-
-
-
-
-

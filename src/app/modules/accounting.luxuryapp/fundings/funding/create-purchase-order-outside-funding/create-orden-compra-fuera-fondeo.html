@@ -1,4 +1,4 @@
-<custom-input-autocomplete-signal
+<lux-input-autocomplete-signal
   (propagar)="saveProviderId($event)"
   [control]="providerControl"
   [data]="cb_providers()"
@@ -7,7 +7,7 @@
 />
 
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.tipoGasto"
     [data]="tiposDeGasto"
     label="Tipo de gasto"
@@ -15,19 +15,19 @@
     [filter]="true"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.equipoOInstalacion"
     label="Área / Equipo / Instalación"
     placeholder="Área o equipo al que aplica el gasto"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.justificacionGasto"
     label="Justificación del gasto"
     placeholder="DESCRIPCIÓN del servicio o bien a adquirir"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.notasEspeciales"
     label="Motivo de urgencia"
     placeholder="Indicar por qué el pago no puede seguir el proceso normal de fondeo"

@@ -11,7 +11,7 @@
         />
       </div>
       }@else {
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveProviderId($event)"
         [control]="form.controls.nameProvider"
         [data]="cb_providers()"
@@ -29,7 +29,7 @@
         />
       </div>
       }@else {
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveApplicationUserId($event)"
         [control]="form.controls.applicationUser"
         [data]="cb_applicationUserProvider()"
@@ -47,7 +47,7 @@
         />
       </div>
       } @else {
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveApplicationRoleId($event)"
         [control]="form.controls.applicationRoleName"
         [data]="cb_applicationRoles()"
@@ -65,7 +65,7 @@
         />
       </div>
       } @else {
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveCustomerId($event)"
         [control]="form.controls.nameCustomer"
         [data]="cb_customers()"

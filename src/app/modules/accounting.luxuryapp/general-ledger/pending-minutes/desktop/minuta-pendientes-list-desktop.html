@@ -25,7 +25,7 @@
 
       <div class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4">
         <div>
-          <custom-input-select-signal
+          <lux-input-select-signal
             [data]="[
               { label: 'Pendientes', value: 0 },
               { label: 'Concluidos', value: 1 },
@@ -131,7 +131,8 @@
 
       <td class="no-print">
         <div class="d-flex">
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             severity="secondary"
             variant="soft"
@@ -141,7 +142,8 @@
             tooltipPosition="top"
             (clicked)="todosSeguimientos.emit(item.id)"
           />
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             severity="secondary"
             variant="soft"

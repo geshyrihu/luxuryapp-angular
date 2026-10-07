@@ -15,7 +15,7 @@ import { IonInputAutocomplete } from "../../mobile/ion-input-autocomplete";
 import { WebInputAutocomplete } from "../../web/input-autocomplete/input-autocomplete";
 
 @Component({
-  selector: "custom-input-autocomplete-signal",
+  selector: "lux-input-autocomplete-signal",
 
   imports: [WebInputAutocomplete, IonInputAutocomplete],
   providers: [
@@ -23,7 +23,8 @@ import { WebInputAutocomplete } from "../../web/input-autocomplete/input-autocom
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputAutocomplete),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -69,7 +70,9 @@ import { WebInputAutocomplete } from "../../web/input-autocomplete/input-autocom
         [panelStyle]="panelStyle()"
         [inputStyleClass]="inputStyleClass()"
         [itemTemplateIn]="itemTemplate() || itemTemplateIn()"
-        [selectedItemTemplateIn]="selectedItemTemplate() || selectedItemTemplateIn()"
+        [selectedItemTemplateIn]="
+          selectedItemTemplate() || selectedItemTemplateIn()
+        "
         (propagar)="propagar.emit($event)"
         (completeMethod)="completeMethod.emit($event)"
         (cleared)="cleared.emit()"
@@ -106,4 +109,3 @@ export class InputAutocomplete extends BaseInputSignal {
   completeMethod = output<any>();
   cleared = output<void>();
 }
-

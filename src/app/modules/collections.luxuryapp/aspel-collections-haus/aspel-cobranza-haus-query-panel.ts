@@ -29,7 +29,7 @@ import {
     <div class="card shadow-none border-1 surface-border">
       <div class="row formgrid align-items-start">
         <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Endpoint"
             [ngModel]="mode"
             [data]="endpointOptions"
@@ -44,7 +44,7 @@ import {
 
         @if (mode !== "accounts" && mode !== "deudas-actuales") {
           <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
-            <custom-input-select-signal
+            <lux-input-select-signal
               label="Numero de cuenta"
               [(ngModel)]="request.numCta"
               [data]="accountOptions"
@@ -63,7 +63,7 @@ import {
 
         @if (mode !== "deudas-actuales" && mode !== "detalle-cobranza-rango") {
           <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
-            <custom-input-date-signal
+            <lux-input-date-signal
               [label]="
                 mode === 'accounts' ? 'Fecha para ejercicio' : 'Fecha inicio'
               "
@@ -93,7 +93,7 @@ import {
           mode !== "detalle-cobranza-rango"
         ) {
           <div class="col-12 col-md-6 lg:col d-flex flex-column gap-1">
-            <custom-input-date-signal
+            <lux-input-date-signal
               label="Fecha fin"
               [(ngModel)]="request.fechaFin"
               (ngModelChange)="dateContextChange.emit()"

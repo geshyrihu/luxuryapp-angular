@@ -11,7 +11,7 @@ import { IonInputMonth } from "../../mobile/ion-input-month";
 import { WebInputMonth } from "../../web/input-month/input-month";
 
 @Component({
-  selector: "custom-input-month",
+  selector: "lux-input-month",
 
   imports: [WebInputMonth, IonInputMonth],
   providers: [
@@ -19,7 +19,8 @@ import { WebInputMonth } from "../../web/input-month/input-month";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMonth),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -52,4 +53,3 @@ import { WebInputMonth } from "../../web/input-month/input-month";
 export class InputMonth extends BaseInputSignal {
   protected platform = inject(PlatformService);
 }
-

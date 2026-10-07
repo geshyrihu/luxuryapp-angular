@@ -1,47 +1,47 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <custom-input-autocomplete-signal
-        (propagar)="saveMachineryId($event)"
-        [control]="form.controls.machinery"
-        [data]="cb_machinery()"
-        label="Equipo o Instalación"
-        placeholder="Escribe para buscar equipo o instalación"
-      />
-      <custom-input-autocomplete-signal
-        (propagar)="saveProductoId($event)"
-        [control]="form.controls.producto"
-        [data]="cb_producto()"
-        label="Producto"
-        placeholder="Escribe para buscar producto"
-      />
+  <lux-input-autocomplete-signal
+    (propagar)="saveMachineryId($event)"
+    [control]="form.controls.machinery"
+    [data]="cb_machinery()"
+    label="Equipo o Instalación"
+    placeholder="Escribe para buscar equipo o instalación"
+  />
+  <lux-input-autocomplete-signal
+    (propagar)="saveProductoId($event)"
+    [control]="form.controls.producto"
+    [data]="cb_producto()"
+    label="Producto"
+    placeholder="Escribe para buscar producto"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.area"
-        label="Area"
-        placeholder="area"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.area"
+    label="Area"
+    placeholder="area"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.cantidad"
-        label="Cantidad"
-        placeholder="cantidad"
-      />
-      <div class="text-start mt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <lux-input-number-signal
+    [control]="form.controls.cantidad"
+    label="Cantidad"
+    placeholder="cantidad"
+  />
+  <div class="text-start mt-3">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

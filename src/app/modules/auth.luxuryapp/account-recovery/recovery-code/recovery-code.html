@@ -13,30 +13,30 @@
     </header>
 
     <main class="flex-fill d-flex align-items-center px-4 px-md-5 py-5">
-      <div class="w-full mx-auto" style="max-width: 400px;">
+      <div class="w-full mx-auto" style="max-width: 400px">
         <div class="auth-gold-tick mb-4"></div>
 
         @if (step() === "identifier") {
         <h2
           class="text-2xl fw-bold mb-1 tracking-tight"
-          style="color: var(--ds-primary);"
+          style="color: var(--ds-primary)"
         >
           Recuperar Contraseña
         </h2>
-        <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary);">
+        <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary)">
           Ingresa tu correo o teléfono para recibir un código de verificación.
         </p>
         } @else {
         <h2
           class="text-2xl fw-bold mb-1 tracking-tight"
-          style="color: var(--ds-primary);"
+          style="color: var(--ds-primary)"
         >
           Código de Verificación
         </h2>
-        <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary);">
-          Te enviamos un código de 6 dígitos por correo y WhatsApp. Expira en
-          {{ countdown() }}s. Si no ves el correo, revisa tu carpeta de spam
-          o correo no deseado.
+        <p class="text-base m-0 mb-5" style="color: var(--ds-text-secondary)">
+          Te enviamos un código de 6 dígitos por correo y WhatsApp. Expira en {{
+          countdown() }}s. Si no ves el correo, revisa tu carpeta de spam o
+          correo no deseado.
         </p>
         }
 
@@ -48,7 +48,7 @@
           (ngSubmit)="onInitiate()"
         >
           <div class="p-fluid">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="formIdentifier.controls.identifier"
               formControlName="identifier"
               id="identifier-global"
@@ -83,7 +83,7 @@
           (ngSubmit)="onValidate()"
         >
           <div class="p-fluid">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="formCode.controls.code"
               formControlName="code"
               id="code-global"
@@ -113,7 +113,7 @@
             <a
               (click)="goBackToIdentifier()"
               class="fw-semibold text-sm cursor-pointer"
-              style="color: var(--ds-primary); text-decoration: none;"
+              style="color: var(--ds-primary); text-decoration: none"
             >
               Cambiar dato de contacto
             </a>
@@ -121,7 +121,7 @@
             <a
               (click)="onResend()"
               class="fw-semibold text-sm cursor-pointer"
-              style="color: var(--ds-warning-text); text-decoration: none;"
+              style="color: var(--ds-warning-text); text-decoration: none"
             >
               Reenviar código
             </a>
@@ -164,7 +164,7 @@
           <a
             [routerLink]="ROUTES.AUTH.LOGIN"
             class="fw-semibold text-sm transition-colors"
-            style="color: var(--ds-text-secondary); text-decoration: none;"
+            style="color: var(--ds-text-secondary); text-decoration: none"
           >
             Volver al Login
           </a>
@@ -172,7 +172,10 @@
       </div>
     </main>
 
-    <footer class="px-4 px-md-5 py-4 text-sm" style="color: var(--ds-text-secondary);">
+    <footer
+      class="px-4 px-md-5 py-4 text-sm"
+      style="color: var(--ds-text-secondary)"
+    >
       &copy; 2026 Luxury Building Group. Todos los derechos reservados.
     </footer>
   </div>
@@ -184,7 +187,7 @@
       alt=""
       class="auth-brand-icon-watermark"
     />
-    <div class="relative text-center px-5" style="max-width: 460px; z-index: 1;">
+    <div class="relative text-center px-5" style="max-width: 460px; z-index: 1">
       <div class="auth-brand-badge mx-auto">
         <img
           src="assets/oficial/191410772_padded_logo.png"
@@ -193,10 +196,16 @@
         />
       </div>
       <!-- Slogan provisional: pendiente de definición final del negocio. -->
-      <h2 class="text-5xl font-extrabold mb-3" style="color: var(--ds-primary); line-height: 1.15;">
-        Excelencia <span style="color: var(--ds-warning);">Inmobiliaria</span>
+      <h2
+        class="text-5xl font-extrabold mb-3"
+        style="color: var(--ds-primary); line-height: 1.15"
+      >
+        Excelencia <span style="color: var(--ds-warning)">Inmobiliaria</span>
       </h2>
-      <p class="text-base line-height-3" style="color: var(--ds-text-secondary);">
+      <p
+        class="text-base line-height-3"
+        style="color: var(--ds-text-secondary)"
+      >
         Gestiona recursos, proyectos y operaciones con la suite tecnológica
         definitiva diseñada para líderes de la industria.
       </p>

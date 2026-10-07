@@ -1,6 +1,4 @@
-<div
-  class="requests-filter-toolbar d-flex align-items-center gap-3"
->
+<div class="requests-filter-toolbar d-flex align-items-center gap-3">
   <!-- Search -->
   <div class="requests-filter-toolbar__search">
     <custom-search-input-signal (searchChange)="onSearch($event)" />
@@ -9,7 +7,7 @@
   @if (showRequestFilters()) {
   <!-- Filtro de fecha -->
   <div class="requests-filter-toolbar__date">
-    <custom-input-date-signal
+    <lux-input-date-signal
       id="fecha-desde"
       placeholder="Mostrar desde"
       [control]="fechaFormateadaControl"
@@ -20,7 +18,7 @@
 
   <!-- Filtro de estatus -->
   <div class="requests-filter-toolbar__status">
-    <custom-input-select-button-signal
+    <lux-input-select-button-signal
       id="status-select"
       [control]="statusRequestControl"
       [options]="cb_status_request"

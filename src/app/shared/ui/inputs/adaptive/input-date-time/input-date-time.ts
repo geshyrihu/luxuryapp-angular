@@ -12,7 +12,7 @@ import { IonInputDateTime } from "../../mobile/ion-input-date-time";
 import { WebInputDateTime } from "../../web/input-date-time/input-date-time";
 
 @Component({
-  selector: "custom-input-date-time-signal",
+  selector: "lux-input-date-time-signal",
 
   imports: [WebInputDateTime, IonInputDateTime],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputDateTime } from "../../web/input-date-time/input-date-time";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputDateTime),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -55,4 +56,3 @@ export class InputDateTime extends BaseInputSignal {
   protected platform = inject(PlatformService);
   size = input<"small" | "large" | undefined>(undefined);
 }
-

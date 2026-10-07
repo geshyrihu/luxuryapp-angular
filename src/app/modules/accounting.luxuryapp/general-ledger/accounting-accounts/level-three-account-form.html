@@ -1,11 +1,11 @@
 <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.numeroCuenta"
       label="Nómero de Cuenta"
       placeholder="Ej: 100-001"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.descripcion"
       label="DESCRIPCIÓN"
       placeholder="DESCRIPCIÓN de la cuenta"

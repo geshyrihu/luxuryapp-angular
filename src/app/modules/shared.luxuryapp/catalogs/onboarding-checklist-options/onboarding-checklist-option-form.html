@@ -1,53 +1,52 @@
-
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <div class="row g-4">
-      <div class="col-12 col-md-8">
-        <custom-input-text-signal
-          [control]="form.controls.name"
-          label="Nombre"
-          placeholder="Ej. Uniforme entregado"
-        />
-      </div>
-
-      <div class="col-12 col-md-4">
-        <custom-input-number-signal
-          [control]="form.controls.diasSla"
-          [useGrouping]="false"
-          label="Días SLA"
-          placeholder="0"
-        />
-      </div>
-
-      <div class="col-12">
-        <custom-input-multiselect-signal
-          [control]="form.controls.roles"
-          [options]="roleOptions()"
-          label="Roles"
-          placeholder="Selecciona uno o más roles"
-          [showClear]="true"
-          [filter]="true"
-          [selectedItemsLabel]="'roles seleccionados'"
-        />
-      </div>
-
-      <div class="col-12">
-        <custom-input-textarea-signal
-          [control]="form.controls.description"
-          [rows]="4"
-          label="DESCRIPCIÓN"
-          placeholder="Detalle operativo de la tarea de onboarding"
-        />
-      </div>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="row g-4">
+    <div class="col-12 col-md-8">
+      <lux-input-text-signal
+        [control]="form.controls.name"
+        label="Nombre"
+        placeholder="Ej. Uniforme entregado"
+      />
     </div>
 
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
-  </form>
+    <div class="col-12 col-md-4">
+      <lux-input-number-signal
+        [control]="form.controls.diasSla"
+        [useGrouping]="false"
+        label="Días SLA"
+        placeholder="0"
+      />
+    </div>
+
+    <div class="col-12">
+      <lux-input-multiselect-signal
+        [control]="form.controls.roles"
+        [options]="roleOptions()"
+        label="Roles"
+        placeholder="Selecciona uno o más roles"
+        [showClear]="true"
+        [filter]="true"
+        [selectedItemsLabel]="'roles seleccionados'"
+      />
+    </div>
+
+    <div class="col-12">
+      <lux-input-textarea-signal
+        [control]="form.controls.description"
+        [rows]="4"
+        label="DESCRIPCIÓN"
+        placeholder="Detalle operativo de la tarea de onboarding"
+      />
+    </div>
+  </div>
+
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

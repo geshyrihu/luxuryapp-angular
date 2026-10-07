@@ -1,30 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.name"
     label="Nombre"
     placeholder="Ej: Falta injustificada"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.description"
     label="DESCRIPCIÓN"
     placeholder="DESCRIPCIÓN opcional"
   />
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.category"
     label="Categoría"
     [data]="cb_category()"
     [filter]="true"
   />
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.defaultSeverity"
     label="Severidad por Defecto"
     [data]="cb_severity()"
     [filter]="true"
   />
-  <custom-input-switch-signal
-    [control]="form.controls.isActive"
-    label="Activo"
-  />
+  <lux-input-switch-signal [control]="form.controls.isActive" label="Activo" />
   <div class="d-flex justify-content-end mt-2">
     <lux-button-web
       kind="save"

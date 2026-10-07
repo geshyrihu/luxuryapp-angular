@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="p-4">
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls['customerId']"
       label="Cliente"
       [data]="cb_customer()"
@@ -9,7 +9,7 @@
       [filter]="true"
     />
 
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls['empresa']"
       label="Empresa"
       [data]="[{label: 'Cobranza', value: 0}, {label: 'Gastos', value: 1}]"
@@ -18,7 +18,7 @@
       [filter]="true"
     />
 
-    <custom-input-number-signal
+    <lux-input-number-signal
       [control]="form.controls['customerIdAspelId']"
       label="ID Cliente Aspel"
     />

@@ -5,7 +5,7 @@
     >
       <div class="row g-4">
         <div class="col-12 col-sm-4">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="form.controls.employee"
             label="Nombre del excolaborador"
             placeholder="Nombre del excolaborador"
@@ -14,7 +14,7 @@
           />
         </div>
         <div class="col-12 col-sm-4">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="form.controls.phoneEmployee"
             label="Telófono de excolaborador"
             placeholder="Telófono de excolaborador"
@@ -23,14 +23,14 @@
           />
         </div>
         <div class="col-12 col-sm-4">
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="form.controls.applicationRoleId"
             label="applicationRoleId"
             placeholder="applicationRoleId"
             hidden
           />
 
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="form.controls.applicationRole"
             label="Puesto"
             placeholder="Puesto"
@@ -64,7 +64,7 @@
             }
           </p>
 
-          <custom-input-select-signal
+          <lux-input-select-signal
             [control]="form.controls.typeOfDeparture"
             label="Tipo de baja"
             [data]="cb_type_departure()"
@@ -115,7 +115,7 @@
             </strong>
           </p>
 
-          <custom-input-date-signal
+          <lux-input-date-signal
             [control]="form.controls.executionDate"
             label="* Fecha de la baja"
             placeholder="fecha de la baja"
@@ -128,7 +128,7 @@
             </strong>
           </p>
 
-          <custom-input-date-signal
+          <lux-input-date-signal
             [control]="form.controls.lastdayofwork"
             label="* Ultimo día que trabajo"
             placeholder="Ultimo día que trabajo"
@@ -150,7 +150,7 @@
             </strong>
           </p>
 
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="form.controls.reasonForLeaving"
             placeholder="motivo de la baja, con una breve DESCRIPCIÓN"
             [horizontal]="false"
@@ -162,7 +162,7 @@
       <div class="col-12 col-md-8">
         <div class="row g-4">
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.lawyerAssistance"
               label="Require abogado"
               [data]="cb_si_no()"
@@ -171,7 +171,7 @@
             />
           </div>
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.employeeInformed"
               label="Colaborador enterado de su baja"
               [data]="cb_si_no()"
@@ -207,7 +207,7 @@
                     <div class="col-12 col-md-5">
                       <div class="row align-items-center g-4">
                         <div class="col-12 col-md-9">
-                          <custom-input-text-signal
+                          <lux-input-text-signal
                             [control]="getDiscountControl(i, 'description')"
                             customClass="w-100"
                             [horizontal]="false"
@@ -221,7 +221,7 @@
                     <div class="col-12 col-md-5">
                       <div class="row align-items-center g-4">
                         <div class="col-12 col-md-9">
-                          <custom-input-number-signal
+                          <lux-input-number-signal
                             mode="decimal"
                             [minFractionDigits]="0"
                             [maxFractionDigits]="2"

@@ -1,64 +1,73 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  @if (!isEdit() && !activePosition()) {
+  <div
+    class="bg-yellow-100 rounded p-3 mb-3 text-yellow-900 d-flex align-items-center gap-2"
+  >
+    <i class="material-symbols-light text-2xl">warning</i>
+    <p class="m-0">
+      No se ha detectado una Posici&oacute;n Laboral activa para este empleado.
+      Debe asignarse una desde la Plantilla de Trabajo (Operaciones) antes de
+      crear el contrato.
+    </p>
+  </div>
+  }
+  <div class="contract-readonly bg-body rounded p-3 mb-3">
+    <p class="text-body-secondary text-sm mb-1">
+      Posición Laboral (heredada de Operaciones)
+    </p>
+    <p class="fw-bold text-body m-0">{{ positionLabel() || "—" }}</p>
+  </div>
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    @if (!isEdit() && !activePosition()) {
-      <div class="bg-yellow-100 rounded p-3 mb-3 text-yellow-900 d-flex align-items-center gap-2">
-        <i class="material-symbols-light text-2xl">warning</i>
-        <p class="m-0">No se ha detectado una Posici&oacute;n Laboral activa para este empleado. Debe asignarse una desde la Plantilla de Trabajo (Operaciones) antes de crear el contrato.</p>
-      </div>
+  <div class="contract-readonly bg-body rounded p-3 mb-3">
+    <p class="text-body-secondary text-sm mb-1">
+      Salario Contractual (heredado del puesto)
+    </p>
+    <p class="fw-bold text-body m-0">
+      {{ salaryValue() | currency: 'MXN' : 'symbol' : '1.2-2' }}
+    </p>
+  </div>
+
+  <lux-input-select-signal
+    [control]="form.controls.contractType"
+    label="Tipo de Contrato"
+    [data]="cb_contractType"
+    [filter]="true"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.startDate"
+    label="Fecha de Inicio"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.endDate"
+    label="Fecha de Fin (contratos temporales)"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.notes"
+    label="Notas Internas"
+    [rows]="3"
+  />
+  <div class="field mb-3">
+    <label class="d-block text-body fw-medium mb-2">PDF del Contrato</label>
+    <input
+      type="file"
+      accept="application/pdf"
+      class="w-full"
+      (change)="onFileSelected($event)"
+    />
+    @if (pdfFile()) {
+    <small class="text-body-secondary">{{ pdfFile()!.name }}</small>
     }
-    <div class="contract-readonly bg-body rounded p-3 mb-3">
-      <p class="text-body-secondary text-sm mb-1">Posición Laboral (heredada de Operaciones)</p>
-      <p class="fw-bold text-body m-0">{{ positionLabel() || "—" }}</p>
-    </div>
-
-    <div class="contract-readonly bg-body rounded p-3 mb-3">
-      <p class="text-body-secondary text-sm mb-1">Salario Contractual (heredado del puesto)</p>
-      <p class="fw-bold text-body m-0">
-        {{ salaryValue() | currency: 'MXN' : 'symbol' : '1.2-2' }}
-      </p>
-    </div>
-
-    <custom-input-select-signal
-      [control]="form.controls.contractType"
-      label="Tipo de Contrato"
-      [data]="cb_contractType"
-      [filter]="true"
+  </div>
+  <div class="d-flex justify-content-end mt-2">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid || (!isEdit() && !activePosition())"
+      [loading]="submitting()"
     />
-    <custom-input-date-signal
-      [control]="form.controls.startDate"
-      label="Fecha de Inicio"
-    />
-    <custom-input-date-signal
-      [control]="form.controls.endDate"
-      label="Fecha de Fin (contratos temporales)"
-    />
-    <custom-input-textarea-signal
-      [control]="form.controls.notes"
-      label="Notas Internas"
-      [rows]="3"
-    />
-    <div class="field mb-3">
-      <label class="d-block text-body fw-medium mb-2">PDF del Contrato</label>
-      <input
-        type="file"
-        accept="application/pdf"
-        class="w-full"
-        (change)="onFileSelected($event)"
-      />
-      @if (pdfFile()) {
-      <small class="text-body-secondary">{{ pdfFile()!.name }}</small>
-      }
-    </div>
-    <div class="d-flex justify-content-end mt-2">
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid || (!isEdit() && !activePosition())"
-        [loading]="submitting()"
-      />
-    </div>
-  </form>
+  </div>
+</form>

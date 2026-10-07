@@ -1,7 +1,10 @@
 <div class="p-4 p-md-5 fadein">
   <div class="mb-4">
     <div class="d-flex align-items-center gap-2 mb-2">
-      <lux-icon icon="material-symbols-light:calculate" class="text-primary text-3xl"></lux-icon>
+      <lux-icon
+        icon="material-symbols-light:calculate"
+        class="text-primary text-3xl"
+      ></lux-icon>
       <h1 class="text-2xl fw-bold text-body m-0">Cotizador de Módulos</h1>
     </div>
     <p class="text-body-secondary m-0">
@@ -13,10 +16,7 @@
   <div class="row g-4">
     <!-- Columna Izquierda: Controles -->
     <div class="col-12 col-lg-8">
-      <div
-        class="bg-body p-4 rounded-xl shadow-sm mb-4 border-1 border-200"
-        
-      >
+      <div class="bg-body p-4 rounded-xl shadow-sm mb-4 border-1 border-200">
         <h2
           class="text-xl fw-bold text-body mt-0 mb-4 border-bottom-1 border pb-2"
         >
@@ -31,12 +31,12 @@
                 [ngClass]="{ 'bg-primary-50 border-primary': mod.selected }"
               >
                 <!-- Usando custom-input-check-signal como lo solicita el catálogo de la empresa -->
-                <custom-input-check-signal
+                <lux-input-check-signal
                   [ngModel]="mod.selected"
                   (ngModelChange)="toggleModule(mod, $event)"
                   [label]="mod.name"
                 >
-                </custom-input-check-signal>
+                </lux-input-check-signal>
                 <div class="ms-auto fw-bold text-body">${{ mod.price }}</div>
               </div>
             </div>
@@ -44,10 +44,7 @@
         </div>
       </div>
 
-      <div
-        class="bg-body p-4 rounded-xl shadow-sm border-1 border-200"
-        
-      >
+      <div class="bg-body p-4 rounded-xl shadow-sm border-1 border-200">
         <h2
           class="text-xl fw-bold text-body mt-0 mb-4 border-bottom-1 border pb-2"
         >
@@ -55,13 +52,13 @@
         </h2>
         <div class="d-flex flex-column gap-2 max-w-20rem">
           <!-- Usando custom-input-number-signal -->
-          <custom-input-number-signal
+          <lux-input-number-signal
             label="Número de departamentos"
             [ngModel]="departmentsCount()"
             (ngModelChange)="updateDepartments($event)"
             [min]="1"
           >
-          </custom-input-number-signal>
+          </lux-input-number-signal>
           <small class="text-body-secondary"
             >Costo adicional de ${{ pricePerDepartment }} por departamento si
             hay módulos seleccionados.</small
@@ -72,14 +69,14 @@
 
     <!-- Columna Derecha: Resumen / Recibo -->
     <div class="col-12 col-lg-4">
-      <div
-        class="bg-body p-4 rounded-xl shadow-sm sticky top-0"
-        
-      >
+      <div class="bg-body p-4 rounded-xl shadow-sm sticky top-0">
         <h2
           class="text-xl fw-bold text-body mt-0 mb-4 d-flex align-items-center gap-2"
         >
-          <lux-icon icon="material-symbols-light:receipt" class="text-primary"></lux-icon>
+          <lux-icon
+            icon="material-symbols-light:receipt"
+            class="text-primary"
+          ></lux-icon>
           Resumen de Cotización
         </h2>
 

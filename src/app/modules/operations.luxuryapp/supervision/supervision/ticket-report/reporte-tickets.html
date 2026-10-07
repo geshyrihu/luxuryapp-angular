@@ -15,7 +15,7 @@
         <app-mesanio (periodoEmit)="onFiltrarPeriodo($event)"></app-mesanio>
       </div>
       <div class="col-12 col-sm-3 no-print">
-        <custom-input-text-signal
+        <lux-input-text-signal
           (input)="dt.filterGlobal($any($event.target).value, 'contains')"
           placeholder="Ingresa texto para buscar..."
           [customClass]="'no-print'"

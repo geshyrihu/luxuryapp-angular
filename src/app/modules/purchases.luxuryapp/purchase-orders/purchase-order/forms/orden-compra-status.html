@@ -1,31 +1,31 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <!-- Controles de Estado -->
-    <custom-input-check-signal
-      [control]="form.controls.sePago"
-      label="óPago Realizado?"
-    />
+  <!-- Controles de Estado -->
+  <lux-input-check-signal
+    [control]="form.controls.sePago"
+    label="óPago Realizado?"
+  />
 
-    <custom-input-check-signal
-      [control]="form.controls.seRecibio"
-      label="óCompra recibida?"
-    />
+  <lux-input-check-signal
+    [control]="form.controls.seRecibio"
+    label="óCompra recibida?"
+  />
 
-    <custom-input-text-signal
-      [control]="form.controls.recibidoPor"
-      label="Recibido Por"
-      placeholder="Nombre del receptor"
-    />
+  <lux-input-text-signal
+    [control]="form.controls.recibidoPor"
+    label="Recibido Por"
+    placeholder="Nombre del receptor"
+  />
 
-    <div class="d-flex justify-content-end mt-4">
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-        label="Guardar Cambios de Estatus"
-      />
-    </div>
+  <div class="d-flex justify-content-end mt-4">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+      label="Guardar Cambios de Estatus"
+    />
+  </div>
 </form>

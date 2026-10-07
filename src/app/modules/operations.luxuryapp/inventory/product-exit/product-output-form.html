@@ -1,71 +1,69 @@
-
-
-    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.fechaSalida"
+    label="Fecha de salida"
+    placeholder="fecha de salida"
+  />
+  <lux-input-time-signal
+    [control]="form.controls.horaSalida"
+    label="Hora de salida"
+    placeholder="hora de salida"
+  />
+  <div class="row mb-4 align-items-center g-4">
+    <label class="form-label col-12 col-md-3">Producto</label>
+    <div class="col-12 col-md-9">
+      <lux-input-text-signal
+        [control]="form.controls.productoId"
+        [hidden]="true"
+        [horizontal]="false"
       />
-      <custom-input-date-signal
-        [control]="form.controls.fechaSalida"
-        label="Fecha de salida"
-        placeholder="fecha de salida"
+      <input readonly [value]="nombreProducto()" class="form-control w-100" />
+    </div>
+  </div>
+  <div class="row mb-4 align-items-center g-4">
+    <label class="form-label col-12 col-md-3">Cantidad</label>
+    <div class="col-12 col-md-9">
+      <lux-input-number-signal
+        [control]="form.controls.cantidad"
+        [horizontal]="false"
       />
-      <custom-input-time-signal
-        [control]="form.controls.horaSalida"
-        label="Hora de salida"
-        placeholder="hora de salida"
-      />
-      <div class="row mb-4 align-items-center g-4">
-        <label class="form-label col-12 col-md-3">Producto</label>
-        <div class="col-12 col-md-9">
-          <custom-input-text-signal
-            [control]="form.controls.productoId"
-            [hidden]="true"
-            [horizontal]="false"
-          />
-          <input readonly [value]="nombreProducto()" class="form-control w-100" />
-        </div>
-      </div>
-      <div class="row mb-4 align-items-center g-4">
-        <label class="form-label col-12 col-md-3">Cantidad</label>
-        <div class="col-12 col-md-9">
-          <custom-input-number-signal
-            [control]="form.controls.cantidad"
-            [horizontal]="false"
-          />
-          @if (form.controls.cantidad.hasError('stockInsuficiente')) {
-          <small class="p-error d-block mt-1"
-            >No hay suficiente stock. Disponible: {{existenciaAlmacen()}}</small
-          >
-          }
-        </div>
-      </div>
-      <custom-input-select-signal
-        [control]="form.controls.unidadMedidaId"
-        label="Unidad"
-        [data]="cb_measurement_unit()"
-        [filter]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.quienUso"
-        label="Entregado a:..."
-        placeholder="entregado a"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.usoPrducto"
-        label="Uso"
-        placeholder="uso"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
+      @if (form.controls.cantidad.hasError('stockInsuficiente')) {
+      <small class="p-error d-block mt-1"
+        >No hay suficiente stock. Disponible: {{existenciaAlmacen()}}</small
+      >
+      }
+    </div>
+  </div>
+  <lux-input-select-signal
+    [control]="form.controls.unidadMedidaId"
+    label="Unidad"
+    [data]="cb_measurement_unit()"
+    [filter]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.quienUso"
+    label="Entregado a:..."
+    placeholder="entregado a"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.usoPrducto"
+    label="Uso"
+    placeholder="uso"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -29,7 +29,7 @@
       <!-- Folio y Version -->
       <div class="row g-4">
         <div class="col-12 col-md-8">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="form.controls.folio"
             label="Folio / Titulo del Manual"
             placeholder="Ej: PROC-MANT-012"
@@ -37,7 +37,7 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="form.controls.currentVersion"
             label="Version Actual"
             placeholder="Ej: 1.0"
@@ -47,7 +47,7 @@
       </div>
 
       <!-- Departamento -->
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.departament"
         [data]="departments()"
         label="Departamento Responsable"
@@ -58,7 +58,7 @@
 
       <!-- Periodicidad / Frecuencia -->
       <div class="bg-body-tertiary p-3 rounded mb-3 border-1 border">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="form.controls.periodicity"
           [data]="periodicityOptions"
           label="Frecuencia de Ejecución"
@@ -69,7 +69,7 @@
 
         <!-- Opciones Semanales (3) -->
         @if (periodicityVal() === 3) {
-        <custom-input-multiselect-signal
+        <lux-input-multiselect-signal
           [control]="form.controls.executionDaysOfWeek"
           [options]="daysOfWeekOptions"
           label="¿Qué días de la semana?"
@@ -82,7 +82,7 @@
         @if (periodicityVal() === 4) {
         <div class="row mt-2 g-4">
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.executionDayOfMonth"
               [data]="daysOfMonthOptions"
               label="Día fijo del mes (Opcional)"
@@ -93,7 +93,7 @@
           </div>
           <div class="col-12 text-center text-body-secondary fw-bold">O</div>
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.executionWeekOfMonth"
               [data]="weeksOfMonthOptions"
               label="¿Qué semana?"
@@ -103,7 +103,7 @@
             />
           </div>
           <div class="col-12 col-md-6">
-            <custom-input-multiselect-signal
+            <lux-input-multiselect-signal
               [control]="form.controls.executionDaysOfWeek"
               [options]="daysOfWeekOptions"
               label="¿Qué día(s)?"
@@ -118,7 +118,7 @@
         @if (periodicityVal() === 5) {
         <div class="row mt-2 g-4">
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.executionMonthOfYear"
               [data]="monthsOfYearOptions"
               label="Mes del Año"
@@ -128,7 +128,7 @@
             />
           </div>
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.executionDayOfMonth"
               [data]="daysOfMonthOptions"
               label="Día del mes (Opcional)"
@@ -142,7 +142,7 @@
       </div>
 
       <!-- Descripción -->
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.description"
         label="Descripción"
         placeholder="Resumen del proposito de este documento"
@@ -150,7 +150,7 @@
       />
 
       <!-- Objetivo -->
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.objetivo"
         label="Objetivo"
         placeholder="Describir el objetivo general del manual..."
@@ -159,7 +159,7 @@
       />
 
       <!-- Marco Legal -->
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.marcoLegal"
         label="Marco Legal, Referencias y Anexos"
         placeholder="Leyes, normas, reglamentos o referencias que aplican a este manual..."

@@ -5,13 +5,15 @@
       <h4 class="text-title-md m-0">
         Inspecciones para:
         <small class="text-body-sm">
-          <em>{{ dateSelectControl().value | apiDate : "EEEE dd-MMM-yyyy" }}</em>
+          <em
+            >{{ dateSelectControl().value | apiDate : "EEEE dd-MMM-yyyy" }}</em
+          >
         </small>
       </h4>
     </div>
     <!-- Bindeo bidireccional -->
     <div class="w-full md:w-6">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="dateSelectControl()"
         mode="single"
         dateFormat="Y-m-d"

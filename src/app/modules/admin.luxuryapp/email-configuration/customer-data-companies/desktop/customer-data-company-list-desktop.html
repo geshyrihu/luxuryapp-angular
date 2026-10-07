@@ -27,7 +27,7 @@
         />
       </div>
       <div class="flex-shrink-0">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="groupingOptions()"
           optionLabel="label"
           optionValue="value"
@@ -72,7 +72,9 @@
       <th appSortableColumn="applicationUser">
         USUARIO <lux-sorticon-web field="applicationUser" />
       </th>
-      <th appSortableColumn="email">EMAIL <lux-sorticon-web field="email" /></th>
+      <th appSortableColumn="email">
+        EMAIL <lux-sorticon-web field="email" />
+      </th>
       <th appSortableColumn="phoneNumber">
         TELÉFONO <lux-sorticon-web field="phoneNumber" />
       </th>

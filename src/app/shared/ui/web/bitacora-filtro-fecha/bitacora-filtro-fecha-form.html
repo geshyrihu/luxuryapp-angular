@@ -3,8 +3,16 @@
     <p class="text-body-secondary text-sm m-0 mb-3">
       Selecciona el rango de fechas para el reporte PDF.
     </p>
-    <custom-input-date-signal label="Desde" [control]="form.controls.from" [required]="true" />
-    <custom-input-date-signal label="Hasta" [control]="form.controls.to" [required]="true" />
+    <lux-input-date-signal
+      label="Desde"
+      [control]="form.controls.from"
+      [required]="true"
+    />
+    <lux-input-date-signal
+      label="Hasta"
+      [control]="form.controls.to"
+      [required]="true"
+    />
     <lux-button-web
       kind="save"
       type="submit"

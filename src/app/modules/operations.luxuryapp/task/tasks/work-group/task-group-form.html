@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="w-full">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.id"
         hidden
         label="Id"
@@ -9,14 +9,14 @@
         [readonly]="true"
         [hidden]="false"
       />
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.TaskGroupCategoryId"
         label="Categoria"
         [data]="cb_TaskGroupCategory()"
         [filter]="true"
       />
 
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.visibility"
         label="Privacidad"
         [data]="cb_visibility()"

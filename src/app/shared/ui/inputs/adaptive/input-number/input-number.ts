@@ -13,11 +13,11 @@ import { IonInputNumber } from "../../mobile/ion-input-number";
 import { WebInputNumber } from "../../web/input-number/input-number";
 
 /**
- * 🔀 INPUT NUMBER — adaptativo. `<custom-input-number-signal>` →
+ * 🔀 INPUT NUMBER — adaptativo. `<lux-input-number-signal>` →
  * web `<web-input-number>` (Bootstrap) o móvil `<ion-input-number>` (Ionic).
  */
 @Component({
-  selector: "custom-input-number-signal",
+  selector: "lux-input-number-signal",
 
   imports: [WebInputNumber, IonInputNumber],
   providers: [
@@ -25,7 +25,8 @@ import { WebInputNumber } from "../../web/input-number/input-number";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputNumber),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -95,4 +96,3 @@ export class InputNumber extends BaseInputSignal {
   blur = output<void>();
   enter = output<void>();
 }
-

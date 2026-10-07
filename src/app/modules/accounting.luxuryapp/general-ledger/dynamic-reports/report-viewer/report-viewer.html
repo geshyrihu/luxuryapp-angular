@@ -4,7 +4,7 @@
     class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2"
   >
     <div class="d-flex align-items-end gap-2">
-      <custom-input-number-signal
+      <lux-input-number-signal
         [control]="filtroForm.controls.anio"
         label="Ano"
         [useGrouping]="false"
@@ -13,7 +13,7 @@
         [noMargin]="true"
       />
       <div class="w-10rem">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="filtroForm.controls.mes"
           label="Mes"
           [data]="meses"
@@ -63,7 +63,9 @@
   @if (advertencias().length > 0) {
   <div class="mb-3">
     @for (w of advertencias(); track w) {
-    <lux-message-web severity="warn" class="mb-1 text-sm">{{ w }}</lux-message-web>
+    <lux-message-web severity="warn" class="mb-1 text-sm"
+      >{{ w }}</lux-message-web
+    >
     }
   </div>
   }
@@ -92,15 +94,15 @@
       </div>
       }
       <table class="w-full border-collapse">
-<thead>
-           <tr class="bg-body-tertiary">
-             <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
-             <th class="text-end p-2 border-bottom-1 border">REAL</th>
-             <th class="text-end p-2 border-bottom-1 border">PRESUPUESTO</th>
-             <th class="text-end p-2 border-bottom-1 border">VARIACIÓN</th>
-             <th class="text-end p-2 border-bottom-1 border">%</th>
-           </tr>
-         </thead>
+        <thead>
+          <tr class="bg-body-tertiary">
+            <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
+            <th class="text-end p-2 border-bottom-1 border">REAL</th>
+            <th class="text-end p-2 border-bottom-1 border">PRESUPUESTO</th>
+            <th class="text-end p-2 border-bottom-1 border">VARIACIÓN</th>
+            <th class="text-end p-2 border-bottom-1 border">%</th>
+          </tr>
+        </thead>
         <tbody>
           @for (row of seccion.rows; track row.id) { @if (row.type === 'spacer')
           {
@@ -186,16 +188,16 @@
       @for (mitad of [mitadSecciones()[0], mitadSecciones()[1]]; track $index) {
       <div class="col-12 col-md-6">
         <table class="w-full border-collapse">
-<thead>
-             <tr class="bg-body-tertiary">
-               <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
-               @for (col of r.columns; track col.id) {
-               <th class="text-end p-2 border-bottom-1 border">
-                 {{ col.label }}
-               </th>
-               }
-             </tr>
-           </thead>
+          <thead>
+            <tr class="bg-body-tertiary">
+              <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
+              @for (col of r.columns; track col.id) {
+              <th class="text-end p-2 border-bottom-1 border">
+                {{ col.label }}
+              </th>
+              }
+            </tr>
+          </thead>
           <tbody>
             @for (row of mitad; track row.id) { @if (row.type === 'spacer') {
             <tr>
@@ -248,14 +250,14 @@
 
       <table class="w-full border-collapse">
         <!-- Encabezado de columnas -->
-<thead>
-             <tr class="bg-body-tertiary">
-               <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
-               @for (col of r.columns; track col.id) {
-               <th class="text-end p-2 border-bottom-1 border">{{ col.label }}</th>
-               }
-             </tr>
-           </thead>
+        <thead>
+          <tr class="bg-body-tertiary">
+            <th class="text-start p-2 border-bottom-1 border">CONCEPTO</th>
+            @for (col of r.columns; track col.id) {
+            <th class="text-end p-2 border-bottom-1 border">{{ col.label }}</th>
+            }
+          </tr>
+        </thead>
         <tbody>
           @for (row of seccion.rows; track row.id) { @if (row.type === 'spacer')
           {

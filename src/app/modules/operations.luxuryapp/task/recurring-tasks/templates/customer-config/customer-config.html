@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="w-full md:w-1/2">
       <label for="customer">Cliente</label>
-      <custom-input-select-signal
+      <lux-input-select-signal
         id="customer"
         [data]="customers()"
         [(ngModel)]="selectedCustomerId"
@@ -25,7 +25,7 @@
         >
         @for (item of template.items; track item.id) {
         <div class="field-checkbox">
-          <custom-input-check-signal
+          <lux-input-check-signal
             [placeholder]="item.title"
             [ngModel]="selectedItems().get(item.id)"
             (checkChange)="onItemCheckChange(item.id, $event)"

@@ -1,6 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.propertyId"
     [data]="propertiesOptions()"
     label="Propiedad Asociada"
@@ -9,19 +8,19 @@
     required
   />
 
-  <custom-input-currency-signal
+  <lux-input-currency-signal
     [control]="form.controls.amount"
     label="Monto del Cobro"
     required
   />
 
-  <custom-input-date-signal
+  <lux-input-date-signal
     [control]="form.controls.paymentDate"
     label="Fecha de Pago"
     required
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.method"
     [data]="methodOptions"
     label="Método de Pago"
@@ -29,13 +28,13 @@
     required
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.reference"
     label="Referencia"
     placeholder="Ej. SPEI1234..."
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.status"
     [data]="statusOptions()"
     label="Estado de Pago"

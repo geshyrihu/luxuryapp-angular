@@ -13,9 +13,9 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TreeNode } from "@core/interfaces/tree-node.interface";
 import { LxBadge } from "@ui/adaptive/badge/badge";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTree } from "@ui/adaptive/tree/tree";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IAccountTreeNode } from "../interfaces/report-definition.interface";
 import { livePreviewState } from "../state/live-preview.state";
 
@@ -32,7 +32,7 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
         <span class="p-inputgroup-addon"
           ><lux-icon [icon]="'material-symbols-light:search'"
         /></span>
-        <custom-input-text-signal
+        <lux-input-text-signal
           placeholder="Filtrar catálogo..."
           (input)="onFilter($event)"
           [horizontal]="false"
@@ -137,7 +137,8 @@ type AccountTreeData = Pick<IAccountTreeNode, "code" | "name" | "level">;
       .cursor-move {
         cursor: move;
       }
-    `],
+    `,
+  ],
 })
 export class AccountTreeSelect {
   private apiResponseS = inject(ApiResponseService);
@@ -184,7 +185,8 @@ export class AccountTreeSelect {
               typeof item.level === "number",
           )
           .map((item) => [item.code, item]),
-      ).values()];
+      ).values(),
+    ];
 
     const codes = selected
       .filter((item) => item.level > 0)

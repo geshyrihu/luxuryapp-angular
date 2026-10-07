@@ -1,74 +1,74 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.city"
-        label="Ciudad"
-        placeholder="ciudad"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.country"
-        label="País"
-        placeholder="País"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.longitud"
-        label="Longitud"
-        placeholder="longitud"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.latitud"
-        label="Latitud"
-        placeholder="latitud"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.number"
-        label="Número "
-        placeholder="número "
-      />
-      <custom-input-text-signal
-        [control]="form.controls.unitNumber"
-        label="Número interior"
-        placeholder="número interior"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.postalCode"
-        label="Código postal"
-        placeholder="Código postal"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.street"
-        label="Calle"
-        placeholder="Calle"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.district"
-        label="Colonia"
-        placeholder="colonia"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.townHall"
-        label="Alcaldía"
-        placeholder="Alcaldía"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.additionalDetails"
-        label="Información adicional"
-        placeholder="información adicional"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-text-signal
+    [control]="form.controls.city"
+    label="Ciudad"
+    placeholder="ciudad"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.country"
+    label="País"
+    placeholder="País"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.longitud"
+    label="Longitud"
+    placeholder="longitud"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.latitud"
+    label="Latitud"
+    placeholder="latitud"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.number"
+    label="Número "
+    placeholder="número "
+  />
+  <lux-input-text-signal
+    [control]="form.controls.unitNumber"
+    label="Número interior"
+    placeholder="número interior"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.postalCode"
+    label="Código postal"
+    placeholder="Código postal"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.street"
+    label="Calle"
+    placeholder="Calle"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.district"
+    label="Colonia"
+    placeholder="colonia"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.townHall"
+    label="Alcaldía"
+    placeholder="Alcaldía"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.additionalDetails"
+    label="Información adicional"
+    placeholder="información adicional"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

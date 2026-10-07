@@ -2,7 +2,7 @@
   <!-- Filtros -->
   <div class="d-flex mb-4 align-items-center">
     <div class="mb-0">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [ngModel]="year()"
         (ngModelChange)="year.set($event)"
         [ngModelOptions]="{ standalone: true }"
@@ -75,9 +75,7 @@
           [class.rf-row-section--pasivo]="row.clasificacionCodigo === '2'"
           [class.rf-row-section--capital]="row.clasificacionCodigo === '3'"
         >
-          <td colspan="14" class="fw-bold py-2 px-3">
-            {{ row.descripcion }}
-          </td>
+          <td colspan="14" class="fw-bold py-2 px-3">{{ row.descripcion }}</td>
         </tr>
         }
 

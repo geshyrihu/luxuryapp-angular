@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveEmployee($event)"
         [control]="form.controls['employeeName']"
         [data]="employees()"
@@ -10,7 +10,7 @@
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['tipoIncidencia']"
         label="Tipo de Incidencia"
         [data]="tipoIncidenciaOptions"
@@ -18,33 +18,26 @@
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-date-signal
-        [control]="form.controls['fecha']"
-        label="Fecha"
-      />
+      <lux-input-date-signal [control]="form.controls['fecha']" label="Fecha" />
     </div>
 
     @if (!esRetardo()) {
     <div class="col-12 col-md-6">
-      <custom-input-number-signal
+      <lux-input-number-signal
         [control]="form.controls['diasAfectados']"
         label="Días Afectados"
       />
     </div>
-    }
-
-    @if (esRetardo()) {
+    } @if (esRetardo()) {
     <div class="col-12 col-md-6">
-      <custom-input-number-signal
+      <lux-input-number-signal
         [control]="form.controls['minutosRetardo']"
         label="Minutos de Retardo"
       />
     </div>
-    }
-
-    @if (esIncapacidad()) {
+    } @if (esIncapacidad()) {
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['tipoIncapacidad']"
         label="Tipo de Incapacidad"
         [data]="tipoIncapacidadOptions"
@@ -52,14 +45,14 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls['numeroFolioImss']"
         label="Folio IMSS"
         placeholder="Numero de folio"
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-decimal-signal
+      <lux-input-decimal-signal
         [control]="form.controls['porcentajePagoImss']"
         label="% Pago IMSS"
         hint="Ej: 60 para 60%"
@@ -70,7 +63,7 @@
     }
 
     <div class="col-12">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls['observaciones']"
         label="Observaciones"
       />

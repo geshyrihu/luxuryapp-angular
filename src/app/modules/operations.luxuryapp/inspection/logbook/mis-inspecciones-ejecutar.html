@@ -42,7 +42,7 @@
         <td>{{ revision.inspectionDescription }}</td>
         <td>
           <div class="d-flex align-items-center">
-            <custom-input-toggle-switch-signal
+            <lux-input-toggle-switch-signal
               [control]="revision.stateControl"
               (toggleChange)="saveRevision(revision)"
             />
@@ -52,7 +52,7 @@
           </div>
         </td>
         <td>
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="revision.observationsControl"
             [rows]="1"
             placeholder="Observaciones..."
@@ -71,7 +71,8 @@
           </div>
         </td>
         <td class="text-center">
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:photo-camera"
             label="Agregar fotos"
             (clicked)="onModalAddImages(revision.id)"
@@ -99,7 +100,7 @@
             {{ item.inspectionDescription }}
           </span>
           <div class="d-flex align-items-center gap-2">
-            <custom-input-toggle-switch-signal
+            <lux-input-toggle-switch-signal
               [control]="item.stateControl"
               (toggleChange)="saveRevision(item)"
             />
@@ -114,7 +115,7 @@
             class="text-body-sm fw-medium text-on-surface-secondary mb-2 d-block"
             >Observaciones</label
           >
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="item.observationsControl"
             [rows]="3"
             placeholder="Añade observaciones si es necesario..."

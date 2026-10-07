@@ -24,7 +24,7 @@
 
       <!-- Empresa -->
       <div>
-        <custom-input-select-button-signal
+        <lux-input-select-button-signal
           [options]="empresaOptions"
           [ngModel]="empresaSeleccionada()"
           (ngModelChange)="$event != null && empresaSeleccionada.set($event)"
@@ -35,7 +35,8 @@
 
       <!-- Ejercicio -->
       <div class="d-flex align-items-center gap-1">
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="material-symbols-light:chevron-left"
           variant="text"
           severity="secondary"
@@ -43,7 +44,8 @@
           (clicked)="filterS.year.set(filterS.year() - 1)"
         />
         <span class="fw-bold text-body px-1"> {{ filterS.year() }} </span>
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="material-symbols-light:chevron-right"
           variant="text"
           severity="secondary"

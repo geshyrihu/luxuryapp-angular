@@ -1,61 +1,61 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Id -->
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        placeholder="Id"
-      />
-      <!-- Img -->
-      <div class="mb-4 d-flex justify-content-center">
-        <div class="w-full sm:w-9/12 max-w-sm">
-          <div class="card text-center p-3">
-            <custom-input-img-signal
-              (fileSelected)="uploadFile($event)"
-              [urlImgCurrent]="urlBaseImg"
-              [contentHeight]="75"
-              [contentWidth]="75"
-            />
-          </div>
-        </div>
+  <!-- Id -->
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    placeholder="Id"
+  />
+  <!-- Img -->
+  <div class="mb-4 d-flex justify-content-center">
+    <div class="w-full sm:w-9/12 max-w-sm">
+      <div class="card text-center p-3">
+        <lux-input-img-signal
+          (fileSelected)="uploadFile($event)"
+          [urlImgCurrent]="urlBaseImg"
+          [contentHeight]="75"
+          [contentWidth]="75"
+        />
       </div>
+    </div>
+  </div>
 
-      <custom-input-select-signal
-        [control]="form.controls.extinguisherType"
-        label="Tipo de Extintor"
-        [data]="cb_extintor"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.extinguisherType"
+    label="Tipo de Extintor"
+    [data]="cb_extintor"
+    [filter]="true"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.expirationDate"
-        label="Fecha de Vencimiento"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.expirationDate"
+    label="Fecha de Vencimiento"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.location"
-        label="Ubicación"
-        placeholder="Ej: Piso 3 - Pasillo A"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.location"
+    label="Ubicación"
+    placeholder="Ej: Piso 3 - Pasillo A"
+  />
 
-      <custom-input-mask-signal
-        [control]="form.controls.localCode"
-        label="Código Local"
-        placeholder="EXT-01-001"
-        customMask="AAA-00-000"
-        [validation]="false"
-        [dropSpecialCharacters]="false"
-        description="EXT = Extintor · Zona (2 dígitos) · Número de equipo (3 dígitos)"
-      />
+  <lux-input-mask-signal
+    [control]="form.controls.localCode"
+    label="Código Local"
+    placeholder="EXT-01-001"
+    customMask="AAA-00-000"
+    [validation]="false"
+    [dropSpecialCharacters]="false"
+    description="EXT = Extintor · Zona (2 dígitos) · Número de equipo (3 dígitos)"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

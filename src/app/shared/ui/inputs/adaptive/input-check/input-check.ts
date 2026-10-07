@@ -12,11 +12,11 @@ import { IonInputCheckbox } from "../../mobile/ion-input-checkbox";
 import { WebInputCheck } from "../../web/input-check/input-check";
 
 /**
- * 🔀 INPUT CHECK — adaptativo. `<custom-input-check-signal>` →
+ * 🔀 INPUT CHECK — adaptativo. `<lux-input-check-signal>` →
  * web `<web-input-check>` (Bootstrap) o móvil `<ion-input-checkbox>` (Ionic).
  */
 @Component({
-  selector: "custom-input-check-signal",
+  selector: "lux-input-check-signal",
 
   imports: [WebInputCheck, IonInputCheckbox],
   providers: [
@@ -24,7 +24,8 @@ import { WebInputCheck } from "../../web/input-check/input-check";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputCheck),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -58,4 +59,3 @@ export class InputCheck extends BaseInputSignal {
   protected platform = inject(PlatformService);
   checkChange = output<boolean>();
 }
-

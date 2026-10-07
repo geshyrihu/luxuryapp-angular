@@ -1,58 +1,58 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.applicationUserId"
-        label="Account Id"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.applicationUser"
-        label="User"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.port"
-        label="Ingrese el puerto"
-        placeholder="port"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.smtp"
-        label="Ingrese el smtp"
-        placeholder="smtp"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.password"
-        label="Password"
-        placeholder="password"
-      />
-      <div class="d-flex justify-content-end mt-3">
-        @if (aspRoleS.hasRole(AspRole.SuperUsuario) && id !== '') {
-        <lux-button-web
-          kind="send-email"
-          label="Test de prueba"
-          severity="info"
-          variant="soft"
-          [disabled]="submitting()"
-          (clicked)="TestEmail()"
-        />
-        }
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.applicationUserId"
+    label="Account Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.applicationUser"
+    label="User"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.port"
+    label="Ingrese el puerto"
+    placeholder="port"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.smtp"
+    label="Ingrese el smtp"
+    placeholder="smtp"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.password"
+    label="Password"
+    placeholder="password"
+  />
+  <div class="d-flex justify-content-end mt-3">
+    @if (aspRoleS.hasRole(AspRole.SuperUsuario) && id !== '') {
+    <lux-button-web
+      kind="send-email"
+      label="Test de prueba"
+      severity="info"
+      variant="soft"
+      [disabled]="submitting()"
+      (clicked)="TestEmail()"
+    />
+    }
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>
 @if (testEmailMessage()) {
 <div
   class="alert"

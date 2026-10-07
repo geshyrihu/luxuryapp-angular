@@ -9,7 +9,7 @@
       <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
         Filtrar por Estado
       </h5>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="statusControl()"
         (onChange)="filterChange.emit()"
         [data]="statusOptions()"
@@ -22,7 +22,7 @@
       <h5 class="m-0 mb-2 text-secondary text-xs text-uppercase tracking-wider">
         Filtrar por Tipo
       </h5>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="typeControl()"
         (onChange)="filterChange.emit()"
         [data]="typeOptions()"
@@ -85,10 +85,7 @@
 
       <ili-action-menu end>
         <ng-container actions>
-          <lux-button-mobile
-            kind="edit"
-            (clicked)="edit.emit(item)"
-          />
+          <lux-button-mobile kind="edit" (clicked)="edit.emit(item)" />
           <lux-button-mobile
             kind="delete"
             color="danger"

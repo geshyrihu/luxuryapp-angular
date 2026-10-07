@@ -2,7 +2,7 @@
   <div class="row g-4">
     @if (!item()) {
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['quincena']"
         label="Quincena"
         [data]="quincenaOptions"
@@ -10,7 +10,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['mes']"
         label="Mes"
         [data]="mesOptions"
@@ -18,27 +18,24 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-number-signal
-        [control]="form.controls['anio']"
-        label="Año"
-      />
+      <lux-input-number-signal [control]="form.controls['anio']" label="Año" />
     </div>
     }
 
     <div class="col-12 col-md-4">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls['fechaInicio']"
         label="Fecha Inicio"
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls['fechaFin']"
         label="Fecha Fin"
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls['fechaPago']"
         label="Fecha de Pago"
       />

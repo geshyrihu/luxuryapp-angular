@@ -54,7 +54,7 @@
           </p>
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.existencia"
             mode="decimal"
             [showButtons]="true"
@@ -63,7 +63,7 @@
           />
         </td>
         <td>
-          <custom-input-select-signal
+          <lux-input-select-signal
             [data]="cb_UnidadMedida()"
             [control]="row.controls.unidadDeMedidaId"
             placeholder="Seleccione..."
@@ -72,7 +72,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.stockMax"
             mode="decimal"
             [showButtons]="true"
@@ -81,7 +81,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.stockMin"
             mode="decimal"
             [showButtons]="true"
@@ -108,9 +108,7 @@
       @if (row.value.errorMessage) {
       <tr class="row-error g-4">
         <td [attr.colspan]="6">
-          <div class="text-red-400 ps-4">
-            {{ row.value.errorMessage }}
-          </div>
+          <div class="text-red-400 ps-4">{{ row.value.errorMessage }}</div>
         </td>
       </tr>
       }

@@ -5,41 +5,41 @@
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <custom-input-number-signal
+    <lux-input-number-signal
       label="Cantidad"
       [control]="form.controls.quantity"
     />
 
-    <custom-input-currency-signal
+    <lux-input-currency-signal
       label="Precio Unitario"
       [control]="form.controls.unitPrice"
       [minFractionDigits]="0"
       [maxFractionDigits]="4"
     />
 
-    <custom-input-decimal-signal
+    <lux-input-decimal-signal
       label="Descuento (%)"
       [control]="form.controls.descuento"
       suffix="%"
     />
-    <custom-input-decimal-signal
+    <lux-input-decimal-signal
       label="IVA (%)"
       [control]="form.controls.ivaAplicado"
       suffix="%"
     />
-    <custom-input-decimal-signal
+    <lux-input-decimal-signal
       label="Retención IVA (%)"
       [control]="form.controls.retencionIVAPorcentaje"
       suffix="%"
     />
 
-    <custom-input-decimal-signal
+    <lux-input-decimal-signal
       label="Retención ISR (%)"
       [control]="form.controls.retencionISRPorcentaje"
       suffix="%"
     />
 
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Unidad de Medida"
       [data]="cb_measurement_units"
       placeholder="Seleccione una unidad"

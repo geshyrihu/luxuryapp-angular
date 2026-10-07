@@ -1,13 +1,13 @@
 <div>
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.id"
       hidden
       label="Id"
       [readonly]="true"
       [hidden]="false"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.nombreMedidorCategoria"
       label="Nombre"
       placeholder="nombre de categoria"

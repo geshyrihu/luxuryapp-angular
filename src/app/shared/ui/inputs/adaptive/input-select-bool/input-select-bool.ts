@@ -12,7 +12,7 @@ import { IonInputSelectBool } from "../../mobile/ion-input-select-bool";
 import { WebInputSelectBool } from "../../web/input-select-bool/input-select-bool";
 
 @Component({
-  selector: "custom-input-select-signal-bool",
+  selector: "lux-input-select-signal-bool",
 
   imports: [WebInputSelectBool, IonInputSelectBool],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputSelectBool } from "../../web/input-select-bool/input-select-boo
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputSelectBool),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -64,4 +65,3 @@ export class InputSelectBool extends BaseInputSignal {
   showClear = input<boolean>(true);
   size = input<"small" | "large" | undefined>(undefined);
 }
-

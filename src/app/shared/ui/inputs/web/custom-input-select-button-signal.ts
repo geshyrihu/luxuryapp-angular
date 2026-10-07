@@ -1,15 +1,22 @@
-import { Component, computed, forwardRef, input, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+  output,
+} from "@angular/core";
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { AppSelectButton } from "@ui/web/select-button/select-button";
 import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
-  selector: "custom-input-select-button-signal",
+  selector: "lux-input-select-button-signal",
   imports: [BaseInputSignal, ReactiveFormsModule, AppSelectButton],
   template: `
     <base-input-signal
@@ -33,7 +40,6 @@ import { BaseInputSignal } from "../core/base-input-signal";
         [class]="customClass()"
         [size]="size()"
         [disabled]="disabled()"
-        
       >
         <ng-content></ng-content>
       </lux-select-button-web>
@@ -45,7 +51,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputSelectButton),
       multi: true,
-    }],
+    },
+  ],
 })
 export class CustomInputSelectButton
   extends BaseInputSignal
@@ -59,11 +66,13 @@ export class CustomInputSelectButton
   customClass = input<string>("");
   size = input<"small" | "large" | undefined>(undefined);
 
-  mappedOptions = computed(() => this.options().map((option: any) => ({
-    label: option?.[this.optionLabel()] ?? "",
-    value: option?.[this.optionValue()],
-    disabled: option?.disabled,
-  })));
+  mappedOptions = computed(() =>
+    this.options().map((option: any) => ({
+      label: option?.[this.optionLabel()] ?? "",
+      value: option?.[this.optionValue()],
+      disabled: option?.disabled,
+    })),
+  );
 
   onValueChange(value: any): void {
     const ctrl = this.control() || this.internalControl;
@@ -91,4 +100,3 @@ export class CustomInputSelectButton
     super.setDisabledState(isDisabled);
   }
 }
-

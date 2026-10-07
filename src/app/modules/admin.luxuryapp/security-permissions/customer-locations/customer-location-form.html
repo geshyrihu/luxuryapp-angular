@@ -1,116 +1,116 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+
+  <lux-input-text-signal
+    [control]="form.controls.customerId"
+    hidden
+    label="CustomerId"
+    [readonly]="true"
+  />
+
+  <div class="formgrid row g-4">
+    <div class="field col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.name"
+        label="Nombre"
+        placeholder="Ej: Caseta Principal"
+        [required]="true"
       />
+    </div>
 
-      <custom-input-text-signal
-        [control]="form.controls.customerId"
-        hidden
-        label="CustomerId"
-        [readonly]="true"
+    <div class="field col-12 col-md-6">
+      <lux-input-select-signal
+        [control]="form.controls.locationType"
+        label="Tipo de Ubicación"
+        [data]="locationTypeOptions"
+        [filter]="true"
+        [required]="true"
       />
+    </div>
 
-      <div class="formgrid row g-4">
-        <div class="field col-12 col-md-6">
-          <custom-input-text-signal
-            [control]="form.controls.name"
-            label="Nombre"
-            placeholder="Ej: Caseta Principal"
-            [required]="true"
-          />
-        </div>
+    <div class="field col-12 col-md-6">
+      <lux-input-mask-signal
+        [control]="form.controls.phoneOne"
+        label="Tél. 1"
+        placeholder="teléfono"
+        customMask="(00) 0000-0000"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-select-signal
-            [control]="form.controls.locationType"
-            label="Tipo de Ubicación"
-            [data]="locationTypeOptions"
-            [filter]="true"
-            [required]="true"
-          />
-        </div>
+    <div class="field col-12 col-md-6">
+      <lux-input-mask-signal
+        [control]="form.controls.phoneTwo"
+        label="Tél. 2"
+        placeholder="teléfono"
+        customMask="(00) 0000-0000"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-mask-signal
-            [control]="form.controls.phoneOne"
-            label="Tél. 1"
-            placeholder="teléfono"
-            customMask="(00) 0000-0000"
-          />
-        </div>
+    <div class="field col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.extensionOne"
+        label="Extensión 1"
+        placeholder="Ej: 4005"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-mask-signal
-            [control]="form.controls.phoneTwo"
-            label="Tél. 2"
-            placeholder="teléfono"
-            customMask="(00) 0000-0000"
-          />
-        </div>
+    <div class="field col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.extensionTwo"
+        label="Extensión 2"
+        placeholder="Ej: 4002"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-text-signal
-            [control]="form.controls.extensionOne"
-            label="Extensión 1"
-            placeholder="Ej: 4005"
-          />
-        </div>
+    <div class="field col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.contactName"
+        label="Contacto"
+        placeholder="Nombre del responsable"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-text-signal
-            [control]="form.controls.extensionTwo"
-            label="Extensión 2"
-            placeholder="Ej: 4002"
-          />
-        </div>
+    <div class="field col-12 col-md-3">
+      <lux-input-text-signal
+        [control]="form.controls.sortOrder"
+        label="Orden"
+        type="number"
+      />
+    </div>
 
-        <div class="field col-12 col-md-6">
-          <custom-input-text-signal
-            [control]="form.controls.contactName"
-            label="Contacto"
-            placeholder="Nombre del responsable"
-          />
-        </div>
+    <div class="field col-12 col-md-3">
+      <lux-input-select-signal-bool
+        [control]="form.controls.isActive"
+        label="Estado"
+        [activeLabel]="'Activo'"
+        [inactiveLabel]="'Inactivo'"
+      />
+    </div>
 
-        <div class="field col-12 col-md-3">
-          <custom-input-text-signal
-            [control]="form.controls.sortOrder"
-            label="Orden"
-            type="number"
-          />
-        </div>
+    <div class="field col-12">
+      <lux-input-textarea-signal
+        [control]="form.controls.notes"
+        label="Notas"
+        placeholder="Observaciones adicionales"
+      />
+    </div>
+  </div>
 
-        <div class="field col-12 col-md-3">
-          <custom-input-select-signal-bool
-            [control]="form.controls.isActive"
-            label="Estado"
-            [activeLabel]="'Activo'"
-            [inactiveLabel]="'Inactivo'"
-          />
-        </div>
-
-        <div class="field col-12">
-          <custom-input-textarea-signal
-            [control]="form.controls.notes"
-            label="Notas"
-            placeholder="Observaciones adicionales"
-          />
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-end pt-3 border-top-1 border">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <div class="d-flex justify-content-end pt-3 border-top-1 border">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

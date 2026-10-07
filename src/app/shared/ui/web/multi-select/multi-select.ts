@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MultiSelectBase } from "@ui/core/multi-select.base";
 import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multiselect-signal";
@@ -8,7 +12,7 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 
   imports: [FormsModule, CustomInputMultiselectSignal],
   template: `
-    <custom-input-multiselect-signal
+    <lux-input-multiselect-signal
       [options]="options() ?? []"
       [optionLabel]="optionLabel() ?? 'label'"
       [placeholder]="placeholder()"

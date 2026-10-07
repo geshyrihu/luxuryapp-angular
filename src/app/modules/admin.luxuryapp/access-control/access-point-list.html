@@ -3,24 +3,24 @@
     {{ editingId() ? "Editar punto de acceso" : "Nuevo punto de acceso" }}
   </h2>
   <form autocomplete="off" (ngSubmit)="submit()" [formGroup]="form">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.name"
       label="Nombre"
       placeholder="Ej: Caseta principal"
       required
     />
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls.accessPointType"
       label="Tipo"
       placeholder="Tipo de acceso"
       [data]="types"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.location"
       label="Ubicación"
       placeholder="Ubicación"
     />
-    <custom-input-switch-signal
+    <lux-input-switch-signal
       [control]="form.controls.isActive"
       label="Activo"
     />

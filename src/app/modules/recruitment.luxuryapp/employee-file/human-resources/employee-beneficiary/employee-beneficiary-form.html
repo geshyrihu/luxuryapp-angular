@@ -2,7 +2,7 @@
   <div class="row g-4">
     <!-- Empleado -->
     <div class="col-12">
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Empleado"
         [control]="f.employeeId"
         [data]="cbEmployees()"
@@ -13,7 +13,7 @@
 
     <!-- Parentesco / Relación -->
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Parentesco"
         [control]="f.relation"
         [data]="cbRelations()"
@@ -24,7 +24,7 @@
 
     <!-- Nombre del Beneficiario -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         label="Nombre del Beneficiario"
         [control]="f.fullName"
         placeholder="Nombre completo"
@@ -33,7 +33,7 @@
 
     <!-- Teléfono -->
     <div class="col-12 col-md-6">
-      <custom-input-mask-signal
+      <lux-input-mask-signal
         label="Teléfono del Beneficiario"
         [control]="f.phoneNumber"
         customMask="000 000 0000"

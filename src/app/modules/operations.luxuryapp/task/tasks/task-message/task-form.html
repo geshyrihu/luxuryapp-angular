@@ -1,387 +1,387 @@
-  <!-- Overlay de procesamiento con indicador de progreso -->
-  <lux-processing-overlay
-    [isProcessing]="submitting()"
-    [progress]="processingProgress()"
-    [message]="processingMessage()"
-    submessage="Comprimiendo y subiendo imágenes"
+<!-- Overlay de procesamiento con indicador de progreso -->
+<lux-processing-overlay
+  [isProcessing]="submitting()"
+  [progress]="processingProgress()"
+  [message]="processingMessage()"
+  submessage="Comprimiendo y subiendo imágenes"
+/>
+
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- Guía de usuario para mejorar la consistencia de datos -->
+  <details
+    class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 shadow-sm"
+  >
+    <summary
+      class="text-blue-900 fw-bold text-uppercase text-xs cursor-pointer"
+    >
+      Guía de registro
+    </summary>
+    <div class="d-flex align-items-start gap-3 mt-2">
+      <lux-icon
+        [icon]="'material-symbols-light:info'"
+        class="text-blue-600 text-xl mt-1"
+      />
+      <div class="flex-fill">
+        <p class="m-0 text-blue-800 text-sm line-height-3">
+          Para facilitar el seguimiento y generar reportes precisos, por favor:
+        </p>
+        <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
+          <li class="mb-1 d-flex align-items-start">
+            <lux-icon
+              [icon]="'material-symbols-light:check'"
+              class="text-blue-500 me-2 mt-1 text-xs"
+            />
+            <span>
+              <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
+              para un mismo lugar (ej:
+              <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
+            </span>
+          </li>
+          <li class="mb-1 d-flex align-items-start">
+            <lux-icon
+              [icon]="'material-symbols-light:check'"
+              class="text-blue-500 me-2 mt-1 text-xs"
+            />
+            <span>
+              <strong>Evidencia visual:</strong> Toma las fotos en
+              <strong>horizontal</strong>, sin objetos que obstruyan y enfocadas
+              al detalle. Usa el <strong>mismo óngulo</strong> para el antes y
+              despuós.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    [readonly]="true"
+    label="Id"
+    [hidden]="true"
   />
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <!-- Guía de usuario para mejorar la consistencia de datos -->
-    <details
-      class="rounded border-1 border-blue-200 bg-blue-50 p-3 mb-4 shadow-sm"
+  <lux-input-select-signal
+    [control]="form.controls.ticketGroupId"
+    label="Grupo"
+    [data]="cb_ticket_group()"
+    (selectionChange)="onTicketGroupChange($event.value)"
+    [filter]="true"
+  />
+  @if (isLegalWorkGroup()) {
+  <lux-input-select-signal
+    (selectionChange)="onLegalMatterChange($event.value)"
+    [data]="cb_legal_matter()"
+    label="Asunto legal"
+    placeholder="Selecciona asunto"
+    [filter]="true"
+    description="Selecciona el asunto legal correspondiente para este ticket."
+  />
+  } @else {
+  <lux-input-text-signal
+    [control]="form.controls.title"
+    label="Area"
+    placeholder="Ej: Administración, Pasillo Principal..."
+    description="Usa nombres consistentes para áreas (ej: Administración, TORRE 1 s5, Ludoteca)."
+  />
+  }
+
+  <lux-input-textarea-signal
+    [control]="form.controls.description"
+    label="DESCRIPCIÓN"
+    placeholder="Describe el problema de forma simple y concisa..."
+    description="Sí específico, simple y conciso (míx. 250 caracteres)."
+    [maxLength]="250"
+  />
+
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <lux-input-select-signal
+        [control]="form.controls.priority"
+        label="Prioridad"
+        [data]="cb_priority()"
+        [filter]="true"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-date-signal
+        [control]="form.controls.scheduledDate"
+        label="Fecha de programación"
+        placeholder="fecha"
+      />
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <!-- Responsable -->
+      <lux-input-select-signal
+        (selectionChange)="onAssigneeChange($event.value)"
+        [control]="form.controls.assigneeId"
+        [data]="cb_application_user()"
+        label="Asignar"
+        placeholder="Selecciona colaborador"
+        [filter]="true"
+        description="Si se deja vacño, se asignaré a los responsables del grupo."
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <!-- Este es por si es ticket concluido -->
+      <lux-input-date-signal
+        [control]="form.controls.closedDate"
+        label="Fecha de término"
+        placeholder="fecha de cierre"
+        description="Al colocar esta fecha, el ticket se marcaré como completado."
+      />
+    </div>
+  </div>
+
+  @if (cb_predecessors().length > 0) {
+  <lux-input-select-signal
+    [control]="form.controls.dependsOnTaskId"
+    label="Tarea predecesora"
+    placeholder="Ninguna (sin dependencia)"
+    [data]="cb_predecessors()"
+    [filter]="true"
+    description="Esta tarea se ejecutaré despuós de la seleccionada."
+  />
+  } @if (isLegalWorkGroup()) {
+  <div class="rounded border-1 border-orange-200 bg-orange-50 p-3 mb-3">
+    <div class="text-xs fw-bold text-orange-700 text-uppercase mb-2">
+      Campos legales
+    </div>
+    <div class="d-flex flex-wrap gap-4">
+      <lux-input-check-signal
+        [control]="form.controls.isInternal"
+        label=""
+        placeholder="Solicitud interna"
+      />
+      <lux-input-check-signal
+        [control]="form.controls.documentCloud"
+        label=""
+        placeholder="Documentación en la nube"
+      />
+      <lux-input-check-signal
+        [control]="form.controls.documentEmail"
+        label=""
+        placeholder="Documentación por email"
+      />
+    </div>
+  </div>
+  } @if (id !== "") {
+  <details class="border rounded p-3 mb-3">
+    <summary
+      id="task-responsibles-title"
+      class="text-sm fw-bold text-uppercase cursor-pointer"
     >
-      <summary
-        class="text-blue-900 fw-bold text-uppercase text-xs cursor-pointer"
-      >
-        Guía de registro
-      </summary>
-      <div class="d-flex align-items-start gap-3 mt-2">
-        <lux-icon
-          [icon]="'material-symbols-light:info'"
-          class="text-blue-600 text-xl mt-1"
-        />
+      Responsables
+    </summary>
+    <div class="pt-3">
+      <div class="d-flex align-items-end gap-2 mb-3">
         <div class="flex-fill">
-          <p class="m-0 text-blue-800 text-sm line-height-3">
-            Para facilitar el seguimiento y generar reportes precisos, por
-            favor:
-          </p>
-          <ul class="mt-2 p-0 list-none text-blue-800 text-sm line-height-3">
-            <li class="mb-1 d-flex align-items-start">
-              <lux-icon
-                [icon]="'material-symbols-light:check'"
-                class="text-blue-500 me-2 mt-1 text-xs"
-              />
-              <span>
-                <strong>Áreas consistentes:</strong> Usa siempre el mismo nombre
-                para un mismo lugar (ej:
-                <em>Administración, TORRE 1 s5, Ludoteca, Alberca</em>).
-              </span>
-            </li>
-            <li class="mb-1 d-flex align-items-start">
-              <lux-icon
-                [icon]="'material-symbols-light:check'"
-                class="text-blue-500 me-2 mt-1 text-xs"
-              />
-              <span>
-                <strong>Evidencia visual:</strong> Toma las fotos en
-                <strong>horizontal</strong>, sin objetos que obstruyan y
-                enfocadas al detalle. Usa el <strong>mismo óngulo</strong> para
-                el antes y despuós.
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </details>
-
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      [readonly]="true"
-      label="Id"
-      [hidden]="true"
-    />
-
-    <custom-input-select-signal
-      [control]="form.controls.ticketGroupId"
-      label="Grupo"
-      [data]="cb_ticket_group()"
-      (selectionChange)="onTicketGroupChange($event.value)"
-      [filter]="true"
-    />
-    @if (isLegalWorkGroup()) {
-    <custom-input-select-signal
-      (selectionChange)="onLegalMatterChange($event.value)"
-      [data]="cb_legal_matter()"
-      label="Asunto legal"
-      placeholder="Selecciona asunto"
-      [filter]="true"
-      description="Selecciona el asunto legal correspondiente para este ticket."
-    />
-    } @else {
-    <custom-input-text-signal
-      [control]="form.controls.title"
-      label="Area"
-      placeholder="Ej: Administración, Pasillo Principal..."
-      description="Usa nombres consistentes para áreas (ej: Administración, TORRE 1 s5, Ludoteca)."
-    />
-    }
-
-    <custom-input-textarea-signal
-      [control]="form.controls.description"
-      label="DESCRIPCIÓN"
-      placeholder="Describe el problema de forma simple y concisa..."
-      description="Sí específico, simple y conciso (míx. 250 caracteres)."
-      [maxLength]="250"
-    />
-
-    <div class="row g-3">
-      <div class="col-12 col-md-6">
-        <custom-input-select-signal
-          [control]="form.controls.priority"
-          label="Prioridad"
-          [data]="cb_priority()"
-          [filter]="true"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-date-signal
-          [control]="form.controls.scheduledDate"
-          label="Fecha de programación"
-          placeholder="fecha"
-        />
-      </div>
-    </div>
-
-    <div class="row g-3">
-      <div class="col-12 col-md-6">
-        <!-- Responsable -->
-        <custom-input-select-signal
-          (selectionChange)="onAssigneeChange($event.value)"
-          [control]="form.controls.assigneeId"
-          [data]="cb_application_user()"
-          label="Asignar"
-          placeholder="Selecciona colaborador"
-          [filter]="true"
-          description="Si se deja vacño, se asignaré a los responsables del grupo."
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <!-- Este es por si es ticket concluido -->
-        <custom-input-date-signal
-          [control]="form.controls.closedDate"
-          label="Fecha de término"
-          placeholder="fecha de cierre"
-          description="Al colocar esta fecha, el ticket se marcaré como completado."
-        />
-      </div>
-    </div>
-
-    @if (cb_predecessors().length > 0) {
-    <custom-input-select-signal
-      [control]="form.controls.dependsOnTaskId"
-      label="Tarea predecesora"
-      placeholder="Ninguna (sin dependencia)"
-      [data]="cb_predecessors()"
-      [filter]="true"
-      description="Esta tarea se ejecutaré despuós de la seleccionada."
-    />
-    } @if (isLegalWorkGroup()) {
-    <div class="rounded border-1 border-orange-200 bg-orange-50 p-3 mb-3">
-      <div class="text-xs fw-bold text-orange-700 text-uppercase mb-2">
-        Campos legales
-      </div>
-      <div class="d-flex flex-wrap gap-4">
-        <custom-input-check-signal
-          [control]="form.controls.isInternal"
-          label=""
-          placeholder="Solicitud interna"
-        />
-        <custom-input-check-signal
-          [control]="form.controls.documentCloud"
-          label=""
-          placeholder="Documentación en la nube"
-        />
-        <custom-input-check-signal
-          [control]="form.controls.documentEmail"
-          label=""
-          placeholder="Documentación por email"
-        />
-      </div>
-    </div>
-    } @if (id !== "") {
-    <details class="border rounded p-3 mb-3">
-      <summary
-        id="task-responsibles-title"
-        class="text-sm fw-bold text-uppercase cursor-pointer"
-      >
-        Responsables
-      </summary>
-      <div class="pt-3">
-        <div class="d-flex align-items-end gap-2 mb-3">
-          <div class="flex-fill">
-            <custom-input-autocomplete-multiple-signal
-              [control]="form.controls.responsiblesToAdd"
-              [data]="cb_application_user()"
-              label="Agregar responsables"
-              placeholder="Selecciona uno o varios colaboradores"
-            />
-          </div>
-          <lux-button-web
-            label="Agregar"
-            iconClass="material-symbols-light:add"
-            variant="outlined"
-            (clicked)="addResponsible()"
+          <lux-input-autocomplete-multiple-signal
+            [control]="form.controls.responsiblesToAdd"
+            [data]="cb_application_user()"
+            label="Agregar responsables"
+            placeholder="Selecciona uno o varios colaboradores"
           />
         </div>
-        @if (responsibles().length > 0) {
-        <div class="d-flex flex-column gap-2">
-          @for (responsible of responsibles(); track responsible.id) {
-          <div class="d-flex align-items-center justify-content-between gap-2">
-            <span class="text-sm">{{ responsible.applicationUser }}</span>
-            <div class="d-flex align-items-center gap-1">
-              @if (responsible.isPrimary) {
-              <span class="text-xs text-primary fw-semibold">Principal</span>
-              } @else {
-              <lux-button-web displayMode="icon"
-                icon="material-symbols-light:star-outline"
-                ariaLabel="Establecer como responsable principal"
-                (clicked)="setPrimaryResponsible(responsible.id)"
+        <lux-button-web
+          label="Agregar"
+          iconClass="material-symbols-light:add"
+          variant="outlined"
+          (clicked)="addResponsible()"
+        />
+      </div>
+      @if (responsibles().length > 0) {
+      <div class="d-flex flex-column gap-2">
+        @for (responsible of responsibles(); track responsible.id) {
+        <div class="d-flex align-items-center justify-content-between gap-2">
+          <span class="text-sm">{{ responsible.applicationUser }}</span>
+          <div class="d-flex align-items-center gap-1">
+            @if (responsible.isPrimary) {
+            <span class="text-xs text-primary fw-semibold">Principal</span>
+            } @else {
+            <lux-button-web
+              displayMode="icon"
+              icon="material-symbols-light:star-outline"
+              ariaLabel="Establecer como responsable principal"
+              (clicked)="setPrimaryResponsible(responsible.id)"
+            />
+            }
+            <lux-button-web
+              displayMode="icon"
+              icon="material-symbols-light:delete-outline"
+              severity="danger"
+              ariaLabel="Eliminar responsable"
+              (clicked)="deleteResponsible(responsible.id)"
+            />
+          </div>
+        </div>
+        }
+      </div>
+      } @else {
+      <small class="text-body-secondary"
+        >No hay responsables adicionales.</small
+      >
+      }
+    </div>
+  </details>
+
+  <details class="border rounded p-3 mb-3">
+    <summary
+      id="task-additional-images-title"
+      class="text-sm fw-bold text-uppercase cursor-pointer"
+    >
+      Imágenes adicionales
+    </summary>
+    <div class="pt-3">
+      <lux-file-upload
+        accept="image/*,.heic,.heif"
+        [maxFileSize]="10000000"
+        [multiple]="true"
+        [chooseLabel]="'Seleccionar imagen'"
+        (onSelect)="onAdditionalImageSelect($event)"
+      />
+      @if (additionalImages().length > 0) {
+      <div class="d-flex flex-wrap gap-3 mt-3">
+        @for (image of additionalImages(); track image.id; let imageIndex =
+        $index) {
+        <div class="border rounded p-2" [attr.data-image-id]="image.id">
+          <img
+            [src]="image.path"
+            [alt]="image.fileName"
+            class="gallery-preview rounded"
+          />
+          <div
+            class="d-flex align-items-center justify-content-between gap-1 mt-2"
+          >
+            <span class="text-xs text-truncate" [title]="image.fileName"
+              >{{ image.fileName }}</span
+            >
+            <div class="d-flex gap-1">
+              <lux-button-web
+                displayMode="icon"
+                icon="material-symbols-light:arrow-upward"
+                ariaLabel="Mover imagen arriba"
+                [disabled]="imageIndex === 0"
+                (clicked)="moveAdditionalImage(imageIndex, -1)"
               />
-              }
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
+                icon="material-symbols-light:arrow-downward"
+                ariaLabel="Mover imagen abajo"
+                [disabled]="imageIndex === additionalImages().length - 1"
+                (clicked)="moveAdditionalImage(imageIndex, 1)"
+              />
+              <lux-button-web
+                displayMode="icon"
                 icon="material-symbols-light:delete-outline"
                 severity="danger"
-                ariaLabel="Eliminar responsable"
-                (clicked)="deleteResponsible(responsible.id)"
+                ariaLabel="Eliminar imagen adicional"
+                (clicked)="deleteAdditionalImage(image.id)"
               />
             </div>
           </div>
-          }
         </div>
-        } @else {
-        <small class="text-body-secondary"
-          >No hay responsables adicionales.</small
-        >
         }
       </div>
-    </details>
+      }
+    </div>
+  </details>
+  }
 
-    <details class="border rounded p-3 mb-3">
-      <summary
-        id="task-additional-images-title"
-        class="text-sm fw-bold text-uppercase cursor-pointer"
+  <div class="row g-4">
+    <div class="col-12 mb-2">
+      <small class="text-body-secondary italic">
+        <lux-icon [icon]="'material-symbols-light:photo-camera'" class="me-1" />
+        Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
+        óngulo.
+      </small>
+    </div>
+    @if (imageProcessingDiagnostic()) {
+    <div class="col-12">
+      <p
+        role="alert"
+        aria-live="assertive"
+        data-testid="image-processing-diagnostic"
+        class="m-0 p-3 rounded bg-body-tertiary text-body text-sm white-space-pre-line"
       >
-        Imágenes adicionales
-      </summary>
-      <div class="pt-3">
+        <strong>Detalle técnico de la imagen</strong>
+        {{ "\n" + imageProcessingDiagnostic() }}
+      </p>
+    </div>
+    }
+    <div class="col-12 col-md-6">
+      <div class="mb-4">
+        <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
+          >Foto del antes</label
+        >
+        @if (beforeWorkPreview()) {
+        <div class="mb-2 d-flex justify-content-center">
+          <img
+            [src]="beforeWorkPreview()"
+            class="image-preview rounded shadow-sm"
+            alt="Evidencia Antes"
+          />
+        </div>
+        }
         <lux-file-upload
           accept="image/*,.heic,.heif"
           [maxFileSize]="10000000"
-          [multiple]="true"
-          [chooseLabel]="'Seleccionar imagen'"
-          (onSelect)="onAdditionalImageSelect($event)"
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'beforeWork')"
+          (filesChange)="onFilesChange($event, 'beforeWork')"
         />
-        @if (additionalImages().length > 0) {
-        <div class="d-flex flex-wrap gap-3 mt-3">
-          @for (image of additionalImages(); track image.id; let imageIndex =
-          $index) {
-          <div class="border rounded p-2" [attr.data-image-id]="image.id">
-            <img
-              [src]="image.path"
-              [alt]="image.fileName"
-              class="gallery-preview rounded"
-            />
-            <div
-              class="d-flex align-items-center justify-content-between gap-1 mt-2"
-            >
-              <span class="text-xs text-truncate" [title]="image.fileName"
-                >{{ image.fileName }}</span
-              >
-              <div class="d-flex gap-1">
-                <lux-button-web displayMode="icon"
-                  icon="material-symbols-light:arrow-upward"
-                  ariaLabel="Mover imagen arriba"
-                  [disabled]="imageIndex === 0"
-                  (clicked)="moveAdditionalImage(imageIndex, -1)"
-                />
-                <lux-button-web displayMode="icon"
-                  icon="material-symbols-light:arrow-downward"
-                  ariaLabel="Mover imagen abajo"
-                  [disabled]="imageIndex === additionalImages().length - 1"
-                  (clicked)="moveAdditionalImage(imageIndex, 1)"
-                />
-                <lux-button-web displayMode="icon"
-                  icon="material-symbols-light:delete-outline"
-                  severity="danger"
-                  ariaLabel="Eliminar imagen adicional"
-                  (clicked)="deleteAdditionalImage(image.id)"
-                />
-              </div>
-            </div>
-          </div>
-          }
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="mb-4">
+        <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
+          >Foto del después</label
+        >
+        @if (afterWorkPreview()) {
+        <div class="mb-2 d-flex justify-content-center">
+          <img
+            [src]="afterWorkPreview()"
+            class="image-preview rounded shadow-sm"
+            alt="Evidencia Después"
+          />
         </div>
         }
-      </div>
-    </details>
-    }
-
-    <div class="row g-4">
-      <div class="col-12 mb-2">
-        <small class="text-body-secondary italic">
-          <lux-icon
-            [icon]="'material-symbols-light:photo-camera'"
-            class="me-1"
-          />
-          Recuerda: Fotos horizontales, centradas en el detalle y desde el mismo
-          óngulo.
-        </small>
-      </div>
-      @if (imageProcessingDiagnostic()) {
-      <div class="col-12">
-        <p
-          role="alert"
-          aria-live="assertive"
-          data-testid="image-processing-diagnostic"
-          class="m-0 p-3 rounded bg-body-tertiary text-body text-sm white-space-pre-line"
-        >
-          <strong>Detalle técnico de la imagen</strong>
-          {{ "\n" + imageProcessingDiagnostic() }}
-        </p>
-      </div>
-      }
-      <div class="col-12 col-md-6">
-        <div class="mb-4">
-          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
-            >Foto del antes</label
-          >
-          @if (beforeWorkPreview()) {
-          <div class="mb-2 d-flex justify-content-center">
-            <img
-              [src]="beforeWorkPreview()"
-              class="image-preview rounded shadow-sm"
-              alt="Evidencia Antes"
-            />
-          </div>
-          }
-          <lux-file-upload
-            accept="image/*,.heic,.heif"
-            [maxFileSize]="10000000"
-            [multiple]="false"
-            [chooseLabel]="'Seleccionar foto'"
-            (onSelect)="onFileSelect($event, 'beforeWork')"
-            (filesChange)="onFilesChange($event, 'beforeWork')"
-          />
-        </div>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <div class="mb-4">
-          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
-            >Foto del después</label
-          >
-          @if (afterWorkPreview()) {
-          <div class="mb-2 d-flex justify-content-center">
-            <img
-              [src]="afterWorkPreview()"
-              class="image-preview rounded shadow-sm"
-              alt="Evidencia Después"
-            />
-          </div>
-          }
-          <lux-file-upload
-            accept="image/*,.heic,.heif"
-            [maxFileSize]="10000000"
-            [multiple]="false"
-            [chooseLabel]="'Seleccionar foto'"
-            (onSelect)="onFileSelect($event, 'afterWork')"
-            (filesChange)="onFilesChange($event, 'afterWork')"
-          />
-        </div>
+        <lux-file-upload
+          accept="image/*,.heic,.heif"
+          [maxFileSize]="10000000"
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'afterWork')"
+          (filesChange)="onFilesChange($event, 'afterWork')"
+        />
       </div>
     </div>
-    <div class="d-flex justify-content-end mt-2 gap-2">
-      <lux-button-web
-        [variant]="'outlined'"
-        label="Seguimientos"
-        iconClass="material-symbols-light:forum"
-        (clicked)="openFollowUp()"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </div>
-  </form>
-
+  </div>
+  <div class="d-flex justify-content-end mt-2 gap-2">
+    <lux-button-web
+      [variant]="'outlined'"
+      label="Seguimientos"
+      iconClass="material-symbols-light:forum"
+      (clicked)="openFollowUp()"
+    />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>
 
 <style>
   .gallery-preview {

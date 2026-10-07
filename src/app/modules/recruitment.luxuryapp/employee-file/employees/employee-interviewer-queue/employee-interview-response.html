@@ -135,14 +135,14 @@
       [tableStyle]="{ 'min-width': '50rem' }"
       class="custom-table card"
     >
-       <ng-template #header>
-         <tr>
-           <th>FECHA</th>
-           <th>ACCIÓN</th>
-           <th>USUARIO</th>
-           <th>COMENTARIO</th>
-         </tr>
-       </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>FECHA</th>
+          <th>ACCIÓN</th>
+          <th>USUARIO</th>
+          <th>COMENTARIO</th>
+        </tr>
+      </ng-template>
       <ng-template #body let-item>
         <tr>
           <td>{{ item.createdAt | apiDate:'dd/MM/yyyy HH:mm' }}</td>
@@ -181,7 +181,7 @@
     @if (pendingDecision() === 1) {
     <div class="mb-4">
       <label class="d-block text-sm fw-medium mb-2">Motivo *</label>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [data]="reasonOptions()"
         [ngModel]="selectedReason()"
         (ngModelChange)="selectedReason.set($event)"
@@ -194,7 +194,7 @@
       <label class="d-block text-sm fw-medium mb-2"
         >Fecha de Presentación Acordada *</label
       >
-      <custom-input-date-signal
+      <lux-input-date-signal
         [ngModel]="agreedPresentationDate()"
         (ngModelChange)="agreedPresentationDate.set($event)"
         placeholder="Seleccione la fecha de presentación acordada"

@@ -20,7 +20,7 @@
       </h2>
       <div class="d-flex flex-column flex-md-row align-items-end gap-3 g-4">
         <div class="flex-fill">
-          <custom-input-select-signal
+          <lux-input-select-signal
             [control]="form.controls.propertyId"
             [data]="properties()"
             optionLabel="label"
@@ -50,7 +50,7 @@
             2. Datos del Ingreso
           </h2>
           <div class="d-flex flex-column gap-4">
-            <custom-input-currency-signal
+            <lux-input-currency-signal
               [control]="form.controls.amount"
               label="Monto Recibido"
               required
@@ -65,12 +65,12 @@
                 (clicked)="autoAllocate()"
               />
             </div>
-            <custom-input-date-signal
+            <lux-input-date-signal
               [control]="form.controls.paymentDate"
               label="Fecha de Pago"
               required
             />
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.method"
               [data]="paymentMethods"
               optionLabel="label"
@@ -79,12 +79,12 @@
               [filter]="true"
               required
             />
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.reference"
               label="Referencia / Folio (Opcional)"
               placeholder="Ej: Traspaso 59302"
             />
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="form.controls.notes"
               label="Notas de aplicación (Opcional)"
               [rows]="3"
@@ -218,12 +218,12 @@
                   [class.opacity-70]="charge.balance <= 0"
                 >
                   <td class="text-center cb-payments__cell-divider">
-                    <custom-input-check-signal
+                    <lux-input-check-signal
                       [(ngModel)]="charge._selected"
                       (checkChange)="onChargeSelectionChange(charge)"
                       [horizontal]="false"
                       noMargin
-                    ></custom-input-check-signal>
+                    ></lux-input-check-signal>
                   </td>
                   <td>
                     <div class="d-flex flex-column">
@@ -262,7 +262,7 @@
                     {{ charge.balance | currency:'MXN' }}
                   </td>
                   <td class="cb-payments__cell-apply px-2 py-2">
-                    <custom-input-decimal-signal
+                    <lux-input-decimal-signal
                       [(ngModel)]="charge._applyAmount"
                       [ngModelOptions]="{ standalone: true }"
                       [disabled]="!charge._selected"

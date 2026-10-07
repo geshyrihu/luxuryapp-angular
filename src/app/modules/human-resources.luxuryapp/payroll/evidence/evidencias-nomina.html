@@ -15,7 +15,7 @@
   <p class="fw-semibold text-sm mb-2">Subir Nueva Evidencia</p>
   <form [formGroup]="form" class="row align-items-end g-4">
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['tipoEvidencia']"
         label="Tipo de Evidencia"
         [data]="tipoEvidenciaOptions"
@@ -24,7 +24,7 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls['descripcion']"
         label="Descripción"
         [noMargin]="true"
@@ -58,12 +58,20 @@
 <!-- Galeria por tipo -->
 @if (loading()) {
 <div class="d-flex justify-content-center my-4">
-  <app-icon [icon]="'material-symbols-light:progress-activity'" class="text-3xl text-primary" />
+  <app-icon
+    [icon]="'material-symbols-light:progress-activity'"
+    class="text-3xl text-primary"
+  />
 </div>
 } @else if (evidencias().length === 0) {
-<div class="d-flex justify-content-center align-items-center py-5 text-body-secondary">
+<div
+  class="d-flex justify-content-center align-items-center py-5 text-body-secondary"
+>
   <div class="text-center">
-    <app-icon [icon]="'material-symbols-light:description'" class="text-4xl mb-2" />
+    <app-icon
+      [icon]="'material-symbols-light:description'"
+      class="text-4xl mb-2"
+    />
     <p>Sin evidencias cargadas para esta nomina.</p>
   </div>
 </div>
@@ -75,7 +83,6 @@
     @for (ev of evidenciasPorTipo()[tipoEntry.value]; track ev.id) {
     <div
       class="rounded p-3 cursor-pointer"
-      
       [style.background]="getCardColor(ev.tipoEvidencia)"
     >
       <div class="d-flex flex-column align-items-center gap-2">
@@ -83,27 +90,26 @@
           [icon]="ev.contentType === 'application/pdf' ? 'material-symbols-light:photo' : ev.contentType?.startsWith('image') ? 'material-symbols-light:photo' : 'material-symbols-light:description'"
           class="text-3xl"
         />
-        <p
-          class="text-xs text-center m-0 fw-semibold"
-          
-        >
-          {{ ev.fileName }}
-        </p>
+        <p class="text-xs text-center m-0 fw-semibold">{{ ev.fileName }}</p>
         @if (ev.descripcion) {
-        <p class="text-xs text-body-secondary text-center m-0">{{ ev.descripcion }}</p>
+        <p class="text-xs text-body-secondary text-center m-0">
+          {{ ev.descripcion }}
+        </p>
         }
         <p class="text-xs text-body-secondary m-0">
           {{ ev.createdAt | apiDate: "dd/MM/yyyy" }}
         </p>
         <div class="d-flex gap-2">
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:open-in-new"
             severity="info"
             variant="text"
             lxTooltip="Abrir"
             (clicked)="abrirEvidencia(ev.filePath)"
           />
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
             severity="danger"
             variant="text"

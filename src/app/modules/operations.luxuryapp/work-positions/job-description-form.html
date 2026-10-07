@@ -1,151 +1,151 @@
 <form
-      autocomplete="off"
-      (ngSubmit)="onSubmit()"
-      [formGroup]="form"
-      class="d-flex flex-column gap-3"
-    >
-      <div class="d-none">
-        <custom-input-text-signal
-          [control]="form.controls.id"
-          hidden
-          label="Id"
-          [readonly]="true"
-          [horizontal]="false"
-        />
-      </div>
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="d-flex flex-column gap-3"
+>
+  <div class="d-none">
+    <lux-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+      [horizontal]="false"
+    />
+  </div>
 
-      @if (!readOnly()) {
-      <div class="d-flex justify-content-end gap-2 mb-2">
-        <lux-button-web
-          label="Criticar con IA"
-          iconClass="material-symbols-light:psychology"
-          variant="soft"
-          severity="ai"
-          (clicked)="analyzeDescription()"
-          [loading]="analyzingDescription()"
-          [disabled]="!applicationRoleName()"
-        />
-        <lux-button-web
-          label="Generar con IA"
-          iconClass="material-symbols-light:auto-awesome-motion"
-          variant="soft"
-          severity="ai"
-          (clicked)="openInstructionsDialog()"
-          [loading]="generatingProposal()"
-          [disabled]="!applicationRoleName()"
-        />
-      </div>
-      }
+  @if (!readOnly()) {
+  <div class="d-flex justify-content-end gap-2 mb-2">
+    <lux-button-web
+      label="Criticar con IA"
+      iconClass="material-symbols-light:psychology"
+      variant="soft"
+      severity="ai"
+      (clicked)="analyzeDescription()"
+      [loading]="analyzingDescription()"
+      [disabled]="!applicationRoleName()"
+    />
+    <lux-button-web
+      label="Generar con IA"
+      iconClass="material-symbols-light:auto-awesome-motion"
+      variant="soft"
+      severity="ai"
+      (clicked)="openInstructionsDialog()"
+      [loading]="generatingProposal()"
+      [disabled]="!applicationRoleName()"
+    />
+  </div>
+  }
 
-      <div class="row g-4">
-        <div class="col-12">
-          <custom-input-textarea-signal
-            [control]="form.controls.summary"
-            label="Resumen"
-            placeholder="DESCRIPCIÓN breve del puesto..."
-            [rows]="3"
-            [horizontal]="false"
-          />
-        </div>
+  <div class="row g-4">
+    <div class="col-12">
+      <lux-input-textarea-signal
+        [control]="form.controls.summary"
+        label="Resumen"
+        placeholder="DESCRIPCIÓN breve del puesto..."
+        [rows]="3"
+        [horizontal]="false"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.responsibilities"
-            label="Responsabilidades"
-            placeholder="Principales funciones y responsabilidades..."
-            [rows]="4"
-            [horizontal]="false"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.responsibilities"
+        label="Responsabilidades"
+        placeholder="Principales funciones y responsabilidades..."
+        [rows]="4"
+        [horizontal]="false"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.skills"
-            label="Habilidades Requeridas"
-            placeholder="Competencias y habilidades necesarias..."
-            [rows]="4"
-            [horizontal]="false"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.skills"
+        label="Habilidades Requeridas"
+        placeholder="Competencias y habilidades necesarias..."
+        [rows]="4"
+        [horizontal]="false"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.additionalRequirements"
-            label="Requisitos Adicionales"
-            placeholder="Escolaridad, certificaciones, experiencia..."
-            [rows]="3"
-            [horizontal]="false"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.additionalRequirements"
+        label="Requisitos Adicionales"
+        placeholder="Escolaridad, certificaciones, experiencia..."
+        [rows]="3"
+        [horizontal]="false"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.workEnvironment"
-            label="Entorno de Trabajo"
-            placeholder="Condiciones y ambiente laboral..."
-            [rows]="3"
-            [horizontal]="false"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.workEnvironment"
+        label="Entorno de Trabajo"
+        placeholder="Condiciones y ambiente laboral..."
+        [rows]="3"
+        [horizontal]="false"
+      />
+    </div>
 
-        <div class="col-12">
-          <custom-input-switch-signal
-            [control]="form.controls.requiresWeekendShift"
-            label="¿Requiere cobertura de fin de semana?"
-            [horizontal]="false"
-          />
-        </div>
-      </div>
+    <div class="col-12">
+      <lux-input-switch-signal
+        [control]="form.controls.requiresWeekendShift"
+        label="¿Requiere cobertura de fin de semana?"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
 
-      @if (!readOnly()) {
-      <div class="d-flex justify-content-end pt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Guardar"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-      }
+  @if (!readOnly()) {
+  <div class="d-flex justify-content-end pt-3">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+  }
 
-      <lux-modal
-        header="Instrucciones para la IA (Opcional)"
-        [visible]="showInstructionsDialog()"
-        (visibleChange)="showInstructionsDialog.set($event)"
-      >
-        <p class="mb-3 text-body-secondary text-sm">
-          Agrega contexto adicional para que la IA genere una mejor propuesta.
-        </p>
-        <custom-input-textarea-signal
-          [rows]="5"
-          [(ngModel)]="customInstructions"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
-          [onlyInput]="true"
-          [noMargin]="true"
-          customClass="w-100"
-          [horizontal]="false"
-        />
+  <lux-modal
+    header="Instrucciones para la IA (Opcional)"
+    [visible]="showInstructionsDialog()"
+    (visibleChange)="showInstructionsDialog.set($event)"
+  >
+    <p class="mb-3 text-body-secondary text-sm">
+      Agrega contexto adicional para que la IA genere una mejor propuesta.
+    </p>
+    <lux-input-textarea-signal
+      [rows]="5"
+      [(ngModel)]="customInstructions"
+      [ngModelOptions]="{standalone: true}"
+      placeholder="Ej: Enfocarse en atención de lujo, requiere nivel bilingüe..."
+      [onlyInput]="true"
+      [noMargin]="true"
+      customClass="w-100"
+      [horizontal]="false"
+    />
 
-        <div class="d-flex justify-content-end gap-2 mt-3">
-          <lux-button-web
-            label="Cancelar"
-            iconClass="material-symbols-light:close"
-            variant="soft"
-            severity="secondary"
-            (clicked)="showInstructionsDialog.set(false)"
-          />
-          <lux-button-web
-            label="Generar"
-            iconClass="material-symbols-light:check"
-            severity="ai"
-            [loading]="generatingProposal()"
-            (clicked)="generateProposal()"
-          />
-        </div>
-      </lux-modal>
-    </form>
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <lux-button-web
+        label="Cancelar"
+        iconClass="material-symbols-light:close"
+        variant="soft"
+        severity="secondary"
+        (clicked)="showInstructionsDialog.set(false)"
+      />
+      <lux-button-web
+        label="Generar"
+        iconClass="material-symbols-light:check"
+        severity="ai"
+        [loading]="generatingProposal()"
+        (clicked)="generateProposal()"
+      />
+    </div>
+  </lux-modal>
+</form>

@@ -1,62 +1,63 @@
-<form class="d-flex flex-column gap-3" autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-autocomplete-signal
-        (propagar)="saveCondominiumAsset($event)"
-        [control]="form.controls.condominiumAssetName"
-        [data]="cb_activos()"
-        label="Equipo o área"
-        placeholder="Escribe para buscar equipo o área"
-        [horizontal]="false"
-      />
+<form
+  class="d-flex flex-column gap-3"
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+>
+  <lux-input-autocomplete-signal
+    (propagar)="saveCondominiumAsset($event)"
+    [control]="form.controls.condominiumAssetName"
+    [data]="cb_activos()"
+    label="Equipo o área"
+    placeholder="Escribe para buscar equipo o área"
+    [horizontal]="false"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.position"
-        label="Posición"
-        placeholder="Posición del área"
-        [horizontal]="false"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.position"
+    label="Posición"
+    placeholder="Posición del área"
+    [horizontal]="false"
+  />
 
-      <div class="mb-3">
-        <label>Revisiones</label>
-        <div class="mb-2">
-          @for (review of reviewsControl.controls; track review; let i = $index)
-          {
-          <div
-            class="d-flex justify-content-between align-items-center border-1 border rounded p-2 mb-2"
-          >
-            <span>{{ review.value.label }}</span>
-            <lux-icon
-              [icon]="'material-symbols-light:delete'"
-              class="cursor-pointer"
-              
-              (click)="onRemoveReview(i)"
-            />
-          </div>
-          } @if (reviewsControl.controls.length === 0) {
-          <div class="text-body-secondary text-sm">
-            No hay revisiones agregadas
-          </div>
-          }
-        </div>
-        <custom-input-select-signal
-          [data]="cb_inspection_reviews_catalog()"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Seleccione una revisión"
-          [control]="selectedReviewControl"
-          (selectionChange)="onAddReview($any($event.value))"
-          [horizontal]="false"
-          customClass="w-100"
-          [filter]="true"
+  <div class="mb-3">
+    <label>Revisiones</label>
+    <div class="mb-2">
+      @for (review of reviewsControl.controls; track review; let i = $index) {
+      <div
+        class="d-flex justify-content-between align-items-center border-1 border rounded p-2 mb-2"
+      >
+        <span>{{ review.value.label }}</span>
+        <lux-icon
+          [icon]="'material-symbols-light:delete'"
+          class="cursor-pointer"
+          (click)="onRemoveReview(i)"
         />
       </div>
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid || reviewsControl.length === 0"
-        [loading]="submitting()"
-      />
-  </form>
+      } @if (reviewsControl.controls.length === 0) {
+      <div class="text-body-secondary text-sm">No hay revisiones agregadas</div>
+      }
+    </div>
+    <lux-input-select-signal
+      [data]="cb_inspection_reviews_catalog()"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Seleccione una revisión"
+      [control]="selectedReviewControl"
+      (selectionChange)="onAddReview($any($event.value))"
+      [horizontal]="false"
+      customClass="w-100"
+      [filter]="true"
+    />
+  </div>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid || reviewsControl.length === 0"
+    [loading]="submitting()"
+  />
+</form>

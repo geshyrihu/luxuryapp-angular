@@ -1,139 +1,141 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.name"
-        label="Nombre de la configuracion"
-        placeholder="ej. Respaldo diario BD principales"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre de la configuracion"
+    placeholder="ej. Respaldo diario BD principales"
+  />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.description"
-        label="Descripción"
-        placeholder="Descripción opcional del respaldo"
-        [rows]="2"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.description"
+    label="Descripción"
+    placeholder="Descripción opcional del respaldo"
+    [rows]="2"
+  />
 
-      @if (loadingDatabases()) {
-        <div class="mb-3 text-body-secondary">Cargando bases de datos disponibles...</div>
-      } @else {
-        <custom-input-multiselect-signal
-          [control]="form.controls.selectedDatabases"
-          label="Bases de datos a respaldar"
-          placeholder="Selecciona las bases de datos"
-          [options]="availableDatabases()"
-          [maxSelectedLabels]="5"
-          selectedItemsLabel="{0} bases seleccionadas"
+  @if (loadingDatabases()) {
+  <div class="mb-3 text-body-secondary">
+    Cargando bases de datos disponibles...
+  </div>
+  } @else {
+  <lux-input-multiselect-signal
+    [control]="form.controls.selectedDatabases"
+    label="Bases de datos a respaldar"
+    placeholder="Selecciona las bases de datos"
+    [options]="availableDatabases()"
+    [maxSelectedLabels]="5"
+    selectedItemsLabel="{0} bases seleccionadas"
+  />
+  }
+
+  <div class="mb-3">
+    <label class="d-block mb-1 text-sm fw-medium">Programacion (Cron)</label>
+    <div class="row g-4">
+      <div class="col-8">
+        <lux-input-text-signal
+          [control]="form.controls.cronExpression"
+          placeholder="ej. 0 2 * * *"
         />
-      }
-
-      <div class="mb-3">
-        <label class="d-block mb-1 text-sm fw-medium">Programacion (Cron)</label>
-        <div class="row g-4">
-          <div class="col-8">
-            <custom-input-text-signal
-              [control]="form.controls.cronExpression"
-              placeholder="ej. 0 2 * * *"
-            />
-          </div>
-          <div class="col-4">
-            <select
-              class="w-full p-2 rounded border-300"
-              (change)="onCronPresetSelect($event)"
-            >
-              <option value="">Preseleccionar...</option>
-              @for (preset of cronPresets; track preset.value) {
-                <option [value]="preset.value">{{ preset.label }}</option>
-              }
-            </select>
-          </div>
-        </div>
-        <small class="text-body-secondary">
-          Formato cron: minuto hora dia-del-mes mes dia-de-la-semana
-        </small>
       </div>
-
-      <custom-input-select-button-signal
-        [control]="form.controls.destinationType"
-        label="Destino del respaldo"
-        [options]="destinationOptions"
-      />
-
-      @if (form.controls.destinationType.value === 'GraphApi') {
-        <div class="card p-3 mb-3 border-1 border-200 rounded">
-          <h5 class="mt-0 mb-2">Conexion OneDrive (Graph API)</h5>
-
-          <custom-input-text-signal
-            [control]="form.controls.graphTenantId"
-            label="Tenant ID (Azure AD)"
-            placeholder="ej. 00000000-0000-0000-0000-000000000000"
-          />
-
-          <custom-input-text-signal
-            [control]="form.controls.graphClientId"
-            label="Client ID (App Registration)"
-            placeholder="ej. 00000000-0000-0000-0000-000000000000"
-          />
-
-          <custom-input-text-signal
-            [control]="form.controls.graphClientSecret"
-            label="Client Secret"
-            placeholder="Ingresa el Client Secret de Azure AD"
-            [type]="'password'"
-          />
-
-          <custom-input-text-signal
-            [control]="form.controls.graphUserEmail"
-            label="Correo del usuario de OneDrive"
-            placeholder="ej. admin@luxurybuildingapp.com"
-          />
-
-          <custom-input-text-signal
-            [control]="form.controls.graphFolderPath"
-            label="Carpeta en OneDrive"
-            placeholder="LuxuryAppBackups"
-          />
-
-          @if (isEditMode()) {
-            <div class="d-flex justify-content-end mt-2">
-              <lux-button-web
-                label="Probar conexion"
-                iconClass="material-symbols-light:cloud-done"
-                severity="info"
-                [loading]="testingConnection()"
-                (clicked)="onTestConnection()"
-              />
-            </div>
+      <div class="col-4">
+        <select
+          class="w-full p-2 rounded border-300"
+          (change)="onCronPresetSelect($event)"
+        >
+          <option value="">Preseleccionar...</option>
+          @for (preset of cronPresets; track preset.value) {
+          <option [value]="preset.value">{{ preset.label }}</option>
           }
-        </div>
-      } @else {
-        <custom-input-text-signal
-          [control]="form.controls.localPath"
-          label="Ruta de destino local"
-          placeholder="ej. D:\Backups"
-        />
-      }
-
-      <custom-input-number-signal
-        [control]="form.controls.retentionDays"
-        label="Días de retención"
-        placeholder="30"
-      />
-
-      <custom-input-select-button-signal
-        [control]="form.controls.isActive"
-        label="Activo"
-        [options]="[{ label: 'Si', value: true }, { label: 'No', value: false }]"
-      />
-
-      <div class="d-flex justify-content-end mt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="isEditMode() ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
+        </select>
       </div>
-  </form>
+    </div>
+    <small class="text-body-secondary">
+      Formato cron: minuto hora dia-del-mes mes dia-de-la-semana
+    </small>
+  </div>
+
+  <lux-input-select-button-signal
+    [control]="form.controls.destinationType"
+    label="Destino del respaldo"
+    [options]="destinationOptions"
+  />
+
+  @if (form.controls.destinationType.value === 'GraphApi') {
+  <div class="card p-3 mb-3 border-1 border-200 rounded">
+    <h5 class="mt-0 mb-2">Conexion OneDrive (Graph API)</h5>
+
+    <lux-input-text-signal
+      [control]="form.controls.graphTenantId"
+      label="Tenant ID (Azure AD)"
+      placeholder="ej. 00000000-0000-0000-0000-000000000000"
+    />
+
+    <lux-input-text-signal
+      [control]="form.controls.graphClientId"
+      label="Client ID (App Registration)"
+      placeholder="ej. 00000000-0000-0000-0000-000000000000"
+    />
+
+    <lux-input-text-signal
+      [control]="form.controls.graphClientSecret"
+      label="Client Secret"
+      placeholder="Ingresa el Client Secret de Azure AD"
+      [type]="'password'"
+    />
+
+    <lux-input-text-signal
+      [control]="form.controls.graphUserEmail"
+      label="Correo del usuario de OneDrive"
+      placeholder="ej. admin@luxurybuildingapp.com"
+    />
+
+    <lux-input-text-signal
+      [control]="form.controls.graphFolderPath"
+      label="Carpeta en OneDrive"
+      placeholder="LuxuryAppBackups"
+    />
+
+    @if (isEditMode()) {
+    <div class="d-flex justify-content-end mt-2">
+      <lux-button-web
+        label="Probar conexion"
+        iconClass="material-symbols-light:cloud-done"
+        severity="info"
+        [loading]="testingConnection()"
+        (clicked)="onTestConnection()"
+      />
+    </div>
+    }
+  </div>
+  } @else {
+  <lux-input-text-signal
+    [control]="form.controls.localPath"
+    label="Ruta de destino local"
+    placeholder="ej. D:\Backups"
+  />
+  }
+
+  <lux-input-number-signal
+    [control]="form.controls.retentionDays"
+    label="Días de retención"
+    placeholder="30"
+  />
+
+  <lux-input-select-button-signal
+    [control]="form.controls.isActive"
+    label="Activo"
+    [options]="[{ label: 'Si', value: true }, { label: 'No', value: false }]"
+  />
+
+  <div class="d-flex justify-content-end mt-3">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="isEditMode() ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

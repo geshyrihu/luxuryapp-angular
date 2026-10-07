@@ -3,7 +3,7 @@
     <!-- Cabecera de la Plantilla -->
     <div class="row mb-4 g-4">
       <div class="col-12 col-md-6 col-lg-4">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [control]="form.controls.name"
           label="Nombre de la Plantilla"
           placeholder="Ej. Evaluación Mensual de Desempeño"
@@ -12,7 +12,7 @@
       </div>
       <div class="col-12 col-md-6 col-lg-2">
         <div class="d-flex flex-column gap-2 h-full justify-content-center">
-          <custom-input-check-signal
+          <lux-input-check-signal
             [control]="form.controls.isActive"
             label="Plantilla Activa"
             [horizontal]="false"
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <custom-input-textarea-signal
+        <lux-input-textarea-signal
           [control]="form.controls.description"
           label="DESCRIPCIÓN (Opcional)"
           placeholder="Breve DESCRIPCIÓN del propósito de la plantilla"
@@ -85,7 +85,7 @@
             <span class="fw-bold text-lg text-primary">{{ i + 1 }}.</span>
 
             <div class="flex-grow-1">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="categoryGroup.controls.name"
                 placeholder="Nombre de la categoría..."
                 [horizontal]="false"
@@ -138,7 +138,7 @@
             >
 
             <div class="flex-grow-1">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="questionGroup.controls.questionText"
                 [placeholder]="'Pregunta ' + (j + 1)"
                 [horizontal]="false"

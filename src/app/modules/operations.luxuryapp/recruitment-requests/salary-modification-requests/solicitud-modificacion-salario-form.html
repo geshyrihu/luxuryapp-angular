@@ -1,134 +1,134 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="row g-4">
-        <!-- Salarios -->
-        <div class="col-12 col-md-6">
-          <custom-input-number-signal
-            class="w-100"
-            [control]="form.controls['currentSalary']"
-            label="Salario mensual libre"
-            [readonly]="true"
-            placeholder="salario mensual actual neto"
-          />
-        </div>
+  <div class="row g-4">
+    <!-- Salarios -->
+    <div class="col-12 col-md-6">
+      <lux-input-number-signal
+        class="w-100"
+        [control]="form.controls['currentSalary']"
+        label="Salario mensual libre"
+        [readonly]="true"
+        placeholder="salario mensual actual neto"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-number-signal
-            class="w-100"
-            [control]="form.controls['finalSalary']"
-            label="Nuevo salario"
-            placeholder="Nuevo salario"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-number-signal
+        class="w-100"
+        [control]="form.controls['finalSalary']"
+        label="Nuevo salario"
+        placeholder="Nuevo salario"
+      />
+    </div>
 
-        <!-- Puestos -->
-        <div class="col-12 col-md-6">
-          <custom-input-text-signal
-            class="w-100"
-            [control]="form.controls['applicationRoleCurrent']"
-            label="Puesto actual"
-            [readonly]="true"
-            placeholder="Puesto actual"
-          />
-        </div>
+    <!-- Puestos -->
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        class="w-100"
+        [control]="form.controls['applicationRoleCurrent']"
+        label="Puesto actual"
+        [readonly]="true"
+        placeholder="Puesto actual"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-select-signal
-            class="w-100"
-            [control]="form.controls['isCoveringVacancy']"
-            label="¿Va a cubrir una vacante abierta?"
-            [data]="cb_si_no()"
-            [filter]="true"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-select-signal
+        class="w-100"
+        [control]="form.controls['isCoveringVacancy']"
+        label="¿Va a cubrir una vacante abierta?"
+        [data]="cb_si_no()"
+        [filter]="true"
+      />
+    </div>
 
-        @if (form.controls['isCoveringVacancy'].value) {
-        <div class="col-12 col-md-6">
-          <custom-input-select-signal
-            class="w-100"
-            [control]="form.controls['vacancyId']"
-            label="Seleccionar vacante"
-            [data]="cb_vacantes()"
-            [filter]="true"
-            placeholder="Seleccione la vacante a cubrir"
-          />
-        </div>
-        }
+    @if (form.controls['isCoveringVacancy'].value) {
+    <div class="col-12 col-md-6">
+      <lux-input-select-signal
+        class="w-100"
+        [control]="form.controls['vacancyId']"
+        label="Seleccionar vacante"
+        [data]="cb_vacantes()"
+        [filter]="true"
+        placeholder="Seleccione la vacante a cubrir"
+      />
+    </div>
+    }
 
-        <div class="col-12 col-md-6">
-          <custom-input-autocomplete-signal
-            class="w-100"
-            (propagar)="onSaveApplicationRoleIDTOAccount($event)"
-            [control]="form.controls['applicationRoleNew']"
-            [data]="cb_applicationRole()"
-            label="Puesto nuevo"
-            placeholder="Escribe para buscar puesto nuevo"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-autocomplete-signal
+        class="w-100"
+        (propagar)="onSaveApplicationRoleIDTOAccount($event)"
+        [control]="form.controls['applicationRoleNew']"
+        [data]="cb_applicationRole()"
+        label="Puesto nuevo"
+        placeholder="Escribe para buscar puesto nuevo"
+      />
+    </div>
 
-        <!-- Fecha y Retroactivo -->
-        <div class="col-12 col-md-6">
-          <custom-input-date-signal
-            class="w-100"
-            [control]="form.controls['executionDate']"
-            label="Fecha de aplicación"
-            placeholder="fecha de aplicación"
-          />
-        </div>
+    <!-- Fecha y Retroactivo -->
+    <div class="col-12 col-md-6">
+      <lux-input-date-signal
+        class="w-100"
+        [control]="form.controls['executionDate']"
+        label="Fecha de aplicación"
+        placeholder="fecha de aplicación"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-select-signal
-            class="w-100"
-            [control]="form.controls['retroactive']"
-            label="Aplicar retroactivo"
-            [data]="cb_si_no()"
-            [filter]="true"
-          />
-        </div>
+    <div class="col-12 col-md-6">
+      <lux-input-select-signal
+        class="w-100"
+        [control]="form.controls['retroactive']"
+        label="Aplicar retroactivo"
+        [data]="cb_si_no()"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- Comentarios -->
-        <div class="col-12">
-          <custom-input-textarea-signal
-            class="w-100"
-            [control]="form.controls['additionalInformation']"
-            label="Comentarios adicionales"
-            placeholder="comentarios adicionales"
-          />
-        </div>
+    <!-- Comentarios -->
+    <div class="col-12">
+      <lux-input-textarea-signal
+        class="w-100"
+        [control]="form.controls['additionalInformation']"
+        label="Comentarios adicionales"
+        placeholder="comentarios adicionales"
+      />
+    </div>
 
-        <!-- Archivos -->
-        <div class="col-12">
-          <div class="row align-items-center g-4">
-            <label class="col-12 col-md-3 mb-2 mb-md-0">
-              Adjuntar soporte (móximo 10MB)
-            </label>
-            <div class="col-12 col-md-9">
-              <file-upload
-                class="w-100"
-                formControlName="files"
-                [animation]="true"
-                (change)="onFileChange()"
-              ></file-upload>
-              @if (maxSizeExceeded()) {
-              <div class="text-danger mt-1">
-                Los archivos adjuntos no deben superar los 10 MB.
-              </div>
-              }
-            </div>
+    <!-- Archivos -->
+    <div class="col-12">
+      <div class="row align-items-center g-4">
+        <label class="col-12 col-md-3 mb-2 mb-md-0">
+          Adjuntar soporte (móximo 10MB)
+        </label>
+        <div class="col-12 col-md-9">
+          <file-upload
+            class="w-100"
+            formControlName="files"
+            [animation]="true"
+            (change)="onFileChange()"
+          ></file-upload>
+          @if (maxSizeExceeded()) {
+          <div class="text-danger mt-1">
+            Los archivos adjuntos no deben superar los 10 MB.
           </div>
+          }
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Botón -->
-      <div class="d-flex justify-content-end mt-4">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [disabled]="form.invalid || maxSizeExceeded()"
-          [loading]="submitting()"
-          label="Solicitar modificación"
-        />
-      </div>
-  </form>
+  <!-- Botón -->
+  <div class="d-flex justify-content-end mt-4">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [disabled]="form.invalid || maxSizeExceeded()"
+      [loading]="submitting()"
+      label="Solicitar modificación"
+    />
+  </div>
+</form>

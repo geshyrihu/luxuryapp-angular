@@ -5,7 +5,7 @@
   (add)="add.emit()"
 >
   <div customFilters class="d-flex flex-column gap-3 p-4">
-    <custom-input-select-signal
+    <lux-input-select-signal
       [ngModel]="selectedArea()"
       (ngModelChange)="filterAreaChange.emit($event)"
       [data]="areasResponsables()"
@@ -14,7 +14,7 @@
       [horizontal]="false"
       [filter]="true"
     />
-    <custom-input-select-signal
+    <lux-input-select-signal
       [ngModel]="selectedRecurrence()"
       (ngModelChange)="filterRecurrenceChange.emit($event)"
       [data]="[
@@ -51,8 +51,12 @@
   <ng-template #listItemTemplate let-item>
     <div class="list-item-mobile">
       <span class="flex-fill">
-        <div class="text-body-md fw-medium text-on-surface">{{ item.name }}</div>
-        <span class="text-body-sm text-on-surface-secondary">{{ item.recurrenceUnitDisplayName ?? 'N/A' }}</span>
+        <div class="text-body-md fw-medium text-on-surface">
+          {{ item.name }}
+        </div>
+        <span class="text-body-sm text-on-surface-secondary"
+          >{{ item.recurrenceUnitDisplayName ?? 'N/A' }}</span
+        >
       </span>
       <ili-action-menu end>
         <lux-button-mobile

@@ -173,7 +173,7 @@
   <div class="card" class="mb-5">
     <div class="row formgrid g-4">
       <div class="field col-12 col-md-6 col-xl-4">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [ngModel]="sampleName"
           (ngModelChange)="sampleName = $event"
           label="Nombre del registro"
@@ -184,7 +184,7 @@
         />
       </div>
       <div class="field col-12 col-md-6 col-xl-4">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [ngModel]="selectedArea"
           (ngModelChange)="selectedArea = $event"
           [data]="areas"
@@ -198,7 +198,7 @@
         />
       </div>
       <div class="field col-12 col-md-6 col-xl-4">
-        <custom-input-multiselect-signal
+        <lux-input-multiselect-signal
           [ngModel]="selectedModules"
           (ngModelChange)="selectedModules = $event"
           [options]="modules"
@@ -212,7 +212,7 @@
         />
       </div>
       <div class="field col-12 col-md-6 col-xl-4">
-        <custom-input-number-signal
+        <lux-input-number-signal
           [ngModel]="sampleBudget"
           (ngModelChange)="sampleBudget = $event"
           label="Importe autorizado"
@@ -225,7 +225,7 @@
         />
       </div>
       <div class="field col-12 col-md-6 col-xl-4">
-        <custom-input-datepicker-signal
+        <lux-input-datepicker-signal
           [ngModel]="selectedDate"
           (ngModelChange)="selectedDate = $event"
           label="Fecha compromiso"
@@ -243,7 +243,7 @@
         />
       </div>
       <div class="field col-12">
-        <custom-input-textarea-signal
+        <lux-input-textarea-signal
           [ngModel]="sampleDescription"
           (ngModelChange)="sampleDescription = $event"
           label="Descripción ejecutiva"
@@ -254,7 +254,7 @@
         />
       </div>
       <div class="field col-12 col-md-4">
-        <custom-input-toggle-switch-signal
+        <lux-input-toggle-switch-signal
           [ngModel]="enabled"
           (ngModelChange)="enabled = $event"
           label="Activo"

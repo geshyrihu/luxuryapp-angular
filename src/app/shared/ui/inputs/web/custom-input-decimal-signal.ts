@@ -1,5 +1,11 @@
 import { NgClass } from "@angular/common";
-import { Component, computed, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../core/base-input-signal";
 
@@ -10,7 +16,7 @@ import { BaseInputSignal } from "../core/base-input-signal";
  * Configurable para manejar prefijos, sufijos y agrupación.
  */
 @Component({
-  selector: "custom-input-decimal-signal",
+  selector: "lux-input-decimal-signal",
   imports: [BaseInputSignal, ReactiveFormsModule, NgClass],
   template: `
     <base-input-signal
@@ -42,7 +48,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputDecimal),
       multi: true,
-    }],
+    },
+  ],
 })
 export class CustomInputDecimal extends BaseInputSignal {
   // <--- Inputs Específicos --->

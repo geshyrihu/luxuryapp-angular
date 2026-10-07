@@ -1,30 +1,30 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.id"
     hidden
     label="Id"
     [horizontal]="false"
     [hidden]="true"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.ordenCompraId"
     [hidden]="true"
     [horizontal]="false"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.accountNumber"
     label="Código"
     placeholder="código"
     [readonly]="true"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.accountName"
     label="Nombre"
     placeholder="Nombre"
     [readonly]="true"
   />
-  <custom-input-currency-signal
+  <lux-input-currency-signal
     [control]="form.controls.amount"
     label="Gasto"
     placeholder="gasto"

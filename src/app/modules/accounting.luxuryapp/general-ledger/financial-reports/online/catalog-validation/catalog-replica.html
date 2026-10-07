@@ -2,7 +2,7 @@
   <!-- Filtros propios del componente -->
   <div class="d-flex mb-4 align-items-end gap-2">
     <div class="mb-0">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [ngModel]="year()"
         (ngModelChange)="year.set($event)"
         [ngModelOptions]="{ standalone: true }"
@@ -148,7 +148,8 @@
           <div class="d-flex align-items-center">
             <!-- ⬆️ ⬇️ ➡️ ⬅️ -->
             @if (account.nivel === 1) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               [lxTooltip]="account.expanded ? '⬇️' : '➡️'"
               tooltipPosition="top"
               variant="text"
@@ -207,7 +208,8 @@
     >
       <div class="d-flex align-items-center gap-2 mb-1">
         @if (account.nivel === 1) {
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           [lxTooltip]="account.expanded ? 'Contraer' : 'Expandir'"
           tooltipPosition="top"
           variant="text"

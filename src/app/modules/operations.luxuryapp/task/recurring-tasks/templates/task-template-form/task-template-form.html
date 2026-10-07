@@ -1,27 +1,27 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.name"
     label="Nombre de la Plantilla"
     placeholder="Nombre de la Plantilla"
   />
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.description"
     label="DESCRIPCIÓN"
     placeholder="DESCRIPCIÓN"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.roleId"
     label="Rol Asignado"
     [data]="roles()"
     [filter]="true"
   />
-  <custom-input-check-signal
+  <lux-input-check-signal
     [control]="form.controls.isActive"
     label="Item Activo"
   />
 
-  <custom-input-multiselect-signal
+  <lux-input-multiselect-signal
     [control]="form.controls.customerIds"
     label="Clientes Asignados"
     [options]="availableCustomers()"

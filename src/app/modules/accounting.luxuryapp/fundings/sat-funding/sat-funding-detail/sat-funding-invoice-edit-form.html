@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="d-flex flex-column">
     <div class="w-full">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.bankId"
         [data]="banks"
         label="Banco"
@@ -9,7 +9,7 @@
       />
     </div>
     <div class="w-full">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.tipoGasto"
         [data]="tiposGasto"
         label="Tipo de Gasto"
@@ -18,22 +18,22 @@
       />
     </div>
     <div class="w-full">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.interbankCode"
         label="CLABE"
-      ></custom-input-text-signal>
+      ></lux-input-text-signal>
     </div>
     <div class="w-full">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.convenio"
         label="Convenio"
-      ></custom-input-text-signal>
+      ></lux-input-text-signal>
     </div>
     <div class="w-full">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.referencia"
         label="Referencia"
-      ></custom-input-text-signal>
+      ></lux-input-text-signal>
     </div>
   </div>
   <div class="d-flex justify-content-end mt-4">

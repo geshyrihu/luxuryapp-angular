@@ -252,12 +252,11 @@ const auditMatrix = [
   {
     id: "CORE-04",
     name: "Custom Input (27 variantes)",
-    selector: "custom-input-*-signal",
+    selector: "lux-input-*-signal",
     checks: [
       {
         name: "Selectores custom-input en uso",
-        test: () =>
-          countMatches("<custom-input-", "client/angular/src/app") >= 1,
+        test: () => countMatches("<lux-input-", "client/angular/src/app") >= 1,
         weight: 15,
       },
       {

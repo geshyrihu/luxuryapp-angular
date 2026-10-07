@@ -1,24 +1,24 @@
 <div>
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.id"
       hidden
       label="Id"
       [readonly]="true"
       [hidden]="false"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.name"
       label="Nombre"
       placeholder="Nombre"
     />
 
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.description"
       label="Descripción"
       placeholder="descripcion"
     />
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls.departament"
       label="Area"
       [data]="cb_departament()"
@@ -26,14 +26,14 @@
     />
     <div class="row g-4">
       <div class="col-12 col-md-6">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [control]="form.controls.emoji"
           label="Icono Bootstrap"
           placeholder="material-symbols-light:folder"
         />
       </div>
       <div class="col-12 col-md-6">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [control]="form.controls.color"
           label="Color"
           placeholder="#3B82F6"

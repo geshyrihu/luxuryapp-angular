@@ -15,7 +15,10 @@
     [class.text-500]="step() !== 1"
     >Datos del usuario</span
   >
-  <lux-icon [icon]="'material-symbols-light:chevron-right'" class="text-body-secondary text-xs" />
+  <lux-icon
+    [icon]="'material-symbols-light:chevron-right'"
+    class="text-body-secondary text-xs"
+  />
   <div
     class="d-flex align-items-center justify-content-center w-2rem h-2rem rounded-full text-sm fw-bold"
     [class.bg-primary]="step() >= 2"
@@ -37,19 +40,19 @@
 <!-- PASO 1: Crear usuario -->
 @if (step() === 1) {
 <form [formGroup]="userForm" (ngSubmit)="onNextStep()" class="p-3">
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Nombre(s)"
     [control]="userForm.controls.firstName"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Apellidos"
     [control]="userForm.controls.lastName"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Correo electrónico"
     [control]="userForm.controls.email"
   />
-  <custom-input-mask-signal
+  <lux-input-mask-signal
     label="Teléfono"
     customMask="(999) 999-9999"
     [control]="userForm.controls.phoneNumber"
@@ -68,29 +71,29 @@
 <!-- PASO 2: Datos de membresía -->
 @if (step() === 2) {
 <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="p-3">
-  <custom-input-select-signal
+  <lux-input-select-signal
     label="Rol"
     [data]="roleOptions()"
     [control]="memberForm.controls.memberRole"
     [filter]="true"
   />
-  <custom-input-date-signal
+  <lux-input-date-signal
     label="Fecha de inicio"
     [control]="memberForm.controls.startDate"
   />
-  <custom-input-date-signal
+  <lux-input-date-signal
     label="Fecha de término (opcional)"
     [control]="memberForm.controls.endDate"
   />
-  <custom-input-check-signal
+  <lux-input-check-signal
     label="Responsable financiero"
     [control]="memberForm.controls.isFinancialResponsible"
   />
-  <custom-input-check-signal
+  <lux-input-check-signal
     label="Recibe notificaciones"
     [control]="memberForm.controls.receiveNotifications"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Notas (opcional)"
     [control]="memberForm.controls.notes"
   />

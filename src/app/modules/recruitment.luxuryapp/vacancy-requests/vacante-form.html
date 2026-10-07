@@ -1,82 +1,82 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        [readonly]="true"
-        label="Id"
-        placeholder="id"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    [readonly]="true"
+    label="Id"
+    placeholder="id"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.folio"
-        [readonly]="true"
-        label="Folio"
-        placeholder="folio"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.folio"
+    [readonly]="true"
+    label="Folio"
+    placeholder="folio"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.requestDate"
-        label="Fecha de solicitud"
-        placeholder="fecha de solicitud"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.requestDate"
+    label="Fecha de solicitud"
+    placeholder="fecha de solicitud"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.status"
-        label="Estatus"
-        [data]="cb_status()"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.status"
+    label="Estatus"
+    [data]="cb_status()"
+    [filter]="true"
+  />
 
-      <div class="row mb-4 align-items-start g-4">
-        <label class="col-12 col-sm-3 mb-2 mb-md-0 d-flex align-items-center">
-          Candidato
-        </label>
-        <div class="col-12 col-sm-9">
-          <div class="p-3 border-1 border rounded bg-body-tertiary">
-            <div class="fw-medium mb-2">
-              {{ currentCandidateName() || "Sin candidato vinculado" }}
-            </div>
-            <small class="d-block text-body-secondary mb-3">
-              Desde esta vacante puedes registrar o seleccionar al candidato,
-              cargar su CV y dejar lista la cita de entrevista sin salir del
-              flujo de Reclutamiento.
-            </small>
-            <div class="d-flex flex-wrap gap-2">
-              <button
-                type="button"
-                class="btn btn-primary btn-sm"
-                [disabled]="!id"
-                (click)="manageCandidateApplication()"
-              >
-                {{ currentApplicationId() ? "Editar candidato / entrevista" :
-                "Agregar candidato / entrevista" }}
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary btn-sm"
-                (click)="goToCandidates()"
-              >
-                Ir a Candidates
-              </button>
-            </div>
-          </div>
+  <div class="row mb-4 align-items-start g-4">
+    <label class="col-12 col-sm-3 mb-2 mb-md-0 d-flex align-items-center">
+      Candidato
+    </label>
+    <div class="col-12 col-sm-9">
+      <div class="p-3 border-1 border rounded bg-body-tertiary">
+        <div class="fw-medium mb-2">
+          {{ currentCandidateName() || "Sin candidato vinculado" }}
+        </div>
+        <small class="d-block text-body-secondary mb-3">
+          Desde esta vacante puedes registrar o seleccionar al candidato, cargar
+          su CV y dejar lista la cita de entrevista sin salir del flujo de
+          Reclutamiento.
+        </small>
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            [disabled]="!id"
+            (click)="manageCandidateApplication()"
+          >
+            {{ currentApplicationId() ? "Editar candidato / entrevista" :
+            "Agregar candidato / entrevista" }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm"
+            (click)="goToCandidates()"
+          >
+            Ir a Candidates
+          </button>
         </div>
       </div>
+    </div>
+  </div>
 
-      <custom-input-textarea-signal
-        [control]="form.controls.observations"
-        label="Observaciones"
-        placeholder="observaciones"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.observations"
+    label="Observaciones"
+    placeholder="observaciones"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.controls.status.invalid"
-        [loading]="submitting()"
-      />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.controls.status.invalid"
+    [loading]="submitting()"
+  />
 </form>

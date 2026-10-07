@@ -3,20 +3,20 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
     <div class="row align-items-end g-4">
       <div class="col-12 col-md-3">
-        <custom-input-date-signal
+        <lux-input-date-signal
           [control]="form.controls['fecha']"
           label="Fecha"
         />
       </div>
       <div class="col-12 col-md-5">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [control]="form.controls['descripcion']"
           label="Descripción"
           placeholder="Ej. Dia de la Independencia"
         />
       </div>
       <div class="col-12 col-md-2">
-        <custom-input-switch-signal
+        <lux-input-switch-signal
           [control]="form.controls['esFestivoOficial']"
           label="Festivo Oficial"
         />
@@ -38,14 +38,14 @@
 
   <!-- Listado de dias no habiles -->
   <lux-table [value]="dias()" [loading]="loading()" class="p-datatable-sm">
-      <ng-template #header>
-        <tr>
-          <th>FECHA</th>
-          <th>DESCRIPCIÓN</th>
-          <th>FESTIVO</th>
-          <th></th>
-        </tr>
-      </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>FECHA</th>
+        <th>DESCRIPCIÓN</th>
+        <th>FESTIVO</th>
+        <th></th>
+      </tr>
+    </ng-template>
     <ng-template #body let-dia>
       <tr>
         <td>{{ dia.fecha | apiDate: "dd/MM/yyyy" }}</td>
@@ -57,7 +57,8 @@
           />
         </td>
         <td>
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
             severity="danger"
             variant="text"

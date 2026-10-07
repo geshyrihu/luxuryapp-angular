@@ -6,10 +6,8 @@
       </p>
     </div>
 
-    
-
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="f.relation"
         label="Parentesco"
         [data]="cbRelations()"
@@ -19,7 +17,7 @@
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="f.fullName"
         label="Nombre del Beneficiario"
         placeholder="Nombre completo"
@@ -27,7 +25,7 @@
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-mask-signal
+      <lux-input-mask-signal
         [control]="f.phoneNumber"
         label="Teléfono del Beneficiario"
         customMask="000 000 0000"

@@ -1,11 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   inject,
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy
 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
@@ -13,7 +13,7 @@ import { FlatpickrDirective } from "angularx-flatpickr";
 import { BaseInputSignal } from "../core/base-input-signal";
 
 @Component({
-  selector: "custom-input-date-time-native",
+  selector: "lux-input-date-time-native",
   imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -93,7 +93,9 @@ export class CustomInputDateTimeNative implements OnInit {
     }
     const clean = val.replace(/Z$/, "").replace(/[+-]\d{2}:\d{2}$/, "");
     const [datePart, timePart] = clean.split("T");
-    this.dateControl.setValue(datePart?.slice(0, 10) || "", { emitEvent: false });
+    this.dateControl.setValue(datePart?.slice(0, 10) || "", {
+      emitEvent: false,
+    });
     this.timePart.set((timePart || "").slice(0, 5));
   }
 

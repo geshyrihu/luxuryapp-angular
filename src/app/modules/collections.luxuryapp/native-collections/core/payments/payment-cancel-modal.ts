@@ -1,21 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ButtonWeb } from "@ui/buttons/web";
-import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomInputTextAreaSignal } from "@ui/inputs/web/custom-input-textarea-signal";
 
 @Component({
   selector: "app-payment-cancel-modal",
-  imports: [
-    ReactiveFormsModule,
-    ButtonWeb,
-    CustomInputTextAreaSignal,
-    LxIcon,
-  ],
+  imports: [ReactiveFormsModule, ButtonWeb, CustomInputTextAreaSignal, LxIcon],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="d-flex flex-column gap-4">
@@ -36,7 +31,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
         </div>
       </div>
 
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="reasonCtrl"
         label="Motivo formal de cancelacion"
         placeholder="Describe la razon operativa o contable de la cancelacion"

@@ -50,7 +50,7 @@
                 />
               </td>
               <td>
-                <custom-input-select-button-signal
+                <lux-input-select-button-signal
                   [options]="statusOptions"
                   [control]="item.statusControl"
                   optionLabel="label"
@@ -66,20 +66,21 @@
                             }"
                     ></i>
                   </ng-template>
-                </custom-input-select-button-signal>
+                </lux-input-select-button-signal>
               </td>
               <td>
-                <custom-input-text-area-signal
+                <lux-input-text-area-signal
                   [control]="item.observationsControl"
                   label=""
                   [rows]="2"
                   [noMargin]="true"
                   [onlyInput]="true"
-                ></custom-input-text-area-signal>
+                ></lux-input-text-area-signal>
               </td>
               <td>
                 <!-- Placeholder para Carga de Archivos -->
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:upload"
                   variant="text"
                   size="sm"

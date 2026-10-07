@@ -6,14 +6,14 @@
       <div class="card">
         <div class="mb-4">
           <label class="d-block mb-2" for="precio">Ingresa el precio</label>
-          <custom-input-number-signal
+          <lux-input-number-signal
             inputId="precio"
             [(ngModel)]="precio"
             (onInput)="calcularPrecioSinIva()"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
-          ></custom-input-number-signal>
+          ></lux-input-number-signal>
         </div>
       </div>
     </div>
@@ -21,14 +21,14 @@
       <div class="card">
         <div class="mb-4">
           <label class="d-block mb-2" for="precioSinIva">Precio sin iva</label>
-          <custom-input-number-signal
+          <lux-input-number-signal
             inputId="precioSinIva"
             [(ngModel)]="precioSinIva"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
             [disabled]="true"
-          ></custom-input-number-signal>
+          ></lux-input-number-signal>
         </div>
       </div>
     </div>
@@ -36,14 +36,14 @@
       <div class="card">
         <div class="mb-4">
           <label class="d-block mb-2" for="iva">I.V.A.</label>
-          <custom-input-number-signal
+          <lux-input-number-signal
             inputId="iva"
             [(ngModel)]="iva"
             mode="decimal"
             [minFractionDigits]="0"
             [maxFractionDigits]="4"
             [disabled]="true"
-          ></custom-input-number-signal>
+          ></lux-input-number-signal>
         </div>
       </div>
     </div>

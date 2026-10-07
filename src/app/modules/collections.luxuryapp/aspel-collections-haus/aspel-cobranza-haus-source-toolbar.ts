@@ -25,7 +25,7 @@ import {
     >
       <div class="row w-full m-0">
         <div class="col-12 col-xl-4">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Fuente de consulta"
             [ngModel]="dataSource"
             [data]="dataSourceOptions"

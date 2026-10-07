@@ -2,7 +2,7 @@
   <div class="row g-4">
     <!-- Fila 1: Cuenta Contable y Mes de Ejecución -->
     <div class="col-12 col-md-6">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         [control]="form.controls.accountingCatalogName"
         [data]="cb_accountingCatalogs"
         label="Cuenta Contable"
@@ -14,18 +14,18 @@
     <!-- Fila 1.5: Recurrencia -->
     <div class="col-12 col-md-6">
       <div class="d-flex align-items-center mb-4 mt-4">
-        <custom-input-check-signal
+        <lux-input-check-signal
           [control]="form.controls.isFromRecurrence"
           placeholder="Es Recurrente?"
           (checkChange)="toggleRecurrenceFields($event)"
           [horizontal]="false"
           noMargin
-        ></custom-input-check-signal>
+        ></lux-input-check-signal>
       </div>
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.executionMonth"
         [data]="cb_months"
         label="Mes de Ejecución"
@@ -34,7 +34,7 @@
     </div>
     @if (form.controls.isFromRecurrence.value) {}
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.recurrence"
         [data]="cb_recurrences"
         label="Frecuencia"
@@ -45,14 +45,14 @@
 
     <!-- Fila 2: Concepto y DESCRIPCIÓN -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.concept"
         label="Concepto"
         placeholder="Ej. Mantenimiento Preventivo"
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.description"
         label="DESCRIPCIÓN"
         placeholder="Detalles de la ejecución presupuestaria"
@@ -61,13 +61,13 @@
 
     <!-- Fila 3: Monto y Tipo de Gasto -->
     <div class="col-12 col-md-6">
-      <custom-input-currency-signal
+      <lux-input-currency-signal
         [control]="form.controls.budgetedAmount"
         label="Monto Presupuestado"
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.expenseType"
         [data]="cb_expenseTypes"
         label="Tipo de Gasto"
@@ -77,7 +77,7 @@
 
     <!-- Fila 4: Proveedor -->
     <div class="col-12 col-md-12">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         [control]="form.controls.providerName"
         [data]="cb_providers"
         label="Proveedor (Opcional)"

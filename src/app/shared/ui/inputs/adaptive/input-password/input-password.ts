@@ -12,7 +12,7 @@ import { IonInputPassword } from "../../mobile/ion-input-password";
 import { WebInputPassword } from "../../web/input-password/input-password";
 
 @Component({
-  selector: "custom-input-password-signal",
+  selector: "lux-input-password-signal",
 
   imports: [WebInputPassword, IonInputPassword],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputPassword } from "../../web/input-password/input-password";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPassword),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -68,4 +69,3 @@ export class InputPassword extends BaseInputSignal {
   mediumLabel = input<string>("Media");
   strongLabel = input<string>("Fuerte");
 }
-

@@ -1,26 +1,26 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.id"
     hidden
     label="Id"
     [readonly]="true"
   />
   <div class="mb-2">
-    <custom-input-date-signal
+    <lux-input-date-signal
       [control]="form.controls.fechaCorrespondiente"
       label="Periodo"
       placeholder="Periodo"
     />
   </div>
   <div class="mb-2">
-    <custom-input-date-signal
+    <lux-input-date-signal
       [control]="form.controls.fechaJunta"
       label="Fecha de Junta"
       placeholder="Fecha de Junta"
     />
   </div>
   <div class="mb-2">
-    <custom-input-time-signal
+    <lux-input-time-signal
       [control]="form.controls.horaJunta"
       label="Hora de Junta"
       placeholder="Hora de Junta"

@@ -1,53 +1,53 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Id -->
-      <div class="row mb-4 g-4" hidden>
-        <label class="col-12 col-sm-3">Id</label>
-        <div class="col-12 col-sm-9">
-          <custom-input-text-signal
-            formControlName="id"
-            [hidden]="true"
-            [horizontal]="false"
-          />
-        </div>
-      </div>
-      <!-- Id -->
-      <div class="row mb-4 g-4">
-        <label class="col-12 col-sm-3">Lectura anterior </label>
-        <div class="col-12 col-sm-9">
-          <custom-input-number-signal
-            [control]="form.controls.ultimaLectura"
-            [horizontal]="false"
-          />
-        </div>
-      </div>
-      <!-- Lectura -->
-      <div class="row mb-4 g-4">
-        <label class="col-12 col-sm-3">Lectura</label>
-        <div class="col-12 col-sm-9">
-          @if (!seRegistroEsteDia) {
-          <custom-input-number-signal
-            [control]="form.controls.lectura"
-            placeholder="Ingrese la Lectura"
-            [horizontal]="false"
-          />
-          @if (form.controls.lectura.hasError('lecturaMenor') &&
-          (form.controls.lectura.dirty || form.controls.lectura.touched)) {
-          <small class="p-error d-block mt-1"
-            >La lectura no puede ser menor a la anterior.</small
-          >
-          } } @if (seRegistroEsteDia) {
-          <span class="text-danger">{{ seRegistroEsteDiaMensaje }}</span>
-          }
-        </div>
-      </div>
-      <!-- Lectura -->
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid || laLecturaEsMenor || submitting()"
+  <!-- Id -->
+  <div class="row mb-4 g-4" hidden>
+    <label class="col-12 col-sm-3">Id</label>
+    <div class="col-12 col-sm-9">
+      <lux-input-text-signal
+        formControlName="id"
+        [hidden]="true"
+        [horizontal]="false"
       />
-  </form>
+    </div>
+  </div>
+  <!-- Id -->
+  <div class="row mb-4 g-4">
+    <label class="col-12 col-sm-3">Lectura anterior </label>
+    <div class="col-12 col-sm-9">
+      <lux-input-number-signal
+        [control]="form.controls.ultimaLectura"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
+  <!-- Lectura -->
+  <div class="row mb-4 g-4">
+    <label class="col-12 col-sm-3">Lectura</label>
+    <div class="col-12 col-sm-9">
+      @if (!seRegistroEsteDia) {
+      <lux-input-number-signal
+        [control]="form.controls.lectura"
+        placeholder="Ingrese la Lectura"
+        [horizontal]="false"
+      />
+      @if (form.controls.lectura.hasError('lecturaMenor') &&
+      (form.controls.lectura.dirty || form.controls.lectura.touched)) {
+      <small class="p-error d-block mt-1"
+        >La lectura no puede ser menor a la anterior.</small
+      >
+      } } @if (seRegistroEsteDia) {
+      <span class="text-danger">{{ seRegistroEsteDiaMensaje }}</span>
+      }
+    </div>
+  </div>
+  <!-- Lectura -->
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid || laLecturaEsMenor || submitting()"
+  />
+</form>

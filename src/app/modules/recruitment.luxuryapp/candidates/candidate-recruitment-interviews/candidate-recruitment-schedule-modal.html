@@ -1,86 +1,85 @@
-
-  <div class="fw-semibold mb-3">{{ title() }}</div>
-  @if (hasExistingInterview) {
-  <div class="mb-3 p-3 border-1 blue-500 rounded bg-body-tertiary">
-    <small class="d-block text-body-secondary">
-      Este candidato ya tiene una entrevista agendada. Al guardar, se cancelara
-      la cita actual y se creara una nueva con la fecha y hora indicadas.
-    </small>
-  </div>
-  }
-  <form
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-    [formGroup]="form"
-    [attr.aria-label]="title()"
-  >
-    <div class="row g-4">
-      @if (action === 'send' || action === 'schedule' || action ===
-      'reschedule') {
-      <div class="col-12 col-md-6">
-        <custom-input-date-signal
-          [control]="form.controls['scheduledDate']"
-          label="Fecha de entrevista"
-          placeholder="Selecciona fecha"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-time-signal
-          [control]="form.controls['scheduledTime']"
-          label="Hora de entrevista"
-          placeholder="Selecciona hora"
-        />
-      </div>
-      } @if (action === 'send' || action === 'schedule' || action === 'assign') {
-      <div class="col-12">
-        <custom-input-select-signal
-          [control]="form.controls['operationsInterviewAssignedToUserId']"
-          label="Entrevistador asignado"
-          placeholder="Selecciona al entrevistador"
-          [data]="cb_interviewers()"
-          [loading]="loadingInterviewers()"
-          [filter]="true"
-        />
-        @if (!loadingInterviewers() && cb_interviewers().length === 0) {
-        <small class="d-block mt-2 text-red-500">
-          No hay entrevistadores elegibles en la matrix para esta vacante. No
-          se puede asignar ni agendar hasta configurar una coincidencia valida.
-        </small>
-        }
-      </div>
-      }
-      <div class="col-12">
-        <custom-input-textarea-signal
-          [control]="form.controls['comment']"
-          label="Comentario"
-          placeholder="Comentario de contexto..."
-          [rows]="2"
-        />
-      </div>
-    </div>
-    <div class="d-flex justify-content-between align-items-center gap-2 pb-2">
-      <div>
-        @if (canCancelInterview()) {
-        <lux-button-web
-          type="button"
-          label="Cancelar cita"
-          iconClass="material-symbols-light:event-busy"
-          severity="danger"
-          variant="outline"
-          [disabled]="submitting()"
-          (clicked)="onCancelInterview()"
-        />
-        }
-      </div>
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="submitLabel()"
-        [disabled]="isInterviewerSelectionBlocked()"
-        [loading]="submitting()"
+<div class="fw-semibold mb-3">{{ title() }}</div>
+@if (hasExistingInterview) {
+<div class="mb-3 p-3 border-1 blue-500 rounded bg-body-tertiary">
+  <small class="d-block text-body-secondary">
+    Este candidato ya tiene una entrevista agendada. Al guardar, se cancelara la
+    cita actual y se creara una nueva con la fecha y hora indicadas.
+  </small>
+</div>
+}
+<form
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  [attr.aria-label]="title()"
+>
+  <div class="row g-4">
+    @if (action === 'send' || action === 'schedule' || action === 'reschedule')
+    {
+    <div class="col-12 col-md-6">
+      <lux-input-date-signal
+        [control]="form.controls['scheduledDate']"
+        label="Fecha de entrevista"
+        placeholder="Selecciona fecha"
       />
     </div>
-  </form>
+    <div class="col-12 col-md-6">
+      <lux-input-time-signal
+        [control]="form.controls['scheduledTime']"
+        label="Hora de entrevista"
+        placeholder="Selecciona hora"
+      />
+    </div>
+    } @if (action === 'send' || action === 'schedule' || action === 'assign') {
+    <div class="col-12">
+      <lux-input-select-signal
+        [control]="form.controls['operationsInterviewAssignedToUserId']"
+        label="Entrevistador asignado"
+        placeholder="Selecciona al entrevistador"
+        [data]="cb_interviewers()"
+        [loading]="loadingInterviewers()"
+        [filter]="true"
+      />
+      @if (!loadingInterviewers() && cb_interviewers().length === 0) {
+      <small class="d-block mt-2 text-red-500">
+        No hay entrevistadores elegibles en la matrix para esta vacante. No se
+        puede asignar ni agendar hasta configurar una coincidencia valida.
+      </small>
+      }
+    </div>
+    }
+    <div class="col-12">
+      <lux-input-textarea-signal
+        [control]="form.controls['comment']"
+        label="Comentario"
+        placeholder="Comentario de contexto..."
+        [rows]="2"
+      />
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center gap-2 pb-2">
+    <div>
+      @if (canCancelInterview()) {
+      <lux-button-web
+        type="button"
+        label="Cancelar cita"
+        iconClass="material-symbols-light:event-busy"
+        severity="danger"
+        variant="outline"
+        [disabled]="submitting()"
+        (clicked)="onCancelInterview()"
+      />
+      }
+    </div>
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="submitLabel()"
+      [disabled]="isInterviewerSelectionBlocked()"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

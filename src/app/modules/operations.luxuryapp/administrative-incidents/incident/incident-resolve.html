@@ -1,21 +1,21 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-  <custom-input-select-signal
+  <lux-input-select-signal
     label="Nuevo Estatus de Investigacion"
     [control]="form.controls.investigationStatus"
     [data]="cb_status()"
     [filter]="true"
   />
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     label="Notas de Investigacion"
     [control]="form.controls.investigationNotes"
     [rows]="4"
     placeholder="Detalle los hallazgos de la investigacion"
   />
-  <custom-input-switch-signal
+  <lux-input-switch-signal
     label="¿Se aplicara sancion?"
     [control]="form.controls.sanctionApplied"
   />
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     label="Justificacion"
     [control]="form.controls.decisionRationale"
     [rows]="3"

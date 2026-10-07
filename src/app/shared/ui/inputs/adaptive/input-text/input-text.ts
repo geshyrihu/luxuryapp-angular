@@ -15,7 +15,7 @@ import { WebInputText } from "../../web/input-text/input-text";
 /**
  * 🔀 INPUT TEXT — adaptativo (web ↔ móvil)
  * -------------------------------------------------------------------------
- * Punto de entrada que usan los formularios: `<custom-input-text-signal>`.
+ * Punto de entrada que usan los formularios: `<lux-input-text-signal>`.
  * Según `PlatformService.isMobile()` (viewport, reactivo) renderiza:
  *   - web:    <web-input-text>  (Bootstrap)
  *   - móvil:  <ion-input-text>  (Ionic)
@@ -23,7 +23,7 @@ import { WebInputText } from "../../web/input-text/input-text";
  * `BaseInputSignal`. Única capa que cruza la frontera web/móvil (como los `lux-*`).
  */
 @Component({
-  selector: "custom-input-text-signal",
+  selector: "lux-input-text-signal",
 
   imports: [WebInputText, IonInputText],
   providers: [
@@ -31,7 +31,8 @@ import { WebInputText } from "../../web/input-text/input-text";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputText),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

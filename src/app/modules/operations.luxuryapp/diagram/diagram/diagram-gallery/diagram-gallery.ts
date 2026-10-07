@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,15 +10,16 @@ import {
 import { Router } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
   selector: "app-diagram-gallery",
-  imports: [ ButtonWeb, ApiDatePipe, LxIcon, CustomInputTextSignal],
+  imports: [ButtonWeb, ApiDatePipe, LxIcon, CustomInputTextSignal],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="card p-4">
@@ -34,7 +34,7 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
             variant="text"
           />
         </div>
-        <custom-input-text-signal
+        <lux-input-text-signal
           placeholder="Buscar diagrama..."
           (input)="onFilter($event)"
           [horizontal]="false"

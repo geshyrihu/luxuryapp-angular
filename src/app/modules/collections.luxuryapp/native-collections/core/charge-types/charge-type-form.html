@@ -9,14 +9,14 @@
   </lux-card>
   }
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.name"
     label="Nombre"
     placeholder="Ej: Cuota de mantenimiento"
     required
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.code"
     label="Código"
     placeholder="Ej: 001"
@@ -24,7 +24,7 @@
     required
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.description"
     label="DESCRIPCIÓN"
     placeholder="Describe cuando se usa este tipo de cargo."

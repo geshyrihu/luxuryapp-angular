@@ -1,5 +1,5 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveMaquinariaId($event)"
     [control]="form.controls.machinery"
     [data]="maquinarias()"
@@ -7,7 +7,7 @@
     placeholder="Escribir para buscar equipo o instalación"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.descripcion"
     label="DESCRIPCIÓN"
     placeholder="DESCRIPCIÓN"
@@ -16,7 +16,7 @@
 
   <div class="mb-4">
     <label class="fw-light"> Activar Si nota alguna emergencia </label>
-    <custom-input-check-signal
+    <lux-input-check-signal
       [control]="form.controls.emergencia"
       label="Emergencia"
     />

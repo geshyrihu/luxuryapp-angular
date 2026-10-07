@@ -1,32 +1,28 @@
 <form [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-      />
+  <lux-input-text-signal [control]="form.controls.id" hidden label="Id" />
 
-      <custom-input-date-signal
-        [control]="form.controls.desde"
-        label="Desde"
-        placeholder="desde"
-        [required]="true"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.desde"
+    label="Desde"
+    placeholder="desde"
+    [required]="true"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.hasta"
-        label="Hasta"
-        placeholder="hasta"
-        [required]="true"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.hasta"
+    label="Hasta"
+    placeholder="hasta"
+    [required]="true"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

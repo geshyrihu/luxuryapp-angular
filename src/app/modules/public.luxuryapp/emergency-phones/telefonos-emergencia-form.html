@@ -1,59 +1,59 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <div class="row mb-2 g-4">
-        <label class="col-12 col-md-3">Imagen</label>
-        <div class="col-12 col-md-9">
-          <div class="card">
-            <custom-input-img-signal
-              (fileSelected)="uploadFile($event)"
-              [urlImgCurrent]="urlBaseImg"
-              [contentHeight]="15"
-              [contentWidth]="25"
-            />
-          </div>
-        </div>
+  <div class="row mb-2 g-4">
+    <label class="col-12 col-md-3">Imagen</label>
+    <div class="col-12 col-md-9">
+      <div class="card">
+        <lux-input-img-signal
+          (fileSelected)="uploadFile($event)"
+          [urlImgCurrent]="urlBaseImg"
+          [contentHeight]="15"
+          [contentWidth]="25"
+        />
       </div>
+    </div>
+  </div>
 
-      <custom-input-text-signal
-        [control]="form.controls.instancia"
-        label="Instancia"
-        placeholder="instancia"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.instancia"
+    label="Instancia"
+    placeholder="instancia"
+  />
 
-      <custom-input-mask-signal
-        [control]="form.controls.telefonoUno"
-        label="Teléfono 1"
-        placeholder="(00) 0000-0000"
-        customMask="(00) 0000-0000"
-      />
+  <lux-input-mask-signal
+    [control]="form.controls.telefonoUno"
+    label="Teléfono 1"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
 
-      <custom-input-mask-signal
-        [control]="form.controls.telefonoDos"
-        label="Teléfono 2"
-        placeholder="(00) 0000-0000"
-        customMask="(00) 0000-0000"
-      />
+  <lux-input-mask-signal
+    [control]="form.controls.telefonoDos"
+    label="Teléfono 2"
+    placeholder="(00) 0000-0000"
+    customMask="(00) 0000-0000"
+  />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.direccion"
-        label="Dirección"
-        placeholder="dirección"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.direccion"
+    label="Dirección"
+    placeholder="dirección"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

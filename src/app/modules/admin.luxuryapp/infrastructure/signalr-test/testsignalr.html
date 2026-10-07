@@ -6,7 +6,7 @@
     <ng-template #title>Enviar a un usuario</ng-template>
     <div class="d-flex flex-wrap align-items-center mb-3">
       <div class="col-12 col-md-6">
-        <custom-input-autocomplete-signal
+        <lux-input-autocomplete-signal
           (propagar)="onSelectUser($event)"
           [control]="userControl"
           [data]="users()"
@@ -38,58 +38,52 @@
       </div>
     </div>
 
-    <custom-input-text-signal
-      [control]="titleControl"
-      label="Título de prueba"
-    />
+    <lux-input-text-signal [control]="titleControl" label="Título de prueba" />
 
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="messageControl"
       label="Mensaje de prueba"
     />
 
-    <custom-input-text-signal [control]="routeControl" label="Ruta de prueba" />
+    <lux-input-text-signal [control]="routeControl" label="Ruta de prueba" />
   </lux-card>
 
   <!-- Test de plantillas WhatsApp aprobadas -->
   <lux-card class="mb-4">
     <ng-template #title>Test de plantillas WhatsApp (aprobadas)</ng-template>
     <div class="d-flex flex-column gap-2 mb-3">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="phoneControl"
         label="Número WhatsApp (destinatario de test)"
         placeholder="5559878523"
       />
 
-      <custom-input-text-signal
-        [control]="titleControl"
-        label="Título / Asunto"
-      />
+      <lux-input-text-signal [control]="titleControl" label="Título / Asunto" />
 
-      <custom-input-text-signal [control]="folioControl" label="Folio" />
+      <lux-input-text-signal [control]="folioControl" label="Folio" />
 
-      <custom-input-text-signal [control]="clienteControl" label="Cliente" />
+      <lux-input-text-signal [control]="clienteControl" label="Cliente" />
 
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="solicitaControl"
         label="Solicita (solo LegalTicket)"
       />
 
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="resultadoControl"
         label="Resultado (solo SolicitudTerminada)"
       />
 
       <!-- Nuevos controles para AlertaTareaUrgente -->
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="tareaControl"
         label="Tarea (solo AlertaTareaUrgente)"
       />
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="responsableControl"
         label="Responsable (solo AlertaTareaUrgente)"
       />
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="fechaLimiteControl"
         label="Fecha Límite (solo AlertaTareaUrgente)"
       />
@@ -130,7 +124,7 @@
     <ng-template #title>Enviar a varios usuarios</ng-template>
     <div class="d-flex flex-wrap align-items-c gap-4">
       <div class="col-12 col-md-8">
-        <custom-input-autocomplete-multiple-signal
+        <lux-input-autocomplete-multiple-signal
           (propagar)="onSelectUsers($event)"
           [control]="multiUserControl"
           [data]="users()"

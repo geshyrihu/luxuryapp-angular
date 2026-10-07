@@ -32,7 +32,7 @@
             class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
           >
             <div>
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [data]="operationOptions()"
                 optionLabel="label"
                 optionValue="value"
@@ -45,7 +45,7 @@
               />
             </div>
             <div>
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [data]="entityOptions()"
                 optionLabel="label"
                 optionValue="value"
@@ -58,7 +58,7 @@
               />
             </div>
             <div>
-              <custom-input-date-signal
+              <lux-input-date-signal
                 [control]="filterDateRangeControl()"
                 mode="range"
                 dateFormat="Y-m-d"
@@ -74,7 +74,8 @@
                 iconClass="material-symbols-light:search"
                 (clicked)="loadData.emit()"
               />
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:refresh"
                 variant="outline"
                 size="small"
@@ -106,7 +107,8 @@
         <tr>
           <td>
             @if (item.operationType === 'Update') {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:chevron-right"
               variant="text"
               size="sm"

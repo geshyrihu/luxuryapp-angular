@@ -1,17 +1,17 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { By } from "@angular/platform-browser";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { By } from "@angular/platform-browser";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { NgSelectComponent } from "@ng-select/ng-select";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 @Component({
   selector: "repro-host",
 
   imports: [CustomInputSelectSignal, ReactiveFormsModule],
   template: `
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="control"
       label="Estatus"
       [data]="data"
@@ -43,9 +43,8 @@ describe("active boolean select repro", () => {
   });
 
   it("selecting Inactivo should set control to false", () => {
-    const ngSelect = fixture.debugElement.query(
-      By.directive(NgSelectComponent),
-    ).componentInstance as NgSelectComponent;
+    const ngSelect = fixture.debugElement.query(By.directive(NgSelectComponent))
+      .componentInstance as NgSelectComponent;
     ngSelect.open();
     fixture.detectChanges();
     const inactivo = ngSelect.itemsList.items.find(
@@ -56,4 +55,3 @@ describe("active boolean select repro", () => {
     expect(host.control.value).toBe(false);
   });
 });
-

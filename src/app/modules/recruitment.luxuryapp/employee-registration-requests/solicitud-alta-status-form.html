@@ -4,20 +4,20 @@
   </div>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.folio"
         label="Folio:"
         placeholder="Folio:"
         readonly
       />
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.employeeName"
         label="Candidato:"
         placeholder="Candidato:"
         readonly
       />
 
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Estatus"
         [control]="form.controls.status"
         [data]="statusOptions()"
@@ -27,16 +27,16 @@
         [readonly]="readOnly"
       />
       @if (!readOnly) {
-       <lux-button-web
-         kind="save"
-         type="submit"
-         severity="info"
-         variant="soft"
-         displayMode="both"
-         label="Guardar"
-         [disabled]="form.invalid"
-         [loading]="submitting()"
-       />
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Guardar"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
       }
     </form>
   </div>

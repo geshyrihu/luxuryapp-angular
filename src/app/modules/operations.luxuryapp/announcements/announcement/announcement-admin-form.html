@@ -20,13 +20,13 @@
   <div class="row min-h-screen g-4">
     <!-- Columna Izquierda -->
     <div class="col-12 col-md-3">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.title"
         placeholder="Título"
         label="Título"
         [horizontal]="false"
       />
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.announcementType"
         label="Tipo de Anuncio"
         [data]="[{label: 'General', value: 0}, {label: 'Urgente', value: 1}, {label: 'Informativo', value: 2}]"
@@ -46,29 +46,27 @@
       </div>
       }
 
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.externalLink"
         placeholder="https://ejemplo.com"
         label="Enlace Externo (Opcional)"
         [horizontal]="false"
       />
       <div class="field-checkbox mt-3">
-        <custom-input-toggle-switch-signal
-          [control]="form.controls.sendByEmail"
-        />
+        <lux-input-toggle-switch-signal [control]="form.controls.sendByEmail" />
         <label class="ms-2">Enviar por Email</label>
       </div>
     </div>
 
     <!-- Columna Derecha -->
     <div class="col-12 col-md-3">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls.publishedAt"
         label="Fecha de Publicación"
         placeholder="Fecha de Publicación"
         [horizontal]="false"
       />
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls.expirationDate"
         label="Fecha de Expiración"
         placeholder="Fecha de Expiración"

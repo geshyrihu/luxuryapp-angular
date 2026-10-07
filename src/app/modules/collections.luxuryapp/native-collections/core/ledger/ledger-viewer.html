@@ -2,7 +2,7 @@
   <lux-card class="card card--elevated mb-3">
     <div class="row formgrid align-items-end g-4">
       <div class="field col-12 col-md-4">
-        <custom-input-select-signal
+        <lux-input-select-signal
           label="Propiedad"
           [data]="properties()"
           [control]="propertyIdCtrl"
@@ -11,21 +11,21 @@
         />
       </div>
       <div class="field col-6 col-md-2">
-        <custom-input-date-signal
+        <lux-input-date-signal
           label="Desde"
           [control]="fromCtrl"
           [noMargin]="true"
         />
       </div>
       <div class="field col-6 col-md-2">
-        <custom-input-date-signal
+        <lux-input-date-signal
           label="Hasta"
           [control]="toCtrl"
           [noMargin]="true"
         />
       </div>
       <div class="field col-12 col-md-3">
-        <custom-input-select-signal
+        <lux-input-select-signal
           label="Tipo de evento"
           [data]="eventTypeOptions"
           [control]="eventTypeCtrl"

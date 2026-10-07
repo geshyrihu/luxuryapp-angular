@@ -1,27 +1,26 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <lux-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+    />
+    <lux-input-text-signal
+      [control]="form.controls.nameCotegory"
+      label="Nombre de categoria"
+      placeholder="nombre de categoria"
+    />
 
-  <div>
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.nameCotegory"
-        label="Nombre de categoria"
-        placeholder="nombre de categoria"
-      />
-
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
-  </div>
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </form>
+</div>

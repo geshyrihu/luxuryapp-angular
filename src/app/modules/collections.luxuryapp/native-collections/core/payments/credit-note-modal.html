@@ -19,7 +19,7 @@
   </div>
 
   <form [formGroup]="form" class="d-flex flex-column">
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls.propertyId"
       [data]="propertiesOptions()"
       label="Departamento / Unidad"
@@ -28,19 +28,19 @@
       required
     />
 
-    <custom-input-currency-signal
+    <lux-input-currency-signal
       [control]="form.controls.amount"
       label="Monto a Condonar"
       required
     />
 
-    <custom-input-date-signal
+    <lux-input-date-signal
       [control]="form.controls.paymentDate"
       label="Fecha"
       required
     />
 
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="form.controls.reference"
       [data]="reasonOptions"
       label="Razón / Motivo"
@@ -49,7 +49,7 @@
       required
     />
 
-    <custom-input-textarea-signal
+    <lux-input-textarea-signal
       [control]="form.controls.notes"
       label="Observaciones adicionales (Opcional)"
       placeholder="Detalles del acuerdo o contexto de la condonación..."

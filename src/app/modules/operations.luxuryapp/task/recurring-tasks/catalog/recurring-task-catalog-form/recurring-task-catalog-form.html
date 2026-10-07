@@ -1,5 +1,5 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.workGroupId"
     label="Grupo de trabajo"
     placeholder="Selecciona un grupo"
@@ -8,13 +8,13 @@
     (selectionChange)="onWorkGroupChange($event)"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.title"
     label="Título"
     placeholder="Título de la plantilla"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.description"
     label="DESCRIPCIÓN"
     placeholder="DESCRIPCIÓN"
@@ -25,20 +25,20 @@
     formControlName="recurrenceRule"
   ></app-recurrence-input>
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.criticality"
     label="Criticidad"
     placeholder="Selecciona la criticidad"
     [data]="criticalities()"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.expectedDeliverableName"
     label="Entregable esperado"
     placeholder="Nombre del entregable"
   />
 
-  <custom-input-check-signal
+  <lux-input-check-signal
     [control]="form.controls.requiresAttachment"
     label="Requiere adjunto"
   />
@@ -72,28 +72,28 @@
     </button>
     <div class="collapse" [class.show]="!collapsed()">
       <div class="card-body">
-    <custom-input-number-signal
-      [control]="form.controls.advanceNoticeDays"
-      label="Días de aviso previo"
-      [min]="0"
-      [max]="30"
-      [showButtons]="true"
-    />
+        <lux-input-number-signal
+          [control]="form.controls.advanceNoticeDays"
+          label="Días de aviso previo"
+          [min]="0"
+          [max]="30"
+          [showButtons]="true"
+        />
 
-    <custom-input-select-signal
-      [control]="form.controls.backupUserId"
-      label="Responsable de respaldo"
-      placeholder="Selecciona un responsable"
-      [data]="backupUsers()"
-      [required]="isBackupRequired()"
-      [filter]="true"
-    />
+        <lux-input-select-signal
+          [control]="form.controls.backupUserId"
+          label="Responsable de respaldo"
+          placeholder="Selecciona un responsable"
+          [data]="backupUsers()"
+          [required]="isBackupRequired()"
+          [filter]="true"
+        />
 
-    @if (form.hasError("backupRequiredForCritical")) {
-    <small class="p-error">
-      Las plantillas críticas requieren responsable de respaldo.
-    </small>
-    }
+        @if (form.hasError("backupRequiredForCritical")) {
+        <small class="p-error">
+          Las plantillas críticas requieren responsable de respaldo.
+        </small>
+        }
       </div>
     </div>
   </section>

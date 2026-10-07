@@ -1,7 +1,7 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div class="d-flex flex-column">
     <div class="w-full">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="onSelectUser($event)"
         [control]="form.controls.applicationUser"
         [data]="cb_application_user()"
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="w-full">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.isAdmin"
         label="Rol"
         [data]="cb_eLuxury_group_rol"
@@ -75,10 +75,7 @@
 
     <!-- Lado derecho: acciones -->
     <ili-action-menu slot="end">
-      <lux-button-mobile
-        kind="edit"
-        (clicked)="onEditParticipant(item)"
-      />
+      <lux-button-mobile kind="edit" (clicked)="onEditParticipant(item)" />
       <lux-button-mobile
         kind="delete"
         color="danger"

@@ -1,54 +1,54 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="mb-4 d-flex justify-content-center">
-        <div class="w-full sm:w-9/12 max-w-sm">
-          <div class="card text-center p-3">
-            <custom-input-img-signal
-              (fileSelected)="uploadFile($event)"
-              [urlImgCurrent]="urlBaseImg"
-              [contentHeight]="75"
-              [contentWidth]="75"
-            />
-          </div>
-        </div>
+  <div class="mb-4 d-flex justify-content-center">
+    <div class="w-full sm:w-9/12 max-w-sm">
+      <div class="card text-center p-3">
+        <lux-input-img-signal
+          (fileSelected)="uploadFile($event)"
+          [urlImgCurrent]="urlBaseImg"
+          [contentHeight]="75"
+          [contentWidth]="75"
+        />
       </div>
+    </div>
+  </div>
 
-      <custom-input-select-signal
-        [control]="form.controls.hydrantType"
-        label="Tipo de Hidrante"
-        [data]="cb_hydrantType"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.hydrantType"
+    label="Tipo de Hidrante"
+    [data]="cb_hydrantType"
+    [filter]="true"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.cabinetNumber"
-        label="Número de Gabinete (opcional)"
-        placeholder="Ej: GAB-01"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.cabinetNumber"
+    label="Número de Gabinete (opcional)"
+    placeholder="Ej: GAB-01"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.location"
-        label="Ubicación"
-        placeholder="Ej: Planta baja - Pasillo A"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.location"
+    label="Ubicación"
+    placeholder="Ej: Planta baja - Pasillo A"
+  />
 
-      <custom-input-mask-signal
-        [control]="form.controls.localCode"
-        label="Código Local"
-        placeholder="HID-01-001"
-        customMask="AAA-00-000"
-        [validation]="false"
-        [dropSpecialCharacters]="false"
-        description="HID = Hidrante · Zona (2 dígitos) · Número de equipo (3 dígitos)"
-      />
+  <lux-input-mask-signal
+    [control]="form.controls.localCode"
+    label="Código Local"
+    placeholder="HID-01-001"
+    customMask="AAA-00-000"
+    [validation]="false"
+    [dropSpecialCharacters]="false"
+    description="HID = Hidrante · Zona (2 dígitos) · Número de equipo (3 dígitos)"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

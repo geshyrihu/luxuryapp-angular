@@ -19,14 +19,14 @@
   <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
     <div class="d-flex flex-column gap-3">
       <div>
-        <custom-input-text-signal
+        <lux-input-text-signal
           label="Nombre del Proveedor"
           [horizontal]="false"
           [control]="supportForm.get('providerName')"
         />
       </div>
       <div>
-        <custom-input-textarea-signal
+        <lux-input-textarea-signal
           label="Comentarios"
           [horizontal]="false"
           [autoResize]="true"
@@ -38,7 +38,7 @@
         <label class="d-block fw-medium mb-2 text-body"
           >Archivos Adjuntos (PDF)</label
         >
-        <custom-input-file-signal
+        <lux-input-file-signal
           (fileSelected)="onFileSelected($event)"
           accept=".pdf"
           [horizontal]="false"
@@ -90,7 +90,10 @@
         <span class="text-sm fw-medium truncate">{{ file.fileName }}</span>
       </div>
       <div class="d-flex gap-2">
-        <lux-pdf-viewer-trigger [url]="file.fileUrl" [fileName]="file.fileName" />
+        <lux-pdf-viewer-trigger
+          [url]="file.fileUrl"
+          [fileName]="file.fileName"
+        />
         <lux-button-web
           iconClass="material-symbols-light:delete"
           (clicked)="onDeleteFile(file.id)"

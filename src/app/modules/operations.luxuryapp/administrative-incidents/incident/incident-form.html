@@ -3,7 +3,7 @@
     <div tab="datos">
       <div class="row pt-2 g-4">
         <div class="col-12 col-md-6">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Tipo de Incidencia"
             [required]="true"
             [control]="form.controls.incidentTypeId"
@@ -12,7 +12,7 @@
           />
         </div>
         <div class="col-12 col-md-6">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Nivel de Severidad"
             [required]="true"
             [control]="form.controls.severityLevel"
@@ -21,14 +21,14 @@
           />
         </div>
         <div class="col-12 col-md-6">
-          <custom-input-date-time-signal
+          <lux-input-date-time-signal
             label="Fecha y Hora del Incidente"
             [required]="true"
             [control]="form.controls.incidentDateTime"
           />
         </div>
         <div class="col-12 col-md-6">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Tipo de Sanción (opcional)"
             [control]="form.controls.sanctionTypeId"
             [data]="sanctionTypes()"
@@ -37,7 +37,7 @@
           />
         </div>
         <div class="col-12">
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             label="DESCRIPCIÓN"
             [required]="true"
             [control]="form.controls.description"

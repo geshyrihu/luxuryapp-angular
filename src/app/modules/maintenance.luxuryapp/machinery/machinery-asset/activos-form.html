@@ -1,220 +1,220 @@
 @if (category == 1 || category == 6 || category == 5) {
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="row g-4">
-        <!-- Primera columna -->
-        <div class="col-12 col-md-3">
-          <custom-input-select-signal
-            [control]="form.controls.inventoryCategory"
-            label="Categoría"
-            [data]="cb_inventoryCategory()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.nameMachinery"
-            label="Nombre"
-            placeholder="Nombre"
-            [horizontal]="false"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.brand"
-            label="Marca"
-            placeholder="Marca"
-            [horizontal]="false"
-          />
-        </div>
+  <div class="row g-4">
+    <!-- Primera columna -->
+    <div class="col-12 col-md-3">
+      <lux-input-select-signal
+        [control]="form.controls.inventoryCategory"
+        label="Categoría"
+        [data]="cb_inventoryCategory()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.nameMachinery"
+        label="Nombre"
+        placeholder="Nombre"
+        [horizontal]="false"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.brand"
+        label="Marca"
+        placeholder="Marca"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Segunda columna -->
-        <div class="col-12 col-md-3">
-          <custom-input-text-signal
-            [control]="form.controls.model"
-            label="Modelo"
-            placeholder="Modelo"
-            [horizontal]="false"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.serie"
-            label="Serie"
-            placeholder="Serie"
-            [horizontal]="false"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.ubication"
-            label="Ubicación"
-            placeholder="Ubicación"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- Segunda columna -->
+    <div class="col-12 col-md-3">
+      <lux-input-text-signal
+        [control]="form.controls.model"
+        label="Modelo"
+        placeholder="Modelo"
+        [horizontal]="false"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.serie"
+        label="Serie"
+        placeholder="Serie"
+        [horizontal]="false"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.ubication"
+        label="Ubicación"
+        placeholder="Ubicación"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Tercera columna -->
-        <div class="col-12 col-md-3">
-          <custom-input-date-signal
-            [control]="form.controls.dateOfPurchase"
-            label="Compra o instalación"
-            placeholder="Compra o instalación"
-            [horizontal]="false"
-          />
-          <custom-input-select-signal
-            [control]="form.controls.state"
-            label="Estado"
-            [data]="optionActive()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-          <custom-input-select-signal
-            [control]="form.controls.equipoClasificacionId"
-            label="Clasificación"
-            [data]="cb_equipoClasificacion()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
+    <!-- Tercera columna -->
+    <div class="col-12 col-md-3">
+      <lux-input-date-signal
+        [control]="form.controls.dateOfPurchase"
+        label="Compra o instalación"
+        placeholder="Compra o instalación"
+        [horizontal]="false"
+      />
+      <lux-input-select-signal
+        [control]="form.controls.state"
+        label="Estado"
+        [data]="optionActive()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+      <lux-input-select-signal
+        [control]="form.controls.equipoClasificacionId"
+        label="Clasificación"
+        [data]="cb_equipoClasificacion()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- Imagen -->
-        <div class="col-12 col-md-3">
-          <label>Imagen</label>
-          <custom-input-img-signal
-            (fileSelected)="uploadFile($event)"
-            [urlImgCurrent]="form.value?.photoPath"
-            [contentHeight]="'180px'"
-            [contentWidth]="'100%'"
-          />
-        </div>
+    <!-- Imagen -->
+    <div class="col-12 col-md-3">
+      <label>Imagen</label>
+      <lux-input-img-signal
+        (fileSelected)="uploadFile($event)"
+        [urlImgCurrent]="form.value?.photoPath"
+        [contentHeight]="'180px'"
+        [contentWidth]="'100%'"
+      />
+    </div>
 
-        <!-- Textareas -->
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.technicalSpecifications"
-            label="Especificaciones Técnicas"
-            placeholder="Especificaciones Técnicas"
-            [horizontal]="false"
-            rows="10"
-          />
-        </div>
+    <!-- Textareas -->
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.technicalSpecifications"
+        label="Especificaciones Técnicas"
+        placeholder="Especificaciones Técnicas"
+        [horizontal]="false"
+        rows="10"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.observations"
-            label="Observaciones"
-            placeholder="Observaciones"
-            [horizontal]="false"
-            rows="10"
-          />
-        </div>
-      </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.observations"
+        label="Observaciones"
+        placeholder="Observaciones"
+        [horizontal]="false"
+        rows="10"
+      />
+    </div>
+  </div>
 
-      <div class="d-flex justify-content-end mt-4">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Guardar"
-          [disabled]="form.invalid || submitting()"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <div class="d-flex justify-content-end mt-4">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid || submitting()"
+      [loading]="submitting()"
+    />
+  </div>
+</form>
 } @if (category == 2 || category == 3 || category == 4 || category == 8 ||
 category == 7) {
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="row g-4">
-        <!-- Columna 1 -->
-        <div class="col-12 col-md-3">
-          <custom-input-select-signal
-            [control]="form.controls.inventoryCategory"
-            label="Categoría"
-            [data]="cb_inventoryCategory()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-          <custom-input-text-signal
-            [control]="form.controls.nameMachinery"
-            label="Nombre"
-            placeholder="Nombre"
-            [horizontal]="false"
-          />
-        </div>
+  <div class="row g-4">
+    <!-- Columna 1 -->
+    <div class="col-12 col-md-3">
+      <lux-input-select-signal
+        [control]="form.controls.inventoryCategory"
+        label="Categoría"
+        [data]="cb_inventoryCategory()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.nameMachinery"
+        label="Nombre"
+        placeholder="Nombre"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Columna 2 -->
-        <div class="col-12 col-md-3">
-          <custom-input-text-signal
-            [control]="form.controls.ubication"
-            label="Ubicación"
-            placeholder="Ubicación"
-            [horizontal]="false"
-          />
-          <custom-input-date-signal
-            [control]="form.controls.dateOfPurchase"
-            label="Compra o instalación"
-            placeholder="Compra o instalación"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- Columna 2 -->
+    <div class="col-12 col-md-3">
+      <lux-input-text-signal
+        [control]="form.controls.ubication"
+        label="Ubicación"
+        placeholder="Ubicación"
+        [horizontal]="false"
+      />
+      <lux-input-date-signal
+        [control]="form.controls.dateOfPurchase"
+        label="Compra o instalación"
+        placeholder="Compra o instalación"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Columna 3 -->
-        <div class="col-12 col-md-3">
-          <custom-input-select-signal
-            [control]="form.controls.state"
-            label="Estado"
-            [data]="optionActive()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-          <custom-input-select-signal
-            [control]="form.controls.equipoClasificacionId"
-            label="Clasificación"
-            [data]="cb_equipoClasificacion()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
+    <!-- Columna 3 -->
+    <div class="col-12 col-md-3">
+      <lux-input-select-signal
+        [control]="form.controls.state"
+        label="Estado"
+        [data]="optionActive()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+      <lux-input-select-signal
+        [control]="form.controls.equipoClasificacionId"
+        label="Clasificación"
+        [data]="cb_equipoClasificacion()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- Imagen -->
-        <div class="col-12 col-md-3">
-          <label>Imagen</label>
-          <custom-input-img-signal
-            (fileSelected)="uploadFile($event)"
-            [urlImgCurrent]="form.value?.photoPath"
-            [contentHeight]="'180px'"
-            [contentWidth]="'100%'"
-          />
-        </div>
+    <!-- Imagen -->
+    <div class="col-12 col-md-3">
+      <label>Imagen</label>
+      <lux-input-img-signal
+        (fileSelected)="uploadFile($event)"
+        [urlImgCurrent]="form.value?.photoPath"
+        [contentHeight]="'180px'"
+        [contentWidth]="'100%'"
+      />
+    </div>
 
-        <!-- Textareas -->
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.technicalSpecifications"
-            label="Especificaciones Técnicas"
-            placeholder="Especificaciones Técnicas"
-            [horizontal]="false"
-            rows="10"
-          />
-        </div>
+    <!-- Textareas -->
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.technicalSpecifications"
+        label="Especificaciones Técnicas"
+        placeholder="Especificaciones Técnicas"
+        [horizontal]="false"
+        rows="10"
+      />
+    </div>
 
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.observations"
-            label="Observaciones"
-            placeholder="Observaciones"
-            [horizontal]="false"
-            rows="10"
-          />
-        </div>
-      </div>
+    <div class="col-12 col-md-6">
+      <lux-input-textarea-signal
+        [control]="form.controls.observations"
+        label="Observaciones"
+        placeholder="Observaciones"
+        [horizontal]="false"
+        rows="10"
+      />
+    </div>
+  </div>
 
-      <div class="d-flex justify-content-end mt-4">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Guardar"
-          [disabled]="form.invalid || submitting()"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <div class="d-flex justify-content-end mt-4">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid || submitting()"
+      [loading]="submitting()"
+    />
+  </div>
+</form>
 }

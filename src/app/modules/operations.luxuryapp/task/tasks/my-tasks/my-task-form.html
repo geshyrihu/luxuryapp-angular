@@ -1,123 +1,120 @@
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    @if (id) {
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      [readonly]="true"
-      label="Id"
-    />
-    }
-    <custom-input-select-signal
-      [control]="form.controls.ticketGroupId"
-      label="Grupo"
-      [data]="cb_ticket_group()"
-      [filter]="true"
-    />
-    <custom-input-text-signal
-      [control]="form.controls.title"
-      label="Area"
-      placeholder="area"
-    />
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  @if (id) {
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    [readonly]="true"
+    label="Id"
+  />
+  }
+  <lux-input-select-signal
+    [control]="form.controls.ticketGroupId"
+    label="Grupo"
+    [data]="cb_ticket_group()"
+    [filter]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.title"
+    label="Area"
+    placeholder="area"
+  />
 
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <lux-button-web
-        label="Analizar Imagen (IA)"
-        iconClass="material-symbols-light:photo-camera"
-        severity="secondary"
-        variant="outline"
-        size="sm"
-        (clicked)="openVision()"
-      />
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <lux-button-web
+      label="Analizar Imagen (IA)"
+      iconClass="material-symbols-light:photo-camera"
+      severity="secondary"
+      variant="outline"
+      size="sm"
+      (clicked)="openVision()"
+    />
+  </div>
 
-    <!-- <custom-input-textarea-signal
+  <!-- <lux-input-textarea-signal
       [control]="form.controls.description"
       label=""
       placeholder="DESCRIPCIÓN del problema..."
     /> -->
-    <custom-input-textarea-signal
-      [control]="form.controls.description"
-      label="DESCRIPCIÓN"
-      placeholder="DESCRIPCIÓN"
-    />
-    <lux-image-analysis-dialog
-      (resultAccepted)="onVisionResult($event)"
-    ></lux-image-analysis-dialog>
-    <custom-input-select-signal
-      [control]="form.controls.priority"
-      label="Prioridad"
-      [data]="cb_priority()"
-      [filter]="true"
-    />
+  <lux-input-textarea-signal
+    [control]="form.controls.description"
+    label="DESCRIPCIÓN"
+    placeholder="DESCRIPCIÓN"
+  />
+  <lux-image-analysis-dialog
+    (resultAccepted)="onVisionResult($event)"
+  ></lux-image-analysis-dialog>
+  <lux-input-select-signal
+    [control]="form.controls.priority"
+    label="Prioridad"
+    [data]="cb_priority()"
+    [filter]="true"
+  />
 
-    <div class="row mt-2 g-4">
-      <div class="col-12 mb-2">
-        <small class="text-body-secondary italic">
-          <lux-icon
-            [icon]="'material-symbols-light:photo-camera'"
-            class="me-1"
-          />
-          Recuerda: Fotos horizontales, centradas en el detalle.
-        </small>
-      </div>
-      <div class="col-12 col-md-6">
-        <div class="mb-4">
-          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
-            >Foto del antes</label
-          >
-          @if (form.controls.beforeWorkPreview.value) {
-          <div class="mb-2">
-            <img
-              [src]="form.controls.beforeWorkPreview.value"
-              class="w-full rounded shadow-sm"
-              alt="Evidencia Antes"
-            />
-          </div>
-          }
-          <lux-file-upload
-            accept="image/*,.heic,.heif"
-            [maxFileSize]="10000000"
-            [multiple]="false"
-            [chooseLabel]="'Seleccionar foto'"
-            (onSelect)="onFileSelect($event, 'beforeWork')"
-            (filesChange)="onFilesChange($event, 'beforeWork')"
+  <div class="row mt-2 g-4">
+    <div class="col-12 mb-2">
+      <small class="text-body-secondary italic">
+        <lux-icon [icon]="'material-symbols-light:photo-camera'" class="me-1" />
+        Recuerda: Fotos horizontales, centradas en el detalle.
+      </small>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="mb-4">
+        <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
+          >Foto del antes</label
+        >
+        @if (form.controls.beforeWorkPreview.value) {
+        <div class="mb-2">
+          <img
+            [src]="form.controls.beforeWorkPreview.value"
+            class="w-full rounded shadow-sm"
+            alt="Evidencia Antes"
           />
         </div>
-      </div>
-      <div class="col-12 col-md-6">
-        <div class="mb-4">
-          <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
-            >Foto del después</label
-          >
-          @if (form.controls.afterWorkPreview.value) {
-          <div class="mb-2">
-            <img
-              [src]="form.controls.afterWorkPreview.value"
-              class="w-full rounded shadow-sm"
-              alt="Evidencia Después"
-            />
-          </div>
-          }
-          <lux-file-upload
-            accept="image/*,.heic,.heif"
-            [maxFileSize]="10000000"
-            [multiple]="false"
-            [chooseLabel]="'Seleccionar foto'"
-            (onSelect)="onFileSelect($event, 'afterWork')"
-            (filesChange)="onFilesChange($event, 'afterWork')"
-          />
-        </div>
+        }
+        <lux-file-upload
+          accept="image/*,.heic,.heif"
+          [maxFileSize]="10000000"
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'beforeWork')"
+          (filesChange)="onFilesChange($event, 'beforeWork')"
+        />
       </div>
     </div>
+    <div class="col-12 col-md-6">
+      <div class="mb-4">
+        <label class="fw-bold text-xs text-uppercase text-body d-block mb-2"
+          >Foto del después</label
+        >
+        @if (form.controls.afterWorkPreview.value) {
+        <div class="mb-2">
+          <img
+            [src]="form.controls.afterWorkPreview.value"
+            class="w-full rounded shadow-sm"
+            alt="Evidencia Después"
+          />
+        </div>
+        }
+        <lux-file-upload
+          accept="image/*,.heic,.heif"
+          [maxFileSize]="10000000"
+          [multiple]="false"
+          [chooseLabel]="'Seleccionar foto'"
+          (onSelect)="onFileSelect($event, 'afterWork')"
+          (filesChange)="onFilesChange($event, 'afterWork')"
+        />
+      </div>
+    </div>
+  </div>
 
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      label="Guardar"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

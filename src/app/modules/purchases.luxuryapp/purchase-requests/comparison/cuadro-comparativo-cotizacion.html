@@ -67,28 +67,28 @@
     <div class="mt-2">
       <div class="row g-4">
         <div class="col-12 col-md-6 col-lg-3">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [formControl]="nameProvider"
             label="Proveedor"
             [horizontal]="false"
           />
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [formControl]="garantia"
             label="Garantia"
             [horizontal]="false"
           />
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [formControl]="entrega"
             label="Tiempo de entrega"
             [horizontal]="false"
           />
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [formControl]="politicaPago"
             label="Politica de pago"
             [horizontal]="false"
@@ -127,7 +127,7 @@
           <td>{{ item.unidadMedida }}</td>
 
           <td>
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="item.controls.precio"
               [minFractionDigits]="2"
               [maxFractionDigits]="2"
@@ -136,7 +136,7 @@
           </td>
 
           <td>
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="item.controls.descuento"
               [min]="0"
               [max]="100"
@@ -148,7 +148,7 @@
           </td>
 
           <td>
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="item.controls.ivaAplicado"
               [min]="0"
               [max]="100"

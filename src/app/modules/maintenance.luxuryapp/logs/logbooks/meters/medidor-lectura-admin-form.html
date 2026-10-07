@@ -1,33 +1,33 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.fechaRegistro"
-        label="Fecha de registro"
-        placeholder="fecha de registro"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.fechaRegistro"
+    label="Fecha de registro"
+    placeholder="fecha de registro"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.lectura"
-        label="Lectura"
-        minFractionDigits="0"
-        maxFractionDigits="4"
-        placeholder="lectura"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.lectura"
+    label="Lectura"
+    minFractionDigits="0"
+    maxFractionDigits="4"
+    placeholder="lectura"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id() ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id() ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -13,7 +13,7 @@ import { IonInputFile } from "../../mobile/ion-input-file";
 import { WebInputFile } from "../../web/input-file/input-file";
 
 @Component({
-  selector: "custom-input-file-signal",
+  selector: "lux-input-file-signal",
 
   imports: [WebInputFile, IonInputFile],
   providers: [
@@ -21,7 +21,8 @@ import { WebInputFile } from "../../web/input-file/input-file";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputFile),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -77,4 +78,3 @@ export class InputFile extends BaseInputSignal {
     this.uploadError.emit(event);
   }
 }
-

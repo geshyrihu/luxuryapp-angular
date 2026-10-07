@@ -103,7 +103,8 @@
           <div
             class="d-flex align-items-center gap-1 border-1 border rounded-3xl px-2 py-1 bg-bg-body-tertiary"
           >
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:table-view"
               lxTooltip="Excel"
               tooltipPosition="bottom"
@@ -121,7 +122,8 @@
               ><lux-icon [icon]="'material-symbols-light:format-list-bulleted'"
             /></a>
             } @if (dataSignal().length > 0) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:print"
               lxTooltip="Solicitudes"
               tooltipPosition="bottom"
@@ -131,7 +133,8 @@
               (clicked)="onDownloadAllSolicitudesPago()"
             />
             }
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:upload"
               lxTooltip="Cargar XMLs"
               tooltipPosition="bottom"
@@ -281,7 +284,8 @@
         <span class="fw-bold text-body text-lg"
           >{{ grupo.totalGrupo | number: "1.2-2" }}</span
         >
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="material-symbols-light:folder"
           variant="text"
           severity="secondary"
@@ -464,13 +468,13 @@
               }
 
               <!-- Paid Checkbox -->
-              <custom-input-check-signal
+              <lux-input-check-signal
                 [control]="orden.ordenCompraPagadaControl"
                 (checkChange)="onPaymentStatusChange(orden)"
                 [horizontal]="false"
                 noMargin
                 lxTooltip="Marcado como Pagado"
-              ></custom-input-check-signal>
+              ></lux-input-check-signal>
             </div>
           </td>
 
@@ -478,7 +482,8 @@
           <td class="p-2 text-center">
             <div class="d-flex justify-content-center align-items-center gap-1">
               <!-- Start Solo lo ve el contador -->
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:wallet"
                 variant="text"
                 severity="success"
@@ -487,7 +492,8 @@
                 (clicked)="onManagePaymentVouchers(orden)"
               />
               <!-- Start Solo lo ve el contador -->
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:edit"
                 variant="text"
                 severity="info"
@@ -573,16 +579,17 @@
           <td>{{ orden.justificacionGasto }}</td>
           <td class="text-end">{{ orden.total | number: "1.2-2" }}</td>
           <td class="text-center">
-            <custom-input-check-signal
+            <lux-input-check-signal
               [control]="orden.ordenCompraPagadaControl"
               (checkChange)="onPaymentStatusChange(orden)"
               [horizontal]="false"
               noMargin
-            ></custom-input-check-signal>
+            ></lux-input-check-signal>
           </td>
           <td class="text-center">
             <div class="d-flex gap-1 justify-content-center">
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:visibility-outline"
                 variant="text"
                 size="sm"

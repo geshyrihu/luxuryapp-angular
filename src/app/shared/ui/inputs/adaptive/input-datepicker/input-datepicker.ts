@@ -13,7 +13,7 @@ import { IonInputDatepicker } from "../../mobile/ion-input-datepicker";
 import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker";
 
 @Component({
-  selector: "custom-input-datepicker-signal",
+  selector: "lux-input-datepicker-signal",
 
   imports: [WebInputDatepicker, IonInputDatepicker],
   providers: [
@@ -21,7 +21,8 @@ import { WebInputDatepicker } from "../../web/input-datepicker/input-datepicker"
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputDatepicker),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -76,4 +77,3 @@ export class InputDatepicker extends BaseInputSignal {
   dateSelect = output<any>();
   dateClear = output<void>();
 }
-

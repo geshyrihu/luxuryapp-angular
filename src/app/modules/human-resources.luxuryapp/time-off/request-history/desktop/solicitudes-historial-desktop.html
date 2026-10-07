@@ -22,7 +22,7 @@
         <form [formGroup]="form()" (ngSubmit)="search.emit()">
           <div class="row align-items-end g-4">
             <div class="col-12 col-sm-3 p-1">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 label="Empleado"
                 [data]="employees()"
                 [control]="form().controls.employeeId"
@@ -33,7 +33,7 @@
               />
             </div>
             <div class="col-12 col-sm-2 p-1">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 label="Tipo de Solicitud"
                 [data]="requestTypes()"
                 [control]="form().controls.requestType"
@@ -44,7 +44,7 @@
               />
             </div>
             <div class="col-12 col-sm-2 p-1">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 label="Estatus"
                 [data]="statuses()"
                 [control]="form().controls.status"
@@ -55,7 +55,7 @@
               />
             </div>
             <div class="col-12 col-sm-2 p-1">
-              <custom-input-date-signal
+              <lux-input-date-signal
                 label="Desde"
                 [control]="form().controls.startDate"
                 [horizontal]="false"
@@ -64,7 +64,7 @@
               />
             </div>
             <div class="col-12 col-sm-2 p-1">
-              <custom-input-date-signal
+              <lux-input-date-signal
                 label="Hasta"
                 [control]="form().controls.endDate"
                 [horizontal]="false"
@@ -74,12 +74,14 @@
             </div>
             <div class="col-12 col-sm-1 p-1">
               <div class="d-flex gap-1">
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:search"
                   type="submit"
                   variant="outline"
                 />
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:filter-alt-off"
                   variant="outline"
                   (clicked)="reset.emit()"

@@ -2,7 +2,7 @@
   <div class="row p-fluid g-4">
     <!-- Foto del Colaborador -->
     <div class="col-12 d-flex justify-content-center mb-4">
-      <custom-input-img-signal
+      <lux-input-img-signal
         (fileSelected)="change($event)"
         (imageLoaded)="imgBase64 = $event"
         [urlImgCurrent]="imgBase64"
@@ -12,7 +12,7 @@
 
     <!-- Nombres -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.firstName"
         label="Nombres"
         placeholder="nombres"
@@ -22,7 +22,7 @@
 
     <!-- Apellidos -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.lastName"
         label="Apellidos"
         placeholder="apellidos"
@@ -32,7 +32,7 @@
 
     <!-- Email -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.email"
         label="Email"
         placeholder="email"
@@ -43,7 +43,7 @@
 
     <!-- Teléfono -->
     <div class="col-12 col-md-6">
-      <custom-input-mask-signal
+      <lux-input-mask-signal
         [control]="form.controls.phoneNumber"
         label="Teléfono"
         customMask="(99) 9999-9999"
@@ -56,7 +56,7 @@
 
     <!-- Rol de Usuario -->
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.applicationRoleId"
         label="Rol de Usuario"
         [data]="cb_applicationRole()"
@@ -67,7 +67,7 @@
 
     <!-- Proveedor -->
     <div class="col-12 col-md-6">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveProviderId($event)"
         [control]="form.controls.providerName"
         [data]="cb_providers()"

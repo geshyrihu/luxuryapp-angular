@@ -1,35 +1,35 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.requestBajaId"
-        label="requestBajaId"
-        [hidden]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.requestBajaId"
+    label="requestBajaId"
+    [hidden]="true"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.description"
-        label="Description"
-        placeholder="description"
-      />
-      <custom-input-number-signal
-        [control]="form.controls.discount"
-        label="Descuento"
-        placeholder="descuento"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.description"
+    label="Description"
+    placeholder="description"
+  />
+  <lux-input-number-signal
+    [control]="form.controls.discount"
+    label="Descuento"
+    placeholder="descuento"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -11,7 +11,7 @@
     <div class="d-flex">
       <!-- Sección de controles principales -->
       <div class="d-flex align-items-start flex-grow-1">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="cbFundingYear()"
           [ngModel]="fundingYear()"
           (ngModelChange)="yearChange.emit($event)"
@@ -238,9 +238,7 @@
       </td>
       <td>
         @for (item2 of item.presupuesto; track item2) {
-        <p class="m-1">
-          {{ item2.accountNumber }} | {{ item2.accountName }}
-        </p>
+        <p class="m-1">{{ item2.accountNumber }} | {{ item2.accountName }}</p>
 
         }
       </td>

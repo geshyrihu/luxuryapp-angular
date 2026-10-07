@@ -1,97 +1,97 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <div class="mb-4 d-flex flex-wrap">
-        <label class="w-full sm:w-3 d-flex align-items-center">Imagen</label>
-        <div class="w-full sm:w-9">
-          <custom-input-img-signal
-            (fileSelected)="uploadFile($event)"
-            [urlImgCurrent]="model?.photoPath"
-            [contentHeight]="'150'"
-            [contentWidth]="'250'"
-          />
-        </div>
-      </div>
+  <div class="mb-4 d-flex flex-wrap">
+    <label class="w-full sm:w-3 d-flex align-items-center">Imagen</label>
+    <div class="w-full sm:w-9">
+      <lux-input-img-signal
+        (fileSelected)="uploadFile($event)"
+        [urlImgCurrent]="model?.photoPath"
+        [contentHeight]="'150'"
+        [contentWidth]="'250'"
+      />
+    </div>
+  </div>
 
-      <custom-input-text-signal
-        [control]="form.controls.nameCustomer"
-        label="Nombre"
-        placeholder="nombre"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.nameCustomer"
+    label="Nombre"
+    placeholder="nombre"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.nombreCorto"
-        label="Nombre Corto"
-        placeholder="nombre Corto"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.nombreCorto"
+    label="Nombre Corto"
+    placeholder="nombre Corto"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.rfc"
-        label="RFC"
-        placeholder="rfc"
+  <lux-input-text-signal
+    [control]="form.controls.rfc"
+    label="RFC"
+    placeholder="rfc"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.folioPrefix"
+    label="Folio Prefijo"
+    placeholder="folio prefijo"
+  />
+  <div class="mb-4 d-flex flex-wrap">
+    <div class="w-full">
+      <lux-input-mask-signal
+        [control]="form.controls.phoneOne"
+        label="Tél. 1"
+        placeholder="teléfono"
+        customMask="(00) 0000-0000"
       />
-      <custom-input-text-signal
-        [control]="form.controls.folioPrefix"
-        label="Folio Prefijo"
-        placeholder="folio prefijo"
+    </div>
+    <div class="w-full">
+      <lux-input-mask-signal
+        [control]="form.controls.phoneTwo"
+        label="Tél. 2"
+        placeholder="teléfono"
+        customMask="(00) 0000-0000"
       />
-      <div class="mb-4 d-flex flex-wrap">
-        <div class="w-full">
-          <custom-input-mask-signal
-            [control]="form.controls.phoneOne"
-            label="Tél. 1"
-            placeholder="teléfono"
-            customMask="(00) 0000-0000"
-          />
-        </div>
-        <div class="w-full">
-          <custom-input-mask-signal
-            [control]="form.controls.phoneTwo"
-            label="Tél. 2"
-            placeholder="teléfono"
-            customMask="(00) 0000-0000"
-          />
-        </div>
-      </div>
+    </div>
+  </div>
 
-      <custom-input-date-signal
-        [control]="form.controls.register"
-        label="Fecha de registro"
-        placeholder="fecha de registro"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.register"
+    label="Fecha de registro"
+    placeholder="fecha de registro"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.numeroCliente"
-        label="Numero de Cliente"
-        placeholder="numero de Cliente"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.active"
-        label="Activo"
-        [data]="optionActive"
-        [filter]="true"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.numeroCliente"
+    label="Numero de Cliente"
+    placeholder="numero de Cliente"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.active"
+    label="Activo"
+    [data]="optionActive"
+    [filter]="true"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.state"
-        label="Estado"
-        [data]="stateOptions"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.state"
+    label="Estado"
+    [data]="stateOptions"
+    [filter]="true"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

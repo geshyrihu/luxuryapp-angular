@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <!-- Título del Asunto -->
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveCategorie($event)"
     [control]="form.controls.legalMatterCategory"
     [data]="cb_categories()"
@@ -8,13 +8,13 @@
     placeholder="Escribe para buscar categoria"
     [horizontal]="false"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.title"
     [horizontal]="false"
     label="Asunto"
     placeholder="Asunto"
   />
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.isInternal"
     [data]="cb_resposanbles"
     [horizontal]="false"

@@ -1,12 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal [control]="form.controls.id" hidden label="Id" />
+  <lux-input-text-signal [control]="form.controls.id" hidden label="Id" />
 
-  <custom-input-date-time-signal
+  <lux-input-date-time-signal
     [control]="form.controls.fechaSalida"
     label="Hora/Fecha Salida"
   />
 
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveToolId($event)"
     [control]="form.controls.tool"
     [data]="cb_tool()"
@@ -14,7 +14,7 @@
     placeholder="Escribe para buscar herramienta"
   />
 
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveEmployeeId($event)"
     [control]="form.controls.applicationUser"
     [data]="cb_applicationUser()"
@@ -22,12 +22,12 @@
     placeholder="Escribe para buscar  colabororador"
   />
 
-  <custom-input-date-time-signal
+  <lux-input-date-time-signal
     [control]="form.controls.fechaRegreso"
     label="Hora/Fecha Regreso"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.observaciones"
     label="Observaciones"
     placeholder="observaciones"

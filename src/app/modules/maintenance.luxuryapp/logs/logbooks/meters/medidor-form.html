@@ -1,12 +1,12 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.id"
     hidden
     label="Id"
     [readonly]="true"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.medidorCategoriaId"
     [data]="cb_nombreMedidorCategoria()"
     label="Categoría"
@@ -14,19 +14,19 @@
     [filter]="true"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.numeroMedidor"
     label="Número"
     placeholder="número"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.descripcion"
     label="DESCRIPCIÓN"
     placeholder="DESCRIPCIÓN"
   />
 
-  <custom-input-decimal-signal
+  <lux-input-decimal-signal
     [control]="form.controls.consumoDiarioMaximo"
     label="Consumo diario"
     placeholder="consumo diario"

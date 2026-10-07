@@ -1,65 +1,65 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [horizontal]="false"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [horizontal]="false"
+    [readonly]="true"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.areaMinutasDetalles"
-        label="Area"
-        [data]="cb_area()"
-        [horizontal]="false"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.areaMinutasDetalles"
+    label="Area"
+    [data]="cb_area()"
+    [horizontal]="false"
+    [filter]="true"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.deliveryDate"
-        label="Fecha de término"
-        placeholder="fecha de término"
-        [horizontal]="false"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.deliveryDate"
+    label="Fecha de término"
+    placeholder="fecha de término"
+    [horizontal]="false"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.title"
-        label="Título"
-        placeholder="titulo"
-        [horizontal]="false"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.title"
+    label="Título"
+    placeholder="titulo"
+    [horizontal]="false"
+  />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.requestService"
-        label="Asunto"
-        placeholder="asunto"
-        [horizontal]="false"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.requestService"
+    label="Asunto"
+    placeholder="asunto"
+    [horizontal]="false"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.status"
-        label="Estatus"
-        [data]="cb_estatus()"
-        [horizontal]="false"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.status"
+    label="Estatus"
+    [data]="cb_estatus()"
+    [horizontal]="false"
+    [filter]="true"
+  />
 
-      <div class="d-flex justify-content-end mt-2">
-        <lux-button-web
-          [variant]="'outlined'"
-          label="Seguimientos"
-          iconClass="material-symbols-light:forum"
-          (clicked)="openFollowUp()"
-        />
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Guardar"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-  </form>
+  <div class="d-flex justify-content-end mt-2">
+    <lux-button-web
+      [variant]="'outlined'"
+      label="Seguimientos"
+      iconClass="material-symbols-light:forum"
+      (clicked)="openFollowUp()"
+    />
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

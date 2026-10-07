@@ -1,103 +1,106 @@
-    <!-- Error Display -->
-    @if (loadError()) {
-    <div
-      class="p-3 mb-4 bg-danger-light text-danger border border-danger rounded d-flex align-items-center gap-2"
-      role="alert"
-      aria-live="polite"
-      aria-atomic="true"
-    >
-      <lux-icon icon="material-symbols-light:error" class="text-xl" />
-      <div>
-        <strong class="d-block">Error:</strong>
-        <p class="m-0 text-sm">{{ loadError() }}</p>
-      </div>
+<!-- Error Display -->
+@if (loadError()) {
+<div
+  class="p-3 mb-4 bg-danger-light text-danger border border-danger rounded d-flex align-items-center gap-2"
+  role="alert"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <lux-icon icon="material-symbols-light:error" class="text-xl" />
+  <div>
+    <strong class="d-block">Error:</strong>
+    <p class="m-0 text-sm">{{ loadError() }}</p>
+  </div>
+</div>
+}
+
+<form
+  class="d-flex flex-column gap-3"
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+>
+  <!-- Campo Nombre -->
+  <lux-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre de la Inspección"
+    placeholder="Ingrese el nombre"
+    aria-required="true"
+    [horizontal]="true"
+  />
+
+  <!-- Selector de Departamento -->
+  <lux-input-select-signal
+    [control]="form.controls.departament"
+    label="Departamento"
+    placeholder="Seleccione departamento"
+    [data]="cb_departament()"
+    [filter]="true"
+    [horizontal]="true"
+  />
+
+  <!-- Selector de Frecuencia -->
+  <lux-input-select-signal
+    id="frequency"
+    [control]="form.controls.recurrenceUnit"
+    label="Frecuencia"
+    [data]="recurrenceUnitOptions"
+    optionLabel="label"
+    optionValue="value"
+    (selectionChange)="onFrequencyChange($event.value)"
+    [horizontal]="true"
+    placeholder="Seleccione una frecuencia"
+    [filter]="true"
+  />
+
+  <!-- Opciones de Frecuencia -->
+  @if (selectedFrequency() === 2) {
+  <div class="row align-items-center mb-3">
+    <div class="col-12 col-md-3">
+      <label class="fw-medium m-0">Días de la semana *</label>
     </div>
-    }
-
-    <form class="d-flex flex-column gap-3" autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Campo Nombre -->
-      <custom-input-text-signal
-        [control]="form.controls.name"
-        label="Nombre de la Inspección"
-        placeholder="Ingrese el nombre"
-        aria-required="true"
-        [horizontal]="true"
-      />
-
-      <!-- Selector de Departamento -->
-      <custom-input-select-signal
-        [control]="form.controls.departament"
-        label="Departamento"
-        placeholder="Seleccione departamento"
-        [data]="cb_departament()"
-        [filter]="true"
-        [horizontal]="true"
-      />
-
-      <!-- Selector de Frecuencia -->
-      <custom-input-select-signal
-        id="frequency"
-        [control]="form.controls.recurrenceUnit"
-        label="Frecuencia"
-        [data]="recurrenceUnitOptions"
-        optionLabel="label"
-        optionValue="value"
-        (selectionChange)="onFrequencyChange($event.value)"
-        [horizontal]="true"
-        placeholder="Seleccione una frecuencia"
-        [filter]="true"
-      />
-
-      <!-- Opciones de Frecuencia -->
-      @if (selectedFrequency() === 2) {
-      <div class="row align-items-center mb-3">
-        <div class="col-12 col-md-3">
-          <label class="fw-medium m-0">Días de la semana *</label>
-        </div>
-        <div class="col-12 col-md-9 d-flex flex-wrap gap-3">
-          @for (day of weekDays; track day.value) {
-          <custom-input-check-signal
-            [control]="getDayControl(day.key)"
-            [label]="day.label"
-          />
-          }
-        </div>
-      </div>
-      } 
-      
-      @if (selectedFrequency() === 3) {
-      <custom-input-number-signal
-        [control]="form.controls.dayOfMonth"
-        label="Día del Mes"
-        placeholder="Ingrese el día (1-31)"
-        [min]="1"
-        [max]="31"
-        [horizontal]="true"
+    <div class="col-12 col-md-9 d-flex flex-wrap gap-3">
+      @for (day of weekDays; track day.value) {
+      <lux-input-check-signal
+        [control]="getDayControl(day.key)"
+        [label]="day.label"
       />
       }
+    </div>
+  </div>
+  } @if (selectedFrequency() === 3) {
+  <lux-input-number-signal
+    [control]="form.controls.dayOfMonth"
+    label="Día del Mes"
+    placeholder="Ingrese el día (1-31)"
+    [min]="1"
+    [max]="31"
+    [horizontal]="true"
+  />
+  }
 
-      <!-- Selector de Activo -->
-      <custom-input-select-signal
-        id="isActive"
-        [control]="form.controls.isActive"
-        label="Estado de la Inspección"
-        [data]="activeStatusOptions"
-        optionLabel="label"
-        optionValue="value"
-        [horizontal]="true"
-        [filter]="true"
-      />
+  <!-- Selector de Activo -->
+  <lux-input-select-signal
+    id="isActive"
+    [control]="form.controls.isActive"
+    label="Estado de la Inspección"
+    [data]="activeStatusOptions"
+    optionLabel="label"
+    optionValue="value"
+    [horizontal]="true"
+    [filter]="true"
+  />
 
-      <div class="d-flex justify-content-end mt-2 border-top pt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-    </form>
+  <div class="d-flex justify-content-end mt-2 border-top pt-3">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+</form>

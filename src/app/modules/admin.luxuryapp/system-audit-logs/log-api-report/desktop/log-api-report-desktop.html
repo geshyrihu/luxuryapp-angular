@@ -32,7 +32,7 @@
             class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
           >
             <div>
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [data]="levelOptions()"
                 optionLabel="label"
                 optionValue="value"
@@ -45,7 +45,7 @@
               />
             </div>
             <div>
-              <custom-input-date-signal
+              <lux-input-date-signal
                 [control]="filterDateRangeControl()"
                 mode="range"
                 dateFormat="Y-m-d"
@@ -62,13 +62,15 @@
                 (clicked)="loadData.emit()"
                 [disabled]="isSearchDisabled()"
               />
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:refresh"
                 variant="outline"
                 size="small"
                 (clicked)="loadData.emit()"
               />
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:delete-outline"
                 variant="outline"
                 size="small"
@@ -100,7 +102,8 @@
         <!-- Fila 1: Datos principales -->
         <tr>
           <td>
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:chevron-right"
               variant="text"
               size="sm"
@@ -127,7 +130,7 @@
                 [icon]="'material-symbols-light:info'"
                 class="text-primary"
               />
-              <strong >Propiedades:</strong>
+              <strong>Propiedades:</strong>
             </div>
             <pre class="text-xs bg-body p-3 rounded overflow-auto max-h-200">
 {{ item.properties }}</pre>

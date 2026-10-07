@@ -12,7 +12,7 @@ import { IonInputPhonePrefix } from "../../mobile/ion-input-phone-prefix";
 import { WebInputPhonePrefix } from "../../web/input-phone-prefix/input-phone-prefix";
 
 @Component({
-  selector: "custom-input-phone-prefix",
+  selector: "lux-input-phone-prefix",
 
   imports: [WebInputPhonePrefix, IonInputPhonePrefix],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputPhonePrefix } from "../../web/input-phone-prefix/input-phone-pr
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPhonePrefix),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -59,4 +60,3 @@ export class InputPhonePrefix extends BaseInputSignal {
   prefixList = input<any[]>([]);
   countryCode = input<string>("+52");
 }
-

@@ -35,7 +35,8 @@ import { ApprovalInfoService } from "./approval-info.service";
     LxDivider,
     LxMessage,
     LxTag,
-    CustomInputToggleSwitch],
+    CustomInputToggleSwitch,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (loading) {
@@ -58,7 +59,7 @@ import { ApprovalInfoService } from "./approval-info.service";
               [class.bg-yellow-100]="!paidStatus.value"
               [class.text-yellow-800]="!paidStatus.value"
             >
-              <custom-input-toggle-switch-signal
+              <lux-input-toggle-switch-signal
                 [control]="paidStatus"
                 [onlyInput]="true"
                 [noMargin]="true"
@@ -239,7 +240,8 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          )]);
+          ),
+        ]);
 
         this.leaveHistory = historyResult;
         this.overlappingLeaveRequests = overlappingResult ?? [];
@@ -251,7 +253,8 @@ export class ApprovalConfirmationModal implements OnInit {
             this.request.startDate,
             this.request.endDate,
             this.request.employeeId,
-          )]);
+          ),
+        ]);
 
         this.vacationBalance = balanceResult;
         this.overlappingVacationRequests = overlappingResult ?? [];

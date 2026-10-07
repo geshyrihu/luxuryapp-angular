@@ -1,60 +1,60 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [hidden]="false"
-        placeholder="Id"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [hidden]="false"
+    placeholder="Id"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.machineryId"
-        label="Elevador"
-        placeholder="Elevador"
-        [data]="cb_elevators()"
-        [filter]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.folio"
-        label="Folio del reporte"
-        placeholder="folio del reporte"
-      />
-      <custom-input-date-signal
-        [control]="form.controls.requestDate"
-        label="Fecha"
-        placeholder="fecha"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.machineryId"
+    label="Elevador"
+    placeholder="Elevador"
+    [data]="cb_elevators()"
+    [filter]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.folio"
+    label="Folio del reporte"
+    placeholder="folio del reporte"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.requestDate"
+    label="Fecha"
+    placeholder="fecha"
+  />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.report"
-        label="Reporte"
-        placeholder="reporte"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.request"
-        label="Respuesta"
-        placeholder="respuesta"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.personWhoReports"
-        label="Quien Reporto"
-        placeholder="quien reporte"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.report"
+    label="Reporte"
+    placeholder="reporte"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.request"
+    label="Respuesta"
+    placeholder="respuesta"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.personWhoReports"
+    label="Quien Reporto"
+    placeholder="quien reporte"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.technicianWhoAttended"
-        label="Técnico"
-        placeholder="técnico"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.technicianWhoAttended"
+    label="Técnico"
+    placeholder="técnico"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

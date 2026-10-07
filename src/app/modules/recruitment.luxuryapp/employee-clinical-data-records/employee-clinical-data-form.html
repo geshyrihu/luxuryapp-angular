@@ -1,7 +1,7 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="f.name"
         label="Nombre"
         placeholder="Ej. Alergia, tipo de sangre, condicion"
@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-12">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="f.description"
         label="Descripción"
         placeholder="Detalle del dato clinico"

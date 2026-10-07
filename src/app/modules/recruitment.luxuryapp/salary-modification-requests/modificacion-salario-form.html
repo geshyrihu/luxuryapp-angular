@@ -1,46 +1,46 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <p>Editar modificación de Salario</p>
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        placeholder="id"
-        [hidden]="true"
-      />
+  <p>Editar modificación de Salario</p>
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    placeholder="id"
+    [hidden]="true"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.folio"
-        label="Folio"
-        placeholder="folio"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.folio"
+    label="Folio"
+    placeholder="folio"
+    [readonly]="true"
+  />
 
-      <custom-input-date-signal
-        [control]="form.controls.executionDate"
-        label="Fecha de ejecución"
-        placeholder="fecha de ejecución"
-      />
+  <lux-input-date-signal
+    [control]="form.controls.executionDate"
+    label="Fecha de ejecución"
+    placeholder="fecha de ejecución"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.status"
-        label="Estatus"
-        [data]="cb_status()"
-        [filter]="true"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.retroactive"
-        label="Aplica retroactivo"
-        [data]="cb_si_no()"
-        [filter]="true"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-select-signal
+    [control]="form.controls.status"
+    label="Estatus"
+    [data]="cb_status()"
+    [filter]="true"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.retroactive"
+    label="Aplica retroactivo"
+    [data]="cb_si_no()"
+    [filter]="true"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

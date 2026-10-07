@@ -3,7 +3,7 @@
     <div class="row g-4">
       <div class="col-12 col-md-4" [formGroup]="form">
         <div class="mb-4">
-          <custom-input-select-signal
+          <lux-input-select-signal
             id="profile"
             label="Perfil de IA (Modelo)"
             formControlName="profile"
@@ -12,18 +12,18 @@
             optionValue="value"
             placeholder="Selecciona un perfil"
           >
-          </custom-input-select-signal>
+          </lux-input-select-signal>
         </div>
 
         <div class="mb-4">
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             id="prompt"
             label="Prompt de Prueba"
             formControlName="prompt"
             [rows]="5"
             placeholder="Escribe tu instrucción aquí..."
           >
-          </custom-input-textarea-signal>
+          </lux-input-textarea-signal>
         </div>
 
         <lux-button-web

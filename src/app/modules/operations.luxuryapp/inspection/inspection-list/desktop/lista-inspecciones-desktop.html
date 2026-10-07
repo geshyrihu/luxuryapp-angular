@@ -19,7 +19,7 @@
         />
       </div>
       <div class="inspection-filters__field">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [ngModel]="selectedArea()"
           (ngModelChange)="filterAreaChange.emit($event)"
           [data]="areasResponsables()"
@@ -31,7 +31,7 @@
         />
       </div>
       <div class="inspection-filters__field">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [ngModel]="selectedRecurrence()"
           (ngModelChange)="filterRecurrenceChange.emit($event)"
           [data]="[

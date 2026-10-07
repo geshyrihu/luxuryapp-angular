@@ -1,13 +1,13 @@
 <div class="w-full">
   <div class="w-full">
     <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls.scheduledDate"
         label="Fecha"
         placeholder="fecha"
       />
 
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveUserId($event)"
         [control]="form.controls.assignee"
         [data]="cb_user()"
@@ -30,10 +30,3 @@
     </form>
   </div>
 </div>
-
-
-
-
-
-
-

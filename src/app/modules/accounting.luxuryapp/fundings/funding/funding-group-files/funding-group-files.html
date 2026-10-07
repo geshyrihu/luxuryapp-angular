@@ -3,7 +3,7 @@
     <span class="text-xl fw-bold"></span>
     <div class="flex-grow-1"></div>
 
-    <custom-input-select-button-signal
+    <lux-input-select-button-signal
       [options]="viewOptions"
       [control]="viewModeControl"
       optionLabel="label"
@@ -12,7 +12,7 @@
       <ng-template let-item #item>
         <lux-icon [icon]="item.icon" />
       </ng-template>
-    </custom-input-select-button-signal>
+    </lux-input-select-button-signal>
 
     <lux-button-web
       label="Descargar ({{ selectedFiles().length }})"

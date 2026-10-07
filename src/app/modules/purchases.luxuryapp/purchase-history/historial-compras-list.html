@@ -27,7 +27,7 @@
 
             <div class="row g-4">
               <div class="col-12 col-md-6">
-                <custom-input-date-signal
+                <lux-input-date-signal
                   [control]="filterForm.controls.fechaInicio"
                   label="DESDE"
                   placeholder="DESDE"
@@ -36,7 +36,7 @@
                 />
               </div>
               <div class="col-12 col-md-6">
-                <custom-input-date-signal
+                <lux-input-date-signal
                   [control]="filterForm.controls.fechaFin"
                   label="HASTA"
                   placeholder="HASTA"
@@ -113,16 +113,16 @@
 </section>
 
 @if (platformS.isMobile()) {
-  <app-historial-compras-list-mobile
-    [data]="dataSignal()"
-    [globalFilterFields]="globalFilterFields()"
-    (viewOrder)="onViewOrder($event)"
-  />
+<app-historial-compras-list-mobile
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  (viewOrder)="onViewOrder($event)"
+/>
 } @else {
-  <app-historial-compras-list-desktop
-    [data]="dataSignal()"
-    [globalFilterFields]="globalFilterFields()"
-    [loading]="loading()"
-    (viewOrder)="onViewOrder($event)"
-  />
+<app-historial-compras-list-desktop
+  [data]="dataSignal()"
+  [globalFilterFields]="globalFilterFields()"
+  [loading]="loading()"
+  (viewOrder)="onViewOrder($event)"
+/>
 }

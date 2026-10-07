@@ -1,115 +1,115 @@
-    <h3 class="h3 mb-3">Datos de Empleado</h3>
+<h3 class="h3 mb-3">Datos de Empleado</h3>
 
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="row g-4">
-        <!-- Sexo -->
-        <div class="col-12 col-md-4">
-          <custom-input-select-signal
-            [control]="form.controls.sex"
-            label="Sexo"
-            [data]="cb_sex()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="row g-4">
+    <!-- Sexo -->
+    <div class="col-12 col-md-4">
+      <lux-input-select-signal
+        [control]="form.controls.sex"
+        label="Sexo"
+        [data]="cb_sex()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- CURP -->
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.curp"
-            label="CURP"
-            placeholder="curp"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- CURP -->
+    <div class="col-12 col-md-4">
+      <lux-input-text-signal
+        [control]="form.controls.curp"
+        label="CURP"
+        placeholder="curp"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- RFC -->
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.rfc"
-            label="RFC"
-            placeholder="rfc"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- RFC -->
+    <div class="col-12 col-md-4">
+      <lux-input-text-signal
+        [control]="form.controls.rfc"
+        label="RFC"
+        placeholder="rfc"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- NSS -->
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.nss"
-            label="NSS"
-            placeholder="nss"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- NSS -->
+    <div class="col-12 col-md-4">
+      <lux-input-text-signal
+        [control]="form.controls.nss"
+        label="NSS"
+        placeholder="nss"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Tipo de Sangre -->
-        <div class="col-12 col-md-4">
-          <custom-input-select-signal
-            [control]="form.controls.bloodType"
-            label="Tipo de Sangre"
-            [data]="cb_blood_type()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
+    <!-- Tipo de Sangre -->
+    <div class="col-12 col-md-4">
+      <lux-input-select-signal
+        [control]="form.controls.bloodType"
+        label="Tipo de Sangre"
+        [data]="cb_blood_type()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- Teléfono local -->
-        <div class="col-12 col-md-4">
-          <custom-input-mask-signal
-            [control]="form.controls.localPhone"
-            label="Tél. local"
-            placeholder="(00) 0000-0000"
-            customMask="(00) 0000-0000"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- Teléfono local -->
+    <div class="col-12 col-md-4">
+      <lux-input-mask-signal
+        [control]="form.controls.localPhone"
+        label="Tél. local"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Estado civil -->
-        <div class="col-12 col-md-4">
-          <custom-input-select-signal
-            [control]="form.controls.maritalStatus"
-            label="Estado civil"
-            [data]="cb_marital_status()"
-            [horizontal]="false"
-            [filter]="true"
-          />
-        </div>
+    <!-- Estado civil -->
+    <div class="col-12 col-md-4">
+      <lux-input-select-signal
+        [control]="form.controls.maritalStatus"
+        label="Estado civil"
+        [data]="cb_marital_status()"
+        [horizontal]="false"
+        [filter]="true"
+      />
+    </div>
 
-        <!-- Fecha de nacimiento -->
-        <div class="col-12 col-md-4">
-          <custom-input-date-signal
-            [control]="form.controls.birth"
-            label="Fecha de nacimiento"
-            placeholder="fecha de nacimiento"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- Fecha de nacimiento -->
+    <div class="col-12 col-md-4">
+      <lux-input-date-signal
+        [control]="form.controls.birth"
+        label="Fecha de nacimiento"
+        placeholder="fecha de nacimiento"
+        [horizontal]="false"
+      />
+    </div>
 
-        <!-- Nacionalidad -->
-        <div class="col-12 col-md-4">
-          <custom-input-autocomplete-signal
-            [control]="form.controls.nationality"
-            [data]="cb_nationality()"
-            label="Nacionalidad"
-            placeholder="Escribir para buscar nacionalidad"
-            [horizontal]="false"
-          />
-        </div>
-      </div>
+    <!-- Nacionalidad -->
+    <div class="col-12 col-md-4">
+      <lux-input-autocomplete-signal
+        [control]="form.controls.nationality"
+        [data]="cb_nationality()"
+        label="Nacionalidad"
+        placeholder="Escribir para buscar nacionalidad"
+        [horizontal]="false"
+      />
+    </div>
+  </div>
 
-      @if (!isReadOnly()) {
-      <div class="d-flex justify-content-end mt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Guardar"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-        />
-      </div>
-    }
-    </form>
+  @if (!isReadOnly()) {
+  <div class="d-flex justify-content-end mt-3">
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      label="Guardar"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </div>
+  }
+</form>

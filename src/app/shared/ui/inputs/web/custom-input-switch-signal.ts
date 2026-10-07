@@ -1,11 +1,16 @@
-import { Component, forwardRef, output, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  output,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { BaseInputSignal } from "../core/base-input-signal";
 
 // 🔄 COMPONENTE DE SWITCH
 // Un componente para interruptores de tipo on/off.
 @Component({
-  selector: "custom-input-switch-signal",
+  selector: "lux-input-switch-signal",
   imports: [BaseInputSignal, ReactiveFormsModule],
   template: `
     <!-- 🏗️ ESTRUCTURA BASE -->
@@ -40,7 +45,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputSwitch),
       multi: true,
-    }],
+    },
+  ],
 })
 export class CustomInputSwitch extends BaseInputSignal {
   // 📤 EVENTO DE SALIDA

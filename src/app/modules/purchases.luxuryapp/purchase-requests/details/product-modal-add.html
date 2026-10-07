@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-12 col-md-2 no-print">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="searchControl"
             placeholder="Buscar..."
             (input)="applyFilter()"
@@ -70,7 +70,7 @@
           {{ rowItem.marca }} {{ rowItem.producto }}
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="formArray.controls[i].controls.cantidad"
             mode="decimal"
             [minFractionDigits]="0"
@@ -79,7 +79,7 @@
           />
         </td>
         <td>
-          <custom-input-select-signal
+          <lux-input-select-signal
             [control]="formArray.controls[i].controls.unidadMedidaId"
             [data]="cb_unidadMedida"
             optionLabel="label"
@@ -92,7 +92,8 @@
         </td>
         <td>
           <div class="d-flex justify-content-center">
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:save"
               (clicked)="onSubmit(formArray.controls[i])"
             />

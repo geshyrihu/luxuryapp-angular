@@ -68,7 +68,7 @@
         />
       </div>
       <div class="col-12 col-md-2">
-        <custom-input-select-signal
+        <lux-input-select-signal
           id="yearSelector"
           [(ngModel)]="intYear"
           (selectionChange)="onLoadPresupuesto()"
@@ -98,11 +98,11 @@
       <td>{{ item.accountNumber }} | {{ item.accountName }}</td>
       <td>{{ item.presupuestoMensual | number: "1.0-0" }}</td>
       <td>
-        <custom-input-number-signal
+        <lux-input-number-signal
           [(ngModel)]="item.amount"
           mode="decimal"
           [minFractionDigits]="2"
-        ></custom-input-number-signal>
+        ></lux-input-number-signal>
       </td>
       <!-- Opciones -->
       <td>
@@ -110,7 +110,8 @@
           @if (submitting()) {
           <lux-spinner [size]="32" [strokeWidth]="8" />
           } @else {
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:save"
             (clicked)="onSubmit(item)"
           />

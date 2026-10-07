@@ -1,105 +1,97 @@
 <div class="card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Campo: Nombre del almacén -->
+    <lux-input-text-signal
+      [control]="form.controls.nombre"
+      label="Nombre"
+      placeholder="Nombre del almacén"
+    />
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <!-- Campo: Nombre del almacén -->
-      <custom-input-text-signal
-        [control]="form.controls.nombre"
-        label="Nombre"
-        placeholder="Nombre del almacén"
+    <!-- Campo: Ubicación del almacén -->
+    <lux-input-text-signal
+      [control]="form.controls.ubicacion"
+      label="Ubicación"
+      placeholder="Ubicación del almacén"
+    />
+
+    <!-- Sección: Asignación de responsables (solo para administradores) -->
+    @if ( aspRoleS.anyOf([ AspRole.Administrador, AspRole.SuperUsuario, ])()) {
+    <div class="mt-4">
+      <h5>Asignar Responsables</h5>
+
+      <!-- Buscador de usuarios disponibles -->
+      <lux-input-text-signal
+        [control]="searchAvailable"
+        placeholder="Buscar usuarios disponibles..."
+        [horizontal]="false"
+        customClass="w-100 mb-3"
       />
 
-      <!-- Campo: Ubicación del almacén -->
-      <custom-input-text-signal
-        [control]="form.controls.ubicacion"
-        label="Ubicación"
-        placeholder="Ubicación del almacén"
-      />
-
-      <!-- Sección: Asignación de responsables (solo para administradores) -->
-      @if ( aspRoleS.anyOf([ AspRole.Administrador, AspRole.SuperUsuario, ])())
-      {
-      <div class="mt-4">
-        <h5>Asignar Responsables</h5>
-
-        <!-- Buscador de usuarios disponibles -->
-        <custom-input-text-signal
-          [control]="searchAvailable"
-          placeholder="Buscar usuarios disponibles..."
-          [horizontal]="false"
-          customClass="w-100 mb-3"
-        />
-
-        <div class="row g-4">
-          <div class="col-12 col-md-6">
-            <div class="mb-2 h5">Usuarios Disponibles</div>
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="mb-2 h5">Usuarios Disponibles</div>
+          <div
+            cdkDropList
+            id="availableUsers"
+            [cdkDropListData]="filteredAvailableUsers()"
+            [cdkDropListConnectedTo]="['assignedList']"
+            (cdkDropListDropped)="onDropToAvailable($event)"
+            class="border-1 border rounded p-3 min-h-10rem bg-body-tertiary"
+          >
+            @for (user of filteredAvailableUsers(); track user.value) {
             <div
-              cdkDropList
-              id="availableUsers"
-              [cdkDropListData]="filteredAvailableUsers()"
-              [cdkDropListConnectedTo]="['assignedList']"
-              (cdkDropListDropped)="onDropToAvailable($event)"
-              class="border-1 border rounded p-3 min-h-10rem bg-body-tertiary"
+              (dblclick)="onAddUser(user)"
+              class="bg-body p-2 rounded shadow-sm mb-2 cursor-grab"
+              cdkDrag
             >
-              @for (user of filteredAvailableUsers(); track user.value) {
-              <div
-                (dblclick)="onAddUser(user)"
-                class="bg-body p-2 rounded shadow-sm mb-2 cursor-grab"
-                cdkDrag
-              >
-                {{ user.label }}
-              </div>
-              }
+              {{ user.label }}
             </div>
+            }
           </div>
+        </div>
 
-          <div class="col-12 col-md-6">
-            <div class="mb-2 h5">Responsables Asignados</div>
+        <div class="col-12 col-md-6">
+          <div class="mb-2 h5">Responsables Asignados</div>
+          <div
+            cdkDropList
+            id="assignedList"
+            [cdkDropListData]="assignedUsers"
+            [cdkDropListConnectedTo]="['availableUsers']"
+            (cdkDropListDropped)="onDropToAssigned($event)"
+            class="border-1 border rounded p-3 min-h-10rem bg-body-tertiary"
+          >
+            @for (user of assignedUsers; track user.value) {
             <div
-              cdkDropList
-              id="assignedList"
-              [cdkDropListData]="assignedUsers"
-              [cdkDropListConnectedTo]="['availableUsers']"
-              (cdkDropListDropped)="onDropToAssigned($event)"
-              class="border-1 border rounded p-3 min-h-10rem bg-body-tertiary"
+              class="bg-body p-2 rounded shadow-sm mb-2 cursor-grab d-flex justify-content-between align-items-center"
+              cdkDrag
+              @dropAnimation
             >
-              @for (user of assignedUsers; track user.value) {
-              <div
-                class="bg-body p-2 rounded shadow-sm mb-2 cursor-grab d-flex justify-content-between align-items-center"
-                cdkDrag
-                @dropAnimation
-              >
-                <span>{{ user.label }}</span>
-                <lux-button-web displayMode="icon"
-                  iconClass="material-symbols-light:delete"
-                  severity="danger"
-                  variant="text"
-                  (clicked)="onRemoveUser(user)"
-                />
-              </div>
-              }
+              <span>{{ user.label }}</span>
+              <lux-button-web
+                displayMode="icon"
+                iconClass="material-symbols-light:delete"
+                severity="danger"
+                variant="text"
+                (clicked)="onRemoveUser(user)"
+              />
             </div>
+            }
           </div>
         </div>
       </div>
-      }
+    </div>
+    }
 
-      <!-- Botón de envío del formulario -->
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
-
+    <!-- Botón de envío del formulario -->
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </form>
 </div>
-
-
-
-
-
-

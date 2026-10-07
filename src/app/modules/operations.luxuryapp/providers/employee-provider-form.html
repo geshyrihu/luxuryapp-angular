@@ -3,121 +3,118 @@
      ══════════════════════════════════════════════════════ -->
 @if (fase() === 1) {
 
-  <div class="row col-12 g-4">
-    <div class="col-12 mb-3">
-      <p class="text-danger card-text">
-        Valida con el Administrador del sistema que este
-        <strong>COLABORADOR</strong>
-        no este ya en la base de datos, si este
-        <strong>COLABORADOR</strong>
-        ha trabajado en otro edificio de GRUPO LUXURY, es probable que ya este
-        registrado y solo sea necesario activar el registro y asignarlo al
-        edificio de nuevo ingreso (esta tarea la realizaría el administrador del
-        sistema)
-      </p>
+<div class="row col-12 g-4">
+  <div class="col-12 mb-3">
+    <p class="text-danger card-text">
+      Valida con el Administrador del sistema que este
+      <strong>COLABORADOR</strong>
+      no este ya en la base de datos, si este
+      <strong>COLABORADOR</strong>
+      ha trabajado en otro edificio de GRUPO LUXURY, es probable que ya este
+      registrado y solo sea necesario activar el registro y asignarlo al
+      edificio de nuevo ingreso (esta tarea la realizaría el administrador del
+      sistema)
+    </p>
+  </div>
+  @if (vacancyCandidates().length > 0) {
+  <div class="col-12 mb-4 p-3 border-1 border rounded bg-primary-reverse">
+    <h5 class="m-0 mb-2">Candidato Aprobado</h5>
+    <p class="text-sm mb-3">
+      Esta vacante tiene candidatos seleccionados o en proceso de alta. Puedes
+      elegir uno para pre-llenar los datos y vincularlo.
+    </p>
+    <div class="d-flex flex-column gap-2">
+      <lux-input-select-signal
+        label="Seleccionar candidato:"
+        placeholder="Selecciona un candidato"
+        [control]="candidateControl"
+        [data]="vacancyCandidates()"
+        [filter]="true"
+      />
     </div>
-    @if (vacancyCandidates().length > 0) {
-    <div
-      class="col-12 mb-4 p-3 border-1 border rounded bg-primary-reverse"
-    >
-      <h5 class="m-0 mb-2">Candidato Aprobado</h5>
-      <p class="text-sm mb-3">
-        Esta vacante tiene candidatos seleccionados o en proceso de alta. Puedes
-        elegir uno para pre-llenar los datos y vincularlo.
-      </p>
-      <div class="d-flex flex-column gap-2">
-        <custom-input-select-signal
-          label="Seleccionar candidato:"
-          placeholder="Selecciona un candidato"
-          [control]="candidateControl"
-          [data]="vacancyCandidates()"
-          [filter]="true"
-        />
-      </div>
-    </div>
-    }
-    <div class="col-12 col-sm-7">
-      <form autocomplete="off" (ngSubmit)="register()" [formGroup]="form">
-        <custom-input-text-signal
-          [control]="form.controls.firstName"
-          label="Nombre"
-          placeholder="nombre"
-          (input)="searchExistingPerson($event)"
-        />
-        <custom-input-text-signal
-          (input)="searchExistingPerson($event)"
-          [control]="form.controls.lastName"
-          label="Apellidos"
-          placeholder="apellidos"
-        />
-        <custom-input-mask-signal
-          [control]="form.controls.phoneNumber"
-          label="Tél. Celular"
-          placeholder="(00) 0000-0000"
-          customMask="(00) 0000-0000"
-          (input)="searchExistingPhone($event)"
-        />
-        <custom-input-date-signal
-          [control]="form.controls.birth"
-          label="Fecha de nacimiento"
-          placeholder="fecha de nacimiento"
-        />
-        <custom-input-text-signal
-          [control]="form.controls.email"
-          label="Email personal"
-          placeholder="email personal"
-        />
-        <custom-input-select-signal
-          [control]="form.controls.applicationRoleId"
-          label="Puesto"
-          [data]="cb_applicationRole()"
-          [filter]="true"
-        />
-        <div class="mb-4">
-          <custom-input-img-signal
-            (fileSelected)="change($event)"
-            [urlImgCurrent]="imgBase64"
-            label="Fotografia"
-            [horizontal]="true"
-            [required]="true"
-          />
-        </div>
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
-          label="Registrar empleado"
-        />
-      </form>
-    </div>
-    <div class="col-12 col-sm-5">
+  </div>
+  }
+  <div class="col-12 col-sm-7">
+    <form autocomplete="off" (ngSubmit)="register()" [formGroup]="form">
+      <lux-input-text-signal
+        [control]="form.controls.firstName"
+        label="Nombre"
+        placeholder="nombre"
+        (input)="searchExistingPerson($event)"
+      />
+      <lux-input-text-signal
+        (input)="searchExistingPerson($event)"
+        [control]="form.controls.lastName"
+        label="Apellidos"
+        placeholder="apellidos"
+      />
+      <lux-input-mask-signal
+        [control]="form.controls.phoneNumber"
+        label="Tél. Celular"
+        placeholder="(00) 0000-0000"
+        customMask="(00) 0000-0000"
+        (input)="searchExistingPhone($event)"
+      />
+      <lux-input-date-signal
+        [control]="form.controls.birth"
+        label="Fecha de nacimiento"
+        placeholder="fecha de nacimiento"
+      />
+      <lux-input-text-signal
+        [control]="form.controls.email"
+        label="Email personal"
+        placeholder="email personal"
+      />
+      <lux-input-select-signal
+        [control]="form.controls.applicationRoleId"
+        label="Puesto"
+        [data]="cb_applicationRole()"
+        [filter]="true"
+      />
       <div class="mb-4">
-        <p class="text-danger text-justify">
-          <strong>Coincidencias registradas</strong>
-          , Si hay coincidencias, solicita el apoyo del administrador del
-          sistema
-        </p>
+        <lux-input-img-signal
+          (fileSelected)="change($event)"
+          [urlImgCurrent]="imgBase64"
+          label="Fotografia"
+          [horizontal]="true"
+          [required]="true"
+        />
       </div>
-      <div class="row col-12 col-md-6 g-4">
-        <div>
-          <p class="text-danger fw-bold">POR NOMBRE:</p>
-          @for (item of existingPerson; track item) {
-          <p class="text-danger m-0 text-sm">- {{ item }}</p>
-          }
-        </div>
-        <div>
-          <p class="text-danger fw-bold">POR TÉLEFONO:</p>
-          @for (item of existingPhone; track item) {
-          <p class="text-danger m-0 text-sm">- {{ item }}</p>
-          }
-        </div>
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+        label="Registrar empleado"
+      />
+    </form>
+  </div>
+  <div class="col-12 col-sm-5">
+    <div class="mb-4">
+      <p class="text-danger text-justify">
+        <strong>Coincidencias registradas</strong>
+        , Si hay coincidencias, solicita el apoyo del administrador del sistema
+      </p>
+    </div>
+    <div class="row col-12 col-md-6 g-4">
+      <div>
+        <p class="text-danger fw-bold">POR NOMBRE:</p>
+        @for (item of existingPerson; track item) {
+        <p class="text-danger m-0 text-sm">- {{ item }}</p>
+        }
+      </div>
+      <div>
+        <p class="text-danger fw-bold">POR TÉLEFONO:</p>
+        @for (item of existingPhone; track item) {
+        <p class="text-danger m-0 text-sm">- {{ item }}</p>
+        }
       </div>
     </div>
   </div>
+</div>
 
 }
 
@@ -172,14 +169,14 @@
   <!-- Campos para "solo vacante" -->
   @if (opcion() === 'vacante') {
   <div class="border-1 border rounded p-3 mb-4">
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Vacante que cubre"
       placeholder="Selecciona la vacante"
       [control]="vacanteForm.controls.positionRequestId"
       [data]="cb_vacantes()"
       [filter]="true"
     />
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Tipo de contrato"
       [control]="vacanteForm.controls.typeContractRegister"
       [data]="cb_typeContractRegister()"
@@ -191,30 +188,30 @@
   <!-- Campos para "alta completa" -->
   @if (opcion() === 'alta') {
   <div class="border-1 border rounded p-3 mb-4">
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Vacante que cubre"
       placeholder="Selecciona la vacante"
       [control]="altaForm.controls.positionRequestId"
       [data]="cb_vacantes()"
       [filter]="true"
     />
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Tipo de contrato"
       [control]="altaForm.controls.typeContractRegister"
       [data]="cb_typeContractRegister()"
       [filter]="true"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       label="Jefe inmediato"
       placeholder="Nombre del jefe inmediato"
       [control]="altaForm.controls.boss"
     />
-    <custom-input-text-signal
+    <lux-input-text-signal
       label="Dirección de trabajo"
       placeholder="Dirección donde laborará"
       [control]="altaForm.controls.customerAddress"
     />
-    <custom-input-textarea-signal
+    <lux-input-textarea-signal
       label="Comentarios adicionales"
       placeholder="Información adicional relevante"
       [control]="altaForm.controls.additionalInformation"

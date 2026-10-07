@@ -26,7 +26,7 @@
 -->
 <!-- Added w-8rem for better sizing -->
 <!-- <div class="field w-8rem">
-  <custom-input-select-signal size="small" [(ngModel)]="selectedFiscalYear" [data]="availableYears" (ngModelChange)="onFiscalYearChange()" placeholder="Año Fiscal" />
+  <lux-input-select-signal size="small" [(ngModel)]="selectedFiscalYear" [data]="availableYears" (ngModelChange)="onFiscalYearChange()" placeholder="Año Fiscal" />
 </div> -->
 @if (errorMensaje) {
 <!-- Bloque para mostrar un mensaje de error si algo falla. La clásica alerta de peligro. -->
@@ -292,7 +292,7 @@
           class="d-flex flex-nowrap gap-2 align-items-center flex-grow-1 min-w-0"
         >
           <div class="flex-shrink-0 w-7rem">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [(ngModel)]="selectedFiscalYear"
               [data]="availableYears"
               (ngModelChange)="onFiscalYearChange()"

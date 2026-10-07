@@ -1,40 +1,39 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <lux-input-autocomplete-signal
+    (propagar)="saveLegalMatter($event)"
+    [control]="form.controls.title"
+    [data]="cb_legal_matter()"
+    label="Asunto:"
+    placeholder="Escribe para buscar asunto"
+    [horizontal]="false"
+  />
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-autocomplete-signal
-      (propagar)="saveLegalMatter($event)"
-      [control]="form.controls.title"
-      [data]="cb_legal_matter()"
-      label="Asunto:"
-      placeholder="Escribe para buscar asunto"
-      [horizontal]="false"
-    />
+  <lux-input-textarea-signal
+    [control]="form.controls.description"
+    label="DESCRIPCIÓN:"
+    placeholder="DESCRIPCIÓN:"
+    [horizontal]="false"
+  />
 
-    <custom-input-textarea-signal
-      [control]="form.controls.description"
-      label="DESCRIPCIÓN:"
-      placeholder="DESCRIPCIÓN:"
-      [horizontal]="false"
-    />
-
-    @if (id) {
-    <div class="d-flex justify-content-end mb-3">
-      <lux-button-web
-        label="Seguimientos"
-        iconClass="material-symbols-light:forum"
-        severity="info"
-        (clicked)="onOpenSeguimiento()"
-      />
-    </div>
-    }
-
+  @if (id) {
+  <div class="d-flex justify-content-end mb-3">
     <lux-button-web
-      kind="save"
-      type="submit"
+      label="Seguimientos"
+      iconClass="material-symbols-light:forum"
       severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
+      (clicked)="onOpenSeguimiento()"
     />
-  </form>
+  </div>
+  }
+
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

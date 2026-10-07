@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-12 col-md-3">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls.meetingDate"
         label="Fecha de la junta"
         placeholder="fecha de la junta"
@@ -38,7 +38,7 @@
     </div>
     <div class="col-12 col-md-4">
       <label class="d-block mb-2 fw-semibold">Hora de inicio *</label>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.startTime"
         [data]="startTimeOptions()"
         optionLabel="label"
@@ -72,7 +72,7 @@
             }
           </div>
         </ng-template>
-      </custom-input-select-signal>
+      </lux-input-select-signal>
     </div>
 
     @if (isAssemblySelected()) {
@@ -96,7 +96,7 @@
       <div class="border-1 border rounded p-3">
         <div class="row g-4">
           <div class="col-12 col-md-3">
-            <custom-input-switch-signal
+            <lux-input-switch-signal
               [control]="form.controls.assemblyRequiresPaddles"
               label="Solicitar paletas"
               placeholder="Solicitar paletas para la asamblea"
@@ -106,7 +106,7 @@
 
           @if (assemblyRequiresPaddles()) {
           <div class="col-12 col-md-3">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.assemblyPaddlesQuantity"
               label="Cantidad de paletas"
               placeholder="cantidad"
@@ -117,7 +117,7 @@
           }
 
           <div class="col-12 col-md-3">
-            <custom-input-switch-signal
+            <lux-input-switch-signal
               [control]="form.controls.assemblyRequiresAudioVisual"
               label="Solicitar audio y video"
               placeholder="Solicitar equipo audiovisual"
@@ -134,7 +134,7 @@
 
           @if (assemblyRequiresAudioVisual()) {
           <div class="col-12">
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="form.controls.assemblyAudioVisualNotes"
               label="Notas de audio y video"
               placeholder="detalla equipo, microfonos, proyector o apoyo requerido"
@@ -145,7 +145,7 @@
           }
 
           <div class="col-12 col-md-6">
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="form.controls.assemblyOperationalNotes"
               label="Notas operativas"
               placeholder="notas operativas de la asamblea"
@@ -155,7 +155,7 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="form.controls.assemblySpecialInstructions"
               label="Instrucciones especiales"
               placeholder="instrucciones especiales"
@@ -169,7 +169,7 @@
     }
 
     <div class="col-12">
-      <custom-input-switch-signal
+      <lux-input-switch-signal
         [control]="form.controls.isRecurring"
         label="Junta repetitiva"
         placeholder="Configurar esta junta como repetitiva"
@@ -190,7 +190,7 @@
 
     @if (isRecurring()) {
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.recurrence"
         label="Frecuencia"
         placeholder="selecciona una frecuencia"
@@ -200,7 +200,7 @@
     </div>
 
     <div class="col-12 col-md-4">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.recurrenceMode"
         label="Patron mensual"
         placeholder="selecciona un patron"
@@ -210,7 +210,7 @@
     </div>
 
     <div class="col-12 col-md-4">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls.recurrenceEndDate"
         label="Repetir hasta"
         placeholder="fecha limite"
@@ -228,7 +228,7 @@
     } }
 
     <div class="col-12">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.location"
         label="Ubicacion"
         placeholder="ubicacion"
@@ -243,7 +243,7 @@
     </div>
 
     <div class="col-12">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.description"
         label="Descripción"
         placeholder="descripcion"
@@ -282,7 +282,8 @@
             <span class="fw-semibold text-body-secondary"
               >Invitado {{ index + 1 }}</span
             >
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               [iconClass]="invitee.controls.isImplicit.value ? 'material-symbols-light:lock' : 'material-symbols-light:delete'"
               [severity]="invitee.controls.isImplicit.value ? 'secondary' : 'danger'"
               type="button"
@@ -292,7 +293,7 @@
           </div>
 
           <div class="col-12 col-md-4 py-1 px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="invitee.controls.name"
               [id]="'assembly-invitee-name-' + index"
               placeholder="Nombre"
@@ -302,7 +303,7 @@
           </div>
 
           <div class="col-12 col-md-4 py-1 px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="invitee.controls.email"
               [id]="'assembly-invitee-email-' + index"
               placeholder="Correo"
@@ -314,7 +315,7 @@
           </div>
 
           <div class="col-12 col-md-4 py-1 px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="invitee.controls.phone"
               [id]="'assembly-invitee-phone-' + index"
               placeholder="Teléfono"
@@ -324,7 +325,7 @@
           </div>
 
           <div class="col-12 col-md-5 py-1 px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="invitee.controls.organization"
               [id]="'assembly-invitee-org-' + index"
               placeholder="Organización"
@@ -334,7 +335,7 @@
           </div>
 
           <div class="col-12 col-md-5 py-1 px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="invitee.controls.position"
               [id]="'assembly-invitee-position-' + index"
               placeholder="Puesto"
@@ -344,7 +345,7 @@
           </div>
 
           <div class="col-12 col-md-2 py-1 px-1 d-flex align-items-center">
-            <custom-input-switch-signal
+            <lux-input-switch-signal
               [control]="invitee.controls.isInternal"
               label="Interno"
               [horizontal]="false"
@@ -352,7 +353,7 @@
           </div>
 
           <div class="col-12 py-1 px-1">
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="invitee.controls.notes"
               [id]="'assembly-invitee-notes-' + index"
               placeholder="Notas del invitado"
@@ -432,7 +433,7 @@
           class="d-flex flex-row align-items-center w-full pb-1 mb-1 border-bottom-1 border g-4"
         >
           <div class="flex-fill px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="guest.controls.name"
               [id]="'guest-name-' + index"
               placeholder="Nombre"
@@ -442,7 +443,7 @@
           </div>
 
           <div class="flex-fill px-1">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="guest.controls.email"
               [id]="'guest-email-' + index"
               placeholder="Correo"
@@ -454,7 +455,8 @@
           </div>
 
           <div class="flex-none d-flex align-items-center h-full">
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:delete"
               severity="danger"
               type="button"
@@ -509,9 +511,7 @@
       </div>
     </div>
     } @else if (loadingSuggestedInvitees()) {
-    <div
-      class="border-1 border rounded p-3 d-flex justify-content-center"
-    >
+    <div class="border-1 border rounded p-3 d-flex justify-content-center">
       <i class="mdi mdi-loading mdi-spin text-2xl text-body-secondary"></i>
     </div>
     }

@@ -1,57 +1,57 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [hidden]="false"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [hidden]="false"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.machineryId"
-        label="Elevador"
-        [data]="cb_elevators()"
-        [filter]="true"
-      />
-      <custom-input-date-signal
-        [control]="form.controls.changeDate"
-        label="Fecha"
-        placeholder="fecha"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.machineryId"
+    label="Elevador"
+    [data]="cb_elevators()"
+    [filter]="true"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.changeDate"
+    label="Fecha"
+    placeholder="fecha"
+  />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.failure"
-        label="Falla"
-        placeholder="falla"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.partName"
-        label="Nombre de pieza"
-        placeholder="nombre de pieza"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.partKey"
-        label="Clave de pieza"
-        placeholder="clave de pieza"
-      />
-      <custom-input-number-signal
-        [control]="form.controls.price"
-        label="Precio"
-        placeholder="precio"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.supervised"
-        label="Superviso"
-        placeholder="superviso"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.failure"
+    label="Falla"
+    placeholder="falla"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.partName"
+    label="Nombre de pieza"
+    placeholder="nombre de pieza"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.partKey"
+    label="Clave de pieza"
+    placeholder="clave de pieza"
+  />
+  <lux-input-number-signal
+    [control]="form.controls.price"
+    label="Precio"
+    placeholder="precio"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.supervised"
+    label="Superviso"
+    placeholder="superviso"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -1,53 +1,53 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Mes -->
-      <custom-input-select-signal
-        [control]="form.controls.mes"
-        label="Mes"
-        [data]="cb_meses()"
+  <!-- Mes -->
+  <lux-input-select-signal
+    [control]="form.controls.mes"
+    label="Mes"
+    [data]="cb_meses()"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Seleccione un mes"
+    [filter]="true"
+  ></lux-input-select-signal>
+
+  <lux-input-select-signal
+    [control]="form.controls.calendarioMaestroEquipoId"
+    label="Nombre Equipo"
+    [data]="cb_equipoCalendarioMaestro()"
+    [filter]="true"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.descripcionServicio"
+    label="Servicio"
+    placeholder="servicio"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.observaciones"
+    label="Observaciones"
+    placeholder="observaciones"
+  />
+  <div class="row align-items-center mb-4 g-4">
+    <label class="col-12 col-md-3 mb-2 mb-md-0">Proveedores</label>
+    <div class="col-12 col-md-9">
+      <lux-input-multiselect-signal
+        [control]="form.controls.proveedores"
+        [options]="cb_providers()"
         optionLabel="label"
         optionValue="value"
-        placeholder="Seleccione un mes"
-        [filter]="true"
-      ></custom-input-select-signal>
-
-      <custom-input-select-signal
-        [control]="form.controls.calendarioMaestroEquipoId"
-        label="Nombre Equipo"
-        [data]="cb_equipoCalendarioMaestro()"
-        [filter]="true"
+        placeholder="Seleccione proveedores"
+        [horizontal]="false"
+        [noMargin]="true"
       />
-      <custom-input-textarea-signal
-        [control]="form.controls.descripcionServicio"
-        label="Servicio"
-        placeholder="servicio"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.observaciones"
-        label="Observaciones"
-        placeholder="observaciones"
-      />
-      <div class="row align-items-center mb-4 g-4">
-        <label class="col-12 col-md-3 mb-2 mb-md-0">Proveedores</label>
-        <div class="col-12 col-md-9">
-          <custom-input-multiselect-signal
-            [control]="form.controls.proveedores"
-            [options]="cb_providers()"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Seleccione proveedores"
-            [horizontal]="false"
-            [noMargin]="true"
-          />
-        </div>
-      </div>
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+    </div>
+  </div>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

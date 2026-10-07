@@ -8,7 +8,7 @@
 
       <div class="row formgrid align-items-end g-4">
         <div class="field col-6 col-md-2">
-          <custom-input-number-signal
+          <lux-input-number-signal
             label="Año"
             [control]="yearCtrl"
             [noMargin]="true"
@@ -18,7 +18,7 @@
         </div>
 
         <div class="field col-6 col-md-2">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Mes"
             [control]="monthCtrl"
             [data]="monthOptions"
@@ -29,7 +29,7 @@
         </div>
 
         <div class="field col-12 col-md-5">
-          <custom-input-text-signal
+          <lux-input-text-signal
             label="Notas de cierre (opcional)"
             [control]="notesCtrl"
             [noMargin]="true"
@@ -116,7 +116,8 @@
         <td class="text-body-secondary">{{ item.closureNotes }}</td>
         <td class="text-center">
           @if (item.isClosed) {
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             lxTooltip="Reabrir"
             tooltipPosition="top"
             iconClass="material-symbols-light:lock-open"

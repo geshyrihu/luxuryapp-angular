@@ -66,9 +66,7 @@
             <div class="fw-semibold">{{ item.title }}</div>
             <span class="text-body-secondary">{{ item.category }}</span>
             @if (item.description) {
-            <div class="mt-1 text-body-secondary">
-              {{ item.description }}
-            </div>
+            <div class="mt-1 text-body-secondary">{{ item.description }}</div>
             }
           </td>
           <td>
@@ -85,7 +83,7 @@
                 [value]="item.statusDisplayName"
                 [severity]="getSeverity(item.status)"
               />
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [data]="statusOptions"
                 optionLabel="label"
                 optionValue="value"
@@ -102,7 +100,8 @@
             ></textarea>
           </td>
           <td>
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               type="button"
               iconClass="material-symbols-light:save"
               lxTooltip="Guardar"

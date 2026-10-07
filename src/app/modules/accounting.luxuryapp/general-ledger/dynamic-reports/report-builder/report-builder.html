@@ -39,7 +39,7 @@
         <span class="text-xs fw-bold text-primary-800 me-2"
           >PERIODO PREVIEW:</span
         >
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="meses"
           [ngModel]="livePreviewS.period()"
           (ngModelChange)="livePreviewS.period.set($event)"
@@ -48,7 +48,7 @@
           [showClear]="false"
         />
         <span class="mx-2 text-primary-300">|</span>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="aniosPreview"
           [ngModel]="previewYear()"
           (ngModelChange)="previewYear.set($event)"
@@ -155,14 +155,15 @@
             class="d-flex align-items-center gap-2 px-3 border-right-1 border-bg-body-tertiary"
           >
             <span class="text-xs fw-bold text-body-secondary">DISEÑO:</span>
-            <custom-input-select-signal
+            <lux-input-select-signal
               [data]="tiposVisualizacion"
               [control]="form.controls.visualizationType"
               optionLabel="label"
               optionValue="value"
             />
           </div>
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:settings"
             variant="text"
             severity="secondary"
@@ -238,7 +239,8 @@
                   />
                 </div>
                 <div class="d-flex gap-2">
-                  <lux-button-web displayMode="icon"
+                  <lux-button-web
+                    displayMode="icon"
                     iconClass="material-symbols-light:delete"
                     [text]="true"
                     severity="danger"
@@ -274,7 +276,8 @@
                 >
                   <!-- Botones Subir/Bajar -->
                   <div class="d-flex flex-column gap-0">
-                    <lux-button-web displayMode="icon"
+                    <lux-button-web
+                      displayMode="icon"
                       iconClass="material-symbols-light:keyboard-arrow-up"
                       [text]="true"
                       size="small"
@@ -282,7 +285,8 @@
                       [disabled]="rowIdx === 0"
                       (clicked)="livePreviewS.moveRow(sec.sectionId, rowIdx, rowIdx - 1)"
                     />
-                    <lux-button-web displayMode="icon"
+                    <lux-button-web
+                      displayMode="icon"
                       iconClass="material-symbols-light:keyboard-arrow-down"
                       [text]="true"
                       size="small"
@@ -358,7 +362,8 @@
                     <!-- Botón para añadir seleccionados (Fallback si el drag falla) -->
                     @if (selectedCatalogCodes().length > 0) {
                     <div class="ms-auto ps-2">
-                      <lux-button-web displayMode="icon"
+                      <lux-button-web
+                        displayMode="icon"
                         iconClass="material-symbols-light:add"
                         [rounded]="true"
                         [text]="true"
@@ -395,7 +400,8 @@
                   <div
                     class="d-flex align-items-center gap-2 border-left-1 border px-3"
                   >
-                    <lux-button-web displayMode="icon"
+                    <lux-button-web
+                      displayMode="icon"
                       [iconClass]="row.multiplier === 1 ? 'material-symbols-light:add' : 'material-symbols-light:remove'"
                       [severity]="row.multiplier === 1 ? 'success' : 'danger'"
                       [text]="true"
@@ -437,7 +443,8 @@
                     class="text-xs opacity-60 font-mono flex-shrink-0"
                   />
 
-                  <lux-button-web displayMode="icon"
+                  <lux-button-web
+                    displayMode="icon"
                     iconClass="material-symbols-light:delete"
                     [text]="true"
                     severity="danger"
@@ -666,7 +673,7 @@
     </div>
     <div class="d-flex flex-column gap-1">
       <label class="text-xs fw-bold text-body-secondary">Base COI</label>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [data]="fuentesAspel"
         [control]="form.controls.dataSource"
         optionLabel="label"
@@ -675,7 +682,7 @@
     </div>
     <div class="d-flex flex-column gap-1">
       <label class="text-xs fw-bold text-body-secondary">Año preview</label>
-      <custom-input-select-signal
+      <lux-input-select-signal
         [data]="aniosPreview"
         [ngModel]="previewYear()"
         (ngModelChange)="previewYear.set($event)"
@@ -684,12 +691,12 @@
       />
     </div>
     <div class="d-flex align-items-center gap-2">
-      <custom-input-check-signal
+      <lux-input-check-signal
         [control]="form.controls.isTemplate"
         placeholder="¿Es una plantilla global?"
         [horizontal]="false"
         noMargin
-      ></custom-input-check-signal>
+      ></lux-input-check-signal>
     </div>
   </div>
 </lux-popover>

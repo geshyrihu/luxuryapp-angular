@@ -1,18 +1,18 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Nombre Completo"
     [required]="true"
     [control]="form.controls.fullName"
   />
-  <custom-input-text-signal label="Puesto" [control]="form.controls.position" />
-  <custom-input-mask-signal
+  <lux-input-text-signal label="Puesto" [control]="form.controls.position" />
+  <lux-input-mask-signal
     label="Teléfono"
     [control]="form.controls.phone"
     placeholder="(00) 0000-0000"
     customMask="(00) 0000-0000"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     label="Declaración"
     [control]="form.controls.statement"
     [rows]="3"

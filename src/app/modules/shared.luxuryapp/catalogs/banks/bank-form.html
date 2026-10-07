@@ -1,35 +1,39 @@
-
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form" aria-label="Formulario de banco">
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      label="Id"
-      [readonly]="true"
-    />
-    <custom-input-text-signal
-      [control]="form.controls.code"
-      label="Codigo"
-      placeholder="codigo"
-    />
-    <custom-input-text-signal
-      [control]="form.controls.shortName"
-      label="Nombre"
-      placeholder="Nombre"
-    />
-    <custom-input-text-signal
-      [control]="form.controls.largeName"
-      label="Razon social"
-      placeholder="razon social"
-    />
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-      class="pb-2"
-    />
-  </form>
+<form
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  aria-label="Formulario de banco"
+>
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.code"
+    label="Codigo"
+    placeholder="codigo"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.shortName"
+    label="Nombre"
+    placeholder="Nombre"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.largeName"
+    label="Razon social"
+    placeholder="razon social"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+    class="pb-2"
+  />
+</form>

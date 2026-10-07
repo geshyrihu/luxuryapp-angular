@@ -12,11 +12,11 @@ import { IonInputTextarea } from "../../mobile/ion-input-textarea";
 import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
 
 /**
- * 🔀 INPUT TEXTAREA — adaptativo. `<custom-input-textarea-signal>` →
+ * 🔀 INPUT TEXTAREA — adaptativo. `<lux-input-textarea-signal>` →
  * web `<web-input-textarea>` (Bootstrap) o móvil `<ion-input-textarea>` (Ionic).
  */
 @Component({
-  selector: "custom-input-textarea-signal",
+  selector: "lux-input-textarea-signal",
 
   imports: [WebInputTextarea, IonInputTextarea],
   providers: [
@@ -24,7 +24,8 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextarea),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -32,7 +33,8 @@ import { WebInputTextarea } from "../../web/input-textarea/input-textarea";
         display: block;
         width: 100%;
       }
-    `],
+    `,
+  ],
   template: `
     @if (platform.isMobile()) {
       <ion-input-textarea
@@ -79,4 +81,3 @@ export class InputTextarea extends BaseInputSignal {
   customClass = input<string>("");
   fluid = input<boolean>(true);
 }
-

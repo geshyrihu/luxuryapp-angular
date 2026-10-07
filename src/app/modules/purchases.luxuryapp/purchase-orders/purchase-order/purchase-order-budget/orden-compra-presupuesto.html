@@ -31,7 +31,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
         />
       </div>
       <div class="col-12 col-md-2">
-        <custom-input-select-signal
+        <lux-input-select-signal
           id="yearSelector"
           [data]="availableYears"
           optionLabel="label"
@@ -71,9 +71,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
   <ng-template #body let-item>
     <tr>
       <td>
-        <span class="text-body-secondary">
-          {{ item.accountNumber }}
-        </span>
+        <span class="text-body-secondary"> {{ item.accountNumber }} </span>
         <br />
         <span>{{ item.accountName }}</span>
       </td>
@@ -109,7 +107,7 @@ del signal en `ordenCompraService.totalPorCubrir()`. -->
           [disabled]="isInputDisabled(item)"
           fluid
         /> -->
-        <custom-input-number-signal
+        <lux-input-number-signal
           [control]="item.dineroUsadoControl"
           [disabled]="isInputDisabled(item)"
           mode="currency"

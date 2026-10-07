@@ -1,47 +1,47 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- Img -->
-      <div class="row mb-4 g-4">
-        <label class="col-12 col-sm-3 d-block mb-2">Imagen</label>
-        <div class="col-12 col-sm-9">
-          <custom-input-img-signal
-            (fileSelected)="uploadFile($event)"
-            [urlImgCurrent]="model()?.pathImage"
-            [contentHeight]="'50'"
-            [contentWidth]="'50'"
-          />
-        </div>
-      </div>
-      <!-- Img -->
+  <!-- Img -->
+  <div class="row mb-4 g-4">
+    <label class="col-12 col-sm-3 d-block mb-2">Imagen</label>
+    <div class="col-12 col-sm-9">
+      <lux-input-img-signal
+        (fileSelected)="uploadFile($event)"
+        [urlImgCurrent]="model()?.pathImage"
+        [contentHeight]="'50'"
+        [contentWidth]="'50'"
+      />
+    </div>
+  </div>
+  <!-- Img -->
 
-      <custom-input-text-signal
-        placeholder="nombre "
-        [control]="form.controls.name"
-        label="Nombre"
-      />
-      <custom-input-text-signal
-        placeholder="ubicación "
-        [control]="form.controls.ubication"
-        label="Ubicación"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.typePiscina"
-        label="Tipo de alberca"
-        [data]="cb_typePiscina()"
-        [filter]="true"
-      />
-      <custom-input-number-signal
-        placeholder="volumen"
-        [control]="form.controls.volumen"
-        label="Volumen"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id() ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-text-signal
+    placeholder="nombre "
+    [control]="form.controls.name"
+    label="Nombre"
+  />
+  <lux-input-text-signal
+    placeholder="ubicación "
+    [control]="form.controls.ubication"
+    label="Ubicación"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.typePiscina"
+    label="Tipo de alberca"
+    [data]="cb_typePiscina()"
+    [filter]="true"
+  />
+  <lux-input-number-signal
+    placeholder="volumen"
+    [control]="form.controls.volumen"
+    label="Volumen"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id() ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

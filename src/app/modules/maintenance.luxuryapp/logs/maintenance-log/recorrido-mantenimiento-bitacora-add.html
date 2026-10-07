@@ -1,18 +1,18 @@
 @if (machinery()) {
 <div>
   <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [control]="form.controls.machinery"
       label="Equipo o Instalación"
       [readonly]="true"
     />
     <div class="mb-4 mb-3">
       <label>DESCRIPCIÓN</label>
-      <custom-input-textarea-signal [control]="form.controls.descripcion" />
+      <lux-input-textarea-signal [control]="form.controls.descripcion" />
     </div>
     <div class="mb-4">
       <label>Activar Si esta nota es alguna emergencia</label>
-      <custom-input-check-signal
+      <lux-input-check-signal
         [control]="form.controls.emergencia"
         label="Emergencia"
       />

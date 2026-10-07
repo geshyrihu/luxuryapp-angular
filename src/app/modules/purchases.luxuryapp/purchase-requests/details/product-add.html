@@ -2,10 +2,9 @@
   <div>
     <div class="row align-items-end g-4">
       <div class="col-12 col-md-6">
-        <label for="example-text-input" class="d-block">BUSCAR </label>
-
-        <custom-input-autocomplete-signal
+        <lux-input-autocomplete-signal
           [control]="productSearchControl"
+          label="BUSCAR"
           [suggestions]="products()"
           optionLabel="displayName"
           dataKey="productoId"
@@ -19,7 +18,6 @@
           [scrollHeight]="'34rem'"
           [horizontal]="false"
           [noMargin]="true"
-          [onlyInput]="true"
           size="small"
           (completeMethod)="searchProducts($event)"
           (propagar)="onProductSelected($event)"
@@ -45,11 +43,11 @@
           <ng-template let-item #selectedItem>
             {{ productLabel(item) }}
           </ng-template>
-        </custom-input-autocomplete-signal>
+        </lux-input-autocomplete-signal>
       </div>
 
       <div class="col-12 col-md-2">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [control]="form.controls.cantidad"
           label="CANTIDAD"
           type="number"
@@ -61,7 +59,7 @@
       </div>
 
       <div class="col-12 col-md-2">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="form.controls.unidadMedidaId"
           [data]="cb_measurement_units()"
           label="UNIDAD"
@@ -81,7 +79,8 @@
           displayMode="both"
           label="Guardar"
           [disabled]="form.invalid"
-          class="w-100"
+          size="small"
+          customClass="w-100"
         />
       </div>
 

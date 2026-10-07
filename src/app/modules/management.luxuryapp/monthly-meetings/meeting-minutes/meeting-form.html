@@ -1,38 +1,36 @@
-
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      label="Id"
-      [readonly]="true"
-    />
-    <custom-input-date-signal
-      [control]="form.controls.date"
-      label="Fecha de Junta"
-      placeholder="Fecha de Junta"
-    />
-    <custom-input-time-signal
-      [control]="form.controls.time"
-      label="Hora de Junta"
-      placeholder="Hora de Junta"
-    />
-    <custom-input-select-signal
-      [control]="form.controls.typeMeeting"
-      label="Tipo de junta"
-      [data]="cb_typeMeeting()"
-      [filter]="true"
-    />
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      label="Guardar"
-      [disabled]="form.invalid"
-    />
-  </form>
-
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-date-signal
+    [control]="form.controls.date"
+    label="Fecha de Junta"
+    placeholder="Fecha de Junta"
+  />
+  <lux-input-time-signal
+    [control]="form.controls.time"
+    label="Hora de Junta"
+    placeholder="Hora de Junta"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.typeMeeting"
+    label="Tipo de junta"
+    [data]="cb_typeMeeting()"
+    [filter]="true"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+  />
+</form>
 
 <!-- Formulario de minuta -->
 @if (id) {

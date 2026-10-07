@@ -14,7 +14,7 @@ import { IonInputMultiselect } from "../../mobile/ion-input-multiselect";
 import { WebInputMultiselect } from "../../web/input-multiselect/input-multiselect";
 
 @Component({
-  selector: "custom-input-multiselect-signal",
+  selector: "lux-input-multiselect-signal",
 
   imports: [WebInputMultiselect, IonInputMultiselect],
   providers: [
@@ -22,7 +22,8 @@ import { WebInputMultiselect } from "../../web/input-multiselect/input-multisele
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMultiselect),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -99,4 +100,3 @@ export class InputMultiselect extends BaseInputSignal {
     this.selectionChange.emit(event);
   }
 }
-

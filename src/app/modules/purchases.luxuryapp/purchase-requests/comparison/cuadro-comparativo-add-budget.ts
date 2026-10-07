@@ -1,19 +1,19 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 @Component({
   selector: "app-cuadro-comparativo-add-budget",
   template: `
     <div class="pt-2 pb-2">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="budgetAccountControl"
         [data]="budgetSelectOptions"
         label="Cuenta presupuestal"
@@ -24,15 +24,19 @@ import {
       />
     </div>
 
-    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border">
-      <lux-button-web displayMode="icon"
+    <div
+      class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top-1 surface-border"
+    >
+      <lux-button-web
+        displayMode="icon"
         label="Cancelar"
         severity="secondary"
         variant="outline"
         size="small"
         (clicked)="onCancel()"
       />
-      <lux-button-web displayMode="icon"
+      <lux-button-web
+        displayMode="icon"
         label="Continuar"
         iconClass="material-symbols-light:arrow-forward"
         severity="contrast"
@@ -42,7 +46,12 @@ import {
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ButtonWeb, CommonModule, ReactiveFormsModule, CustomInputSelectSignal],
+  imports: [
+    ButtonWeb,
+    CommonModule,
+    ReactiveFormsModule,
+    CustomInputSelectSignal,
+  ],
 })
 export class CuadroComparativoAddBudget {
   ref = inject(DynamicDialogRef);
@@ -69,4 +78,3 @@ export class CuadroComparativoAddBudget {
     this.ref.close();
   }
 }
-

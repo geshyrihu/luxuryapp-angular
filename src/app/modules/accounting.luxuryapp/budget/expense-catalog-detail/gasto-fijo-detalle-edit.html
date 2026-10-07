@@ -1,37 +1,37 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.id"
     hidden
     label="Id"
     [readonly]="true"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     hidden
     [control]="form.controls.productoId"
     label="ProductoId"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     hidden
     [control]="form.controls.catalogoGastosFijosId"
     label="CatalogoGastosFijosId"
   />
 
-  <custom-input-number-signal
+  <lux-input-number-signal
     [control]="form.controls.cantidad"
     label="Cantidad"
     placeholder="cantidad"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.unidadMedidaId"
     label="Unidad"
     [data]="cb_unidadMedida"
     [filter]="true"
   />
 
-  <custom-input-currency-signal
+  <lux-input-currency-signal
     [control]="form.controls.precio"
     label="Precio"
     placeholder="precio"
@@ -39,25 +39,25 @@
     [maxFractionDigits]="4"
   />
 
-  <custom-input-decimal-signal
+  <lux-input-decimal-signal
     [control]="form.controls.descuento"
     label="Descuento"
     placeholder="descuento"
   />
 
-  <custom-input-decimal-signal
+  <lux-input-decimal-signal
     [control]="form.controls.ivaAplicado"
     label="Iva Aplicado"
     placeholder="iva aplicado"
   />
 
-  <custom-input-decimal-signal
+  <lux-input-decimal-signal
     [control]="form.controls.retencionIVAPorcentaje"
     label="Retención IVA (%)"
     placeholder="retención iva"
   />
 
-  <custom-input-decimal-signal
+  <lux-input-decimal-signal
     [control]="form.controls.retencionISRPorcentaje"
     label="Retención ISR (%)"
     placeholder="retención isr"

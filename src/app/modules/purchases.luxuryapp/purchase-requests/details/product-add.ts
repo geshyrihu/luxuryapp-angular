@@ -22,17 +22,8 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { InputAutocomplete } from "@ui/inputs/adaptive/input-autocomplete/input-autocomplete";
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
+import { IProductSuggestion } from "./IProductSuggestion";
 import { ProductModalAdd } from "./product-modal-add";
-
-interface IProductSuggestion {
-  productoId: string;
-  producto: string;
-  marca: string;
-  urlImagen: string;
-  cantidad: number;
-  unidadMedidaId: string;
-  displayName: string;
-}
 
 @Component({
   selector: "app-product-add",

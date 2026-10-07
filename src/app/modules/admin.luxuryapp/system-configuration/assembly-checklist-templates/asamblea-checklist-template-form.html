@@ -1,92 +1,91 @@
-
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <div class="row g-4">
-      <div class="col-12 col-md-4">
-        <custom-input-text-signal
-          [control]="form.controls.code"
-          label="Codigo"
-          placeholder="Ej. LEGAL_PROSOC"
-        />
-      </div>
-
-      <div class="col-12 col-md-8">
-        <custom-input-text-signal
-          [control]="form.controls.title"
-          label="Titulo"
-          placeholder="Nombre operativo del item"
-        />
-      </div>
-
-      <div class="col-12 col-md-4">
-        <custom-input-text-signal
-          [control]="form.controls.category"
-          label="Categoria"
-          placeholder="Legal, Finanzas, Logistica..."
-        />
-      </div>
-
-      <div class="col-12 col-md-4">
-        <custom-input-select-signal
-          [control]="form.controls.defaultResponsibleRole"
-          [data]="roleOptions()"
-          [showClear]="false"
-          [filter]="true"
-          label="Rol responsable"
-          placeholder="Selecciona un rol"
-        />
-      </div>
-
-      <div class="col-12 col-md-2">
-        <custom-input-number-signal
-          [control]="form.controls.offsetDaysFromMeeting"
-          [useGrouping]="false"
-          label="Días respecto a la asamblea"
-        />
-      </div>
-
-      <div class="col-12 col-md-2">
-        <custom-input-number-signal
-          [control]="form.controls.sortOrder"
-          [useGrouping]="false"
-          label="Orden"
-        />
-      </div>
-
-      <div class="col-12 col-md-6">
-        <custom-input-switch-signal
-          [control]="form.controls.isMandatory"
-          label="Obligatorio"
-          placeholder="Requerido en todas las asambleas"
-        />
-      </div>
-
-      <div class="col-12 col-md-6">
-        <custom-input-switch-signal
-          [control]="form.controls.isActive"
-          label="Activo"
-          placeholder="Disponible para nuevas asambleas"
-        />
-      </div>
-
-      <div class="col-12">
-        <custom-input-textarea-signal
-          [control]="form.controls.description"
-          [rows]="4"
-          label="Descripción"
-          placeholder="Detalle operativo del item del checklist"
-        />
-      </div>
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="row g-4">
+    <div class="col-12 col-md-4">
+      <lux-input-text-signal
+        [control]="form.controls.code"
+        label="Codigo"
+        placeholder="Ej. LEGAL_PROSOC"
+      />
     </div>
 
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-      class="pb-2"
-    />
-  </form>
+    <div class="col-12 col-md-8">
+      <lux-input-text-signal
+        [control]="form.controls.title"
+        label="Titulo"
+        placeholder="Nombre operativo del item"
+      />
+    </div>
+
+    <div class="col-12 col-md-4">
+      <lux-input-text-signal
+        [control]="form.controls.category"
+        label="Categoria"
+        placeholder="Legal, Finanzas, Logistica..."
+      />
+    </div>
+
+    <div class="col-12 col-md-4">
+      <lux-input-select-signal
+        [control]="form.controls.defaultResponsibleRole"
+        [data]="roleOptions()"
+        [showClear]="false"
+        [filter]="true"
+        label="Rol responsable"
+        placeholder="Selecciona un rol"
+      />
+    </div>
+
+    <div class="col-12 col-md-2">
+      <lux-input-number-signal
+        [control]="form.controls.offsetDaysFromMeeting"
+        [useGrouping]="false"
+        label="Días respecto a la asamblea"
+      />
+    </div>
+
+    <div class="col-12 col-md-2">
+      <lux-input-number-signal
+        [control]="form.controls.sortOrder"
+        [useGrouping]="false"
+        label="Orden"
+      />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <lux-input-switch-signal
+        [control]="form.controls.isMandatory"
+        label="Obligatorio"
+        placeholder="Requerido en todas las asambleas"
+      />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <lux-input-switch-signal
+        [control]="form.controls.isActive"
+        label="Activo"
+        placeholder="Disponible para nuevas asambleas"
+      />
+    </div>
+
+    <div class="col-12">
+      <lux-input-textarea-signal
+        [control]="form.controls.description"
+        [rows]="4"
+        label="Descripción"
+        placeholder="Detalle operativo del item del checklist"
+      />
+    </div>
+  </div>
+
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+    class="pb-2"
+  />
+</form>

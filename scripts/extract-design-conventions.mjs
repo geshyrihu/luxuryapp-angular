@@ -173,9 +173,9 @@ const components = [
   {
     id: "CORE-04",
     name: "Custom Input (27 variantes)",
-    selectorAdaptive: "custom-input-*-signal",
-    selectorWeb: "custom-input-*-signal (Bootstrap 5-based)",
-    selectorMobile: "custom-input-*-signal (Ionic-based)",
+    selectorAdaptive: "lux-input-*-signal",
+    selectorWeb: "lux-input-*-signal (Bootstrap 5-based)",
+    selectorMobile: "lux-input-*-signal (Ionic-based)",
     criticality: "critical",
     platforms: ["web", "mobile"],
     description:

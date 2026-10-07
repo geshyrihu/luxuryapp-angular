@@ -11,7 +11,7 @@
     <form [formGroup]="occupantForm" (ngSubmit)="onAddOrUpdateOccupant()">
       <div class="row g-4">
         <div class="col-12 col-md-6">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="occupantForm.controls.fullName"
             label="Nombre completo"
             [horizontal]="false"
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-12 col-md-6">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="occupantForm.controls.email"
             label="Email"
             [horizontal]="false"
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-12 col-md-6">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="occupantForm.controls.phoneNumber"
             label="Teléfono"
             [horizontal]="false"
@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-12 col-md-3 d-flex align-items-center ps-5">
-          <custom-input-check-signal
+          <lux-input-check-signal
             [control]="occupantForm.controls.isOwner"
             placeholder="Es propietario"
             [horizontal]="false"
@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-12 col-md-3 d-flex align-items-center ps-5">
-          <custom-input-check-signal
+          <lux-input-check-signal
             [control]="occupantForm.controls.isResident"
             placeholder="Es residente"
             [horizontal]="false"

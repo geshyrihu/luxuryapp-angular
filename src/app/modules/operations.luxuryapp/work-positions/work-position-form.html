@@ -7,7 +7,7 @@
   <div class="row g-4">
     <div class="col-12">
       @if (aspRoleS.hasRole(AspRole.SuperUsuario)) {
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls.id"
         hidden
         label="ID de Puesto"
@@ -20,7 +20,7 @@
       <lux-message severity="info">Datos de puesto</lux-message>
       <div class="row g-2 align-items-end">
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-autocomplete-signal
+          <lux-input-autocomplete-signal
             (propagar)="saveApplicationRole($event)"
             [control]="form.controls.applicationRoleName"
             [data]="cb_applicationRole()"
@@ -31,7 +31,7 @@
           />
         </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-autocomplete-signal
+          <lux-input-autocomplete-signal
             (propagar)="saveEmployee($event)"
             [control]="form.controls.employeeName"
             [data]="cb_employee()"
@@ -42,7 +42,7 @@
           />
         </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="form.controls.sueldoBase"
             label="Sueldo presupuestado"
             placeholder="0.00"
@@ -52,7 +52,7 @@
           />
         </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="form.controls.sueldo"
             label="Sueldo actual"
             placeholder="0.00"
@@ -63,7 +63,7 @@
           />
         </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-select-signal
+          <lux-input-select-signal
             [control]="form.controls.state"
             label="Estado de vacante"
             [data]="cb_state()"
@@ -73,7 +73,7 @@
           />
         </div>
         <div class="col-12 col-md-6 col-xl-2">
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="form.controls.benefits"
             label="Prestaciones"
             placeholder="Seguro, vales, fondo..."
@@ -98,7 +98,7 @@
           </label>
         </div>
         <div class="col-12 col-md-6 col-xl-3">
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="form.controls.totalValesMensuales"
             label="Total de vales mensuales"
             placeholder="0.00"
@@ -256,7 +256,7 @@
                   >
                 </div>
                 <div class="schedule-day-hours mt-2">
-                  <custom-input-select-signal
+                  <lux-input-select-signal
                     [control]="dayControl.controls.horaEntrada"
                     [data]="timeOptions"
                     [filter]="true"
@@ -265,7 +265,7 @@
                     [disabled]="dayControl.controls.esDescanso.value"
                     size="small"
                   />
-                  <custom-input-select-signal
+                  <lux-input-select-signal
                     [control]="dayControl.controls.horaSalida"
                     [data]="timeOptions"
                     [filter]="true"

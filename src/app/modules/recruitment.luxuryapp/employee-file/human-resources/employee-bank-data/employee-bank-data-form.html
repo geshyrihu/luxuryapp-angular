@@ -2,7 +2,7 @@
   <div class="row g-4">
     <!-- Empleado -->
     <div class="col-12">
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Empleado"
         [control]="f.employeeId"
         [data]="cbEmployees()"
@@ -13,7 +13,7 @@
 
     <!-- Banco -->
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Banco"
         [control]="f.bankId"
         [data]="cbBanks()"
@@ -24,7 +24,7 @@
 
     <!-- No. Cuenta -->
     <div class="col-12 col-md-6">
-      <custom-input-text-signal
+      <lux-input-text-signal
         label="Número de Cuenta"
         [control]="f.bankAccount"
         placeholder="Ej. 1234567890"
@@ -33,7 +33,7 @@
 
     <!-- CLABE -->
     <div class="col-12 col-md-6">
-      <custom-input-mask-signal
+      <lux-input-mask-signal
         label="CLABE Interbancaria (18 dígitos)"
         [control]="f.bankKey"
         customMask="000000000000000000"

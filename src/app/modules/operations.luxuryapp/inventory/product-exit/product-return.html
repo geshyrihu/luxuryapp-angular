@@ -15,11 +15,11 @@
     </p>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <custom-input-number-signal
+      <lux-input-number-signal
         label="Cantidad a Devolver"
         [control]="form.controls.cantidadADevolver"
       />
-      <custom-input-text-signal
+      <lux-input-text-signal
         label="Motivo (Opcional)"
         [control]="form.controls.motivo"
       />

@@ -12,7 +12,7 @@ import { IonInputCurrency } from "../../mobile/ion-input-currency";
 import { WebInputCurrency } from "../../web/input-currency/input-currency";
 
 @Component({
-  selector: "custom-input-currency-signal",
+  selector: "lux-input-currency-signal",
 
   imports: [WebInputCurrency, IonInputCurrency],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputCurrency } from "../../web/input-currency/input-currency";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputCurrency),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -73,4 +74,3 @@ export class InputCurrency extends BaseInputSignal {
   suffix = input<string | undefined>(undefined);
   showClear = input<boolean>(false);
 }
-

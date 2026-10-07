@@ -1,19 +1,19 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-textarea-signal
-        [control]="form.controls.observaciones"
-        label="Observaciones"
-        placeholder="Observaciones"
-        [horizontal]="false"
-      />
+  <lux-input-textarea-signal
+    [control]="form.controls.observaciones"
+    label="Observaciones"
+    placeholder="Observaciones"
+    [horizontal]="false"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

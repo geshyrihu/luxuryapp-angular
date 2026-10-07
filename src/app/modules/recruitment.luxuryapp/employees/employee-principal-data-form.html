@@ -1,19 +1,19 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.firstName"
     label="Nombre"
     placeholder="nombre"
     [horizontal]="false"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.lastName"
     label="Apellidos"
     placeholder="apellidos"
     [horizontal]="false"
   />
 
-  <custom-input-mask-signal
+  <lux-input-mask-signal
     [control]="form.controls.phoneNumber"
     label="Tél. Celular"
     placeholder="(00) 0000-0000"
@@ -21,7 +21,7 @@
     [horizontal]="false"
   />
 
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.email"
     label="Email personal"
     placeholder="email personal"
@@ -29,16 +29,15 @@
   />
 
   @if (!isReadOnly()) {
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      label="Guardar"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
   }
 </form>
-

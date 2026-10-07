@@ -69,7 +69,7 @@
         </td>
         <td>{{ dataSignal()?.items?.[i]?.category }}</td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.cantidad"
             mode="decimal"
             [minFractionDigits]="0"
@@ -78,7 +78,7 @@
           />
         </td>
         <td>
-          <custom-input-select-signal
+          <lux-input-select-signal
             [control]="row.controls.unidadMedidaId"
             [data]="cb_unidadMedida"
             optionLabel="label"
@@ -90,7 +90,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.precio"
             mode="currency"
             currency="MXN"
@@ -101,7 +101,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.descuento"
             mode="decimal"
             [minFractionDigits]="0"
@@ -110,7 +110,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.ivaAplicado"
             mode="decimal"
             [minFractionDigits]="0"
@@ -119,7 +119,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.retencionIVAPorcentaje"
             mode="decimal"
             [minFractionDigits]="0"
@@ -128,7 +128,7 @@
           />
         </td>
         <td>
-          <custom-input-number-signal
+          <lux-input-number-signal
             [control]="row.controls.retencionISRPorcentaje"
             mode="decimal"
             [minFractionDigits]="0"

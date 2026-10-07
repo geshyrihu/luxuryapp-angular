@@ -3,9 +3,7 @@
   <div
     class="employee-validation-summary bg-body-tertiary border-1 border-red-200 rounded p-3 mb-3"
   >
-    <p class="text-red-700 fw-bold mb-2">
-      Revisa los datos antes de guardar.
-    </p>
+    <p class="text-red-700 fw-bold mb-2">Revisa los datos antes de guardar.</p>
     <p class="text-body mb-2">
       Hay campos obligatorios faltantes o con formato incorrecto:
     </p>
@@ -24,15 +22,15 @@
       <div
         class="card-body text-center d-flex flex-column justify-content-center"
       >
-        <custom-input-img-signal
+        <lux-input-img-signal
           (fileSelected)="changeImg($event)"
           [urlImgCurrent]="imgUpload() ? imgTemp() : photoPath()"
           label="Foto de perfil"
           [horizontal]="false"
         />
         <p class="text-body-secondary text-sm mt-3 mb-0">
-          La foto se guarda al seleccionarla; el resto de datos se guarda con
-          el botón principal.
+          La foto se guarda al seleccionarla; el resto de datos se guarda con el
+          botón principal.
         </p>
       </div>
     </div>
@@ -42,7 +40,7 @@
         <h3 class="h3 mb-3">Identidad y contacto</h3>
         <div class="row g-4">
           <div class="col-12 col-md-6 col-lg-6">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.firstName"
               label="Nombre"
               placeholder="Nombre"
@@ -50,7 +48,7 @@
             />
           </div>
           <div class="col-12 col-md-6 col-lg-6">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.lastName"
               label="Apellidos"
               placeholder="Apellidos"
@@ -65,7 +63,7 @@
             />
           </div>
           <div class="col-12 col-md-9 col-lg-3">
-            <custom-input-mask-signal
+            <lux-input-mask-signal
               [control]="form.controls.phoneNumber"
               label="Tél. celular"
               placeholder="(00) 0000-0000"
@@ -74,7 +72,7 @@
             />
           </div>
           <div class="col-12 col-md-6 col-lg-3">
-            <custom-input-mask-signal
+            <lux-input-mask-signal
               [control]="form.controls.localPhone"
               label="Tél. local"
               placeholder="(00) 0000-0000"
@@ -83,7 +81,7 @@
             />
           </div>
           <div class="col-12 col-md-6 col-lg-4">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.email"
               label="Email personal"
               placeholder="correo@dominio.com"
@@ -102,7 +100,7 @@
           <h3 class="h3 mb-3">Datos personales</h3>
           <div class="row g-4">
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.sex"
                 label="Sexo"
                 [data]="cb_sex()"
@@ -111,7 +109,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-date-signal
+              <lux-input-date-signal
                 [control]="form.controls.birth"
                 label="Fecha de nacimiento"
                 placeholder="Fecha de nacimiento"
@@ -119,7 +117,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-autocomplete-signal
+              <lux-input-autocomplete-signal
                 [control]="form.controls.nationality"
                 [data]="cb_nationality()"
                 label="Nacionalidad"
@@ -128,7 +126,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.curp"
                 label="CURP"
                 placeholder="CURP"
@@ -136,7 +134,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.rfc"
                 label="RFC"
                 placeholder="RFC"
@@ -144,7 +142,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-mask-signal
+              <lux-input-mask-signal
                 [control]="form.controls.rfcPostalCode"
                 label="Código postal RFC"
                 placeholder="00000"
@@ -153,7 +151,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.nss"
                 label="NSS"
                 placeholder="NSS"
@@ -161,7 +159,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.maritalStatus"
                 label="Estado civil"
                 [data]="cb_marital_status()"
@@ -170,7 +168,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.bloodType"
                 label="Tipo de sangre"
                 [data]="cb_blood_type()"
@@ -179,7 +177,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-toggle-switch-signal
+              <lux-input-toggle-switch-signal
                 [control]="form.controls.hasInfonavitCredit"
                 label="Crédito INFONAVIT"
                 placeholder="Cuenta con crédito"
@@ -188,7 +186,7 @@
             </div>
             @if (form.controls.hasInfonavitCredit.value) {
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-mask-signal
+              <lux-input-mask-signal
                 [control]="form.controls.infonavitCreditNumber"
                 label="No. crédito INFONAVIT"
                 placeholder="0000000000"
@@ -197,7 +195,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.infonavitDiscountFactor"
                 label="FD o % descuento"
                 placeholder="Factor o porcentaje"
@@ -206,7 +204,7 @@
             </div>
             }
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-toggle-switch-signal
+              <lux-input-toggle-switch-signal
                 [control]="form.controls.hasFonacotCredit"
                 label="Crédito FONACOT"
                 placeholder="Cuenta con crédito"
@@ -215,7 +213,7 @@
             </div>
             @if (form.controls.hasFonacotCredit.value) {
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.fonacotCreditNumber"
                 label="No. crédito FONACOT"
                 placeholder="Número de crédito"
@@ -223,7 +221,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.fonacotDiscountFactor"
                 label="FD o % descuento FONACOT"
                 placeholder="Factor o porcentaje"
@@ -240,7 +238,7 @@
           <h3 class="h3 mb-3">Dirección</h3>
           <div class="row g-4">
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.city"
                 label="Ciudad"
                 placeholder="Ciudad"
@@ -248,7 +246,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.townHall"
                 label="Municipio / Alcaldía"
                 placeholder="Municipio / Alcaldía"
@@ -256,7 +254,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.district"
                 label="Colonia"
                 placeholder="Colonia"
@@ -264,7 +262,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.zipCode"
                 label="Código postal"
                 placeholder="Código postal"
@@ -272,7 +270,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.street"
                 label="Calle"
                 placeholder="Calle"
@@ -280,7 +278,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.number"
                 label="Número"
                 placeholder="Número"
@@ -288,7 +286,7 @@
               />
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="form.controls.unitNumber"
                 label="Número interior"
                 placeholder="Número interior"
@@ -304,7 +302,7 @@
           <h3 class="h3 mb-3">Datos laborales</h3>
           <div class="row g-4">
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.typePerson"
                 label="Contrato"
                 [data]="cb_type_contract()"
@@ -313,7 +311,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.active"
                 label="Estatus"
                 [data]="cb_state()"
@@ -322,7 +320,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.educationLevel"
                 label="Nivel educativo"
                 [data]="cb_education_level()"
@@ -331,7 +329,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-date-signal
+              <lux-input-date-signal
                 [control]="form.controls.dateAdmission"
                 label="Fecha de ingreso"
                 placeholder="Fecha de ingreso"
@@ -339,7 +337,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-currency-signal
+              <lux-input-currency-signal
                 [control]="form.controls.salary"
                 label="Sueldo mensual neto"
                 placeholder="Sueldo mensual neto"
@@ -347,7 +345,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-currency-signal
+              <lux-input-currency-signal
                 [control]="form.controls.dailySalary"
                 label="Sueldo diario"
                 placeholder="Sueldo diario"
@@ -356,7 +354,7 @@
               />
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-number-signal
+              <lux-input-number-signal
                 [control]="form.controls.numberEmployee"
                 label="Número de empleado"
                 placeholder="Ej. 1042"
@@ -369,7 +367,7 @@
             </div>
             @if(canChangeCustomer()){
             <div class="col-12 col-md-4 col-lg-3">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [control]="form.controls.customerId"
                 label="Cliente"
                 [data]="cb_customer()"

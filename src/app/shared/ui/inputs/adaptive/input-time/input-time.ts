@@ -11,7 +11,7 @@ import { IonInputTime } from "../../mobile/ion-input-time";
 import { WebInputTime } from "../../web/input-time/input-time";
 
 @Component({
-  selector: "custom-input-time-signal",
+  selector: "lux-input-time-signal",
 
   imports: [WebInputTime, IonInputTime],
   providers: [
@@ -19,7 +19,8 @@ import { WebInputTime } from "../../web/input-time/input-time";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTime),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -52,4 +53,3 @@ import { WebInputTime } from "../../web/input-time/input-time";
 export class InputTime extends BaseInputSignal {
   protected platform = inject(PlatformService);
 }
-

@@ -12,7 +12,7 @@ import { IonInputDate } from "../../mobile/ion-input-date";
 import { WebInputDate } from "../../web/input-date/input-date";
 
 @Component({
-  selector: "custom-input-date-signal",
+  selector: "lux-input-date-signal",
 
   imports: [WebInputDate, IonInputDate],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputDate } from "../../web/input-date/input-date";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputDate),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {

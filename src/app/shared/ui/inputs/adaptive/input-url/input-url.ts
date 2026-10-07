@@ -11,7 +11,7 @@ import { IonInputUrl } from "../../mobile/ion-input-url";
 import { WebInputUrl } from "../../web/input-url/input-url";
 
 @Component({
-  selector: "custom-input-url",
+  selector: "lux-input-url",
 
   imports: [WebInputUrl, IonInputUrl],
   providers: [
@@ -19,7 +19,8 @@ import { WebInputUrl } from "../../web/input-url/input-url";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputUrl),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -52,4 +53,3 @@ import { WebInputUrl } from "../../web/input-url/input-url";
 export class InputUrl extends BaseInputSignal {
   protected platform = inject(PlatformService);
 }
-

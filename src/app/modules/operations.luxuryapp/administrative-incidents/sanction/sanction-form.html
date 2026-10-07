@@ -4,13 +4,13 @@
   (ngSubmit)="onSubmit()"
   class="d-flex flex-column"
 >
-  <custom-input-select-signal
+  <lux-input-select-signal
     label="Nuevo Estatus"
     [control]="changeStatusForm.controls.sanctionStatus"
     [data]="cb_sanctionStatus"
     [filter]="true"
   />
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     label="Notas Internas"
     [control]="changeStatusForm.controls.internalNotes"
     [rows]="3"
@@ -30,13 +30,9 @@
   </div>
 </form>
 } @else {
-<form
-  [formGroup]="form"
-  (ngSubmit)="onSubmit()"
-  class="row g-4"
->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-4">
   <div class="col-12">
-    <custom-input-select-signal
+    <lux-input-select-signal
       label="Tipo de Sancion"
       [control]="form.controls.sanctionTypeId"
       [data]="sanctionTypes()"
@@ -44,32 +40,32 @@
     />
   </div>
   <div class="col-12 col-md-6">
-    <custom-input-date-signal
+    <lux-input-date-signal
       label="Inicio de Efecto"
       [control]="form.controls.effectiveStartDate"
     />
   </div>
   <div class="col-12 col-md-6">
-    <custom-input-date-signal
+    <lux-input-date-signal
       label="Fin de Efecto"
       [control]="form.controls.effectiveEndDate"
     />
   </div>
   <div class="col-12">
-    <custom-input-switch-signal
+    <lux-input-switch-signal
       label="¿Permite Apelacion?"
       [control]="form.controls.allowAppeal"
     />
   </div>
   <div class="col-12">
-    <custom-input-textarea-signal
+    <lux-input-textarea-signal
       label="Condiciones de Cumplimiento"
       [control]="form.controls.conditions"
       [rows]="3"
     />
   </div>
   <div class="col-12">
-    <custom-input-textarea-signal
+    <lux-input-textarea-signal
       label="Notas Internas"
       [control]="form.controls.internalNotes"
       [rows]="3"

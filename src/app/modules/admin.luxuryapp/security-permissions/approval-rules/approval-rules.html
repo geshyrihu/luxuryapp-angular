@@ -102,7 +102,7 @@
           </td>
           @for (approver of approverRoles(); track approver) {
           <td class="body-cell text-center">
-            <custom-input-select-button-signal
+            <lux-input-select-button-signal
               [options]="scopeOptions"
               [ngModel]="getScope(approver, target)"
               (ngModelChange)="onRuleChange(approver, target, $event)"
@@ -113,7 +113,7 @@
                 <lux-icon [icon]="item.icon" class="me-2" />
                 <span>{{ item.label }}</span>
               </ng-template>
-            </custom-input-select-button-signal>
+            </lux-input-select-button-signal>
           </td>
           }
         </tr>

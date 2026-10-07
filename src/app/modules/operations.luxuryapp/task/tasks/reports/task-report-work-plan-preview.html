@@ -15,7 +15,7 @@
     <lux-table-caption [showAdd]="false" [dt]="dt" />
     <div class="row g-4">
       <div class="col-12 col-lg-2">
-        <custom-input-text-signal
+        <lux-input-text-signal
           type="week"
           [customClass]="'mr-2'"
           (change)="handleWeekChange($event)"
@@ -72,10 +72,10 @@
         class="table-col-10"
         class="font-size-12"
         appSortableColumn="daysDifference"
-       >
-         DÍAS
-         <app-sorticon field="daysDifference" />
-       </th>
+      >
+        DÍAS
+        <app-sorticon field="daysDifference" />
+      </th>
     </tr>
   </ng-template>
   <ng-template #body let-item>

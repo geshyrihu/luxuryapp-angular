@@ -83,7 +83,7 @@
     </div>
 
     <div class="col-12 mb-3">
-      <custom-input-select-signal
+      <lux-input-select-signal
         label="Tipo de Comprobante"
         [data]="cb_tipos"
         [control]="form.controls.tipoComprobante"
@@ -95,7 +95,7 @@
 
     <div class="col-12 col-md-6">
       <label class="d-block mb-2">PDF</label>
-      <custom-input-file-signal
+      <lux-input-file-signal
         accept=".pdf"
         (fileSelected)="onPdfFileChange($event)"
         [horizontal]="false"
@@ -109,7 +109,7 @@
     </div>
     <div class="col-12 col-md-6">
       <label class="d-block mb-2">XML</label>
-      <custom-input-file-signal
+      <lux-input-file-signal
         accept=".xml"
         (fileSelected)="onXmlFileChange($event)"
         [horizontal]="false"

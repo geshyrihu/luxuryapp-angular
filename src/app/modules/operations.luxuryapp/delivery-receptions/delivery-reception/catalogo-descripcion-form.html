@@ -1,53 +1,52 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <lux-input-text-signal
+      [hidden]="true"
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+    />
 
-  <div>
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [hidden]="true"
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-      />
+    <lux-input-text-signal
+      [control]="form.controls.folioId"
+      label="Id"
+      placeholder="folio id"
+    />
+    <lux-input-select-signal
+      [control]="form.controls.departamento"
+      label="Departamento"
+      [data]="cb_area_responsable()"
+      [filter]="true"
+    />
 
-      <custom-input-text-signal
-        [control]="form.controls.folioId"
-        label="Id"
-        placeholder="folio id"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.departamento"
-        label="Departamento"
-        [data]="cb_area_responsable()"
-        [filter]="true"
-      />
+    <lux-input-select-signal
+      [control]="form.controls.state"
+      label="Estado"
+      [data]="cb_state()"
+      [filter]="true"
+    />
+    <lux-input-select-signal
+      [control]="form.controls.grupo"
+      label="Grupo"
+      [data]="cb_grupo()"
+      [filter]="true"
+    />
 
-      <custom-input-select-signal
-        [control]="form.controls.state"
-        label="Estado"
-        [data]="cb_state()"
-        [filter]="true"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.grupo"
-        label="Grupo"
-        [data]="cb_grupo()"
-        [filter]="true"
-      />
+    <lux-input-text-signal
+      [control]="form.controls.descripcion"
+      label="DESCRIPCIÓN"
+      placeholder="DESCRIPCIÓN"
+    />
 
-      <custom-input-text-signal
-        [control]="form.controls.descripcion"
-        label="DESCRIPCIÓN"
-        placeholder="DESCRIPCIÓN"
-      />
-
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
-  </div>
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </form>
+</div>

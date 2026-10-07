@@ -26,7 +26,7 @@
     <ng-template #caption>
       <div class="p-1 row formgrid align-items-end g-4">
         <div class="field col-12 col-md-6">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Selecciona un cargo para ver sus facturas"
             [data]="charges()"
             [control]="chargeIdCtrl"
@@ -84,7 +84,8 @@
         <td class="text-center">
           <div class="d-flex gap-1 justify-content-center">
             @if (inv.xmlFilePath) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               lxTooltip="XML"
               tooltipPosition="top"
               size="small"
@@ -92,7 +93,8 @@
               iconClass="material-symbols-light:code"
             />
             } @if (inv.pdfFilePath) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               lxTooltip="PDF"
               tooltipPosition="top"
               size="small"

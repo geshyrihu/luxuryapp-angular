@@ -1,71 +1,71 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-        hidden
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+    hidden
+  />
 
-      <custom-input-text-signal
-        hidden
-        [control]="form.controls.productoId"
-        label="ProductoId"
-      />
+  <lux-input-text-signal
+    hidden
+    [control]="form.controls.productoId"
+    label="ProductoId"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.cantidad"
-        label="Cantidad"
-        placeholder="cantidad"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.cantidad"
+    label="Cantidad"
+    placeholder="cantidad"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.unidadMedidaId"
-        label="Unidad"
-        [data]="cb_unidadMedida"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.unidadMedidaId"
+    label="Unidad"
+    [data]="cb_unidadMedida"
+    [filter]="true"
+  />
 
-      <custom-input-currency-signal
-        [control]="form.controls.precio"
-        label="Precio"
-        placeholder="precio"
-        [minFractionDigits]="0"
-        [maxFractionDigits]="4"
-      />
+  <lux-input-currency-signal
+    [control]="form.controls.precio"
+    label="Precio"
+    placeholder="precio"
+    [minFractionDigits]="0"
+    [maxFractionDigits]="4"
+  />
 
-      <custom-input-decimal-signal
-        [control]="form.controls.descuento"
-        label="Descuento"
-        placeholder="descuento"
-      />
+  <lux-input-decimal-signal
+    [control]="form.controls.descuento"
+    label="Descuento"
+    placeholder="descuento"
+  />
 
-      <custom-input-decimal-signal
-        [control]="form.controls.ivaAplicado"
-        label="Iva Aplicado"
-        placeholder="iva aplicado"
-      />
+  <lux-input-decimal-signal
+    [control]="form.controls.ivaAplicado"
+    label="Iva Aplicado"
+    placeholder="iva aplicado"
+  />
 
-      <custom-input-decimal-signal
-        [control]="form.controls.retencionIVAPorcentaje"
-        label="Retención IVA (%)"
-        placeholder="retención iva"
-      />
+  <lux-input-decimal-signal
+    [control]="form.controls.retencionIVAPorcentaje"
+    label="Retención IVA (%)"
+    placeholder="retención iva"
+  />
 
-      <custom-input-decimal-signal
-        [control]="form.controls.retencionISRPorcentaje"
-        label="Retención ISR (%)"
-        placeholder="retención isr"
-      />
+  <lux-input-decimal-signal
+    [control]="form.controls.retencionISRPorcentaje"
+    label="Retención ISR (%)"
+    placeholder="retención isr"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

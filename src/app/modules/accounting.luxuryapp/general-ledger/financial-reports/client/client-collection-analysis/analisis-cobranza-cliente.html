@@ -357,7 +357,7 @@
             Tabla base para auditar cómo se clasifica la cuenta al corte.
           </div>
         </div>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="classificationOptions"
           [ngModel]="selectedClassification()"
           (ngModelChange)="selectedClassification.set($event)"

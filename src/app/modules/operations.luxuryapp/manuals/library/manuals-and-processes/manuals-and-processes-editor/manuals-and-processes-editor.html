@@ -4,7 +4,8 @@
     class="bg-body p-3 shadow-sm d-flex align-items-center justify-content-between border-bottom-1 border-200 flex-shrink-0"
   >
     <div class="d-flex align-items-center gap-3">
-      <lux-button-web displayMode="icon"
+      <lux-button-web
+        displayMode="icon"
         iconClass="material-symbols-light:arrow-back"
         [variant]="'text'"
         severity="secondary"
@@ -126,7 +127,8 @@
             (click)="$event.stopPropagation()"
           >
             @if (paso.diagramaId) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:account-tree"
               [variant]="'text'"
               severity="info"
@@ -199,14 +201,14 @@
           (ngSubmit)="onSavePaso()"
           class="d-flex flex-column gap-3"
         >
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="pasoForm.controls.titulo"
             label="Titulo del Paso"
             placeholder="Ej: Verificar documentos del cliente"
             [horizontal]="false"
           />
 
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="pasoForm.controls.descripcion"
             label="Descripción (opcional)"
             placeholder="Detalle del paso..."
@@ -214,7 +216,7 @@
             [horizontal]="false"
           />
 
-          <custom-input-multiselect-signal
+          <lux-input-multiselect-signal
             [control]="pasoForm.controls.responsableRoleIds"
             [options]="roles()"
             [group]="true"
@@ -227,7 +229,7 @@
 
           <div class="d-flex flex-column gap-2">
             <label class="fw-bold text-sm text-body">Tipo de Nota</label>
-            <custom-input-select-button-signal
+            <lux-input-select-button-signal
               [options]="tipoNotaOpciones"
               [control]="pasoForm.controls.tipoNota"
               optionLabel="label"
@@ -343,7 +345,8 @@
                 alt="imagen"
               />
               <div class="absolute top-0 right-0 m-1">
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:close"
                   severity="danger"
                   size="small"
@@ -374,7 +377,7 @@
           >
             <div class="row align-items-end g-4">
               <div class="col-12 col-md-7">
-                <custom-input-text-signal
+                <lux-input-text-signal
                   [control]="enlaceForm.controls.urlEnlace"
                   label="URL del Enlace o Video"
                   placeholder="Ej: https://youtube.com/watch?v=..."
@@ -382,7 +385,7 @@
                 />
               </div>
               <div class="col-12 col-md-3 pb-3">
-                <custom-input-switch-signal
+                <lux-input-switch-signal
                   [control]="enlaceForm.controls.esVideo"
                   label="¿Es un Video?"
                   [horizontal]="false"
@@ -408,7 +411,8 @@
               class="relative rounded overflow-hidden border-1 border-200 p-3 bg-white"
             >
               <div class="absolute top-0 right-0 m-2 z-5">
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:delete"
                   severity="danger"
                   size="small"
@@ -502,7 +506,7 @@
         >
           <div class="row g-4">
             <div class="col-12 col-md-4">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="versionForm.controls.version"
                 label="Version"
                 placeholder="Ej: 2.0"
@@ -520,7 +524,7 @@
               />
             </div>
             <div class="col-12 col-md-4">
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [control]="versionForm.controls.autor"
                 label="Autor"
                 placeholder="Nombre del responsable"
@@ -528,7 +532,7 @@
               />
             </div>
           </div>
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [control]="versionForm.controls.descripcionCambio"
             label="Descripción del Cambio"
             placeholder="Que cambios se realizaron en esta version..."
@@ -585,7 +589,8 @@
             </p>
             }
           </div>
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:delete"
             [variant]="'text'"
             severity="danger"
@@ -682,14 +687,16 @@
           </div>
           <div class="d-flex gap-1 flex-shrink-0">
             <a [href]="adj.url" target="_blank" class="no-underline">
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:download"
                 [variant]="'text'"
                 severity="info"
                 size="small"
               />
             </a>
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:delete"
               [variant]="'text'"
               severity="danger"

@@ -88,7 +88,7 @@
       <div class="d-flex flex-wrap align-items-center gap-3">
         <!-- Año Fiscal -->
         <div class="d-flex align-items-center gap-2">
-          <custom-input-select-signal
+          <lux-input-select-signal
             id="yearSelector"
             label="Año Fiscal"
             [data]="sharedS.availableYears"
@@ -107,7 +107,7 @@
 
         <!-- Tabs de navegación usando p-selectButton -->
         <div class="d-flex align-items-center">
-          <custom-input-select-button-signal
+          <lux-input-select-button-signal
             [options]="[
               { label: 'Presupuesto', value: 'presupuesto' },
               { label: 'Extraordinarios (605) y Proyectos (606)', value: 'especiales' }
@@ -175,7 +175,8 @@
         @if (!isClientView) {
 
         <!-- Botón para navegar a la guía del módulo -->
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="menu-book"
           label="Guía del Módulo"
           ngbTooltip="Abrir guía de flujo y componentes del módulo"
@@ -186,7 +187,8 @@
 
         <div class="d-flex align-items-center gap-1" role="toolbar">
           @if (activeTabValue() === 'presupuesto') {
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:settings"
             [outlined]="true"
             severity="secondary"
@@ -269,7 +271,7 @@
        ========================= -->
   <div class="d-flex d-md-none flex-column flex-fill min-h-0">
     <div class="d-flex align-items-center gap-2 p-2 bg-body rounded mb-2">
-      <custom-input-select-signal
+      <lux-input-select-signal
         id="yearSelectorMobile"
         label="Año Fiscal"
         [data]="sharedS.availableYears"

@@ -5,7 +5,7 @@
     <!-- Filtro por email -->
     <div class="d-flex flex-column gap-1">
       <label class="text-sm fw-medium text-body-secondary">Destinatario</label>
-      <custom-input-text-signal
+      <lux-input-text-signal
         [(ngModel)]="filtroEmail"
         [ngModelOptions]="{ standalone: true }"
         placeholder="Filtrar por email..."
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Fecha de inicio -->
-    <custom-input-date-signal
+    <lux-input-date-signal
       [control]="filtroFechaInicioCtrl"
       label="Desde"
       id="fecha-inicio"
@@ -26,7 +26,7 @@
     />
 
     <!-- Fecha de fin -->
-    <custom-input-date-signal
+    <lux-input-date-signal
       [control]="filtroFechaFinCtrl"
       label="Hasta"
       id="fecha-fin"
@@ -112,7 +112,7 @@
 
       <!-- Fecha -->
       <td>
-        <span >
+        <span>
           {{ log.date ? (log.date | apiDate: 'dd/MM/yyyy HH:mm') : '—' }}
         </span>
       </td>

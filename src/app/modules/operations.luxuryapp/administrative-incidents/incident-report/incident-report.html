@@ -10,21 +10,21 @@
   <div class="card mb-4">
     <div class="row align-items-end g-4">
       <div class="col-12 col-md-3">
-        <custom-input-date-signal
+        <lux-input-date-signal
           label="Desde"
           [control]="form.controls.from"
           [horizontal]="false"
         />
       </div>
       <div class="col-12 col-md-3">
-        <custom-input-date-signal
+        <lux-input-date-signal
           label="Hasta"
           [control]="form.controls.to"
           [horizontal]="false"
         />
       </div>
       <div class="col-12 col-md-2">
-        <custom-input-select-signal
+        <lux-input-select-signal
           label="Categoría"
           [control]="form.controls.category"
           [data]="cb_category"
@@ -33,7 +33,7 @@
         />
       </div>
       <div class="col-12 col-md-2">
-        <custom-input-select-signal
+        <lux-input-select-signal
           label="Severidad"
           [control]="form.controls.severity"
           [data]="cb_severity"

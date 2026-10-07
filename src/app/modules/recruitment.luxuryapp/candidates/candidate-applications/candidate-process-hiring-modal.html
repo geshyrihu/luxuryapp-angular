@@ -1,237 +1,236 @@
+<form
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  aria-label="Procesar alta"
+>
+  <div class="pb-3">
+    <p class="m-0 fw-semibold">Proceso de alta</p>
+    <p class="m-0 text-body-secondary">
+      Captura solo los datos base y, si ya existe un perfil, decide si debe
+      reingresar o si debe crearse como alta nueva.
+    </p>
+  </div>
 
-  <form
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-    [formGroup]="form"
-    aria-label="Procesar alta"
+  @if (!hasValidTarget()) {
+  <div class="bg-body-tertiary rounded p-3 mb-3 text-orange-700">
+    Esta vacante no tiene una solicitud activa. Solicita la vacante antes de
+    continuar con el alta.
+  </div>
+  } @if (vacancyContext(); as vacancy) {
+  <div class="bg-body-tertiary rounded p-3 mb-3">
+    <p class="m-0 fw-semibold pb-2">Contexto de la vacante</p>
+    <div class="row text-sm g-4">
+      <div class="col-12 col-md-4">
+        <span class="text-body-secondary">Empresa: </span>{{
+        vacancy.customerName }}
+      </div>
+      <div class="col-12 col-md-4">
+        <span class="text-body-secondary">Puesto: </span>{{ vacancy.positionName
+        }}
+      </div>
+      <div class="col-12 col-md-4">
+        <span class="text-body-secondary">Sueldo: </span>{{ vacancy.sueldoBase |
+        currency: "MXN" : "symbol" : "1.0-0" }}
+      </div>
+    </div>
+  </div>
+  } @if (approvedCandidate(); as candidate) {
+  <div
+    class="bg-body-tertiary rounded p-3 mb-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
   >
-    <div class="pb-3">
-      <p class="m-0 fw-semibold">Proceso de alta</p>
-      <p class="m-0 text-body-secondary">
-        Captura solo los datos base y, si ya existe un perfil, decide si debe
-        reingresar o si debe crearse como alta nueva.
+    <div>
+      <p class="m-0 fw-semibold">Candidato aprobado detectado</p>
+      <p class="m-0 text-sm text-body-secondary">
+        {{ candidate.candidateName }} - puedes importar sus datos básicos.
       </p>
     </div>
-
-    @if (!hasValidTarget()) {
-    <div class="bg-body-tertiary rounded p-3 mb-3 text-orange-700">
-      Esta vacante no tiene una solicitud activa. Solicita la vacante antes de
-      continuar con el alta.
-    </div>
-    } @if (vacancyContext(); as vacancy) {
-    <div class="bg-body-tertiary rounded p-3 mb-3">
-      <p class="m-0 fw-semibold pb-2">Contexto de la vacante</p>
-      <div class="row text-sm g-4">
-        <div class="col-12 col-md-4">
-          <span class="text-body-secondary">Empresa: </span>{{
-          vacancy.customerName }}
-        </div>
-        <div class="col-12 col-md-4">
-          <span class="text-body-secondary">Puesto: </span>{{
-          vacancy.positionName }}
-        </div>
-        <div class="col-12 col-md-4">
-          <span class="text-body-secondary">Sueldo: </span>{{
-          vacancy.sueldoBase | currency: "MXN" : "symbol" : "1.0-0" }}
-        </div>
-      </div>
-    </div>
-    } @if (approvedCandidate(); as candidate) {
-    <div
-      class="bg-body-tertiary rounded p-3 mb-3 d-flex align-items-center justify-content-between gap-3 flex-wrap"
-    >
-      <div>
-        <p class="m-0 fw-semibold">Candidato aprobado detectado</p>
-        <p class="m-0 text-sm text-body-secondary">
-          {{ candidate.candidateName }} - puedes importar sus datos básicos.
-        </p>
-      </div>
-      <lux-button-web
-        label="Importar datos de candidato aprobado"
-        iconClass="material-symbols-light:download"
-        severity="info"
-        variant="outline"
-        size="small"
-        (clicked)="onImportApprovedCandidate()"
-      />
-    </div>
-    } @if (validationErrors().length) {
-    <div class="bg-body-tertiary border-1 border-red-200 rounded p-3 mb-3">
-      <p class="m-0 fw-semibold text-red-700">
-        Revisa estos datos antes de guardar
-      </p>
-      <ul class="m-0 mt-2 ps-3 text-red-700 line-height-3">
-        @for (error of validationErrors(); track error) {
-        <li>{{ error }}</li>
-        }
-      </ul>
-    </div>
-    }
-
-    <div class="row g-4">
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.firstName"
-          label="Nombre(s)"
-          placeholder="Nombre(s)"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.lastName"
-          label="Apellidos"
-          placeholder="Apellidos"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-date-signal
-          [control]="form.controls.birthDate"
-          label="Fecha de nacimiento"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.phoneNumber"
-          label="Telefono celular"
-          placeholder="5512345678"
-        />
-      </div>
-      <div class="col-12">
-        <custom-input-text-signal
-          [control]="form.controls.email"
-          label="Correo electronico"
-          placeholder="correo@ejemplo.com"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.street"
-          label="Calle"
-          placeholder="Av. Principal 123"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.neighborhood"
-          label="Colonia"
-          placeholder="Centro"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.municipality"
-          label="Municipio/Alcaldía"
-          placeholder="Cuauhtémoc"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.postalCode"
-          label="Código Postal"
-          placeholder="01000"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-text-signal
-          [control]="form.controls.state"
-          label="Estado"
-          placeholder="CDMX"
-        />
-      </div>
-    </div>
-
-    @if (searchingDuplicates()) {
-    <div class="bg-body-tertiary rounded p-3 mt-3 text-body-secondary">
-      Validando coincidencias de empleado existente...
-    </div>
-    } @if (duplicateMatches().length) {
-    <div class="bg-body-tertiary border-1 border rounded p-3 mt-3">
-      <p class="m-0 fw-semibold">Coincidencias encontradas</p>
-      <p class="m-0 mt-2 text-sm text-body-secondary">
-        Si la persona ya existe, seleccionala para reingresarla o migrarla al
-        cliente de este puesto. Si no corresponde, puedes continuar con un alta
-        nueva.
-      </p>
-
-      <div class="overflow-auto mt-3">
-        <table class="w-full border-collapse">
-          <thead>
-             <tr class="text-start">
-               <th class="pb-2 pe-3">EMPLEADO</th>
-               <th class="pb-2 pe-3">CORREO</th>
-               <th class="pb-2 pe-3">TELÉFONO</th>
-               <th class="pb-2 pe-3">ESTATUS</th>
-               <th class="pb-2 pe-3">CLIENTE ACTUAL</th>
-               <th class="pb-2">ACCIÓN</th>
-             </tr>
-          </thead>
-          <tbody>
-            @for (match of duplicateMatches(); track match.userId) {
-            <tr class="border-top-1 border">
-              <td class="py-2 pe-3">{{ match.nombreCompleto }}</td>
-              <td class="py-2 pe-3">{{ match.email || "Sin correo" }}</td>
-              <td class="py-2 pe-3">{{ match.telefono || "Sin telefono" }}</td>
-              <td class="py-2 pe-3">{{ match.estatus }}</td>
-              <td class="py-2 pe-3">{{ match.nombreEdificio }}</td>
-              <td class="py-2">
-                <button
-                  type="button"
-                  class="border-0 rounded px-3 py-2 cursor-pointer"
-                  [class.bg-primary]="isSelectedMatch(match.userId)"
-                  [class.text-white]="isSelectedMatch(match.userId)"
-                  [class.bg-body-tertiary]="!isSelectedMatch(match.userId)"
-                  (click)="selectMatchedUser(match)"
-                >
-                  {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este
-                  perfil" }}
-                </button>
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mt-3">
-        <button
-          type="button"
-          class="border-0 rounded px-3 py-2 cursor-pointer"
-          [class.bg-primary]="isCreateNewSelected()"
-          [class.text-white]="isCreateNewSelected()"
-          [class.bg-body-tertiary]="!isCreateNewSelected()"
-          (click)="selectCreateNew()"
-        >
-          {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta
-          nueva de todos modos" }}
-        </button>
-      </div>
-
-      @if (duplicateResolution() && duplicateResolution() !== "new") {
-      <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
-        Al guardar, este perfil quedara vinculado al cliente del puesto actual.
-        Si su rol es Staff, conservara acceso unicamente a ese cliente.
-      </div>
-      } @else if (isCreateNewSelected()) {
-      <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
-        Se creara un usuario nuevo aunque exista una coincidencia previa.
-      </div>
+    <lux-button-web
+      label="Importar datos de candidato aprobado"
+      iconClass="material-symbols-light:download"
+      severity="info"
+      variant="outline"
+      size="small"
+      (clicked)="onImportApprovedCandidate()"
+    />
+  </div>
+  } @if (validationErrors().length) {
+  <div class="bg-body-tertiary border-1 border-red-200 rounded p-3 mb-3">
+    <p class="m-0 fw-semibold text-red-700">
+      Revisa estos datos antes de guardar
+    </p>
+    <ul class="m-0 mt-2 ps-3 text-red-700 line-height-3">
+      @for (error of validationErrors(); track error) {
+      <li>{{ error }}</li>
       }
+    </ul>
+  </div>
+  }
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.firstName"
+        label="Nombre(s)"
+        placeholder="Nombre(s)"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.lastName"
+        label="Apellidos"
+        placeholder="Apellidos"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-date-signal
+        [control]="form.controls.birthDate"
+        label="Fecha de nacimiento"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.phoneNumber"
+        label="Telefono celular"
+        placeholder="5512345678"
+      />
+    </div>
+    <div class="col-12">
+      <lux-input-text-signal
+        [control]="form.controls.email"
+        label="Correo electronico"
+        placeholder="correo@ejemplo.com"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.street"
+        label="Calle"
+        placeholder="Av. Principal 123"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.neighborhood"
+        label="Colonia"
+        placeholder="Centro"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.municipality"
+        label="Municipio/Alcaldía"
+        placeholder="Cuauhtémoc"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.postalCode"
+        label="Código Postal"
+        placeholder="01000"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <lux-input-text-signal
+        [control]="form.controls.state"
+        label="Estado"
+        placeholder="CDMX"
+      />
+    </div>
+  </div>
+
+  @if (searchingDuplicates()) {
+  <div class="bg-body-tertiary rounded p-3 mt-3 text-body-secondary">
+    Validando coincidencias de empleado existente...
+  </div>
+  } @if (duplicateMatches().length) {
+  <div class="bg-body-tertiary border-1 border rounded p-3 mt-3">
+    <p class="m-0 fw-semibold">Coincidencias encontradas</p>
+    <p class="m-0 mt-2 text-sm text-body-secondary">
+      Si la persona ya existe, seleccionala para reingresarla o migrarla al
+      cliente de este puesto. Si no corresponde, puedes continuar con un alta
+      nueva.
+    </p>
+
+    <div class="overflow-auto mt-3">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="text-start">
+            <th class="pb-2 pe-3">EMPLEADO</th>
+            <th class="pb-2 pe-3">CORREO</th>
+            <th class="pb-2 pe-3">TELÉFONO</th>
+            <th class="pb-2 pe-3">ESTATUS</th>
+            <th class="pb-2 pe-3">CLIENTE ACTUAL</th>
+            <th class="pb-2">ACCIÓN</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (match of duplicateMatches(); track match.userId) {
+          <tr class="border-top-1 border">
+            <td class="py-2 pe-3">{{ match.nombreCompleto }}</td>
+            <td class="py-2 pe-3">{{ match.email || "Sin correo" }}</td>
+            <td class="py-2 pe-3">{{ match.telefono || "Sin telefono" }}</td>
+            <td class="py-2 pe-3">{{ match.estatus }}</td>
+            <td class="py-2 pe-3">{{ match.nombreEdificio }}</td>
+            <td class="py-2">
+              <button
+                type="button"
+                class="border-0 rounded px-3 py-2 cursor-pointer"
+                [class.bg-primary]="isSelectedMatch(match.userId)"
+                [class.text-white]="isSelectedMatch(match.userId)"
+                [class.bg-body-tertiary]="!isSelectedMatch(match.userId)"
+                (click)="selectMatchedUser(match)"
+              >
+                {{ isSelectedMatch(match.userId) ? "Seleccionado" : "Usar este
+                perfil" }}
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-3">
+      <button
+        type="button"
+        class="border-0 rounded px-3 py-2 cursor-pointer"
+        [class.bg-primary]="isCreateNewSelected()"
+        [class.text-white]="isCreateNewSelected()"
+        [class.bg-body-tertiary]="!isCreateNewSelected()"
+        (click)="selectCreateNew()"
+      >
+        {{ isCreateNewSelected() ? "Alta nueva seleccionada" : "Crear alta nueva
+        de todos modos" }}
+      </button>
+    </div>
+
+    @if (duplicateResolution() && duplicateResolution() !== "new") {
+    <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
+      Al guardar, este perfil quedara vinculado al cliente del puesto actual. Si
+      su rol es Staff, conservara acceso unicamente a ese cliente.
+    </div>
+    } @else if (isCreateNewSelected()) {
+    <div class="bg-body-tertiary rounded p-3 mt-3 text-sm">
+      Se creara un usuario nuevo aunque exista una coincidencia previa.
     </div>
     }
+  </div>
+  }
 
-    <div class="d-flex justify-content-end gap-2 mt-4">
-      <lux-button-web
-        label="Cancelar"
-        severity="secondary"
-        variant="outline"
-        (clicked)="onCancel()"
-      />
-      <lux-button-web
-        [label]="saveLabel()"
-        iconClass="material-symbols-light:save-outline"
-        [loading]="submitting() || searchingDuplicates()"
-        [disabled]="submitting() || searchingDuplicates() || !hasValidTarget()"
-        (clicked)="onSubmit()"
-      />
-    </div>
-  </form>
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <lux-button-web
+      label="Cancelar"
+      severity="secondary"
+      variant="outline"
+      (clicked)="onCancel()"
+    />
+    <lux-button-web
+      [label]="saveLabel()"
+      iconClass="material-symbols-light:save-outline"
+      [loading]="submitting() || searchingDuplicates()"
+      [disabled]="submitting() || searchingDuplicates() || !hasValidTarget()"
+      (clicked)="onSubmit()"
+    />
+  </div>
+</form>

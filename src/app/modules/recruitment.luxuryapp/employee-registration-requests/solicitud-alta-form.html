@@ -1,52 +1,52 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-select-signal
-        placeholder="--Selecciona la vacante que cubre--"
-        [control]="form.controls.positionRequestId"
-        label="Vacante que cubre"
-        [data]="cb_vacantes()"
-        [filter]="true"
-      />
-      <custom-input-text-signal
-        [hidden]="true"
-        [control]="form.controls.candidateName"
-        label="Nombre"
-        placeholder="Nombre"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.employeeId"
-        label="Empleado Id"
-        placeholder="Empleado Id"
-      />
+  <lux-input-select-signal
+    placeholder="--Selecciona la vacante que cubre--"
+    [control]="form.controls.positionRequestId"
+    label="Vacante que cubre"
+    [data]="cb_vacantes()"
+    [filter]="true"
+  />
+  <lux-input-text-signal
+    [hidden]="true"
+    [control]="form.controls.candidateName"
+    label="Nombre"
+    placeholder="Nombre"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.employeeId"
+    label="Empleado Id"
+    placeholder="Empleado Id"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.typeContractRegister"
-        label="Tipo de contrato"
-        [data]="cb_typeContractRegister()"
-        [filter]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.boss"
-        label="Jefe Inmediado"
-        placeholder="Jefe Inmediado"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.customerAddress"
-        label="Dirección de trabajo"
-        placeholder="dirección de trabajo"
-      />
-      <custom-input-textarea-signal
-        [control]="form.controls.additionalInformation"
-        label="Comentarios adicionales"
-        placeholder="comentarios adicionales"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Solicitar alta"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-select-signal
+    [control]="form.controls.typeContractRegister"
+    label="Tipo de contrato"
+    [data]="cb_typeContractRegister()"
+    [filter]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.boss"
+    label="Jefe Inmediado"
+    placeholder="Jefe Inmediado"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.customerAddress"
+    label="Dirección de trabajo"
+    placeholder="dirección de trabajo"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.additionalInformation"
+    label="Comentarios adicionales"
+    placeholder="comentarios adicionales"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Solicitar alta"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

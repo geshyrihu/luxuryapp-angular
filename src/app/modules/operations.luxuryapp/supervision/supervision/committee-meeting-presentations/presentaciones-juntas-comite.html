@@ -12,7 +12,7 @@
     <lux-table-caption [showAdd]="false" [dt]="dt" />
     <br />
     <div class="w-full sm:w-1/3 mt-3">
-      <custom-input-text-signal
+      <lux-input-text-signal
         type="month"
         [control]="periodoControl"
         (change)="onLoadData()"
@@ -63,7 +63,11 @@
             </p>
           </div>
           <div class="mt-1">
-            <lux-pdf-viewer-trigger [url]="item.archivoPortada" fileName="Portada" displayMode="icon" />
+            <lux-pdf-viewer-trigger
+              [url]="item.archivoPortada"
+              fileName="Portada"
+              displayMode="icon"
+            />
           </div>
         </div>
         }
@@ -82,7 +86,11 @@
             </p>
           </div>
           <div class="mt-1">
-            <lux-pdf-viewer-trigger [url]="item.archivoContable" fileName="Portada" displayMode="icon" />
+            <lux-pdf-viewer-trigger
+              [url]="item.archivoContable"
+              fileName="Portada"
+              displayMode="icon"
+            />
           </div>
         </div>
         }
@@ -99,7 +107,11 @@
             <p class="m-0 text-xs text-body-secondary">{{ item.fechaCarga }}</p>
           </div>
           <div class="mt-1">
-            <lux-pdf-viewer-trigger [url]="item.archivoJunta" fileName="Portada" displayMode="icon" />
+            <lux-pdf-viewer-trigger
+              [url]="item.archivoJunta"
+              fileName="Portada"
+              displayMode="icon"
+            />
           </div>
         </div>
         }
@@ -118,7 +130,11 @@
             </p>
           </div>
           <div class="mt-1">
-            <lux-pdf-viewer-trigger [url]="item.archivoFinal" fileName="Portada" displayMode="icon" />
+            <lux-pdf-viewer-trigger
+              [url]="item.archivoFinal"
+              fileName="Portada"
+              displayMode="icon"
+            />
           </div>
         </div>
         }
@@ -171,7 +187,10 @@
         <p class="fw-bold mb-0">Portada:</p>
         <p class="text-body-secondary mb-0">{{ item.userPortada }}</p>
         <p class="text-body-secondary mb-0">{{ item.fechaCargaPortada }}</p>
-        <lux-pdf-viewer-trigger [url]="item.archivoPortada" fileName="Portada" />
+        <lux-pdf-viewer-trigger
+          [url]="item.archivoPortada"
+          fileName="Portada"
+        />
       </div>
       }
 
@@ -181,7 +200,10 @@
         <p class="fw-bold mb-0">Contable:</p>
         <p class="text-body-secondary mb-0">{{ item.userContable }}</p>
         <p class="text-body-secondary mb-0">{{ item.fechaCargaContable }}</p>
-        <lux-pdf-viewer-trigger [url]="item.archivoContable" fileName="Portada" />
+        <lux-pdf-viewer-trigger
+          [url]="item.archivoContable"
+          fileName="Portada"
+        />
       </div>
       }
 

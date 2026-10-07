@@ -1,7 +1,7 @@
 <div [formGroup]="recurrenceForm">
   <!-- Frequency Selection -->
   <div class="mb-4">
-    <custom-input-select-signal
+    <lux-input-select-signal
       [control]="recurrenceForm.controls.frequency"
       (selectionChange)="onFrequencyChange($event)"
       label="Frecuencia"
@@ -18,12 +18,12 @@
     </div>
     <div class="col-12 col-md-9">
       <div class="d-flex align-items-end">
-        <custom-input-number-signal
+        <lux-input-number-signal
           [control]="recurrenceForm.controls.interval"
           [min]="1"
           [showButtons]="true"
           mode="decimal"
-        ></custom-input-number-signal>
+        ></lux-input-number-signal>
         <span class="p-text-secondary pb-1 ms-2">
           {{ currentFrequencyLabel }}
         </span>
@@ -83,7 +83,7 @@
       </div>
       <div class="d-flex align-items-end ms-4 flex-wrap gap-2">
         <span class="pb-1">Los días</span>
-        <custom-input-multiselect-signal
+        <lux-input-multiselect-signal
           [control]="recurrenceForm.controls.monthDays"
           [options]="monthNumbers"
           optionLabel="label"
@@ -91,7 +91,7 @@
           placeholder="Días"
           [disabled]="monthlyType !== 'dayOfMonth'"
           selectedItemsLabel="{0} días"
-        ></custom-input-multiselect-signal>
+        ></lux-input-multiselect-signal>
         <span class="pb-1">de cada mes</span>
       </div>
       <small class="p-text-secondary ms-4 mt-1 d-block">
@@ -141,22 +141,22 @@
       </div>
       <div class="d-flex align-items-end flex-wrap ms-4 gap-2">
         <span class="pb-1">El</span>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="recurrenceForm.controls.monthPosition"
           [data]="positions"
           optionLabel="label"
           optionValue="value"
           placeholder="Posición"
           [disabled]="monthlyType !== 'dayOfWeek'"
-        ></custom-input-select-signal>
-        <custom-input-select-signal
+        ></lux-input-select-signal>
+        <lux-input-select-signal
           [control]="recurrenceForm.controls.monthWeekDay"
           [data]="weekDays"
           optionLabel="label"
           optionValue="value"
           placeholder="Día"
           [disabled]="monthlyType !== 'dayOfWeek'"
-        ></custom-input-select-signal>
+        ></lux-input-select-signal>
         <span class="pb-1">de cada mes</span>
       </div>
       <small class="p-text-secondary ms-4 mt-1 d-block">
@@ -173,21 +173,21 @@
     <div class="p-3 border-1 border rounded bg-body-tertiary">
       <div class="d-flex align-items-end flex-wrap">
         <span class="pb-1">Cada</span>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="recurrenceForm.controls.yearDay"
           [data]="monthNumbers"
           optionLabel="label"
           optionValue="value"
           placeholder="Día"
-        ></custom-input-select-signal>
+        ></lux-input-select-signal>
         <span class="pb-1">de</span>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [control]="recurrenceForm.controls.yearMonth"
           [data]="months"
           optionLabel="label"
           optionValue="value"
           placeholder="Mes"
-        ></custom-input-select-signal>
+        ></lux-input-select-signal>
       </div>
       <small class="p-text-secondary mt-2 d-block">
         Ejemplo: Cada 25 de Diciembre

@@ -7,7 +7,7 @@
     <span class="text-xl fw-bold">Foto de perfil</span>
   </div>
   <div class="d-flex flex-column align-items-center gap-4 py-3">
-    <custom-input-img-signal
+    <lux-input-img-signal
       (fileSelected)="changeImg($event)"
       [urlImgCurrent]="imgTemp ?? infoEmployeeDTO.photoPath"
       label="Subir desde archivos"

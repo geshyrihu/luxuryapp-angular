@@ -34,14 +34,14 @@
       </td>
       <td>{{ item.productName }}</td>
       <td>
-        <custom-input-number-signal
+        <lux-input-number-signal
           [(ngModel)]="item.cantidad"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
         />
       </td>
       <td>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="cb_unidadMedida"
           [(ngModel)]="item.unidadMedidaId"
           customClass="w-100"
@@ -49,10 +49,10 @@
           [horizontal]="false"
           [filter]="true"
         >
-        </custom-input-select-signal>
+        </lux-input-select-signal>
       </td>
       <td>
-        <custom-input-decimal-signal
+        <lux-input-decimal-signal
           [(ngModel)]="item.precio"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
@@ -132,29 +132,29 @@
       </td>
       <td>{{ item.nombreProducto }}</td>
       <td>
-        <custom-input-decimal-signal
+        <lux-input-decimal-signal
           [(ngModel)]="item.cantidad"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
         />
       </td>
       <td>
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="cb_unidadMedida"
           [(ngModel)]="item.unidadMedidaId"
           customClass="w-100"
           [horizontal]="false"
           [filter]="true"
         >
-        </custom-input-select-signal>
+        </lux-input-select-signal>
       </td>
       <td>
-        <!-- <custom-input-number-signal
+        <!-- <lux-input-number-signal
           [(ngModel)]="item.precio"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"
         /> -->
-        <custom-input-decimal-signal
+        <lux-input-decimal-signal
           [(ngModel)]="item.precio"
           [ngModelOptions]="{ standalone: true }"
           [horizontal]="false"

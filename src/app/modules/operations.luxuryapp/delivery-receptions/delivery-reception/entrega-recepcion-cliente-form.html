@@ -1,49 +1,48 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <lux-input-text-signal
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+      [readonly]="true"
+    />
 
-  <div>
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+    <lux-input-select-signal
+      [control]="form.controls.estatus"
+      label="Estatus"
+      [data]="cb_estatus()"
+      [filter]="true"
+    />
 
-      <custom-input-select-signal
-        [control]="form.controls.estatus"
-        label="Estatus"
-        [data]="cb_estatus()"
-        [filter]="true"
-      />
+    <lux-input-textarea-signal
+      [control]="form.controls.observaciones"
+      placeholder="observaciones"
+      label="Observaciones"
+    />
 
-      <custom-input-textarea-signal
-        [control]="form.controls.observaciones"
-        placeholder="observaciones"
-        label="Observaciones"
-      />
-
-      <!-- Archivo -->
-      <div class="mb-3">
-        <div class="w-full">
-          <custom-input-file-signal
-            (fileSelected)="change($event)"
-            accept=".pdf"
-            label="Archivo"
-            [horizontal]="false"
-          />
-        </div>
+    <!-- Archivo -->
+    <div class="mb-3">
+      <div class="w-full">
+        <lux-input-file-signal
+          (fileSelected)="change($event)"
+          accept=".pdf"
+          label="Archivo"
+          [horizontal]="false"
+        />
       </div>
-      <!-- Archivo -->
+    </div>
+    <!-- Archivo -->
 
-      <!-- Razón social -->
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
-  </div>
+    <!-- Razón social -->
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </form>
+</div>

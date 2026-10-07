@@ -5,13 +5,9 @@ import {
   input,
   output,
 } from "@angular/core";
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from "@angular/forms";
-import { NgSelectModule } from "@ng-select/ng-select";
+import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { SelectItemDto } from "@core/interfaces/select-item.dto";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { BaseInputSignal } from "../core/base-input-signal";
 
 /**
@@ -22,11 +18,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
  * ¡Atrapa todos los Pokémons que quieras! 🔴⚪
  */
 @Component({
-  selector: "custom-input-autocomplete-multiple-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    NgSelectModule],
+  selector: "lux-input-autocomplete-multiple-signal",
+  imports: [BaseInputSignal, ReactiveFormsModule, NgSelectModule],
   template: `
     <base-input-signal
       [control]="control()"
@@ -68,7 +61,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputAutoMultiple),
       multi: true,
-    }],
+    },
+  ],
 })
 export class CustomInputAutoMultiple extends BaseInputSignal {
   // <--- Inputs Específicos --->
@@ -139,4 +133,3 @@ export class CustomInputAutoMultiple extends BaseInputSignal {
     this.propagar.emit([]);
   }
 }
-

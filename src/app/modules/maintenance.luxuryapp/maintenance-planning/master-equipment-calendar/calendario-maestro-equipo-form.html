@@ -1,37 +1,36 @@
+<div>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <lux-input-text-signal
+      [horizontal]="false"
+      [control]="form.controls.id"
+      hidden
+      label="Id"
+    />
 
-  <div>
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [horizontal]="false"
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-      />
+    <lux-input-text-signal
+      [horizontal]="false"
+      [control]="form.controls.nombreEquipo"
+      label="Nombre"
+      placeholder="nombre"
+    />
 
-      <custom-input-text-signal
-        [horizontal]="false"
-        [control]="form.controls.nombreEquipo"
-        label="Nombre"
-        placeholder="nombre"
-      />
+    <lux-input-select-signal
+      [horizontal]="false"
+      [control]="form.controls.equipoClasificacionId"
+      label="Clasificación"
+      [data]="cb_equipoClasificacion()"
+      [filter]="true"
+    />
 
-      <custom-input-select-signal
-        [horizontal]="false"
-        [control]="form.controls.equipoClasificacionId"
-        label="Clasificación"
-        [data]="cb_equipoClasificacion()"
-        [filter]="true"
-      />
-
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-    </form>
-  </div>
+    <lux-button-web
+      kind="save"
+      type="submit"
+      severity="info"
+      variant="soft"
+      displayMode="both"
+      [label]="id ? 'Actualizar' : 'Guardar'"
+      [disabled]="form.invalid"
+      [loading]="submitting()"
+    />
+  </form>
+</div>

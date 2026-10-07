@@ -1,19 +1,34 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-date-signal [control]="form.controls.date" label="Fecha" />
-      <custom-input-time-signal [control]="form.controls.hour" label="Hora" />
-      <custom-input-check-signal [control]="form.controls.adequatePressure" label="Presión Adecuada" />
-      <custom-input-check-signal [control]="form.controls.safetyPinOk" label="Seguro Presente y Funcional" />
-      <custom-input-check-signal [control]="form.controls.labelsOk" label="Etiquetas Legibles" />
-      <custom-input-check-signal [control]="form.controls.noPhysicalDamage" label="Sin Daños Físicos" />
-      <custom-input-textarea-signal [control]="form.controls.observations" label="Observaciones" />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        label="Guardar"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-date-signal [control]="form.controls.date" label="Fecha" />
+  <lux-input-time-signal [control]="form.controls.hour" label="Hora" />
+  <lux-input-check-signal
+    [control]="form.controls.adequatePressure"
+    label="Presión Adecuada"
+  />
+  <lux-input-check-signal
+    [control]="form.controls.safetyPinOk"
+    label="Seguro Presente y Funcional"
+  />
+  <lux-input-check-signal
+    [control]="form.controls.labelsOk"
+    label="Etiquetas Legibles"
+  />
+  <lux-input-check-signal
+    [control]="form.controls.noPhysicalDamage"
+    label="Sin Daños Físicos"
+  />
+  <lux-input-textarea-signal
+    [control]="form.controls.observations"
+    label="Observaciones"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    label="Guardar"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

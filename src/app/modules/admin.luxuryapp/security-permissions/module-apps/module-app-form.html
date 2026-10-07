@@ -1,54 +1,54 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.nameModule"
-        label="Nombre de Modulo"
-        placeholder="Nombre de Modulo"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.label"
-        label="Label"
-        placeholder="Label"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.routerLink"
-        label="RouterLink"
-        placeholder="RouterLink"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.icon"
-        label="Icon"
-        placeholder="Icon"
-      />
-      <custom-input-check-signal
-        [control]="form.controls.viewMobil"
-        label="Modulo Celular"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.pathParent"
-        label="Padre"
-        [data]="cb_pathParent()"
-        [filter]="true"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.rolLevel"
-        label="Nivel"
-        [data]="cb_rolLevel()"
-        [filter]="true"
-      />
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.nameModule"
+    label="Nombre de Modulo"
+    placeholder="Nombre de Modulo"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.label"
+    label="Label"
+    placeholder="Label"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.routerLink"
+    label="RouterLink"
+    placeholder="RouterLink"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.icon"
+    label="Icon"
+    placeholder="Icon"
+  />
+  <lux-input-check-signal
+    [control]="form.controls.viewMobil"
+    label="Modulo Celular"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.pathParent"
+    label="Padre"
+    [data]="cb_pathParent()"
+    [filter]="true"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.rolLevel"
+    label="Nivel"
+    [data]="cb_rolLevel()"
+    [filter]="true"
+  />
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -1,60 +1,60 @@
 @if (formReady()) {
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="row col-12 align-items-center mb-4 g-4">
-        <label class="col-12 col-md-3 mb-2 mb-md-0">Producto</label>
-        <div class="col-12 col-md-9">
-          <custom-input-text-signal
-            [hidden]="true"
-            [horizontal]="false"
-            [control]="form.controls.productoId"
-          />
-          <custom-input-text-signal
-            [readonly]="true"
-            [horizontal]="false"
-            [control]="form.controls.producto"
-          />
-        </div>
-      </div>
-      <custom-input-select-signal
-        [control]="form.controls.almacenId"
-        label="Almacen"
-        [data]="cb_almacenes()"
-        [filter]="true"
+  <div class="row col-12 align-items-center mb-4 g-4">
+    <label class="col-12 col-md-3 mb-2 mb-md-0">Producto</label>
+    <div class="col-12 col-md-9">
+      <lux-input-text-signal
+        [hidden]="true"
+        [horizontal]="false"
+        [control]="form.controls.productoId"
       />
-
-      <custom-input-number-signal
-        [control]="form.controls.existencia"
-        label="Existencia"
+      <lux-input-text-signal
+        [readonly]="true"
+        [horizontal]="false"
+        [control]="form.controls.producto"
       />
+    </div>
+  </div>
+  <lux-input-select-signal
+    [control]="form.controls.almacenId"
+    label="Almacen"
+    [data]="cb_almacenes()"
+    [filter]="true"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.unidadDeMedidaId"
-        label="Unidad"
-        [data]="cb_measurementUnits()"
-        [filter]="true"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.existencia"
+    label="Existencia"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.stockMax"
-        label="Stock Maximo"
-        placeholder="stock maximo"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.unidadDeMedidaId"
+    label="Unidad"
+    [data]="cb_measurementUnits()"
+    [filter]="true"
+  />
 
-      <custom-input-number-signal
-        [control]="form.controls.stockMin"
-        label="Stock Minimo"
-        placeholder="stock minimo"
-      />
+  <lux-input-number-signal
+    [control]="form.controls.stockMax"
+    label="Stock Maximo"
+    placeholder="stock maximo"
+  />
 
-      <lux-button-web
-         kind="save"
-         type="submit"
-         severity="info"
-         variant="soft"
-         displayMode="both"
-         [label]="editId() ? 'Actualizar' : 'Guardar'"
-         [disabled]="form.invalid"
-         [loading]="submitting()"
-       />
-  </form>
+  <lux-input-number-signal
+    [control]="form.controls.stockMin"
+    label="Stock Minimo"
+    placeholder="stock minimo"
+  />
+
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="editId() ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>
 }

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -9,6 +8,8 @@ import {
 } from "@angular/core";
 import { FormControl, FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
 import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-datepicker";
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
@@ -17,7 +18,6 @@ import { CustomInputMultiselectSignal } from "@ui/inputs/web/custom-input-multis
 import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 import { CustomInputToggleSwitch } from "@ui/inputs/web/custom-input-toggle-switch-signal";
 import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -40,7 +40,8 @@ const GUIA_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-guia-item",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     CommonModule,
     FormsModule,
     InputText,
@@ -57,7 +58,8 @@ const GUIA_LABELS: Record<string, string> = {
     AppRadioButton,
     AppTag,
     LxIcon,
-    ButtonCatalog],
+    ButtonCatalog,
+  ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -125,7 +127,10 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ p.title }}</strong>
-                        <lux-tag-web [value]="p.severity" [severity]="p.severity" />
+                        <lux-tag-web
+                          [value]="p.severity"
+                          [severity]="p.severity"
+                        />
                       </div>
                       <p class="m-0 line-height-3 text-color-secondary">
                         {{ p.summary }}
@@ -240,7 +245,10 @@ const GUIA_LABELS: Record<string, string> = {
                     <div>
                       <div class="d-flex align-items-center gap-2 mb-2">
                         <strong>{{ r.variant }}</strong>
-                        <lux-tag-web [value]="r.variant" [severity]="r.severity" />
+                        <lux-tag-web
+                          [value]="r.variant"
+                          [severity]="r.severity"
+                        />
                       </div>
                       <p class="m-0 text-color-secondary line-height-3">
                         {{ r.usage }}
@@ -264,7 +272,7 @@ const GUIA_LABELS: Record<string, string> = {
           <div class="card mb-5">
             <div class="row formgrid">
               <div class="field col-12 col-md-6 col-xl-4">
-                <custom-input-text-signal
+                <lux-input-text-signal
                   [ngModel]="sampleName"
                   (ngModelChange)="sampleName = $event"
                   label="Nombre del registro"
@@ -275,7 +283,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 col-md-6 col-xl-4">
-                <custom-input-select-signal
+                <lux-input-select-signal
                   [ngModel]="selectedArea"
                   (ngModelChange)="selectedArea = $event"
                   [data]="areas"
@@ -289,7 +297,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 col-md-6 col-xl-4">
-                <custom-input-multiselect-signal
+                <lux-input-multiselect-signal
                   [ngModel]="selectedModules"
                   (ngModelChange)="selectedModules = $event"
                   [options]="modules"
@@ -303,7 +311,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 col-md-6 col-xl-4">
-                <custom-input-number-signal
+                <lux-input-number-signal
                   [ngModel]="sampleBudget"
                   (ngModelChange)="sampleBudget = $event"
                   label="Importe autorizado"
@@ -316,7 +324,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 col-md-6 col-xl-4">
-                <custom-input-datepicker-signal
+                <lux-input-datepicker-signal
                   [ngModel]="selectedDate"
                   (ngModelChange)="selectedDate = $event"
                   label="Fecha compromiso"
@@ -334,7 +342,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12">
-                <custom-input-textarea-signal
+                <lux-input-textarea-signal
                   [ngModel]="sampleDescription"
                   (ngModelChange)="sampleDescription = $event"
                   label="Descripción ejecutiva"
@@ -345,7 +353,7 @@ const GUIA_LABELS: Record<string, string> = {
                 />
               </div>
               <div class="field col-12 col-md-4">
-                <custom-input-toggle-switch-signal
+                <lux-input-toggle-switch-signal
                   [ngModel]="enabled"
                   (ngModelChange)="enabled = $event"
                   label="Activo"
@@ -435,13 +443,15 @@ export class CatalogGuiaItem {
     { label: "Administracion", value: "admin" },
     { label: "Operaciones", value: "ops" },
     { label: "Finanzas", value: "finance" },
-    { label: "Recursos Humanos", value: "hr" }];
+    { label: "Recursos Humanos", value: "hr" },
+  ];
 
   readonly modules = [
     { label: "Cuentas por cobrar", value: "ar" },
     { label: "Mantenimiento", value: "maintenance" },
     { label: "Compras", value: "purchases" },
-    { label: "Biblioteca", value: "library" }];
+    { label: "Biblioteca", value: "library" },
+  ];
 
   readonly metrics: {
     label: string;
@@ -470,7 +480,8 @@ export class CatalogGuiaItem {
       detail: "Controles tactiles y secciones apilables",
       icon: "material-symbols-light:devices-other",
       tone: "success",
-    }];
+    },
+  ];
 
   readonly identityPillars: {
     title: string;
@@ -505,7 +516,8 @@ export class CatalogGuiaItem {
       application:
         "Color semantico reservado, maximo una primaria por bloque y danger confirmado.",
       severity: "warn" as TagSeverity,
-    }];
+    },
+  ];
 
   readonly businessScenarios: {
     title: string;
@@ -533,7 +545,8 @@ export class CatalogGuiaItem {
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
       rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
       icon: "material-symbols-light:devices-other",
-    }];
+    },
+  ];
 
   readonly colorAssessment = [
     {
@@ -570,7 +583,8 @@ export class CatalogGuiaItem {
       verdict: "Consistente",
       recommendation: "Adecuado para acciones destructivas.",
       severity: "danger" as TagSeverity,
-    }];
+    },
+  ];
 
   readonly buttonRules: {
     variant: string;
@@ -611,7 +625,8 @@ export class CatalogGuiaItem {
       severity: "secondary" as TagSeverity,
       cardClass: "h-full border-left-3 border-300 surface-card shadow-1",
       iconClass: "material-symbols-light:more-horiz",
-    }];
+    },
+  ];
 
   readonly componentCatalog = [
     {
@@ -625,7 +640,7 @@ export class CatalogGuiaItem {
     },
     {
       family: "Inputs unificados",
-      selector: "custom-input-*-signal",
+      selector: "lux-input-*-signal",
       source: "cor./web/inputs",
       useCase: "CVA completo. Auto-detectan plataforma.",
       preferredFor: "Todos los formularios — web y mobile.",
@@ -685,7 +700,8 @@ export class CatalogGuiaItem {
       preferredFor: "Dashboards y metricas.",
       avoidWhen: "Datos que requieren tabla para auditoria.",
       status: "Especializado" as const,
-    }];
+    },
+  ];
 
   getCatalogSeverity(
     status: "Usar" | "Web" | "Mobile" | "Especializado",

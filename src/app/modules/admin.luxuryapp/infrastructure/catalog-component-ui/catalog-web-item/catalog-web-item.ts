@@ -558,7 +558,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">DatePicker - p-datepicker</h3>
                 </div>
                 <div class="card-body">
-                  <custom-input-datepicker-signal
+                  <lux-input-datepicker-signal
                     [(ngModel)]="dateVal"
                     dateFormat="dd/mm/yy"
                     [onlyInput]="true"
@@ -641,7 +641,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="row">
                     <div class="col-6">
-                      <custom-input-number-signal
+                      <lux-input-number-signal
                         [(ngModel)]="numVal"
                         [min]="0"
                         [max]="100"
@@ -650,7 +650,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       />
                     </div>
                     <div class="col-6">
-                      <custom-input-number-signal
+                      <lux-input-number-signal
                         [(ngModel)]="numVal2"
                         [onlyInput]="true"
                         class="w-full"
@@ -667,13 +667,13 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 </div>
                 <div class="card-body">
                   <div class="d-flex flex-column gap-3">
-                    <custom-input-text-signal
+                    <lux-input-text-signal
                       [(ngModel)]="textVal"
                       placeholder="Texto libre"
                       [onlyInput]="true"
                       class="w-full"
                     />
-                    <custom-input-text-signal
+                    <lux-input-text-signal
                       placeholder="Fluid (ancho completo)"
                       [onlyInput]="true"
                       class="w-full"
@@ -714,7 +714,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">MultiSelect - p-multiselect</h3>
                 </div>
                 <div class="card-body">
-                  <custom-input-multiselect-signal
+                  <lux-input-multiselect-signal
                     [data]="selectOptions"
                     [(ngModel)]="multiVal"
                     optionLabel="label"
@@ -807,7 +807,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Select - p-select</h3>
                 </div>
                 <div class="card-body">
-                  <custom-input-select-signal
+                  <lux-input-select-signal
                     [data]="selectOptions"
                     [(ngModel)]="selectVal"
                     optionLabel="label"
@@ -937,7 +937,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   <h3 class="card-title">Textarea - p-textarea</h3>
                 </div>
                 <div class="card-body">
-                  <custom-input-textarea-signal
+                  <lux-input-textarea-signal
                     [onlyInput]="true"
                     [noMargin]="true"
                     [horizontal]="false"
@@ -1051,60 +1051,60 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                     [formGroup]="customInputsForm"
                     class="d-flex flex-column gap-1"
                   >
-                    <custom-input-text-signal
+                    <lux-input-text-signal
                       [control]="customInputsForm.controls['nombre']"
                       label="Nombre completo"
                       placeholder="Juan Garcia"
                     />
-                    <custom-input-password
+                    <lux-input-password
                       [control]="customInputsForm.controls['password']"
                       label="Contrasena"
                     />
-                    <custom-input-number-signal
+                    <lux-input-number-signal
                       [control]="customInputsForm.controls['cantidad']"
                       label="Cantidad"
                       [min]="0"
                       [max]="9999"
                     />
-                    <custom-input-currency-signal
+                    <lux-input-currency-signal
                       [control]="customInputsForm.controls['monto']"
                       label="Monto (MXN)"
                     />
-                    <custom-input-decimal
+                    <lux-input-decimal
                       [control]="customInputsForm.controls['decimal']"
                       label="Porcentaje (%)"
                     />
-                    <custom-input-date-signal
+                    <lux-input-date-signal
                       [control]="customInputsForm.controls['fecha']"
                       label="Fecha de evento"
                     />
-                    <custom-input-time
+                    <lux-input-time
                       [control]="customInputsForm.controls['hora']"
                       label="Hora"
                     />
-                    <custom-input-select-signal
+                    <lux-input-select-signal
                       [control]="customInputsForm.controls['area']"
                       [data]="inputSelectOptions"
                       label="Area"
                     />
-                    <custom-input-select-bool
+                    <lux-input-select-bool
                       [control]="customInputsForm.controls['activo']"
                       label="Estado"
                     />
-                    <custom-input-multiselect-signal
+                    <lux-input-multiselect-signal
                       [control]="customInputsForm.controls['roles']"
                       [data]="inputSelectOptions"
                       label="Roles"
                     />
-                    <custom-input-check-signal
+                    <lux-input-check-signal
                       [control]="customInputsForm.controls['terminos']"
                       placeholder="Acepto terminos y condiciones"
                     />
-                    <custom-input-switch
+                    <lux-input-switch
                       [control]="customInputsForm.controls['notificaciones']"
                       label="Notificaciones push"
                     />
-                    <custom-input-text-area-signal
+                    <lux-input-text-area-signal
                       [control]="customInputsForm.controls['notas']"
                       label="Notas"
                       placeholder="Escribe aqui..."
@@ -1133,7 +1133,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                 <div class="card-body">
                   <div class="row">
                     <div class="col-12 col-md-6">
-                      <custom-input-select-signal
+                      <lux-input-select-signal
                         [control]="customInputsForm.controls['area_disabled']"
                         [data]="inputSelectOptions"
                         label="Área (Deshabilitado)"
@@ -1142,7 +1142,7 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                       />
                     </div>
                     <div class="col-12 col-md-6">
-                      <custom-input-multiselect-signal
+                      <lux-input-multiselect-signal
                         [control]="customInputsForm.controls['roles_disabled']"
                         [data]="inputSelectOptions"
                         label="Roles (Deshabilitado)"
@@ -1159,21 +1159,21 @@ const WEB_ITEM_LABELS: Record<string, string> = {
                   class="mt-3" >
                   <div class="row">
                     <div class="col-12 col-md-4">
-                      <custom-input-text-signal
+                      <lux-input-text-signal
                         [control]="customInputsForm.controls['nombre']"
                         label="Nombre"
                         [horizontal]="false"
                       />
                     </div>
                     <div class="col-12 col-md-4">
-                      <custom-input-currency-signal
+                      <lux-input-currency-signal
                         [control]="customInputsForm.controls['monto']"
                         label="Monto"
                         [horizontal]="false"
                       />
                     </div>
                     <div class="col-12 col-md-4">
-                      <custom-input-select-signal
+                      <lux-input-select-signal
                         [control]="customInputsForm.controls['area']"
                         [data]="inputSelectOptions"
                         label="Area"

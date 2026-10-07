@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component, output, signal, inject, OnInit, input } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { DateService } from "@core/services/date.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { AuthService } from "@core/auth/services/auth.service";
-import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
+import { DateService } from "@core/services/date.service";
 import { CustomInputDateSignal } from "@ui/inputs/web/custom-input-date-signal";
+import { CustomInputSelectSignal } from "@ui/inputs/web/custom-input-select-signal";
 
 export interface DashboardMetricsFilter {
   fechaInicio: string;
@@ -16,13 +24,21 @@ export interface DashboardMetricsFilter {
 @Component({
   selector: "app-dashboard-metrics-filters",
   standalone: true,
-  imports: [CommonModule, FormsModule, CustomInputSelectSignal, CustomInputDateSignal],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CustomInputSelectSignal,
+    CustomInputDateSignal,
+  ],
   template: `
-    <div class="card p-3 mb-4" style="background-color: var(--ds-bg-surface); border-color: var(--ds-border)">
+    <div
+      class="card p-3 mb-4"
+      style="background-color: var(--ds-bg-surface); border-color: var(--ds-border)"
+    >
       <div class="row g-3">
         @if (isCorporate()) {
           <div class="col-12 col-md-3">
-            <custom-input-select-signal
+            <lux-input-select-signal
               label="Cliente (opcional)"
               [data]="customerOptions()"
               [ngModel]="customerId()"
@@ -31,12 +47,12 @@ export interface DashboardMetricsFilter {
               optionLabel="label"
               [filter]="true"
               [noMargin]="true"
-            ></custom-input-select-signal>
+            ></lux-input-select-signal>
           </div>
         }
 
         <div class="col-12 col-md-3">
-          <custom-input-select-signal
+          <lux-input-select-signal
             label="Tipo de Operación"
             [data]="tiposOperacion"
             [ngModel]="tipoOperacion()"
@@ -44,30 +60,33 @@ export interface DashboardMetricsFilter {
             optionValue="value"
             optionLabel="label"
             [noMargin]="true"
-          ></custom-input-select-signal>
+          ></lux-input-select-signal>
         </div>
 
         <div class="col-12 col-md-3">
-          <custom-input-date-signal
+          <lux-input-date-signal
             label="Fecha Inicio"
             [ngModel]="fechaInicio()"
             (ngModelChange)="fechaInicio.set($event); onFilterChange()"
             [noMargin]="true"
-          ></custom-input-date-signal>
+          ></lux-input-date-signal>
         </div>
 
         <div class="col-12 col-md-3">
-          <custom-input-date-signal
+          <lux-input-date-signal
             label="Fecha Fin"
             [ngModel]="fechaFin()"
             (ngModelChange)="fechaFin.set($event); onFilterChange()"
             [noMargin]="true"
-          ></custom-input-date-signal>
+          ></lux-input-date-signal>
         </div>
       </div>
     </div>
     @if (errorMensaje()) {
-      <div class="px-3 mb-4 fw-bold" style="color: var(--ds-danger); font-size: 0.875rem">
+      <div
+        class="px-3 mb-4 fw-bold"
+        style="color: var(--ds-danger); font-size: 0.875rem"
+      >
         {{ errorMensaje() }}
       </div>
     }
@@ -77,28 +96,28 @@ export interface DashboardMetricsFilter {
 export class DashboardMetricsFilters implements OnInit {
   private dateS = inject(DateService);
   private authS = inject(AuthService);
-  
+
   filterChange = output<DashboardMetricsFilter>();
 
   tipoOperacion = signal<string>("");
   fechaInicio = signal<string>("");
   fechaFin = signal<string>("");
   customerId = signal<string>("");
-  
+
   errorMensaje = signal<string>("");
 
   tiposOperacion = [
     { label: "Todas", value: "" },
     { label: "Mantenimiento", value: "Mantenimiento" },
-    { label: "Tickets", value: "Tickets" }
+    { label: "Tickets", value: "Tickets" },
   ];
 
   isCorporate = input<boolean>(false);
-  customerOptions = signal<{value: string, label: string}[]>([]);
+  customerOptions = signal<{ value: string; label: string }[]>([]);
 
   constructor() {
     // Rango por defecto: hoy (se reporta que DateService carece de método para restar días)
-    const todayStr = this.dateS.getDateNow(); 
+    const todayStr = this.dateS.getDateNow();
 
     this.fechaInicio.set(todayStr);
     this.fechaFin.set(todayStr);
@@ -106,10 +125,7 @@ export class DashboardMetricsFilters implements OnInit {
 
   ngOnInit() {
     const access = this.authS.customerAccess || [];
-    this.customerOptions.set([
-      { value: "", label: "Todos" },
-      ...access
-    ]);
+    this.customerOptions.set([{ value: "", label: "Todos" }, ...access]);
 
     this.onFilterChange();
   }
@@ -121,7 +137,9 @@ export class DashboardMetricsFilters implements OnInit {
 
     if (start && end) {
       if (start > end) {
-        this.errorMensaje.set("La fecha de inicio no puede ser mayor a la fecha de fin.");
+        this.errorMensaje.set(
+          "La fecha de inicio no puede ser mayor a la fecha de fin.",
+        );
         return;
       }
       const diffTime = Math.abs(end.getTime() - start.getTime());
@@ -136,7 +154,7 @@ export class DashboardMetricsFilters implements OnInit {
       fechaInicio: this.fechaInicio(),
       fechaFin: this.fechaFin(),
       tipoOperacion: this.tipoOperacion(),
-      customerId: this.customerId()
+      customerId: this.customerId(),
     });
   }
 }

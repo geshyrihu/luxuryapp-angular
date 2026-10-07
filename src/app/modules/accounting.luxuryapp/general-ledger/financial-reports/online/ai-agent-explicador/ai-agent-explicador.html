@@ -36,7 +36,8 @@
                   [icon]="msg.role === 'user' ? 'material-symbols-light:forum' : 'material-symbols-light:forum'"
                 />
                 @if (msg.role === 'assistant') {
-                <lux-button-web displayMode="icon"
+                <lux-button-web
+                  displayMode="icon"
                   iconClass="material-symbols-light:volume-up"
                   size="small"
                   variant="text"
@@ -135,7 +136,7 @@
 
     <div class="p-2 border-top-1 border bg-white mt-1">
       <div class="p-inputgroup">
-        <custom-input-text-signal
+        <lux-input-text-signal
           [ngModel]="currentQuery()"
           (ngModelChange)="currentQuery.set($event)"
           [ngModelOptions]="{ standalone: true }"
@@ -147,7 +148,8 @@
           [noMargin]="true"
           customClass="w-full rounded-left-3xl pl-4"
         />
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="material-symbols-light:send"
           (clicked)="sendQuery()"
           [disabled]="loading() || !currentQuery()"

@@ -1,68 +1,67 @@
-
-  <form
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-    [formGroup]="form"
-    aria-label="Formulario de retroalimentacion de entrevista"
-  >
-    <custom-input-text-signal
-      [control]="form.controls['targetId']"
-      hidden
-      label="Proceso"
-      [readonly]="true"
-    />
-    <custom-input-select-signal
-      [control]="form.controls['decision']"
-      label="Decision"
-      [data]="cbDecision()"
-    />
-    @if (selectedDecision() === 1) {
-    <custom-input-select-signal
-      [control]="form.controls['decisionReason']"
-      label="Motivo de la decision"
-      [data]="rejectionReasonOptions()"
-      [filter]="true"
-    />
-    } @if (selectedDecision() === 0) {
-    <div class="row g-4">
-      <div class="col-12 col-md-6">
-        <custom-input-date-signal
-          [control]="form.controls['agreedPresentationDate']"
-          label="Fecha de Presentación Acordada"
-          placeholder="Selecciona fecha de presentación"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <custom-input-time-signal
-          [control]="form.controls['agreedPresentationTime']"
-          label="Hora de Presentación"
-          placeholder="Selecciona hora de presentación"
-        />
-      </div>
+<form
+  autocomplete="off"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  aria-label="Formulario de retroalimentacion de entrevista"
+>
+  <lux-input-text-signal
+    [control]="form.controls['targetId']"
+    hidden
+    label="Proceso"
+    [readonly]="true"
+  />
+  <lux-input-select-signal
+    [control]="form.controls['decision']"
+    label="Decision"
+    [data]="cbDecision()"
+  />
+  @if (selectedDecision() === 1) {
+  <lux-input-select-signal
+    [control]="form.controls['decisionReason']"
+    label="Motivo de la decision"
+    [data]="rejectionReasonOptions()"
+    [filter]="true"
+  />
+  } @if (selectedDecision() === 0) {
+  <div class="row g-4">
+    <div class="col-12 col-md-6">
+      <lux-input-date-signal
+        [control]="form.controls['agreedPresentationDate']"
+        label="Fecha de Presentación Acordada"
+        placeholder="Selecciona fecha de presentación"
+      />
     </div>
-    } @if (selectedDecision() === 4) {
-    <web-custom-input-date-time-signal
-      [control]="form.controls['newScheduledAt']"
-      label="Nueva fecha y hora"
-      placeholder="Selecciona fecha y hora"
-    />
-    }
-    <custom-input-textarea-signal
-      [control]="form.controls['additionalComment']"
-      label="Comentario"
-      placeholder="Comentario adicional del entrevistador..."
-      [rows]="3"
-    />
+    <div class="col-12 col-md-6">
+      <lux-input-time-signal
+        [control]="form.controls['agreedPresentationTime']"
+        label="Hora de Presentación"
+        placeholder="Selecciona hora de presentación"
+      />
+    </div>
+  </div>
+  } @if (selectedDecision() === 4) {
+  <web-custom-input-date-time-signal
+    [control]="form.controls['newScheduledAt']"
+    label="Nueva fecha y hora"
+    placeholder="Selecciona fecha y hora"
+  />
+  }
+  <lux-input-textarea-signal
+    [control]="form.controls['additionalComment']"
+    label="Comentario"
+    placeholder="Comentario adicional del entrevistador..."
+    [rows]="3"
+  />
 
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="targetLabel()"
-      [disabled]="form.invalid || resolvingProcess()"
-      [loading]="submitting() || resolvingProcess()"
-      class="pb-2"
-    />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="targetLabel()"
+    [disabled]="form.invalid || resolvingProcess()"
+    [loading]="submitting() || resolvingProcess()"
+    class="pb-2"
+  />
+</form>

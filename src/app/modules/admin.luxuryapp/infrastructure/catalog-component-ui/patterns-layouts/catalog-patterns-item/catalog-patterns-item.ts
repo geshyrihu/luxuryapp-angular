@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,8 +7,9 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { CustomInputTextSignal } from "@ui/inputs/web/custom-input-text-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppDivider } from "@ui/web/divider/divider";
 import { EStatus, StatusBadge } from "@ui/web/status-badge/status-badge";
@@ -33,7 +33,8 @@ const PATTERNS_LABELS: Record<string, string> = {
 
 @Component({
   selector: "app-catalog-patterns-item",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     FormsModule,
     AppDivider,
     CustomInputTextSignal,
@@ -43,7 +44,8 @@ const PATTERNS_LABELS: Record<string, string> = {
     StatusBadge,
     AppCard,
     ChartWrapper,
-    AppToolbar],
+    AppToolbar,
+  ],
   template: `
     <section class="fadein">
       <div class="section-header mb-4">
@@ -72,13 +74,13 @@ const PATTERNS_LABELS: Record<string, string> = {
               <ng-template #content>
                 <div class="row g-3">
                   <div class="col-12 col-md-4">
-                    <custom-input-text-signal
+                    <lux-input-text-signal
                       [(ngModel)]="mockFilter"
                       placeholder="Buscar por folio..."
                     />
                   </div>
                   <div class="col-12 col-md-3">
-                    <custom-input-text-signal
+                    <lux-input-text-signal
                       [(ngModel)]="mockFilter"
                       placeholder="Filtrar fecha"
                     />
@@ -117,7 +119,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                       <td class="font-bold">{{ row.folio }}</td>
                       <td>{{ row.fecha }}</td>
                       <td>{{ row.total }}</td>
-                      <td><lux-status-badge-web [status]="EStatus.Aprobado" /></td>
+                      <td>
+                        <lux-status-badge-web [status]="EStatus.Aprobado" />
+                      </td>
                       <td class="text-end">
                         <lux-button-web
                           displayMode="icon"
@@ -196,7 +200,10 @@ const PATTERNS_LABELS: Record<string, string> = {
           <!-- Receta: Detalle + Timeline -->
           <div class="row g-4">
             <div class="col-12 col-md-8">
-              <lux-card-web header="Detalles del Ticket #4502" [elevated]="true">
+              <lux-card-web
+                header="Detalles del Ticket #4502"
+                [elevated]="true"
+              >
                 <ng-template #content>
                   <p class="text-secondary">
                     El aire acondicionado de la sala de juntas principal no está
@@ -305,7 +312,9 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <ng-template #body let-item
                   ><tr>
                     <td>{{ item.name }}</td>
-                    <td><lux-status-badge-web [status]="EStatus.Proceso" /></td></tr
+                    <td>
+                      <lux-status-badge-web [status]="EStatus.Proceso" />
+                    </td></tr
                 ></ng-template>
               </lux-table>
             </div>
@@ -324,13 +333,13 @@ const PATTERNS_LABELS: Record<string, string> = {
                 <div class="text-center mb-3">
                   <h3 class="m-0">LuxuryApp</h3>
                 </div>
-                <custom-input-text-signal
+                <lux-input-text-signal
                   [(ngModel)]="email"
                   placeholder="admin@luxuryapp.com"
                   [onlyInput]="true"
                   class="w-full mb-2"
                 />
-                <custom-input-text-signal
+                <lux-input-text-signal
                   type="password"
                   [(ngModel)]="password"
                   placeholder="Contraseña"
@@ -351,7 +360,8 @@ const PATTERNS_LABELS: Record<string, string> = {
               <lux-tabs-web
                 [tabs]="[
                   { id: '0', label: 'Dashboard' },
-                  { id: '1', label: 'Reportes' }]"
+                  { id: '1', label: 'Reportes' },
+                ]"
                 [(activeId)]="patternsTabActiveId"
               >
                 <div tab="0"><p>Contenido Dashboard.</p></div>
@@ -556,7 +566,8 @@ export class CatalogPatternsItem {
   mockTableData = [
     { folio: "OC-10495", fecha: "2026-09-30", total: "$12,450.00" },
     { folio: "OC-10496", fecha: "2026-09-30", total: "$3,200.00" },
-    { folio: "OC-10497", fecha: "2026-09-29", total: "$45,900.00" }];
+    { folio: "OC-10497", fecha: "2026-09-29", total: "$45,900.00" },
+  ];
   mockChartData = {
     labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
     datasets: [
@@ -564,7 +575,8 @@ export class CatalogPatternsItem {
         label: "Ingresos",
         data: [65000, 59000, 80000, 81000, 56000, 125000],
         backgroundColor: "var(--ds-primary)",
-      }],
+      },
+    ],
   };
 
   // --- Navigation Hub Page demo data ---------------------------
@@ -631,7 +643,8 @@ interface DashboardGroup {
       bgColor: "#f3e8ff",
       color: "#7c3aed",
       description: "",
-    }];
+    },
+  ];
 
   readonly navHubImplementations: {
     label: string;
@@ -652,5 +665,6 @@ interface DashboardGroup {
       label: "Cobranza Nativa",
       icon: "material-symbols-light:paid",
       route: "/cobranza-nativa",
-    }];
+    },
+  ];
 }

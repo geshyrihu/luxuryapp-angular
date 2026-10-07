@@ -51,7 +51,7 @@
           class="d-flex flex-column flex-sm-row align-items-center gap-2 g-4"
         >
           <div>
-            <custom-input-select-signal
+            <lux-input-select-signal
               [data]="selectCustomerSignal()"
               optionLabel="label"
               optionValue="value"
@@ -63,7 +63,7 @@
             />
           </div>
           <div>
-            <custom-input-select-signal
+            <lux-input-select-signal
               [data]="cbTypePersonSignal()"
               optionLabel="label"
               optionValue="value"
@@ -139,7 +139,8 @@
         <td class="no-print">
           <div class="d-flex">
             @if (item.active) {
-            <lux-button-web size="sm"
+            <lux-button-web
+              size="sm"
               kind="item"
               severity="secondary"
               variant="soft"
@@ -150,7 +151,8 @@
               (clicked)="onToBlockAccount(item.id)"
             />
             } @if (!item.active) {
-            <lux-button-web size="sm"
+            <lux-button-web
+              size="sm"
               kind="item"
               severity="secondary"
               variant="soft"
@@ -161,7 +163,8 @@
               (clicked)="onToUnlockAccount(item.id)"
             />
             }
-            <lux-button-web size="sm"
+            <lux-button-web
+              size="sm"
               kind="item"
               severity="secondary"
               variant="soft"

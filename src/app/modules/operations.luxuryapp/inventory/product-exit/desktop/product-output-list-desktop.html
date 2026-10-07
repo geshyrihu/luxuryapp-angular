@@ -20,7 +20,7 @@
       >
         <div class="d-flex flex-column flex-md-row align-items-md-center g-4">
           <div class="p-inputgroup w-full md:w-auto">
-            <custom-input-datepicker-signal
+            <lux-input-datepicker-signal
               [control]="selectedDateControl()"
               (dateSelect)="loadData.emit()"
               [showIcon]="true"
@@ -31,7 +31,8 @@
               [showButtonBar]="false"
             />
             @if (selectedDateControl().value) {
-            <lux-button-web displayMode="icon"
+            <lux-button-web
+              displayMode="icon"
               iconClass="material-symbols-light:close"
               (clicked)="clearFilter.emit()"
               severity="danger"
@@ -52,13 +53,14 @@
         </div>
 
         <div class="p-inputgroup w-full md:w-auto mt-3 mt-md-0">
-          <custom-input-text-signal
+          <lux-input-text-signal
             [control]="filterControl()"
             (keyup.enter)="loadData.emit()"
             placeholder="Buscar..."
             [horizontal]="false"
           />
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:search"
             (clicked)="loadData.emit()"
             severity="primary"
@@ -66,37 +68,37 @@
         </div>
       </div>
     </ng-template>
-<ng-template #header>
-    <tr>
-      <th appSortableColumn="fechaSalida">
-        FECHA SALIDA
-        <app-sorticon field="fechaSalida" />
-      </th>
-      <th appSortableColumn="producto">
-        PRODUCTO
-        <app-sorticon field="producto" />
-      </th>
-      <th appSortableColumn="cantidad">
-        CANTIDAD
-        <app-sorticon field="cantidad" />
-      </th>
-      <th appSortableColumn="unidadMedida">
-        UNIDAD
-        <app-sorticon field="unidadMedida" />
-      </th>
-      <th appSortableColumn="quienUso">
-        RECIBIO
-        <app-sorticon field="quienUso" />
-      </th>
-      <th appSortableColumn="usoPrducto">
-        USO
-        <app-sorticon field="usoPrducto" />
-      </th>
-      @if (isSuperUsuario()) {
-      <th class="table-col-5"></th>
-      }
-    </tr>
-  </ng-template>
+    <ng-template #header>
+      <tr>
+        <th appSortableColumn="fechaSalida">
+          FECHA SALIDA
+          <app-sorticon field="fechaSalida" />
+        </th>
+        <th appSortableColumn="producto">
+          PRODUCTO
+          <app-sorticon field="producto" />
+        </th>
+        <th appSortableColumn="cantidad">
+          CANTIDAD
+          <app-sorticon field="cantidad" />
+        </th>
+        <th appSortableColumn="unidadMedida">
+          UNIDAD
+          <app-sorticon field="unidadMedida" />
+        </th>
+        <th appSortableColumn="quienUso">
+          RECIBIO
+          <app-sorticon field="quienUso" />
+        </th>
+        <th appSortableColumn="usoPrducto">
+          USO
+          <app-sorticon field="usoPrducto" />
+        </th>
+        @if (isSuperUsuario()) {
+        <th class="table-col-5"></th>
+        }
+      </tr>
+    </ng-template>
     <ng-template #body let-item>
       <tr>
         <td>{{ item.fechaSalida | apiDate:'mediumDate' }}</td>
@@ -127,7 +129,8 @@
                   "
             />
             }
-            <lux-button-web size="sm"
+            <lux-button-web
+              size="sm"
               kind="item"
               displayMode="icon"
               severity="secondary"

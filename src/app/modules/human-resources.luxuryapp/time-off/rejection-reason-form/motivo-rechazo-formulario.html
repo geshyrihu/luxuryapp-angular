@@ -1,5 +1,5 @@
 <div>
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     customClass="w-100"
     [control]="reasonControl"
     [rows]="4"
@@ -7,11 +7,7 @@
   />
 </div>
 <div class="d-flex justify-content-end mt-3">
-  <lux-button-web
-    label="Cancelar"
-    variant="text"
-    (clicked)="close(null)"
-  />
+  <lux-button-web label="Cancelar" variant="text" (clicked)="close(null)" />
   <lux-button-web
     label="Confirmar Rechazo"
     severity="danger"
@@ -20,10 +16,3 @@
     (clicked)="confirm()"
   />
 </div>
-
-
-
-
-
-
-

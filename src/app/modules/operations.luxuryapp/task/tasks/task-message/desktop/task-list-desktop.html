@@ -39,7 +39,7 @@
 
     <div class="d-flex align-items-end flex-wrap gap-3 mb-1">
       <div class="flex-shrink-0 w-12rem">
-        <custom-input-select-signal
+        <lux-input-select-signal
           [data]="cbAssignee()"
           optionLabel="label"
           optionValue="value"
@@ -54,7 +54,7 @@
       </div>
 
       <div class="flex-shrink-0 w-11rem">
-        <custom-input-text-signal
+        <lux-input-text-signal
           type="week"
           [control]="weekInputValueControl()"
           (change)="weekChange.emit($event)"
@@ -471,7 +471,8 @@
           } @if (!item.beforeWork && !item.afterWork) {
           <span class="text-xs text-body-secondary">—</span>
           }
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             icon="material-symbols-light:photo-library"
             variant="soft"
             size="small"
@@ -482,13 +483,13 @@
       </td>
 
       <td class="text-center">
-        <strong  [class.text-red-500]="item.daysDifference > 7"
+        <strong [class.text-red-500]="item.daysDifference > 7"
           >{{ item.daysDifference }}</strong
         >
       </td>
 
       <td class="text-center no-print">
-        <custom-input-toggle-switch-signal
+        <lux-input-toggle-switch-signal
           [(ngModel)]="item.isRelevant"
           (toggleChange)="updateStateTicket.emit(item)"
           size="small"
@@ -521,7 +522,8 @@
           </a>
           <app-action-menu>
             <ng-container actions>
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -530,7 +532,8 @@
                 (clicked)="program.emit(item.id)"
               />
               @if (item.status !== 'Completed') {
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -539,7 +542,8 @@
                 (clicked)="closed.emit(item.id)"
               />
               } @if (item.status !== 'InProgress') {
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -548,7 +552,8 @@
                 (clicked)="progress.emit(item.id)"
               />
               } @if (item.status === 'Completed') {
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="item"
                 severity="secondary"
                 variant="soft"
@@ -557,14 +562,16 @@
                 (clicked)="reopen.emit(item.id)"
               />
               }
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="edit"
                 severity="info"
                 variant="soft"
                 (clicked)="edit.emit(item)"
               />
               @if (isSuperUser()) {
-              <lux-button-web size="sm"
+              <lux-button-web
+                size="sm"
                 kind="delete"
                 severity="danger"
                 variant="soft"

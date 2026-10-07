@@ -1,51 +1,56 @@
 @if (fine()) {
-  <div class="d-flex flex-column gap-3">
-
-    <!-- Resumen de la multa -->
-    <div class="p-3 bg-body-tertiary rounded-lg">
-      <div class="text-xs text-body-secondary mb-1">Propiedad</div>
-      <div class="fw-semibold text-body mb-2">{{ fine()!.propertyFullName }}</div>
-      <div class="text-xs text-body-secondary mb-1">Infracción</div>
-      <div class="text-sm text-body mb-2">{{ fine()!.description }}</div>
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <div class="text-xs text-body-secondary">Fecha de infracción</div>
-          <div class="fw-medium">{{ fine()!.infractionDate | apiDate: 'dd/MM/yyyy' }}</div>
+<div class="d-flex flex-column gap-3">
+  <!-- Resumen de la multa -->
+  <div class="p-3 bg-body-tertiary rounded-lg">
+    <div class="text-xs text-body-secondary mb-1">Propiedad</div>
+    <div class="fw-semibold text-body mb-2">{{ fine()!.propertyFullName }}</div>
+    <div class="text-xs text-body-secondary mb-1">Infracción</div>
+    <div class="text-sm text-body mb-2">{{ fine()!.description }}</div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <div class="text-xs text-body-secondary">Fecha de infracción</div>
+        <div class="fw-medium">
+          {{ fine()!.infractionDate | apiDate: 'dd/MM/yyyy' }}
         </div>
-        <div class="text-end">
-          <div class="text-xs text-body-secondary">Importe</div>
-          <div class="fw-bold text-red-600 text-lg">
-            {{ fine()!.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
-          </div>
+      </div>
+      <div class="text-end">
+        <div class="text-xs text-body-secondary">Importe</div>
+        <div class="fw-bold text-red-600 text-lg">
+          {{ fine()!.amount | currency: 'MXN' : 'symbol' : '1.2-2' }}
         </div>
       </div>
     </div>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
-      <custom-input-date-signal
-        [control]="form.controls.dueDate"
-        label="Fecha de Vencimiento del Cargo"
-        required
-      />
-
-      <p class="text-xs text-body-secondary mt-1">
-        Al confirmar se generará un cargo de tipo "Multa Reglamentaria" en el saldo
-        de la propiedad. Esta acción no se puede deshacer sin un ajuste administrativo.
-      </p>
-
-      <div class="d-flex justify-content-end mt-2">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          label="Generar Cargo"
-          [disabled]="form.invalid || submitting()"
-          [loading]="submitting()"
-        />
-      </div>
-    </form>
-
   </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="d-flex flex-column gap-2"
+  >
+    <lux-input-date-signal
+      [control]="form.controls.dueDate"
+      label="Fecha de Vencimiento del Cargo"
+      required
+    />
+
+    <p class="text-xs text-body-secondary mt-1">
+      Al confirmar se generará un cargo de tipo "Multa Reglamentaria" en el
+      saldo de la propiedad. Esta acción no se puede deshacer sin un ajuste
+      administrativo.
+    </p>
+
+    <div class="d-flex justify-content-end mt-2">
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        label="Generar Cargo"
+        [disabled]="form.invalid || submitting()"
+        [loading]="submitting()"
+      />
+    </div>
+  </form>
+</div>
 }

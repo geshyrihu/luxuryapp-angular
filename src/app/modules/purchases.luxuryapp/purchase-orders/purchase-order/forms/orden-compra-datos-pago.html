@@ -1,5 +1,5 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveProviderId($event)"
     [control]="form.controls.provider"
     [data]="cb_providers()"
@@ -8,18 +8,18 @@
     placeholder="Escribe para buscar proveedor"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.tipoGasto"
     label="Tipo de Gasto"
     [data]="cb_tipoGasto()"
     [filter]="true"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.reference"
     label="Referencia"
     placeholder="Referencia"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     [control]="form.controls.cuentaClave"
     label="Cuenta/Clabe"
     placeholder="Cuenta/Clabe"
@@ -28,7 +28,7 @@
   <hr />
   <p class="text-center fw-bold">Asignar Perñodo de Fondeo (Opcional)</p>
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.fundingYear"
     label="Año de Fondeo"
     [data]="cb_fundingYear()"
@@ -69,21 +69,21 @@
 
   <hr />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.usoCFDIId"
     label="Uso de CFDI"
     [data]="cb_usoCfdi()"
     [filter]="true"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.metodoDePagoId"
     label="Metodo de Pago"
     [data]="cb_payment_method()"
     [filter]="true"
   />
 
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.formaDePagoId"
     label="Forma de Pago"
     [data]="cb_formaPago()"

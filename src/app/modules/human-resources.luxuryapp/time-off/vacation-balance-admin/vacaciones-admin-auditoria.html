@@ -19,7 +19,7 @@
       <!-- ─── Selectores: Empleado y Año ─────────────────────────── -->
       <div class="row mb-2 g-4">
         <div class="col-12 col-md-6">
-          <custom-input-select-signal
+          <lux-input-select-signal
             id="employeeSelect"
             [ngModel]="selectedEmployeeId()"
             (selectionChange)="onEmployeeChange($event.value)"
@@ -45,7 +45,7 @@
 
         @if (availableYears().length > 0) {
         <div class="col-12 col-md-3">
-          <custom-input-select-signal
+          <lux-input-select-signal
             id="yearSelect"
             [ngModel]="selectedYear()"
             (selectionChange)="onYearChange($event.value)"

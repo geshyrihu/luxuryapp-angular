@@ -11,7 +11,7 @@ import { IonInputImg } from "../../mobile/ion-input-img";
 import { WebInputImg } from "../../web/input-img/input-img";
 
 @Component({
-  selector: "custom-input-img-signal",
+  selector: "lux-input-img-signal",
 
   imports: [WebInputImg, IonInputImg],
   providers: [
@@ -19,7 +19,8 @@ import { WebInputImg } from "../../web/input-img/input-img";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputImg),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -75,4 +76,3 @@ export class InputImg extends WebInputImg {
   /** Alias histórico de fileSelected (legacy CustomInputImg). */
   propagar = output<File>();
 }
-

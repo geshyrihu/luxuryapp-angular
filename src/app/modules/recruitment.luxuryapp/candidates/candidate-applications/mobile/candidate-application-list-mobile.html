@@ -1,5 +1,5 @@
 <div class="card p-2 mb-2">
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="stageControl"
     [data]="stages()"
     [showClear]="true"
@@ -30,22 +30,21 @@
 
       <ili-action-menu slot="end">
         @if (item.cvFileName) {
-          <lux-pdf-viewer-trigger
-            [url]="item.cvFileUrl"
-            [fileName]="item.cvFileName"
-            label="Ver CV"
-            [ariaLabel]="'Ver CV de ' + item.candidateName"
-          />
-        }
-        @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
-          <lux-button-mobile
-            kind="item"
-            label="Marcar contratado"
-            iconClass="material-symbols-light:check-circle"
-            color="success"
-            [ariaLabel]="'Marcar contratado a ' + item.candidateName"
-            (clicked)="completeHiring.emit(item.id)"
-          />
+        <lux-pdf-viewer-trigger
+          [url]="item.cvFileUrl"
+          [fileName]="item.cvFileName"
+          label="Ver CV"
+          [ariaLabel]="'Ver CV de ' + item.candidateName"
+        />
+        } @if (item.currentStage === candidateProcessStage.AltaEnProceso) {
+        <lux-button-mobile
+          kind="item"
+          label="Marcar contratado"
+          iconClass="material-symbols-light:check-circle"
+          color="success"
+          [ariaLabel]="'Marcar contratado a ' + item.candidateName"
+          (clicked)="completeHiring.emit(item.id)"
+        />
         }
         <lux-button-mobile
           kind="edit"

@@ -1,120 +1,119 @@
-
-  <div class="">
-    <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <!-- PRIMERA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.nameTool"
-            label="Nombre del Equipo"
-            placeholder="nombre del equipo"
-          />
-        </div>
-
-        <div class="col-12 col-md-4">
-          <custom-input-select-signal
-            [control]="form.controls.categoryId"
-            label="Categoría"
-            [filter]="true"
-            [data]="cb_category"
-          />
-        </div>
-
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.brand"
-            label="Marca"
-            placeholder="marca"
-          />
-        </div>
-      </div>
-
-      <!-- SEGUNDA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.model"
-            label="Modelo"
-            placeholder="modelo"
-          />
-        </div>
-
-        <div class="col-12 col-md-4">
-          <custom-input-text-signal
-            [control]="form.controls.serie"
-            label="Serie"
-            placeholder="serie"
-          />
-        </div>
-
-        <div class="col-12 col-md-4">
-          <custom-input-date-signal
-            [control]="form.controls.dateOfPurchase"
-            label="Compra/Instalación"
-            placeholder="fecha de compra/instalación"
-          />
-        </div>
-      </div>
-
-      <!-- TERCERA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-4">
-          <custom-input-select-signal
-            [control]="form.controls.state"
-            label="Estado"
-            [data]="optionActive"
-            [filter]="true"
-          />
-        </div>
-
-        <div
-          class="col-12 col-md-4 d-flex align-items-center justify-content-center"
-        >
-          <!-- Imagen centrada -->
-          <custom-input-img-signal
-            (fileSelected)="uploadFile($event)"
-            [urlImgCurrent]="urlBaseImg"
-            [contentHeight]="'150px'"
-            [contentWidth]="'100%'"
-          />
-        </div>
-
-        <div class="col-12 col-md-4"></div>
-      </div>
-
-      <!-- CUARTA FILA -->
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.technicalSpecifications"
-            label="Especificaciones Técnicas"
-            placeholder="Especificaciones Técnicas"
-            rows="8"
-          />
-        </div>
-
-        <div class="col-12 col-md-6">
-          <custom-input-textarea-signal
-            [control]="form.controls.observations"
-            label="Observaciones"
-            placeholder="Observaciones"
-            rows="8"
-          />
-        </div>
-      </div>
-
-      <!-- BOTÓN GUARDAR -->
-      <div class="d-flex justify-content-end mt-3">
-        <lux-button-web
-          kind="save"
-          type="submit"
-          severity="info"
-          variant="soft"
-          displayMode="both"
-          [label]="id ? 'Actualizar' : 'Guardar'"
-          [disabled]="form.invalid"
-          [loading]="submitting()"
+<div class="">
+  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!-- PRIMERA FILA -->
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <lux-input-text-signal
+          [control]="form.controls.nameTool"
+          label="Nombre del Equipo"
+          placeholder="nombre del equipo"
         />
       </div>
-    </form>
-  </div>
+
+      <div class="col-12 col-md-4">
+        <lux-input-select-signal
+          [control]="form.controls.categoryId"
+          label="Categoría"
+          [filter]="true"
+          [data]="cb_category"
+        />
+      </div>
+
+      <div class="col-12 col-md-4">
+        <lux-input-text-signal
+          [control]="form.controls.brand"
+          label="Marca"
+          placeholder="marca"
+        />
+      </div>
+    </div>
+
+    <!-- SEGUNDA FILA -->
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <lux-input-text-signal
+          [control]="form.controls.model"
+          label="Modelo"
+          placeholder="modelo"
+        />
+      </div>
+
+      <div class="col-12 col-md-4">
+        <lux-input-text-signal
+          [control]="form.controls.serie"
+          label="Serie"
+          placeholder="serie"
+        />
+      </div>
+
+      <div class="col-12 col-md-4">
+        <lux-input-date-signal
+          [control]="form.controls.dateOfPurchase"
+          label="Compra/Instalación"
+          placeholder="fecha de compra/instalación"
+        />
+      </div>
+    </div>
+
+    <!-- TERCERA FILA -->
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <lux-input-select-signal
+          [control]="form.controls.state"
+          label="Estado"
+          [data]="optionActive"
+          [filter]="true"
+        />
+      </div>
+
+      <div
+        class="col-12 col-md-4 d-flex align-items-center justify-content-center"
+      >
+        <!-- Imagen centrada -->
+        <lux-input-img-signal
+          (fileSelected)="uploadFile($event)"
+          [urlImgCurrent]="urlBaseImg"
+          [contentHeight]="'150px'"
+          [contentWidth]="'100%'"
+        />
+      </div>
+
+      <div class="col-12 col-md-4"></div>
+    </div>
+
+    <!-- CUARTA FILA -->
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <lux-input-textarea-signal
+          [control]="form.controls.technicalSpecifications"
+          label="Especificaciones Técnicas"
+          placeholder="Especificaciones Técnicas"
+          rows="8"
+        />
+      </div>
+
+      <div class="col-12 col-md-6">
+        <lux-input-textarea-signal
+          [control]="form.controls.observations"
+          label="Observaciones"
+          placeholder="Observaciones"
+          rows="8"
+        />
+      </div>
+    </div>
+
+    <!-- BOTÓN GUARDAR -->
+    <div class="d-flex justify-content-end mt-3">
+      <lux-button-web
+        kind="save"
+        type="submit"
+        severity="info"
+        variant="soft"
+        displayMode="both"
+        [label]="id ? 'Actualizar' : 'Guardar'"
+        [disabled]="form.invalid"
+        [loading]="submitting()"
+      />
+    </div>
+  </form>
+</div>

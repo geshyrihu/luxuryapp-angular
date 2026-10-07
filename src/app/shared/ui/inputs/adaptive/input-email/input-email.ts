@@ -11,7 +11,7 @@ import { IonInputEmail } from "../../mobile/ion-input-email";
 import { WebInputEmail } from "../../web/input-email/input-email";
 
 @Component({
-  selector: "custom-input-email",
+  selector: "lux-input-email",
 
   imports: [WebInputEmail, IonInputEmail],
   providers: [
@@ -19,7 +19,8 @@ import { WebInputEmail } from "../../web/input-email/input-email";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputEmail),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -52,4 +53,3 @@ import { WebInputEmail } from "../../web/input-email/input-email";
 export class InputEmail extends BaseInputSignal {
   protected platform = inject(PlatformService);
 }
-

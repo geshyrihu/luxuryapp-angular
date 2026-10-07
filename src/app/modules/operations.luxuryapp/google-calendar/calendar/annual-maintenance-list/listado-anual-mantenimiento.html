@@ -15,7 +15,7 @@
   <ng-template #caption>
     <div class="row g-4">
       <div class="col-12 col-sm-3">
-        <custom-input-select-signal
+        <lux-input-select-signal
           lxTooltip="Seleccionar Mes"
           [control]="monthControl"
           [data]="months()"
@@ -149,7 +149,8 @@
                 "
           />
 
-          <lux-button-web size="sm"
+          <lux-button-web
+            size="sm"
             kind="item"
             displayMode="icon"
             severity="secondary"
@@ -197,7 +198,7 @@
 >
   <ng-container customFilters>
     <div class="mb-3 px-1">
-      <custom-input-select-signal
+      <lux-input-select-signal
         lxTooltip="Seleccionar Mes"
         [control]="monthControl"
         [data]="months()"

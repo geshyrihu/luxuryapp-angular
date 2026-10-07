@@ -1,32 +1,29 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Nombre"
     [control]="form.controls.name"
     placeholder="Ej: Amonestacion escrita"
   />
-  <custom-input-text-signal
+  <lux-input-text-signal
     label="Descripción"
     [control]="form.controls.description"
     placeholder="Descripción opcional"
   />
-  <custom-input-select-signal
+  <lux-input-select-signal
     label="Nivel de Severidad"
     [control]="form.controls.severityLevel"
     [data]="cb_severity()"
     [filter]="true"
   />
-  <custom-input-switch-signal
+  <lux-input-switch-signal
     label="¿Es Terminacion de Relacion Laboral?"
     [control]="form.controls.isTermination"
   />
-  <custom-input-switch-signal
+  <lux-input-switch-signal
     label="¿Requiere Aprobacion de RH?"
     [control]="form.controls.requiresHRApproval"
   />
-  <custom-input-switch-signal
-    label="Activo"
-    [control]="form.controls.isActive"
-  />
+  <lux-input-switch-signal label="Activo" [control]="form.controls.isActive" />
   <div class="d-flex justify-content-end mt-2">
     <lux-button-web
       kind="save"

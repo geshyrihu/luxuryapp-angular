@@ -1,6 +1,6 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   @if (canChangeCustomer) {
-  <custom-input-select-signal
+  <lux-input-select-signal
     [control]="form.controls.customerId"
     [data]="cb_customer()"
     label="Cliente:"
@@ -9,7 +9,7 @@
   />
   }
 
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveLegalMatter($event)"
     [control]="form.controls.title"
     [data]="cb_legal_matter()"
@@ -18,14 +18,14 @@
     [horizontal]="false"
   />
 
-  <custom-input-textarea-signal
+  <lux-input-textarea-signal
     [control]="form.controls.description"
     label="DESCRIPCIÓN:"
     placeholder="DESCRIPCIÓN:"
     [horizontal]="false"
   />
 
-  <custom-input-autocomplete-signal
+  <lux-input-autocomplete-signal
     (propagar)="saveAssignee($event)"
     [control]="form.controls.assignee"
     [data]="cb_application_user_responsible()"

@@ -1,38 +1,38 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-        [hidden]="false"
-      />
-      <custom-input-text-signal
-        [control]="form.controls.description"
-        label="DESCRIPCIÓN"
-        placeholder="DESCRIPCIÓN"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.departament"
-        label="Departamento"
-        placeholder="Seleccione departamento"
-        [data]="cb_departament()"
-      />
-      <custom-input-select-signal
-        [control]="form.controls.equipoClasificacionId"
-        label="Categoría"
-        placeholder="Seleccione categoría"
-        [data]="cb_equipoClasificacion()"
-        [filter]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+    [hidden]="false"
+  />
+  <lux-input-text-signal
+    [control]="form.controls.description"
+    label="DESCRIPCIÓN"
+    placeholder="DESCRIPCIÓN"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.departament"
+    label="Departamento"
+    placeholder="Seleccione departamento"
+    [data]="cb_departament()"
+  />
+  <lux-input-select-signal
+    [control]="form.controls.equipoClasificacionId"
+    label="Categoría"
+    placeholder="Seleccione categoría"
+    [data]="cb_equipoClasificacion()"
+    [filter]="true"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

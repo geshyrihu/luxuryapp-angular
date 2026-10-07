@@ -1,48 +1,48 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <div class="mb-4 d-flex justify-content-center">
-        <div class="w-full sm:w-9/12 max-w-sm">
-          <div class="card text-center p-3">
-            <custom-input-img-signal
-              (fileSelected)="uploadFile($event)"
-              [urlImgCurrent]="urlBaseImg"
-              [contentHeight]="75"
-              [contentWidth]="75"
-            />
-          </div>
-        </div>
+  <div class="mb-4 d-flex justify-content-center">
+    <div class="w-full sm:w-9/12 max-w-sm">
+      <div class="card text-center p-3">
+        <lux-input-img-signal
+          (fileSelected)="uploadFile($event)"
+          [urlImgCurrent]="urlBaseImg"
+          [contentHeight]="75"
+          [contentWidth]="75"
+        />
       </div>
+    </div>
+  </div>
 
-      <custom-input-select-signal
-        [control]="form.controls.stationType"
-        label="Tipo de Estación Manual"
-        [data]="cb_stationType"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.stationType"
+    label="Tipo de Estación Manual"
+    [data]="cb_stationType"
+    [filter]="true"
+  />
 
-      <custom-input-text-signal
-        [control]="form.controls.location"
-        label="Ubicación"
-        placeholder="Ej: Piso 2 - Escalera B"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.location"
+    label="Ubicación"
+    placeholder="Ej: Piso 2 - Escalera B"
+  />
 
-      <custom-input-mask-signal
-        [control]="form.controls.localCode"
-        label="Código Local"
-        placeholder="MCP-02-001"
-        customMask="AAA-00-000"
-        [validation]="false"
-        [dropSpecialCharacters]="false"
-        description="MCP = Estación Manual de Llamada (Manual Call Point) · Zona (2 dígitos) · Número de equipo (3 dígitos)"
-      />
+  <lux-input-mask-signal
+    [control]="form.controls.localCode"
+    label="Código Local"
+    placeholder="MCP-02-001"
+    customMask="AAA-00-000"
+    [validation]="false"
+    [dropSpecialCharacters]="false"
+    description="MCP = Estación Manual de Llamada (Manual Call Point) · Zona (2 dígitos) · Número de equipo (3 dígitos)"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

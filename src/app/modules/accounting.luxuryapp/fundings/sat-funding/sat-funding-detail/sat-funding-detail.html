@@ -5,7 +5,7 @@
       <form [formGroup]="form" (ngSubmit)="onSubmitDownload()">
         <div class="row g-4">
           <div class="col-12 col-md-4">
-            <custom-input-date-signal
+            <lux-input-date-signal
               [control]="form.controls.startDate"
               label="Fecha Inicial"
               id="startDate"
@@ -13,7 +13,7 @@
             />
           </div>
           <div class="col-12 col-md-4">
-            <custom-input-date-signal
+            <lux-input-date-signal
               [control]="form.controls.endDate"
               label="Fecha Final"
               id="endDate"
@@ -59,7 +59,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="m-0">Facturas del Perñodo</h5>
             <div class="d-flex">
-              <custom-input-select-signal
+              <lux-input-select-signal
                 [data]="tiposGasto"
                 [ngModel]="bulkTipoGasto()"
                 (ngModelChange)="bulkTipoGasto.set($event)"
@@ -83,7 +83,7 @@
               />
               <span class="p-input-icon-left ms-auto">
                 <lux-icon [icon]="'material-symbols-light:search'" />
-                <custom-input-text-signal
+                <lux-input-text-signal
                   (input)="dtInvoices.filterGlobal($event.target.value, 'contains')"
                   placeholder="Buscar..."
                   [horizontal]="false"

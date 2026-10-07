@@ -2,7 +2,7 @@
   <!-- Barra de URL -->
   <div class="bg-body rounded p-3 shadow-sm">
     <div class="d-flex align-items-center gap-2 mb-2">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [data]="methods"
         [ngModel]="method()"
         (ngModelChange)="method.set($event)"
@@ -13,7 +13,7 @@
         [horizontal]="false"
         [noMargin]="true"
       />
-      <custom-input-text-signal
+      <lux-input-text-signal
         [ngModel]="url()"
         (ngModelChange)="onUrlInput($event)"
         placeholder="Endpoint o URL completa (con ?params se detectan automatico)..."
@@ -71,7 +71,7 @@
                 [ngModel]="p.enabled"
                 (ngModelChange)="updateParam(i, 'enabled', $event)"
               />
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [ngModel]="p.key"
                 (ngModelChange)="updateParam(i, 'key', $event)"
                 placeholder="Clave"
@@ -79,7 +79,7 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [ngModel]="p.value"
                 (ngModelChange)="updateParam(i, 'value', $event)"
                 placeholder="Valor"
@@ -87,7 +87,8 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:close"
                 severity="danger"
                 variant="text"
@@ -116,7 +117,7 @@
                 [ngModel]="h.enabled"
                 (ngModelChange)="updateHeader(i, 'enabled', $event)"
               />
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [ngModel]="h.key"
                 (ngModelChange)="updateHeader(i, 'key', $event)"
                 placeholder="Header"
@@ -124,7 +125,7 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <custom-input-text-signal
+              <lux-input-text-signal
                 [ngModel]="h.value"
                 (ngModelChange)="updateHeader(i, 'value', $event)"
                 placeholder="Valor"
@@ -132,7 +133,8 @@
                 [noMargin]="true"
                 customClass="flex-1"
               />
-              <lux-button-web displayMode="icon"
+              <lux-button-web
+                displayMode="icon"
                 iconClass="material-symbols-light:close"
                 severity="danger"
                 variant="text"
@@ -153,14 +155,14 @@
 
           <!-- BODY -->
           @case ('body') {
-          <custom-input-textarea-signal
+          <lux-input-textarea-signal
             [ngModel]="bodyRaw()"
             (ngModelChange)="bodyRaw.set($event)"
             placeholder='{ "key": "value" }'
             [rows]="12"
             [customClass]="'font-mono text-sm'"
             [disableResize]="false"
-          ></custom-input-textarea-signal>
+          ></lux-input-textarea-signal>
           } }
         </div>
       </lux-tabs>
@@ -181,7 +183,8 @@
           {{ statusCode() }}
         </span>
         <span class="text-body-secondary text-xs">{{ durationMs() }} ms</span>
-        <lux-button-web displayMode="icon"
+        <lux-button-web
+          displayMode="icon"
           iconClass="material-symbols-light:content-copy"
           variant="text"
           size="small"

@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['periodoNominaId']"
         label="Periodo de Nomina"
         [data]="periodosOptions()"
@@ -10,19 +10,19 @@
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-switch-signal
+      <lux-input-switch-signal
         [control]="form.controls['soloEmpleadosActivos']"
         label="Solo Empleados Activos"
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-switch-signal
+      <lux-input-switch-signal
         [control]="form.controls['incluirTiempoExtra']"
         label="Incluir Tiempo Extra"
       />
     </div>
     <div class="col-12 col-md-4">
-      <custom-input-switch-signal
+      <lux-input-switch-signal
         [control]="form.controls['sincronizarIncidencias']"
         label="Sincronizar Incidencias"
       />

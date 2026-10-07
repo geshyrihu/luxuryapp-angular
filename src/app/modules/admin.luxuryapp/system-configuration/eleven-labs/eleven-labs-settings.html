@@ -10,7 +10,7 @@
       <div class="col-12 col-lg-8">
         <div class="row g-4">
           <div class="col-12 col-md-6">
-            <custom-input-text-signal
+            <lux-input-text-signal
               [control]="form.controls.voiceId"
               label="Voice ID manual"
               placeholder="Ej: 21m00Tcm4TlvDq8ikWAM"
@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.voiceId"
               label="Voz predeterminada"
               [data]="voiceOptions()"
@@ -30,7 +30,7 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <custom-input-select-signal
+            <lux-input-select-signal
               [control]="form.controls.modelId"
               label="Modelo"
               [data]="modelOptions"
@@ -42,7 +42,7 @@
           </div>
 
           <div class="col-12 col-md-3">
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="form.controls.stability"
               label="Stability"
               [min]="0"
@@ -54,7 +54,7 @@
           </div>
 
           <div class="col-12 col-md-3">
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="form.controls.similarity"
               label="Similarity"
               [min]="0"
@@ -66,7 +66,7 @@
           </div>
 
           <div class="col-12 col-md-3">
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="form.controls.style"
               label="Style"
               [min]="0"
@@ -78,7 +78,7 @@
           </div>
 
           <div class="col-12 col-md-3">
-            <custom-input-number-signal
+            <lux-input-number-signal
               [control]="form.controls.speakerBoost"
               label="Speaker Boost"
               [min]="0"
@@ -90,7 +90,7 @@
           </div>
 
           <div class="col-12">
-            <custom-input-switch-signal
+            <lux-input-switch-signal
               [control]="form.controls.autoPlayResponses"
               label="Lectura automática"
               placeholder="Reproducir automáticamente la respuesta del Auditor IA"
@@ -98,7 +98,7 @@
           </div>
 
           <div class="col-12">
-            <custom-input-textarea-signal
+            <lux-input-textarea-signal
               [control]="form.controls.sampleText"
               label="Texto de prueba"
               placeholder="Escribe el texto de prueba para escuchar la voz"

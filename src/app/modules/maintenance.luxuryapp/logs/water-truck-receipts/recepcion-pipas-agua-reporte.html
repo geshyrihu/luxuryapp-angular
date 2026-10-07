@@ -40,7 +40,7 @@
     >
       <div class="d-flex align-items-center gap-1">
         <span class="text-body-secondary text-xs">Desde</span>
-        <custom-input-datepicker-signal
+        <lux-input-datepicker-signal
           [(ngModel)]="startDate"
           [showIcon]="true"
           [showTime]="true"
@@ -55,7 +55,7 @@
       </div>
       <div class="d-flex align-items-center gap-1">
         <span class="text-body-secondary text-xs">Hasta</span>
-        <custom-input-datepicker-signal
+        <lux-input-datepicker-signal
           [(ngModel)]="endDate"
           [showIcon]="true"
           [showTime]="true"
@@ -112,8 +112,8 @@
             Resumen de costos del periodo
           </p>
           <p class="text-body-secondary text-xs m-0">
-            El precio por mÂ³ registrado incluye IVA â€” se desglosa para calcular
-            la retenciÃ³n.
+            El precio por mÂ³ registrado incluye IVA â€” se desglosa para
+            calcular la retenciÃ³n.
           </p>
         </div>
 
@@ -150,7 +150,9 @@
             <div
               class="d-flex justify-content-between align-items-center py-2 border-bottom-1 border"
             >
-              <span class="text-sm fw-semibold text-red-500">RetenciÃ³n 4%</span>
+              <span class="text-sm fw-semibold text-red-500"
+                >RetenciÃ³n 4%</span
+              >
               <span class="text-sm fw-semibold text-red-500"
                 >(${{ retencion() | number: '1.2-2' }})</span
               >
@@ -190,11 +192,11 @@
       [showAdd]="false"
     >
       <ng-template #extraButtons>
-         <lux-button-web
-           kind="download"
-           displayMode="icon"
-           (clicked)="exportExcel()"
-         />
+        <lux-button-web
+          kind="download"
+          displayMode="icon"
+          (clicked)="exportExcel()"
+        />
       </ng-template>
     </lux-table-caption>
   </ng-template>
@@ -213,7 +215,9 @@
       <th class="text-center" style="min-width: 140px">
         Cisterna (ant â†’ des / dif)
       </th>
-      <th class="text-center" style="min-width: 160px">Medidor (ini â†’ fin)</th>
+      <th class="text-center" style="min-width: 160px">
+        Medidor (ini â†’ fin)
+      </th>
       <th class="text-end" style="min-width: 80px">mÂ³</th>
       <th class="text-end" style="min-width: 110px">Costo mÂ³ / Importe</th>
       <th style="min-width: 150px">Personal</th>

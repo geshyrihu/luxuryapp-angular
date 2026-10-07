@@ -1,4 +1,9 @@
-import { Component, forwardRef, input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { FlatpickrDirective } from "angularx-flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es";
@@ -11,11 +16,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
  * Elegante, ligero y funcional.
  */
 @Component({
-  selector: "custom-input-hour-signal",
-  imports: [
-    BaseInputSignal,
-    ReactiveFormsModule,
-    FlatpickrDirective],
+  selector: "lux-input-hour-signal",
+  imports: [BaseInputSignal, ReactiveFormsModule, FlatpickrDirective],
   template: `
     <base-input-signal
       [control]="control()"
@@ -53,7 +55,8 @@ import { BaseInputSignal } from "../core/base-input-signal";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputHour),
       multi: true,
-    }],
+    },
+  ],
 })
 export class CustomInputHour extends BaseInputSignal {
   // <--- Inputs Específicos --->

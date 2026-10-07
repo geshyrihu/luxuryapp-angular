@@ -12,7 +12,7 @@ import { IonInputMask } from "../../mobile/ion-input-mask";
 import { WebInputMask } from "../../web/input-mask/input-mask";
 
 @Component({
-  selector: "custom-input-mask-signal",
+  selector: "lux-input-mask-signal",
 
   imports: [WebInputMask, IonInputMask],
   providers: [
@@ -20,7 +20,8 @@ import { WebInputMask } from "../../web/input-mask/input-mask";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMask),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -62,4 +63,3 @@ export class InputMask extends BaseInputSignal {
   validation = input<boolean>(true);
   dropSpecialCharacters = input<boolean>(true);
 }
-

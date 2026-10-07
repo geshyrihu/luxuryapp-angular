@@ -1,31 +1,27 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
-      [control]="form.controls.id"
-      hidden
-      label="Id"
-      [readonly]="true"
-    />
+  <lux-input-text-signal
+    [control]="form.controls.name"
+    label="Nombre"
+    placeholder="Ej: LinkedIn"
+  />
 
-    <custom-input-text-signal
-      [control]="form.controls.name"
-      label="Nombre"
-      placeholder="Ej: LinkedIn"
-    />
+  <lux-input-switch-signal [control]="form.controls.isActive" label="Activo" />
 
-    <custom-input-switch-signal
-      [control]="form.controls.isActive"
-      label="Activo"
-    />
-
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

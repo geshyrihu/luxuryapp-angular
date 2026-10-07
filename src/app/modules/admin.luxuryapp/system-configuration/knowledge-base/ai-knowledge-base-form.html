@@ -1,57 +1,53 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <lux-input-text-signal
+    [control]="form.controls.topic"
+    label="Tema"
+    placeholder="Tema del conocimiento"
+    [required]="true"
+  />
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <custom-input-text-signal
-      [control]="form.controls.topic"
-      label="Tema"
-      placeholder="Tema del conocimiento"
-      [required]="true"
-    />
+  <lux-input-text-signal
+    [control]="form.controls.keywords"
+    label="Palabras Clave"
+    placeholder="ej. ticket, soporte, ayuda"
+    [required]="true"
+  />
 
-    <custom-input-text-signal
-      [control]="form.controls.keywords"
-      label="Palabras Clave"
-      placeholder="ej. ticket, soporte, ayuda"
-      [required]="true"
-    />
+  <!-- Nuevo Select de Módulo -->
+  <lux-input-select-signal
+    [control]="form.controls.moduleAppId"
+    [data]="modulesSignal()"
+    label="Módulo Asociado (Opcional)"
+    placeholder="Selecciona un módulo para restringir acceso"
+    [filter]="true"
+  />
 
-    <!-- Nuevo Select de Módulo -->
-    <custom-input-select-signal
-      [control]="form.controls.moduleAppId"
-      [data]="modulesSignal()"
-      label="Módulo Asociado (Opcional)"
-      placeholder="Selecciona un módulo para restringir acceso"
-      [filter]="true"
-    />
+  <lux-input-textarea-signal
+    [control]="form.controls.instructions"
+    label="Instrucciones para la IA"
+    placeholder="ej. Para crear un ticket ve a..."
+    [required]="true"
+    [rows]="5"
+  />
 
-    <custom-input-textarea-signal
-      [control]="form.controls.instructions"
-      label="Instrucciones para la IA"
-      placeholder="ej. Para crear un ticket ve a..."
-      [required]="true"
-      [rows]="5"
-    />
+  <lux-input-text-signal
+    [control]="form.controls.route"
+    label="Ruta en la App (Opcional)"
+    placeholder="ej. /tickets/list"
+  />
 
-    <custom-input-text-signal
-      [control]="form.controls.route"
-      label="Ruta en la App (Opcional)"
-      placeholder="ej. /tickets/list"
-    />
+  <div class="field-checkbox mt-3">
+    <lux-input-check-signal [control]="form.controls.isActive" label="Activo" />
+  </div>
 
-    <div class="field-checkbox mt-3">
-      <custom-input-check-signal
-        [control]="form.controls.isActive"
-        label="Activo"
-      />
-    </div>
-
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

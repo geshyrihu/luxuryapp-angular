@@ -1,34 +1,34 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <custom-input-text-signal
-        [control]="form.controls.id"
-        hidden
-        label="Id"
-        [readonly]="true"
-      />
+  <lux-input-text-signal
+    [control]="form.controls.id"
+    hidden
+    label="Id"
+    [readonly]="true"
+  />
 
-      <custom-input-select-signal
-        [control]="form.controls.ePosicionComite"
-        label="Posicion"
-        [data]="cb_position()"
-        [filter]="true"
-      />
+  <lux-input-select-signal
+    [control]="form.controls.ePosicionComite"
+    label="Posicion"
+    [data]="cb_position()"
+    [filter]="true"
+  />
 
-      <custom-input-autocomplete-signal
-        (propagar)="saveCondominoId($event)"
-        [control]="form.controls.nameProperty"
-        [data]="cb_condomino()"
-        label="Nombre"
-        placeholder="Escribe para buscar propiedad"
-      />
+  <lux-input-autocomplete-signal
+    (propagar)="saveCondominoId($event)"
+    [control]="form.controls.nameProperty"
+    [data]="cb_condomino()"
+    label="Nombre"
+    placeholder="Escribe para buscar propiedad"
+  />
 
-      <lux-button-web
-        kind="save"
-        type="submit"
-        severity="info"
-        variant="soft"
-        displayMode="both"
-        [label]="id ? 'Actualizar' : 'Guardar'"
-        [disabled]="form.invalid"
-        [loading]="submitting()"
-      />
-  </form>
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

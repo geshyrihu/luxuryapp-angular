@@ -1,7 +1,7 @@
 <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
   <!-- ID oculto -->
   <div class="d-none">
-    <custom-input-text-signal
+    <lux-input-text-signal
       [hidden]="true"
       [control]="form.controls.id"
       hidden
@@ -12,7 +12,7 @@
   <!-- PRIMERA FILA -->
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveMachineryId($event)"
         [control]="form.controls.machineryName"
         [data]="cb_machinery()"
@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-6 col-md-3">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.recurrence"
         label="Recurrencia"
         [data]="cb_recurrencia()"
@@ -33,7 +33,7 @@
     </div>
 
     <div class="col-6 col-md-3">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.month"
         label="Mes"
         [data]="cb_month()"
@@ -46,7 +46,7 @@
   <!-- SEGUNDA FILA -->
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls.typeMaintance"
         label="Tipo de Mantenimiento"
         [data]="cb_TypeMaintance()"
@@ -56,7 +56,7 @@
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-number-signal
+      <lux-input-number-signal
         [control]="form.controls.price"
         label="Precio"
         [horizontal]="false"
@@ -67,13 +67,13 @@
   <!-- TERCERA FILA -->
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-switch-signal
+      <lux-input-switch-signal
         [control]="form.controls.isInternalExecution"
         label="Lo realiza personal interno"
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveProviderId($event)"
         [control]="form.controls.providerName"
         [data]="cb_providers()"
@@ -84,7 +84,7 @@
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveAccountingCatalog($event)"
         [control]="form.controls.accountingCatalogName"
         [data]="cb_accountingCatalogs()"
@@ -98,7 +98,7 @@
   <!-- CUARTA FILA -->
   <div class="row g-4">
     <div class="col-12 col-md-6">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.activity"
         label="Actividad"
         placeholder="Actividad"
@@ -108,7 +108,7 @@
     </div>
 
     <div class="col-12 col-md-6">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls.observation"
         label="Observaciones"
         placeholder="Observaciones"

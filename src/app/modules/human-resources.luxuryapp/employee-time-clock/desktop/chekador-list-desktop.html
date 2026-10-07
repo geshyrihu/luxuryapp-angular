@@ -53,7 +53,7 @@
           />
         </div>
 
-        <custom-input-check-signal
+        <lux-input-check-signal
           [ngModel]="soloAnomalias()"
           (ngModelChange)="soloAnomaliasChange.emit($event)"
           placeholder="Solo anomalías"
@@ -178,14 +178,16 @@
         @if (item.esAnomalia && item.estadoAnomalia === 'Pendiente de revisión')
         {
         <div class="d-flex gap-1 justify-content-center">
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:check"
             severity="success"
             size="small"
             variant="text"
             (clicked)="approve.emit(item)"
           />
-          <lux-button-web displayMode="icon"
+          <lux-button-web
+            displayMode="icon"
             iconClass="material-symbols-light:close"
             severity="danger"
             size="small"

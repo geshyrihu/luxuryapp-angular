@@ -16,11 +16,11 @@ import { IonInputSelect } from "../../mobile/ion-input-select";
 import { WebInputSelect } from "../../web/input-select/input-select";
 
 /**
- * 🔀 INPUT SELECT — adaptativo. `<custom-input-select-signal>` →
+ * 🔀 INPUT SELECT — adaptativo. `<lux-input-select-signal>` →
  * web `<web-input-select>` (Bootstrap) o móvil `<ion-input-select>` (Ionic).
  */
 @Component({
-  selector: "custom-input-select-signal",
+  selector: "lux-input-select-signal",
 
   imports: [WebInputSelect, IonInputSelect],
   providers: [
@@ -28,7 +28,8 @@ import { WebInputSelect } from "../../web/input-select/input-select";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputSelect),
       multi: true,
-    }],
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     @if (platform.isMobile()) {
@@ -93,4 +94,3 @@ export class InputSelect extends BaseInputSignal {
   valueDefault = input<any>(null);
   loading = input<boolean>(false);
 }
-

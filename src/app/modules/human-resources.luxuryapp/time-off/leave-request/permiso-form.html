@@ -1,93 +1,92 @@
+<form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <!-- Tipo de Solicitud -->
+  <lux-input-select-signal
+    [control]="form.controls.leaveType"
+    label="Tipo de Solicitud"
+    [data]="requestTypes()"
+    [required]="true"
+    [filter]="true"
+  />
 
-  <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="form">
-    <!-- Tipo de Solicitud -->
-    <custom-input-select-signal
-      [control]="form.controls.leaveType"
-      label="Tipo de Solicitud"
-      [data]="requestTypes()"
-      [required]="true"
-      [filter]="true"
-    />
-
-    <!-- Selector de modo: Día completo / Parcial -->
-    <div class="field mb-3">
-      <label class="d-block mb-2 fw-medium text-sm">Tipo de día</label>
-      <div class="d-flex gap-2">
-        <lux-button-web
-          label="Día completo"
-          [variant]="isPartial() ? 'outline' : 'solid'"
-          (clicked)="onLeaveModeChange('full')"
-          class="flex-fill"
-        />
-        <lux-button-web
-          label="Parcial"
-          [variant]="!isPartial() ? 'outline' : 'solid'"
-          (clicked)="onLeaveModeChange('partial')"
-          class="flex-fill"
-        />
-      </div>
+  <!-- Selector de modo: Día completo / Parcial -->
+  <div class="field mb-3">
+    <label class="d-block mb-2 fw-medium text-sm">Tipo de día</label>
+    <div class="d-flex gap-2">
+      <lux-button-web
+        label="Día completo"
+        [variant]="isPartial() ? 'outline' : 'solid'"
+        (clicked)="onLeaveModeChange('full')"
+        class="flex-fill"
+      />
+      <lux-button-web
+        label="Parcial"
+        [variant]="!isPartial() ? 'outline' : 'solid'"
+        (clicked)="onLeaveModeChange('partial')"
+        class="flex-fill"
+      />
     </div>
+  </div>
 
-    <!-- Fecha de Inicio -->
-    <custom-input-date-signal
-      [control]="form.controls.startDate"
-      label="Fecha de Inicio"
-      placeholder="Seleccione fecha de inicio"
-      [required]="true"
-      [disable]="disabledDates()"
-    />
+  <!-- Fecha de Inicio -->
+  <lux-input-date-signal
+    [control]="form.controls.startDate"
+    label="Fecha de Inicio"
+    placeholder="Seleccione fecha de inicio"
+    [required]="true"
+    [disable]="disabledDates()"
+  />
 
-    <!-- Fecha de Fin (solo en modo Día completo) -->
-    @if (!isPartial()) {
-    <custom-input-date-signal
-      [control]="form.controls.endDate"
-      label="Fecha de Fin"
-      placeholder="Seleccione fecha de fin"
-      [required]="true"
-      [disable]="disabledDates()"
-    />
-    }
+  <!-- Fecha de Fin (solo en modo Día completo) -->
+  @if (!isPartial()) {
+  <lux-input-date-signal
+    [control]="form.controls.endDate"
+    label="Fecha de Fin"
+    placeholder="Seleccione fecha de fin"
+    [required]="true"
+    [disable]="disabledDates()"
+  />
+  }
 
-    <!-- Hora de Inicio y Hora de Fin (solo en modo Parcial) -->
-    @if (isPartial()) {
-    <custom-input-time-signal
-      [control]="form.controls.startTime"
-      label="Hora de Entrada"
-      placeholder="Hora de entrada"
-    />
-    <custom-input-time-signal
-      [control]="form.controls.endTime"
-      label="Hora de Salida"
-      placeholder="Hora de salida"
-    />
-    }
+  <!-- Hora de Inicio y Hora de Fin (solo en modo Parcial) -->
+  @if (isPartial()) {
+  <lux-input-time-signal
+    [control]="form.controls.startTime"
+    label="Hora de Entrada"
+    placeholder="Hora de entrada"
+  />
+  <lux-input-time-signal
+    [control]="form.controls.endTime"
+    label="Hora de Salida"
+    placeholder="Hora de salida"
+  />
+  }
 
-    <!-- Motivo -->
-    <custom-input-textarea-signal
-      [control]="form.controls.reason"
-      label="Motivo"
-      placeholder="Describa el motivo de la solicitud"
-      [maxLength]="500"
-      [rows]="3"
-    />
+  <!-- Motivo -->
+  <lux-input-textarea-signal
+    [control]="form.controls.reason"
+    label="Motivo"
+    placeholder="Describa el motivo de la solicitud"
+    [maxLength]="500"
+    [rows]="3"
+  />
 
-    <!-- Archivo Adjunto -->
-    <custom-input-file-signal
-      label="Archivo Adjunto"
-      placeholder="Seleccione un archivo"
-      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-      (fileSelected)="onFileChange($event)"
-    />
+  <!-- Archivo Adjunto -->
+  <lux-input-file-signal
+    label="Archivo Adjunto"
+    placeholder="Seleccione un archivo"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+    (fileSelected)="onFileChange($event)"
+  />
 
-    <!-- Botones -->
-    <lux-button-web
-      kind="save"
-      type="submit"
-      severity="info"
-      variant="soft"
-      displayMode="both"
-      [label]="id ? 'Actualizar' : 'Guardar'"
-      [disabled]="form.invalid"
-      [loading]="submitting()"
-    />
-  </form>
+  <!-- Botones -->
+  <lux-button-web
+    kind="save"
+    type="submit"
+    severity="info"
+    variant="soft"
+    displayMode="both"
+    [label]="id ? 'Actualizar' : 'Guardar'"
+    [disabled]="form.invalid"
+    [loading]="submitting()"
+  />
+</form>

@@ -8,7 +8,7 @@
       class="p-0 m-0 flex-grow-1"
     ></ion-searchbar>
     <ion-button fill="clear" color="primary" (click)="add.emit()">
-      <ion-icon name="add-circle" style="font-size: 2rem;"></ion-icon>
+      <ion-icon name="add-circle" style="font-size: 2rem"></ion-icon>
     </ion-button>
   </div>
 
@@ -19,7 +19,7 @@
       </ion-item>
       <div class="p-2" slot="content">
         <div class="user-account-mobile-filters">
-          <custom-input-select-signal
+          <lux-input-select-signal
             [data]="customers()"
             optionLabel="label"
             optionValue="value"
@@ -29,7 +29,7 @@
             [filter]="true"
             (selectionChange)="customerChange.emit($event.value)"
           />
-          <custom-input-select-signal
+          <lux-input-select-signal
             [data]="typePeople()"
             optionLabel="label"
             optionValue="value"
@@ -54,56 +54,62 @@
   <div class="flex-grow-1 overflow-y-auto mt-2">
     <ion-list inset="true" lines="full" class="m-0 bg-transparent">
       @for (item of visibleData(); track item.id) {
-        <ion-item>
-          <ion-avatar slot="start" (click)="employeeSelected.emit(item.id)">
-            <img
-              [src]="item.photoPath || 'assets/images/default-avatar.png'"
-              [alt]="item.fullName"
-            />
-          </ion-avatar>
-          <ion-label>
-            <h2 class="ion-text-wrap fw-bold">{{ item.fullName }}</h2>
-            <p class="ion-text-wrap text-primary fw-medium mb-1">{{ item.userName }} - {{ item.role }}</p>
-            <p class="ion-text-wrap text-xs text-body-secondary"><ion-icon name="business-outline"></ion-icon> {{ item.customer || "Sin Cliente" }}</p>
-            <p class="ion-text-wrap text-xs text-body-secondary"><ion-icon name="mail-outline"></ion-icon> {{ item.email }}</p>
-          </ion-label>
-          <ili-action-menu slot="end">
-            @if (item.active) {
-              <lux-button-mobile
-                kind="item"
-                displayMode="label"
-                label="Bloquear"
-                (clicked)="block.emit(item.id)"
-              />
-            } @else {
-              <lux-button-mobile
-                kind="item"
-                displayMode="label"
-                label="Desbloquear"
-                (clicked)="unlock.emit(item.id)"
-              />
-            }
-            <lux-button-mobile
-              kind="item"
-              displayMode="label"
-              label="Permisos"
-              (clicked)="permissions.emit({ id: item.id, email: item.email })"
-            />
-            <lux-button-mobile
-              kind="edit"
-              (clicked)="edit.emit(item.id)"
-            />
-            <lux-button-mobile
-              kind="delete"
-              color="danger"
-              (clicked)="delete.emit(item.id)"
-            />
-          </ili-action-menu>
-        </ion-item>
+      <ion-item>
+        <ion-avatar slot="start" (click)="employeeSelected.emit(item.id)">
+          <img
+            [src]="item.photoPath || 'assets/images/default-avatar.png'"
+            [alt]="item.fullName"
+          />
+        </ion-avatar>
+        <ion-label>
+          <h2 class="ion-text-wrap fw-bold">{{ item.fullName }}</h2>
+          <p class="ion-text-wrap text-primary fw-medium mb-1">
+            {{ item.userName }} - {{ item.role }}
+          </p>
+          <p class="ion-text-wrap text-xs text-body-secondary">
+            <ion-icon name="business-outline"></ion-icon> {{ item.customer ||
+            "Sin Cliente" }}
+          </p>
+          <p class="ion-text-wrap text-xs text-body-secondary">
+            <ion-icon name="mail-outline"></ion-icon> {{ item.email }}
+          </p>
+        </ion-label>
+        <ili-action-menu slot="end">
+          @if (item.active) {
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
+            label="Bloquear"
+            (clicked)="block.emit(item.id)"
+          />
+          } @else {
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
+            label="Desbloquear"
+            (clicked)="unlock.emit(item.id)"
+          />
+          }
+          <lux-button-mobile
+            kind="item"
+            displayMode="label"
+            label="Permisos"
+            (clicked)="permissions.emit({ id: item.id, email: item.email })"
+          />
+          <lux-button-mobile kind="edit" (clicked)="edit.emit(item.id)" />
+          <lux-button-mobile
+            kind="delete"
+            color="danger"
+            (clicked)="delete.emit(item.id)"
+          />
+        </ili-action-menu>
+      </ion-item>
       } @empty {
-        <ion-item>
-          <ion-label class="text-center py-4">No hay cuentas para mostrar.</ion-label>
-        </ion-item>
+      <ion-item>
+        <ion-label class="text-center py-4"
+          >No hay cuentas para mostrar.</ion-label
+        >
+      </ion-item>
       }
     </ion-list>
   </div>

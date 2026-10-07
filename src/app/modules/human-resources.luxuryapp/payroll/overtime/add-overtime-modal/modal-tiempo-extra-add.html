@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveEmployee($event)"
         [control]="form.controls['employeeName']"
         [data]="employees()"
@@ -11,13 +11,13 @@
       />
     </div>
     <div class="col-12">
-      <custom-input-date-signal
+      <lux-input-date-signal
         [control]="form.controls['fecha']"
         label="Fecha del Tiempo Extra"
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-decimal-signal
+      <lux-input-decimal-signal
         [control]="form.controls['horasSimples']"
         label="Horas Simples (doble pago)"
         hint="Primeras 9 hrs semanales: pago al doble (LFT Art. 67)"
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-decimal-signal
+      <lux-input-decimal-signal
         [control]="form.controls['horasDobles']"
         label="Horas Excedentes (triple pago)"
         hint="A partir de la hora 10 semanal: pago al triple (LFT Art. 67)"
@@ -41,19 +41,26 @@
       <div class="p-3 rounded bg-body-tertiary">
         <p class="text-sm fw-semibold m-0 mb-1">Resumen de horas registradas</p>
         <div class="d-flex gap-4">
-          <span class="text-sm">Simples: <strong>{{ horasSimples() }}h</strong></span>
-          <span class="text-sm">Excedentes: <strong>{{ horasDobles() }}h</strong></span>
-          <span class="text-sm">Total: <strong>{{ horasSimples() + horasDobles() }}h</strong></span>
+          <span class="text-sm"
+            >Simples: <strong>{{ horasSimples() }}h</strong></span
+          >
+          <span class="text-sm"
+            >Excedentes: <strong>{{ horasDobles() }}h</strong></span
+          >
+          <span class="text-sm"
+            >Total: <strong>{{ horasSimples() + horasDobles() }}h</strong></span
+          >
         </div>
         <p class="text-xs text-body-secondary m-0 mt-1">
-          El importe se calculara al guardar segun el salario diario del empleado.
+          El importe se calculara al guardar segun el salario diario del
+          empleado.
         </p>
       </div>
     </div>
     }
 
     <div class="col-12">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls['observaciones']"
         label="Observaciones"
       />

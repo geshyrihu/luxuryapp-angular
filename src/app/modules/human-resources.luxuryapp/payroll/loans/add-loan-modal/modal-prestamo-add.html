@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
   <div class="row g-4">
     <div class="col-12">
-      <custom-input-autocomplete-signal
+      <lux-input-autocomplete-signal
         (propagar)="saveEmployee($event)"
         [control]="form.controls['employeeName']"
         [data]="employees()"
@@ -11,14 +11,14 @@
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-decimal-signal
+      <lux-input-decimal-signal
         [control]="form.controls['montoTotal']"
         label="Monto Total del Prestamo ($)"
         [minFractionDigits]="2"
       />
     </div>
     <div class="col-12 col-md-6">
-      <custom-input-select-signal
+      <lux-input-select-signal
         [control]="form.controls['numeroPagos']"
         label="Numero de Pagos (Quincenas)"
         [data]="numeroPagosOptions"
@@ -26,14 +26,14 @@
       />
     </div>
     <div class="col-12">
-      <custom-input-text-signal
+      <lux-input-text-signal
         [control]="form.controls['motivo']"
         label="Motivo del Prestamo"
         placeholder="Describe el motivo"
       />
     </div>
     <div class="col-12">
-      <custom-input-textarea-signal
+      <lux-input-textarea-signal
         [control]="form.controls['observaciones']"
         label="Observaciones"
       />

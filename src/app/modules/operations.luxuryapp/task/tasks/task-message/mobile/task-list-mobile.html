@@ -166,10 +166,7 @@
                   (clicked)="reopen.emit(item.id)"
                 />
                 }
-                <lux-button-mobile
-                  kind="edit"
-                  (clicked)="edit.emit(item)"
-                />
+                <lux-button-mobile kind="edit" (clicked)="edit.emit(item)" />
                 @if (isSuperUser()) {
                 <lux-button-mobile
                   kind="delete"
@@ -218,7 +215,7 @@
         <!-- Toggle de relevancia para reporte -->
         <div class="d-flex align-items-center gap-2 mt-1">
           <span class="text-xs text-body-secondary">Incluir en reporte</span>
-          <custom-input-toggle-switch-signal
+          <lux-input-toggle-switch-signal
             [(ngModel)]="item.isRelevant"
             (toggleChange)="updateStateTicket.emit(item)"
             size="small"
@@ -227,7 +224,8 @@
 
         <!-- Evidencias (Antes y Después + imágenes adicionales) -->
         <div class="d-flex gap-1 mt-2">
-          <lux-button-mobile displayMode="icon"
+          <lux-button-mobile
+            displayMode="icon"
             iconClass="material-symbols-light:photo-camera"
             variant="ghost"
             size="small"
@@ -235,7 +233,8 @@
             [disabled]="!item.beforeWork && !item.afterWork"
             (clicked)="viewPhotos.emit(item)"
           />
-          <lux-button-mobile displayMode="icon"
+          <lux-button-mobile
+            displayMode="icon"
             iconClass="material-symbols-light:photo-library"
             variant="ghost"
             size="small"
