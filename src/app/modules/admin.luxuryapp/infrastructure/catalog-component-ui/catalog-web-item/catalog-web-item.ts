@@ -385,25 +385,42 @@ const WEB_ITEM_LABELS: Record<string, string> = {
 
                     <!-- Ejemplo visual -->
                     <div class="d-flex align-items-center gap-3 mb-4">
-                      <button type="button" class="ds-icon-btn">
+                      <button
+                        type="button"
+                        class="ds-icon-btn"
+                        aria-label="Menú"
+                      >
                         <lux-icon
                           icon="material-symbols-light:menu"
                           class="text-xl"
                         />
                       </button>
-                      <button type="button" class="ds-icon-btn">
+                      <button
+                        type="button"
+                        class="ds-icon-btn"
+                        aria-label="Notificaciones"
+                      >
                         <lux-icon
                           icon="material-symbols-light:notifications"
                           class="text-xl"
                         />
                       </button>
-                      <button type="button" class="ds-icon-btn">
+                      <button
+                        type="button"
+                        class="ds-icon-btn"
+                        aria-label="Buscar"
+                      >
                         <lux-icon
                           icon="material-symbols-light:search"
                           class="text-xl"
                         />
                       </button>
-                      <button type="button" class="ds-icon-btn" disabled>
+                      <button
+                        type="button"
+                        class="ds-icon-btn"
+                        aria-label="Configuración"
+                        disabled
+                      >
                         <lux-icon
                           icon="material-symbols-light:settings"
                           class="text-xl"
