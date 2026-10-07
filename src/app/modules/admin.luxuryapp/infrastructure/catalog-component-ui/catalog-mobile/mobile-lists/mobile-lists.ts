@@ -85,12 +85,20 @@ import { Task } from "./interfaces/task.interface";
               </ion-item>
               <ion-item-options side="start">
                 <ion-item-option color="primary" (click)="onEdit()">
-                  <ion-icon slot="icon-only" name="create-outline" />
+                  <ion-icon
+                    slot="icon-only"
+                    name="create-outline"
+                    aria-label="Editar Solicitud de Compra"
+                  />
                 </ion-item-option>
               </ion-item-options>
               <ion-item-options side="end">
                 <ion-item-option color="danger" (click)="onDelete()">
-                  <ion-icon slot="icon-only" name="trash-outline" />
+                  <ion-icon
+                    slot="icon-only"
+                    name="trash-outline"
+                    aria-label="Eliminar Solicitud de Compra"
+                  />
                 </ion-item-option>
               </ion-item-options>
             </ion-item-sliding>
@@ -105,7 +113,11 @@ import { Task } from "./interfaces/task.interface";
               </ion-item>
               <ion-item-options side="end">
                 <ion-item-option color="danger">
-                  <ion-icon slot="icon-only" name="trash-outline" />
+                  <ion-icon
+                    slot="icon-only"
+                    name="trash-outline"
+                    aria-label="Eliminar Reporte de Inspección"
+                  />
                 </ion-item-option>
               </ion-item-options>
             </ion-item-sliding>
@@ -155,8 +167,17 @@ import { Task } from "./interfaces/task.interface";
             style="--border-radius:10px;"
           >
           </ion-searchbar>
-          <ion-button size="small" color="primary" (click)="onAdd()">
-            <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+          <ion-button
+            size="small"
+            color="primary"
+            aria-label="Agregar registro"
+            (click)="onAdd()"
+          >
+            <ion-icon
+              name="add-outline"
+              slot="icon-only"
+              aria-hidden="true"
+            ></ion-icon>
           </ion-button>
         </div>
 
