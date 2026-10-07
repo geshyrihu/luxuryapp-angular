@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,23 +7,26 @@ import {
 } from "@angular/core";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { AuditEntry } from "../interfaces/audit-entry.interface";
 
 @Component({
   selector: "app-audit-entries-mobile",
   templateUrl: "./audit-entries-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     ApiDatePipe,
     LxCard,
     LxTag,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class AuditEntriesMobile {
   data = input.required<AuditEntry[]>();

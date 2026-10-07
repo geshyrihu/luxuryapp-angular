@@ -14,7 +14,7 @@ import { DynamicDialogConfig } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppSortableColumn,
@@ -25,13 +25,14 @@ import {
   templateUrl: "./resultado-general-evaluacion-areas-detalle.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    DataViewMobile,
+    LuxDataViewMobile,
     AppTable,
     AppSortableColumn,
     LxTag,
     LuxTableCaption,
     CommonModule,
-    SanitizeHtmlPipe],
+    SanitizeHtmlPipe,
+  ],
 })
 export class ResultadoGeneralEvaluacionAreasDetalle implements OnInit {
   apiResponseS = inject(ApiResponseService);

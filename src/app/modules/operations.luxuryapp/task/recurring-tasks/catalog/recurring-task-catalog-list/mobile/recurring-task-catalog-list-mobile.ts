@@ -5,11 +5,11 @@ import {
   output,
 } from "@angular/core";
 import { RecurringTaskTemplateCatalog } from "@core/interfaces/recurring-tasks/recurring-task-template-catalog.interface";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 
 @Component({
   selector: "app-recurring-task-catalog-list-mobile",
@@ -18,9 +18,10 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
   imports: [
     ButtonMobile,
     MobileActionMenu,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class RecurringTaskCatalogListMobile {
   data = input.required<RecurringTaskTemplateCatalog[]>();

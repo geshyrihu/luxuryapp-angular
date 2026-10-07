@@ -10,10 +10,10 @@ import { Router, RouterModule } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import {
   AppFrozenColumn,
@@ -52,11 +52,12 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppSorticon,
     AppFrozenColumn,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     FormsModule,
     ReactiveFormsModule,
-    LxTag],
+    LxTag,
+  ],
   templateUrl: "./cobranza-online-movimientos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

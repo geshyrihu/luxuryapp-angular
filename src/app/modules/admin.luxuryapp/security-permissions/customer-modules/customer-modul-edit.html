@@ -8,7 +8,7 @@
     </div>
 
     <!-- Buscador -->
-    <custom-search-input-signal
+    <lux-search-input-signal
       placeholder="Buscar módulo o categoría..."
       (searchChange)="searchTerm.set($event)"
       class="flex-fill max-w-20rem"
@@ -99,7 +99,7 @@
     <!-- Buscador Móvil -->
     <div class="p-input-icon-left w-full mb-3">
       <lux-icon [icon]="'material-symbols-light:search'" />
-      <custom-search-input-signal
+      <lux-search-input-signal
         placeholder="Filtrar módulos..."
         (searchChange)="searchTerm.set($event)"
         class="w-full"

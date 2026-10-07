@@ -305,7 +305,7 @@
   </div>
 
   <!-- 📱 MOBILE -->
-  <app-data-view-mobile [data]="data()" [showAdd]="false" [dt]="dt">
+  <lux-data-view-mobile [data]="data()" [showAdd]="false" [dt]="dt">
     <div customFilters>
       <!-- Module Filters -->
       @if (uniqueModules().length > 0) {
@@ -354,7 +354,7 @@
         </p>
       </ili-list-item>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile>
 
   <lux-image-analysis-dialog
     (resultAccepted)="onVisionResult($event)"

@@ -16,12 +16,11 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import type { TabItem } from "@ui/core/tabs.base";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { IReportDefinitionList } from "../interfaces/report-definition.interface";
-
 
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
@@ -34,8 +33,9 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
     AppTable,
     LxTabs,
     ButtonWeb,
-    DataViewMobile,
-    LxTag],
+    LuxDataViewMobile,
+    LxTag,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./report-catalog.html",
 })
@@ -57,11 +57,13 @@ export class ReportCatalog implements OnInit {
     "name",
     "description",
     "visualizationType",
-    "dataSource"];
+    "dataSource",
+  ];
 
   catalogTabs = signal<TabItem[]>([
     { id: "0", label: "Mis reportes" },
-    { id: "1", label: "Plantillas" }]);
+    { id: "1", label: "Plantillas" },
+  ]);
   activeTab = signal<string>("0");
 
   onTabChange(tab: TabItem) {
@@ -81,7 +83,8 @@ export class ReportCatalog implements OnInit {
       ),
       this.api.onGetItem<IReportDefinitionList[]>(
         Endpoints.DynamicReports.getTemplates,
-      )]);
+      ),
+    ]);
     if (propios) this.propios.set(propios);
     if (plantillas) this.plantillas.set(plantillas);
     this.loading.set(false);

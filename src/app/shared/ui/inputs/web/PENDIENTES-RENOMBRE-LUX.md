@@ -60,5 +60,13 @@ no editarlo a mano.
 | Fecha | Item | Estado |
 |-------|------|--------|
 | 2026-10-06 | `custom-input-*` → `lux-input-*` (57 archivos) | ✅ Hecho |
-| 2026-10-06 | Pendientes 1–7 | ⏳ En curso |
+| 2026-10-06 | Pendiente 1: search → `lux-search-input-signal` | ✅ Hecho |
+| 2026-10-06 | Pendiente 2: bar chart → `lux-bar-chart-web` | ✅ Hecho |
+| 2026-10-06 | Pendiente 3: `lux-data-view-mobile` | ✅ Hecho |
+| 2026-10-06 | Pendiente 4: `lux-tab-bar` | ✅ Hecho |
+| 2026-10-06 | Pendiente 5: `lux-page-title-report` | ✅ Hecho |
+| 2026-10-06 | Pendiente 6: `lux-page-title-report-maintenance` | ✅ Hecho |
+| 2026-10-06 | Pendiente 7: `lux-button-group` | ✅ Hecho |
+| 2026-10-06 | `ui-dictionary.ts` regenerado (320 componentes) | ✅ Hecho |
+| 2026-10-06 | Build verificado: 0 errores / 0 warnings | ✅ Hecho |
 | — | Bloque `ili-*` (54) | ⏸️ Pendiente decisión |

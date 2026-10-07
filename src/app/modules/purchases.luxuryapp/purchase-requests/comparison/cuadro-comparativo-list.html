@@ -95,14 +95,6 @@
         size="small"
       />
       }
-      <lux-button-web
-        [iconClass]="isAuthorized() ? 'material-symbols-light:close' : (isDenied() ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
-        [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
-        (clicked)="onOpenAutorizarModal()"
-        [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
-        variant="outline"
-        size="small"
-      />
     </div>
   </div>
 </div>
@@ -135,6 +127,15 @@
       <div
         class="d-flex flex-wrap gap-3 mt-3 align-items-center border-top-1 border pt-3"
       >
+        <lux-button-web
+          [iconClass]="isAuthorized() ? 'material-symbols-light:close' : (isDenied() ? 'material-symbols-light:cancel' : 'material-symbols-light:check')"
+          [label]="isAuthorized() ? 'Desautorizar' : (isDenied() ? 'Resolver' : 'Autorizar')"
+          (clicked)="onOpenAutorizarModal()"
+          [severity]="isAuthorized() ? 'danger' : (isDenied() ? 'warning' : 'success')"
+          variant="outline"
+          size="small"
+        />
+
         <!-- Requiere contrato -->
         <div class="d-flex align-items-center gap-2">
           <span class="fw-semibold text-sm">Requiere contrato:</span>

@@ -16,15 +16,15 @@ import { CustomToastService } from "@core/services/custom-toast.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { cardOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -55,7 +55,7 @@ import { downloadInitialBalanceTemplate } from "./initial-balance-template.helpe
     LuxTableCaption,
     DecimalPipe,
     ApiDatePipe,
-    DataViewMobile,
+    LuxDataViewMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-list.html",

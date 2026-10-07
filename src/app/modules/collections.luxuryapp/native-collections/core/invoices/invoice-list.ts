@@ -17,7 +17,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { receiptOutline } from "ionicons/icons";
@@ -35,7 +35,7 @@ import { InvoiceResponseDTO } from "../../interfaces/invoice.dto";
     LxTag,
     AppTable,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     ApiDatePipe,
     ReactiveFormsModule,
     LuxInputSelectSignal,

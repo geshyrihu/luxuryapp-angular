@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -7,7 +6,8 @@ import {
   output,
 } from "@angular/core";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interface";
 
@@ -15,11 +15,7 @@ import { NominaEncabezadoDTO } from "../../interfaces/nomina-encabezado.interfac
   selector: "app-nominas-mobile",
   templateUrl: "./nominas-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
-    CommonModule,
-    MobileListItem,
-    LxTag,
-    DataViewMobile],
+  imports: [ButtonWeb, CommonModule, MobileListItem, LxTag, LuxDataViewMobile],
 })
 export class NominasMobile {
   data = input.required<NominaEncabezadoDTO[]>();

@@ -5,12 +5,12 @@ import {
   output,
 } from "@angular/core";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { IncidentListDTO } from "../interfaces/incident.interfaces";
 import { ButtonMobile } from "@ui/buttons/mobile";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { IncidentListDTO } from "../interfaces/incident.interfaces";
 
 @Component({
   selector: "app-incident-list-mobile",
@@ -22,7 +22,8 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     MobileListItem,
     MobileActionMenu,
     ApiDatePipe,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
 })
 export class IncidentListMobile {
   data = input.required<IncidentListDTO[]>();

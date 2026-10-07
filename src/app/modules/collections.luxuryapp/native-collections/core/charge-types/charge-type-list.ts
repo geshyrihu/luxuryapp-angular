@@ -11,14 +11,14 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { addIcons } from "ionicons";
 import { layersOutline } from "ionicons/icons";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,13 +34,14 @@ import { ChargeTypeForm } from "./charge-type-form";
     LuxTableCaption,
     TableEmptyMessage,
     LxTag,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     MobileActionMenu,
     LxIcon,
     ButtonWeb,
     MobileActionMenu,
-    ButtonMobile],
+    ButtonMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./charge-type-list.html",
 })

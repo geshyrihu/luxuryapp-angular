@@ -19,7 +19,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -34,7 +34,7 @@ import { FinancialAuditLogDTO } from "../../interfaces/financial-audit.dto";
     LuxTableCaption,
     LxCard,
     LxTag,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     ApiDatePipe,
     ReactiveFormsModule,

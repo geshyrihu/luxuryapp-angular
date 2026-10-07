@@ -16,7 +16,7 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
 import { LxIcon } from "@ui/adaptive/icon/icon";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface";
 
 @Component({
@@ -28,7 +28,7 @@ import { IFinancialStatementDto } from "../../interfaces/aspel-budget.interface"
     AppTable,
     LuxInputTextSignal,
     AccountingNumberPipe,
-    DataViewMobile,
+    LuxDataViewMobile,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./balance-mensual.html",

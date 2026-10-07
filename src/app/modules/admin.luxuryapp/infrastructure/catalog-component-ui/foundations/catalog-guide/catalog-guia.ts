@@ -7,10 +7,10 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
 import { AppRadioButton } from "@ui/web/radio-button/radio-button";
@@ -40,7 +40,7 @@ type TagSeverity =
     LuxInputToggleSwitch,
     LuxInputSelectSignal,
     LuxInputMultiselectSignal,
-    CustomSearchInput,
+    LuxSearchInput,
     AppTable,
     AppSortableColumn,
     AppSorticon,
@@ -169,7 +169,7 @@ export class CatalogGuia {
       title: "Responsive Total (Omnichannel)",
       description:
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
-      rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
+      rule: "Obligatorio implementar lux-data-view-mobile en cada listado operativo.",
       icon: "icon.cellphone",
     },
   ];
@@ -268,7 +268,7 @@ export class CatalogGuia {
     },
     {
       family: "Mobile data",
-      selector: "app-data-view-mobile",
+      selector: "lux-data-view-mobile",
       source: "core/components/data-view-mobile",
       useCase: "Listado mobile agrupado con template proyectado.",
       preferredFor: "Reemplazar tablas densas en pantallas pequenas.",
@@ -290,7 +290,7 @@ export class CatalogGuia {
       source: "shared/ui/web/lux-table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
-      avoidWhen: "Listados mobile donde convenga DataViewMobile.",
+      avoidWhen: "Listados mobile donde convenga LuxDataViewMobile.",
       status: "Usar" as const,
     },
     {
@@ -313,7 +313,7 @@ export class CatalogGuia {
     },
     {
       family: "Graficas",
-      selector: "app-custom-bar-chart / app-pie-chart",
+      selector: "lux-bar-chart-web / app-pie-chart",
       source: "core/components/charts",
       useCase: "Visualizaciones ejecutivas reutilizables.",
       preferredFor: "Dashboards y metricas.",

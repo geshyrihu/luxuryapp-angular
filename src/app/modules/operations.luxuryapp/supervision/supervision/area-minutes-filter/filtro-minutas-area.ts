@@ -19,17 +19,20 @@ import { EnumSelectService } from "@core/services/enum-select.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { EAreaMinutasDetallesPipe } from "@shared/pipes/area-minuta-detalles.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 @Component({
   selector: "app-filtro-minutas-area",
   templateUrl: "./filtro-minutas-area.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    DataViewMobile,
+    LuxDataViewMobile,
     TableEmptyMessage,
     CommonModule,
     AppTable,
@@ -37,7 +40,8 @@ import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux
     LuxTableCaption,
     TableFooter,
     EAreaMinutasDetallesPipe,
-    SanitizeHtmlPipe],
+    SanitizeHtmlPipe,
+  ],
 })
 export class FiltroMinutasArea implements OnInit {
   apiResponseS = inject(ApiResponseService);

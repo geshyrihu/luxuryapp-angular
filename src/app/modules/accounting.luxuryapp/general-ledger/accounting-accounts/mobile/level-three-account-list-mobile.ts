@@ -6,16 +6,13 @@ import {
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-level-three-account-list-mobile",
   templateUrl: "./level-three-account-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ButtonMobile,
-    MobileActionMenu,
-    DataViewMobile],
+  imports: [ButtonMobile, MobileActionMenu, LuxDataViewMobile],
 })
 export class LevelThreeAccountListMobile {
   data = input.required<any[]>();

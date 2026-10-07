@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { OnboardingChecklistOptionDto } from "../interfaces/onboarding-checklist-option.dto";
 import { formatRoles as formatRolesUtil } from "../onboarding-checklist-option.utils";
@@ -15,7 +15,7 @@ import { formatRoles as formatRolesUtil } from "../onboarding-checklist-option.u
   selector: "app-onboarding-checklist-option-list-mobile",
   templateUrl: "./onboarding-checklist-option-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MobileActionMenu, ButtonMobile, MobileListItem, DataViewMobile],
+  imports: [MobileActionMenu, ButtonMobile, MobileListItem, LuxDataViewMobile],
 })
 export class OnboardingChecklistOptionListMobile {
   data = input.required<OnboardingChecklistOptionDto[]>();

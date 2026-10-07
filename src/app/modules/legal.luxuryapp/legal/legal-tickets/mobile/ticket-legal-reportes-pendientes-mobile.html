@@ -1,7 +1,7 @@
 @if (dataExternal().length > 0) {
 <div class="card mb-4">
   <h5 class="p-4 m-0">Pendientes Externos</h5>
-  <app-data-view-mobile [data]="dataExternal()" [showAdd]="false">
+  <lux-data-view-mobile [data]="dataExternal()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
       <ili-list-item>
         <div
@@ -43,12 +43,12 @@
         {{ dataExternal().length }} pendientes externos
       </div>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile>
 </div>
 } @if (dataInternal().length > 0) {
 <div class="card mb-4">
   <h5 class="p-4 m-0">Pendientes Internos</h5>
-  <app-data-view-mobile [data]="dataInternal()" [showAdd]="false">
+  <lux-data-view-mobile [data]="dataInternal()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
       <ili-list-item>
         <div
@@ -90,12 +90,12 @@
         {{ dataInternal().length }} pendientes internos
       </div>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile>
 </div>
 } @if (unassignedData().length > 0) {
 <div class="card mb-4">
   <h5 class="p-4 m-0">Pendientes sin Asignar</h5>
-  <app-data-view-mobile [data]="unassignedData()" [showAdd]="false">
+  <lux-data-view-mobile [data]="unassignedData()" [showAdd]="false">
     <ng-template #listItemTemplate let-ticket>
       <ili-list-item>
         <div
@@ -134,6 +134,6 @@
         {{ unassignedData().length }} pendientes sin asignar
       </div>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile>
 </div>
 }

@@ -6,10 +6,10 @@ import {
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { CandidateApplicationListItem } from "../../candidate-applications/interfaces/candidate-application";
 import { CandidateStageBadge } from "../../../recruitment-shared/candidate-stage-badge";
+import { CandidateApplicationListItem } from "../../candidate-applications/interfaces/candidate-application";
 import { CandidateInterviewFeedbackTarget } from "../interfaces/candidate-interview-feedback-target.interface";
 
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
@@ -19,7 +19,7 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PdfViewerTrigger,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileActionMenu,
     ButtonMobile,
     MobileListItem,
@@ -32,4 +32,3 @@ export class CandidateInterviewPendingMobile {
 
   feedback = output<CandidateInterviewFeedbackTarget>();
 }
-

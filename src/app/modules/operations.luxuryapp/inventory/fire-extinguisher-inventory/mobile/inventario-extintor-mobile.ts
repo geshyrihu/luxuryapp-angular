@@ -5,20 +5,16 @@ import {
   output,
 } from "@angular/core";
 import { InventarioExtintorDto } from "@core/interfaces/inventario-extintor.interface";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-inventario-extintor-mobile",
   templateUrl: "./inventario-extintor-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ButtonMobile,
-    LxIcon,
-    MobileActionMenu,
-    DataViewMobile],
+  imports: [ButtonMobile, LxIcon, MobileActionMenu, LuxDataViewMobile],
 })
 export class InventarioExtintorMobile {
   data = input.required<InventarioExtintorDto[]>();

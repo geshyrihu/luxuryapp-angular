@@ -7,9 +7,9 @@ import {
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import {
   AppSortableColumn,
   AppSorticon,
@@ -28,9 +28,10 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppTable,
     AppSortableColumn,
     AppSorticon,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
   templateUrl: "./cobranza-online-towers.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

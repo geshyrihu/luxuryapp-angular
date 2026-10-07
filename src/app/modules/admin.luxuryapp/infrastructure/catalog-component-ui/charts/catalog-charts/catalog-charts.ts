@@ -1,7 +1,7 @@
 import { Component, computed, input, ViewEncapsulation } from "@angular/core";
 import { AdvancedPieChart } from "@ui/web/charts/advanced-pie-chart";
 import { ChartWrapper } from "@ui/web/charts/chart-wrapper";
-import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
+import { LuxBarChart } from "@ui/web/charts/lux-bar-chart";
 import { MultiAxisChart } from "@ui/web/charts/multi-axis-chart";
 import { PieChart } from "@ui/web/charts/pie-chart";
 import { RadarChart } from "@ui/web/charts/radar-chart";
@@ -15,7 +15,7 @@ import { RadarChart } from "@ui/web/charts/radar-chart";
 
   imports: [
     ChartWrapper,
-    CustomBarChart,
+    LuxBarChart,
     MultiAxisChart,
     PieChart,
     AdvancedPieChart,

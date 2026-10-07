@@ -25,7 +25,7 @@ import { CardEmployee } from "@shared/integration/recursos-humanos";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 import { ROUTES } from "src/app/routing/route-paths";
@@ -42,7 +42,7 @@ import { TaskForm } from "../task-message/task-form";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonWeb,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     LuxTableCaption,
     LxIcon,

@@ -1,1 +1,1 @@
-export { InputSearch as CustomSearchInput } from "../adaptive/input-search/input-search";
+export { InputSearch as LuxSearchInput } from "../adaptive/input-search/input-search";

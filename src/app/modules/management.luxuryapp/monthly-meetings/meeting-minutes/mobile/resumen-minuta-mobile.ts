@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from '@ui/adaptive/icon/icon';
 
 @Component({
   selector: "app-resumen-minuta-mobile",
   templateUrl: "./resumen-minuta-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DataViewMobile, MobileListItem, LxIcon],
+  imports: [LuxDataViewMobile, MobileListItem, LxIcon],
 })
 export class ResumenMinutaMobile {
   data = input.required<any[]>();

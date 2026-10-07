@@ -22,20 +22,22 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { HtmlPrintService } from "@core/services/html-print.service";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { WarehouseForm } from "./warehouse-form";
 
-
-import { ButtonWeb } from "@ui/buttons/web";
-import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
+import { ButtonWeb } from "@ui/buttons/web";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-warehouse-list",
@@ -52,7 +54,8 @@ import { ConfirmService } from "@ui/buttons/shared/confirm.service";
     AppSortableColumn,
     LuxTableCaption,
     TableFooter,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
 })
 export class WarehouseList implements OnInit {
   authS = inject(AuthService);
@@ -73,7 +76,8 @@ export class WarehouseList implements OnInit {
   rowsPerPageOptions: number[] = rowsPerPageOptions();
   isAdmin = this.aspRoleService.hasAny([
     ApplicationRole.Administrador,
-    ApplicationRole.SuperUsuario]);
+    ApplicationRole.SuperUsuario,
+  ]);
   // El computed se mantiene, es genórico y funcionaré perfectamente
   globalFilterFields = computed(() => {
     const data = this.dataSignal();

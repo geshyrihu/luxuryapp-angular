@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="d-flex align-items-center gap-2 flex-wrap">
-        <custom-search-input-signal
+        <lux-search-input-signal
           placeholder="Buscar manual..."
           (searchChange)="searchTerm.set($event)"
         />
@@ -209,7 +209,7 @@
 
 <!-- MOBILE: Componente adaptado para versión móvil (oculto en md en adelante) -->
 <div class="d-block d-md-none">
-  <app-data-view-mobile
+  <lux-data-view-mobile
     [data]="dataSignal()"
     (add)="onModalForm({})"
     [showAdd]="isAdmin()"
@@ -268,5 +268,5 @@
         </div>
       </ili-list-item>
     </ng-template>
-  </app-data-view-mobile>
+  </lux-data-view-mobile>
 </div>

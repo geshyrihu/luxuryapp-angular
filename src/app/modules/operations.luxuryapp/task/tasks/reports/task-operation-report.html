@@ -157,7 +157,7 @@
 </lux-table>
 
 <!-- 📱 MOBILE -->
-<app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
+<lux-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
     <app-task-status (statusChange)="onChangeStatus($event)" />
     <app-task-report-actions
@@ -187,5 +187,5 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>
 }

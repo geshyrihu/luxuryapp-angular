@@ -4,10 +4,10 @@ import {
   input,
   output,
 } from "@angular/core";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 import { EITaskMessageDTOStatus } from "../../shared/enums/task-message-status.enum";
 import { WorkGroupDTO } from "../task-group-list";
@@ -16,11 +16,7 @@ import { WorkGroupDTO } from "../task-group-list";
   selector: "app-task-group-list-mobile",
   templateUrl: "./task-group-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ButtonMobile,
-    MobileActionMenu,
-    DataViewMobile,
-    LxIcon],
+  imports: [ButtonMobile, MobileActionMenu, LuxDataViewMobile, LxIcon],
 })
 export class TaskGroupListMobile {
   data = input.required<WorkGroupDTO[]>();

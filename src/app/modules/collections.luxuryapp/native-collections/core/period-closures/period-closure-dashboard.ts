@@ -21,7 +21,7 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputNumberSignal } from "@ui/inputs/web/lux-input-number-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -37,7 +37,7 @@ import { PeriodClosureResponseDTO } from "../../interfaces/period-closure.dto";
     LxTooltipDirective,
     AppTable,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     ApiDatePipe,
     ReactiveFormsModule,

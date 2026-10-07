@@ -21,7 +21,7 @@ import { TableScrollHeightService } from "@core/services/table-scroll-height.ser
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -43,7 +43,7 @@ import {
     AppSortableColumn,
     NgbTooltipModule,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     LuxInputTextSignal,
     MobileListItem,
     LxIcon,

@@ -6,17 +6,17 @@ import {
   signal,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { LxAccordion } from "@ui/adaptive/accordion/accordion";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTabs } from "@ui/adaptive/tabs/tabs";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
 import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { MobileBadge } from "@ui/mobile/badge/badge";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
-import { SelectItemDto } from "@core/interfaces/select-item.dto";
 
 @Component({
   selector: "app-catalogo-gastos-fijos-list-mobile",
@@ -31,9 +31,10 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
     IonInputSelect,
     MobileActionMenu,
     MobileBadge,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class CatalogoGastosFijosListMobile {
   data = input.required<any[]>();
@@ -59,6 +60,7 @@ export class CatalogoGastosFijosListMobile {
 
   /** Accordion móvil (una sola sección colapsable). */
   genAccordionItems = [
-    { id: "generation", title: "Generar órdenes de Compra" }];
+    { id: "generation", title: "Generar órdenes de Compra" },
+  ];
   genExpanded = signal<string[]>([]);
 }

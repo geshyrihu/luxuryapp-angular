@@ -25,7 +25,7 @@ import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 import { LuxInputTextAreaSignal } from "@ui/inputs/web/lux-input-textarea-signal";
 import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 import { map } from "rxjs";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -42,7 +42,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxTooltipDirective,
     AppTable,
 
-    DataViewMobile,
+    LuxDataViewMobile,
     LuxTableCaption,
     TableFooter,
   ],

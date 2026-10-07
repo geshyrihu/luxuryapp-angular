@@ -1,7 +1,7 @@
 // 💻 WEB INPUTS - Componentes Bootstrap para web/tablet/desktop
 // Importa desde aquí en páginas Angular web
 
-export { CustomSearchInput } from "./custom-search-input-signal";
+export { LuxSearchInput } from "./lux-search-input-signal";
 export { LuxInputAutoMultiple } from "./lux-input-autocomplete-multiple-signal";
 export { LuxInputAutoComplete } from "./lux-input-autocomplete-signal";
 export { LuxInputCheckSignal } from "./lux-input-check-signal";

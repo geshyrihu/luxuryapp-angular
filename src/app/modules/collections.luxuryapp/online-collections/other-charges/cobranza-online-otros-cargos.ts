@@ -8,7 +8,7 @@ import {
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -32,8 +32,9 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     AppSorticon,
     LuxTableCaption,
     TableEmptyMessage,
-    DataViewMobile,
-    MobileListItem],
+    LuxDataViewMobile,
+    MobileListItem,
+  ],
   templateUrl: "./cobranza-online-otros-cargos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

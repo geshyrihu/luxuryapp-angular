@@ -28,7 +28,7 @@ import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -61,7 +61,7 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     LuxTableCaption,
     LxTooltipDirective,
     TableFooter,
-    DataViewMobile,
+    LuxDataViewMobile,
     CurrencyMexicoPipe,
     SanitizeHtmlPipe,
     MobileListItem,

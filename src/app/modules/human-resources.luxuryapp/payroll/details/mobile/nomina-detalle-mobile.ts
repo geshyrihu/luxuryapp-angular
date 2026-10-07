@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
 
@@ -14,11 +14,7 @@ import { NominaDetalleDTO } from "../../interfaces/nomina-detalle.interface";
   selector: "app-nomina-detalle-mobile",
   templateUrl: "./nomina-detalle-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    MobileListItem,
-    ButtonMobile,
-    DataViewMobile],
+  imports: [CommonModule, MobileListItem, ButtonMobile, LuxDataViewMobile],
 })
 export class NominaDetalleMobile {
   data = input.required<NominaDetalleDTO[]>();

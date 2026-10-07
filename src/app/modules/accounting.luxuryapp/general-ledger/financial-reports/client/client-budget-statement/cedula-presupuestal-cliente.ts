@@ -9,8 +9,8 @@ import {
 } from "@angular/core";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
   IBaseAccountDto,
@@ -29,7 +29,8 @@ const MONTH_NAMES = [
   "SEP",
   "OCT",
   "NOV",
-  "DIC"];
+  "DIC",
+];
 
 const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
@@ -43,7 +44,8 @@ const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre"];
+  "montoDiciembre",
+];
 
 const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
   "presupEnero",
@@ -57,7 +59,8 @@ const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
   "presupSeptiembre",
   "presupOctubre",
   "presupNoviembre",
-  "presupDiciembre"];
+  "presupDiciembre",
+];
 
 const GASTOS_GENERALES = [
   "600-",
@@ -67,12 +70,13 @@ const GASTOS_GENERALES = [
   "604-",
   "607-",
   "608-",
-  "609-"];
+  "609-",
+];
 const GASTOS_EXTRA = ["605-"];
 
 @Component({
   selector: "app-cedula-presupuestal-cliente",
-  imports: [LxIcon, AppTable, DataViewMobile],
+  imports: [LxIcon, AppTable, LuxDataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal-cliente.html",
 })
@@ -94,7 +98,8 @@ export class CedulaPresupuestalClienteComponent {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)]];
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   readonly rows = computed(() => {

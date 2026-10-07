@@ -6,7 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { CustomBarChart } from "@ui/web/charts/custom-bar-chart";
+import { LuxBarChart } from "@ui/web/charts/lux-bar-chart";
 import { PageTitleReport } from "@ui/web/title-page-report/page-title-report";
 import { DynamicDialogRef } from "@core/services/dialog-handler.service";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -18,7 +18,7 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
   selector: "app-report-bitacora-alberca",
   templateUrl: "./report-bitacora-alberca.html",
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [CustomBarChart, PageTitleReport],
+  imports: [LuxBarChart, PageTitleReport],
 })
 export class ReportBitacoraAlberca {
   apiResponseS = inject(ApiResponseService);

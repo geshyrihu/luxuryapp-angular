@@ -13,7 +13,7 @@
 </div>
 
 @if (data()) {
-<app-data-view-mobile
+<lux-data-view-mobile
   [data]="data()"
   [loading]="loading()"
   (add)="add.emit({ id: 0, title: 'Nuevo Registro' })"
@@ -244,5 +244,5 @@
       </div>
     </div>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>
 }

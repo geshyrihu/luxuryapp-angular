@@ -10,7 +10,7 @@ import { IonInputSearch } from "../../mobile/ion-input-search";
 import { WebInputSearch } from "../../web/input-search/input-search";
 
 @Component({
-  selector: "custom-search-input-signal",
+  selector: "lux-search-input-signal",
 
   imports: [WebInputSearch, IonInputSearch],
   changeDetection: ChangeDetectionStrategy.Eager,

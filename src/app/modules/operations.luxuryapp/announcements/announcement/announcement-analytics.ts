@@ -7,23 +7,24 @@ import {
   signal,
 } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { globalFilterFields } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { DataGridColumn } from "@ui/web/data-grid/data-grid";
 import { IAnnouncementAnalyticsDTO } from "./announcement.model";
 @Component({
   selector: "app-announcement-analytics",
   imports: [
     ApiDatePipe,
     RouterModule,
-    DataViewMobile,
+    LuxDataViewMobile,
     LxIcon,
-    MobileListItem],
+    MobileListItem,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./announcement-analytics.html",
 })
@@ -69,7 +70,8 @@ export default class AnnouncementAnalytics implements OnInit {
           d.toLocaleTimeString("es-MX", { hour: "numeric", minute: "2-digit" })
         );
       },
-    }];
+    },
+  ];
 
   ngOnInit(): void {
     this.announcementId = this.route.snapshot.paramMap.get("id");
@@ -90,4 +92,3 @@ export default class AnnouncementAnalytics implements OnInit {
     });
   }
 }
-

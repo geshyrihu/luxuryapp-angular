@@ -12,10 +12,10 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { alertCircleOutline } from "ionicons/icons";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
@@ -31,9 +31,9 @@ type TagSeverity =
   "success" | "info" | "warn" | "danger" | "secondary" | "contrast";
 
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
 @Component({
   selector: "app-property-fine-list",
@@ -49,7 +49,8 @@ import { ButtonWeb } from "@ui/buttons/web";
     LuxTableCaption,
     CurrencyPipe,
     ApiDatePipe,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./property-fine-list.html",
 })

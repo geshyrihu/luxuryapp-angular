@@ -1,12 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-} from "@angular/core";
-import { PdfViewerTriggerMobile } from "@ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
+import { PdfViewerTriggerMobile } from "@ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile";
 
 @Component({
   selector: "app-contracts-policies-mobile",
@@ -14,9 +10,10 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PdfViewerTriggerMobile,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    MobileActionMenu],
+    MobileActionMenu,
+  ],
 })
 export class ContractsPoliciesMobile {
   data = input.required<any[]>();

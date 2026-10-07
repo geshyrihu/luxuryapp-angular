@@ -12,7 +12,7 @@ import { LxRating } from "@ui/adaptive/rating/rating";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { SegmentedControl } from "@ui/primitives/segmented-control/segmented-control";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { AppPaginator } from "@ui/web/paginator/paginator";
@@ -30,7 +30,7 @@ import { AppPaginator } from "@ui/web/paginator/paginator";
     LxRating,
     LxTag,
     LxTooltipDirective,
-    CustomSearchInput,
+    LuxSearchInput,
     SegmentedControl,
     LxIcon,
     AppPaginator],

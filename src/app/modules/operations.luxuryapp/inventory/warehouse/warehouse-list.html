@@ -97,7 +97,7 @@
 </lux-table>
 
 <!--📲INICIO: Componente adaptado para versión móvil -->
-<app-data-view-mobile
+<lux-data-view-mobile
   [data]="dataSignal()"
   [showAdd]="isAdmin"
   (add)="onModalForm({ id: '', title: 'Nuevo Almacén' })"
@@ -147,4 +147,4 @@
       </ili-action-menu>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>

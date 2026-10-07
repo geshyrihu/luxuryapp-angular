@@ -5,20 +5,16 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 @Component({
   selector: "app-informe-financiero",
-  imports: [
-    DataViewMobile,
-    MobileListItem,
-    LxIcon,
-    PdfViewerTrigger],
+  imports: [LuxDataViewMobile, MobileListItem, LxIcon, PdfViewerTrigger],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./informe-financiero-list.html",
 })

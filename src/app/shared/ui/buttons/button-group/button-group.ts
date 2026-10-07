@@ -13,7 +13,7 @@ export interface ButtonGroupOption<T = string> {
  * repetidos manualmente en varias pantallas de listado.
  */
 @Component({
-  selector: "il-button-group",
+  selector: "lux-button-group",
   imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
@@ -32,7 +32,7 @@ export interface ButtonGroupOption<T = string> {
     </div>
   `,
 })
-export class IlButtonGroup<T = string> {
+export class LuxButtonGroup<T = string> {
   options = input.required<ButtonGroupOption<T>[]>();
   value = input<T | null>(null);
   activeSeverity = input<

@@ -38,7 +38,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { EITaskMessageDTOStatus } from "../shared/enums/task-message-status.enum";
 import { TaskClose } from "../task-close";
@@ -52,7 +52,7 @@ import { TaskReadList } from "../task-read-list";
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ButtonMobile,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     MobileActionMenu,
     ButtonWeb,

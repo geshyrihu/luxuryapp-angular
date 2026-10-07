@@ -13,12 +13,12 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { ROUTES } from "src/app/routing/route-paths";
 import { IManualTemplateSimpleDTO } from "./interfaces/manuals-and-processes.dto";
@@ -43,10 +43,11 @@ interface DeptGroup {
   imports: [
     ButtonWeb,
     CommonModule,
-    CustomSearchInput,
-    DataViewMobile,
+    LuxSearchInput,
+    LuxDataViewMobile,
     LxIcon,
-    MobileListItem],
+    MobileListItem,
+  ],
 })
 export class ManualsAndProcessesList implements OnInit {
   private apiResponseS = inject(ApiResponseService);
@@ -62,7 +63,8 @@ export class ManualsAndProcessesList implements OnInit {
       ApplicationRole.SuperUsuario,
       ApplicationRole.Legal,
       ApplicationRole.RecursosHumanos,
-      ApplicationRole.Reclutamiento];
+      ApplicationRole.Reclutamiento,
+    ];
     return roles.some((role) => this.aspRoleS.roleSignal(role)());
   });
 

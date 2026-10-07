@@ -10,12 +10,12 @@ import {
 import { RouterModule } from "@angular/router";
 import { GlobalTableFilterService } from "@core/services/global-table-filter.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 
 @Component({
   selector: "lux-table-caption",
   templateUrl: "./lux-table-caption.html",
-  imports: [RouterModule, ButtonWeb, CustomSearchInput],
+  imports: [RouterModule, ButtonWeb, LuxSearchInput],
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
     `
@@ -57,12 +57,12 @@ export class LuxTableCaption {
   }
 
   /**
-   * Recibe el término ya resuelto por `custom-search-input-signal`
+   * Recibe el término ya resuelto por `lux-search-input-signal`
    * (`string`), lo publica por `(search)` y además lo aplica al filtro
    * global de la tabla para los consumidores client-side.
    *
    * Antes este método esperaba un `Event` nativo, pero el input se
-   * reemplazó por `custom-search-input-signal`: el output `search` quedó
+   * reemplazó por `lux-search-input-signal`: el output `search` quedó
    * sin emitir y las tablas server-side (`[lazy]="true"`) nunca se
    * enteraban del término.
    */

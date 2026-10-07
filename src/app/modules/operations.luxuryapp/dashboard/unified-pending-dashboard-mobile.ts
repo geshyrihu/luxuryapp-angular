@@ -18,9 +18,9 @@ import { MinutaDetalleForm } from "@management.luxuryapp/monthly-meetings/meetin
 import { PolicyContractForm } from "@operations.luxuryapp/custom-documents/custom-document/policy-contract/policy-contract-form";
 import { ServiceOrderForm } from "@operations.luxuryapp/service-orders/service-order/service-order-form";
 import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-form";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { addIcons } from "ionicons";
 import {
@@ -38,7 +38,7 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 @Component({
   selector: "app-unified-pending-dashboard-mobile",
-  imports: [LxTag, LxIcon, DataViewMobile],
+  imports: [LxTag, LxIcon, LuxDataViewMobile],
   templateUrl: "./unified-pending-dashboard-mobile.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -46,7 +46,8 @@ import { PendingItemDTO } from "./interfaces/pending-item.dto";
       .ai-summary-popup {
         font-size: 0.9rem !important;
       }
-    `],
+    `,
+  ],
 })
 export class UnifiedPendingDashboardMobile {
   private apiResponseS = inject(ApiResponseService);
@@ -146,7 +147,7 @@ export class UnifiedPendingDashboardMobile {
     this.filterData();
   }
 
-  // Helper to group data by Module for DataViewMobile
+  // Helper to group data by Module for LuxDataViewMobile
   get groupedData() {
     const grouped: any = {};
     const items = this.data();

@@ -10,10 +10,10 @@ import { FormsModule } from "@angular/forms";
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -47,8 +47,9 @@ import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
     LuxTableCaption,
     TableEmptyMessage,
     TableFooter,
-    DataViewMobile,
-    MobileListItem],
+    LuxDataViewMobile,
+    MobileListItem,
+  ],
   templateUrl: "./cobranza-online-detalle-condominos.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -84,7 +85,8 @@ export class CobranzaOnlineDetalleCondominos {
     "MOROSOS",
     "DEUDA CORRIENTE",
     "SIN ADEUDO",
-    "ANTICIPOS"];
+    "ANTICIPOS",
+  ];
 
   /** Todos los condóminos ordenados mayor→menor deuda */
   readonly allRows = computed(() => {
@@ -95,7 +97,8 @@ export class CobranzaOnlineDetalleCondominos {
       ...d.morosos,
       ...d.deudaCorriente,
       ...d.sinAdeudo,
-      ...d.anticipos].sort((a, b) => Math.abs(b.saldo) - Math.abs(a.saldo));
+      ...d.anticipos,
+    ].sort((a, b) => Math.abs(b.saldo) - Math.abs(a.saldo));
   });
 
   /** Filas filtradas por clasificación seleccionada */

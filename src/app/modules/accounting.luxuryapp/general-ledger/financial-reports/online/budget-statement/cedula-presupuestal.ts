@@ -13,8 +13,8 @@ import { CustomerIdService } from "@core/auth/services/customer-id.service";
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
   IBaseAccountDto,
   IFinancialStatementDto,
@@ -34,7 +34,8 @@ const MONTH_NAMES = [
   "SEP",
   "OCT",
   "NOV",
-  "DIC"];
+  "DIC",
+];
 
 /** Claves de monto mensual en orden enero-diciembre */
 const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
@@ -49,7 +50,8 @@ const MONTO_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre"];
+  "montoDiciembre",
+];
 
 /** Claves de presupuesto mensual en orden enero-diciembre */
 const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
@@ -64,7 +66,8 @@ const PRESUP_KEYS: (keyof IBaseAccountDto)[] = [
   "presupSeptiembre",
   "presupOctubre",
   "presupNoviembre",
-  "presupDiciembre"];
+  "presupDiciembre",
+];
 
 /**
  * Cuentas que pertenecen a "Gastos Generales" (bloque principal).
@@ -78,7 +81,8 @@ const GASTOS_GENERALES = [
   "604-",
   "607-",
   "608-",
-  "609-"];
+  "609-",
+];
 const GASTOS_EXTRA = ["605-"];
 
 @Component({
@@ -88,7 +92,8 @@ const GASTOS_EXTRA = ["605-"];
     FormsModule,
     AppTable,
     AccountingNumberPipe,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./cedula-presupuestal.html",
 })
@@ -111,7 +116,8 @@ export class CedulaPresupuestal {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)]];
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   /**

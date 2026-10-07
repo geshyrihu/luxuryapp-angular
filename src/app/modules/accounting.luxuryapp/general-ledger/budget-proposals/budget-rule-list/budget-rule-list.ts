@@ -27,7 +27,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { addIcons } from "ionicons";
 import { analyticsOutline } from "ionicons/icons";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
@@ -37,10 +37,10 @@ import { BudgetRuleForm } from "./budget-rule-form";
 
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-import { ButtonWeb } from "@ui/buttons/web";
-import { ButtonMobile } from "@ui/buttons/mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonMobile } from "@ui/buttons/mobile";
+import { ButtonWeb } from "@ui/buttons/web";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 @Component({
   selector: "app-budget-rule-list",
@@ -50,9 +50,10 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     MobileActionMenu,
     AppTable,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./budget-rule-list.html",
 })

@@ -13,11 +13,11 @@ import {
   ComplianceGroupDTO,
 } from "@core/interfaces/recurring-tasks/recurring-task-compliance.interface";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -29,12 +29,13 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
   imports: [
     LxMessage,
     LxTag,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     LuxTableCaption,
     TableEmptyMessage,
     AppTable,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class RecurringTaskComplianceDashboard implements OnInit {
   private apiResponseS = inject(ApiResponseService);

@@ -29,7 +29,7 @@ import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SwalService } from "@core/services/swal.service";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { BudgetRuleList } from "../budget-proposals/budget-rule-list/budget-rule-list";
 import {
   AspelBudgetDTO,
@@ -59,9 +59,10 @@ import { PurchaseHistory } from "./purchase-history";
     FormsModule,
     AppTable,
     AppFrozenColumn,
-    DataViewMobile,
+    LuxDataViewMobile,
     LxTooltipDirective,
-    LxTag],
+    LxTag,
+  ],
   templateUrl: "./espejo-aspel-presupuesto.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,

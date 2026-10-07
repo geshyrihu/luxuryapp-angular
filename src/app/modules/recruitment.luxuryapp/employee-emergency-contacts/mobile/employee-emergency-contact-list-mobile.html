@@ -1,4 +1,4 @@
-<app-data-view-mobile
+<lux-data-view-mobile
   [data]="dataEmergencyContact()"
   [globalFilterFields]="globalFilterFields()"
   (add)="add.emit({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 0 })"
@@ -33,11 +33,11 @@
       }
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>
 
 <hr />
 
-<app-data-view-mobile
+<lux-data-view-mobile
   [data]="dataBeneficiary()"
   [globalFilterFields]="globalFilterFields()"
   (add)="add.emit({ id: '', title: 'Nuevo Registro', contacOfBeneficiary: 1 })"
@@ -69,6 +69,6 @@
       }
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>
 
 <hr />

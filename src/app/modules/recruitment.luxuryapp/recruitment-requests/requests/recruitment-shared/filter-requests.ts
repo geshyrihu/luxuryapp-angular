@@ -14,7 +14,7 @@ import { SelectItemDto } from "@core/interfaces/select-item.dto";
 import { CustomToastService } from "@core/services/custom-toast.service";
 import { DataConnectorService } from "@core/services/data-connector.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import saveAs from "file-saver";
@@ -58,8 +58,8 @@ import saveAs from "file-saver";
         margin-bottom: 0;
       }
 
-      :host ::ng-deep custom-search-input-signal,
-      :host ::ng-deep custom-search-input-signal .field {
+      :host ::ng-deep lux-search-input-signal,
+      :host ::ng-deep lux-search-input-signal .field {
         display: block;
         margin-bottom: 0;
         width: 100%;
@@ -119,7 +119,7 @@ import saveAs from "file-saver";
     ReactiveFormsModule,
     LuxInputDateSignal,
     LuxInputSelectButton,
-    CustomSearchInput,
+    LuxSearchInput,
   ],
 })
 export class FilterRequests {

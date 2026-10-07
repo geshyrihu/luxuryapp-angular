@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CustomSearchInput } from './custom-search-input-signal';
+import { LuxSearchInput } from './lux-search-input-signal';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('CustomSearchInput', () => {
-  let component: CustomSearchInput;
-  let fixture: ComponentFixture<CustomSearchInput>;
+describe('LuxSearchInput', () => {
+  let component: LuxSearchInput;
+  let fixture: ComponentFixture<LuxSearchInput>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomSearchInput],
+      imports: [LuxSearchInput],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomSearchInput);
+    fixture = TestBed.createComponent(LuxSearchInput);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

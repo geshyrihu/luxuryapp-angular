@@ -12,7 +12,7 @@ import { ActivatedRoute } from "@angular/router";
 import { LxMessage } from "@ui/adaptive/message/message";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { IonInputToggle } from "@ui/inputs/mobile/ion-input-toggle";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { checkmarkOutline, closeOutline } from "ionicons/icons";
@@ -33,7 +33,7 @@ import { CustomerModulGroup } from "./interfaces/customer-modul-group.interface"
     CommonModule,
     LxMessage,
     LxSpinner,
-    CustomSearchInput,
+    LuxSearchInput,
     FormsModule,
     MobileListItem,
     IonInputToggle,

@@ -4,10 +4,10 @@ import {
   input,
   output,
 } from "@angular/core";
-import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 import { ButtonMobile } from "@ui/buttons/mobile";
 @Component({
@@ -19,7 +19,7 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     LxIcon,
     MobileListItem,
     MobileActionMenu,
-    DataViewMobile,
+    LuxDataViewMobile,
   ],
 })
 export class EmployeeBankDataListMobile {

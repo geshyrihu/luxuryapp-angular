@@ -4,13 +4,13 @@ import {
   input,
   output,
 } from "@angular/core";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
-import { PdfViewerTriggerMobile } from "@ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
+import { PdfViewerTriggerMobile } from "@ui/mobile/pdf-viewer-trigger-mobile/pdf-viewer-trigger-mobile";
 
 @Component({
   selector: "app-policy-contract-list-mobile",
@@ -21,9 +21,10 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
     PdfViewerTriggerMobile,
     LxTag,
     MobileActionMenu,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class PolicyContractListMobile {
   groupedData = input.required<any>();

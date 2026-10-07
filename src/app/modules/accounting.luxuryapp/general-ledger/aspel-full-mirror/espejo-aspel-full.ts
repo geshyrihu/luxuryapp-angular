@@ -13,7 +13,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxSpinner } from "@ui/adaptive/spinner/spinner";
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { LuxInputSelectButton } from "@ui/inputs/web/lux-input-select-button-signal";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ReportFilterService } from "./financial-report-filter.service";
@@ -30,7 +30,7 @@ import {
     AppTable,
     LuxInputSelectButton,
     LxSpinner,
-    CustomSearchInput,
+    LuxSearchInput,
     LxIcon,
   ],
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -30,13 +30,15 @@ import { ButtonWeb } from "@ui/buttons/web";
 import { AppImage } from "@ui/web/image/image";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import {
-  Gallery,
-  GalleryModule,
-  ImageItem,
-  ImageSize,
-  ThumbnailsPosition,
-} from "ng-gallery";
-import { Lightbox, LightboxModule } from "ng-gallery/lightbox";
+  ButtonsStrategy,
+  GalleryModule as ModalGalleryModule,
+  Image as ModalGalleryImage,
+  KS_DEFAULT_BTN_CLOSE,
+  KS_DEFAULT_BTN_DOWNLOAD,
+  KS_DEFAULT_BTN_EXTURL,
+  KS_DEFAULT_BTN_FULL_SCREEN,
+  ModalGalleryService,
+} from "@ks89/angular-modal-gallery";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
@@ -55,8 +57,7 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
     AppTable,
     AppImage,
     LuxModal,
-    GalleryModule,
-    LightboxModule,
+    ModalGalleryModule,
   ],
   styles: [
     `
@@ -86,8 +87,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   aiService = inject(AiService);
   authS = inject(AuthService);
   swalService = inject(SwalService);
-  gallery = inject(Gallery);
-  lightbox = inject(Lightbox);
+  modalGallery = inject(ModalGalleryService);
   ref: DynamicDialogRef;
 
   showAiModal: boolean = false;
@@ -578,26 +578,55 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   }
 
   openEvidenceGallery(index: number): void {
-    const items = this.getVisualEvidenceCards().map(
-      (evidencia) =>
-        new ImageItem({
-          src: evidencia.src,
-          thumb: evidencia.src,
-          alt: evidencia.alt,
-        }),
+    const images = this.getVisualEvidenceCards().map(
+      (evidencia, imageIndex) =>
+        new ModalGalleryImage(
+          imageIndex,
+          {
+            img: evidencia.src,
+            extUrl: evidencia.src,
+            downloadFileName: evidencia.alt,
+            alt: evidencia.alt,
+          },
+          {
+            img: evidencia.src,
+            alt: evidencia.alt,
+          },
+        ),
     );
-    const galleryId = "purchase-request-evidence";
-    const galleryRef = this.gallery.ref(galleryId);
-
-    galleryRef.setConfig({
-      imageSize: ImageSize.Cover,
-      thumbPosition: ThumbnailsPosition.Top,
-    });
-    galleryRef.load(items);
-    this.lightbox.open(index, galleryId, {
-      role: "dialog",
-      ariaLabel: "Galería de evidencias",
-      keyboardShortcuts: true,
+    this.modalGallery.open({
+      id: 1,
+      images,
+      currentImage: images[index],
+      libConfig: {
+        enableCloseOutside: true,
+        buttonsConfig: {
+          visible: true,
+          strategy: ButtonsStrategy.CUSTOM,
+          buttons: [
+            {
+              ...KS_DEFAULT_BTN_FULL_SCREEN,
+              title: "Pantalla completa",
+              ariaLabel: "Pantalla completa",
+            },
+            {
+              ...KS_DEFAULT_BTN_DOWNLOAD,
+              title: "Descargar imagen",
+              ariaLabel: "Descargar imagen",
+            },
+            {
+              ...KS_DEFAULT_BTN_EXTURL,
+              title: "Abrir imagen",
+              ariaLabel: "Abrir imagen",
+            },
+            {
+              ...KS_DEFAULT_BTN_CLOSE,
+              title: "Cerrar galería",
+              ariaLabel: "Cerrar galería",
+            },
+          ],
+        },
+      },
     });
   }
 

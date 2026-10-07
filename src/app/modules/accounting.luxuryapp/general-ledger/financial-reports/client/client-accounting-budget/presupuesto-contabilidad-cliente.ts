@@ -17,12 +17,12 @@ import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-presupuesto-contabilidad-cliente",
-  imports: [LxIcon, CommonModule, AccountingNumberPipe, DataViewMobile],
+  imports: [LxIcon, CommonModule, AccountingNumberPipe, LuxDataViewMobile],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./presupuesto-contabilidad-cliente.html",
 })
@@ -50,7 +50,8 @@ export class PresupuestoContabilidadClienteComponent {
       "SEP",
       "OCT",
       "NOV",
-      "DIC"];
+      "DIC",
+    ];
     return `ACUMULADO ENE-${names[this.mes() - 1]}`;
   });
 

@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
+import { ButtonWeb } from "@ui/buttons/web";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -16,7 +16,7 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
@@ -27,21 +27,22 @@ import type {
 import { cobranzaOnlineFilterState } from "../state/cobranza-online-filter.state";
 import { CobranzaOnlineInspectionHistoryModal } from "./cobranza-online-inspection-history-modal";
 
-import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 
 @Component({
   selector: "app-cobranza-online-inspection",
   templateUrl: "./cobranza-online-inspection.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxIcon,
     LxTooltipDirective,
     RouterModule,
     AppTable,
     LuxTableCaption,
     TableFooter,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
   ],
 })

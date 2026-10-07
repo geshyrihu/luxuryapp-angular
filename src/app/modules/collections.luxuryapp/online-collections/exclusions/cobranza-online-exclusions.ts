@@ -15,7 +15,7 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LuxInputCheckSignal } from "@ui/inputs/web/lux-input-check-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
@@ -44,7 +44,7 @@ import type {
     LuxInputCheckSignal,
     LuxTableCaption,
     TableFooter,
-    DataViewMobile,
+    LuxDataViewMobile,
     TableEmptyMessage,
     MobileListItem,
   ],

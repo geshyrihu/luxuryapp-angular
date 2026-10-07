@@ -9,7 +9,7 @@ import { getStatusSeverity } from "@human-resources.luxuryapp/shared/helpers/sta
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 @Component({
   selector: "app-mis-vacaciones-listado-mobile",
@@ -20,7 +20,8 @@ import { MobileListItem } from "@ui/mobile/list-item/list-item";
     MobileActionMenu,
     ButtonMobile,
     LxTag,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
 })
 export class MisVacacionesListadoMobile {
   data = input.required<VacationRequestMyDTO[]>();

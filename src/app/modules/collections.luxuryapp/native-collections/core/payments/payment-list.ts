@@ -8,14 +8,14 @@ import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { SignalRService } from "@core/services/signalr.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ActionMenu } from "@ui/web/action-menu/action-menu";
 import { addIcons } from "ionicons";
 import { cashOutline } from "ionicons/icons";
@@ -49,7 +49,7 @@ import { PaymentForm } from "./payment-form";
     LuxTableCaption,
     DecimalPipe,
     ApiDatePipe,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     LxIcon,
     ActionMenu,

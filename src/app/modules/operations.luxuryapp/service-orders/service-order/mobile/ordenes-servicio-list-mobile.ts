@@ -20,7 +20,7 @@ import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { LuxInputTextSignal } from "@ui/inputs/web/lux-input-text-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 
 @Component({
@@ -40,7 +40,7 @@ import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
     IonButton,
     LxTag,
     MobileActionMenu,
-    DataViewMobile,
+    LuxDataViewMobile,
     LxIcon,
   ],
 })

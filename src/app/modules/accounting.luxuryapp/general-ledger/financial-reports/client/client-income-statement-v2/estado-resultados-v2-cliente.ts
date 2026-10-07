@@ -10,9 +10,9 @@ import {
 import { Endpoints } from "@core/constants/endpoints/endpoints";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import type {
   IBaseAccountDto,
@@ -32,7 +32,8 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre"];
+  "Diciembre",
+];
 
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
@@ -46,7 +47,8 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre"];
+  "montoDiciembre",
+];
 
 type ClientRow =
   | { tipo: "header"; descripcion: string }
@@ -66,7 +68,8 @@ type ClientRow =
     AppTable,
     LxSkeleton,
     AccountingNumberPipe,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados-v2-cliente.html",
 })
@@ -88,7 +91,8 @@ export class EstadoResultadosV2ClienteComponent {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)]];
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   readonly rows = computed<ClientRow[]>(() => {
@@ -229,7 +233,8 @@ export class EstadoResultadosV2ClienteComponent {
       totals[0] + row.mes1,
       totals[1] + row.mes2,
       totals[2] + row.mes3,
-      totals[3] + row.acum];
+      totals[3] + row.acum,
+    ];
   }
 
   private hasVisibleValues(row: ClientRow): boolean {

@@ -22,7 +22,7 @@ export interface TabBarItem {
  * Diferente de BottomNav: va en la parte superior de la sección, no al pie de la app.
  */
 @Component({
-  selector: "app-tab-bar",
+  selector: "lux-tab-bar",
 
   imports: [AppIconMobile],
   template: `

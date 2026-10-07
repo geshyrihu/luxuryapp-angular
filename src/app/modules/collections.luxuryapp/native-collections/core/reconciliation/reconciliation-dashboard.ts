@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import { CurrencyPipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
@@ -13,10 +12,11 @@ import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { TableScrollHeightService } from "@core/services/table-scroll-height.service";
 import { LxCard } from "@ui/adaptive/card/card";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -32,12 +32,13 @@ interface UnallocatedPayment {
 
 @Component({
   selector: "app-reconciliation-dashboard",
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     AppTable,
     LuxTableCaption,
     LxTag,
     LxCard,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     LxIcon,
     ApiDatePipe,

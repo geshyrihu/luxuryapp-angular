@@ -7,7 +7,7 @@ import {
 import { LxTag } from "@ui/adaptive/tag/tag";
 
 import { ButtonWeb } from "@ui/buttons/web";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 
@@ -22,7 +22,7 @@ import { WorkGroupDTO } from "../task-group-list";
     ButtonWeb,
     LxTag,
     LxIcon,
-    CustomSearchInput],
+    LuxSearchInput],
 })
 export class TaskGroupListDesktop {
   data = input.required<WorkGroupDTO[]>();

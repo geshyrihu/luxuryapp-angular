@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,20 +7,23 @@ import {
 import { FormsModule } from "@angular/forms";
 import { LxImage } from "@ui/adaptive/image/image";
 import { LxTag } from "@ui/adaptive/tag/tag";
+import { ButtonWeb } from "@ui/buttons/web";
 import { IonInputCheckbox } from "@ui/inputs/mobile/ion-input-checkbox";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { IRegistroChecador } from "../interfaces/chekador-empleados.models";
 
 @Component({
   selector: "app-chekador-list-mobile",
   templateUrl: "./chekador-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, 
+  imports: [
+    ButtonWeb,
     LxTag,
     LxImage,
     IonInputCheckbox,
     FormsModule,
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
 })
 export class ChekadorListMobile {
   data = input.required<IRegistroChecador[]>();

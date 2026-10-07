@@ -54,7 +54,7 @@ export interface IMobileBreadcrumbItem {
  * "Magic" 🪄
  */
 @Component({
-  selector: "app-data-view-mobile",
+  selector: "lux-data-view-mobile",
   templateUrl: "./data-view-mobile.html",
   styleUrls: ["./data-view-mobile.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -75,9 +75,10 @@ export interface IMobileBreadcrumbItem {
     IonTitle,
     IonButtons,
     AppIcon,
-    MobileEmptyState],
+    MobileEmptyState,
+  ],
 })
-export class DataViewMobile implements OnInit {
+export class LuxDataViewMobile implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
 
@@ -176,7 +177,8 @@ export class DataViewMobile implements OnInit {
       {
         icon: "material-symbols-light:home",
         routerLink: "/dashboard/default",
-      }];
+      },
+    ];
 
     if (childBreadcrumb) {
       items.push({ label: childBreadcrumb });
@@ -238,7 +240,8 @@ export class DataViewMobile implements OnInit {
       "applicationUserId",
       "userId",
       "uuid",
-      "_id"];
+      "_id",
+    ];
     for (const p of commonIdProps) {
       if (
         item &&

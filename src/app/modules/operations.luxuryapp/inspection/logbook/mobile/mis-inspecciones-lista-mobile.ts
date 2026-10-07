@@ -10,7 +10,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-mis-inspecciones-lista-mobile",
@@ -21,7 +21,7 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
     MobileActionMenu,
     ApiDatePipe,
     LuxInputDateSignal,
-    DataViewMobile,
+    LuxDataViewMobile,
     ReactiveFormsModule,
     LxIcon,
   ],

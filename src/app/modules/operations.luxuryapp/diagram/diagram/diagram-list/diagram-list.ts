@@ -16,21 +16,23 @@ import {
 } from "@core/services/dialog-handler.service";
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { ROUTES } from "src/app/routing/route-paths";
 import { ApiDatePipe } from "src/app/shared/pipes/api-date.pipe";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { DiagramForm } from "../diagram-form/diagram-form";
 
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-
+import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
 import { ButtonMobile } from "@ui/buttons/mobile";
 import { ButtonWeb } from "@ui/buttons/web";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
-import { LxIcon } from "@ui/adaptive/icon/icon";
 import { IDiagramDraw } from "../interfaces/diagram-draw";
 
 @Component({
@@ -48,7 +50,8 @@ import { IDiagramDraw } from "../interfaces/diagram-draw";
     AppSortableColumn,
     NgbTooltipModule,
 
-    DataViewMobile],
+    LuxDataViewMobile,
+  ],
   providers: [DialogService],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./diagram-list.html",

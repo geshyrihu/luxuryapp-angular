@@ -27,7 +27,7 @@ import { AppIconMobile } from "@ui/mobile/app-icon/app-icon";
  * La proyección de contenido (`<ng-content>`) se preserva con `TemplatePortal`,
  * que instancia el template en el contexto de este componente.
  *
- * USO: solo dentro de `<app-data-view-mobile>`, con botones `ili-*` (mobile-label).
+ * USO: solo dentro de `<lux-data-view-mobile>`, con botones `ili-*` (mobile-label).
  * Ver `core/components/buttons/BUTTON-USAGE-RULES.md`.
  *
  * El sheet se cierra 60ms después de cualquier clic interno, dejando tiempo a

@@ -9,11 +9,11 @@ import { BaseChartDirective } from "ng2-charts";
 import { ChartJsData, chartJsToCartesianData, chartJsToCartesianOption, dsThemeTick, trackChartTheme } from "./chart-adapters";
 
 /**
- * CustomBarChart — barras / líneas. Motor: Chart.js (ng2-charts).
+ * LuxBarChart — barras / líneas. Motor: Chart.js (ng2-charts).
  * API sin cambios: `data` en formato Chart.js `{ labels, datasets }`.
  */
 @Component({
-  selector: "lux-custom-bar-chart-web",
+  selector: "lux-bar-chart-web",
 
   imports: [BaseChartDirective],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -24,7 +24,7 @@ import { ChartJsData, chartJsToCartesianData, chartJsToCartesianOption, dsThemeT
     <hr />
   `,
 })
-export class CustomBarChart {
+export class LuxBarChart {
   constructor() {
     trackChartTheme();
   }

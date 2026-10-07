@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { CustomBarChart } from "./custom-bar-chart";
+import { LuxBarChart } from "./lux-bar-chart";
 
-describe("CustomBarChart", () => {
-  let component: CustomBarChart;
-  let fixture: ComponentFixture<CustomBarChart>;
+describe("LuxBarChart", () => {
+  let component: LuxBarChart;
+  let fixture: ComponentFixture<LuxBarChart>;
 
   beforeEach(async () => {
-    TestBed.overrideComponent(CustomBarChart, {
-      set: { template: "<div>Mock CustomBarChart</div>", imports: [] },
+    TestBed.overrideComponent(LuxBarChart, {
+      set: { template: "<div>Mock LuxBarChart</div>", imports: [] },
     });
 
     await TestBed.configureTestingModule({
-      imports: [CustomBarChart],
+      imports: [LuxBarChart],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomBarChart);
+    fixture = TestBed.createComponent(LuxBarChart);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

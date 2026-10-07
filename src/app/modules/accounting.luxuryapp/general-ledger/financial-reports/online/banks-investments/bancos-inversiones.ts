@@ -13,9 +13,9 @@ import { IBancosInversionesDto } from "../../interfaces/aspel-budget.interface";
 import { FinancialReportFilterStore } from "../state/financial-report-filter.store.service";
 
 import { AccountingNumberPipe } from "@shared/pipes/accounting-number.pipe";
-import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 @Component({
@@ -26,8 +26,9 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
     LxIcon,
     CommonModule,
     AppTable,
-    DataViewMobile,
-    AccountingNumberPipe],
+    LuxDataViewMobile,
+    AccountingNumberPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./bancos-inversiones.html",
 })

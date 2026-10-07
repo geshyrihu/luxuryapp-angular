@@ -19,7 +19,7 @@ import {
 import { ApiResponseService } from "@core/http/services/api-response.service";
 import { DialogHandlerService } from "@core/services/dialog-handler.service";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import {
   AppFrozenColumn,
   AppTable,
@@ -53,8 +53,9 @@ import { PurchaseHistory } from "./purchase-history";
     FormsModule,
     AppTable,
     AppFrozenColumn,
-    DataViewMobile,
-    LxTooltipDirective],
+    LuxDataViewMobile,
+    LxTooltipDirective,
+  ],
 })
 export class EspejoAspelExtraordinarios {
   isClientView = input<boolean>(false);

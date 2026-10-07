@@ -45,7 +45,7 @@ import { SignalRService } from "@core/services/signalr.service";
 import { SwalService } from "@core/services/swal.service";
 import { EquiposList } from "@maintenance.luxuryapp/machinery/machinery/equipos-list";
 import { LuxModal } from "@ui/adaptive/modal/modal";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { Subscription } from "rxjs";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
@@ -99,7 +99,7 @@ import {
     LxIcon,
     CommonModule,
     LuxInputSelectSignal,
-    CustomSearchInput,
+    LuxSearchInput,
     FormsModule,
     LuxModal,
     LxTooltipDirective,

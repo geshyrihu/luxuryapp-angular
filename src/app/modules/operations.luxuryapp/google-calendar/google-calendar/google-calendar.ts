@@ -28,13 +28,16 @@ import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { JuntaMensualSessionChecklistDialog } from "@management.luxuryapp/monthly-meetings/session/junta-mensual-session-checklist-dialog";
-import { LxTag } from "@ui/adaptive/tag/tag";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { LxTag } from "@ui/adaptive/tag/tag";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableEmptyMessage } from "src/app/shared/ui/web/lux-table-empty-message/lux-table-empty-message";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { GoogleCalendarDetail } from "./google-calendar-detail";
 import { GoogleCalendarForm } from "./google-calendar-form";
 
@@ -62,11 +65,10 @@ interface IGoogleCalendarEventListItem {
 
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
 
-
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonMobile } from "@ui/buttons/mobile";
 import { ConfirmService } from "@ui/buttons/shared/confirm.service";
 import { ButtonWeb } from "@ui/buttons/web";
-import { ButtonMobile } from "@ui/buttons/mobile";
 
 @Component({
   selector: "app-google-calendar",
@@ -134,7 +136,8 @@ import { ButtonMobile } from "@ui/buttons/mobile";
           font-size: 0.85rem !important;
         }
       }
-    `],
+    `,
+  ],
   imports: [
     ButtonWeb,
     ButtonMobile,
@@ -147,9 +150,10 @@ import { ButtonMobile } from "@ui/buttons/mobile";
     AppSortableColumn,
     LxTag,
     LuxTableCaption,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
-    LxIcon],
+    LxIcon,
+  ],
 })
 export class GoogleCalendar {
   private readonly apiResponseS = inject(ApiResponseService);
@@ -171,12 +175,14 @@ export class GoogleCalendar {
     ApplicationRole.Asistente,
     ApplicationRole.GerenteOperaciones,
     ApplicationRole.GerenteAtencion,
-    ApplicationRole.SuperUsuario]);
+    ApplicationRole.SuperUsuario,
+  ]);
   readonly canViewAllDetails = this.aspRoleS.anyOf([
     ApplicationRole.SuperUsuario,
     ApplicationRole.Direccion,
     ApplicationRole.GerenteMantenimiento,
-    ApplicationRole.SupervisionOperativa]);
+    ApplicationRole.SupervisionOperativa,
+  ]);
   readonly calendarEvents = computed<EventInput[]>(() =>
     this.dataSignal().map((item) => {
       const canViewDetails = this.canViewItemDetails(item);
@@ -415,7 +421,8 @@ export class GoogleCalendar {
       "SEP",
       "OCT",
       "NOV",
-      "DIC"];
+      "DIC",
+    ];
     return months[parsed.getMonth()];
   }
 
@@ -500,7 +507,7 @@ export class GoogleCalendar {
     );
 
     if (match) {
-      const [ year, month, day, hour, minute, second] = match;
+      const [year, month, day, hour, minute, second] = match;
       return new Date(
         Number(year),
         Number(month) - 1,

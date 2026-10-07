@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,13 +21,17 @@ import { TaskForm } from "@operations.luxuryapp/task/tasks/task-message/task-for
 import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { LxTooltipDirective } from "@ui/adaptive/tooltip";
+import { ButtonWeb } from "@ui/buttons/web";
 
 import { LxIcon } from "@ui/adaptive/icon/icon";
 
 import { ImageAnalysisDialogComponent } from "src/app/shared/ui/image-analysis-dialog/image-analysis-dialog";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
-import { AppSortableColumn, AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
+import {
+  AppSortableColumn,
+  AppTable,
+} from "src/app/shared/ui/web/lux-table/lux-table";
 import { PendingItemDTO } from "./interfaces/pending-item.dto";
 
 // Recruitment Dialog Components
@@ -40,22 +43,23 @@ import { SolicitudAltaStatusForm } from "@recruitment.luxuryapp/employee-registr
 import { VacanteForm } from "@recruitment.luxuryapp/vacancy-requests/vacante-form";
 import { SolicitudBajaUpdateStatus } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/dismissal-requests/solicitud-baja-update-status";
 import { ModificacionSalarioForm } from "@shared/integration/reclutamiento/reclutamiento-y-altas-bajas/reclutamiento-solicitudes/salary-modification-requests/modificacion-salario-form";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
-
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-unified-pending-dashboard",
-  imports: [ButtonWeb,
+  imports: [
+    ButtonWeb,
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
     LxTag,
-    DataViewMobile,
+    LuxDataViewMobile,
     LxTooltipDirective,
     TableFooter,
     LuxTableCaption,
     ImageAnalysisDialogComponent,
-    LxIcon],
+    LxIcon,
+  ],
   templateUrl: "./unified-pending-dashboard.html",
   changeDetection: ChangeDetectionStrategy.Eager,
   styles: [
@@ -69,7 +73,8 @@ import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
         font-weight: 700;
         letter-spacing: 0.5px;
       }
-    `],
+    `,
+  ],
 })
 export class UnifiedPendingDashboard {
   visionDialog = viewChild.required(ImageAnalysisDialogComponent);

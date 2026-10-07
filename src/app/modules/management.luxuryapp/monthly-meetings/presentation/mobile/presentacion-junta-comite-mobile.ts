@@ -11,7 +11,7 @@ import { ApplicationRole } from "@core/enums/asp-net-roles.enum";
 import { LxFieldset } from "@ui/adaptive/fieldset/fieldset";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 
 @Component({
@@ -22,9 +22,10 @@ import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger"
     UpperCasePipe,
     LxTag,
     LxFieldset,
-    DataViewMobile,
+    LuxDataViewMobile,
     ButtonWeb,
-    PdfViewerTrigger],
+    PdfViewerTrigger,
+  ],
 })
 export class PresentacionJuntaComiteMobile {
   aspRoleS = inject(AspRoleService);

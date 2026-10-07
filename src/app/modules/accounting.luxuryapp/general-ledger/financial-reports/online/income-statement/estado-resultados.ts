@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { LxSkeleton } from "@ui/adaptive/skeleton/skeleton";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 
 import { CustomerIdService } from "@core/auth/services/customer-id.service";
@@ -34,7 +34,8 @@ const MONTH_NAMES = [
   "Septiembre",
   "Octubre",
   "Noviembre",
-  "Diciembre"];
+  "Diciembre",
+];
 const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoEnero",
   "montoFebrero",
@@ -47,7 +48,8 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
   "montoSeptiembre",
   "montoOctubre",
   "montoNoviembre",
-  "montoDiciembre"];
+  "montoDiciembre",
+];
 
 @Component({
   selector: "app-estado-resultados",
@@ -56,8 +58,9 @@ const MONTH_KEYS: (keyof IBaseAccountDto)[] = [
     FormsModule,
     AppTable,
     LxSkeleton,
-    DataViewMobile,
-    AccountingNumberPipe],
+    LuxDataViewMobile,
+    AccountingNumberPipe,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./estado-resultados.html",
 })
@@ -76,7 +79,8 @@ export class EstadoResultados {
     return [
       MONTH_NAMES[wr(idx - 2)],
       MONTH_NAMES[wr(idx - 1)],
-      MONTH_NAMES[wr(idx)]];
+      MONTH_NAMES[wr(idx)],
+    ];
   });
 
   rows = computed(() => {

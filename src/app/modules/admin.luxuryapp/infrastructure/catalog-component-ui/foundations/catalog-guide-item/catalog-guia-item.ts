@@ -14,10 +14,10 @@ import { InputDatepicker } from "@ui/inputs/adaptive/input-datepicker/input-date
 import { InputNumber } from "@ui/inputs/adaptive/input-number/input-number";
 import { InputText } from "@ui/inputs/adaptive/input-text/input-text";
 import { InputTextarea } from "@ui/inputs/adaptive/input-textarea/input-textarea";
-import { CustomSearchInput } from "@ui/inputs/web/custom-search-input-signal";
 import { LuxInputMultiselectSignal } from "@ui/inputs/web/lux-input-multiselect-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
 import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
+import { LuxSearchInput } from "@ui/inputs/web/lux-search-input-signal";
 import type { AppIconName } from "@ui/primitives/app-icon/app-icon.catalog";
 import { AppCheckbox } from "@ui/web/checkbox/checkbox";
 import { AppMessage } from "@ui/web/message/message";
@@ -51,7 +51,7 @@ const GUIA_LABELS: Record<string, string> = {
     LuxInputToggleSwitch,
     LuxInputSelectSignal,
     LuxInputMultiselectSignal,
-    CustomSearchInput,
+    LuxSearchInput,
     AppTable,
     AppCheckbox,
     AppMessage,
@@ -336,7 +336,7 @@ const GUIA_LABELS: Record<string, string> = {
               </div>
               <div class="field col-12 col-md-6 col-xl-4">
                 <label class="d-block mb-2">Busqueda</label>
-                <custom-search-input-signal
+                <lux-search-input-signal
                   placeholder="Buscar por folio, area o responsable"
                   (searchChange)="search = $event"
                 />
@@ -543,7 +543,7 @@ export class CatalogGuiaItem {
       title: "Responsive Total (Omnichannel)",
       description:
         "Transicion automatica de tablas densas a vistas de tarjetas en dispositivos moviles.",
-      rule: "Obligatorio implementar app-data-view-mobile en cada listado operativo.",
+      rule: "Obligatorio implementar lux-data-view-mobile en cada listado operativo.",
       icon: "material-symbols-light:devices-other",
     },
   ];
@@ -649,7 +649,7 @@ export class CatalogGuiaItem {
     },
     {
       family: "Mobile data",
-      selector: "app-data-view-mobile",
+      selector: "lux-data-view-mobile",
       source: "cor./data-view-mobile",
       useCase: "Listado mobile agrupado con template proyectado.",
       preferredFor: "Reemplazar tablas densas en pantallas pequenas.",
@@ -671,7 +671,7 @@ export class CatalogGuiaItem {
       source: "shared/ui/web/lux-table-*",
       useCase: "Piezas auxiliares para tablas ERP.",
       preferredFor: "Listados con busqueda, caption y pie.",
-      avoidWhen: "Listados mobile donde convenga DataViewMobile.",
+      avoidWhen: "Listados mobile donde convenga LuxDataViewMobile.",
       status: "Usar" as const,
     },
     {
@@ -694,7 +694,7 @@ export class CatalogGuiaItem {
     },
     {
       family: "Graficas",
-      selector: "app-custom-bar-chart / app-pie-chart",
+      selector: "lux-bar-chart-web / app-pie-chart",
       source: "cor./charts",
       useCase: "Visualizaciones ejecutivas reutilizables.",
       preferredFor: "Dashboards y metricas.",

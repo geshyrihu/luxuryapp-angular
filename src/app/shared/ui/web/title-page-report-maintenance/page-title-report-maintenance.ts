@@ -6,7 +6,7 @@ import { Component, input, ChangeDetectionStrategy } from "@angular/core";
  * Cabecera con breadcrumbs para páginas de mantenimiento.
  */
 @Component({
-  selector: "page-title-report-maintenance",
+  selector: "lux-page-title-report-maintenance",
   imports: [],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `

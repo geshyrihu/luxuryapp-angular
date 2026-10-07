@@ -19,7 +19,7 @@ import { PeriodMonthService } from "@core/services/periodo-month.service";
  * Muestra logo del cliente, título, periodo y logo de LuxuryApp.
  */
 @Component({
-  selector: "page-title-report",
+  selector: "lux-page-title-report",
   template: `
     <div class="row align-items-center">
       <!-- Logo Cliente -->

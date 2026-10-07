@@ -153,7 +153,7 @@
 </lux-table>
 
 <!-- 📱 MOBILE -->
-<app-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
+<lux-data-view-mobile [data]="dataSignal()" [showAdd]="false" [dt]="dt">
   <div customFilters>
     <lux-input-select-signal
       [data]="cb_assignee"
@@ -175,5 +175,5 @@
       </p>
     </ili-list-item>
   </ng-template>
-</app-data-view-mobile>
+</lux-data-view-mobile>
 }

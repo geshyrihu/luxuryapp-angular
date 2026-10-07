@@ -1,4 +1,3 @@
-import { ButtonWeb } from "@ui/buttons/web";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,14 +6,21 @@ import {
 } from "@angular/core";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { LxIcon } from "@ui/adaptive/icon/icon";
+import { ButtonWeb } from "@ui/buttons/web";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 
 @Component({
   selector: "app-equipos-list-mobile",
   templateUrl: "./equipos-list-mobile.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonWeb, LxIcon, DataViewMobile, SanitizeHtmlPipe, CurrencyMexicoPipe],
+  imports: [
+    ButtonWeb,
+    LxIcon,
+    LuxDataViewMobile,
+    SanitizeHtmlPipe,
+    CurrencyMexicoPipe,
+  ],
 })
 export class EquiposListMobile {
   data = input.required<any[]>();

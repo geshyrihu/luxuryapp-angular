@@ -15,7 +15,7 @@ import { LxIcon } from "@ui/adaptive/icon/icon";
 import { LxTag } from "@ui/adaptive/tag/tag";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputCurrencySignal } from "@ui/inputs/web/lux-input-currency-signal";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 import { addIcons } from "ionicons";
 import { walletOutline } from "ionicons/icons";
@@ -40,7 +40,7 @@ interface BalanceRow extends PropertyInitialBalanceDTO {
     LuxInputCurrencySignal,
     LxTag,
     LxCard,
-    DataViewMobile,
+    LuxDataViewMobile,
     MobileListItem,
     LxIcon,
     LuxTableCaption,

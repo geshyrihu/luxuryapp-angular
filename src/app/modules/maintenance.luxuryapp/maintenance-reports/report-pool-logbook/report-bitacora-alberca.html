@@ -1,11 +1,11 @@
-<page-title-report class="breakPage" title="ALBERCAS Y JACUZZIS" />
+<lux-page-title-report class="breakPage" title="ALBERCAS Y JACUZZIS" />
 @for (item of medidores(); track item) {
 <div>
   <h6 class="card-title">{{ item.namePiscina }}</h6>
   @for (data of item.chartLinePrime; track data) {
   <div>
     <div class="card card-chart">
-      <lux-custom-bar-chart-web [data]="data"></lux-custom-bar-chart-web>
+      <lux-bar-chart-web [data]="data"></lux-bar-chart-web>
     </div>
   </div>
   }

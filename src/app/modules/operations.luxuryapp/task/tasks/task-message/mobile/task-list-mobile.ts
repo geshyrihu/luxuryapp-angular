@@ -15,7 +15,7 @@ import { IonInputSelect } from "@ui/inputs/mobile/ion-input-select";
 import { IonInputText } from "@ui/inputs/mobile/ion-input-text";
 import { LuxInputToggleSwitch } from "@ui/inputs/web/lux-input-toggle-switch-signal";
 import { MobileActionMenu } from "@ui/mobile/action-menu-mobile/action-menu-mobile";
-import { DataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
+import { LuxDataViewMobile } from "@ui/mobile/data-view-mobile/data-view-mobile";
 import { MobileListItem } from "@ui/mobile/list-item/list-item";
 
 import { TaskStatus } from "../../task-status/task-status";
@@ -38,7 +38,7 @@ import { ITaskMessageDTO } from "../interfaces/task-message.dto";
     FormsModule,
     InitialsAbbrPipe,
     LxIcon,
-    DataViewMobile,
+    LuxDataViewMobile,
   ],
 })
 export class TaskListMobile {
