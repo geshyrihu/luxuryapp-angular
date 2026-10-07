@@ -84,12 +84,13 @@ export class PdfSolicitudCompra implements OnInit {
   ): Promise<string> {
     let itemsRowsHtml = "";
     data.solicitudCompraDetalle.forEach((item: any, index: number) => {
+      const unitOfMeasure = item.unitOfMeasure ?? item.unidadMedida;
       itemsRowsHtml += `
         <tr>
           <td style="text-align: center;">${index + 1}</td>
           <td>${this.htmlPrintS.esc(item.producto)}</td>
           <td style="text-align: center;">${item.cantidad}</td>
-          <td style="text-align: center;">${this.htmlPrintS.esc(item.unidadMedida)}</td>
+          <td style="text-align: center;">${this.htmlPrintS.esc(unitOfMeasure)}</td>
         </tr>
       `;
     });
@@ -154,4 +155,3 @@ ${this.htmlPrintS.getStandardCss()}
 </body></html>`;
   }
 }
-
