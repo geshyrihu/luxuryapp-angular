@@ -3,6 +3,8 @@ import {
   Component,
   input,
   output,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { CurrencyMexicoPipe } from "@shared/pipes/currencyMexico.pipe";
 import { SanitizeHtmlPipe } from "@shared/pipes/sanitize-html.pipe";
@@ -31,16 +33,17 @@ export class EquiposListMobile {
   showContents = input<boolean>(false);
   canManage = input<boolean>(false);
 
-  add = output<any>();
-  downloadPdf = output<void>();
-  downloadQr = output<void>();
-  documentos = output<any>();
-  serviceHistory = output<any>();
-  bitacora = output<any>();
-  fichaTecnica = output<any>();
-  equipmentContents = output<any>();
-  maintenanceCalendar = output<any>();
-  deleteOrder = output<any>();
-  edit = output<any>();
-  delete = output<any>();
+   add = output<any>();
+    downloadPdf = output<void>();
+    @Output() downloadExcel = new EventEmitter<void>();
+    downloadQr = output<void>();
+   documentos = output<any>();
+   serviceHistory = output<any>();
+   bitacora = output<any>();
+   fichaTecnica = output<any>();
+   equipmentContents = output<any>();
+   maintenanceCalendar = output<any>();
+   deleteOrder = output<any>();
+   edit = output<any>();
+   delete = output<any>();
 }

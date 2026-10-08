@@ -308,144 +308,180 @@ export class EquiposList {
     return results;
   }
 
-  async onDownloadPdf(): Promise<void> {
-    const data = this.data();
-    if (!data || data.length === 0) return;
-    this.loading.set(true); // Show loading indicator while processing images
+   async onDownloadPdf(): Promise<void> {
+     const data = this.data();
+     if (!data || data.length === 0) return;
+     this.loading.set(true); // Show loading indicator while processing images
 
-    try {
-      // 1. Fetch images for each item (concurrencia limitada para evitar 600+ peticiones simultaneas)
-      const dataWithImages = await this.mapWithConcurrency(
-        data,
-        this.pdfImageFetchConcurrency,
-        async (item) => {
-          let base64Image = null;
-          if (item.photoPath) {
-            try {
-              const blob = await this.apiResponseS.getBlobFileFromFullUrl(
-                item.photoPath,
-              );
-              if (
-                blob &&
-                (blob.type.includes("jpeg") ||
-                  blob.type.includes("png") ||
-                  blob.type.includes("jpg"))
-              ) {
-                const base64 = await this.blobToBase64(blob);
-                if (base64.startsWith("data:image")) {
-                  base64Image = base64;
-                }
-              }
-            } catch (e) {
-              console.error(
-                "Error loading image for PDF",
-                item.nameMachinery,
-                e,
-              );
-            }
-          }
-          return { ...item, base64Image };
-        },
-      );
-      // Sort by system (equipoClasificacion)
-      const sortedData = [...dataWithImages].sort((a, b) =>
-        (a.equipoClasificacion || "").localeCompare(
-          b.equipoClasificacion || "",
-        ),
-      );
+     try {
+       // 1. Fetch images for each item (concurrencia limitada para evitar 600+ peticiones simultaneas)
+       const dataWithImages = await this.mapWithConcurrency(
+         data,
+         this.pdfImageFetchConcurrency,
+         async (item) => {
+           let base64Image = null;
+           if (item.photoPath) {
+             try {
+               const blob = await this.apiResponseS.getBlobFileFromFullUrl(
+                 item.photoPath,
+               );
+               if (
+                 blob &&
+                 (blob.type.includes("jpeg") ||
+                   blob.type.includes("png") ||
+                   blob.type.includes("jpg"))
+               ) {
+                 const base64 = await this.blobToBase64(blob);
+                 if (base64.startsWith("data:image")) {
+                   base64Image = base64;
+                 }
+               }
+             } catch (e) {
+               console.error(
+                 "Error loading image for PDF",
+                 item.nameMachinery,
+                 e,
+               );
+             }
+           }
+           return { ...item, base64Image };
+         },
+       );
+       // Sort by system (equipoClasificacion)
+       const sortedData = [...dataWithImages].sort((a, b) =>
+         (a.equipoClasificacion || "").localeCompare(
+           b.equipoClasificacion || "",
+         ),
+       );
 
-      // Group by system
-      const groups = sortedData.reduce(
-        (acc, item) => {
-          const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
-          if (!acc[system]) acc[system] = [];
-          acc[system].push(item);
-          return acc;
-        },
-        {} as Record<string, any[]>,
-      );
+       // Group by system
+       const groups = sortedData.reduce(
+         (acc, item) => {
+           const system = item.equipoClasificacion || "SIN CLASIFICACIÓN";
+           if (!acc[system]) acc[system] = [];
+           acc[system].push(item);
+           return acc;
+         },
+         {} as Record<string, any[]>,
+       );
 
-      let tableHtml = "";
+       let tableHtml = "";
 
-      for (const system in groups) {
-        tableHtml += `
-          <tr>
-            <td colspan="2" class="sistema-header">${this.htmlPrintS.esc(system)}</td>
-          </tr>
-        `;
+       for (const system in groups) {
+         tableHtml += `
+           <tr>
+             <td colspan="2" class="sistema-header">${this.htmlPrintS.esc(system)}</td>
+           </tr>
+         `;
 
-        groups[system].forEach((item, idx) => {
-          const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
+         groups[system].forEach((item, idx) => {
+           const bg = idx % 2 === 0 ? "#ffffff" : "#f9fafb";
 
-          const imgHtml = item.base64Image
-            ? `<img src="${item.base64Image}" style="max-width:100px; max-height:100px; object-fit:contain;" />`
-            : `<div style="font-size: 8px; color: #999; margin-top:20px; text-align:center;">Sin Imagen</div>`;
+           const imgHtml = item.base64Image
+             ? `<img src="${item.base64Image}" style="max-width:100px; max-height:100px; object-fit:contain;" />`
+             : `<div style="font-size: 8px; color: #999; margin-top:20px; text-align:center;">Sin Imagen</div>`;
 
-          tableHtml += `
-            <tr>
-              <td style="background-color: ${bg}; padding: 10px; width: 120px; text-align: center; vertical-align: middle;">
-                ${imgHtml}
-              </td>
-              <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
-                <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
-                <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
-                <table style="width: 100%; border: none;">
-                  <tr>
-                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
-                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Modelo:</span> ${this.htmlPrintS.esc(item.model || "N/A")}</td>
-                    <td style="border: none; padding: 0;"><span style="font-weight: bold;">Serie:</span> ${this.htmlPrintS.esc(item.serie || "N/A")}</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          `;
+           tableHtml += `
+             <tr>
+               <td style="background-color: ${bg}; padding: 10px; width: 120px; text-align: center; vertical-align: middle;">
+                 ${imgHtml}
+               </td>
+               <td style="background-color: ${bg}; padding: 10px; vertical-align: top;">
+                 <div style="font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px;">${this.htmlPrintS.esc(item.nameMachinery || "Sin Nombre")}</div>
+                 <div style="margin-bottom: 4px;"><span style="font-weight: bold;">Ubicación:</span> ${this.htmlPrintS.esc(item.ubication || "N/A")}</div>
+                 <table style="width: 100%; border: none;">
+                   <tr>
+                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Marca:</span> ${this.htmlPrintS.esc(item.brand || "N/A")}</td>
+                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Modelo:</span> ${this.htmlPrintS.esc(item.model || "N/A")}</td>
+                     <td style="border: none; padding: 0;"><span style="font-weight: bold;">Serie:</span> ${this.htmlPrintS.esc(item.serie || "N/A")}</td>
+                   </tr>
+                 </table>
+               </td>
+             </tr>
+           `;
+         });
+       }
+
+       const logo = await this.htmlPrintS.getLogoDataUrl();
+       const generatedAt = new Date();
+
+       const html = `<!doctype html>
+ <html lang="es"><head><meta charset="UTF-8">
+ ${this.htmlPrintS.getStandardCss()}
+ <style>
+   @page { margin: 10mm; }
+   .container { max-width: 1000px; }
+   th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
+
+   .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
+
+   .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+   .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
+   .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
+
+ </style>
+ </head><body>
+ <div class="container">
+   ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO DE ${this.title().toUpperCase()}`, `Estado: ${this.subTitle()}`, generatedAt, "MANTENIMIENTO")}
+
+   <div class="body-doc">
+     <table class="data-table">
+       <tbody>
+         ${tableHtml}
+       </tbody>
+     </table>
+   </div>
+
+   ${this.htmlPrintS.buildStandardFooter(generatedAt)}
+ </div>
+ </body></html>`;
+
+       this.htmlPrintS.printHtml(
+         html,
+         `Inventario_${this.title().replace(/\s+/g, "_")}`,
+       );
+     } catch (e) {
+       console.error("Error generating PDF", e);
+     } finally {
+       this.loading.set(false);
+     }
+   }
+
+    async onDownloadExcel(): Promise<void> {
+      const data = this.data();
+      if (!data || data.length === 0) return;
+
+      const excelData = data.map((item, index) => ({
+        'Index': index + 1,
+        'Name': item.nameMachinery || '',
+        'System': item.equipoClasificacion || '',
+        'Location': item.ubication || '',
+      }));
+
+      try {
+        const ExcelJS = await import('exceljs');
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Equipos');
+
+        // Add header
+        worksheet.addRow(['Index', 'Name', 'System', 'Location']);
+
+        // Add data rows
+        excelData.forEach(item => {
+          worksheet.addRow([item.Index, item.Name, item.System, item.Location]);
         });
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        const dataBlob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+        const fileName = `Equipos_${new Date().toISOString().slice(0,10)}.xlsx`;
+
+        const { saveAs } = await import('file-saver');
+        saveAs(dataBlob, fileName);
+      } catch (error) {
+        console.error('Error exporting to Excel:', error);
+        alert('Error exporting to Excel. Please make sure the required libraries are available.');
       }
-
-      const logo = await this.htmlPrintS.getLogoDataUrl();
-      const generatedAt = new Date();
-
-      const html = `<!doctype html>
-<html lang="es"><head><meta charset="UTF-8">
-${this.htmlPrintS.getStandardCss()}
-<style>
-  @page { margin: 10mm; }
-  .container { max-width: 1000px; }
-  th { background-color: #1E3A8A !important; color: #FFFFFF !important; }
-
-  .sistema-header { background-color: #eef2f7 !important; color: #003A62 !important; font-weight: bold; font-size: 14px; padding: 6px 10px !important; }
-
-  .data-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
-  .data-table th, .data-table td { padding:4px 8px; border:1px solid #D1D5DB; }
-  .data-table th { background:#1E3A8A; color: #ffffff; font-weight:700; text-align:center; font-size: 11px; }
-
-</style>
-</head><body>
-<div class="container">
-  ${this.htmlPrintS.buildStandardHeader(logo, `INVENTARIO DE ${this.title().toUpperCase()}`, `Estado: ${this.subTitle()}`, generatedAt, "MANTENIMIENTO")}
-
-  <div class="body-doc">
-    <table class="data-table">
-      <tbody>
-        ${tableHtml}
-      </tbody>
-    </table>
-  </div>
-
-  ${this.htmlPrintS.buildStandardFooter(generatedAt)}
-</div>
-</body></html>`;
-
-      this.htmlPrintS.printHtml(
-        html,
-        `Inventario_${this.title().replace(/\s+/g, "_")}`,
-      );
-    } catch (e) {
-      console.error("Error generating PDF", e);
-    } finally {
-      this.loading.set(false);
     }
-  }
 
   // --- MANEJADORES DE EVENTOS (Refactorizados) ---
   onSelectState(value: number): void {

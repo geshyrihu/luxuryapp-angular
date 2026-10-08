@@ -4,6 +4,8 @@ import {
   Component,
   input,
   output,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { rowsPerPageOptions, tableRows } from "@core/helpers/table-options";
 import { LxTag } from "@ui/adaptive/tag/tag";
@@ -54,15 +56,16 @@ export class EquiposListDesktop {
   selectCategory = output<any>();
   add = output<any>();
   openCalendar = output<void>();
-  downloadPdf = output<void>();
-  downloadQr = output<void>();
-  stateChange = output<number>();
-  openMaintenances = output<any>();
-  documentos = output<any>();
-  serviceHistory = output<any>();
-  bitacora = output<any>();
-  fichaTecnica = output<any>();
-  equipmentContents = output<any>();
-  edit = output<any>();
-  delete = output<any>();
+    downloadPdf = output<void>();
+    @Output() downloadExcel = new EventEmitter<void>();
+    downloadQr = output<void>();
+   stateChange = output<number>();
+   openMaintenances = output<any>();
+   documentos = output<any>();
+   serviceHistory = output<any>();
+   bitacora = output<any>();
+   fichaTecnica = output<any>();
+   equipmentContents = output<any>();
+   edit = output<any>();
+   delete = output<any>();
 }
