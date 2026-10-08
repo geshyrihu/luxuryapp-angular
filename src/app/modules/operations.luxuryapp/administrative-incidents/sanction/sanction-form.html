@@ -16,7 +16,13 @@
     [rows]="3"
   />
   <div class="d-flex justify-content-end mt-2 gap-2">
-    <lux-button-web label="Cancelar" (clicked)="onCancel()" />
+    <lux-button
+      kind="custom"
+      label="Cancelar"
+      displayMode="both"
+      type="button"
+      (clicked)="onCancel()"
+    />
     <lux-button-web
       kind="save"
       severity="info"
@@ -72,7 +78,13 @@
     />
   </div>
   <div class="col-12 d-flex justify-content-end gap-2">
-    <lux-button-web label="Cancelar" (clicked)="onCancel()" />
+    <lux-button
+      kind="custom"
+      label="Cancelar"
+      displayMode="both"
+      type="button"
+      (clicked)="onCancel()"
+    />
     <lux-button-web
       kind="save"
       severity="info"

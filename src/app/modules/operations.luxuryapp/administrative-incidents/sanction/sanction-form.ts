@@ -20,6 +20,7 @@ import {
   DynamicDialogRef,
 } from "@core/services/dialog-handler.service";
 import { SanctionTypeListDTO } from "@human-resources.luxuryapp/evaluation/hr-catalog/interfaces/hr-catalog.interfaces";
+import { LuxButton } from "@ui/adaptive/button/button";
 import { ButtonWeb } from "@ui/buttons/web";
 import { LuxInputDateSignal } from "@ui/inputs/web/lux-input-date-signal";
 import { LuxInputSelectSignal } from "@ui/inputs/web/lux-input-select-signal";
@@ -53,6 +54,7 @@ interface ISanctionChangeStatusForm {
     LuxInputDateSignal,
     LuxInputSwitch,
     LuxInputTextAreaSignal,
+    LuxButton,
     ButtonWeb,
   ],
 })

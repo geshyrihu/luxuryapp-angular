@@ -24,4 +24,16 @@ describe('WebInputDate', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('parses manually entered day/month/year values', () => {
+    const date = component.parseDate('31/12/2026');
+
+    expect(date?.getFullYear()).toBe(2026);
+    expect(date?.getMonth()).toBe(11);
+    expect(date?.getDate()).toBe(31);
+  });
+
+  it('rejects impossible calendar dates', () => {
+    expect(component.parseDate('31/02/2026')).toBeUndefined();
+  });
 });

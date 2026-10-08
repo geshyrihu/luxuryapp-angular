@@ -37,6 +37,7 @@ import { AppTable } from "src/app/shared/ui/web/lux-table/lux-table";
 import { CuadroComparativoAddBudget } from "./cuadro-comparativo-add-budget";
 import { CuadroComparativoAddProveedor } from "./cuadro-comparativo-add-proveedor";
 import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
+import { CuadroComparativoSendEmail } from "./cuadro-comparativo-send-email";
 
 @Component({
   selector: "app-cuadro-comparativo-list",
@@ -80,7 +81,6 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
       }
 
       .comparison-header__eyebrow,
-      .comparison-header__meta-label,
       .comparison-header__folio span {
         color: var(--bs-secondary-color);
         font-size: 0.7rem;
@@ -105,49 +105,118 @@ import { CuadroComparativoCotizacion } from "./cuadro-comparativo-cotizacion";
         letter-spacing: 0.04em;
       }
 
-      .comparison-header__meta {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      .comparison-header__summary {
+        display: flex;
+        align-items: stretch;
         gap: 0.75rem;
       }
 
-      .comparison-header__meta-item {
+      .comparison-header__auth-card {
         display: flex;
-        min-width: 0;
+        min-width: 12rem;
         flex-direction: column;
-        gap: 0.2rem;
-        padding: 0.8rem 0.95rem;
-        border-left: 3px solid
-          color-mix(in srgb, var(--ds-primary) 35%, transparent);
-        background: color-mix(in srgb, var(--bs-secondary-bg) 65%, transparent);
-      }
-
-      .comparison-header__meta-item strong,
-      .comparison-header__meta-item small {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .comparison-header__meta-item small {
+        gap: 0.15rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid currentColor;
+        border-radius: 0.75rem;
+        background: transparent;
         color: var(--bs-secondary-color);
+        cursor: pointer;
+        text-align: start;
+        transition:
+          transform 150ms ease,
+          box-shadow 150ms ease;
       }
 
-      .comparison-header__warning {
-        padding: 0.65rem 0.85rem;
-        border-left: 3px solid var(--bs-danger);
+      .comparison-header__auth-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 0.35rem 0.8rem rgb(15 23 42 / 10%);
+      }
+
+      .comparison-header__auth-card:focus-visible {
+        outline: 2px solid var(--ds-primary);
+        outline-offset: 2px;
+      }
+
+      .comparison-header__auth-card > span {
+        color: currentColor;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .comparison-header__auth-card strong {
+        color: currentColor;
+        font-size: 1.05rem;
+      }
+
+      .comparison-header__auth-card--success,
+      .comparison-header__authorization-status--success {
+        color: var(--bs-success-text-emphasis);
+        background: var(--bs-success-bg-subtle);
+      }
+
+      .comparison-header__auth-card--warning,
+      .comparison-header__authorization-status--warning {
+        color: var(--bs-warning-text-emphasis);
+        background: var(--bs-warning-bg-subtle);
+      }
+
+      .comparison-header__auth-card--danger,
+      .comparison-header__authorization-status--danger {
         color: var(--bs-danger-text-emphasis);
         background: var(--bs-danger-bg-subtle);
-        font-size: 0.85rem;
+      }
+
+      .comparison-header__authorization-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.25rem;
+      }
+
+      .comparison-header__authorization-status {
+        border-radius: 0.65rem;
+        padding: 0.8rem 1rem;
+        font-weight: 700;
+      }
+
+      .comparison-header__authorization-detail dl {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .comparison-header__authorization-detail dl > div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 0.65rem;
+      }
+
+      .comparison-header__authorization-detail dt {
+        color: var(--bs-secondary-color);
         font-weight: 600;
       }
 
+      .comparison-header__authorization-detail dd {
+        margin: 0;
+        font-weight: 700;
+        text-align: end;
+      }
+
       @media (max-width: 767.98px) {
-        .comparison-header__meta {
-          grid-template-columns: 1fr;
+        .comparison-header__folio {
+          width: 100%;
         }
 
-        .comparison-header__folio {
+        .comparison-header__summary {
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .comparison-header__auth-card {
           width: 100%;
         }
       }
@@ -169,6 +238,7 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
   ref: DynamicDialogRef;
 
   showAiModal: boolean = false;
+  showAuthorizationDetailModal: boolean = false;
   aiAnalysisResult: string = "";
   isAnalyzing: boolean = false;
 
@@ -603,6 +673,16 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
 
   isDenied() {
     return this.solicitudCompra?.estatus === 1;
+  }
+
+  getAuthorizationStatusLabel(): string {
+    if (this.isAuthorized()) return "Autorizada";
+    if (this.isDenied()) return "No autorizada";
+    return "Pendiente";
+  }
+
+  onOpenAuthorizationDetail(): void {
+    this.showAuthorizationDetailModal = true;
   }
 
   canOptimizeProducts() {
@@ -1115,6 +1195,30 @@ export class CuadroComparativoList implements OnInit, OnDestroy {
       .catch((error) => {
         this.customToastService.showError("Error AI", error.message);
         this.isAnalyzing = false;
+      });
+  }
+
+  onOpenSendEmailModal() {
+    const totals = [this.total1, this.total2, this.total3];
+    const providerOptions = this.cotizacionProveedorSignal().map(
+      (provider, index) => ({
+        label:
+          totals[index] > 0
+            ? `${provider.nameProvider} (Total ${this.formatCurrency(totals[index])})`
+            : provider.nameProvider,
+        value: provider.nameProvider,
+      }),
+    );
+
+    this.dialogHandlerS
+      .openDialog(
+        CuadroComparativoSendEmail,
+        { solicitudCompraId: this.solicitudCompraId, providerOptions },
+        "Enviar cuadro comparativo por correo",
+        this.dialogHandlerS.sizeLg,
+      )
+      .then(() => {
+        this.onLoadData();
       });
   }
 }

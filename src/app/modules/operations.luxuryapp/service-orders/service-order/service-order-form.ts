@@ -100,7 +100,7 @@ export class ServiceOrderForm implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(2000)],
     }),
-    requestDate: new FormControl("", {
+    requestDate: new FormControl(this.dateS.getDateNow(), {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -269,7 +269,7 @@ export class ServiceOrderForm implements OnInit {
     const executionDate = result.executionDate
       ? this.dateS.getDateFormat(result.executionDate)
       : "";
-    const requestDate = this.dateS.getDateFormat(result.requestDate);
+    const requestDate = this.normalizeRequestDate(result.requestDate);
 
     // Limpiar HTML
     const activity = result.activity?.replace(/<[^>]*>|&nbsp;/g, "") || "";
@@ -338,7 +338,7 @@ export class ServiceOrderForm implements OnInit {
       transformPayload: (formValue) => ({
         machineryId: formValue.machineryId,
         activity: formValue.activity,
-        requestDate: this.dateS.getDateFormat(formValue.requestDate as any),
+        requestDate: this.normalizeRequestDate(formValue.requestDate),
         status: formValue.status,
         providerId: formValue.isInternalExecution ? null : formValue.providerId,
         isInternalExecution: formValue.isInternalExecution,
@@ -356,5 +356,9 @@ export class ServiceOrderForm implements OnInit {
         maintenanceCalendarId: formValue.maintenanceCalendarId,
       }),
     });
+  }
+
+  private normalizeRequestDate(value: unknown): string {
+    return this.dateS.getDateFormat(value) ?? this.dateS.getDateNow();
   }
 }

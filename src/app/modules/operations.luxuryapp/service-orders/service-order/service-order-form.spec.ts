@@ -27,7 +27,13 @@ describe("ServiceOrderForm", () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ApiResponseService, useValue: apiMock },
-        { provide: DateService, useValue: { getDateFormat: (value: string) => value } },
+        {
+          provide: DateService,
+          useValue: {
+            getDateFormat: (value: string) => value || null,
+            getDateNow: () => "2026-10-07",
+          },
+        },
         { provide: CustomerIdService, useValue: { customerId: signal("customer-1") } },
         { provide: DynamicDialogConfig, useValue: { data: { id: 0 } } },
         { provide: DynamicDialogRef, useValue: { close: vi.fn() } }],
@@ -53,6 +59,13 @@ describe("ServiceOrderForm", () => {
     component.form.controls.isInternalExecution.setValue(false);
     expect(component.form.controls.providerId.enabled).toBe(true);
     expect(component.form.controls.provider.enabled).toBe(true);
+  });
+
+  it("always normalizes a missing request date to today's date", () => {
+    expect(component.form.controls.requestDate.value).toBe("2026-10-07");
+    expect(component["normalizeRequestDate"](null)).toBe("2026-10-07");
+    expect(component["normalizeRequestDate"]("")).toBe("2026-10-07");
+    expect(component["normalizeRequestDate"]("2026-10-03")).toBe("2026-10-03");
   });
 
   it("loads responsible users from employee-backed select items", async () => {

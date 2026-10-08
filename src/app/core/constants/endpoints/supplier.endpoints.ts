@@ -31,6 +31,8 @@ export const EndpointsSupplier = {
     updateProduct: (id: string | number) => `purchase-request/update-product/${id}`,
     cuadroComparativoEvidences: (solicitudCompraId: string) => `solicitud-compra/cuadro-comparativo/${solicitudCompraId}/evidences`,
     cuadroComparativoEvidenceDelete: (evidenceId: string) => `solicitud-compra/cuadro-comparativo/evidences/${evidenceId}`,
+    cuadroComparativoEmailRecipients: (solicitudCompraId: string) => `solicitud-compra/cuadro-comparativo/${solicitudCompraId}/email-recipients`,
+    cuadroComparativoSendEmail: (solicitudCompraId: string) => `solicitud-compra/cuadro-comparativo/${solicitudCompraId}/send-email`,
     comiteEvents: (customerId: string) => `solicitud-compra/comite-events/${customerId}`,
   },
   CustomerProvider: {

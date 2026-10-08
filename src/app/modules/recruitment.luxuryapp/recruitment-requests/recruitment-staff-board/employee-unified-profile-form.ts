@@ -163,7 +163,7 @@ export class EmployeeUnifiedProfileForm implements OnInit {
     nationality: "Nacionalidad",
     nss: "NSS",
     rfc: "RFC",
-    rfcPostalCode: "Código postal RFC",
+    rfcPostalCode: "Código postal",
     sex: "Sexo",
     hasFonacotCredit: "Crédito FONACOT",
     fonacotCreditNumber: "No. crédito FONACOT",
