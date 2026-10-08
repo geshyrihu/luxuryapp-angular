@@ -527,8 +527,9 @@
                 kind="item"
                 severity="secondary"
                 variant="soft"
+                displayMode="icon"
                 iconClass="material-symbols-light:calendar-today"
-                label="Programar"
+                ariaLabel="Programar"
                 (clicked)="program.emit(item.id)"
               />
               @if (item.status !== 'Completed') {
@@ -537,8 +538,9 @@
                 kind="item"
                 severity="secondary"
                 variant="soft"
+                displayMode="icon"
                 iconClass="material-symbols-light:lock"
-                label="Cerrar"
+                ariaLabel="Cerrar"
                 (clicked)="closed.emit(item.id)"
               />
               } @if (item.status !== 'InProgress') {
@@ -547,8 +549,9 @@
                 kind="item"
                 severity="secondary"
                 variant="soft"
+                displayMode="icon"
                 iconClass="material-symbols-light:sync"
-                label="En proceso"
+                ariaLabel="En proceso"
                 (clicked)="progress.emit(item.id)"
               />
               } @if (item.status === 'Completed') {
@@ -557,8 +560,9 @@
                 kind="item"
                 severity="secondary"
                 variant="soft"
+                displayMode="icon"
                 iconClass="material-symbols-light:lock-open"
-                label="Reabrir"
+                ariaLabel="Reabrir"
                 (clicked)="reopen.emit(item.id)"
               />
               }
@@ -567,6 +571,8 @@
                 kind="edit"
                 severity="info"
                 variant="soft"
+                displayMode="icon"
+                ariaLabel="Editar"
                 (clicked)="edit.emit(item)"
               />
               @if (isSuperUser()) {
@@ -575,6 +581,8 @@
                 kind="delete"
                 severity="danger"
                 variant="soft"
+                displayMode="icon"
+                ariaLabel="Eliminar"
                 (clicked)="delete.emit(item.id)"
               />
               }
