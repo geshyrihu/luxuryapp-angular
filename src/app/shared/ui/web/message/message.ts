@@ -12,7 +12,7 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   imports: [AppIcon],
   template: `
     <div
-      class="lux-message-web"
+      class="app-message"
       [style.background]="colors().bg"
       [style.color]="colors().text"
       [style.border-color]="colors().border"
@@ -77,4 +77,5 @@ import { AppIcon } from "@ui/primitives/app-icon/app-icon";
   encapsulation: ViewEncapsulation.None,
 })
 export class AppMessage extends MessageBase {}
+
 

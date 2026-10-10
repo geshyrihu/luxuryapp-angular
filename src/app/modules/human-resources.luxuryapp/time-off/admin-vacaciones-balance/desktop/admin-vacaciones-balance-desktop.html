@@ -49,7 +49,7 @@
     </tr>
   </ng-template>
   <ng-template #body let-item>
-    <tr [class.p-datatable-discrepant]="item.isDiscrepant">
+    <tr>
       <td>{{ item.fullName }}</td>
       <td>{{ item.hireDate | apiDate: "dd/MM/yyyy" }}</td>
       <td>{{ item.seniorityYears }} años</td>

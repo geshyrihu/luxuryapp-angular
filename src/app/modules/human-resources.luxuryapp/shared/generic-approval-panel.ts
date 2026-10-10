@@ -16,8 +16,10 @@ import { ApiDatePipe } from "@shared/pipes/api-date.pipe";
 import { PdfViewerTrigger } from "@ui/web/pdf-viewer-trigger/pdf-viewer-trigger";
 import { LuxTableCaption } from "src/app/shared/ui/web/lux-table-caption/lux-table-caption";
 import { TableFooter } from "src/app/shared/ui/web/lux-table-footer/lux-table-footer";
+import { ButtonWeb } from "@shared/ui/buttons/web/button";
 import {
   AppSortableColumn,
+  AppSorticon,
   AppTable,
 } from "src/app/shared/ui/web/lux-table/lux-table";
 import { ApprovalPanelRequest } from "../interfaces/approval.interface";
@@ -34,9 +36,12 @@ import { ApprovalPanelRequest } from "../interfaces/approval.interface";
     ApiDatePipe,
     AppTable,
     AppSortableColumn,
+    AppSorticon,
     PdfViewerTrigger,
     LuxTableCaption,
-    TableFooter],
+    TableFooter,
+    ButtonWeb,
+  ],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <lux-table

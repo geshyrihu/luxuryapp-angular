@@ -201,16 +201,22 @@ export class VacacionesPasadasRegistro implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
         console.log("[ValueChanges] dateRange:", value);
-        this.dateRangeSignal.set(value);
+        if (!value) {
+          this.dateRangeSignal.set(null);
+        }
         this.form.updateValueAndValidity();
       });
   }
 
   // Nuevo método para capturar la selección manual
-  onDateSelect(value: Date[] | null) {
-    console.log("click ¿? [onSelect] Calendario:", value);
+  onDateSelect(event: any) {
+    console.log("click ¿? [onSelect] Calendario:", event);
     // Forzamos la actualización por si el ValueChanges falla
-    this.dateRangeSignal.set(value);
+    if (event && event.selectedDates) {
+      this.dateRangeSignal.set(event.selectedDates);
+    } else if (Array.isArray(event)) {
+      this.dateRangeSignal.set(event);
+    }
     this.form.updateValueAndValidity();
     console.log(
       "Estado Form tras selección:",
@@ -318,7 +324,7 @@ export class VacacionesPasadasRegistro implements OnInit {
   }
 
   dateRangeValidator(control: AbstractControl): ValidationErrors | null {
-    const dateRange = control.get("dateRange")?.value;
+    const dateRange = this.dateRangeSignal();
     const balance = this.balance();
 
     if (
@@ -373,7 +379,7 @@ export class VacacionesPasadasRegistro implements OnInit {
     this.serverError.set(null);
 
     const formValue = this.form.getRawValue(); // Use getRawValue for TypedForms to get all values safely
-    const dateRange = formValue.dateRange;
+    const dateRange = this.dateRangeSignal();
 
     if (!dateRange || !dateRange[0] || !dateRange[1]) {
       this.submitting.set(false);
@@ -419,3 +425,4 @@ export class VacacionesPasadasRegistro implements OnInit {
       .finally(() => this.submitting.set(false));
   }
 }
+

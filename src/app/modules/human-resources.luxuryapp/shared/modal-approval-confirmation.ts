@@ -1,3 +1,5 @@
+import { AppIcon } from "@ui/primitives/app-icon/app-icon";
+import { ButtonWeb } from "@shared/ui/buttons/web/button";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -29,6 +31,8 @@ import { ApprovalInfoService } from "./approval-info.service";
 @Component({
   selector: "app-approval-confirmation-modal",
   imports: [
+    AppIcon,
+    ButtonWeb,
     ApiDatePipe,
     ReactiveFormsModule,
     LxSpinner,

@@ -45,7 +45,6 @@ import { BaseInputSignal } from "../core/base-input-signal";
         [readonly]="readonlyInput()"
         [disabled]="disabled()"
         [style]="dateStyle()"
-        appendTo="body"
         (flatpickrChange)="dateSelect.emit($event)"
       />
     </base-input-signal>
